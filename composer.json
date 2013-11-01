@@ -1,0 +1,22 @@
+{
+    "name": "wtfzdotnet/php-tmdb-api",
+    "type": "library",
+    "description": "TMDB API client",
+    "homepage": "https://github.com/wtfzdotnet/php-tmdb-api",
+    "keywords": ["tmdb", "api", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Roterman",
+            "homepage": "http://wtfz.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "ext-curl": "*",
+        "guzzle/guzzle": ">=0.7"
+    },
+    "autoload": {
+        "psr-0": { "Tmdb\\": "lib/" }
+    }
+}
