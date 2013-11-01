@@ -77,19 +77,100 @@ class Client {
     }
 
     /**
+     * Return the relevant API object
+     *
+     * Pick your poison for the matter of your preference of plural / non-plural.
+     *
      * @param $name
      * @throws Exception\InvalidArgumentException
      */
     public function api($name)
     {
         switch($name) {
+            case 'configuration':
+                /** @return Api\Configuration */
+                $api = new Api\Configuration($this);
+                break;
+
+            case 'authentication':
+                /** @return Api\Authentication */
+                $api = new Api\Authentication($this);
+                break;
+
+            case 'account':
+                /** @return Api\Account */
+                $api = new Api\Account($this);
+                break;
+
             case 'movies':
                 /** @return Api\Movies */
                 $api = new Api\Movies($this);
                 break;
 
+            case 'collections':
+                /** @return Api\Collections */
+                $api = new Api\Collections($this);
+                break;
+
+            case 'tv':
+            case 'tvseasons':
+            case 'tvepisodes':
+                /** @return Api\Tv */
+                $api = new Api\Tv($this);
+                break;
+
+            case 'people':
+                /** @return Api\People */
+                $api = new Api\People($this);
+                break;
+
+            case 'lists':
+                /** @return Api\Lists */
+                $api = new Api\Lists($this);
+                break;
+
+            case 'companies':
+                /** @return Api\Companies */
+                $api = new Api\Companies($this);
+                break;
+
+            case 'genres':
+                /** @return Api\Genres */
+                $api = new Api\Genres($this);
+                break;
+
+            case 'keywords':
+                /** @return Api\Keywords */
+                $api = new Api\Keywords($this);
+                break;
+
+            case 'discover':
+                /** @return Api\Discover */
+                $api = new Api\Discover($this);
+                break;
+
+            case 'search':
+                /** @return Api\Search */
+                $api = new Api\Search($this);
+                break;
+
+            case 'reviews':
+                /** @return Api\Reviews */
+                $api = new Api\Reviews($this);
+                break;
+
+            case 'changes':
+                /** @return Api\Changes */
+                $api = new Api\Changes($this);
+                break;
+
+            case 'jobs':
+                /** @return Api\Jobs */
+                $api = new Api\Jobs($this);
+                break;
+
             default:
-                throw new InvalidArgumentException();
+                throw new InvalidArgumentException(sprintf('The API type "%s" is not supported.', $name));
         }
 
         return $api;
