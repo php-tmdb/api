@@ -20,6 +20,7 @@ class Image extends AbstractModel {
     const FORMAT_BACKDROP = 'backdrop';
     const FORMAT_PROFILE  = 'profile';
     const FORMAT_LOGO     = 'logo';
+    const FORMAT_STILL    = 'still';
 
     private $filePath;
     private $width;
@@ -42,7 +43,8 @@ class Image extends AbstractModel {
         'posters'   => self::FORMAT_POSTER,
         'backdrops' => self::FORMAT_BACKDROP,
         'profiles'  => self::FORMAT_PROFILE,
-        'logos'     => self::FORMAT_LOGO
+        'logos'     => self::FORMAT_LOGO,
+        'stills'    => self::FORMAT_STILL
     );
 
     /**
