@@ -18,7 +18,6 @@ abstract class AbstractMember extends AbstractModel {
 
     private $id;
     private $name;
-    private $order;
     private $profilePath;
 
     protected static $_properties = array(
