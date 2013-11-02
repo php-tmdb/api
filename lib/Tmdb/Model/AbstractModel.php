@@ -17,6 +17,10 @@ use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Common\Genres;
 use Tmdb\Model\Common\Images;
 use Tmdb\Model\Common\People;
+use Tmdb\Model\Movie\Cast as MovieCast;
+use Tmdb\Model\Movie\Crew as MovieCrew;
+use Tmdb\Model\Person\CastMember;
+use Tmdb\Model\Person\CrewMember;
 
 class AbstractModel {
     protected static $_properties;
@@ -142,7 +146,47 @@ class AbstractModel {
     }
 
     /**
-     * Collect all people from an array
+     * Collect cast
+     *
+     * @param $client
+     * @param array $collection
+     * @return People
+     */
+    protected function collectCast($client, array $collection = array())
+    {
+        $people = new MovieCast();
+
+        foreach($collection as $item) {
+            $person = CastMember::fromArray($client, $item);
+
+            $people->addPerson($person);
+        }
+
+        return $people;
+    }
+
+    /**
+     * Collect crew
+     *
+     * @param $client
+     * @param array $collection
+     * @return People
+     */
+    protected function collectCrew($client, array $collection = array())
+    {
+        $people = new MovieCrew();
+
+        foreach($collection as $item) {
+            $person = CrewMember::fromArray($client, $item);
+
+            $people->addPerson($person);
+        }
+
+        return $people;
+    }
+
+    /**
+     * Collect all genres from an array
      *
      * @param $client
      * @param array $collection

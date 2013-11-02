@@ -13,9 +13,12 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
+use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\Genres;
 use Tmdb\Model\Common\Images;
 use Tmdb\Model\Common\People;
+use Tmdb\Model\Common\SpokenLanguage;
 
 class Movie extends AbstractModel {
 
@@ -61,6 +64,12 @@ class Movie extends AbstractModel {
      * @var Common\Genres
      */
     protected $genres;
+
+    /**
+     * Images
+     *
+     * @var Common\Images
+     */
     protected $images;
     protected $changes;
 
@@ -111,12 +120,21 @@ class Movie extends AbstractModel {
         $movie = new Movie($data['id']);
         //$movie->setClient($client);
 
-        if (array_key_exists('casts', $data)) {
-            $movie->setCast(parent::collectPeople($client, $data['casts']['cast']));
+        $casts = array();
+
+        if (array_key_exists('alternative_titles', $casts)) {
         }
 
-        if (array_key_exists('crew', $data)) {
-            $movie->setCrew(parent::collectPeople($client, $data['casts']['crew']));
+        if (array_key_exists('casts', $data)) {
+            $casts = $data['casts'];
+        }
+
+        if (array_key_exists('cast', $casts)) {
+            $movie->setCast(parent::collectCast($client, $casts['cast']));
+        }
+
+        if (array_key_exists('crew', $casts)) {
+            $movie->setCrew(parent::collectCrew($client, $casts['crew']));
         }
 
         if (array_key_exists('genres', $data)) {
@@ -125,6 +143,30 @@ class Movie extends AbstractModel {
 
         if (array_key_exists('images', $data)) {
             $movie->setImages(parent::collectImages($client, $data['images']));
+        }
+
+        if (array_key_exists('keywords', $data)) {
+        }
+
+        if (array_key_exists('releases', $data)) {
+        }
+
+        if (array_key_exists('trailers', $data)) {
+        }
+
+        if (array_key_exists('translations', $data)) {
+        }
+
+        if (array_key_exists('similar_movies', $data)) {
+        }
+
+        if (array_key_exists('reviews', $data)) {
+        }
+
+        if (array_key_exists('lists', $data)) {
+        }
+
+        if (array_key_exists('changes', $data)) {
         }
 
         return $movie->hydrate($data);
@@ -199,10 +241,10 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param mixed $changes
+     * @param Collection $changes
      * @return $this
      */
-    public function setChanges($changes)
+    public function setChanges(Collection $changes)
     {
         $this->changes = $changes;
         return $this;
@@ -217,7 +259,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Genres $genres
+     * @param Genres $genres
      * @return $this
      */
     public function setGenres(Genres $genres)
@@ -227,7 +269,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Genre[]
+     * @return Genre[]
      */
     public function getGenres()
     {
@@ -258,7 +300,7 @@ class Movie extends AbstractModel {
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = (int) $id;
         return $this;
     }
 
@@ -271,7 +313,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Images $images
+     * @param Images $images
      * @return $this
      */
     public function setImages(Images $images)
@@ -281,7 +323,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Image[]
+     * @return Image
      */
     public function getImages()
     {
@@ -348,7 +390,7 @@ class Movie extends AbstractModel {
      */
     public function setPopularity($popularity)
     {
-        $this->popularity = $popularity;
+        $this->popularity = (float) $popularity;
         return $this;
     }
 
@@ -379,17 +421,17 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param mixed $productionCompanies
+     * @param Collection $productionCompanies
      * @return $this
      */
-    public function setProductionCompanies($productionCompanies)
+    public function setProductionCompanies(Collection $productionCompanies)
     {
         $this->productionCompanies = $productionCompanies;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return Company[]
      */
     public function getProductionCompanies()
     {
@@ -397,17 +439,17 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param mixed $productionCountries
+     * @param Collection $productionCountries
      * @return $this
      */
-    public function setProductionCountries($productionCountries)
+    public function setProductionCountries(Collection $productionCountries)
     {
         $this->productionCountries = $productionCountries;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return Country
      */
     public function getProductionCountries()
     {
@@ -415,10 +457,10 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param mixed $releaseDate
+     * @param \DateTime $releaseDate
      * @return $this
      */
-    public function setReleaseDate($releaseDate)
+    public function setReleaseDate(\DateTime $releaseDate)
     {
         $this->releaseDate = $releaseDate;
         return $this;
@@ -438,7 +480,7 @@ class Movie extends AbstractModel {
      */
     public function setRevenue($revenue)
     {
-        $this->revenue = $revenue;
+        $this->revenue = (int) $revenue;
         return $this;
     }
 
@@ -456,7 +498,7 @@ class Movie extends AbstractModel {
      */
     public function setRuntime($runtime)
     {
-        $this->runtime = $runtime;
+        $this->runtime = (int) $runtime;
         return $this;
     }
 
@@ -469,17 +511,17 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param mixed $spokenLanguages
+     * @param Collection $spokenLanguages
      * @return $this
      */
-    public function setSpokenLanguages($spokenLanguages)
+    public function setSpokenLanguages(Collection $spokenLanguages)
     {
         $this->spokenLanguages = $spokenLanguages;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return SpokenLanguage[]
      */
     public function getSpokenLanguages()
     {
@@ -546,7 +588,7 @@ class Movie extends AbstractModel {
      */
     public function setVoteAverage($voteAverage)
     {
-        $this->voteAverage = $voteAverage;
+        $this->voteAverage = (float) $voteAverage;
         return $this;
     }
 
@@ -564,7 +606,7 @@ class Movie extends AbstractModel {
      */
     public function setVoteCount($voteCount)
     {
-        $this->voteCount = $voteCount;
+        $this->voteCount = (int) $voteCount;
         return $this;
     }
 
@@ -577,7 +619,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\People $cast
+     * @param People $cast
      * @return $this
      */
     public function setCast(People $cast)
@@ -587,7 +629,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Common\People
+     * @return Person[]
      */
     public function getCast()
     {
@@ -595,7 +637,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param mixed $crew
+     * @param People $crew
      * @return $this
      */
     public function setCrew($crew)
@@ -605,7 +647,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return Person[]
      */
     public function getCrew()
     {

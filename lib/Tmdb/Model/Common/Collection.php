@@ -15,5 +15,32 @@ namespace Tmdb\Model\Common;
 use Guzzle\Common\Collection as GuzzleCollection;
 
 class Collection extends GuzzleCollection {
+    /**
+     * Allow support for adding objects
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return GuzzleCollection
+     */
+    public function add($key, $value) {
+        if ($key === null && is_object($value)) {
+            $key = spl_object_hash($value);
+        }
 
+        return parent::add($key, $value);
+    }
+
+    /**
+     * Allow support for getting objects
+     *
+     * @param string $key
+     * @return mixed|null
+     */
+    public function get($key) {
+        if (is_object($key)) {
+            $key = spl_object_hash($key);
+        }
+
+        return parent::get($key);
+    }
 } 

@@ -13,8 +13,9 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
+use Tmdb\Model\Common\People\PersonInterface;
 
-class Person extends AbstractModel {
+class Person extends AbstractModel implements PersonInterface {
 
     private $adult;
     private $alsoKnownAs = array();

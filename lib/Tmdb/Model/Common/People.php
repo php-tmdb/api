@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Model\Common;
 
+use Tmdb\Model\Common\People\PersonInterface;
 use Tmdb\Model\Person;
 
 class People extends Collection {
@@ -19,7 +20,7 @@ class People extends Collection {
     /**
      * Returns all people
      *
-     * @return array
+     * @return Person[]
      */
     public function getPeople()
     {
@@ -30,7 +31,7 @@ class People extends Collection {
      * Retrieve a person from the collection
      *
      * @param $id
-     * @return null
+     * @return Person
      */
     public function getPerson($id) {
         foreach($this->data as $person) {
@@ -45,9 +46,9 @@ class People extends Collection {
     /**
      * Add a person to the collection
      *
-     * @param Person $person
+     * @param PersonInterface $person
      */
-    public function addPerson(Person $person)
+    public function addPerson(PersonInterface $person)
     {
         $this->data[] = $person;
     }
