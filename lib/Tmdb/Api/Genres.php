@@ -16,6 +16,26 @@ class Genres
     extends AbstractApi
 {
     /**
+     * Get the list of genres, and return one by id
+     *
+     * @param integer $id
+     * @param array $options
+     * @return mixed
+     */
+    public function getGenre($id, array $options = array())
+    {
+        $response = $this->getGenres();
+
+        foreach($response['genres'] as $genre) {
+            if ($id == $genre['id']) {
+                return $genre;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Get the list of genres.
      *
      * @param array $options

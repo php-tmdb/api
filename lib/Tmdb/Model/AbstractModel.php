@@ -14,6 +14,9 @@ namespace Tmdb\Model;
 
 use Tmdb\Client;
 use Tmdb\Exception\RuntimeException;
+use Tmdb\Model\Common\Genres;
+use Tmdb\Model\Common\Images;
+use Tmdb\Model\Common\People;
 
 class AbstractModel {
     protected static $_properties;
@@ -69,7 +72,10 @@ class AbstractModel {
         if (!empty($data)) {
             foreach ($data as $k => $v) {
                 if (in_array($k, static::$_properties)) {
-                    $method = sprintf('set%s', ucfirst($k));
+
+                    $method = $this->camelize(
+                        sprintf('set_%s', $k)
+                    );
 
                     if (!method_exists($this, $method)) {
                         throw new RuntimeException(sprintf(
@@ -86,4 +92,110 @@ class AbstractModel {
 
         return $this;
     }
+
+    /**
+     * Collect all images from an `image` array ( containing e.g. posters / profiles etc. )
+     *
+     * @param $client
+     * @param array $collection
+     * @return Images
+     */
+    protected function collectImages($client, array $collection = array())
+    {
+        $images = new Images();
+
+        foreach($collection as $collectionName => $itemCollection) {
+            foreach($itemCollection as $item) {
+                if (!is_array($item)) {
+                    continue;
+                }
+
+                $image = Image::fromArray($client, $item);
+
+                $image->setType(Image::getTypeFromCollectionName($collectionName));
+
+                $images->addImage($image);
+            }
+        }
+
+        return $images;
+    }
+
+    /**
+     * Collect all people from an array
+     *
+     * @param $client
+     * @param array $collection
+     * @return People
+     */
+    protected function collectPeople($client, array $collection = array())
+    {
+        $people = new People();
+
+        foreach($collection as $item) {
+            $person = Person::fromArray($client, $item);
+
+            $people->addPerson($person);
+        }
+
+        return $people;
+    }
+
+    /**
+     * Collect all people from an array
+     *
+     * @param $client
+     * @param array $collection
+     * @return People
+     */
+    protected function collectGenres($client, array $collection = array())
+    {
+        $genres = new Genres();
+
+        foreach($collection as $item) {
+            $genre = Genre::fromArray($client, $item);
+            $genres->addGenre($genre);
+        }
+
+        return $genres;
+    }
+
+    /**
+     * Transforms an under_scored_string to a camelCasedOne
+     *
+     * @see https://gist.github.com/troelskn/751517
+     *
+     * @param $candidate
+     * @return string
+     */
+    private function camelize($candidate)
+    {
+        return lcfirst(
+            implode('',
+                array_map('ucfirst',
+                    array_map('strtolower',
+                        explode('_', $candidate
+                        )
+                    )
+                )
+            )
+        );
+    }
+
+    /**
+     * Transforms a camelCasedString to an under_scored_one
+     *
+     * @see https://gist.github.com/troelskn/751517
+     *
+     * @param $camelized
+     * @return string
+     */
+    private function uncamelize($camelized) {
+        return implode('_',
+            array_map('strtolower',
+                preg_split('/([A-Z]{1}[^A-Z]*)/', $camelized, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY)
+            )
+        );
+    }
+
 }
