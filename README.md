@@ -6,7 +6,11 @@ I've started working on this since the week of October-November 2013. I hope to 
 The API namespace has most things already covered, however this is RAW output from the API. I'm working extensively on finishing the models.
 
 A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.io/).
+<<<<<<< HEAD
 ------------
+=======
+==============
+>>>>>>> bcd72746aaa5e561be08385c5395604a7f970ae7
 
 Based on & inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
 
