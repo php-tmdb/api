@@ -10,18 +10,19 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model;
+namespace Tmdb\Model\Changes;
 
 use Tmdb\Client;
+use Tmdb\Model\AbstractModel;
 
 class Change extends AbstractModel {
 
     private $id;
-    private $name;
+    private $adult = false;
 
     protected static $_properties = array(
         'id',
-        'name',
+        'adult',
     );
 
     /**
@@ -33,24 +34,28 @@ class Change extends AbstractModel {
      */
     public static function fromArray(Client $client, array $data)
     {
-        $genre = new Genre($data['id']);
+        $genre = new Change($data['id']);
         //$genre->setClient($client);
 
         return $genre->hydrate($data);
     }
 
     /**
-     * Load a person with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $options
+     * @param boolean $adult
      * @return $this
      */
-    public static function load(Client $client, $id, array $options = array()) {
-        $data = $client->api('genres')->getGenre($id, $options);
+    public function setAdult($adult)
+    {
+        $this->adult = $adult;
+        return $this;
+    }
 
-        return Genre::fromArray($client, $data);
+    /**
+     * @return boolean
+     */
+    public function getAdult()
+    {
+        return $this->adult;
     }
 
     /**
@@ -59,7 +64,7 @@ class Change extends AbstractModel {
      */
     public function setId($id)
     {
-        $this->id = (int) $id;
+        $this->id = $id;
         return $this;
     }
 
@@ -69,24 +74,6 @@ class Change extends AbstractModel {
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
 

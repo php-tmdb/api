@@ -13,9 +13,10 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
+use Tmdb\Model\Changes\Change;
 use Tmdb\Model\Common\Collection;
 
-abstract class Changes extends AbstractModel {
+class Changes extends AbstractModel {
 
     private $from = null;
     private $to   = null;
@@ -32,7 +33,7 @@ abstract class Changes extends AbstractModel {
      * @param \DateTime $date
      * @return $this
      */
-    public function from($date)
+    public function from(\DateTime $date)
     {
         $this->from = $date->format('Y-m-d');
 
@@ -45,7 +46,7 @@ abstract class Changes extends AbstractModel {
      * @param \DateTime $date
      * @return $this
      */
-    public function to($date)
+    public function to(\DateTime $date)
     {
         $this->to = $date->format('Y-m-d');
 
@@ -64,20 +65,29 @@ abstract class Changes extends AbstractModel {
         return $this;
     }
 
+    /**
+     * Execute the current state
+     *
+     * @return Collection
+     */
     public function execute()
     {
         $collection = new Collection();
 
-        $response = $this->getClient()->api('changes')->getMovieChanges();
+        $response = $this->getClient()->api('changes')->getMovieChanges(array(
+            'from' => $this->from,
+            'to'   => $this->to,
+            'page' => $this->page
+        ));
 
         if (!empty($response)) {
             foreach($response['results'] as $change) {
-                $collection->add($change);
+                $collection->add(null, Change::fromArray($this->getClient(), $change));
             }
         }
 
         return $collection;
     }
 
-    abstract public function getEntity();
+    //abstract public function getEntity();
 }

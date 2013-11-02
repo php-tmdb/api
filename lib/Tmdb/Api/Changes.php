@@ -31,7 +31,7 @@ class Changes
      */
     public function getMovieChanges(array $options = array())
     {
-        return $this->get('movie/changes/', $options);
+        return $this->get('movie/changes', $options);
     }
 
     /**
@@ -50,6 +50,6 @@ class Changes
      */
     public function getPeopleChanges(array $options = array())
     {
-        return $this->get('person/changes/', $options);
+        return $this->get('person/changes', $options);
     }
 }
