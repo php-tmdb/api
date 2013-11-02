@@ -2,3 +2,4 @@
 /composer.lock
 /*.php
 /.idea/
+/apikey.php
