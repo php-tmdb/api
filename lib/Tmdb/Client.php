@@ -30,7 +30,7 @@ use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
  * @package Tmdb
  */
 class Client {
-    const TMDB_URI = 'http://private-a868-themoviedb.apiary.io/3/';
+    const TMDB_URI = 'http://api.themoviedb.org/3/';
 
     /**
      * @var Token
