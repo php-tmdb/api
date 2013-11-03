@@ -113,10 +113,18 @@ class Client {
                 break;
 
             case 'tv':
-            case 'tvseasons':
-            case 'tvepisodes':
                 /** @return Api\Tv */
                 $api = new Api\Tv($this);
+                break;
+
+            case 'tvseason':
+                /** @return Api\TvSeason */
+                $api = new Api\TvSeason($this);
+                break;
+
+            case 'tvepisode':
+                /** @return Api\TvEpisode */
+                $api = new Api\TvEpisode($this);
                 break;
 
             case 'people':
