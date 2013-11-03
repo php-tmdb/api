@@ -29,9 +29,24 @@ use Tmdb\Model\Common\SpokenLanguage;
 
 class Movie extends AbstractModel {
 
+    /**
+     * @var bool
+     */
     private $adult = false;
+
+    /**
+     * @var Image
+     */
     private $backdropPath;
+
+    /**
+     * @var Collection
+     */
     private $belongsToCollection = null;
+
+    /**
+     * @var int
+     */
     private $budget;
 
     /**
@@ -40,26 +55,105 @@ class Movie extends AbstractModel {
      * @var Common\Genres
      */
     private $genres;
+
+    /**
+     * @var string
+     */
     private $homepage;
+
+    /**
+     * @var int
+     */
     private $id;
+
+    /**
+     * @var string
+     */
     private $imdbId;
+
+    /**
+     * @var string
+     */
     private $originalTitle;
+
+    /**
+     * @var string
+     */
     private $overview;
+
+    /**
+     * @var float
+     */
     private $popularity;
+
+    /**
+     * @var Image
+     */
     private $posterPath;
+
+    /**
+     * @var Collection
+     */
     private $productionCompanies;
+
+    /**
+     * @var Collection
+     */
     private $productionCountries;
+
+    /**
+     * @var \DateTime
+     */
     private $releaseDate;
+
+    /**
+     * @var int
+     */
     private $revenue;
+
+    /**
+     * @var int
+     */
     private $runtime;
+
+    /**
+     * @var Collection
+     */
     private $spokenLanguages;
+
+    /**
+     * @var string
+     */
     private $status;
+
+    /**
+     * @var string
+     */
     private $tagline;
+
+    /**
+     * @var title
+     */
     private $title;
+
+    /**
+     * @var float
+     */
     private $voteAverage;
+
+    /**
+     * @var int
+     */
     private $voteCount;
 
+    /**
+     * @var Collection
+     */
     protected $alternativeTitles;
+
+    /**
+     * @var Collection
+     */
     protected $changes;
 
     /**
@@ -75,14 +169,42 @@ class Movie extends AbstractModel {
      * @var Common\Collection\Images
      */
     protected $images;
+
+    /**
+     * @var Collection
+     */
     protected $keywords;
+
+    /**
+     * @var Collection
+     */
     protected $lists;
+
+    /**
+     * @var Collection
+     */
     protected $releases;
+
+    /**
+     * @var Collection
+     */
     protected $similarMovies;
+
+    /**
+     * @var Collection
+     */
     protected $trailers;
+
+    /**
+     * @var Collection
+     */
     protected $translations;
 
-
+    /**
+     * Properties that are available in the API
+     *
+     * @var array
+     */
     protected static $_properties = array(
         'adult',
         'backdrop_path',

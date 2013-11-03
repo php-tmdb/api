@@ -33,24 +33,10 @@ class AlternativeTitle extends AbstractModel {
      */
     public static function fromArray(Client $client, array $data)
     {
-        $genre = new AlternativeTitle();
-        //$genre->setClient($client);
+        $title = new AlternativeTitle();
+        //$title->setClient($client);
 
-        return $genre->hydrate($data);
-    }
-
-    /**
-     * Load a person with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $options
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $options = array()) {
-        $data = $client->api('genres')->getGenre($id, $options);
-
-        return Genre::fromArray($client, $data);
+        return $title->hydrate($data);
     }
 
     /**
