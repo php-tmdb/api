@@ -13,7 +13,7 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
-use Tmdb\Model\Common\People\PersonInterface;
+use Tmdb\Model\Collection\People\PersonInterface;
 
 class Person extends AbstractModel implements PersonInterface {
 
@@ -71,11 +71,11 @@ class Person extends AbstractModel implements PersonInterface {
      *
      * @param Client $client
      * @param $id
-     * @param $with
+     * @param $parameters
      * @return $this
      */
-    public static function load(Client $client, $id, array $with = array()) {
-        $data = $client->api('people')->getPerson($id, $with);
+    public static function load(Client $client, $id, array $parameters = array()) {
+        $data = $client->api('people')->getPerson($id, parent::parseQueryParameters($parameters));
 
         return Person::fromArray($client, $data);
     }

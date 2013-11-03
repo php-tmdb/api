@@ -10,9 +10,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Common\People;
+namespace Tmdb\Model\Collection\People;
 
-use Tmdb\Model\Common\People;
+use Tmdb\Model\Collection\People;
 use Tmdb\Model\Person;
 
 class Cast extends People {

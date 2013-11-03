@@ -14,7 +14,7 @@ namespace Tmdb\Model;
 
 use Tmdb\Client;
 
-class Genre extends AbstractModel {
+class AlternativeTitle extends AbstractModel {
 
     private $id;
     private $name;
@@ -33,22 +33,22 @@ class Genre extends AbstractModel {
      */
     public static function fromArray(Client $client, array $data)
     {
-        $genre = new Genre($data['id']);
+        $genre = new AlternativeTitle();
         //$genre->setClient($client);
 
         return $genre->hydrate($data);
     }
 
     /**
-     * Load a genre with the given identifier
+     * Load a person with the given identifier
      *
      * @param Client $client
      * @param $id
-     * @param $parameters
+     * @param $options
      * @return $this
      */
-    public static function load(Client $client, $id, array $parameters = array()) {
-        $data = $client->api('genres')->getGenre($id, parent::parseQueryParameters($parameters));
+    public static function load(Client $client, $id, array $options = array()) {
+        $data = $client->api('genres')->getGenre($id, $options);
 
         return Genre::fromArray($client, $data);
     }

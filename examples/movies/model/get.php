@@ -10,36 +10,49 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-    require_once('../../../vendor/autoload.php');
-    require_once('../../../apikey.php');
+require_once('../../../vendor/autoload.php');
+require_once('../../../apikey.php');
 
-    $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-    $client = new \Tmdb\Client($token);
+$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$client = new \Tmdb\Client($token);
 
-    $movie = \Tmdb\Model\Movie::load($client, 87421, array(
-        'append_to_response' => 'casts,images'
-    ));
+$append = new \Tmdb\Model\Movie\QueryParameter\AppendToResponse(array(
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::ALTERNATIVE_TITLES,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CHANGES,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CREDITS,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::IMAGES,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::KEYWORDS,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::LISTS,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::RELEASES,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::REVIEWS,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::SIMILAR_MOVIES,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRAILERS,
+    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRANSLATIONS,
+));
 
-    echo $movie->getTitle() . "\n";
+$movie = \Tmdb\Model\Movie::load($client, 87421, array($append, $language));
 
-    echo "Cast\n";
 
-    foreach($movie->getCast() as $person) {
-        printf(" - %s as %s\n", $person->getName(), $person->getCharacter());
-    }
+echo $movie->getTitle() . "\n";
 
-    foreach($movie->getCrew() as $person) {
-        printf(" - %s as %s\n", $person->getName(), $person->getJob());
-    }
+echo "Cast\n";
 
-    echo "Images\n";
+foreach($movie->getCast() as $person) {
+    printf(" - %s as %s\n", $person->getName(), $person->getCharacter());
+}
 
-    foreach($movie->getImages() as $image) {
-        printf(" - %s\n", $image->getFilePath());
-    }
+foreach($movie->getCrew() as $person) {
+    printf(" - %s as %s\n", $person->getName(), $person->getJob());
+}
 
-    echo "Genres\n";
+echo "Images\n";
 
-    foreach($movie->getGenres() as $genre) {
-        printf(" - %s\n", $genre->getName());
-    }
+foreach($movie->getImages() as $image) {
+    printf(" - %s\n", $image->getFilePath());
+}
+
+echo "Genres\n";
+
+foreach($movie->getGenres() as $genre) {
+    printf(" - %s\n", $genre->getName());
+}

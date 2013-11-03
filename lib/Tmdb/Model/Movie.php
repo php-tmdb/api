@@ -13,11 +13,18 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
+
 use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\Collection\Images;
+
+use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Collection\Credits\Cast;
+use Tmdb\Model\Collection\Credits\Crew;
+
+use Tmdb\Model\Collection\Genres;
+use Tmdb\Model\Collection\People;
+
 use Tmdb\Model\Common\Country;
-use Tmdb\Model\Common\Genres;
-use Tmdb\Model\Common\Images;
-use Tmdb\Model\Common\People;
 use Tmdb\Model\Common\SpokenLanguage;
 
 class Movie extends AbstractModel {
@@ -25,6 +32,14 @@ class Movie extends AbstractModel {
     private $adult = false;
     private $backdropPath;
     private $belongsToCollection = null;
+    private $budget;
+
+    /**
+     * Genres
+     *
+     * @var Common\Genres
+     */
+    private $genres;
     private $homepage;
     private $id;
     private $imdbId;
@@ -44,57 +59,64 @@ class Movie extends AbstractModel {
     private $voteAverage;
     private $voteCount;
 
-    /**
-     * Cast members
-     *
-     * @var Movie\Cast
-     */
-    protected $cast;
+    protected $alternativeTitles;
+    protected $changes;
 
     /**
-     * Crew members
+     * Credits
      *
-     * @var
+     * @var Common\Collection\Credits
      */
-    protected $crew;
-
-    /**
-     * Genres
-     *
-     * @var Common\Genres
-     */
-    protected $genres;
+    protected $credits;
 
     /**
      * Images
      *
-     * @var Common\Images
+     * @var Common\Collection\Images
      */
     protected $images;
-    protected $changes;
+    protected $keywords;
+    protected $lists;
+    protected $releases;
+    protected $similarMovies;
+    protected $trailers;
+    protected $translations;
+
 
     protected static $_properties = array(
         'adult',
-        'backdropPath',
-        'belongsToCollection',
+        'backdrop_path',
+        'belongs_to_collection',
+        'budget',
+        'genres',
         'homepage',
         'id',
-        'imdbId',
-        'originalTitle',
+        'imdb_id',
+        'original_title',
         'overview',
         'popularity',
-        'posterPath',
-        'productionCompanies',
-        'productionCountries',
-        'releaseDate',
+        'poster_path',
+        'production_companies',
+        'production_countries',
+        'release_date',
         'revenue',
         'runtime',
-        'spokenLanguages',
+        'spoken_languages',
         'status',
         'tagline',
         'title',
-        'voteAverage',
-        'voteCount',
+        'vote_average',
+        'vote_count',
+        'alternative_titles',
+        'changes',
+        'credits',
+        'images',
+        'keywords',
+        'lists',
+        'releases',
+        'similar_movies',
+        'trailers',
+        'translations',
     );
 
     /**
@@ -102,10 +124,12 @@ class Movie extends AbstractModel {
      */
     public function __construct()
     {
-        $this->genres = new Common\Genres();
-        $this->images = new Common\Images();
-        $this->cast   = new Movie\Cast();
-        $this->crew   = new People();
+        $this->genres  = new Common\Collection\Genres();
+        $this->images  = new Common\Collection\Images();
+        $this->credits = new Common\Collection\Credits();
+
+        $this->credits->setCast(new Cast());
+        $this->credits->setCrew(new Crew());
     }
 
     /**
@@ -122,7 +146,8 @@ class Movie extends AbstractModel {
 
         $casts = array();
 
-        if (array_key_exists('alternative_titles', $casts)) {
+        if (array_key_exists('alternative_titles', $data)) {
+            $movie->setAlternativeTitles(parent::collectAlternativeTitles($client, $data['alternative_titles']));
         }
 
         if (array_key_exists('casts', $data)) {
@@ -177,11 +202,11 @@ class Movie extends AbstractModel {
      *
      * @param Client $client
      * @param $id
-     * @param $with
+     * @param $parameters
      * @return $this
      */
-    public static function load(Client $client, $id, array $with = array()) {
-        $data = $client->api('movies')->getMovie($id, $with);
+    public static function load(Client $client, $id, array $parameters = array()) {
+        $data = $client->api('movies')->getMovie($id, parent::parseQueryParameters($parameters));
 
         return Movie::fromArray($client, $data);
     }

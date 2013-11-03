@@ -88,22 +88,22 @@ class Client {
     {
         switch($name) {
             case 'configuration':
-                /** @return Api\Configuration */
+                /** @var Api\Configuration */
                 $api = new Api\Configuration($this);
                 break;
 
             case 'authentication':
-                /** @return Api\Authentication */
+                /** @var Api\Authentication */
                 $api = new Api\Authentication($this);
                 break;
 
             case 'account':
-                /** @return Api\Account */
+                /** @var Api\Account */
                 $api = new Api\Account($this);
                 break;
 
             case 'movies':
-                /** @return Api\Movies */
+                /** @var Api\Movies */
                 $api = new Api\Movies($this);
                 break;
 

@@ -10,8 +10,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Common;
+namespace Tmdb\Model\Collection\People;
 
-class Images extends Collection {
-
+interface PersonInterface {
+    function getName();
+    function getId();
 } 

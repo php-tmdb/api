@@ -10,10 +10,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Movie;
+namespace Tmdb\Model\Collection\Credits;
 
-use Tmdb\Model\Common\People\Cast as BaseCast;
+use Tmdb\Model\Collection\People\Crew as BaseCrew;
 
-class Cast extends BaseCast {
+class Crew extends BaseCrew {
 
 }

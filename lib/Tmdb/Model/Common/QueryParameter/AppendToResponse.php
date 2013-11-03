@@ -10,9 +10,16 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Common\People;
+namespace Tmdb\Model\Common\QueryParameter;
 
-interface PersonInterface {
-    function getName();
-    function getId();
-} 
+use Tmdb\Model\Common\QueryParameter\Type\CollectionToCommaSeperatedString;
+
+class AppendToResponse extends CollectionToCommaSeperatedString {
+    /**
+     * @return string
+     */
+    public function getKey()
+    {
+        return 'append_to_response';
+    }
+}

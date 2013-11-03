@@ -15,6 +15,22 @@ namespace Tmdb\Model\Common;
 use Guzzle\Common\Collection as GuzzleCollection;
 
 class Collection extends GuzzleCollection {
+    protected $data = array();
+
+    /**
+     * Allow adding objects to the collection
+     *
+     * @param $object
+     */
+    public function addObject($object)
+    {
+        if (!is_object($object)) {
+            return;
+        }
+
+        $this->add(null, $object);
+    }
+
     /**
      * Allow support for adding objects
      *

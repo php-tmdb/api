@@ -10,10 +10,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Movie;
+namespace Tmdb\Model\Common\QueryParameter;
 
-use Tmdb\Model\Common\People\Crew as BaseCrew;
-
-class Crew extends BaseCrew {
-
+interface QueryParameterInterface {
+    function getKey();
+    function getValue();
 }

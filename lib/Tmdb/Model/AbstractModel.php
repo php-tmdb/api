@@ -14,11 +14,14 @@ namespace Tmdb\Model;
 
 use Tmdb\Client;
 use Tmdb\Exception\RuntimeException;
-use Tmdb\Model\Common\Genres;
-use Tmdb\Model\Common\Images;
-use Tmdb\Model\Common\People;
-use Tmdb\Model\Movie\Cast as MovieCast;
-use Tmdb\Model\Movie\Crew as MovieCrew;
+
+use Tmdb\Model\Common\Collection\Credits\Cast;
+use Tmdb\Model\Common\Collection\Credits\Crew;
+use Tmdb\Model\Common\Collection\Genres;
+use Tmdb\Model\Common\Collection\Images;
+use Tmdb\Model\Common\Collection\People;
+
+use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 
@@ -98,6 +101,25 @@ class AbstractModel {
     }
 
     /**
+     * Process query parameters
+     *
+     * @param array $parameters
+     * @return array
+     */
+    protected function parseQueryParameters(array $parameters = array())
+    {
+        foreach($parameters as $key => $candidate) {
+            if ($candidate instanceof QueryParameterInterface) {
+                unset($parameters[$key]);
+
+                $parameters[$candidate->getKey()] = $candidate->getValue();
+            }
+        }
+
+        return $parameters;
+    }
+
+    /**
      * Collect all images from an `image` array ( containing e.g. posters / profiles etc. )
      *
      * @param $client
@@ -154,7 +176,7 @@ class AbstractModel {
      */
     protected function collectCast($client, array $collection = array())
     {
-        $people = new MovieCast();
+        $people = new Cast();
 
         foreach($collection as $item) {
             $person = CastMember::fromArray($client, $item);
@@ -174,7 +196,7 @@ class AbstractModel {
      */
     protected function collectCrew($client, array $collection = array())
     {
-        $people = new MovieCrew();
+        $people = new Crew();
 
         foreach($collection as $item) {
             $person = CrewMember::fromArray($client, $item);

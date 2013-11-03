@@ -10,8 +10,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Common;
+namespace Tmdb\Model\Collection;
 
+use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Genre;
 
 class Genres extends Collection {
@@ -19,7 +20,7 @@ class Genres extends Collection {
     /**
      * Returns all genres
      *
-     * @return array
+     * @return Genre[]
      */
     public function getGenres()
     {

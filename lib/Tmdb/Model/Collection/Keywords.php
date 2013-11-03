@@ -10,32 +10,34 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Common;
+namespace Tmdb\Model\Common\Collection;
 
-use Tmdb\Model\Image;
+use Tmdb\Model\Common\Collection;
 
-class Images extends Collection {
+use Tmdb\Model\Keyword;
+
+class Keywords extends Collection {
 
     /**
-     * Returns all images
+     * Returns all keywords
      *
      * @return array
      */
-    public function getImages()
+    public function getKeywords()
     {
         return $this->data;
     }
 
     /**
-     * Retrieve a image from the collection
+     * Retrieve a keyword from the collection
      *
      * @param $id
      * @return null
      */
-    public function getImage($id) {
-        foreach($this->data as $image) {
-            if ($id === $image->getId()) {
-                return $image;
+    public function getKeyword($id) {
+        foreach($this->data as $keyword) {
+            if ($id === $keyword->getId()) {
+                return $keyword;
             }
         }
 
@@ -43,12 +45,12 @@ class Images extends Collection {
     }
 
     /**
-     * Add a image to the collection
+     * Add a keyword to the collection
      *
-     * @param Image $image
+     * @param Keyword $keyword
      */
-    public function addImage(Image $image)
+    public function addKeyword(Keyword $keyword)
     {
-        $this->data[] = $image;
+        $this->data[] = $keyword;
     }
 } 
