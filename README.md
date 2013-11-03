@@ -1,7 +1,7 @@
 A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.io/).
 ==============
 
-Based on & inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
+Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
 
 Work in progress
 ----------------
@@ -41,4 +41,4 @@ Please take a look at the (currently few) examples in the examples directory.
 Model Usage
 -----------
 
-`todo`
+Please take a look at the (currently few) examples in the examples directory.
