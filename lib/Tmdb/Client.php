@@ -54,11 +54,11 @@ class Client {
     {
         $httpClient = $httpClient ?: new GuzzleClient(self::TMDB_URI);
 
-        $plugin = new ApiTokenPlugin($token);
-        $httpClient->addSubscriber($plugin);
+        $apiQueryTokenPlugin = new ApiTokenPlugin($token);
+        $httpClient->addSubscriber($apiQueryTokenPlugin);
 
-        $plugin = new AcceptJsonHeader();
-        $httpClient->addSubscriber($plugin);
+        $acceptJsonHeaderPlugin = new AcceptJsonHeader();
+        $httpClient->addSubscriber($acceptJsonHeaderPlugin);
 
         $this->httpClient = new HttpClient(self::TMDB_URI, array(), $httpClient);
         $this->setToken($token);
