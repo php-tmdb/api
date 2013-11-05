@@ -13,7 +13,7 @@
 namespace Tmdb\Model\Person;
 
 use Tmdb\Client;
-use Tmdb\Model\Common\People\PersonInterface;
+use Tmdb\Model\Collection\People\PersonInterface;
 
 class CastMember extends AbstractMember implements PersonInterface {
 

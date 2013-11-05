@@ -18,14 +18,13 @@ use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Common\Collection\Images;
 
 use Tmdb\Model\Collection\Credits;
-use Tmdb\Model\Collection\Credits\Cast;
-use Tmdb\Model\Collection\Credits\Crew;
 
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\SpokenLanguage;
+use Tmdb\Model\Movie\AlternativeTitle;
 
 class Movie extends AbstractModel {
 
@@ -52,7 +51,7 @@ class Movie extends AbstractModel {
     /**
      * Genres
      *
-     * @var Common\Genres
+     * @var Genres
      */
     private $genres;
 
@@ -132,7 +131,7 @@ class Movie extends AbstractModel {
     private $tagline;
 
     /**
-     * @var title
+     * @var string
      */
     private $title;
 
@@ -159,14 +158,14 @@ class Movie extends AbstractModel {
     /**
      * Credits
      *
-     * @var Common\Collection\Credits
+     * @var Credits
      */
     protected $credits;
 
     /**
      * Images
      *
-     * @var Common\Collection\Images
+     * @var Images
      */
     protected $images;
 
@@ -210,7 +209,7 @@ class Movie extends AbstractModel {
         'backdrop_path',
         'belongs_to_collection',
         'budget',
-        'genres',
+//        'genres', // populated by the fromArray method
         'homepage',
         'id',
         'imdb_id',
@@ -218,27 +217,27 @@ class Movie extends AbstractModel {
         'overview',
         'popularity',
         'poster_path',
-        'production_companies',
-        'production_countries',
-        'release_date',
+//        'production_companies', // populated by the fromArray method
+//        'production_countries', // populated by the fromArray method
+//        'release_date', // populated by the fromArray method
         'revenue',
         'runtime',
-        'spoken_languages',
+//        'spoken_languages', // populated by the fromArray method
         'status',
         'tagline',
         'title',
         'vote_average',
         'vote_count',
         'alternative_titles',
-        'changes',
+//        'changes', // populated by the fromArray method
         'credits',
-        'images',
-        'keywords',
-        'lists',
-        'releases',
-        'similar_movies',
-        'trailers',
-        'translations',
+//        'images', // populated by the fromArray method
+//        'keywords', // populated by the fromArray method
+//        'lists', // populated by the fromArray method
+//        'releases', // populated by the fromArray method
+//        'similar_movies', // populated by the fromArray method
+//        'trailers', // populated by the fromArray method
+//        'translations', // populated by the fromArray method
     );
 
     /**
@@ -246,12 +245,9 @@ class Movie extends AbstractModel {
      */
     public function __construct()
     {
-        $this->genres  = new Common\Collection\Genres();
-        $this->images  = new Common\Collection\Images();
-        $this->credits = new Common\Collection\Credits();
-
-        $this->credits->setCast(new Cast());
-        $this->credits->setCrew(new Crew());
+        $this->genres  = new Genres();
+        $this->images  = new Images();
+        $this->credits = new Credits();
     }
 
     /**
@@ -266,10 +262,18 @@ class Movie extends AbstractModel {
         $movie = new Movie($data['id']);
         //$movie->setClient($client);
 
-        $casts = array();
 
-        if (array_key_exists('alternative_titles', $data)) {
-            $movie->setAlternativeTitles(parent::collectAlternativeTitles($client, $data['alternative_titles']));
+
+        if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
+            $movie->setAlternativeTitles(parent::collectGenericCollection($client, $data['alternative_titles']['titles'], new AlternativeTitle()));
+        }
+
+        $casts   = array();
+        $credits = $movie->getCredits();
+
+        /** Credits */
+        if (array_key_exists('credits', $data)) {
+            $casts = $data['credits'];
         }
 
         if (array_key_exists('casts', $data)) {
@@ -277,21 +281,26 @@ class Movie extends AbstractModel {
         }
 
         if (array_key_exists('cast', $casts)) {
-            $movie->setCast(parent::collectCast($client, $casts['cast']));
+            $credits->setCast(parent::collectCast($client, $casts['cast']));
         }
 
         if (array_key_exists('crew', $casts)) {
-            $movie->setCrew(parent::collectCrew($client, $casts['crew']));
+            $credits->setCrew(parent::collectCrew($client, $casts['crew']));
         }
 
+        $movie->setCredits($credits);
+
+        /** Genres */
         if (array_key_exists('genres', $data)) {
             $movie->setGenres(parent::collectGenres($client, $data['genres']));
         }
 
+        /** Images */
         if (array_key_exists('images', $data)) {
             $movie->setImages(parent::collectImages($client, $data['images']));
         }
 
+        /** Keywords */
         if (array_key_exists('keywords', $data)) {
         }
 
@@ -771,7 +780,7 @@ class Movie extends AbstractModel {
      */
     public function setCast(People $cast)
     {
-        $this->cast = $cast;
+        $this->credits->setCast($cast);
         return $this;
     }
 
@@ -780,7 +789,7 @@ class Movie extends AbstractModel {
      */
     public function getCast()
     {
-        return $this->cast;
+        return $this->credits->getCast();
     }
 
     /**
@@ -789,7 +798,7 @@ class Movie extends AbstractModel {
      */
     public function setCrew($crew)
     {
-        $this->crew = $crew;
+        $this->credits->setCrew($crew);
         return $this;
     }
 
@@ -798,7 +807,168 @@ class Movie extends AbstractModel {
      */
     public function getCrew()
     {
-        return $this->crew;
+        return $this->credits->getCrew();
     }
 
+    /**
+     * @param \Tmdb\Model\Common\Collection $alternativeTitles
+     * @return $this
+     */
+    public function setAlternativeTitles($alternativeTitles)
+    {
+        $this->alternativeTitles = $alternativeTitles;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\Collection
+     */
+    public function getAlternativeTitles()
+    {
+        return $this->alternativeTitles;
+    }
+
+    /**
+     * @param int $budget
+     * @return $this
+     */
+    public function setBudget($budget)
+    {
+        $this->budget = $budget;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBudget()
+    {
+        return $this->budget;
+    }
+
+    /**
+     * @param Credits $credits
+     * @return $this
+     */
+    public function setCredits($credits)
+    {
+        $this->credits = $credits;
+        return $this;
+    }
+
+    /**
+     * @return Credits
+     */
+    public function getCredits()
+    {
+        return $this->credits;
+    }
+
+    /**
+     * @param \Tmdb\Model\Common\Collection $keywords
+     * @return $this
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\Collection
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * @param \Tmdb\Model\Common\Collection $lists
+     * @return $this
+     */
+    public function setLists($lists)
+    {
+        $this->lists = $lists;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\Collection
+     */
+    public function getLists()
+    {
+        return $this->lists;
+    }
+
+    /**
+     * @param \Tmdb\Model\Common\Collection $releases
+     * @return $this
+     */
+    public function setReleases($releases)
+    {
+        $this->releases = $releases;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\Collection
+     */
+    public function getReleases()
+    {
+        return $this->releases;
+    }
+
+    /**
+     * @param \Tmdb\Model\Common\Collection $similarMovies
+     * @return $this
+     */
+    public function setSimilarMovies($similarMovies)
+    {
+        $this->similarMovies = $similarMovies;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\Collection
+     */
+    public function getSimilarMovies()
+    {
+        return $this->similarMovies;
+    }
+
+    /**
+     * @param \Tmdb\Model\Common\Collection $trailers
+     * @return $this
+     */
+    public function setTrailers($trailers)
+    {
+        $this->trailers = $trailers;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\Collection
+     */
+    public function getTrailers()
+    {
+        return $this->trailers;
+    }
+
+    /**
+     * @param \Tmdb\Model\Common\Collection $translations
+     * @return $this
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
 }

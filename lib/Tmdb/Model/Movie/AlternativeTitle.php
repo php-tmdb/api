@@ -10,18 +10,19 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model;
+namespace Tmdb\Model\Movie;
 
 use Tmdb\Client;
+use Tmdb\Model\AbstractModel;
 
 class AlternativeTitle extends AbstractModel {
 
-    private $id;
-    private $name;
+    private $iso31661;
+    private $title;
 
     protected static $_properties = array(
-        'id',
-        'name',
+        'iso_3166_1',
+        'title',
     );
 
     /**
@@ -40,39 +41,39 @@ class AlternativeTitle extends AbstractModel {
     }
 
     /**
-     * @param mixed $id
+     * @param mixed $iso31661
      * @return $this
      */
-    public function setId($id)
+    public function setIso31661($iso31661)
     {
-        $this->id = (int) $id;
+        $this->iso31661 = $iso31661;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getIso31661()
     {
-        return $this->id;
+        return $this->iso31661;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $title
      * @return $this
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
 

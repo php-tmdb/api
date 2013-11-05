@@ -15,12 +15,14 @@ namespace Tmdb\Model;
 use Tmdb\Client;
 use Tmdb\Exception\RuntimeException;
 
-use Tmdb\Model\Common\Collection\Credits\Cast;
-use Tmdb\Model\Common\Collection\Credits\Crew;
-use Tmdb\Model\Common\Collection\Genres;
-use Tmdb\Model\Common\Collection\Images;
-use Tmdb\Model\Common\Collection\People;
+use Tmdb\Model\Collection\Credits\Cast;
+use Tmdb\Model\Collection\Credits\Crew;
+use Tmdb\Model\Collection\Genres;
+use Tmdb\Model\Collection\People;
 
+use Tmdb\Model\Common\Collection\Images;
+
+use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
@@ -124,7 +126,7 @@ class AbstractModel {
      *
      * @param $client
      * @param array $collection
-     * @return Images
+     * @return Image[]
      */
     protected function collectImages($client, array $collection = array())
     {
@@ -152,7 +154,7 @@ class AbstractModel {
      *
      * @param $client
      * @param array $collection
-     * @return People
+     * @return Person[]
      */
     protected function collectPeople($client, array $collection = array())
     {
@@ -172,7 +174,7 @@ class AbstractModel {
      *
      * @param $client
      * @param array $collection
-     * @return People
+     * @return CastMember[]
      */
     protected function collectCast($client, array $collection = array())
     {
@@ -192,7 +194,7 @@ class AbstractModel {
      *
      * @param $client
      * @param array $collection
-     * @return People
+     * @return CrewMember[]
      */
     protected function collectCrew($client, array $collection = array())
     {
@@ -212,7 +214,7 @@ class AbstractModel {
      *
      * @param $client
      * @param array $collection
-     * @return People
+     * @return Genre[]
      */
     protected function collectGenres($client, array $collection = array())
     {
@@ -224,6 +226,28 @@ class AbstractModel {
         }
 
         return $genres;
+    }
+
+    /**
+     * Collect all genres from an array
+     *
+     * @param $client
+     * @param array $collection
+     * @param object $object
+     * @return Collection
+     */
+    protected function collectGenericCollection($client, array $collection = array(), $object)
+    {
+        $collectionObject = new Collection();
+
+        foreach($collection as $item) {
+            $class = get_class($object);
+            $model = $class::fromArray($client, $item);
+
+            $collectionObject->addObject($model);
+        }
+
+        return $collectionObject;
     }
 
     /**

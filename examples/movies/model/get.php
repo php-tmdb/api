@@ -30,18 +30,17 @@ $append = new \Tmdb\Model\Movie\QueryParameter\AppendToResponse(array(
     \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRANSLATIONS,
 ));
 
-$movie = \Tmdb\Model\Movie::load($client, 87421, array($append, $language));
-
+$movie = \Tmdb\Model\Movie::load($client, 87421, array($append));
 
 echo $movie->getTitle() . "\n";
 
 echo "Cast\n";
 
-foreach($movie->getCast() as $person) {
+foreach($movie->credits->cast as $person) {
     printf(" - %s as %s\n", $person->getName(), $person->getCharacter());
 }
 
-foreach($movie->getCrew() as $person) {
+foreach($movie->getCredits()->getCrew() as $person) {
     printf(" - %s as %s\n", $person->getName(), $person->getJob());
 }
 

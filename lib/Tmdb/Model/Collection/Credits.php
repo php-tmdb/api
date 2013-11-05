@@ -19,12 +19,21 @@ class Credits {
     /**
      * @var Cast
      */
-    private $cast;
+    public $cast;
 
     /**
      * @var Crew
      */
     private $crew;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cast = new Cast();
+        $this->crew = new Crew();
+    }
 
     /**
      * @param \Tmdb\Model\Collection\People\Cast $cast
