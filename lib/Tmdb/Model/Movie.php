@@ -14,6 +14,7 @@ namespace Tmdb\Model;
 
 use Tmdb\Client;
 
+use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Common\Collection\Images;
 
@@ -251,84 +252,6 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * Convert an array to an hydrated object
-     *
-     * @param Client $client
-     * @param array $data
-     * @return $this
-     */
-    public static function fromArray(Client $client, array $data)
-    {
-        $movie = new Movie($data['id']);
-        //$movie->setClient($client);
-
-
-
-        if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
-            $movie->setAlternativeTitles(parent::collectGenericCollection($client, $data['alternative_titles']['titles'], new AlternativeTitle()));
-        }
-
-        $casts   = array();
-        $credits = $movie->getCredits();
-
-        /** Credits */
-        if (array_key_exists('credits', $data)) {
-            $casts = $data['credits'];
-        }
-
-        if (array_key_exists('casts', $data)) {
-            $casts = $data['casts'];
-        }
-
-        if (array_key_exists('cast', $casts)) {
-            $credits->setCast(parent::collectCast($client, $casts['cast']));
-        }
-
-        if (array_key_exists('crew', $casts)) {
-            $credits->setCrew(parent::collectCrew($client, $casts['crew']));
-        }
-
-        $movie->setCredits($credits);
-
-        /** Genres */
-        if (array_key_exists('genres', $data)) {
-            $movie->setGenres(parent::collectGenres($client, $data['genres']));
-        }
-
-        /** Images */
-        if (array_key_exists('images', $data)) {
-            $movie->setImages(parent::collectImages($client, $data['images']));
-        }
-
-        /** Keywords */
-        if (array_key_exists('keywords', $data)) {
-        }
-
-        if (array_key_exists('releases', $data)) {
-        }
-
-        if (array_key_exists('trailers', $data)) {
-        }
-
-        if (array_key_exists('translations', $data)) {
-        }
-
-        if (array_key_exists('similar_movies', $data)) {
-        }
-
-        if (array_key_exists('reviews', $data)) {
-        }
-
-        if (array_key_exists('lists', $data)) {
-        }
-
-        if (array_key_exists('changes', $data)) {
-        }
-
-        return $movie->hydrate($data);
-    }
-
-    /**
      * Load a movie with the given identifier
      *
      * @param Client $client
@@ -339,7 +262,7 @@ class Movie extends AbstractModel {
     public static function load(Client $client, $id, array $parameters = array()) {
         $data = $client->api('movies')->getMovie($id, parent::parseQueryParameters($parameters));
 
-        return Movie::fromArray($client, $data);
+        return MovieFactory::create($data);
     }
 
     /**

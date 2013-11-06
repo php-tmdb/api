@@ -16,6 +16,7 @@ use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
 use Guzzle\Http\Message\RequestInterface;
 
+use Tmdb\Api\ApiInterface;
 use Tmdb\Exception\InvalidArgumentException;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
@@ -54,11 +55,13 @@ class Client {
     {
         $httpClient = $httpClient ?: new GuzzleClient(self::TMDB_URI);
 
-        $apiQueryTokenPlugin = new ApiTokenPlugin($token);
-        $httpClient->addSubscriber($apiQueryTokenPlugin);
+        if ($httpClient instanceof \Guzzle\Common\HasDispatcherInterface) {
+            $apiQueryTokenPlugin = new ApiTokenPlugin($token);
+            $httpClient->addSubscriber($apiQueryTokenPlugin);
 
-        $acceptJsonHeaderPlugin = new AcceptJsonHeader();
-        $httpClient->addSubscriber($acceptJsonHeaderPlugin);
+            $acceptJsonHeaderPlugin = new AcceptJsonHeader();
+            $httpClient->addSubscriber($acceptJsonHeaderPlugin);
+        }
 
         $this->httpClient = new HttpClient(self::TMDB_URI, array(), $httpClient);
         $this->setToken($token);
@@ -79,10 +82,11 @@ class Client {
     /**
      * Return the relevant API object
      *
-     * Pick your poison for the matter of your preference of plural / non-plural.
+     * @todo we should either register these by DI, or hardcode the return values through the constructor, and provide getApiConfiguration() type of methods
      *
      * @param $name
      * @throws Exception\InvalidArgumentException
+     * @return ApiInterface
      */
     public function api($name)
     {

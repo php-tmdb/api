@@ -200,6 +200,7 @@ class HttpClient
         }
         catch(\Exception $e)
         {
+            // @TODO catch any API errors / timeouts / other specific information from Guzzle?
             throw $e;
         }
 

@@ -34,23 +34,23 @@ $movie = \Tmdb\Model\Movie::load($client, 87421, array($append));
 
 echo $movie->getTitle() . "\n";
 
-echo "Cast\n";
-
-foreach($movie->credits->cast as $person) {
-    printf(" - %s as %s\n", $person->getName(), $person->getCharacter());
-}
-
-foreach($movie->getCredits()->getCrew() as $person) {
-    printf(" - %s as %s\n", $person->getName(), $person->getJob());
-}
-
-echo "Images\n";
-
-foreach($movie->getImages() as $image) {
-    printf(" - %s\n", $image->getFilePath());
-}
-
-echo "Genres\n";
+//echo "Cast\n";
+//
+//foreach($movie->credits->cast as $person) {
+//    printf(" - %s as %s\n", $person->getName(), $person->getCharacter());
+//}
+//
+//foreach($movie->getCredits()->getCrew() as $person) {
+//    printf(" - %s as %s\n", $person->getName(), $person->getJob());
+//}
+//
+//echo "Images\n";
+//
+//foreach($movie->getImages() as $image) {
+//    printf(" - %s\n", $image->getFilePath());
+//}
+//
+//echo "Genres\n";
 
 foreach($movie->getGenres() as $genre) {
     printf(" - %s\n", $genre->getName());
