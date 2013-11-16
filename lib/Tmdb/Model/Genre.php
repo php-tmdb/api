@@ -13,6 +13,7 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
+use Tmdb\Factory\GenreFactory;
 
 class Genre extends AbstractModel {
 
@@ -50,7 +51,7 @@ class Genre extends AbstractModel {
     public static function load(Client $client, $id, array $parameters = array()) {
         $data = $client->api('genres')->getGenre($id, parent::parseQueryParameters($parameters));
 
-        return Genre::fromArray($client, $data);
+        return GenreFactory::create($data);
     }
 
     /**

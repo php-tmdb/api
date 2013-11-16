@@ -31,7 +31,7 @@ class Genres extends Collection {
      * Retrieve a genre from the collection
      *
      * @param $id
-     * @return null
+     * @return Genre|null
      */
     public function getGenre($id) {
         foreach($this->data as $genre) {

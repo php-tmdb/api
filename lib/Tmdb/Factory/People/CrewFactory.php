@@ -11,20 +11,22 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\Factory;
+namespace Tmdb\Factory\People;
 
-use Tmdb\Model\Collection\Genres;
-use Tmdb\Model\Genre;
+use Tmdb\Factory\AbstractFactory;
+use Tmdb\Model\Collection\People\Crew;
+use Tmdb\Model\Collection\People;
 
-class GenreFactory {
+class CrewFactory extends AbstractFactory
+{
     /**
      * {@inheritdoc}
      */
     public static function create(array $data = array())
     {
-        $genre = new Genre();
+        $crew = new Crew();
 
-        return $genre->hydrate($data);
+        return $crew->hydrate($data);
     }
 
     /**
@@ -32,7 +34,7 @@ class GenreFactory {
      */
     public static function createCollection(array $data = array())
     {
-        $collection = new Genres();
+        $collection = new People();
 
         foreach($data as $item) {
             $collection->add(null, self::create($item));
@@ -40,5 +42,4 @@ class GenreFactory {
 
         return $collection;
     }
-
-} 
+}

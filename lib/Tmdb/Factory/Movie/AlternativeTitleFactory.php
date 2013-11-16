@@ -11,20 +11,22 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\Factory;
+namespace Tmdb\Factory\Movie;
 
-use Tmdb\Model\Collection\Genres;
-use Tmdb\Model\Genre;
+use Tmdb\Factory\AbstractFactory;
+use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Movie\AlternativeTitle;
 
-class GenreFactory {
+class AlternativeTitleFactory extends AbstractFactory
+{
     /**
      * {@inheritdoc}
      */
     public static function create(array $data = array())
     {
-        $genre = new Genre();
+        $title = new AlternativeTitle();
 
-        return $genre->hydrate($data);
+        return $title->hydrate($data);
     }
 
     /**
@@ -32,7 +34,7 @@ class GenreFactory {
      */
     public static function createCollection(array $data = array())
     {
-        $collection = new Genres();
+        $collection = new Collection();
 
         foreach($data as $item) {
             $collection->add(null, self::create($item));
@@ -40,5 +42,4 @@ class GenreFactory {
 
         return $collection;
     }
-
-} 
+}

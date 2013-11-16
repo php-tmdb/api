@@ -13,14 +13,13 @@
 
 namespace Tmdb\Factory;
 
+use Tmdb\Api\Movies;
+use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Movie;
 
-class MovieFactory {
+class MovieFactory extends AbstractFactory {
     /**
-     * Convert an array to an hydrated object
-     *
-     * @param array $data
-     * @return $this
+     * {@inheritdoc}
      */
     public static function create(array $data = array())
     {
@@ -28,33 +27,33 @@ class MovieFactory {
             return null;
         }
 
-        $movie = new Movie($data['id']);
+        $movie = new Movie();
 
-//        if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
-//            $movie->setAlternativeTitles(Movie::collectGenericCollection($client, $data['alternative_titles']['titles'], new AlternativeTitle()));
-//        }
-//
-//        $casts   = array();
-//        $credits = $movie->getCredits();
-//
-//        /** Credits */
-//        if (array_key_exists('credits', $data)) {
-//            $casts = $data['credits'];
-//        }
-//
-//        if (array_key_exists('casts', $data)) {
-//            $casts = $data['casts'];
-//        }
-//
-//        if (array_key_exists('cast', $casts)) {
-//            $credits->setCast(parent::collectCast($client, $casts['cast']));
-//        }
-//
-//        if (array_key_exists('crew', $casts)) {
-//            $credits->setCrew(parent::collectCrew($client, $casts['crew']));
-//        }
-//
-//        $movie->setCredits($credits);
+        if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
+            $movie->setAlternativeTitles(Movie::collectGenericCollection($client, $data['alternative_titles']['titles'], new AlternativeTitle()));
+        }
+
+        $casts   = array();
+        $credits = $movie->getCredits();
+
+        /** Credits */
+        if (array_key_exists('credits', $data)) {
+            $casts = $data['credits'];
+        }
+
+        if (array_key_exists('casts', $data)) {
+            $casts = $data['casts'];
+        }
+
+        if (array_key_exists('cast', $casts)) {
+            $credits->setCast(parent::collectCast($client, $casts['cast']));
+        }
+
+        if (array_key_exists('crew', $casts)) {
+            $credits->setCrew(parent::collectCrew($client, $casts['crew']));
+        }
+
+        $movie->setCredits($credits);
 //
         /** Genres */
         if (array_key_exists('genres', $data)) {
@@ -94,4 +93,17 @@ class MovieFactory {
         return $movie->hydrate($data);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public static function createCollection(array $data = array())
+    {
+        $collection = new Collection();
+
+        foreach($data as $item) {
+            $collection->add(null, self::create($item));
+        }
+
+        return $collection;
+    }
 } 
