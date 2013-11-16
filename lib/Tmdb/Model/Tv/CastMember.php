@@ -12,8 +12,8 @@
  */
 namespace Tmdb\Model\Tv;
 
-use Tmdb\Model\Common\People\Cast as BaseCast;
+use Tmdb\Model\Person\CastMember as BaseCastMember;
 
-class Cast extends BaseCast {
+class CastMember extends BaseCastMember {
 
 }

@@ -10,7 +10,6 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-
 namespace Tmdb\Api;
 
 interface ApiInterface {
