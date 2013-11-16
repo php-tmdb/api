@@ -12,23 +12,17 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
-
-use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Common\Collection\Images;
 
 use Tmdb\Model\Collection\Credits;
-
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\SpokenLanguage;
-use Tmdb\Model\Movie\AlternativeTitle;
 
 class Movie extends AbstractModel {
-
     /**
      * @var bool
      */
@@ -205,7 +199,7 @@ class Movie extends AbstractModel {
      *
      * @var array
      */
-    protected static $_properties = array(
+    public static $_properties = array(
         'adult',
         'backdrop_path',
         'belongs_to_collection',
@@ -249,20 +243,6 @@ class Movie extends AbstractModel {
         $this->genres  = new Genres();
         $this->images  = new Images();
         $this->credits = new Credits();
-    }
-
-    /**
-     * Load a movie with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $parameters
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $parameters = array()) {
-        $data = $client->api('movies')->getMovie($id, parent::parseQueryParameters($parameters));
-
-        return MovieFactory::create($data);
     }
 
     /**

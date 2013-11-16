@@ -31,7 +31,7 @@ class Image extends AbstractModel {
     protected $id;
     protected $type;
 
-    protected static $_properties = array(
+    public static $_properties = array(
         'file_path',
         'width',
         'height',
@@ -39,7 +39,7 @@ class Image extends AbstractModel {
         'aspect_ratio'
     );
 
-    protected static $_types = array(
+    public static $_formats = array(
         'posters'   => self::FORMAT_POSTER,
         'backdrops' => self::FORMAT_BACKDROP,
         'profiles'  => self::FORMAT_PROFILE,

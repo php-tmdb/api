@@ -13,22 +13,9 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
-use Tmdb\Exception\RuntimeException;
-
-use Tmdb\Model\Collection\Credits\Cast;
-use Tmdb\Model\Collection\Credits\Crew;
-use Tmdb\Model\Collection\Genres;
-use Tmdb\Model\Collection\People;
-
-use Tmdb\Model\Common\Collection\Images;
-
-use Tmdb\Model\Common\Collection;
-use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
-use Tmdb\Model\Person\CastMember;
-use Tmdb\Model\Person\CrewMember;
 
 class AbstractModel {
-    protected static $_properties;
+    public static $_properties;
 
     protected $_data = array();
     protected $_client = null;
@@ -67,96 +54,6 @@ class AbstractModel {
     public function api($api)
     {
         return $this->getClient()->api($api);
-    }
-
-    /**
-     * Hydrate the object with data
-     *
-     * @param array $data
-     * @return $this
-     * @throws \Tmdb\Exception\RuntimeException
-     */
-    public function hydrate(array $data = array())
-    {
-        if (!empty($data)) {
-            foreach ($data as $k => $v) {
-                if (in_array($k, static::$_properties)) {
-
-                    $method = $this->camelize(
-                        sprintf('set_%s', $k)
-                    );
-
-                    if (!method_exists($this, $method)) {
-                        throw new RuntimeException(sprintf(
-                            'Trying to call method "%s" on "%s" but it does not exist or is private.',
-                            $method,
-                            get_class($this)
-                        ));
-                    }
-
-                    $this->$method($v);
-                }
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Process query parameters
-     *
-     * @param array $parameters
-     * @return array
-     */
-    protected function parseQueryParameters(array $parameters = array())
-    {
-        foreach($parameters as $key => $candidate) {
-            if ($candidate instanceof QueryParameterInterface) {
-                unset($parameters[$key]);
-
-                $parameters[$candidate->getKey()] = $candidate->getValue();
-            }
-        }
-
-        return $parameters;
-    }
-
-    /**
-     * Transforms an under_scored_string to a camelCasedOne
-     *
-     * @see https://gist.github.com/troelskn/751517
-     *
-     * @param $candidate
-     * @return string
-     */
-    private function camelize($candidate)
-    {
-        return lcfirst(
-            implode('',
-                array_map('ucfirst',
-                    array_map('strtolower',
-                        explode('_', $candidate
-                        )
-                    )
-                )
-            )
-        );
-    }
-
-    /**
-     * Transforms a camelCasedString to an under_scored_one
-     *
-     * @see https://gist.github.com/troelskn/751517
-     *
-     * @param $camelized
-     * @return string
-     */
-    private function uncamelize($camelized) {
-        return implode('_',
-            array_map('strtolower',
-                preg_split('/([A-Z]{1}[^A-Z]*)/', $camelized, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY)
-            )
-        );
     }
 
 }

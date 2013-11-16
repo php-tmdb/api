@@ -20,7 +20,7 @@ class Genre extends AbstractModel {
     private $id;
     private $name;
 
-    protected static $_properties = array(
+    public static $_properties = array(
         'id',
         'name',
     );
@@ -38,20 +38,6 @@ class Genre extends AbstractModel {
         //$genre->setClient($client);
 
         return $genre->hydrate($data);
-    }
-
-    /**
-     * Load a genre with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $parameters
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $parameters = array()) {
-        $data = $client->api('genres')->getGenre($id, parent::parseQueryParameters($parameters));
-
-        return GenreFactory::create($data);
     }
 
     /**
