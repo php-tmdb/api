@@ -16,42 +16,9 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$append = new \Tmdb\Model\Movie\QueryParameter\AppendToResponse(array(
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::ALTERNATIVE_TITLES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CHANGES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CREDITS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::IMAGES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::KEYWORDS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::LISTS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::RELEASES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::REVIEWS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::SIMILAR_MOVIES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRAILERS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRANSLATIONS,
-));
+$repository = new \Tmdb\Repository\MovieRepository($client);
+$movie      = $repository->load(87421);
 
-$movie = \Tmdb\Factory\MovieFactory::load($client, 87421, array($append));
+printf('<h1>%s</h1>', $movie->getTitle());
 
-echo $movie->getTitle() . "\n";
-
-echo "Cast\n";
-
-foreach($movie->getCredits()->getCast() as $person) {
-    printf(" - %s as %s\n", $person->getName(), $person->getCharacter());
-}
-
-foreach($movie->getCredits()->getCrew() as $person) {
-    printf(" - %s as %s\n", $person->getName(), $person->getJob());
-}
-
-echo "Images\n";
-
-foreach($movie->getImages() as $image) {
-    printf(" - %s\n", $image->getFilePath());
-}
-
-echo "Genres\n";
-
-foreach($movie->getGenres() as $genre) {
-    printf(" - %s\n", $genre->getName());
-}
+printf('<p>%s</p>', $movie->getOverview());

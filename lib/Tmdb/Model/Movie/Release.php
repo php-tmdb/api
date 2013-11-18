@@ -14,15 +14,35 @@ namespace Tmdb\Model\Movie;
 
 use Tmdb\Model\AbstractModel;
 
-class AlternativeTitle extends AbstractModel {
+class Release extends AbstractModel {
 
     private $iso31661;
-    private $title;
+    private $certification;
+    private $releaseDate;
 
     public static $_properties = array(
         'iso_3166_1',
-        'title',
+        'certification',
+        'release_date'
     );
+
+    /**
+     * @param mixed $certification
+     * @return $this
+     */
+    public function setCertification($certification)
+    {
+        $this->certification = $certification;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCertification()
+    {
+        return $this->certification;
+    }
 
     /**
      * @param mixed $iso31661
@@ -43,21 +63,21 @@ class AlternativeTitle extends AbstractModel {
     }
 
     /**
-     * @param mixed $title
+     * @param mixed $releaseDate
      * @return $this
      */
-    public function setTitle($title)
+    public function setReleaseDate($releaseDate)
     {
-        $this->title = $title;
+        $this->releaseDate = $releaseDate;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getReleaseDate()
     {
-        return $this->title;
+        return $this->releaseDate;
     }
 
 

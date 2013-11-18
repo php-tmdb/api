@@ -20,7 +20,7 @@ class CastMember extends AbstractMember implements PersonInterface {
     private $character;
     private $order;
 
-    protected static $_properties = array(
+    public static $_properties = array(
         'id',
         'name',
         'character',

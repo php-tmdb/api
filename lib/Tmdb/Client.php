@@ -80,6 +80,14 @@ class Client {
     }
 
     /**
+     * @return Api\Movies
+     */
+    public function getMovieApi()
+    {
+        return new Api\Movies($this);
+    }
+
+    /**
      * Return the relevant API object
      *
      * @todo we should either register these by DI, or hardcode the return values through the constructor, and provide getApiConfiguration() type of methods

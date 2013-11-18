@@ -10,10 +10,15 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Collection\Credits;
+namespace Tmdb\Model\Common;
 
-use Tmdb\Model\Collection\People\Crew as BaseCrew;
+use Tmdb\Model\AbstractModel;
 
-class Crew extends BaseCrew {
-
+abstract class AbstractTrailer extends AbstractModel {
+    /**
+     * Returns the http url to the trailer
+     *
+     * @return string
+     */
+    abstract public function getUrl();
 }

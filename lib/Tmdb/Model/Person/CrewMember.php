@@ -20,7 +20,7 @@ class CrewMember extends AbstractMember implements PersonInterface {
     private $department;
     private $job;
 
-    protected static $_properties = array(
+    public static $_properties = array(
         'id',
         'name',
         'department',

@@ -12,20 +12,16 @@
  */
 namespace Tmdb\Factory\People;
 
-use Tmdb\Factory\AbstractFactory;
 use Tmdb\Model\Collection\People\Cast;
-use Tmdb\Model\Collection\People;
 
-class CastFactory extends AbstractFactory
+class CastFactory extends PeopleFactory
 {
     /**
      * {@inheritdoc}
      */
     public static function create(array $data = array())
     {
-        $cast = new Cast();
-
-        return $cast->hydrate($data);
+        return parent::create($data);
     }
 
     /**
@@ -33,10 +29,10 @@ class CastFactory extends AbstractFactory
      */
     public static function createCollection(array $data = array())
     {
-        $collection = new People();
+        $collection = new Cast();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, parent::create($item));
         }
 
         return $collection;

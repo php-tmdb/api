@@ -10,87 +10,38 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Factory;
+namespace Tmdb\Factory\People;
 
-use Tmdb\Api\Movies;
+use Symfony\Component\Yaml\Exception\RuntimeException;
 use Tmdb\Client;
+use Tmdb\Factory\AbstractFactory;
 use Tmdb\Model\Common\Collection;
-use Tmdb\Model\Movie;
+use Tmdb\Model\Person\CastMember;
+use Tmdb\Model\Person\CrewMember;
 
-class MovieFactory extends AbstractFactory {
+class PeopleFactory extends AbstractFactory {
     /**
      * {@inheritdoc}
      */
     public static function create(array $data = array())
     {
-        if (!$data) {
-            return null;
+        $person = null;
+
+        if (array_key_exists('character', $data)) {
+            $person = new CastMember();
         }
 
-        $movie = new Movie();
-
-//        if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
-//            $movie->setAlternativeTitles(Movie::collectGenericCollection($client, $data['alternative_titles']['titles'], new AlternativeTitle()));
-//        }
-
-        $casts   = array();
-        $credits = $movie->getCredits();
-
-        /** Credits */
-        if (array_key_exists('credits', $data)) {
-            $casts = $data['credits'];
+        if (array_key_exists('job', $data)) {
+            $person = new CrewMember();
         }
 
-        if (array_key_exists('casts', $data)) {
-            $casts = $data['casts'];
+        if (null === $person) {
+            throw new RuntimeException(sprintf(
+                'Was unable to determine the type of person by the data provided for #%d', $data['id']
+            ));
         }
 
-        if (array_key_exists('cast', $casts)) {
-            $credits->setCast($casts['cast']);
-        }
-
-        if (array_key_exists('crew', $casts)) {
-            $credits->setCrew($casts['crew']);
-        }
-
-        $movie->setCredits($credits);
-
-        /** Genres */
-        if (array_key_exists('genres', $data)) {
-            $movie->setGenres(GenreFactory::createCollection($data['genres']));
-        }
-//
-//        /** Images */
-//        if (array_key_exists('images', $data)) {
-//            $movie->setImages(parent::collectImages($client, $data['images']));
-//        }
-//
-//        /** Keywords */
-//        if (array_key_exists('keywords', $data)) {
-//        }
-//
-//        if (array_key_exists('releases', $data)) {
-//        }
-//
-//        if (array_key_exists('trailers', $data)) {
-//        }
-//
-//        if (array_key_exists('translations', $data)) {
-//        }
-//
-//        if (array_key_exists('similar_movies', $data)) {
-//        }
-//
-//        if (array_key_exists('reviews', $data)) {
-//        }
-//
-//        if (array_key_exists('lists', $data)) {
-//        }
-//
-//        if (array_key_exists('changes', $data)) {
-//        }
-
-        return parent::hydrate($movie, $data);
+        return parent::hydrate($person, $data);
     }
 
     /**
@@ -106,20 +57,4 @@ class MovieFactory extends AbstractFactory {
 
         return $collection;
     }
-
-
-    /**
-     * Load a movie with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $parameters
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $parameters = array()) {
-        $data = $client->api('movies')->getMovie($id, parent::parseQueryParameters($parameters));
-
-        return self::create($data);
-    }
-
-} 
+}

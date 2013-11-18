@@ -56,7 +56,7 @@ class ImageFactory extends AbstractFactory
                 }
             }
         }
-        
+
         return self::createCollection($collection);
     }
 

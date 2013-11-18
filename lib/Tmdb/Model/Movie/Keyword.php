@@ -14,50 +14,50 @@ namespace Tmdb\Model\Movie;
 
 use Tmdb\Model\AbstractModel;
 
-class AlternativeTitle extends AbstractModel {
+class Keyword extends AbstractModel {
 
-    private $iso31661;
-    private $title;
+    private $id;
+    private $name;
 
     public static $_properties = array(
-        'iso_3166_1',
-        'title',
+        'id',
+        'name',
     );
 
     /**
-     * @param mixed $iso31661
+     * @param mixed $id
      * @return $this
      */
-    public function setIso31661($iso31661)
+    public function setId($id)
     {
-        $this->iso31661 = $iso31661;
+        $this->id = $id;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getIso31661()
+    public function getId()
     {
-        return $this->iso31661;
+        return $this->id;
     }
 
     /**
-     * @param mixed $title
+     * @param mixed $name
      * @return $this
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
 

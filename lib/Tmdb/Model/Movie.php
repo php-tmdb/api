@@ -21,6 +21,12 @@ use Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\SpokenLanguage;
+use Tmdb\Model\Movie\AlternativeTitle;
+use Tmdb\Model\Movie\Keyword;
+use Tmdb\Model\Movie\Release;
+use Tmdb\Model\Movie\Translation;
+use Tmdb\Model\Person\CastMember;
+use Tmdb\Model\Person\CrewMember;
 
 class Movie extends AbstractModel {
     /**
@@ -197,6 +203,8 @@ class Movie extends AbstractModel {
     /**
      * Properties that are available in the API
      *
+     * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
+     *
      * @var array
      */
     public static $_properties = array(
@@ -204,7 +212,6 @@ class Movie extends AbstractModel {
         'backdrop_path',
         'belongs_to_collection',
         'budget',
-//        'genres', // populated by the fromArray method
         'homepage',
         'id',
         'imdb_id',
@@ -212,37 +219,37 @@ class Movie extends AbstractModel {
         'overview',
         'popularity',
         'poster_path',
-//        'production_companies', // populated by the fromArray method
-//        'production_countries', // populated by the fromArray method
-//        'release_date', // populated by the fromArray method
         'revenue',
         'runtime',
-//        'spoken_languages', // populated by the fromArray method
         'status',
         'tagline',
         'title',
         'vote_average',
         'vote_count',
-        'alternative_titles',
-//        'changes', // populated by the fromArray method
-        'credits',
-//        'images', // populated by the fromArray method
-//        'keywords', // populated by the fromArray method
-//        'lists', // populated by the fromArray method
-//        'releases', // populated by the fromArray method
-//        'similar_movies', // populated by the fromArray method
-//        'trailers', // populated by the fromArray method
-//        'translations', // populated by the fromArray method
     );
 
     /**
      * Constructor
+     *
+     * Set all default collections
      */
     public function __construct()
     {
-        $this->genres  = new Genres();
-        $this->images  = new Images();
-        $this->credits = new Credits();
+        $this->genres              = new Genres();
+        $this->productionCompanies = new Collection();
+        $this->productionCountries = new Collection();
+        $this->releaseDate         = new Collection();
+        $this->spokenLanguages     = new Collection();
+        $this->alternativeTitles   = new Collection();
+        $this->changes             = new Collection();
+        $this->credits             = new Credits();
+        $this->images              = new Images();
+        $this->keywords            = new Collection();
+        $this->lists               = new Collection();
+        $this->releases            = new Collection();
+        $this->similarMovies       = new Collection();
+        $this->trailers            = new Collection();
+        $this->translations        = new Collection();
     }
 
     /**
@@ -678,17 +685,17 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param People $cast
+     * @param People\Cast $cast
      * @return $this
      */
-    public function setCast(People $cast)
+    public function setCast(People\Cast $cast)
     {
         $this->credits->setCast($cast);
         return $this;
     }
 
     /**
-     * @return Person[]
+     * @return CastMember[]
      */
     public function getCast()
     {
@@ -696,17 +703,17 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param People $crew
+     * @param People\Crew $crew
      * @return $this
      */
-    public function setCrew($crew)
+    public function setCrew(People\Crew $crew)
     {
         $this->credits->setCrew($crew);
         return $this;
     }
 
     /**
-     * @return Person[]
+     * @return CrewMember[]
      */
     public function getCrew()
     {
@@ -714,7 +721,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $alternativeTitles
+     * @param Collection $alternativeTitles
      * @return $this
      */
     public function setAlternativeTitles($alternativeTitles)
@@ -724,7 +731,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return AlternativeTitle[]
      */
     public function getAlternativeTitles()
     {
@@ -753,7 +760,7 @@ class Movie extends AbstractModel {
      * @param Credits $credits
      * @return $this
      */
-    public function setCredits($credits)
+    public function setCredits(Credits $credits)
     {
         $this->credits = $credits;
         return $this;
@@ -768,7 +775,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $keywords
+     * @param Collection $keywords
      * @return $this
      */
     public function setKeywords($keywords)
@@ -778,7 +785,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return Keyword[]
      */
     public function getKeywords()
     {
@@ -786,7 +793,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $lists
+     * @param Collection $lists
      * @return $this
      */
     public function setLists($lists)
@@ -796,7 +803,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return Collection
      */
     public function getLists()
     {
@@ -804,17 +811,17 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $releases
+     * @param Collection $releases
      * @return $this
      */
-    public function setReleases($releases)
+    public function setReleases(Collection $releases)
     {
         $this->releases = $releases;
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return Release[]
      */
     public function getReleases()
     {
@@ -822,7 +829,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $similarMovies
+     * @param Collection $similarMovies
      * @return $this
      */
     public function setSimilarMovies($similarMovies)
@@ -832,7 +839,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return Movie[]
      */
     public function getSimilarMovies()
     {
@@ -840,7 +847,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $trailers
+     * @param Collection $trailers
      * @return $this
      */
     public function setTrailers($trailers)
@@ -850,7 +857,9 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @todo fix the phpdoc when we have actually implemented support for more providers in the future
+     *
+     * @return \Tmdb\Model\Common\Trailer\Youtube[]
      */
     public function getTrailers()
     {
@@ -858,7 +867,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $translations
+     * @param Collection $translations
      * @return $this
      */
     public function setTranslations($translations)
@@ -868,7 +877,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return Translation[]
      */
     public function getTranslations()
     {

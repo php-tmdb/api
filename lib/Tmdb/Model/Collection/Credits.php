@@ -36,17 +36,17 @@ class Credits {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\People\Cast $cast
+     * @param Cast $cast
      * @return $this
      */
-    public function setCast($cast)
+    public function setCast(Cast $cast)
     {
         $this->cast = $cast;
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Collection\People\Cast
+     * @return Cast
      */
     public function getCast()
     {
@@ -54,17 +54,17 @@ class Credits {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\People\Crew $crew
+     * @param Crew $crew
      * @return $this
      */
-    public function setCrew($crew)
+    public function setCrew(Crew $crew)
     {
         $this->crew = $crew;
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Collection\People\Crew
+     * @return Crew
      */
     public function getCrew()
     {

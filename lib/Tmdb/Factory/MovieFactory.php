@@ -12,10 +12,13 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Api\Movies;
 use Tmdb\Client;
+use Tmdb\Factory\Common\GenericCollectionFactory;
 use Tmdb\Factory\Common\ImageFactory;
+use Tmdb\Factory\People\CastFactory;
+use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\Trailer\Youtube;
 use Tmdb\Model\Movie;
 
 class MovieFactory extends AbstractFactory {
@@ -30,31 +33,21 @@ class MovieFactory extends AbstractFactory {
 
         $movie = new Movie();
 
-//        if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
-//            $movie->setAlternativeTitles(Movie::collectGenericCollection($client, $data['alternative_titles']['titles'], new AlternativeTitle()));
-//        }
+        if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
+            $movie->setAlternativeTitles(
+                GenericCollectionFactory::createCollection($data['alternative_titles']['titles'], new Movie\AlternativeTitle())
+            );
+        }
 
-        $casts   = array();
-        $credits = $movie->getCredits();
+        if (array_key_exists('credits', $data)) {
+            if (array_key_exists('cast', $data['credits'])) {
+                $movie->getCredits()->setCast(CastFactory::createCollection($data['credits']['cast']));
+            }
 
-        /** Credits */
-//        if (array_key_exists('credits', $data)) {
-//            $casts = $data['credits'];
-//        }
-//
-//        if (array_key_exists('casts', $data)) {
-//            $casts = $data['casts'];
-//        }
-//
-//        if (array_key_exists('cast', $casts)) {
-//            $credits->setCast($casts['cast']);
-//        }
-//
-//        if (array_key_exists('crew', $casts)) {
-//            $credits->setCrew($casts['crew']);
-//        }
-//
-//        $movie->setCredits($credits);
+            if (array_key_exists('crew', $data['credits'])) {
+                $movie->getCredits()->setCrew(CrewFactory::createCollection($data['credits']['crew']));
+            }
+        }
 
         /** Genres */
         if (array_key_exists('genres', $data)) {
@@ -65,29 +58,37 @@ class MovieFactory extends AbstractFactory {
         if (array_key_exists('images', $data)) {
             $movie->setImages(ImageFactory::createCollectionFromMovie($data['images']));
         }
-//
-//        /** Keywords */
-//        if (array_key_exists('keywords', $data)) {
-//        }
-//
-//        if (array_key_exists('releases', $data)) {
-//        }
-//
-//        if (array_key_exists('trailers', $data)) {
-//        }
-//
-//        if (array_key_exists('translations', $data)) {
-//        }
-//
-//        if (array_key_exists('similar_movies', $data)) {
-//        }
-//
+
+        /** Keywords */
+        if (array_key_exists('keywords', $data)) {
+            $movie->setKeywords(GenericCollectionFactory::createCollection($data['keywords']['keywords'], new Movie\Keyword()));
+        }
+
+        if (array_key_exists('releases', $data)) {
+            $movie->setReleases(GenericCollectionFactory::createCollection($data['releases']['countries'], new Movie\Release()));
+        }
+
+        /**
+         * @TODO actually implement more providers? ( Can't seem to find any quicktime related trailers anyways? ). For now KISS
+         */
+        if (array_key_exists('trailers', $data)) {
+            $movie->setTrailers(GenericCollectionFactory::createCollection($data['trailers']['youtube'], new Youtube()));
+        }
+
+        if (array_key_exists('translations', $data)) {
+            $movie->setTranslations(GenericCollectionFactory::createCollection($data['translations']['translations'], new Movie\Translation()));
+        }
+
+        if (array_key_exists('similar_movies', $data)) {
+            $movie->setSimilarMovies(GenericCollectionFactory::createCollection($data['similar_movies']['results'], new Movie()));
+        }
+
 //        if (array_key_exists('reviews', $data)) {
 //        }
-//
+
 //        if (array_key_exists('lists', $data)) {
 //        }
-//
+
 //        if (array_key_exists('changes', $data)) {
 //        }
 
@@ -107,20 +108,4 @@ class MovieFactory extends AbstractFactory {
 
         return $collection;
     }
-
-
-    /**
-     * Load a movie with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $parameters
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $parameters = array()) {
-        $data = $client->api('movies')->getMovie($id, parent::parseQueryParameters($parameters));
-
-        return self::create($data);
-    }
-
-} 
+}

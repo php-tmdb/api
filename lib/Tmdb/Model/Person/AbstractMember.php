@@ -20,7 +20,7 @@ abstract class AbstractMember extends AbstractModel {
     private $name;
     private $profilePath;
 
-    protected static $_properties = array(
+    public static $_properties = array(
         'id',
         'name',
         'profile_path'
