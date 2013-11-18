@@ -10,6 +10,13 @@ I've started working on this since the week of October-November 2013. I hope to 
 
 The API namespace has most things already covered, however this is RAW output from the API. I'm working extensively on finishing the models.
 
+Update 18-nov
+--------------
+
+I've been hammered with work and had some time in the past few days to work on some things, please see the commit messages.
+
+**The api() method in the client class will be removed soon, and being replaced by seperate methods per api section!**
+
 Installation
 ------------
 Install Composer
