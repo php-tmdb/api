@@ -3,6 +3,8 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
 
+** NOT READY FOR PRODUCTION USE, THINGS WILL CHANGE!!! **
+
 Work in progress
 ----------------
 
