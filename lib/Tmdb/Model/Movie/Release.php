@@ -68,7 +68,7 @@ class Release extends AbstractModel {
      */
     public function setReleaseDate($releaseDate)
     {
-        $this->releaseDate = $releaseDate;
+        $this->releaseDate = new \DateTime($releaseDate);
         return $this;
     }
 

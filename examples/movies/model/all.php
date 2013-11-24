@@ -75,7 +75,7 @@ foreach($movie->getKeywords() as $keyword) {
 echo "Releases\n";
 
 foreach($movie->getReleases() as $release) {
-    printf(" - %s on %s\n", $release->getIso31661(), $release->getReleaseDate());
+    printf(" - %s on %s\n", $release->getIso31661(), $release->getReleaseDate()->format('d-m-Y'));
 }
 
 echo "Translations\n";
