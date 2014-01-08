@@ -1,0 +1,2 @@
+- Add event subscribers to supply language and adult filters
+- Figure out a way to slim down the seemingly dependency on Guzzle

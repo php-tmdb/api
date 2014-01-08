@@ -10,6 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+header('Content-Type: text/html; charset=utf-8');
+
 require_once('../../../vendor/autoload.php');
 require_once('../../../apikey.php');
 
@@ -88,4 +90,12 @@ echo "Trailers\n";
 
 foreach($movie->getTrailers() as $trailer) {
     printf(" - %s\n", $trailer->getUrl());
+}
+
+$popular = $repository->getPopular();
+
+echo "Popular titles\n";
+
+foreach($popular as $p) {
+    printf(" - %s\n", $p->getTitle());
 }

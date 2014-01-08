@@ -12,12 +12,15 @@
  */
 namespace Tmdb\Repository;
 
+use Tmdb\Api\ApiInterface;
 use Tmdb\Client;
 use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 
 abstract class AbstractRepository {
 
     private static $client = null;
+
+    protected $api = null;
 
     /**
      * Constructor
@@ -57,4 +60,20 @@ abstract class AbstractRepository {
 
         return $parameters;
     }
+
+    /**
+     * Load the given identifier
+     *
+     * @param $id
+     * @param array $parameters
+     * @return mixed
+     */
+    abstract public function load($id, array $parameters = array());
+
+    /**
+     * Return the API Class
+     *
+     * @return ApiInterface
+     */
+    abstract public function getApi();
 } 

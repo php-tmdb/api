@@ -13,9 +13,11 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\MovieFactory;
+use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Movie;
 
 class MovieRepository extends AbstractRepository {
+
     /**
      * Load a movie with the given identifier
      *
@@ -23,25 +25,130 @@ class MovieRepository extends AbstractRepository {
      * @param $parameters
      * @return Movie
      */
-    public static function load($id, array $parameters = array()) {
-        $data = parent::getClient()->getMovieApi()->getMovie($id, parent::parseQueryParameters($parameters));
+    public function load($id, array $parameters = array()) {
+
+        if (empty($parameters) && $parameters !== false) {
+            // Load a no-nonsense default set
+            $parameters = array(
+                new \Tmdb\Model\Movie\QueryParameter\AppendToResponse(array(
+                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CREDITS,
+                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::IMAGES,
+                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::KEYWORDS,
+                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::RELEASES,
+                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRAILERS,
+                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRANSLATIONS,
+                ))
+            );
+        }
+
+        $data = $this->getApi()->getMovie($id, $this->parseQueryParameters($parameters));
 
         return MovieFactory::create($data);
     }
 
     /**
-     * If you obtained an movie model which is not completely hydrated, you can use this function. ( E.g. similar_movies )
+     * If you obtained an movie model which is not completely hydrated, you can use this function.
      *
-     * Do note that you will have to provide the AppendToResponse object into the parameters array of which data
-     * you would like to obtain.
-     *
-     * array(AppendToResponse(array(...)))
+     * @todo store the previous given parameters so the same conditions apply to a refresh, and merge the new set
      *
      * @param Movie $movie
      * @param array $parameters
      * @return Movie
      */
     public function refresh(Movie $movie, array $parameters = array()) {
-        return self::load($movie->getId(), $parameters);
+        return $this->load($movie->getId(), $parameters);
     }
+
+    /**
+     * Return the Movies API Class
+     *
+     * @return \Tmdb\Api\Movies
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getMovieApi();
+    }
+
+    /**
+     * Get the latest movie id.
+     *
+     * @return Movie
+     */
+    public function getLatest()
+    {
+        return MovieFactory::create(
+            $this->getApi()->getLatest()
+        );
+    }
+
+    /**
+     * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
+     *
+     * @return Collection
+     */
+    public function getUpcoming()
+    {
+        return $this->createCollection(
+            $this->getApi()->getUpcoming()
+        );
+    }
+
+    /**
+     * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
+     *
+     * @return Collection
+     */
+    public function getNowPlaying()
+    {
+        return $this->createCollection(
+            $this->getApi()->getNowPlaying()
+        );
+    }
+
+    /**
+     * Get the list of popular movies on The Movie Database. This list refreshes every day.
+     *
+     * @return Collection
+     */
+    public function getPopular()
+    {
+        return $this->createCollection(
+            $this->getApi()->getPopular()
+        );
+    }
+
+    /**
+     * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
+     *
+     * @return Collection
+     */
+    public function getTopRated()
+    {
+        return $this->createCollection(
+            $this->getApi()->getTopRated()
+        );
+    }
+
+    /**
+     * Create an collection of an array
+     *
+     * @todo Allow an array of Movie objects to pass ( custom collection )
+     *
+     * @param $data
+     * @return Collection
+     */
+    private function createCollection($data){
+        $collection = new Collection();
+
+        if (array_key_exists('results', $data)) {
+            $data = $data['results'];
+        }
+
+        foreach($data as $item) {
+            $collection->add(null, MovieFactory::create($item));
+        }
+
+        return $collection;
+    }
+
 }

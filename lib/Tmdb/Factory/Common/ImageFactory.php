@@ -43,7 +43,7 @@ class ImageFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public static function createCollectionFromMovie(array $data = array())
+    public static function createImageCollection(array $data = array())
     {
         $collection = array();
 
@@ -58,6 +58,22 @@ class ImageFactory extends AbstractFactory
         }
 
         return self::createCollection($collection);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function createCollectionFromMovie(array $data = array())
+    {
+        return self::createImageCollection($data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function createCollectionFromPeople(array $data = array())
+    {
+        return self::createImageCollection($data);
     }
 
 }

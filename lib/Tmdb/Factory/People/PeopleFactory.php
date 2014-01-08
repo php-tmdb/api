@@ -12,12 +12,13 @@
  */
 namespace Tmdb\Factory\People;
 
-use Symfony\Component\Yaml\Exception\RuntimeException;
-use Tmdb\Client;
 use Tmdb\Factory\AbstractFactory;
 use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
+use Tmdb\Model\Person;
+
+use Tmdb\Factory\Common\ImageFactory;
 
 class PeopleFactory extends AbstractFactory {
     /**
@@ -36,9 +37,12 @@ class PeopleFactory extends AbstractFactory {
         }
 
         if (null === $person) {
-            throw new RuntimeException(sprintf(
-                'Was unable to determine the type of person by the data provided for #%d', $data['id']
-            ));
+            $person = new Person();
+        }
+
+        /** Images */
+        if (array_key_exists('images', $data)) {
+            $person->setImages(ImageFactory::createCollectionFromPeople($data['images']));
         }
 
         return parent::hydrate($person, $data);

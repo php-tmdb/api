@@ -13,6 +13,12 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
+
+use Tmdb\Model\Collection\Credits;
+
+use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\Collection\Images;
+
 use Tmdb\Model\Collection\People\PersonInterface;
 
 class Person extends AbstractModel implements PersonInterface {
@@ -34,7 +40,7 @@ class Person extends AbstractModel implements PersonInterface {
     protected $images;
     protected $changes;
 
-    protected static $_properties = array(
+    public static $_properties = array(
         'adult',
         'also_known_as',
         'biography',
@@ -46,6 +52,18 @@ class Person extends AbstractModel implements PersonInterface {
         'place_of_birth',
         'profile_path',
     );
+
+    /**
+     * Constructor
+     *
+     * Set all default collections
+     */
+    public function __construct()
+    {
+        $this->credits = new Credits();
+        $this->images  = new Images();
+        $this->changes = new Collection();
+    }
 
     /**
      * Convert an array to an hydrated object

@@ -18,7 +18,7 @@ use Guzzle\Http\Message\Response;
 interface HttpClientInterface
 {
     /**
-     * Send a GET request
+     * Compose a GET request
      *
      * @param  string $path       Request path
      * @param  array  $parameters GET Parameters
@@ -29,7 +29,7 @@ interface HttpClientInterface
     public function get($path, array $parameters = array(), array $headers = array());
 
     /**
-     * Send a POST request
+     * Compose a POST request
      *
      * @param  string $path       Request path
      * @param  string $postBody   The post BODY
@@ -41,7 +41,7 @@ interface HttpClientInterface
     public function post($path, $postBody, array $parameters = array(), array $headers = array());
 
     /**
-     * Send a PATCH request
+     * Compose a PATCH request
      *
      * @param  string $path       Request path
      * @param  string $body       The body
@@ -53,7 +53,7 @@ interface HttpClientInterface
     public function patch($path, $body = null, array $parameters = array(), array $headers = array());
 
     /**
-     * Send a PUT request
+     * Compose a PUT request
      *
      * @param  string $path       Request path
      * @param  string $body       The body
@@ -65,7 +65,7 @@ interface HttpClientInterface
     public function put($path, $body = null, array $parameters = array(), array $headers = array());
 
     /**
-     * Send a DELETE request
+     * Compose a DELETE request
      *
      * @param  string $path       Request path
      * @param  string $body       The body
