@@ -70,62 +70,67 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * Get the latest movie id.
+     * Get the latest movie.
      *
+     * @param array $options
      * @return Movie
      */
-    public function getLatest()
+    public function getLatest(array $options = array())
     {
         return MovieFactory::create(
-            $this->getApi()->getLatest()
+            $this->getApi()->getLatest($options)
         );
     }
 
     /**
      * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
      *
+     * @param array $options
      * @return Collection
      */
-    public function getUpcoming()
+    public function getUpcoming(array $options = array())
     {
         return $this->createCollection(
-            $this->getApi()->getUpcoming()
+            $this->getApi()->getUpcoming($options)
         );
     }
 
     /**
      * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
      *
+     * @param array $options
      * @return Collection
      */
-    public function getNowPlaying()
+    public function getNowPlaying(array $options = array())
     {
         return $this->createCollection(
-            $this->getApi()->getNowPlaying()
+            $this->getApi()->getNowPlaying($options)
         );
     }
 
     /**
      * Get the list of popular movies on The Movie Database. This list refreshes every day.
      *
+     * @param array $options
      * @return Collection
      */
-    public function getPopular()
+    public function getPopular(array $options = array())
     {
         return $this->createCollection(
-            $this->getApi()->getPopular()
+            $this->getApi()->getPopular($options)
         );
     }
 
     /**
      * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
      *
+     * @param array $options
      * @return Collection
      */
-    public function getTopRated()
+    public function getTopRated(array $options = array())
     {
         return $this->createCollection(
-            $this->getApi()->getTopRated()
+            $this->getApi()->getTopRated($options)
         );
     }
 

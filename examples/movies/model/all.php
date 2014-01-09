@@ -36,66 +36,80 @@ $append = new \Tmdb\Model\Movie\QueryParameter\AppendToResponse(array(
 $repository = new \Tmdb\Repository\MovieRepository($client);
 $movie      = $repository->load(87421, array($append));
 
-echo $movie->getTitle() . "\n";
+echo $movie->getTitle() . "<br/>";
 
-echo "Alternative Titles\n";
+echo "Alternative Titles<br/>";
 
 foreach($movie->getAlternativeTitles() as $title) {
-    printf(" - %s [%s]\n", $title->getTitle(), $title->getIso31661());
+    printf(" - %s [%s]<br/>", $title->getTitle(), $title->getIso31661());
 }
 
-echo "Cast\n";
+echo "Cast<br/>";
 
 foreach($movie->getCredits()->getCast() as $person) {
-    printf(" - %s as %s\n", $person->getName(), $person->getCharacter());
+    printf(" - %s as %s<br/>", $person->getName(), $person->getCharacter());
 }
 
-echo "Crew\n";
+echo "Crew<br/>";
 
 foreach($movie->getCredits()->getCrew() as $person) {
-    printf(" - %s as %s\n", $person->getName(), $person->getJob());
+    printf(" - %s as %s<br/>", $person->getName(), $person->getJob());
 }
 
-echo "Images\n";
+echo "Images<br/>";
 
+$configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
+$config = $configRepository->load();
+
+$imageHelper = new \Tmdb\Model\Helper\ImageHelper($config);
 foreach($movie->getImages() as $image) {
-    printf(" - %s\n", $image->getFilePath());
+    echo $imageHelper->getHtml($image);
+
+    printf(" - %s<br/>", $image->getFilePath());
 }
 
-echo "Genres\n";
+echo "Genres<br/>";
 
 foreach($movie->getGenres() as $genre) {
-    printf(" - %s\n", $genre->getName());
+    printf(" - %s<br/>", $genre->getName());
 }
 
-echo "Keywords\n";
+echo "Keywords<br/>";
 
 foreach($movie->getKeywords() as $keyword) {
-    printf(" - %s [%s]\n", $keyword->getName(), $keyword->getId());
+    printf(" - %s [%s]<br/>", $keyword->getName(), $keyword->getId());
 }
 
-echo "Releases\n";
+echo "Releases<br/>";
 
 foreach($movie->getReleases() as $release) {
-    printf(" - %s on %s\n", $release->getIso31661(), $release->getReleaseDate()->format('d-m-Y'));
+    printf(" - %s on %s<br/>", $release->getIso31661(), $release->getReleaseDate()->format('d-m-Y'));
 }
 
-echo "Translations\n";
+echo "Translations<br/>";
 
 foreach($movie->getTranslations() as $translation) {
-    printf(" - %s\n", $translation->getName());
+    printf(" - %s<br/>", $translation->getName());
 }
 
-echo "Trailers\n";
+echo "Trailers<br/>";
 
 foreach($movie->getTrailers() as $trailer) {
-    printf(" - %s\n", $trailer->getUrl());
+    printf(" - %s<br/>", $trailer->getUrl());
 }
 
 $popular = $repository->getPopular();
 
-echo "Popular titles\n";
+echo "Popular titles<br/>";
 
 foreach($popular as $p) {
-    printf(" - %s\n", $p->getTitle());
+    printf(" - %s<br/>", $p->getTitle());
+}
+
+$topRated = $repository->getTopRated(array('page' => 3));
+
+echo "Top rated<br/>";
+
+foreach($topRated as $t) {
+    printf(" - %s<br/>", $t->getTitle());
 }

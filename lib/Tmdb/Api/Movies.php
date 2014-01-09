@@ -164,51 +164,56 @@ class Movies
     /**
      * Get the latest movie id.
      *
+     * @param array $options
      * @return mixed
      */
-    public function getLatest()
+    public function getLatest(array $options = array())
     {
-        return $this->get('movie/latest');
+        return $this->get('movie/latest', $options);
     }
 
     /**
      * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
      *
+     * @param array $options
      * @return mixed
      */
-    public function getUpcoming()
+    public function getUpcoming(array $options = array())
     {
-        return $this->get('movie/upcoming');
+        return $this->get('movie/upcoming', $options);
     }
 
     /**
      * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
      *
+     * @param array $options
      * @return mixed
      */
-    public function getNowPlaying()
+    public function getNowPlaying(array $options = array())
     {
-        return $this->get('movie/now_playing');
+        return $this->get('movie/now_playing', $options);
     }
 
     /**
      * Get the list of popular movies on The Movie Database. This list refreshes every day.
      *
+     * @param array $options
      * @return mixed
      */
-    public function getPopular()
+    public function getPopular(array $options = array())
     {
-        return $this->get('movie/popular');
+        return $this->get('movie/popular', $options);
     }
 
     /**
      * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
      *
+     * @param array $options
      * @return mixed
      */
-    public function getTopRated()
+    public function getTopRated(array $options = array())
     {
-        return $this->get('movie/top_rated');
+        return $this->get('movie/top_rated', $options);
     }
 
     /**

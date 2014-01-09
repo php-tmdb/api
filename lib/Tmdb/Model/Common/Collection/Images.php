@@ -51,6 +51,6 @@ class Images extends Collection {
      */
     public function addImage(Image $image)
     {
-        $this->data[] = $image;
+        $this->add(null, $image);
     }
 } 
