@@ -16,4 +16,4 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$images = $client->api('movies')->getImages(550);
+$images = $client->getMoviesApi()->getImages(550);
