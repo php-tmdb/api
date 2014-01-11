@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Api;
 
-use Tmdb\Exception\NotImplementedException;
-
 class Tv
     extends AbstractApi
 {
@@ -22,11 +20,12 @@ class Tv
      *
      * @param $tvshow_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getTvshow($tvshow_id, array $options = array())
+    public function getTvshow($tvshow_id, array $options = array(), array $headers = array())
     {
-        return $this->get('tv/' . $tvshow_id, $options);
+        return $this->get('tv/' . $tvshow_id, $options, $headers);
     }
 
     /**
@@ -34,11 +33,12 @@ class Tv
      *
      * @param $tvshow_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getCredits($tvshow_id, array $options = array())
+    public function getCredits($tvshow_id, array $options = array(), array $headers = array())
     {
-        return $this->get('tv/' . $tvshow_id . '/credits', $options);
+        return $this->get('tv/' . $tvshow_id . '/credits', $options, $headers);
     }
 
     /**
@@ -46,11 +46,12 @@ class Tv
      *
      * @param $tvshow_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getCast($tvshow_id, array $options = array())
+    public function getCast($tvshow_id, array $options = array(), array $headers = array())
     {
-        return $this->get('tv/' . $tvshow_id . '/external_ids', $options);
+        return $this->get('tv/' . $tvshow_id . '/external_ids', $options, $headers);
     }
 
     /**
@@ -58,10 +59,11 @@ class Tv
      *
      * @param $tvshow_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getImages($tvshow_id, array $options = array())
+    public function getImages($tvshow_id, array $options = array(), array $headers = array())
     {
-        return $this->get('tv/' . $tvshow_id . '/images', $options);
+        return $this->get('tv/' . $tvshow_id . '/images', $options, $headers);
     }
 }

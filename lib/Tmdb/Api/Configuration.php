@@ -32,10 +32,11 @@ class Configuration
      *
      * http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg
      *
+     * @param array $headers
      * @return mixed
      */
-    public function getConfiguration()
+    public function getConfiguration(array $headers = array())
     {
-        return $this->get('configuration');
+        return $this->get('configuration', array(), $headers);
     }
 }

@@ -15,26 +15,33 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\People\PeopleFactory;
 use Tmdb\Model\Person;
 
-class PersonRepository extends AbstractRepository {
+use Tmdb\Model\Person\QueryParameter\AppendToResponse;
+
+class PeopleRepository extends AbstractRepository {
     /**
      * Load a person with the given identifier
      *
      * @param $id
-     * @param $parameters
+     * @param array $parameters
+     * @param array $headers
      * @return Person
      */
-    public function load($id, array $parameters = array()) {
+    public function load($id, array $parameters = array(), array $headers = array()) {
 
         if (empty($parameters) && $parameters !== false) {
             // Load a no-nonsense default set
             $parameters = array(
-                new \Tmdb\Model\Person\QueryParameter\AppendToResponse(array(
-                    \Tmdb\Model\Person\QueryParameter\AppendToResponse::IMAGES,
+                new AppendToResponse(array(
+                    AppendToResponse::IMAGES,
+                    AppendToResponse::CHANGES,
+                    AppendToResponse::COMBINED_CREDITS,
+                    AppendToResponse::MOVIE_CREDITS,
+                    AppendToResponse::TV_CREDITS,
                 ))
             );
         }
 
-        $data = $this->getApi()->getPerson($id, $this->parseQueryParameters($parameters));
+        $data = $this->getApi()->getPerson($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
 
         return PeopleFactory::create($data);
     }
@@ -44,17 +51,20 @@ class PersonRepository extends AbstractRepository {
      *
      * @param Person $person
      * @param array $parameters
+     * @param array $headers
      * @return Person
      */
-    public function refresh(Person $person, array $parameters = array()) {
-        return $this->load($person->getId(), $parameters);
+    public function refresh(Person $person, array $parameters = array(), array $headers = array()) {
+        return $this->load($person->getId(), $parameters, $headers);
     }
 
     /**
+     * Return the related API class
+     *
      * @return \Tmdb\Api\People
      */
     public function getApi()
     {
-        return $this->getClient()->getPersonApi();
+        return $this->getClient()->getPeopleApi();
     }
 }

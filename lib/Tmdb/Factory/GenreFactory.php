@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Client;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Genre;
 
@@ -39,19 +38,4 @@ class GenreFactory extends AbstractFactory
 
         return $collection;
     }
-
-    /**
-     * Load a genre with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $parameters
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $parameters = array()) {
-        $data = $client->api('genres')->getGenre($id, parent::parseQueryParameters($parameters));
-
-        return self::create($data);
-    }
-
-} 
+}

@@ -16,32 +16,42 @@ use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Movie;
 
+use \Tmdb\Model\Movie\QueryParameter\AppendToResponse;
+
 class MovieRepository extends AbstractRepository {
 
     /**
      * Load a movie with the given identifier
      *
+     * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
+     *
      * @param $id
      * @param $parameters
+     * @param $headers
      * @return Movie
      */
-    public function load($id, array $parameters = array()) {
+    public function load($id, array $parameters = array(), array $headers = array())
+    {
 
-        if (empty($parameters) && $parameters !== false) {
-            // Load a no-nonsense default set
+        if (empty($parameters)) {
             $parameters = array(
-                new \Tmdb\Model\Movie\QueryParameter\AppendToResponse(array(
-                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CREDITS,
-                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::IMAGES,
-                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::KEYWORDS,
-                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::RELEASES,
-                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRAILERS,
-                    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRANSLATIONS,
+                new AppendToResponse(array(
+                    AppendToResponse::ALTERNATIVE_TITLES,
+                    AppendToResponse::CHANGES,
+                    AppendToResponse::CREDITS,
+                    AppendToResponse::IMAGES,
+                    AppendToResponse::KEYWORDS,
+                    AppendToResponse::LISTS,
+                    AppendToResponse::RELEASES,
+                    AppendToResponse::REVIEWS,
+                    AppendToResponse::SIMILAR_MOVIES,
+                    AppendToResponse::TRAILERS,
+                    AppendToResponse::TRANSLATIONS,
                 ))
             );
         }
 
-        $data = $this->getApi()->getMovie($id, $this->parseQueryParameters($parameters));
+        $data = $this->getApi()->getMovie($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
 
         return MovieFactory::create($data);
     }
@@ -53,10 +63,12 @@ class MovieRepository extends AbstractRepository {
      *
      * @param Movie $movie
      * @param array $parameters
+     * @param array $headers
      * @return Movie
      */
-    public function refresh(Movie $movie, array $parameters = array()) {
-        return $this->load($movie->getId(), $parameters);
+    public function refresh(Movie $movie, array $parameters = array(), array $headers = array())
+    {
+        return $this->load($movie->getId(), $parameters, $headers);
     }
 
     /**
@@ -66,7 +78,7 @@ class MovieRepository extends AbstractRepository {
      */
     public function getApi()
     {
-        return $this->getClient()->getMovieApi();
+        return $this->getClient()->getMoviesApi();
     }
 
     /**

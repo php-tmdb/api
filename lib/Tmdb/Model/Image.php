@@ -27,6 +27,8 @@ class Image extends AbstractModel {
     private $height;
     private $iso6391;
     private $aspectRatio;
+    private $voteAverage;
+    private $voteCount;
 
     protected $id;
     protected $type;
@@ -36,7 +38,9 @@ class Image extends AbstractModel {
         'width',
         'height',
         'iso_639_1',
-        'aspect_ratio'
+        'aspect_ratio',
+        'vote_average',
+        'vote_count'
     );
 
     public static $_formats = array(
@@ -48,35 +52,6 @@ class Image extends AbstractModel {
     );
 
     /**
-     * Convert an array to an hydrated object
-     *
-     * @param Client $client
-     * @param array $data
-     * @return $this
-     */
-    public static function fromArray(Client $client, array $data)
-    {
-        $image = new Image();
-        //$image->setClient($client);
-
-        return $image->hydrate($data);
-    }
-
-    /**
-     * Load a person with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $with
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $with = array()) {
-        $data = $client->api('people')->getPerson($id, $with);
-
-        return Person::fromArray($client, $data);
-    }
-
-    /**
      * Get the singular type as defined in $_types
      *
      * @param $name
@@ -84,8 +59,8 @@ class Image extends AbstractModel {
      */
     public static function getTypeFromCollectionName($name)
     {
-        if (array_key_exists($name, self::$_types)) {
-            return self::$_types[$name];
+        if (array_key_exists($name, self::$_formats)) {
+            return self::$_formats[$name];
         }
     }
 
@@ -144,24 +119,6 @@ class Image extends AbstractModel {
     }
 
     /**
-     * @param mixed $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param mixed $iso6391
      * @return $this
      */
@@ -180,21 +137,39 @@ class Image extends AbstractModel {
     }
 
     /**
-     * @param mixed $type
+     * @param mixed $voteAverage
      * @return $this
      */
-    public function setType($type)
+    public function setVoteAverage($voteAverage)
     {
-        $this->type = $type;
+        $this->voteAverage = $voteAverage;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getType()
+    public function getVoteAverage()
     {
-        return $this->type;
+        return $this->voteAverage;
+    }
+
+    /**
+     * @param mixed $voteCount
+     * @return $this
+     */
+    public function setVoteCount($voteCount)
+    {
+        $this->voteCount = $voteCount;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVoteCount()
+    {
+        return $this->voteCount;
     }
 
     /**

@@ -20,9 +20,10 @@ class Genres
      *
      * @param integer $id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getGenre($id, array $options = array())
+    public function getGenre($id, array $options = array(), array $headers = array())
     {
         $response = $this->getGenres();
 
@@ -39,11 +40,12 @@ class Genres
      * Get the list of genres.
      *
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getGenres(array $options = array())
+    public function getGenres(array $options = array(), array $headers = array())
     {
-        return $this->get('genre/list', $options);
+        return $this->get('genre/list', $options, $headers);
     }
 
     /**
@@ -51,10 +53,11 @@ class Genres
      *
      * @param $genre_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getMovies($genre_id, array $options = array())
+    public function getMovies($genre_id, array $options = array(), array $headers = array())
     {
-        return $this->get('genre/' . $genre_id . '/movies', $options);
+        return $this->get('genre/' . $genre_id . '/movies', $options, $headers);
     }
 }

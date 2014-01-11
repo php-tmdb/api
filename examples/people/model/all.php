@@ -16,18 +16,7 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-// This is optional, but if you want lots of data this is the way.
-$append = new \Tmdb\Model\Person\QueryParameter\AppendToResponse(array(
-    \Tmdb\Model\Person\QueryParameter\AppendToResponse::IMAGES,
-    \Tmdb\Model\Person\QueryParameter\AppendToResponse::CHANGES,
-    \Tmdb\Model\Person\QueryParameter\AppendToResponse::COMBINED_CREDITS,
-    \Tmdb\Model\Person\QueryParameter\AppendToResponse::LATEST,
-    \Tmdb\Model\Person\QueryParameter\AppendToResponse::MOVIE_CREDITS,
-    \Tmdb\Model\Person\QueryParameter\AppendToResponse::TV_CREDITS,
-    \Tmdb\Model\Person\QueryParameter\AppendToResponse::POPULAR
-));
-
 $repository = new \Tmdb\Repository\PersonRepository($client);
-$person      = $repository->load(33, array($append));
+$person      = $repository->load(33);
 
 var_dump($person);

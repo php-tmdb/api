@@ -26,11 +26,12 @@ class Collections
      *
      * @param $collection_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getCollection($collection_id, array $options = array())
+    public function getCollection($collection_id, array $options = array(), array $headers = array())
     {
-        return $this->get('collection/' . $collection_id, $options);
+        return $this->get('collection/' . $collection_id, $options, $headers);
     }
 
     /**
@@ -38,10 +39,11 @@ class Collections
      *
      * @param $collection_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getImages($collection_id, array $options = array())
+    public function getImages($collection_id, array $options = array(), array $headers = array())
     {
-        return $this->get('collection/' . $collection_id . '/images', $options);
+        return $this->get('collection/' . $collection_id . '/images', $options, $headers);
     }
 }

@@ -20,11 +20,12 @@ class Companies
      *
      * @param $company_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getCompany($company_id, array $options = array())
+    public function getCompany($company_id, array $options = array(), array $headers = array())
     {
-        return $this->get('company/' . $company_id, $options);
+        return $this->get('company/' . $company_id, $options, $headers);
     }
 
     /**
@@ -32,10 +33,11 @@ class Companies
      *
      * @param $company_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getMovies($company_id, array $options = array())
+    public function getMovies($company_id, array $options = array(), array $headers = array())
     {
-        return $this->get('company/' . $company_id . '/movies', $options);
+        return $this->get('company/' . $company_id . '/movies', $options, $headers);
     }
 }

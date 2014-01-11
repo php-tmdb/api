@@ -22,11 +22,12 @@ class Lists
      *
      * @param $list_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getList($list_id, array $options = array())
+    public function getList($list_id, array $options = array(), array $headers = array())
     {
-        return $this->get('list/' . $list_id, $options);
+        return $this->get('list/' . $list_id, $options, $headers);
     }
 
     /**
@@ -35,10 +36,11 @@ class Lists
      * @param $name
      * @param $description
      * @param $options array
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function createList($name, $description, array $options = array())
+    public function createList($name, $description, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -49,10 +51,11 @@ class Lists
      * @param $list_id
      * @param $movie_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getItemStatus($list_id, $movie_id, array $options = array())
+    public function getItemStatus($list_id, $movie_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -63,10 +66,11 @@ class Lists
      * @param $list_id
      * @param $media_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function addMediaToList($list_id, $media_id, array $options = array())
+    public function addMediaToList($list_id, $media_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -77,10 +81,11 @@ class Lists
      * @param $list_id
      * @param $media_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function removeMediaFromList($list_id, $media_id, array $options = array())
+    public function removeMediaFromList($list_id, $media_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -90,10 +95,11 @@ class Lists
      *
      * @param $list_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function deleteList($list_id, array $options = array())
+    public function deleteList($list_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }

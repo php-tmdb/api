@@ -27,11 +27,12 @@ class Changes
      * on October 5, 2012 and will only show movies that have been edited since.
      *
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getMovieChanges(array $options = array())
+    public function getMovieChanges(array $options = array(), array $headers = array())
     {
-        return $this->get('movie/changes', $options);
+        return $this->get('movie/changes', $options, $headers);
     }
 
     /**
@@ -46,10 +47,11 @@ class Changes
      * on October 5, 2012 and will only show movies that have been edited since.
      *
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getPeopleChanges(array $options = array())
+    public function getPeopleChanges(array $options = array(), array $headers = array())
     {
-        return $this->get('person/changes', $options);
+        return $this->get('person/changes', $options, $headers);
     }
 }

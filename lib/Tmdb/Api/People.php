@@ -20,11 +20,12 @@ class People
      *
      * @param $person_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getPerson($person_id, array $options = array())
+    public function getPerson($person_id, array $options = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id, $options);
+        return $this->get('person/' . $person_id, $options, $headers);
     }
 
     /**
@@ -32,11 +33,12 @@ class People
      *
      * @param $person_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getCredits($person_id, array $options = array())
+    public function getCredits($person_id, array $options = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id . '/credits', $options);
+        return $this->get('person/' . $person_id . '/credits', $options, $headers);
     }
 
     /**
@@ -44,11 +46,12 @@ class People
      *
      * @param $person_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getImages($person_id, array $options = array())
+    public function getImages($person_id, array $options = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id . '/images', $options);
+        return $this->get('person/' . $person_id . '/images', $options, $headers);
     }
 
     /**
@@ -62,30 +65,35 @@ class People
      *
      * @param $person_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getChanges($person_id, array $options = array())
+    public function getChanges($person_id, array $options = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id . '/changes', $options);
+        return $this->get('person/' . $person_id . '/changes', $options, $headers);
     }
 
     /**
      * Get the list of popular people on The Movie Database. This list refreshes every day.
      *
+     * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getPopular()
+    public function getPopular(array $options = array(), array $headers = array())
     {
-        return $this->get('person/popular');
+        return $this->get('person/popular', $options, $headers);
     }
 
     /**
      * Get the latest person id.
      *
+     * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getLatest()
+    public function getLatest(array $options = array(), array $headers = array())
     {
-        return $this->get('person/latest');
+        return $this->get('person/latest', $options, $headers);
     }
 }

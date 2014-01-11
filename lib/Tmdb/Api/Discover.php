@@ -21,8 +21,8 @@ class Discover
      * @param array $options
      * @return mixed
      */
-    public function discoverMovies(array $options = array())
+    public function discoverMovies(array $options = array(), array $headers = array())
     {
-        return $this->get('discover/movie', $options);
+        return $this->get('discover/movie', $options, $headers);
     }
 }

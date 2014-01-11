@@ -21,10 +21,11 @@ class Account
      * Get the basic information for an account. You will need to have a valid session id.
      *
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getAccount(array $options = array())
+    public function getAccount(array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -34,10 +35,11 @@ class Account
      *
      * @param $account_id
      * @param $options array
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getLists($account_id, array $options = array())
+    public function getLists($account_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -47,10 +49,11 @@ class Account
      *
      * @param $account_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getFavoriteMovies($account_id, array $options = array())
+    public function getFavoriteMovies($account_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -60,10 +63,11 @@ class Account
      *
      * @param $account_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function favorite($account_id, array $options = array())
+    public function favorite($account_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -73,10 +77,11 @@ class Account
      *
      * @param $account_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getRatedMovies($account_id, array $options = array())
+    public function getRatedMovies($account_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -86,10 +91,11 @@ class Account
      *
      * @param $account_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getMovieWatchlist($account_id, array $options = array())
+    public function getMovieWatchlist($account_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -99,10 +105,11 @@ class Account
      *
      * @param $account_id
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function watchlist($account_id, array $options = array())
+    public function watchlist($account_id, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }

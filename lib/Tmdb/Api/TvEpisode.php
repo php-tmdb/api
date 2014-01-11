@@ -24,11 +24,12 @@ class TvEpisode
      * @param $season_number
      * @param $episode_number
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getEpisode($tvshow_id, $season_number, $episode_number, array $options = array())
+    public function getEpisode($tvshow_id, $season_number, $episode_number, array $options = array(), array $headers = array())
     {
-        return $this->get(sprintf('tv/%s/season/%s/episode/%s', $tvshow_id, $season_number,$episode_number), $options);
+        return $this->get(sprintf('tv/%s/season/%s/episode/%s', $tvshow_id, $season_number,$episode_number), $options, $headers);
     }
 
     /**
@@ -38,11 +39,12 @@ class TvEpisode
      * @param $season_number
      * @param $episode_number
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getEpisodeCredits($tvshow_id, $season_number, $episode_number, array $options = array())
+    public function getEpisodeCredits($tvshow_id, $season_number, $episode_number, array $options = array(), array $headers = array())
     {
-        return $this->get(sprintf('tv/%s/season/%s/episode/%s/credits', $tvshow_id, $season_number,$episode_number), $options);
+        return $this->get(sprintf('tv/%s/season/%s/episode/%s/credits', $tvshow_id, $season_number,$episode_number), $options, $headers);
     }
 
     /**
@@ -52,11 +54,12 @@ class TvEpisode
      * @param $season_number
      * @param $episode_number
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getEpisodeExternalIds($tvshow_id, $season_number, $episode_number, array $options = array())
+    public function getEpisodeExternalIds($tvshow_id, $season_number, $episode_number, array $options = array(), array $headers = array())
     {
-        return $this->get(sprintf('tv/%s/season/%s/episode/%s/external_ids', $tvshow_id, $season_number,$episode_number), $options);
+        return $this->get(sprintf('tv/%s/season/%s/episode/%s/external_ids', $tvshow_id, $season_number,$episode_number), $options, $headers);
     }
 
     /**
@@ -66,10 +69,11 @@ class TvEpisode
      * @param $season_number
      * @param $episode_number
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getEpisodeImages($tvshow_id, $season_number, $episode_number, array $options = array())
+    public function getEpisodeImages($tvshow_id, $season_number, $episode_number, array $options = array(), array $headers = array())
     {
-        return $this->get(sprintf('tv/%s/season/%s/episode/%s/images', $tvshow_id, $season_number,$episode_number), $options);
+        return $this->get(sprintf('tv/%s/season/%s/episode/%s/images', $tvshow_id, $season_number,$episode_number), $options, $headers);
     }
 }

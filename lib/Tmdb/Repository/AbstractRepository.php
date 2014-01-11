@@ -25,6 +25,9 @@ abstract class AbstractRepository {
     /**
      * Constructor
      *
+     *
+     * @todo create an interface for the client
+     *
      * @param Client $client
      */
     public function __construct(Client $client)
@@ -62,13 +65,24 @@ abstract class AbstractRepository {
     }
 
     /**
+     * @todo implement
+     * @param array $headers
+     * @return array
+     */
+    protected function parseHeaders(array $headers = array())
+    {
+        return $headers;
+    }
+
+    /**
      * Load the given identifier
      *
      * @param $id
-     * @param array $parameters
+     * @param array $parameters Query parameters to pass to the request
+     * @param array $headers Headers to pass to the request
      * @return mixed
      */
-    abstract public function load($id, array $parameters = array());
+    abstract public function load($id, array $parameters = array(), array $headers = array());
 
     /**
      * Return the API Class

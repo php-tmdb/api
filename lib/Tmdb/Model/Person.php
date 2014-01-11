@@ -66,39 +66,6 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * Convert an array to an hydrated object
-     *
-     * @param Client $client
-     * @param array $data
-     * @return $this
-     */
-    public static function fromArray(Client $client, array $data)
-    {
-        $person = new Person($data['id']);
-        //$person->setClient($client);
-
-        if (array_key_exists('images', $data)) {
-            $data['images'] = parent::collectImages($client, $data['images']);
-        }
-
-        return $person->hydrate($data);
-    }
-
-    /**
-     * Load a person with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $parameters
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $parameters = array()) {
-        $data = $client->api('people')->getPerson($id, parent::parseQueryParameters($parameters));
-
-        return Person::fromArray($client, $data);
-    }
-
-    /**
      * @param mixed $adult
      * @return $this
      */

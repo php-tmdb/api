@@ -14,9 +14,7 @@ namespace Tmdb;
 
 use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
-use Guzzle\Http\Message\RequestInterface;
 
-use Tmdb\Api\ApiInterface;
 use Tmdb\Exception\InvalidArgumentException;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
@@ -34,11 +32,15 @@ class Client {
     const TMDB_URI = 'http://api.themoviedb.org/3/';
 
     /**
+     * Stores API authentication token
+     *
      * @var Token
      */
     private $token;
 
     /**
+     * Stores the HTTP Client
+     *
      * @var HttpClientInterface
      */
     private $httpClient;
@@ -80,22 +82,6 @@ class Client {
     }
 
     /**
-     * @return Api\Movies
-     */
-    public function getMovieApi()
-    {
-        return new Api\Movies($this);
-    }
-
-    /**
-     * @return Api\People
-     */
-    public function getPersonApi()
-    {
-        return new Api\People($this);
-    }
-
-    /**
      * @return Api\Configuration
      */
     public function getConfigurationApi()
@@ -103,114 +89,140 @@ class Client {
         return new Api\Configuration($this);
     }
 
+    /**
+     * @return Api\Authentication
+     */
+    public function getAuthenticationApi()
+    {
+        return new Api\Authentication($this);
+    }
 
     /**
-     * Return the relevant API object
-     *
-     * @todo we should either register these by DI, or hardcode the return values through the constructor, and provide getApiConfiguration() type of methods
-     *
-     * @param $name
-     * @throws Exception\InvalidArgumentException
-     * @return ApiInterface
+     * @return Api\Account
      */
-    public function api($name)
+    public function getAccountApi()
     {
-        switch($name) {
-            case 'configuration':
-                /** @var Api\Configuration */
-                $api = new Api\Configuration($this);
-                break;
+        return new Api\Account($this);
+    }
 
-            case 'authentication':
-                /** @var Api\Authentication */
-                $api = new Api\Authentication($this);
-                break;
+    /**
+     * @return Api\Collections
+     */
+    public function getCollectionsApi()
+    {
+        return new Api\Collections($this);
+    }
 
-            case 'account':
-                /** @var Api\Account */
-                $api = new Api\Account($this);
-                break;
+    /**
+     * @return Api\Movies
+     */
+    public function getMoviesApi()
+    {
+        return new Api\Movies($this);
+    }
 
-            case 'movies':
-                /** @var Api\Movies */
-                $api = new Api\Movies($this);
-                break;
+    /**
+     * @return Api\Tv
+     */
+    public function getTvApi()
+    {
+        return new Api\Tv($this);
+    }
 
-            case 'collections':
-                /** @return Api\Collections */
-                $api = new Api\Collections($this);
-                break;
+    /**
+     * @return Api\TvSeason
+     */
+    public function getTvSeasonApi()
+    {
+        return new Api\TvSeason($this);
+    }
 
-            case 'tv':
-                /** @return Api\Tv */
-                $api = new Api\Tv($this);
-                break;
+    /**
+     * @return Api\TvEpisode
+     */
+    public function getTvEpisodeApi()
+    {
+        return new Api\TvEpisode($this);
+    }
 
-            case 'tvseason':
-                /** @return Api\TvSeason */
-                $api = new Api\TvSeason($this);
-                break;
+    /**
+     * @return Api\People
+     */
+    public function getPeopleApi()
+    {
+        return new Api\People($this);
+    }
 
-            case 'tvepisode':
-                /** @return Api\TvEpisode */
-                $api = new Api\TvEpisode($this);
-                break;
+    /**
+     * @return Api\Lists
+     */
+    public function getListsApi()
+    {
+        return new Api\Lists($this);
+    }
 
-            case 'people':
-                /** @return Api\People */
-                $api = new Api\People($this);
-                break;
+    /**
+     * @return Api\Companies
+     */
+    public function getCompaniesApi()
+    {
+        return new Api\Companies($this);
+    }
 
-            case 'lists':
-                /** @return Api\Lists */
-                $api = new Api\Lists($this);
-                break;
+    /**
+     * @return Api\Genres
+     */
+    public function getGenresApi()
+    {
+        return new Api\Genres($this);
+    }
 
-            case 'companies':
-                /** @return Api\Companies */
-                $api = new Api\Companies($this);
-                break;
+    /**
+     * @return Api\Keywords
+     */
+    public function getKeywordsApi()
+    {
+        return new Api\Keywords($this);
+    }
 
-            case 'genres':
-                /** @return Api\Genres */
-                $api = new Api\Genres($this);
-                break;
+    /**
+     * @return Api\Discover
+     */
+    public function getDiscoverApi()
+    {
+        return new Api\Discover($this);
+    }
 
-            case 'keywords':
-                /** @return Api\Keywords */
-                $api = new Api\Keywords($this);
-                break;
+    /**
+     * @return Api\Search
+     */
+    public function getSearchApi()
+    {
+        return new Api\Search($this);
+    }
 
-            case 'discover':
-                /** @return Api\Discover */
-                $api = new Api\Discover($this);
-                break;
+    /**
+     * @return Api\Reviews
+     */
+    public function getReviewsApi()
+    {
+        return new Api\Reviews($this);
+    }
 
-            case 'search':
-                /** @return Api\Search */
-                $api = new Api\Search($this);
-                break;
+    /**
+     * @return Api\Changes
+     */
+    public function getChangesApi()
+    {
+        return new Api\Changes($this);
+    }
 
-            case 'reviews':
-                /** @return Api\Reviews */
-                $api = new Api\Reviews($this);
-                break;
-
-            case 'changes':
-                /** @return Api\Changes */
-                $api = new Api\Changes($this);
-                break;
-
-            case 'jobs':
-                /** @return Api\Jobs */
-                $api = new Api\Jobs($this);
-                break;
-
-            default:
-                throw new InvalidArgumentException(sprintf('The API type "%s" is not supported.', $name));
-        }
-
-        return $api;
+    /**
+     * @return Api\Jobs
+     */
+    public function getJobsApi()
+    {
+        return new Api\Jobs($this);
     }
 
     /**

@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Client;
 use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Configuration;
 

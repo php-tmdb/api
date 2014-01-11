@@ -10,7 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Helper;
+namespace Tmdb\Helper;
 
 use Tmdb\Model\Configuration;
 use Tmdb\Model\Image;
@@ -24,23 +24,42 @@ class ImageHelper {
         $this->config = $config;
     }
 
+    /**
+     * Load the image configuration collection
+     *
+     * @return \Tmdb\Model\Common\Collection
+     */
     public function getImageConfiguration()
     {
         return $this->config->getImages();
     }
 
+    /**
+     * Get the url for the image resource
+     *
+     * @param Image $image
+     * @param string $size
+     * @return string
+     */
     public function getUrl(Image $image, $size = 'original') {
         $config = $this->getImageConfiguration();
 
-        return sprintf('%s%s%s', $config['base_url'] , $size, $image->getFilePath());
+        return $config['base_url'] . $size . $image->getFilePath();
     }
 
+    /**
+     * Get an img html tag for the image in the specified size
+     *
+     * @param Image $image
+     * @param string $size
+     * @return string
+     */
     public function getHtml(Image $image, $size = 'original') {
         return sprintf(
-            '<img src="%s" height="%s" width="%s" />',
+            '<img src="%s" width="%s" height="%s" />',
             $this->getUrl($image, $size),
-            $image->getHeight(),
-            $image->getWidth()
+            $image->getWidth(),
+            $image->getHeight()
         );
     }
 }

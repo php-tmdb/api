@@ -13,10 +13,10 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Common\Collection;
-use Tmdb\Model\Common\Collection\Images;
 
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Genres;
+use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Common\Country;

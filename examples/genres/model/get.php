@@ -16,6 +16,13 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$genre = \Tmdb\Model\Genre::load($client, 28);
+$repository = new \Tmdb\Repository\GenreRepository($client);
+$genre      = $repository->load(28);
 
-echo $genre->getName();
+var_dump($genre);
+
+$genres = $repository->loadCollection();
+
+foreach($genres as $genre) {
+    var_dump($genre);
+}

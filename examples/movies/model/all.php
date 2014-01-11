@@ -18,23 +18,8 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-// This is optional, but if you want lots of data this is the way.
-$append = new \Tmdb\Model\Movie\QueryParameter\AppendToResponse(array(
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::ALTERNATIVE_TITLES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CHANGES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CREDITS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::IMAGES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::KEYWORDS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::LISTS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::RELEASES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::REVIEWS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::SIMILAR_MOVIES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRAILERS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::TRANSLATIONS,
-));
-
 $repository = new \Tmdb\Repository\MovieRepository($client);
-$movie      = $repository->load(87421, array($append));
+$movie      = $repository->load(87421);
 
 echo $movie->getTitle() . "<br/>";
 
@@ -61,11 +46,11 @@ echo "Images<br/>";
 $configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
 $config = $configRepository->load();
 
-$imageHelper = new \Tmdb\Model\Helper\ImageHelper($config);
+$imageHelper = new \Tmdb\Helper\ImageHelper($config);
 foreach($movie->getImages() as $image) {
     echo $imageHelper->getHtml($image);
 
-    printf(" - %s<br/>", $image->getFilePath());
+    printf(" - %s<br/>", $imageHelper->getUrl($image));
 }
 
 echo "Genres<br/>";

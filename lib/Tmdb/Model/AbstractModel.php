@@ -12,48 +12,11 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
-
 class AbstractModel {
-    public static $_properties;
-
-    protected $_data = array();
-    protected $_client = null;
-
     /**
-     * Retrieve the client
+     * List of properties to populate by the ObjectHydrator
      *
-     * @return Client
+     * @var array
      */
-    public function getClient()
-    {
-        return $this->_client;
-    }
-
-    /**
-     * Set the client
-     *
-     * @param Client $client
-     * @return $this
-     */
-    public function setClient(Client $client = null)
-    {
-        if (null !== $client) {
-            $this->_client = $client;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Call a part of the API
-     *
-     * @param $api
-     * @return mixed
-     */
-    public function api($api)
-    {
-        return $this->getClient()->api($api);
-    }
-
+    public static $_properties = array();
 }

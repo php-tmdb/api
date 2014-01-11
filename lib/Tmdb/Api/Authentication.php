@@ -25,10 +25,11 @@ class Authentication
      * As soon as a valid session id has been created the token will be destroyed.
      *
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getNewToken(array $options = array())
+    public function getNewToken(array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -39,10 +40,11 @@ class Authentication
      *
      * @param $request_token
      * @param $options array
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getNewSession($request_token, array $options = array())
+    public function getNewSession($request_token, array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -59,10 +61,11 @@ class Authentication
      * If a guest session is not used for the first time within 24 hours, it will be automatically discarded.
      *
      * @param array $options
+     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getNewGuestSession(array $options = array())
+    public function getNewGuestSession(array $options = array(), array $headers = array())
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }

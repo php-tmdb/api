@@ -20,10 +20,11 @@ class Reviews
      *
      * @param $review_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getReview($review_id, array $options = array())
+    public function getReview($review_id, array $options = array(), array $headers = array())
     {
-        return $this->get('review/' . $review_id, $options);
+        return $this->get('review/' . $review_id, $options, $headers);
     }
 }

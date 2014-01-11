@@ -10,7 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Common\Collection;
+namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\Collection;
 

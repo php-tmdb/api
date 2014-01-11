@@ -21,10 +21,11 @@ class ConfigurationRepository extends AbstractRepository {
      * Load a movie with the given identifier
      *
      * @param $id
-     * @param $parameters
+     * @param array $parameters
+     * @param array $headers
      * @return Configuration
      */
-    public function load($id = null, array $parameters = array()) {
+    public function load($id = null, array $parameters = array(), array $headers = array()) {
         $data = $this->getApi()->getConfiguration();
 
         return ConfigurationFactory::create($data);
@@ -38,7 +39,7 @@ class ConfigurationRepository extends AbstractRepository {
      * @param array $parameters
      * @return Configuration
      */
-    public function refresh(array $parameters = array()) {
+    public function refresh(array $parameters = array(), array $headers = array()) {
         return $this->load(null, $parameters);
     }
 

@@ -10,10 +10,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Factory\Common;
+namespace Tmdb\Factory;
 
-use Tmdb\Factory\AbstractFactory;
-use Tmdb\Model\Common\Collection\Images;
+use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image;
 
 class ImageFactory extends AbstractFactory

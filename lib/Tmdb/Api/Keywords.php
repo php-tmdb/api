@@ -19,11 +19,12 @@ class Keywords
      * Get the basic information for a specific keyword id.
      *
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getKeywords(array $options = array())
+    public function getKeywords(array $options = array(), array $headers = array())
     {
-        return $this->get('keyword/list', $options);
+        return $this->get('keyword/list', $options, $headers);
     }
 
     /**
@@ -31,10 +32,11 @@ class Keywords
      *
      * @param $keyword_id
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getMovies($keyword_id, array $options = array())
+    public function getMovies($keyword_id, array $options = array(), array $headers = array())
     {
-        return $this->get('keyword/' . $keyword_id . '/movies', $options);
+        return $this->get('keyword/' . $keyword_id . '/movies', $options, $headers);
     }
 }

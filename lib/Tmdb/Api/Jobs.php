@@ -19,10 +19,11 @@ class Jobs
      * Get a list of valid jobs.
      *
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
-    public function getMovieChanges(array $options = array())
+    public function getMovieChanges(array $options = array(), array $headers = array())
     {
-        return $this->get('job/list', $options);
+        return $this->get('job/list', $options, $headers);
     }
 }

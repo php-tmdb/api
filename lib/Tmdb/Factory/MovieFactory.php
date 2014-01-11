@@ -12,9 +12,7 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Client;
 use Tmdb\Factory\Common\GenericCollectionFactory;
-use Tmdb\Factory\Common\ImageFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\Collection;
