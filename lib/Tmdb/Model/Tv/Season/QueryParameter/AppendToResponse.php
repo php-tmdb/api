@@ -12,7 +12,10 @@
  */
 namespace Tmdb\Model\Tv\Season\QueryParameter;
 
-use Tmdb\Model\Tv\QueryParameter\AppendToResponse as BaseAppendToResponse;
+use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
 
 class AppendToResponse extends BaseAppendToResponse {
+    const CREDITS      = 'credits';
+    const EXTERNAL_IDS = 'external_ids';
+    const IMAGES       = 'images';
 }

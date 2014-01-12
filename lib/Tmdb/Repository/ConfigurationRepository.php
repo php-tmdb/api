@@ -18,29 +18,15 @@ use Tmdb\Model\Configuration;
 class ConfigurationRepository extends AbstractRepository {
 
     /**
-     * Load a movie with the given identifier
+     * Load up TMDB Configuration
      *
-     * @param $id
-     * @param array $parameters
      * @param array $headers
      * @return Configuration
      */
-    public function load($id = null, array $parameters = array(), array $headers = array()) {
-        $data = $this->getApi()->getConfiguration();
+    public function load(array $headers = array()) {
+        $data = $this->getApi()->getConfiguration($headers);
 
         return ConfigurationFactory::create($data);
-    }
-
-    /**
-     * If you obtained an movie model which is not completely hydrated, you can use this function.
-     *
-     * @todo store the previous given parameters so the same conditions apply to a refresh, and merge the new set
-     *
-     * @param array $parameters
-     * @return Configuration
-     */
-    public function refresh(array $parameters = array(), array $headers = array()) {
-        return $this->load(null, $parameters);
     }
 
     /**

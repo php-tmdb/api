@@ -75,16 +75,6 @@ abstract class AbstractRepository {
     }
 
     /**
-     * Load the given identifier
-     *
-     * @param $id
-     * @param array $parameters Query parameters to pass to the request
-     * @param array $headers Headers to pass to the request
-     * @return mixed
-     */
-    abstract public function load($id, array $parameters = array(), array $headers = array());
-
-    /**
      * Return the API Class
      *
      * @return ApiInterface

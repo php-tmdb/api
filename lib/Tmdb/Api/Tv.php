@@ -29,7 +29,8 @@ class Tv
     }
 
     /**
-     * Get the cast & crew information about a TV series. Just like the website, we pull this information from the last season of the series.
+     * Get the cast & crew information about a TV series.
+     * Just like the website, we pull this information from the last season of the series.
      *
      * @param $tvshow_id
      * @param array $options
@@ -66,4 +67,32 @@ class Tv
     {
         return $this->get('tv/' . $tvshow_id . '/images', $options, $headers);
     }
+
+    /**
+     * Get the list of popular TV shows. This list refreshes every day.
+     *
+     * @param array $options
+     * @param array $headers
+     * @return mixed
+     */
+    public function getPopular(array $options = array(), array $headers = array())
+    {
+        return $this->get('tv/popular', $options, $headers);
+    }
+
+    /**
+     * Get the list of top rated TV shows.
+     *
+     * By default, this list will only include TV shows that have 2 or more votes.
+     * This list refreshes every day.
+     *
+     * @param array $options
+     * @param array $headers
+     * @return mixed
+     */
+    public function getTopRated(array $options = array(), array $headers = array())
+    {
+        return $this->get('tv/top_rated', $options, $headers);
+    }
+
 }

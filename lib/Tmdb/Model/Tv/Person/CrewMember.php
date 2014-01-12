@@ -10,10 +10,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Tv;
+namespace Tmdb\Model\Tv\Person;
 
-use Tmdb\Model\Person\CastMember as BaseCastMember;
+use Tmdb\Model\Person\CrewMember as BaseCrewMember;
 
-class CastMember extends BaseCastMember {
-
+class CrewMember extends BaseCrewMember {
 }

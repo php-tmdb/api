@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Model\Person;
 
-use Tmdb\Client;
 use Tmdb\Model\Collection\People\PersonInterface;
 
 class CrewMember extends AbstractMember implements PersonInterface {
@@ -27,21 +26,6 @@ class CrewMember extends AbstractMember implements PersonInterface {
         'job',
         'profile_path'
     );
-
-    /**
-     * Convert an array to an hydrated object
-     *
-     * @param Client $client
-     * @param array $data
-     * @return $this
-     */
-    public static function fromArray(Client $client, array $data)
-    {
-        $crewMember = new CrewMember();
-        //$crewMember->setClient($client);
-
-        return $crewMember->hydrate($data);
-    }
 
     /**
      * @param mixed $department

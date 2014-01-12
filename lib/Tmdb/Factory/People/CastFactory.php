@@ -19,20 +19,20 @@ class CastFactory extends PeopleFactory
     /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public static function create(array $data = array(), $person = null)
     {
-        return parent::create($data);
+        return parent::create($data, $person);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public static function createCollection(array $data = array(), $person = null)
     {
         $collection = new Cast();
 
         foreach($data as $item) {
-            $collection->add(null, parent::create($item));
+            $collection->add(null, parent::create($item, $person));
         }
 
         return $collection;

@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
-
 use Tmdb\Model\Collection\Credits;
 
 use Tmdb\Model\Common\Collection;

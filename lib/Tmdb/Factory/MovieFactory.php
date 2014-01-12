@@ -17,6 +17,7 @@ use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Common\Trailer\Youtube;
+use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Movie;
 
 class MovieFactory extends AbstractFactory {
@@ -74,7 +75,7 @@ class MovieFactory extends AbstractFactory {
         }
 
         if (array_key_exists('translations', $data)) {
-            $movie->setTranslations(GenericCollectionFactory::createCollection($data['translations']['translations'], new Movie\Translation()));
+            $movie->setTranslations(GenericCollectionFactory::createCollection($data['translations']['translations'], new Translation()));
         }
 
         if (array_key_exists('similar_movies', $data)) {

@@ -13,31 +13,31 @@
 namespace Tmdb\Factory\People;
 
 use Tmdb\Factory\AbstractFactory;
+use Tmdb\Factory\ImageFactory;
+
 use Tmdb\Model\Common\Collection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Person;
 
-use Tmdb\Factory\Common\ImageFactory;
-
 class PeopleFactory extends AbstractFactory {
     /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public static function create(array $data = array(), Person\AbstractMember $person = null)
     {
-        $person = null;
+        if (!is_object($person)) {
+            if (array_key_exists('character', $data)) {
+                $person = new CastMember();
+            }
 
-        if (array_key_exists('character', $data)) {
-            $person = new CastMember();
-        }
+            if (array_key_exists('job', $data)) {
+                $person = new CrewMember();
+            }
 
-        if (array_key_exists('job', $data)) {
-            $person = new CrewMember();
-        }
-
-        if (null === $person) {
-            $person = new Person();
+            if (null === $person) {
+                $person = new Person();
+            }
         }
 
         /** Images */
@@ -51,12 +51,12 @@ class PeopleFactory extends AbstractFactory {
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public static function createCollection(array $data = array(), Person\AbstractMember $person = null)
     {
         $collection = new Collection();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, self::create($item, $person));
         }
 
         return $collection;

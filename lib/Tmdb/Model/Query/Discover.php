@@ -12,20 +12,15 @@
  */
 namespace Tmdb\Model\Query;
 
-use Tmdb\Client;
+use Tmdb\Model\AbstractQuery;
 use Tmdb\Model\Changes\Change;
 use Tmdb\Model\Common\Collection;
 
-class Discover extends AbstractModel {
+class Discover extends AbstractQuery {
 
     private $from = null;
     private $to   = null;
     private $page = null;
-
-    public function __construct(Client $client)
-    {
-        $this->setClient($client);
-    }
 
     /**
      * Set the from parameter
@@ -88,6 +83,4 @@ class Discover extends AbstractModel {
 
         return $collection;
     }
-
-    //abstract public function getEntity();
 }

@@ -10,30 +10,46 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model;
+namespace Tmdb\Model\Tv;
 
-class Genre extends AbstractModel {
+use Tmdb\Model\AbstractModel;
 
+class Network extends AbstractModel {
+
+    /**
+     * @var integer
+     */
     private $id;
+
+    /**
+     * @var string
+     */
     private $name;
 
+    /**
+     * Properties that are available in the API
+     *
+     * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
+     *
+     * @var array
+     */
     public static $_properties = array(
         'id',
         'name',
     );
 
     /**
-     * @param mixed $id
+     * @param int $id
      * @return $this
      */
     public function setId($id)
     {
-        $this->id = (int) $id;
+        $this->id = $id;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -41,7 +57,7 @@ class Genre extends AbstractModel {
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      * @return $this
      */
     public function setName($name)
@@ -51,7 +67,7 @@ class Genre extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {

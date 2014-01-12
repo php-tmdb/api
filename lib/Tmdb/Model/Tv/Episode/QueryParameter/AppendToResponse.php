@@ -10,12 +10,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-require_once('../../../vendor/autoload.php');
-require_once('../../../apikey.php');
+namespace Tmdb\Model\Tv\Episode\QueryParameter;
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
 
-$peopleRepository = \Tmdb\Repository\PeopleRepository($client);
-
-var_dump($person);
+class AppendToResponse extends BaseAppendToResponse {
+    const CREDITS      = 'credits';
+    const EXTERNAL_IDS = 'external_ids';
+    const IMAGES       = 'images';
+}

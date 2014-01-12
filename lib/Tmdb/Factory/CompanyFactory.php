@@ -10,29 +10,30 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Factory\People;
+namespace Tmdb\Factory;
 
-use Tmdb\Model\Collection\People\Crew;
+use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Company;
 
-class CrewFactory extends PeopleFactory
+class CompanyFactory extends AbstractFactory
 {
     /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array(), $person = null)
+    public static function create(array $data = array())
     {
-        return parent::create($data, $person);
+        return parent::hydrate(new Company(), $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array(), $person = null)
+    public static function createCollection(array $data = array())
     {
-        $collection = new Crew();
+        $collection = new Collection();
 
         foreach($data as $item) {
-            $collection->add(null, parent::create($item, $person));
+            $collection->add(null, self::create($item));
         }
 
         return $collection;

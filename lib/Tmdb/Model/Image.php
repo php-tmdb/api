@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
-
 class Image extends AbstractModel {
 
     const FORMAT_POSTER   = 'poster';

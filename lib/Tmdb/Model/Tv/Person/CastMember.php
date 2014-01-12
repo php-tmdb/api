@@ -10,19 +10,19 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Person;
+namespace Tmdb\Model\Tv\Person;
 
-use Tmdb\Model\Collection\People\PersonInterface;
+use Tmdb\Model\Person\AbstractMember;
 
-class CastMember extends AbstractMember implements PersonInterface {
+class CastMember extends AbstractMember {
 
     private $character;
     private $order;
-    private $castId;
+    private $creditId;
 
     public static $_properties = array(
         'id',
-        'cast_id',
+        'credit_id',
         'name',
         'character',
         'order',
@@ -66,21 +66,23 @@ class CastMember extends AbstractMember implements PersonInterface {
     }
 
     /**
-     * @param mixed $castId
+     * @param mixed $creditId
      * @return $this
      */
-    public function setCastId($castId)
+    public function setCreditId($creditId)
     {
-        $this->castId = $castId;
+        $this->creditId = $creditId;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getCastId()
+    public function getCreditId()
     {
-        return $this->castId;
+        return $this->creditId;
     }
+
+
 
 }

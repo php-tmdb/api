@@ -12,20 +12,14 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
 use Tmdb\Model\Changes\Change;
 use Tmdb\Model\Common\Collection;
 
-class Changes extends AbstractModel {
+class Changes extends AbstractQuery {
 
     private $from = null;
     private $to   = null;
     private $page = null;
-
-    public function __construct(Client $client)
-    {
-        $this->setClient($client);
-    }
 
     /**
      * Set the from parameter
@@ -74,7 +68,7 @@ class Changes extends AbstractModel {
     {
         $collection = new Collection();
 
-        $response = $this->getClient()->api('changes')->getMovieChanges(array(
+        $response = $this->getClient()->getChangesApi()->getMovieChanges(array(
             'from' => $this->from,
             'to'   => $this->to,
             'page' => $this->page
@@ -88,6 +82,4 @@ class Changes extends AbstractModel {
 
         return $collection;
     }
-
-    //abstract public function getEntity();
 }

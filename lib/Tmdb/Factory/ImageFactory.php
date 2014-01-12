@@ -70,6 +70,30 @@ class ImageFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
+    public static function createCollectionFromTv(array $data = array())
+    {
+        return self::createImageCollection($data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function createCollectionFromTvSeason(array $data = array())
+    {
+        return self::createImageCollection($data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function createCollectionFromTvEpisode(array $data = array())
+    {
+        return self::createImageCollection($data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public static function createCollectionFromPeople(array $data = array())
     {
         return self::createImageCollection($data);
