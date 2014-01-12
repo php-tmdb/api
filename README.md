@@ -12,6 +12,13 @@ I've started working on this since the week of October-November 2013. I hoped to
 
 The API namespace has most things already covered, however this is RAW output from the API. I'm working extensively on finishing the models, which should provide a more natural feeling of working with TMDB.
 
+Help & Donate
+--------------
+
+If this project saved you a bunch of work, or you just simply appreciate my efforts, please consider donating a beer ( or two ;) )!
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMLZ362KQ8K8W"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
+
 Update 12-jan
 --------------
 

@@ -44,22 +44,6 @@ class CompanyRepository extends AbstractRepository {
     }
 
     /**
-     * Create an collection of an array
-     *
-     * @param $data
-     * @return Collection
-     */
-    private function createCollection($data){
-        $collection = new Collection();
-
-        foreach($data as $item) {
-            $collection->add(null, CompanyFactory::create($item));
-        }
-
-        return $collection;
-    }
-
-    /**
      * Return the related API class
      *
      * @return \Tmdb\Api\Companies

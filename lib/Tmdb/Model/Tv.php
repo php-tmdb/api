@@ -674,7 +674,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\ExternalIds $externalIds
+     * @param \Tmdb\Model\Tv\ExternalIds $externalIds
      * @return $this
      */
     public function setExternalIds($externalIds)
@@ -684,7 +684,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\ExternalIds
+     * @return \Tmdb\Model\Tv\ExternalIds
      */
     public function getExternalIds()
     {

@@ -32,7 +32,7 @@ class GenreRepository extends AbstractRepository {
     }
 
     /**
-     * If you obtained an person model which is not completely hydrated, you can use this function.
+     * If you obtained an genre model which is not completely hydrated, you can use this function.
      *
      * @param Genre $genre
      * @param array $parameters
