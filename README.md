@@ -19,16 +19,6 @@ If this project saved you a bunch of work, or you just simply appreciate my effo
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMLZ362KQ8K8W"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
 
-Update 12-jan
---------------
-
-Been able to do some work the past 2 days, API namespace has had it's last big refactorings, although it's still missing the account functionalities.
-
-Update 18-nov
---------------
-
-I've been hammered with work and had some time in the past few days to work on some things, please see the commit messages.
-
 Installation
 ------------
 Install Composer
