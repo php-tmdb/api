@@ -19,6 +19,7 @@ class Discover
      * Discover movies by different types of data like average rating, number of votes, genres and certifications.
      *
      * @param array $options
+     * @param array $headers
      * @return mixed
      */
     public function discoverMovies(array $options = array(), array $headers = array())

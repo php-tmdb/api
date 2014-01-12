@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Api;
 
-use Tmdb\Exception\NotImplementedException;
-
 class TvSeason
     extends AbstractApi
 {
