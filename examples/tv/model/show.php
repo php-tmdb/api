@@ -19,6 +19,4 @@ $client = new \Tmdb\Client($token);
 $repository = new \Tmdb\Repository\TvRepository($client);
 $tvShow     = $repository->load(1396);
 
-printf('<h1>%s</h1>', $tvShow->getName());
-
 var_dump($tvShow);

@@ -19,6 +19,7 @@ abstract class AbstractMember extends AbstractModel {
     private $id;
     private $name;
     private $profilePath;
+    private $profile;
 
     public static $_properties = array(
         'id',
@@ -96,6 +97,24 @@ abstract class AbstractMember extends AbstractModel {
     public function getOrder()
     {
         return $this->order;
+    }
+
+    /**
+     * @param mixed $profile
+     * @return $this
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 
 }

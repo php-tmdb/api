@@ -45,6 +45,10 @@ class PeopleFactory extends AbstractFactory {
             $person->setImages(ImageFactory::createCollectionFromPeople($data['images']));
         }
 
+        if (array_key_exists('profile_path', $data)) {
+            $person->setProfile(ImageFactory::createFromPath($data['profile_path'], 'profile_path'));
+        }
+
         return parent::hydrate($person, $data);
     }
 

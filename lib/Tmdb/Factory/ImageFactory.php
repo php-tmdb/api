@@ -20,9 +20,99 @@ class ImageFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public static function create(array $data = array(), $key = null)
     {
-        return parent::hydrate(new Image(), $data);
+        $type = self::resolveImageType($key);
+
+        if (is_string($data)) {
+            $data = array(
+                'file_path' => $data
+            );
+        }
+
+        return parent::hydrate($type, $data);
+    }
+
+    /**
+     * Create an image instance based on the path and type, e.g.
+     *
+     * '/xkQ5yWnMjpC2bGmu7GsD66AAoKO.jpg', 'backdrop_path'
+     *
+     * @param $path
+     * @param $key
+     * @return \Tmdb\Model\Image
+     */
+    public static function createFromPath($path, $key)
+    {
+        return parent::hydrate(
+            self::resolveImageType($key),
+            array('file_path' => $path)
+        );
+    }
+
+    /**
+     * Return possible image type keys
+     *
+     * @return array
+     */
+    public static function getPossibleKeys()
+    {
+        return array(
+            'poster',
+            'posters',
+            'poster_path',
+            'backdrop',
+            'backdrops',
+            'backdrop_path',
+            'profile',
+            'profiles',
+            'profile_path',
+            'logo',
+            'logos',
+            'logo_path',
+        );
+    }
+
+    private function resolveImageType($key = null)
+    {
+        switch($key) {
+            case 'poster':
+            case 'posters':
+            case 'poster_path':
+                $object = new Image\PosterImage();
+                break;
+
+            case 'backdrop':
+            case 'backdrops':
+            case 'backdrop_path':
+                $object = new Image\BackdropImage();
+                break;
+
+            case 'profile':
+            case 'profiles':
+            case 'profile_path':
+                $object = new Image\ProfileImage();
+                break;
+
+            case 'logo':
+            case 'logos':
+            case 'logo_path':
+                $object = new Image\LogoImage();
+                break;
+
+            case 'still':
+            case 'stills':
+            case 'still_path':
+                $object = new Image\StillImage();
+                break;
+
+            case 'file_path':
+            default:
+                $object = new Image();
+                break;
+        }
+
+        return $object;
     }
 
     /**
@@ -30,10 +120,10 @@ class ImageFactory extends AbstractFactory
      */
     public static function createCollection(array $data = array())
     {
-        $collection     = new Images();
+        $collection = new Images();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->addObject(self::create($item));
         }
 
         return $collection;
@@ -44,19 +134,19 @@ class ImageFactory extends AbstractFactory
      */
     public static function createImageCollection(array $data = array())
     {
-        $collection = array();
+        $collection = new Images();
 
         foreach($data as $format => $formatCollection) {
             foreach($formatCollection as $item) {
                 if (array_key_exists($format, Image::$_formats)) {
-                    $item['format'] = Image::$_formats[$format];
+                    $item = self::create($item, $format);
 
-                    $collection[] = $item;
+                    $collection->addObject($item);
                 }
             }
         }
 
-        return self::createCollection($collection);
+        return $collection;
     }
 
     /**

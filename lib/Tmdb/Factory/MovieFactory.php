@@ -54,8 +54,16 @@ class MovieFactory extends AbstractFactory {
         }
 
         /** Images */
+        if (array_key_exists('backdrop_path', $data)) {
+            $movie->setBackdrop(ImageFactory::createFromPath($data['backdrop_path'], 'backdrop_path'));
+        }
+
         if (array_key_exists('images', $data)) {
             $movie->setImages(ImageFactory::createCollectionFromMovie($data['images']));
+        }
+
+        if (array_key_exists('poster_path', $data)) {
+            $movie->setPoster(ImageFactory::createFromPath($data['poster_path'], 'poster_path'));
         }
 
         /** Keywords */
@@ -79,7 +87,7 @@ class MovieFactory extends AbstractFactory {
         }
 
         if (array_key_exists('similar_movies', $data)) {
-            $movie->setSimilarMovies(GenericCollectionFactory::createCollection($data['similar_movies']['results'], new Movie()));
+            $movie->setSimilarMovies(self::createCollection($data['similar_movies']['results']));
         }
 
 //        if (array_key_exists('reviews', $data)) {

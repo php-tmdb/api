@@ -35,9 +35,14 @@ class Movie extends AbstractModel {
     private $adult = false;
 
     /**
-     * @var Image
+     * @var string
      */
     private $backdropPath;
+
+    /**
+     * @var Image
+     */
+    private $backdrop;
 
     /**
      * @var Collection
@@ -88,6 +93,11 @@ class Movie extends AbstractModel {
 
     /**
      * @var Image
+     */
+    private $poster;
+
+    /**
+     * @var string
      */
     private $posterPath;
 
@@ -238,7 +248,6 @@ class Movie extends AbstractModel {
         $this->genres              = new Genres();
         $this->productionCompanies = new Collection();
         $this->productionCountries = new Collection();
-        $this->releaseDate         = new Collection();
         $this->spokenLanguages     = new Collection();
         $this->alternativeTitles   = new Collection();
         $this->changes             = new Collection();
@@ -882,5 +891,41 @@ class Movie extends AbstractModel {
     public function getTranslations()
     {
         return $this->translations;
+    }
+
+    /**
+     * @param \Tmdb\Model\Image $backdrop
+     * @return $this
+     */
+    public function setBackdrop($backdrop)
+    {
+        $this->backdrop = $backdrop;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Image
+     */
+    public function getBackdrop()
+    {
+        return $this->backdrop;
+    }
+
+    /**
+     * @param \Tmdb\Model\Image $poster
+     * @return $this
+     */
+    public function setPoster($poster)
+    {
+        $this->poster = $poster;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Image
+     */
+    public function getPoster()
+    {
+        return $this->poster;
     }
 }

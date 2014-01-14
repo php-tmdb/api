@@ -10,13 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-require_once('../../../vendor/autoload.php');
-require_once('../../../apikey.php');
+namespace Tmdb\Model\Image;
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+use Tmdb\Model\Image;
 
-$repository = new \Tmdb\Repository\MovieRepository($client);
-$movie      = $repository->load(87421);
-
-var_dump($movie);
+class BackdropImage extends Image {}
