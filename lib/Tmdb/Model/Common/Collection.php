@@ -18,20 +18,6 @@ class Collection extends GuzzleCollection {
     protected $data = array();
 
     /**
-     * Allow adding objects to the collection
-     *
-     * @param $object
-     */
-    public function addObject($object)
-    {
-        if (!is_object($object)) {
-            return;
-        }
-
-        $this->add(null, $object);
-    }
-
-    /**
      * Allow support for adding objects
      *
      * @param string $key
@@ -59,4 +45,63 @@ class Collection extends GuzzleCollection {
 
         return parent::get($key);
     }
-} 
+
+    /**
+     * Allow adding objects to the collection
+     *
+     * @param $object
+     */
+    public function addObject($object)
+    {
+        if (!is_object($object)) {
+            return;
+        }
+
+        $this->add(null, $object);
+    }
+
+    /**
+     * Filter by language ISO 639-1 code.
+     *
+     * @param string $language
+     * @return Collection
+     */
+    public function filterLanguage($language = 'en')
+    {
+        return $this->filter(
+            function($key, $value) use ($language) {
+                if ($value->getIso6391() == $language) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter by country ISO 3166-1 code.
+     *
+     * @param string $country
+     * @return Collection
+     */
+    public function filterCountry($country = 'US')
+    {
+        return $this->filter(
+            function($key, $value) use ($country) {
+                if ($value->getIso31661() == $country) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter by adult content
+     *
+     * @param boolean $adult
+     * @return Collection
+     */
+    public function filterAdult($adult = false)
+    {
+        return $this->filter(
+            function($key, $value) use ($adult) {
+                if ($value->getAdult() == $adult) { return true; }
+            }
+        );
+    }
+}

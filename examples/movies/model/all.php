@@ -18,40 +18,56 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$repository = new \Tmdb\Repository\MovieRepository($client);
-$movie      = $repository->load(87421);
+$configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
+$config = $configRepository->load();
+
+$imageHelper = new \Tmdb\Helper\ImageHelper($config);
+$repository  = new \Tmdb\Repository\MovieRepository($client);
+$movie       = $repository->load(87421);
 
 echo $movie->getTitle() . "<br/>";
 
 echo "Alternative Titles<br/>";
 
-foreach($movie->getAlternativeTitles() as $title) {
+foreach($movie->getAlternativeTitles()->filterCountry('US') as $title) {
     printf(" - %s [%s]<br/>", $title->getTitle(), $title->getIso31661());
 }
 
 echo "Cast<br/>";
 
 foreach($movie->getCredits()->getCast() as $person) {
+    echo $imageHelper->getHtml($person->getProfile(), 'w45');
     printf(" - %s as %s<br/>", $person->getName(), $person->getCharacter());
 }
 
 echo "Crew<br/>";
 
 foreach($movie->getCredits()->getCrew() as $person) {
+    echo $imageHelper->getHtml($person->getProfile(), 'w45');
     printf(" - %s as %s<br/>", $person->getName(), $person->getJob());
 }
 
 echo "Images<br/>";
 
-$configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
-$config = $configRepository->load();
-
-$imageHelper = new \Tmdb\Helper\ImageHelper($config);
-foreach($movie->getImages() as $image) {
-    echo $imageHelper->getHtml($image);
+// All collection classes support filtering by closure functions, provided by the Guzzle collection implementation.
+foreach($movie->getImages()->filter(
+        function($key, $value){
+            if ($value->getIso6391() == 'en' && $value instanceof \Tmdb\Model\Image\PosterImage) { return true; }
+        }
+    ) as $image) {
+    echo $imageHelper->getHtml($image, 'w154', 150);
 
     printf(" - %s<br/>", $imageHelper->getUrl($image));
 }
+
+// There are however some sensible default filters available for most collections
+$backdrop = $movie
+    ->getImages()
+    ->filterBackdrops()
+    ->filterBestVotedImage()
+;
+
+echo $imageHelper->getHtml($backdrop, 'original', '1024');
 
 echo "Genres<br/>";
 
@@ -67,13 +83,13 @@ foreach($movie->getKeywords() as $keyword) {
 
 echo "Releases<br/>";
 
-foreach($movie->getReleases() as $release) {
+foreach($movie->getReleases()->filterCountry('US') as $release) {
     printf(" - %s on %s<br/>", $release->getIso31661(), $release->getReleaseDate()->format('d-m-Y'));
 }
 
 echo "Translations<br/>";
 
-foreach($movie->getTranslations() as $translation) {
+foreach($movie->getTranslations()->filterLanguage('en') as $translation) {
     printf(" - %s<br/>", $translation->getName());
 }
 

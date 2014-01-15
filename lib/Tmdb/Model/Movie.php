@@ -398,7 +398,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return Image
+     * @return Images Image[]
      */
     public function getImages()
     {

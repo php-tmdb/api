@@ -54,12 +54,33 @@ class ImageHelper {
      * @param string $size
      * @return string
      */
-    public function getHtml(Image $image, $size = 'original') {
+    public function getHtml(Image $image, $size = 'original', $width = null, $height = null) {
+        if (null == $image->getFilePath()) {
+            return '';
+        }
+
+        $aspectRatio = $image->getAspectRatio();
+        if (null !== $width && null == $height && $aspectRatio !== null) {
+            $height = round($width / $aspectRatio);
+        }
+
+        if (null !== $height && null == $width && $aspectRatio !== null) {
+            $width = round($height * $aspectRatio);
+        }
+
+        if (null == $width) {
+            $width = $image->getWidth();
+        }
+
+        if (null == $height) {
+            $height = $image->getHeight();
+        }
+
         return sprintf(
             '<img src="%s" width="%s" height="%s" />',
             $this->getUrl($image, $size),
-            $image->getWidth(),
-            $image->getHeight()
+            $width,
+            $height
         );
     }
 }

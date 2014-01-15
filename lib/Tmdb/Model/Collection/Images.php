@@ -53,4 +53,143 @@ class Images extends Collection {
     {
         $this->add(null, $image);
     }
-} 
+
+    /**
+     * Filter poster images
+     *
+     * @return Images
+     */
+    public function filterPosters()
+    {
+        return $this->filter(
+            function($key, $value) {
+                if ($value instanceof Image\PosterImage) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter backdrop images
+     *
+     * @return Images
+     */
+    public function filterBackdrops()
+    {
+        return $this->filter(
+            function($key, $value) {
+                if ($value instanceof Image\BackdropImage) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter profile images
+     *
+     * @return Images
+     */
+    public function filterProfile()
+    {
+        return $this->filter(
+            function($key, $value) {
+                if ($value instanceof Image\ProfileImage) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter still images
+     *
+     * @return Images
+     */
+    public function filterStills()
+    {
+        return $this->filter(
+            function($key, $value) {
+                if ($value instanceof Image\StillImage) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter by image size
+     *
+     * @param $width
+     * @return Images
+     */
+    public function filterMaxWidth($width)
+    {
+        return $this->filter(
+            function($key, $value) use ($width) {
+                if ($value->getWidth() <= $width && $value->getWidth() !== null) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter by image size
+     *
+     * @param $width
+     * @return Images
+     */
+    public function filterMinWidth($width)
+    {
+        return $this->filter(
+            function($key, $value) use ($width) {
+                if ($value->getWidth() >= $width && $value->getWidth() !== null) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter by image size
+     *
+     * @param $height
+     * @return Images
+     */
+    public function filterMaxHeight($height)
+    {
+        return $this->filter(
+            function($key, $value) use ($height) {
+                if ($value->getHeight() <= $height && $value->getHeight() !== null) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Filter by image size
+     *
+     * @param $height
+     * @return Images
+     */
+    public function filterMinHeight($height)
+    {
+        return $this->filter(
+            function($key, $value) use ($height) {
+                if ($value->getHeight() >= $height && $value->getHeight() !== null) { return true; }
+            }
+        );
+    }
+
+    /**
+     * Return a single image that is rated highest
+     *
+     * @return null|Image
+     */
+    public function filterBestVotedImage()
+    {
+        $currentImage = null;
+        $voteAverage  = 0;
+
+        /**
+         * @var $image Image
+         */
+        foreach($this as $image) {
+            if ($image->getVoteAverage() > $voteAverage) {
+                $voteAverage  = $image->getVoteAverage();
+                $currentImage = $image;
+            }
+        }
+
+        return $currentImage;
+    }
+}
