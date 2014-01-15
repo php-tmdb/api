@@ -45,9 +45,78 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 General API Usage
 -----------------
 
-Please take a look at the (currently few) examples in the examples directory.
+If your looking for a simple array entry point the API namespace is the place to be.
+
+```php
+$token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
+$client = new \Tmdb\Client($token);
+
+$images = $client->getMoviesApi()->getMovie(550);
+```
+
+If you want to provide any other query arguments.
+
+```php
+$token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
+$client = new \Tmdb\Client($token);
+
+$images = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
+```
 
 Model Usage
 -----------
 
-Basically the Repositories are used as the entry-point, take a look in the examples or better yet browse the code.
+However the library can be used in an object oriented manner.
+
+First we always have to construct the client:
+
+```php
+$token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
+$client = new \Tmdb\Client($token);
+```
+
+Then you pass this client onto one of the many repositories and do some work on it.
+
+```php
+$repository = new \Tmdb\Repository\MovieRepository($client);
+$movie      = $repository->load(87421);
+
+echo $movie->getTitle();
+```
+
+__The repositories also contain the other API methods that are available through the API namespace.__
+
+An `ImageHelper` class is provided to take care of the images, which does require the configuration to be loaded:
+
+```php
+$configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
+$config = $configRepository->load();
+
+$imageHelper = new \Tmdb\Helper\ImageHelper($config);
+
+echo $imageHelper->getHtml($image, 'w154', 154, 80);
+```
+
+We also provide some easy methods to filter any collection, you should note however you can always implement your own filter easily by using Closures:
+
+```php
+foreach($movie->getImages()->filter(
+        function($key, $value){
+            if ($value instanceof \Tmdb\Model\Image\PosterImage) { return true; }
+        }
+    ) as $image) {
+
+    // do something with all poster images
+}
+```
+
+These basic filters however are already covered in the `Images` collection object:
+
+```php
+$backdrop = $movie
+    ->getImages()
+    ->filterBackdrops()
+;
+```
+
+__And there are more Collections which provide filters, but you will find those out along the way.__
