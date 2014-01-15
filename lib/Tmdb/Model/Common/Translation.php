@@ -13,8 +13,9 @@
 namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Filter\LanguageFilter;
 
-class Translation extends AbstractModel {
+class Translation extends AbstractModel implements LanguageFilter {
 
     private $iso6391;
     private $name;

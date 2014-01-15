@@ -13,6 +13,9 @@
 namespace Tmdb\Model\Common;
 
 use Guzzle\Common\Collection as GuzzleCollection;
+use Tmdb\Model\Filter\AdultFilter;
+use Tmdb\Model\Filter\CountryFilter;
+use Tmdb\Model\Filter\LanguageFilter;
 
 class Collection extends GuzzleCollection {
     protected $data = array();
@@ -70,7 +73,7 @@ class Collection extends GuzzleCollection {
     {
         return $this->filter(
             function($key, $value) use ($language) {
-                if ($value->getIso6391() == $language) { return true; }
+                if ($value instanceof LanguageFilter && $value->getIso6391() == $language) { return true; }
             }
         );
     }
@@ -85,7 +88,7 @@ class Collection extends GuzzleCollection {
     {
         return $this->filter(
             function($key, $value) use ($country) {
-                if ($value->getIso31661() == $country) { return true; }
+                if ($value instanceof CountryFilter && $value->getIso31661() == $country) { return true; }
             }
         );
     }
@@ -100,7 +103,7 @@ class Collection extends GuzzleCollection {
     {
         return $this->filter(
             function($key, $value) use ($adult) {
-                if ($value->getAdult() == $adult) { return true; }
+                if ($value instanceof AdultFilter && $value->getAdult() == $adult) { return true; }
             }
         );
     }

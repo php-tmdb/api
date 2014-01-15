@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Model\Common;
 
-class SpokenLanguage extends AbstractModel {
+class SpokenLanguage extends AbstractModel implements LanguageFilter {
 
     private $iso6391;
     private $name;

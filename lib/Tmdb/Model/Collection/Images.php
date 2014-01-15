@@ -12,8 +12,10 @@
  */
 namespace Tmdb\Model\Collection;
 
+use Tmdb\Factory\ImageFactory;
 use Tmdb\Model\Common\Collection;
 
+use Tmdb\Model\Filter\ImageFilter;
 use Tmdb\Model\Image;
 
 class Images extends Collection {
@@ -63,7 +65,7 @@ class Images extends Collection {
     {
         return $this->filter(
             function($key, $value) {
-                if ($value instanceof Image\PosterImage) { return true; }
+                if ($value instanceof ImageFilter && $value instanceof Image\PosterImage) { return true; }
             }
         );
     }
@@ -77,7 +79,7 @@ class Images extends Collection {
     {
         return $this->filter(
             function($key, $value) {
-                if ($value instanceof Image\BackdropImage) { return true; }
+                if ($value instanceof ImageFilter && $value instanceof Image\BackdropImage) { return true; }
             }
         );
     }
@@ -91,7 +93,7 @@ class Images extends Collection {
     {
         return $this->filter(
             function($key, $value) {
-                if ($value instanceof Image\ProfileImage) { return true; }
+                if ($value instanceof ImageFilter && $value instanceof Image\ProfileImage) { return true; }
             }
         );
     }
@@ -105,7 +107,7 @@ class Images extends Collection {
     {
         return $this->filter(
             function($key, $value) {
-                if ($value instanceof Image\StillImage) { return true; }
+                if ($value instanceof ImageFilter && $value instanceof Image\StillImage) { return true; }
             }
         );
     }
@@ -120,7 +122,7 @@ class Images extends Collection {
     {
         return $this->filter(
             function($key, $value) use ($width) {
-                if ($value->getWidth() <= $width && $value->getWidth() !== null) { return true; }
+                if ($value instanceof ImageFilter && $value->getWidth() <= $width && $value->getWidth() !== null) { return true; }
             }
         );
     }
@@ -135,7 +137,7 @@ class Images extends Collection {
     {
         return $this->filter(
             function($key, $value) use ($width) {
-                if ($value->getWidth() >= $width && $value->getWidth() !== null) { return true; }
+                if ($value instanceof ImageFilter && $value->getWidth() >= $width && $value->getWidth() !== null) { return true; }
             }
         );
     }
@@ -150,7 +152,7 @@ class Images extends Collection {
     {
         return $this->filter(
             function($key, $value) use ($height) {
-                if ($value->getHeight() <= $height && $value->getHeight() !== null) { return true; }
+                if ($value instanceof ImageFilter && $value->getHeight() <= $height && $value->getHeight() !== null) { return true; }
             }
         );
     }
@@ -165,7 +167,7 @@ class Images extends Collection {
     {
         return $this->filter(
             function($key, $value) use ($height) {
-                if ($value->getHeight() >= $height && $value->getHeight() !== null) { return true; }
+                if ($value instanceof ImageFilter && $value->getHeight() >= $height && $value->getHeight() !== null) { return true; }
             }
         );
     }
@@ -184,7 +186,7 @@ class Images extends Collection {
          * @var $image Image
          */
         foreach($this as $image) {
-            if ($image->getVoteAverage() > $voteAverage) {
+            if ($image instanceof ImageFilter && $image->getVoteAverage() > $voteAverage) {
                 $voteAverage  = $image->getVoteAverage();
                 $currentImage = $image;
             }

@@ -12,7 +12,10 @@
  */
 namespace Tmdb\Model;
 
-class Image extends AbstractModel {
+use Tmdb\Model\Filter\ImageFilter;
+use Tmdb\Model\Filter\LanguageFilter;
+
+class Image extends AbstractModel implements ImageFilter, LanguageFilter {
 
     const FORMAT_POSTER   = 'poster';
     const FORMAT_BACKDROP = 'backdrop';
