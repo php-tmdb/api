@@ -29,7 +29,20 @@ use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
  * @package Tmdb
  */
 class Client {
-    const TMDB_URI = 'http://api.themoviedb.org/3/';
+    /**
+     * Base API URI
+     */
+    const TMDB_URI = '//api.themoviedb.org/3/';
+
+    /**
+     * Insecure schema
+     */
+    const SCHEME_INSECURE = 'http';
+
+    /**
+     * Secure schema
+     */
+    const SCHEME_SECURE = 'https';
 
     /**
      * Stores API authentication token
@@ -39,23 +52,32 @@ class Client {
     private $token;
 
     /**
+     * Whether the request is supposed to use a secure schema
+     *
+     * @var bool
+     */
+    private $secure = false;
+
+    /**
      * Stores the HTTP Client
      *
      * @var HttpClientInterface
      */
     private $httpClient;
 
-    private $options = array();
-
     /**
      * Construct our client
      *
-     * @param ClientInterface $httpClient
-     * @param Token $token
+     * @param ClientInterface|null $httpClient
+     * @param Token|null $token
+     * @param boolean $secure
      */
-    public function __construct(Token $token, ClientInterface $httpClient = null)
+    public function __construct(Token $token, ClientInterface $httpClient = null, $secure = false)
     {
-        $httpClient = $httpClient ?: new GuzzleClient(self::TMDB_URI);
+        $this->setToken($token);
+        $this->setSecure($secure);
+
+        $httpClient = $httpClient ?: new GuzzleClient($this->getBaseUrl());
 
         if ($httpClient instanceof \Guzzle\Common\HasDispatcherInterface) {
             $apiTokenPlugin = new ApiTokenPlugin($token);
@@ -65,8 +87,7 @@ class Client {
             $httpClient->addSubscriber($acceptJsonHeaderPlugin);
         }
 
-        $this->httpClient = new HttpClient(self::TMDB_URI, array(), $httpClient);
-        $this->setToken($token);
+        $this->httpClient = new HttpClient($this->getBaseUrl(), array(), $httpClient);
     }
 
     /**
@@ -258,34 +279,35 @@ class Client {
     }
 
     /**
-     * @param string $name
+     * Return the base url with preferred schema
      *
-     * @return mixed
-     *
-     * @throws InvalidArgumentException
+     * @return string
      */
-    public function getOption($name)
+    private function getBaseUrl()
     {
-        if (!array_key_exists($name, $this->options)) {
-            throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
-        }
-
-        return $this->options[$name];
+        return sprintf(
+            '%s:%s',
+            $this->getSecure() ? self::SCHEME_SECURE : self::SCHEME_INSECURE,
+            self::TMDB_URI
+        );
     }
 
     /**
-     * @param string $name
-     * @param mixed  $value
-     *
-     * @throws InvalidArgumentException
-     * @throws InvalidArgumentException
+     * @param boolean $secure
+     * @return $this
      */
-    public function setOption($name, $value)
+    public function setSecure($secure)
     {
-        if (!array_key_exists($name, $this->options)) {
-            throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
-        }
-
-        $this->options[$name] = $value;
+        $this->secure = $secure;
+        return $this;
     }
+
+    /**
+     * @return boolean
+     */
+    public function getSecure()
+    {
+        return $this->secure;
+    }
+
 }
