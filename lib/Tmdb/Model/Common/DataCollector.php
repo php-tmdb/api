@@ -134,11 +134,11 @@ class DataCollector {
      * @param $client
      * @param array $collection
      * @param object $object
-     * @return Collection
+     * @return GenericCollection
      */
     public function collectGenericCollection($client, array $collection = array(), $object)
     {
-        $collectionObject = new Collection();
+        $collectionObject = new GenericCollection();
 
         foreach($collection as $item) {
             $class = get_class($object);

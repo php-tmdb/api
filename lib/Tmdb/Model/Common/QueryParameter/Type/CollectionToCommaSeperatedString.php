@@ -12,10 +12,10 @@
  */
 namespace Tmdb\Model\Common\QueryParameter\Type;
 
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 
-abstract class CollectionToCommaSeperatedString extends Collection implements QueryParameterInterface {
+abstract class CollectionToCommaSeperatedString extends GenericCollection implements QueryParameterInterface {
     /**
      * @param array $collection
      */

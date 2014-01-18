@@ -12,44 +12,60 @@
  */
 namespace Tmdb\Repository;
 
-use Tmdb\Factory\CompanyFactory;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Factory\MovieFactory;
+use Tmdb\Factory\People\PeopleFactory;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
+use Tmdb\Model\Movie;
 
-class CompanyRepository extends AbstractRepository {
+class ChangesRepository extends AbstractRepository {
     /**
-     * Load a company with the given identifier
+     * Get a list of movie ids that have been edited.
      *
-     * @param $id
+     * By default we show the last 24 hours and only 100 items per page.
+     * The maximum number of days that can be returned in a single request is 14.
+     *
+     * You can then use the movie changes API to get the actual data that has been changed.
+     * Please note that the change log system to support this was changed on October 5, 2012
+     * and will only show movies that have been edited since.
+     *
      * @param array $parameters
      * @param array $headers
-     * @return Company
+     * @return GenericCollection
      */
-    public function load($id, array $parameters = array(), array $headers = array()) {
-        $data = $this->getApi()->getCompany($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+    public function getMovieChanges(array $parameters = array(), array $headers = array()) {
+        $data = $this->getApi()->getMovieChanges($this->parseQueryParameters($parameters), $this->parseHeaders($headers));
 
-        return CompanyFactory::create($data);
+        return MovieFactory::createCollection($data);
     }
 
     /**
-     * If you obtained an person model which is not completely hydrated, you can use this function.
+     * Get a list of people ids that have been edited.
      *
-     * @param Company $company
+     * By default we show the last 24 hours and only 100 items per page.
+     * The maximum number of days that can be returned in a single request is 14.
+     *
+     * You can then use the person changes API to get the actual data that has been changed.
+     * Please note that the change log system to support this was changed on October 5, 2012
+     * and will only show people that have been edited since.
+     *
      * @param array $parameters
      * @param array $headers
-     * @return Company
+     * @return GenericCollection
      */
-    public function refresh(Company $company, array $parameters = array(), array $headers = array()) {
-        return $this->load($company->getId(), $parameters, $headers);
+    public function getPeopleChanges(array $parameters = array(), array $headers = array()) {
+        $data = $this->getApi()->getPeopleChanges($this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+
+        return PeopleFactory::createCollection($data);
     }
 
     /**
      * Return the related API class
      *
-     * @return \Tmdb\Api\Companies
+     * @return \Tmdb\Api\Changes
      */
     public function getApi()
     {
-        return $this->getClient()->getCompaniesApi();
+        return $this->getClient()->getChangesApi();
     }
 }

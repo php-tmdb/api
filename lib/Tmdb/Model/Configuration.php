@@ -13,7 +13,7 @@
 namespace Tmdb\Model;
 
 use Tmdb\Client;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 class Configuration extends AbstractModel {
 

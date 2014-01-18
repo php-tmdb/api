@@ -13,7 +13,7 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\MovieFactory;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Movie;
 
 use \Tmdb\Model\Movie\QueryParameter\AppendToResponse;
@@ -98,7 +98,7 @@ class MovieRepository extends AbstractRepository {
      * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
      *
      * @param array $options
-     * @return Collection
+     * @return GenericCollection
      */
     public function getUpcoming(array $options = array())
     {
@@ -111,7 +111,7 @@ class MovieRepository extends AbstractRepository {
      * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
      *
      * @param array $options
-     * @return Collection
+     * @return GenericCollection
      */
     public function getNowPlaying(array $options = array())
     {
@@ -124,7 +124,7 @@ class MovieRepository extends AbstractRepository {
      * Get the list of popular movies on The Movie Database. This list refreshes every day.
      *
      * @param array $options
-     * @return Collection
+     * @return GenericCollection
      */
     public function getPopular(array $options = array())
     {
@@ -137,7 +137,7 @@ class MovieRepository extends AbstractRepository {
      * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
      *
      * @param array $options
-     * @return Collection
+     * @return GenericCollection
      */
     public function getTopRated(array $options = array())
     {
@@ -152,10 +152,10 @@ class MovieRepository extends AbstractRepository {
      * @todo Allow an array of Movie objects to pass ( custom collection )
      *
      * @param $data
-     * @return Collection
+     * @return GenericCollection
      */
     private function createCollection($data){
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         if (array_key_exists('results', $data)) {
             $data = $data['results'];

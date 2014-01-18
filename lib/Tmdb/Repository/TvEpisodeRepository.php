@@ -14,7 +14,7 @@ namespace Tmdb\Repository;
 
 use \RuntimeException;
 use Tmdb\Factory\TvEpisodeFactory;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 use \Tmdb\Model\Tv\Episode\QueryParameter\AppendToResponse;
 
@@ -97,10 +97,10 @@ class TvEpisodeRepository extends AbstractRepository {
      * Create an collection of an array
      *
      * @param $data
-     * @return Collection
+     * @return GenericCollection
      */
     private function createCollection($data){
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         if (array_key_exists('results', $data)) {
             $data = $data['results'];

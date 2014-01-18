@@ -19,7 +19,7 @@ use Tmdb\Model\Filter\AdultFilter;
 use Tmdb\Model\Filter\CountryFilter;
 use Tmdb\Model\Filter\LanguageFilter;
 
-class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
+class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable {
     /** @var array Data associated with the object. */
     protected $data = array();
 
@@ -58,7 +58,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
     /**
      * Removes all key value pairs
      *
-     * @return Collection
+     * @return GenericCollection
      */
     public function clear()
     {
@@ -101,7 +101,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      * @param string $key   Key to set
      * @param mixed  $value Value to set
      *
-     * @return Collection Returns a reference to the object
+     * @return GenericCollection Returns a reference to the object
      */
     public function set($key, $value)
     {
@@ -120,7 +120,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      * @param string $key   Key to add
      * @param mixed  $value Value to add to the key
      *
-     * @return Collection Returns a reference to the object.
+     * @return GenericCollection Returns a reference to the object.
      */
     public function add($key, $value)
     {
@@ -144,7 +144,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      *
      * @param string $key A key to remove
      *
-     * @return Collection
+     * @return GenericCollection
      */
     public function remove($key)
     {
@@ -214,7 +214,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      *
      * @param array $data Associative array of data
      *
-     * @return Collection Returns a reference to the object
+     * @return GenericCollection Returns a reference to the object
      */
     public function replace(array $data)
     {
@@ -226,9 +226,9 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
     /**
      * Add and merge in a Collection or array of key value pair data.
      *
-     * @param Collection|array $data Associative array of key value pair data
+     * @param GenericCollection|array $data Associative array of key value pair data
      *
-     * @return Collection Returns a reference to the object.
+     * @return GenericCollection Returns a reference to the object.
      */
     public function merge($data)
     {
@@ -248,7 +248,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      * @param array    $context Context to pass to the closure
      * @param bool     $static  Set to TRUE to use the same class as the return rather than returning a Collection
      *
-     * @return Collection
+     * @return GenericCollection
      */
     public function map(\Closure $closure, array $context = array(), $static = true)
     {
@@ -268,7 +268,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      * @param \Closure $closure Closure evaluation function
      * @param bool     $static  Set to TRUE to use the same class as the return rather than returning a Collection
      *
-     * @return Collection
+     * @return GenericCollection
      */
     public function filter(\Closure $closure, $static = true)
     {
@@ -306,7 +306,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      * Filter by language ISO 639-1 code.
      *
      * @param string $language
-     * @return Collection
+     * @return GenericCollection
      */
     public function filterLanguage($language = 'en')
     {
@@ -321,7 +321,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      * Filter by country ISO 3166-1 code.
      *
      * @param string $country
-     * @return Collection
+     * @return GenericCollection
      */
     public function filterCountry($country = 'US')
     {
@@ -336,7 +336,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
      * Filter by adult content
      *
      * @param boolean $adult
-     * @return Collection
+     * @return GenericCollection
      */
     public function filterAdult($adult = false)
     {

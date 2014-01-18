@@ -12,11 +12,11 @@
  */
 namespace Tmdb\Model\Common\Collection;
 
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 use Tmdb\Model\Keyword;
 
-class Keywords extends Collection {
+class Keywords extends GenericCollection {
 
     /**
      * Returns all keywords

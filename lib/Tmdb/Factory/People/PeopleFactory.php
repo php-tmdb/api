@@ -15,7 +15,7 @@ namespace Tmdb\Factory\People;
 use Tmdb\Factory\AbstractFactory;
 use Tmdb\Factory\ImageFactory;
 
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Person;
@@ -57,7 +57,7 @@ class PeopleFactory extends AbstractFactory {
      */
     public static function createCollection(array $data = array(), Person\AbstractMember $person = null)
     {
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         foreach($data as $item) {
             $collection->add(null, self::create($item, $person));

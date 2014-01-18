@@ -13,12 +13,12 @@
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Factory\ImageFactory;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 use Tmdb\Model\Filter\ImageFilter;
 use Tmdb\Model\Image;
 
-class Images extends Collection {
+class Images extends GenericCollection {
 
     /**
      * Returns all images

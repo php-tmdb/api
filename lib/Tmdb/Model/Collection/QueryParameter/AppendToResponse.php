@@ -10,10 +10,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Common\Collection;
+namespace Tmdb\Model\Collection\QueryParameter;
 
-use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
 
-class Images extends GenericCollection {
-
-} 
+final class AppendToResponse extends BaseAppendToResponse {
+    const IMAGES             = 'images';
+}

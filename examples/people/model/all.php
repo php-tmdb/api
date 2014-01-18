@@ -16,7 +16,7 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$repository = new \Tmdb\Repository\PersonRepository($client);
+$repository = new \Tmdb\Repository\PeopleRepository($client);
 $person      = $repository->load(33);
 
 var_dump($person);

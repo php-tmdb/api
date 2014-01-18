@@ -10,10 +10,13 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Common\Collection;
+require_once('../../../vendor/autoload.php');
+require_once('../../../apikey.php');
 
-use Tmdb\Model\Common\GenericCollection;
+$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$client = new \Tmdb\Client($token);
 
-class Images extends GenericCollection {
+$repository = new \Tmdb\Repository\CollectionRepository($client);
+$collection = $repository->load(10);
 
-} 
+var_dump($collection);

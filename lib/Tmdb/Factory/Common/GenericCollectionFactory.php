@@ -13,7 +13,7 @@
 namespace Tmdb\Factory\Common;
 
 use Tmdb\Common\ObjectHydrator;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 class GenericCollectionFactory {
     /**
@@ -33,7 +33,7 @@ class GenericCollectionFactory {
             $class = get_class($class);
         }
 
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         foreach($data as $item) {
             $collection->add(null, ObjectHydrator::hydrate(new $class(), $item));

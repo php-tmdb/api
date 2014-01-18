@@ -15,7 +15,7 @@ namespace Tmdb\Factory;
 use Tmdb\Factory\Common\GenericCollectionFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 use Tmdb\Model\Tv\Episode;
 use Tmdb\Model\Tv\ExternalIds;
@@ -70,7 +70,7 @@ class TvSeasonFactory extends AbstractFactory {
      */
     public static function createCollection(array $data = array())
     {
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         foreach($data as $item) {
             $collection->add(null, self::create($item));

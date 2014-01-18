@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Genres;
@@ -246,19 +246,19 @@ class Movie extends AbstractModel {
     public function __construct()
     {
         $this->genres              = new Genres();
-        $this->productionCompanies = new Collection();
-        $this->productionCountries = new Collection();
-        $this->spokenLanguages     = new Collection();
-        $this->alternativeTitles   = new Collection();
-        $this->changes             = new Collection();
+        $this->productionCompanies = new GenericCollection();
+        $this->productionCountries = new GenericCollection();
+        $this->spokenLanguages     = new GenericCollection();
+        $this->alternativeTitles   = new GenericCollection();
+        $this->changes             = new GenericCollection();
         $this->credits             = new Credits();
         $this->images              = new Images();
-        $this->keywords            = new Collection();
-        $this->lists               = new Collection();
-        $this->releases            = new Collection();
-        $this->similarMovies       = new Collection();
-        $this->trailers            = new Collection();
-        $this->translations        = new Collection();
+        $this->keywords            = new GenericCollection();
+        $this->lists               = new GenericCollection();
+        $this->releases            = new GenericCollection();
+        $this->similarMovies       = new GenericCollection();
+        $this->trailers            = new GenericCollection();
+        $this->translations        = new GenericCollection();
     }
 
     /**
@@ -316,10 +316,10 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $changes
+     * @param GenericCollection $changes
      * @return $this
      */
-    public function setChanges(Collection $changes)
+    public function setChanges(GenericCollection $changes)
     {
         $this->changes = $changes;
         return $this;
@@ -496,10 +496,10 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $productionCompanies
+     * @param GenericCollection $productionCompanies
      * @return $this
      */
-    public function setProductionCompanies(Collection $productionCompanies)
+    public function setProductionCompanies(GenericCollection $productionCompanies)
     {
         $this->productionCompanies = $productionCompanies;
         return $this;
@@ -514,10 +514,10 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $productionCountries
+     * @param GenericCollection $productionCountries
      * @return $this
      */
-    public function setProductionCountries(Collection $productionCountries)
+    public function setProductionCountries(GenericCollection $productionCountries)
     {
         $this->productionCountries = $productionCountries;
         return $this;
@@ -586,10 +586,10 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $spokenLanguages
+     * @param GenericCollection $spokenLanguages
      * @return $this
      */
-    public function setSpokenLanguages(Collection $spokenLanguages)
+    public function setSpokenLanguages(GenericCollection $spokenLanguages)
     {
         $this->spokenLanguages = $spokenLanguages;
         return $this;
@@ -730,7 +730,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $alternativeTitles
+     * @param GenericCollection $alternativeTitles
      * @return $this
      */
     public function setAlternativeTitles($alternativeTitles)
@@ -784,7 +784,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $keywords
+     * @param GenericCollection $keywords
      * @return $this
      */
     public function setKeywords($keywords)
@@ -802,7 +802,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $lists
+     * @param GenericCollection $lists
      * @return $this
      */
     public function setLists($lists)
@@ -812,7 +812,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return Collection
+     * @return GenericCollection
      */
     public function getLists()
     {
@@ -820,10 +820,10 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $releases
+     * @param GenericCollection $releases
      * @return $this
      */
-    public function setReleases(Collection $releases)
+    public function setReleases(GenericCollection $releases)
     {
         $this->releases = $releases;
         return $this;
@@ -838,7 +838,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $similarMovies
+     * @param GenericCollection $similarMovies
      * @return $this
      */
     public function setSimilarMovies($similarMovies)
@@ -856,7 +856,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $trailers
+     * @param GenericCollection $trailers
      * @return $this
      */
     public function setTrailers($trailers)
@@ -876,7 +876,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Collection $translations
+     * @param GenericCollection $translations
      * @return $this
      */
     public function setTranslations($translations)

@@ -13,7 +13,7 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Changes\Change;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 class Changes extends AbstractQuery {
 
@@ -62,11 +62,11 @@ class Changes extends AbstractQuery {
     /**
      * Execute the current state
      *
-     * @return Collection
+     * @return GenericCollection
      */
     public function execute()
     {
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         $response = $this->getClient()->getChangesApi()->getMovieChanges(array(
             'from' => $this->from,

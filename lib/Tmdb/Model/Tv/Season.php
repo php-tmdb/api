@@ -15,7 +15,7 @@ namespace Tmdb\Model\Tv;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Images;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 class Season extends AbstractModel {
 
@@ -99,7 +99,7 @@ class Season extends AbstractModel {
         $this->credits     = new Credits();
         $this->externalIds = new ExternalIds();
         $this->images      = new Images();
-        $this->episodes    = new Collection();
+        $this->episodes    = new GenericCollection();
     }
 
     /**
@@ -121,7 +121,7 @@ class Season extends AbstractModel {
     }
 
     /**
-     * @param Collection $episodes
+     * @param GenericCollection $episodes
      * @return $this
      */
     public function setEpisodes($episodes)
@@ -229,7 +229,7 @@ class Season extends AbstractModel {
     }
 
     /**
-     * @param Collection $credits
+     * @param GenericCollection $credits
      * @return $this
      */
     public function setCredits($credits)

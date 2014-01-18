@@ -13,7 +13,7 @@
 namespace Tmdb\Factory\Movie;
 
 use Tmdb\Factory\AbstractFactory;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Movie\AlternativeTitle;
 
 class AlternativeTitleFactory extends AbstractFactory
@@ -33,7 +33,7 @@ class AlternativeTitleFactory extends AbstractFactory
      */
     public static function createCollection(array $data = array())
     {
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         foreach($data as $item) {
             $collection->add(null, self::create($item));

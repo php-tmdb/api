@@ -14,10 +14,11 @@ namespace Tmdb\Model;
 
 use Tmdb\Model\Collection\Credits;
 
-use Tmdb\Model\Common\Collection;
-use Tmdb\Model\Common\Collection\Images;
+use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Collection\Images;
 
 use Tmdb\Model\Collection\People\PersonInterface;
+use Tmdb\Model\Image\ProfileImage;
 
 class Person extends AbstractModel implements PersonInterface {
 
@@ -33,6 +34,7 @@ class Person extends AbstractModel implements PersonInterface {
     private $job;
     private $placeOfBirth;
     private $profilePath;
+    private $profile;
 
     protected $credits;
     protected $images;
@@ -60,7 +62,7 @@ class Person extends AbstractModel implements PersonInterface {
     {
         $this->credits = new Credits();
         $this->images  = new Images();
-        $this->changes = new Collection();
+        $this->changes = new GenericCollection();
     }
 
     /**
@@ -333,4 +335,21 @@ class Person extends AbstractModel implements PersonInterface {
         return $this->job;
     }
 
+    /**
+     * @param ProfileImage  $profile
+     * @return $this
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
+        return $this;
+    }
+
+    /**
+     * @return ProfileImage
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
 }

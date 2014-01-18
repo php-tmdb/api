@@ -13,7 +13,7 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\CompanyFactory;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
 
 class CompanyRepository extends AbstractRepository {

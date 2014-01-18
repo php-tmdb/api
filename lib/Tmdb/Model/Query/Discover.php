@@ -14,7 +14,7 @@ namespace Tmdb\Model\Query;
 
 use Tmdb\Model\AbstractQuery;
 use Tmdb\Model\Changes\Change;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 
 class Discover extends AbstractQuery {
 
@@ -63,11 +63,11 @@ class Discover extends AbstractQuery {
     /**
      * Execute the current state
      *
-     * @return Collection
+     * @return GenericCollection
      */
     public function execute()
     {
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         $response = $this->getClient()->api('changes')->getMovieChanges(array(
             'from' => $this->from,

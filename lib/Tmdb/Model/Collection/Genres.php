@@ -12,10 +12,10 @@
  */
 namespace Tmdb\Model\Collection;
 
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Genre;
 
-class Genres extends Collection {
+class Genres extends GenericCollection {
 
     /**
      * Returns all genres

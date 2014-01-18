@@ -13,7 +13,7 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\GenreFactory;
-use Tmdb\Model\Common\Collection;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Genre;
 
 class GenreRepository extends AbstractRepository {
@@ -47,7 +47,7 @@ class GenreRepository extends AbstractRepository {
      * Get the list of genres.
      *
      * @param array $options
-     * @return Collection
+     * @return GenericCollection
      */
     public function loadCollection(array $options = array())
     {
@@ -60,10 +60,10 @@ class GenreRepository extends AbstractRepository {
      * Create an collection of an array
      *
      * @param $data
-     * @return Collection
+     * @return GenericCollection
      */
     private function createCollection($data){
-        $collection = new Collection();
+        $collection = new GenericCollection();
 
         if (array_key_exists('genres', $data)) {
             $data = $data['genres'];
