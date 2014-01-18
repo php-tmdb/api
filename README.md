@@ -57,16 +57,13 @@ $images = $client->getMoviesApi()->getMovie(550);
 If you want to provide any other query arguments.
 
 ```php
-$token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
-$client = new \Tmdb\Client($token);
-
 $images = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
 ```
 
 Model Usage
 -----------
 
-However the library can be used in an object oriented manner.
+However the library can also be used in an object oriented manner.
 
 First we always have to construct the client:
 

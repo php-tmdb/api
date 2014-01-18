@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
 use Tmdb\Model\Changes\Change;
 use Tmdb\Model\Common\Collection;
 
@@ -21,11 +20,6 @@ class Changes extends AbstractModel {
     private $from = null;
     private $to   = null;
     private $page = null;
-
-    public function __construct(Client $client)
-    {
-        $this->setClient($client);
-    }
 
     /**
      * Set the from parameter
