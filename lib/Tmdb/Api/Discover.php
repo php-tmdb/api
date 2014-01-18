@@ -26,4 +26,16 @@ class Discover
     {
         return $this->get('discover/movie', $options, $headers);
     }
+
+    /**
+     * Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.
+     *
+     * @param array $options
+     * @param array $headers
+     * @return mixed
+     */
+    public function discoverTv(array $options = array(), array $headers = array())
+    {
+        return $this->get('discover/tv', $options, $headers);
+    }
 }
