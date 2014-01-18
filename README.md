@@ -72,6 +72,12 @@ $token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
 $client = new \Tmdb\Client($token);
 ```
 
+Or if you prefer requests to happen securely:
+
+```php
+$client = new \Tmdb\Client($token, null, true);
+```
+
 Then you pass this client onto one of the many repositories and do some work on it.
 
 ```php
