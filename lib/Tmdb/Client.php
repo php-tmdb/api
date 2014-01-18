@@ -20,7 +20,7 @@ use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
 
 use Tmdb\ApiToken as Token;
-use Tmdb\HttpClient\Plugin\AcceptJsonHeader;
+use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
 
 /**
@@ -58,10 +58,10 @@ class Client {
         $httpClient = $httpClient ?: new GuzzleClient(self::TMDB_URI);
 
         if ($httpClient instanceof \Guzzle\Common\HasDispatcherInterface) {
-            $apiQueryTokenPlugin = new ApiTokenPlugin($token);
-            $httpClient->addSubscriber($apiQueryTokenPlugin);
+            $apiTokenPlugin = new ApiTokenPlugin($token);
+            $httpClient->addSubscriber($apiTokenPlugin);
 
-            $acceptJsonHeaderPlugin = new AcceptJsonHeader();
+            $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
             $httpClient->addSubscriber($acceptJsonHeaderPlugin);
         }
 
