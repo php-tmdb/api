@@ -109,6 +109,10 @@ class MovieFactory extends AbstractFactory {
     {
         $collection = new GenericCollection();
 
+        if (array_key_exists('results', $data)) {
+            $data = $data['results'];
+        }
+
         foreach($data as $item) {
             $collection->add(null, self::create($item));
         }

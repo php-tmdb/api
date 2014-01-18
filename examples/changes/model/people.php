@@ -16,7 +16,19 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$changes = new \Tmdb\Model\Changes($client);
+$query = new \Tmdb\Model\Query\ChangesQuery();
 
-$response = $changes->page(2)->execute();
+$from = new \DateTime('01-01-2012');
+$to   = new \DateTime('08-01-2012');
+
+$query
+    ->page(1)
+    ->from($from)
+    ->to($to)
+;
+
+$repository = new \Tmdb\Repository\ChangesRepository($client);
+$response = $repository->getPeopleChanges($query);
+
+var_dump($response);
 

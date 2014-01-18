@@ -15,8 +15,8 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\People\PeopleFactory;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
+use Tmdb\Model\Query\ChangesQuery;
 
 class ChangesRepository extends AbstractRepository {
     /**
@@ -29,12 +29,12 @@ class ChangesRepository extends AbstractRepository {
      * Please note that the change log system to support this was changed on October 5, 2012
      * and will only show movies that have been edited since.
      *
-     * @param array $parameters
+     * @param ChangesQuery $query
      * @param array $headers
      * @return GenericCollection
      */
-    public function getMovieChanges(array $parameters = array(), array $headers = array()) {
-        $data = $this->getApi()->getMovieChanges($this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+    public function getMovieChanges(ChangesQuery $query, array $headers = array()) {
+        $data = $this->getApi()->getMovieChanges($query->toArray(), $this->parseHeaders($headers));
 
         return MovieFactory::createCollection($data);
     }
@@ -49,12 +49,12 @@ class ChangesRepository extends AbstractRepository {
      * Please note that the change log system to support this was changed on October 5, 2012
      * and will only show people that have been edited since.
      *
-     * @param array $parameters
+     * @param ChangesQuery $query
      * @param array $headers
      * @return GenericCollection
      */
-    public function getPeopleChanges(array $parameters = array(), array $headers = array()) {
-        $data = $this->getApi()->getPeopleChanges($this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+    public function getPeopleChanges(ChangesQuery $query, array $headers = array()) {
+        $data = $this->getApi()->getPeopleChanges($query->toArray(), $this->parseHeaders($headers));
 
         return PeopleFactory::createCollection($data);
     }
