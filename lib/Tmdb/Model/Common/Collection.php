@@ -5,62 +5,301 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
+ * Some code is borrowed from Guzzle, and thus I've credited the author, however most of it is in a modified form.
+ *
  * @package Tmdb
+ * @author Michael Dowling, https://github.com/mtdowling <mtdowling@gmail.com>
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
 namespace Tmdb\Model\Common;
 
-use Guzzle\Common\Collection as GuzzleCollection;
 use Tmdb\Model\Filter\AdultFilter;
 use Tmdb\Model\Filter\CountryFilter;
 use Tmdb\Model\Filter\LanguageFilter;
 
-class Collection extends GuzzleCollection {
+class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
+    /** @var array Data associated with the object. */
     protected $data = array();
 
     /**
-     * Allow support for adding objects
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return GuzzleCollection
+     * @param array $data Associative array of data to set
      */
-    public function add($key, $value) {
-        if ($key === null && is_object($value)) {
-            $key = spl_object_hash($value);
-        }
-
-        return parent::add($key, $value);
+    public function __construct(array $data = array())
+    {
+        $this->data = $data;
     }
 
     /**
-     * Allow support for getting objects
-     *
-     * @param string $key
-     * @return mixed|null
+     * @return int
      */
-    public function get($key) {
+    public function count()
+    {
+        return count($this->data);
+    }
+
+    /**
+     * @return \ArrayIterator|\Traversable
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->data);
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Removes all key value pairs
+     *
+     * @return Collection
+     */
+    public function clear()
+    {
+        $this->data = array();
+
+        return $this;
+    }
+
+    /**
+     * Get all or a subset of matching key value pairs
+     *
+     * @param array $keys Pass an array of keys to retrieve only a subset of key value pairs
+     *
+     * @return array Returns an array of all matching key value pairs
+     */
+    public function getAll(array $keys = null)
+    {
+        return $keys ? array_intersect_key($this->data, array_flip($keys)) : $this->data;
+    }
+
+    /**
+     * Get a specific key value.
+     *
+     * @param string $key Key to retrieve.
+     *
+     * @return mixed|null Value of the key or NULL
+     */
+    public function get($key)
+    {
         if (is_object($key)) {
             $key = spl_object_hash($key);
         }
 
-        return parent::get($key);
+        return isset($this->data[$key]) ? $this->data[$key] : null;
     }
 
     /**
-     * Allow adding objects to the collection
+     * Set a key value pair
      *
-     * @param $object
+     * @param string $key   Key to set
+     * @param mixed  $value Value to set
+     *
+     * @return Collection Returns a reference to the object
      */
-    public function addObject($object)
+    public function set($key, $value)
     {
-        if (!is_object($object)) {
-            return;
+        if ($key === null && is_object($value)) {
+            $key = spl_object_hash($value);
         }
 
-        $this->add(null, $object);
+        $this->data[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Add a value to a key.
+     *
+     * @param string $key   Key to add
+     * @param mixed  $value Value to add to the key
+     *
+     * @return Collection Returns a reference to the object.
+     */
+    public function add($key, $value)
+    {
+        if ($key === null && is_object($value)) {
+            $key = spl_object_hash($value);
+        }
+
+        if (!array_key_exists($key, $this->data)) {
+            $this->data[$key] = $value;
+        } elseif (is_array($this->data[$key])) {
+            $this->data[$key][] = $value;
+        } else {
+            $this->data[$key] = array($this->data[$key], $value);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove a specific key value pair
+     *
+     * @param string $key A key to remove
+     *
+     * @return Collection
+     */
+    public function remove($key)
+    {
+        if ($key === null && is_object($value)) {
+            $key = spl_object_hash($value);
+        }
+
+        unset($this->data[$key]);
+
+        return $this;
+    }
+
+    /**
+     * Get all keys in the collection
+     *
+     * @return array
+     */
+    public function getKeys()
+    {
+        return array_keys($this->data);
+    }
+
+    /**
+     * Returns whether or not the specified key is present.
+     *
+     * @param string $key The key for which to check the existence.
+     *
+     * @return bool
+     */
+    public function hasKey($key)
+    {
+        return array_key_exists($key, $this->data);
+    }
+
+    /**
+     * Case insensitive search the keys in the collection
+     *
+     * @param string $key Key to search for
+     *
+     * @return bool|string Returns false if not found, otherwise returns the key
+     */
+    public function keySearch($key)
+    {
+        foreach (array_keys($this->data) as $k) {
+            if (!strcasecmp($k, $key)) {
+                return $k;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks if any keys contains a certain value
+     *
+     * @param string $value Value to search for
+     *
+     * @return mixed Returns the key if the value was found FALSE if the value was not found.
+     */
+    public function hasValue($value)
+    {
+        return array_search($value, $this->data);
+    }
+
+    /**
+     * Replace the data of the object with the value of an array
+     *
+     * @param array $data Associative array of data
+     *
+     * @return Collection Returns a reference to the object
+     */
+    public function replace(array $data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Add and merge in a Collection or array of key value pair data.
+     *
+     * @param Collection|array $data Associative array of key value pair data
+     *
+     * @return Collection Returns a reference to the object.
+     */
+    public function merge($data)
+    {
+        foreach ($data as $key => $value) {
+            $this->add($key, $value);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Returns a Collection containing all the elements of the collection after applying the callback function to each
+     * one. The Closure should accept three parameters: (string) $key, (string) $value, (array) $context and return a
+     * modified value
+     *
+     * @param \Closure $closure Closure to apply
+     * @param array    $context Context to pass to the closure
+     * @param bool     $static  Set to TRUE to use the same class as the return rather than returning a Collection
+     *
+     * @return Collection
+     */
+    public function map(\Closure $closure, array $context = array(), $static = true)
+    {
+        $collection = $static ? new static() : new self();
+        foreach ($this as $key => $value) {
+            $collection->add($key, $closure($key, $value, $context));
+        }
+
+        return $collection;
+    }
+
+    /**
+     * Iterates over each key value pair in the collection passing them to the Closure. If the  Closure function returns
+     * true, the current value from input is returned into the result Collection.  The Closure must accept three
+     * parameters: (string) $key, (string) $value and return Boolean TRUE or FALSE for each value.
+     *
+     * @param \Closure $closure Closure evaluation function
+     * @param bool     $static  Set to TRUE to use the same class as the return rather than returning a Collection
+     *
+     * @return Collection
+     */
+    public function filter(\Closure $closure, $static = true)
+    {
+        $collection = ($static) ? new static() : new self();
+        foreach ($this->data as $key => $value) {
+            if ($closure($key, $value)) {
+                $collection->add($key, $value);
+            }
+        }
+
+        return $collection;
+    }
+
+    public function offsetExists($offset)
+    {
+        return isset($this->data[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return isset($this->data[$offset]) ? $this->data[$offset] : null;
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        $this->data[$offset] = $value;
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->data[$offset]);
     }
 
     /**

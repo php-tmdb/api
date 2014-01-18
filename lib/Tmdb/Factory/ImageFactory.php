@@ -123,7 +123,7 @@ class ImageFactory extends AbstractFactory
         $collection = new Images();
 
         foreach($data as $item) {
-            $collection->addObject(self::create($item));
+            $collection->add(null, self::create($item));
         }
 
         return $collection;
@@ -141,7 +141,7 @@ class ImageFactory extends AbstractFactory
                 if (array_key_exists($format, Image::$_formats)) {
                     $item = self::create($item, $format);
 
-                    $collection->addObject($item);
+                    $collection->add(null, $item);
                 }
             }
         }

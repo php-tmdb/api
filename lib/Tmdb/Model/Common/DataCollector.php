@@ -144,7 +144,7 @@ class DataCollector {
             $class = get_class($object);
             $model = $class::fromArray($client, $item);
 
-            $collectionObject->addObject($model);
+            $collectionObject->add(null, $model);
         }
 
         return $collectionObject;
