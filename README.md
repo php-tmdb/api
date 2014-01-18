@@ -47,10 +47,22 @@ General API Usage
 
 If your looking for a simple array entry point the API namespace is the place to be.
 
+First we always have to construct the client:
+
 ```php
 $token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
 $client = new \Tmdb\Client($token);
+```
 
+Or if you prefer requests to happen securely:
+
+```php
+$client = new \Tmdb\Client($token, null, true);
+```
+
+Then we do some work on it:
+
+```php
 $images = $client->getMoviesApi()->getMovie(550);
 ```
 
@@ -70,6 +82,12 @@ First we always have to construct the client:
 ```php
 $token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
 $client = new \Tmdb\Client($token);
+```
+
+Or if you prefer requests to happen securely:
+
+```php
+$client = new \Tmdb\Client($token, null, true);
 ```
 
 Then you pass this client onto one of the many repositories and do some work on it.
