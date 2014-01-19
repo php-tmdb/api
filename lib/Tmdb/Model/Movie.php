@@ -21,10 +21,10 @@ use Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\SpokenLanguage;
+use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Movie\AlternativeTitle;
 use Tmdb\Model\Movie\Keyword;
 use Tmdb\Model\Movie\Release;
-use Tmdb\Model\Movie\Translation;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 

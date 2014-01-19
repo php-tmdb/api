@@ -15,7 +15,6 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\People\PeopleFactory;
 use Tmdb\Model\Collection\People;
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Movie;
 use Tmdb\Model\Query\ChangesQuery;
 

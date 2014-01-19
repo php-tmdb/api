@@ -1,0 +1,6 @@
+imports:
+    - php
+
+filter:
+    paths: [lib/*]
+    excluded_paths: [examples/*, lib/Model/*]

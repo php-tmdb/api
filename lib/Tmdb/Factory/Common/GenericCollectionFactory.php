@@ -17,7 +17,9 @@ use Tmdb\Model\Common\GenericCollection;
 
 class GenericCollectionFactory {
     /**
-     * {@inheritdoc}
+     * @param array $data
+     * @param $class
+     * @return GenericCollection
      */
     public static function create(array $data = array(), $class)
     {
@@ -25,7 +27,9 @@ class GenericCollectionFactory {
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $data
+     * @param $class
+     * @return GenericCollection
      */
     public static function createCollection(array $data = array(), $class)
     {
