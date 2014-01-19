@@ -79,7 +79,7 @@ class TvRepository extends AbstractRepository {
      * Get the list of popular tvs on The Tv Database. This list refreshes every day.
      *
      * @param array $options
-     * @return GenericCollection
+     * @return Tv[]
      */
     public function getPopular(array $options = array())
     {
@@ -92,7 +92,7 @@ class TvRepository extends AbstractRepository {
      * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes. This list refreshes every day.
      *
      * @param array $options
-     * @return GenericCollection
+     * @return Tv[]
      */
     public function getTopRated(array $options = array())
     {
@@ -107,7 +107,7 @@ class TvRepository extends AbstractRepository {
      * @todo Allow an array of Tv objects to pass ( custom collection )
      *
      * @param $data
-     * @return GenericCollection
+     * @return Tv[]
      */
     private function createCollection($data){
         $collection = new GenericCollection();

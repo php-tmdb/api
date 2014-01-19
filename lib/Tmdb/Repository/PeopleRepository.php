@@ -47,18 +47,6 @@ class PeopleRepository extends AbstractRepository {
     }
 
     /**
-     * If you obtained an person model which is not completely hydrated, you can use this function.
-     *
-     * @param Person $person
-     * @param array $parameters
-     * @param array $headers
-     * @return Person
-     */
-    public function refresh(Person $person, array $parameters = array(), array $headers = array()) {
-        return $this->load($person->getId(), $parameters, $headers);
-    }
-
-    /**
      * Return the related API class
      *
      * @return \Tmdb\Api\People

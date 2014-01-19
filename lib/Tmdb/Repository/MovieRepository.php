@@ -57,21 +57,6 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * If you obtained an movie model which is not completely hydrated, you can use this function.
-     *
-     * @todo store the previous given parameters so the same conditions apply to a refresh, and merge the new set
-     *
-     * @param Movie $movie
-     * @param array $parameters
-     * @param array $headers
-     * @return Movie
-     */
-    public function refresh(Movie $movie, array $parameters = array(), array $headers = array())
-    {
-        return $this->load($movie->getId(), $parameters, $headers);
-    }
-
-    /**
      * Return the Movies API Class
      *
      * @return \Tmdb\Api\Movies
@@ -98,7 +83,7 @@ class MovieRepository extends AbstractRepository {
      * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
      *
      * @param array $options
-     * @return GenericCollection
+     * @return Movie[]
      */
     public function getUpcoming(array $options = array())
     {
@@ -111,7 +96,7 @@ class MovieRepository extends AbstractRepository {
      * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
      *
      * @param array $options
-     * @return GenericCollection
+     * @return Movie[]
      */
     public function getNowPlaying(array $options = array())
     {
@@ -124,7 +109,7 @@ class MovieRepository extends AbstractRepository {
      * Get the list of popular movies on The Movie Database. This list refreshes every day.
      *
      * @param array $options
-     * @return GenericCollection
+     * @return Movie[]
      */
     public function getPopular(array $options = array())
     {
@@ -137,7 +122,7 @@ class MovieRepository extends AbstractRepository {
      * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
      *
      * @param array $options
-     * @return GenericCollection
+     * @return Movie[]
      */
     public function getTopRated(array $options = array())
     {
@@ -149,10 +134,8 @@ class MovieRepository extends AbstractRepository {
     /**
      * Create an collection of an array
      *
-     * @todo Allow an array of Movie objects to pass ( custom collection )
-     *
      * @param $data
-     * @return GenericCollection
+     * @return Movie[]
      */
     private function createCollection($data){
         $collection = new GenericCollection();

@@ -60,7 +60,7 @@ class CollectionRepository extends AbstractRepository {
      * @param $id
      * @param array $parameters
      * @param array $headers
-     * @return Images
+     * @return ApiCollection\Images
      */
     public function getImages($id, array $parameters = array(), array $headers = array())
     {

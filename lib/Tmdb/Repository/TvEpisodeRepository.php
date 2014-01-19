@@ -35,7 +35,7 @@ class TvEpisodeRepository extends AbstractRepository {
      * @param $parameters
      * @param $headers
      * @throws RuntimeException
-     * @return Season
+     * @return Episode
      */
     public function load($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
     {
@@ -71,19 +71,6 @@ class TvEpisodeRepository extends AbstractRepository {
     }
 
     /**
-     * If you obtained an episode model which is not completely hydrated, you can use this function.
-     *
-     * @param Episode $episode
-     * @param array $parameters
-     * @param array $headers
-     * @return Season
-     */
-    public function refresh(Episode $episode, array $parameters = array(), array $headers = array())
-    {
-        return $this->load($episode->getId(), $parameters, $headers);
-    }
-
-    /**
      * Return the Seasons API Class
      *
      * @return \Tmdb\Api\TvEpisode
@@ -97,7 +84,7 @@ class TvEpisodeRepository extends AbstractRepository {
      * Create an collection of an array
      *
      * @param $data
-     * @return GenericCollection
+     * @return Episode[]
      */
     private function createCollection($data){
         $collection = new GenericCollection();

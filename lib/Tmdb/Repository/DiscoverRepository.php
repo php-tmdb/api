@@ -15,9 +15,10 @@ namespace Tmdb\Repository;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\TvFactory;
-use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Movie;
 use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
+use Tmdb\Model\Tv;
 
 class DiscoverRepository extends AbstractRepository {
     /**
@@ -26,7 +27,7 @@ class DiscoverRepository extends AbstractRepository {
      * @param DiscoverMoviesQuery $query
      * @param array $headers
      * @throws RuntimeException when certification_country is set but certification.lte is not given
-     * @return GenericCollection
+     * @return Movie[]
      */
     public function discoverMovies(DiscoverMoviesQuery $query, array $headers = array()) {
         $query = $query->toArray();
@@ -45,7 +46,7 @@ class DiscoverRepository extends AbstractRepository {
      *
      * @param DiscoverTvQuery $query
      * @param array $headers
-     * @return GenericCollection
+     * @return Tv[]
      */
     public function discoverTv(DiscoverTvQuery $query, array $headers = array()) {
         $data = $this->getApi()->discoverTv($query->toArray(), $this->parseHeaders($headers));

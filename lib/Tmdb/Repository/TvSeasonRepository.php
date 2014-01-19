@@ -65,19 +65,6 @@ class TvSeasonRepository extends AbstractRepository {
     }
 
     /**
-     * If you obtained an season model which is not completely hydrated, you can use this function.
-     *
-     * @param Season $season
-     * @param array $parameters
-     * @param array $headers
-     * @return Season
-     */
-    public function refresh(Season $season, array $parameters = array(), array $headers = array())
-    {
-        return $this->load($season->getId(), $parameters, $headers);
-    }
-
-    /**
      * Return the Seasons API Class
      *
      * @return \Tmdb\Api\TvSeason
@@ -93,7 +80,7 @@ class TvSeasonRepository extends AbstractRepository {
      * @todo Allow an array of Season objects to pass ( custom collection )
      *
      * @param $data
-     * @return GenericCollection
+     * @return Season[]
      */
     private function createCollection($data){
         $collection = new GenericCollection();

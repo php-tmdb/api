@@ -34,7 +34,7 @@ class GenreRepository extends AbstractRepository {
      *
      * @param array $parameters
      * @param array $headers
-     * @return GenericCollection
+     * @return Genre[]
      */
     public function loadCollection(array $parameters = array(), array $headers = array())
     {
@@ -47,7 +47,7 @@ class GenreRepository extends AbstractRepository {
      * Create an collection of an array
      *
      * @param $data
-     * @return GenericCollection
+     * @return Genre[]
      */
     private function createCollection($data){
         $collection = new GenericCollection();

@@ -32,18 +32,6 @@ class CompanyRepository extends AbstractRepository {
     }
 
     /**
-     * If you obtained an person model which is not completely hydrated, you can use this function.
-     *
-     * @param Company $company
-     * @param array $parameters
-     * @param array $headers
-     * @return Company
-     */
-    public function refresh(Company $company, array $parameters = array(), array $headers = array()) {
-        return $this->load($company->getId(), $parameters, $headers);
-    }
-
-    /**
      * Return the related API class
      *
      * @return \Tmdb\Api\Companies
