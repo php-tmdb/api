@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Repository;
 
+use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Common\GenericCollection;
@@ -24,10 +25,17 @@ class DiscoverRepository extends AbstractRepository {
      *
      * @param DiscoverMoviesQuery $query
      * @param array $headers
+     * @throws RuntimeException when certification_country is set but certification.lte is not given
      * @return GenericCollection
      */
     public function discoverMovies(DiscoverMoviesQuery $query, array $headers = array()) {
-        $data = $this->getApi()->discoverMovies($query->toArray(), $this->parseHeaders($headers));
+        $query = $query->toArray();
+
+        if (array_key_exists('certification_country', $query) && !array_key_exists('certification.lte', $query)) {
+            throw new RuntimeException('When the certification_country option is given the certification.lte option is required.');
+        }
+
+        $data = $this->getApi()->discoverMovies($query, $this->parseHeaders($headers));
 
         return MovieFactory::createCollection($data);
     }
