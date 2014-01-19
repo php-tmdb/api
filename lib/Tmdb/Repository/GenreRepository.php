@@ -26,33 +26,20 @@ class GenreRepository extends AbstractRepository {
      * @return Genre
      */
     public function load($id, array $parameters = array(), array $headers = array()) {
-        $data = $this->getApi()->getGenre($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
-
-        return GenreFactory::create($data);
-    }
-
-    /**
-     * If you obtained an genre model which is not completely hydrated, you can use this function.
-     *
-     * @param Genre $genre
-     * @param array $parameters
-     * @param array $headers
-     * @return Genre
-     */
-    public function refresh(Genre $genre, array $parameters = array(), array $headers = array()) {
-        return $this->load($genre->getId(), $parameters, $headers);
+        return $this->loadCollection($parameters, $headers)->filterId($id);
     }
 
     /**
      * Get the list of genres.
      *
-     * @param array $options
+     * @param array $parameters
+     * @param array $headers
      * @return GenericCollection
      */
-    public function loadCollection(array $options = array())
+    public function loadCollection(array $parameters = array(), array $headers = array())
     {
         return $this->createCollection(
-            $this->getApi()->getGenres($options)
+            $this->getApi()->getGenres($parameters, $headers)
         );
     }
 

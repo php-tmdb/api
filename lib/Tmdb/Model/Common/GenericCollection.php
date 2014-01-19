@@ -303,6 +303,21 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable 
     }
 
     /**
+     * Filter by id
+     *
+     * @param integer $id
+     * @return GenericCollection
+     */
+    public function filterId($id)
+    {
+        return $this->filter(
+            function($key, $value) use ($id) {
+                if ($value->getId() == $id) { return $value; }
+            }
+        );
+    }
+
+    /**
      * Filter by language ISO 639-1 code.
      *
      * @param string $language

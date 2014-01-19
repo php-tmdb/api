@@ -17,6 +17,8 @@ $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
 $repository = new \Tmdb\Repository\GenreRepository($client);
-$genre      = $repository->load(28);
+$genres     = $repository->loadCollection();
 
-var_dump($genre);
+foreach($genres as $genre) {
+    var_dump($genre);
+}
