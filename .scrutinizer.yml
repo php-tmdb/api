@@ -3,4 +3,4 @@ imports:
 
 filter:
     paths: [lib/*]
-    excluded_paths: [examples/*, lib/Tmdb/Model/*]
+    excluded_paths: [bin/*, examples/*, vendor/*, lib/Tmdb/Model/*.php]
