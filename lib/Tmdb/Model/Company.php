@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
+use Tmdb\Model\Image\LogoImage;
 
 class Company extends AbstractModel {
 
@@ -20,6 +20,7 @@ class Company extends AbstractModel {
     private $headquarters;
     private $homepage;
     private $id;
+    private $logo;
     private $logoPath;
     private $name;
     private $parentCompany;
@@ -33,35 +34,6 @@ class Company extends AbstractModel {
         'name',
         'parent_company'
     );
-
-    /**
-     * Convert an array to an hydrated object
-     *
-     * @param Client $client
-     * @param array $data
-     * @return $this
-     */
-    public static function fromArray(Client $client, array $data)
-    {
-        $genre = new Company($data['id']);
-        //$genre->setClient($client);
-
-        return $genre->hydrate($data);
-    }
-
-    /**
-     * Load a company with the given identifier
-     *
-     * @param Client $client
-     * @param $id
-     * @param $options
-     * @return $this
-     */
-    public static function load(Client $client, $id, array $options = array()) {
-        $data = $client->api('companies')->getCompany($id, $options);
-
-        return Company::fromArray($client, $data);
-    }
 
     /**
      * @param mixed $description
@@ -133,6 +105,24 @@ class Company extends AbstractModel {
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param LogoImage $logo
+     * @return $this
+     */
+    public function setLogo(LogoImage $logo)
+    {
+        $this->logo = $logo;
+        return $this;
+    }
+
+    /**
+     * @return LogoImage
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 
     /**

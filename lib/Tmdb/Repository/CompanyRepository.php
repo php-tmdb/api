@@ -13,8 +13,10 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\CompanyFactory;
+use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
+use Tmdb\Model\Movie;
 
 class CompanyRepository extends AbstractRepository {
     /**
@@ -31,6 +33,22 @@ class CompanyRepository extends AbstractRepository {
         return CompanyFactory::create($data);
     }
 
+
+    /**
+     * Get the list of movies associated with a particular company.
+     *
+     * @param integer $id
+     * @param array $parameters
+     * @param array $headers
+     * @return Movie[]
+     */
+    public function getMovies($id, array $parameters = array(), array $headers = array())
+    {
+        return $this->createMovieCollection(
+            $this->getApi()->getMovies($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers))
+        );
+    }
+
     /**
      * Return the related API class
      *
@@ -39,5 +57,25 @@ class CompanyRepository extends AbstractRepository {
     public function getApi()
     {
         return $this->getClient()->getCompaniesApi();
+    }
+
+    /**
+     * Create an collection of an array
+     *
+     * @param $data
+     * @return Movie[]
+     */
+    private function createMovieCollection($data){
+        $collection = new GenericCollection();
+
+        if (array_key_exists('results', $data)) {
+            $data = $data['results'];
+        }
+
+        foreach($data as $item) {
+            $collection->add(null, MovieFactory::create($item));
+        }
+
+        return $collection;
     }
 }

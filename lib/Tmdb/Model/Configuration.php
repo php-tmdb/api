@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
 use Tmdb\Model\Common\GenericCollection;
 
 class Configuration extends AbstractModel {
@@ -33,17 +32,17 @@ class Configuration extends AbstractModel {
     );
 
     /**
-     * @param \Tmdb\Model\Common\Collection $change_keys
+     * @param GenericCollection $change_keys
      * @return $this
      */
-    public function setChangeKeys($change_keys)
+    public function setChangeKeys(GenericCollection $change_keys)
     {
         $this->change_keys = $change_keys;
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getChangeKeys()
     {
@@ -51,17 +50,17 @@ class Configuration extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $images
+     * @param GenericCollection $images
      * @return $this
      */
-    public function setImages($images)
+    public function setImages(GenericCollection $images)
     {
         $this->images = $images;
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getImages()
     {
