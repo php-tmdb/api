@@ -242,6 +242,26 @@ class MoviesTest extends TestCase
         $api->getTopRated();
     }
 
+    /**
+     * @test
+     * @expectedException Tmdb\Exception\NotImplementedException
+     */
+    public function shouldGetAccountStates()
+    {
+        $api = $this->getApiMock();
+        $api->getAccountStates(self::MOVIE_ID);
+    }
+
+    /**
+     * @test
+     * @expectedException Tmdb\Exception\NotImplementedException
+     */
+    public function shouldRateMovie()
+    {
+        $api = $this->getApiMock();
+        $api->rateMovie(self::MOVIE_ID);
+    }
+
     protected function getApiClass() {
         return 'Tmdb\Api\Movies';
     }
