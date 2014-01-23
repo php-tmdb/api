@@ -209,4 +209,22 @@ class HttpClient
 
         return $response;
     }
+
+    /**
+     * @param \Guzzle\Http\ClientInterface $client
+     * @return $this
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+        return $this;
+    }
+
+    /**
+     * @return \Guzzle\Http\ClientInterface
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
 }
