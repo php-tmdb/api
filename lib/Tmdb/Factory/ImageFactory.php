@@ -21,7 +21,7 @@ class ImageFactory extends AbstractFactory
      * Convert an array to an hydrated object
      *
      * @param array $data
-     * @param string $key
+     * @param string|null $key
      * @return Image
      */
     public static function create(array $data = array(), $key = null)
@@ -78,7 +78,7 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * @param null $key
+     * @param string|null $key
      * @return Image|Image\BackdropImage|Image\LogoImage|Image\PosterImage|Image\ProfileImage|Image\StillImage
      */
     private function resolveImageType($key = null)
