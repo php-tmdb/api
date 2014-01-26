@@ -9,4 +9,4 @@ before_commands:
 
 filter:
     paths: [lib/*]
-    excluded_paths: [bin/*, examples/*, vendor/*, lib/Tmdb/Model/*.php]
+    excluded_paths: [bin/*, examples/*, vendor/*]
