@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Api;
 
+use Guzzle\Http\Message\Response;
 use Tmdb\Client;
 
 abstract class AbstractApi
@@ -44,6 +45,9 @@ abstract class AbstractApi
      */
     public function get($path, array $parameters = array(), $headers = array())
     {
+        /**
+         * @var Response $response
+         */
         $response = $this->client->getHttpClient()->get($path, $parameters, $headers);
         return $response->json();
     }
@@ -58,6 +62,9 @@ abstract class AbstractApi
      */
     public function head($path, array $parameters = array(), $headers = array())
     {
+        /**
+         * @var Response $response
+         */
         $response = $this->client->getHttpClient()->head($path, $parameters, $headers);
         return $response->json();
     }
@@ -73,6 +80,9 @@ abstract class AbstractApi
      */
     public function post($path, $postBody = null, array $parameters = array(), $headers = array())
     {
+        /**
+         * @var Response $response
+         */
         $response = $this->client->getHttpClient()->post($path, $postBody, $parameters, $headers);
         return $response->json();
     }
@@ -88,6 +98,9 @@ abstract class AbstractApi
      */
     public function put($path, $body = null, array $parameters = array(), $headers = array())
     {
+        /**
+         * @var Response $response
+         */
         $response = $this->client->getHttpClient()->put($path, $body, $parameters, $headers);
         return $response->json();
     }
@@ -103,6 +116,9 @@ abstract class AbstractApi
      */
     public function delete($path, $body = null, array $parameters = array(), $headers = array())
     {
+        /**
+         * @var Response $response
+         */
         $response = $this->client->getHttpClient()->delete($path, $body, $parameters, $headers);
         return $response->json();
     }
@@ -118,6 +134,9 @@ abstract class AbstractApi
      */
     public function patch($path, $body = null, array $parameters = array(), $headers = array())
     {
+        /**
+         * @var Response $response
+         */
         $response = $this->client->getHttpClient()->patch($path, $body, $parameters, $headers);
         return $response->json();
     }
