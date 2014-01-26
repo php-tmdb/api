@@ -10,20 +10,16 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Api;
-
-class Jobs
-    extends AbstractApi
+class ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Get a list of valid jobs.
-     *
-     * @param array $options
-     * @param array $headers
-     * @return mixed
+     * @test
      */
-    public function getJobs(array $options = array(), array $headers = array())
+    public function shouldNotHaveToPassHttpClientToConstructor()
     {
-        return $this->get('job/list', $options, $headers);
+        $token  = new \Tmdb\ApiToken('abcdef');
+        $client = new \Tmdb\Client($token);
+
+        $this->assertInstanceOf('Tmdb\HttpClient\HttpClient', $client->getHttpClient());
     }
 }

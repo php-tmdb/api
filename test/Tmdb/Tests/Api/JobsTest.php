@@ -10,20 +10,24 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Api;
+namespace Tmdb\Tests\Api;
 
-class Jobs
-    extends AbstractApi
+class JobsTest extends TestCase
 {
     /**
-     * Get a list of valid jobs.
-     *
-     * @param array $options
-     * @param array $headers
-     * @return mixed
+     * @test
      */
-    public function getJobs(array $options = array(), array $headers = array())
+    public function shouldGetList()
     {
-        return $this->get('job/list', $options, $headers);
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('job/list');
+
+        $api->getJobs();
+    }
+
+    protected function getApiClass() {
+        return 'Tmdb\Api\Jobs';
     }
 }

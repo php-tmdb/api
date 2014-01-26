@@ -18,7 +18,7 @@ use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 
 abstract class AbstractRepository {
 
-    private static $client = null;
+    protected $client = null;
 
     protected $api = null;
 
@@ -32,7 +32,7 @@ abstract class AbstractRepository {
      */
     public function __construct(Client $client)
     {
-        self::$client = $client;
+        $this->client = $client;
     }
 
     /**
@@ -42,7 +42,7 @@ abstract class AbstractRepository {
      */
     public function getClient()
     {
-        return self::$client;
+        return $this->client;
     }
 
     /**

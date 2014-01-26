@@ -26,7 +26,7 @@ class Search
     public function searchMovies($query, array $options = array(), array $headers = array())
     {
         return $this->get('search/movie', array_merge($options, array(
-            'query' => $query
+            'query' => urlencode($query)
         ), $headers));
     }
 
@@ -41,7 +41,7 @@ class Search
     public function searchCollection($query, array $options = array(), array $headers = array())
     {
         return $this->get('search/collection', array_merge($options, array(
-            'query' => $query
+            'query' => urlencode($query)
         ), $headers));
     }
 
@@ -56,7 +56,7 @@ class Search
     public function searchTv($query, array $options = array(), array $headers = array())
     {
         return $this->get('search/tv', array_merge($options, array(
-            'query' => $query
+            'query' => urlencode($query)
         ), $headers));
     }
 
@@ -71,7 +71,7 @@ class Search
     public function searchPersons($query, array $options = array(), array $headers = array())
     {
         return $this->get('search/person', array_merge($options, array(
-            'query' => $query
+            'query' => urlencode($query)
         ), $headers));
     }
 
@@ -86,7 +86,7 @@ class Search
     public function searchList($query, array $options = array(), array $headers = array())
     {
         return $this->get('search/list', array_merge($options, array(
-            'query' => $query
+            'query' => urlencode($query)
         ), $headers));
     }
 
@@ -101,7 +101,7 @@ class Search
     public function searchCompany($query, array $options = array(), array $headers = array())
     {
         return $this->get('search/company', array_merge($options, array(
-            'query' => $query
+            'query' => urlencode($query)
         ), $headers));
     }
 
@@ -116,7 +116,7 @@ class Search
     public function searchKeyword($query, array $options = array(), array $headers = array())
     {
         return $this->get('search/keyword', array_merge($options, array(
-            'query' => $query
+            'query' => urlencode($query)
         ), $headers));
     }
 }

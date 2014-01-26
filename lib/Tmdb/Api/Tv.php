@@ -50,7 +50,7 @@ class Tv
      * @param array $headers
      * @return mixed
      */
-    public function getCast($tvshow_id, array $options = array(), array $headers = array())
+    public function getExternalIds($tvshow_id, array $options = array(), array $headers = array())
     {
         return $this->get('tv/' . $tvshow_id . '/external_ids', $options, $headers);
     }
