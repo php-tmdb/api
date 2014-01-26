@@ -5,6 +5,8 @@ Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php
 
 ** WARNING, The model namespace is not ready for production yet, however the API namespace should be stabilizing by now so feel free to try it out. **
 
+[![Build Status Develop Branch](https://travis-ci.org/wtfzdotnet/php-tmdb-api.png?branch=develop)](https://travis-ci.org/wtfzdotnet/php-tmdb-api)
+
 Work in progress
 ----------------
 

@@ -1,6 +1,12 @@
 imports:
     - php
 
+tools:
+    php_code_coverage: true
+
+before_commands:
+    - "composer install --prefer-source"
+
 filter:
     paths: [lib/*]
     excluded_paths: [bin/*, examples/*, vendor/*, lib/Tmdb/Model/*.php]
