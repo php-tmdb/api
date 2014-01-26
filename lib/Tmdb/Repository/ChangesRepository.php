@@ -54,7 +54,7 @@ class ChangesRepository extends AbstractRepository {
      * @return People
      */
     public function getPeopleChanges(ChangesQuery $query, array $headers = array()) {
-        $data = $this->getApi()->getPeopleChanges($query->toArray(), $this->parseHeaders($headers));
+        $data = $this->getApi()->getPersonChanges($query->toArray(), $this->parseHeaders($headers));
 
         return PeopleFactory::createCollection($data);
     }
