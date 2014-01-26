@@ -15,9 +15,7 @@ namespace Tmdb\Repository;
 use \RuntimeException;
 use Tmdb\Factory\TvEpisodeFactory;
 use Tmdb\Model\Common\GenericCollection;
-
 use Tmdb\Model\Tv\Episode\QueryParameter\AppendToResponse;
-
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\Season;
 use Tmdb\Model\Tv\Episode;
