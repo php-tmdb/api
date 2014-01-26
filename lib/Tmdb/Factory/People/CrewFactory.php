@@ -26,6 +26,7 @@ class CrewFactory extends PeopleFactory
 
     /**
      * {@inheritdoc}
+     * @param \Tmdb\Model\Tv\Person\CrewMember $person
      */
     public static function createCollection(array $data = array(), $person = null)
     {

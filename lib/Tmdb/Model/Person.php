@@ -13,10 +13,8 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Collection\Credits;
-
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\Images;
-
 use Tmdb\Model\Collection\People\PersonInterface;
 use Tmdb\Model\Image\ProfileImage;
 
@@ -228,7 +226,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @param mixed $images
+     * @param Images $images
      * @return $this
      */
     public function setImages($images)

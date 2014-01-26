@@ -13,12 +13,17 @@
 namespace Tmdb\Model\Person;
 
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Image;
 
 abstract class AbstractMember extends AbstractModel {
 
     private $id;
     private $name;
     private $profilePath;
+
+    /**
+     * @var Image
+     */
     private $profile;
 
     public static $_properties = array(
@@ -100,21 +105,22 @@ abstract class AbstractMember extends AbstractModel {
     }
 
     /**
-     * @param mixed $profile
+     * @param Image $profile
      * @return $this
      */
-    public function setProfile($profile)
+    public function setProfile(Image $profile)
     {
         $this->profile = $profile;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return Image
      */
     public function getProfile()
     {
         return $this->profile;
     }
+
 
 }

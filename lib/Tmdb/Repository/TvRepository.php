@@ -24,7 +24,7 @@ class TvRepository extends AbstractRepository {
      *
      * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
      *
-     * @param $id
+     * @param integer $id
      * @param $parameters
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel

@@ -15,7 +15,6 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\People\PeopleFactory;
 use Tmdb\Model\Collection\People;
-use Tmdb\Model\Movie;
 use Tmdb\Model\Query\ChangesQuery;
 
 class ChangesRepository extends AbstractRepository {
@@ -31,7 +30,7 @@ class ChangesRepository extends AbstractRepository {
      *
      * @param ChangesQuery $query
      * @param array $headers
-     * @return Movie[]
+     * @return \Tmdb\Model\Common\GenericCollection
      */
     public function getMovieChanges(ChangesQuery $query, array $headers = array()) {
         $data = $this->getApi()->getMovieChanges($query->toArray(), $this->parseHeaders($headers));

@@ -12,9 +12,7 @@
  */
 namespace Tmdb\Model\Collection;
 
-use Tmdb\Factory\ImageFactory;
 use Tmdb\Model\Common\GenericCollection;
-
 use Tmdb\Model\Filter\ImageFilter;
 use Tmdb\Model\Image;
 
@@ -175,7 +173,7 @@ class Images extends GenericCollection {
     /**
      * Return a single image that is rated highest
      *
-     * @return null|Image
+     * @return ImageFilter|null
      */
     public function filterBestVotedImage()
     {

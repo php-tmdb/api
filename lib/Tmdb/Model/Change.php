@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Client;
-
 class Change extends AbstractModel {
     /**
      * @var integer

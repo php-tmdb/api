@@ -58,7 +58,7 @@ class CastMember extends AbstractMember {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getOrder()
     {

@@ -13,20 +13,16 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Common\GenericCollection;
-
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\People;
-
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Movie\AlternativeTitle;
 use Tmdb\Model\Movie\Keyword;
 use Tmdb\Model\Movie\Release;
-use Tmdb\Model\Person\CastMember;
-use Tmdb\Model\Person\CrewMember;
 
 class Movie extends AbstractModel {
     /**
@@ -308,7 +304,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return null
+     * @return Collection|null
      */
     public function getBelongsToCollection()
     {
@@ -380,7 +376,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -470,7 +466,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return double
      */
     public function getPopularity()
     {
@@ -542,7 +538,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getReleaseDate()
     {
@@ -560,7 +556,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getRevenue()
     {
@@ -578,7 +574,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getRuntime()
     {
@@ -668,7 +664,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return double
      */
     public function getVoteAverage()
     {
@@ -686,7 +682,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getVoteCount()
     {

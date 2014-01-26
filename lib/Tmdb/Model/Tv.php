@@ -13,12 +13,9 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Common\GenericCollection;
-
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
-use Tmdb\Model\Collection\People;
-
 use Tmdb\Model\Tv\ExternalIds;
 use Tmdb\Model\Tv\Network;
 
@@ -563,7 +560,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $seasons
+     * @param GenericCollection $seasons
      * @return $this
      */
     public function setSeasons($seasons)
@@ -635,7 +632,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $translations
+     * @param GenericCollection $translations
      * @return $this
      */
     public function setTranslations($translations)

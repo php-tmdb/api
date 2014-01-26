@@ -26,6 +26,7 @@ class CastFactory extends PeopleFactory
 
     /**
      * {@inheritdoc}
+     * @param \Tmdb\Model\Tv\Person\CastMember $person
      */
     public static function createCollection(array $data = array(), $person = null)
     {

@@ -163,7 +163,7 @@ class Collection extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $parts
+     * @param GenericCollection $parts
      * @return $this
      */
     public function setParts($parts)

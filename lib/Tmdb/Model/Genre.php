@@ -33,7 +33,7 @@ class Genre extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {

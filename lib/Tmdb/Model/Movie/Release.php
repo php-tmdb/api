@@ -74,7 +74,7 @@ class Release extends AbstractModel implements CountryFilter {
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getReleaseDate()
     {

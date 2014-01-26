@@ -21,7 +21,7 @@ class ObjectHydrator {
      *
      * @param AbstractModel $object
      * @param array $data
-     * @return $this
+     * @return AbstractModel
      * @throws RuntimeException
      */
     public static function hydrate(AbstractModel $object, $data = array())

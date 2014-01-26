@@ -13,7 +13,6 @@
 namespace Tmdb\Model\Common\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
-
 use Tmdb\Model\Keyword;
 
 class Keywords extends GenericCollection {

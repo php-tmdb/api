@@ -58,7 +58,7 @@ class CastMember extends AbstractMember implements PersonInterface {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getOrder()
     {

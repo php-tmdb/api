@@ -195,7 +195,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * The maximum release to include.
      *
-     * @param \DateTime|string $date
+     * @param \DateTime $date
      * @return $this
      */
     public function releaseDateLte(\DateTime $date)

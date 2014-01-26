@@ -19,7 +19,7 @@ class Crew extends People {
     /**
      * Returns all people
      *
-     * @return People
+     * @return Person[]
      */
     public function getCrew()
     {
