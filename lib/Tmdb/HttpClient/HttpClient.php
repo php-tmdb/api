@@ -43,7 +43,7 @@ class HttpClient
     /**
      * Constructor
      *
-     * @param $baseUrl
+     * @param string $baseUrl
      * @param array $options
      * @param ClientInterface $client
      */

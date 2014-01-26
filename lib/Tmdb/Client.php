@@ -14,11 +14,8 @@ namespace Tmdb;
 
 use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
-
-use Tmdb\Exception\InvalidArgumentException;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
-
 use Tmdb\ApiToken as Token;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
@@ -69,7 +66,7 @@ class Client {
      * Construct our client
      *
      * @param ClientInterface|null $httpClient
-     * @param Token|null $token
+     * @param ApiToken $token
      * @param boolean $secure
      */
     public function __construct(Token $token, ClientInterface $httpClient = null, $secure = false)

@@ -55,7 +55,7 @@ class ObjectHydrator {
      *
      * @see https://gist.github.com/troelskn/751517
      *
-     * @param $candidate
+     * @param string $candidate
      * @return string
      */
     private function camelize($candidate)

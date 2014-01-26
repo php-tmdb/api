@@ -39,7 +39,7 @@ class ImageFactory extends AbstractFactory
      * '/xkQ5yWnMjpC2bGmu7GsD66AAoKO.jpg', 'backdrop_path'
      *
      * @param $path
-     * @param $key
+     * @param string $key
      * @return \Tmdb\Model\Image
      */
     public static function createFromPath($path, $key)
@@ -53,7 +53,7 @@ class ImageFactory extends AbstractFactory
     /**
      * Return possible image type keys
      *
-     * @return array
+     * @return string[]
      */
     public static function getPossibleKeys()
     {

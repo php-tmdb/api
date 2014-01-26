@@ -33,7 +33,7 @@ class TvSeasonRepository extends AbstractRepository {
      * @param $parameters
      * @param $headers
      * @throws RuntimeException
-     * @return Season
+     * @return null|\Tmdb\Model\AbstractModel
      */
     public function load($tvShow, $season, array $parameters = array(), array $headers = array())
     {

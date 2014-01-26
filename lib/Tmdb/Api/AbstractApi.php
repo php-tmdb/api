@@ -38,7 +38,7 @@ abstract class AbstractApi
     /**
      * Send a GET request
      *
-     * @param $path
+     * @param string $path
      * @param array $parameters
      * @param array $headers
      * @return mixed

@@ -14,7 +14,6 @@ namespace Tmdb\Factory\People;
 
 use Tmdb\Factory\AbstractFactory;
 use Tmdb\Factory\ImageFactory;
-
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;

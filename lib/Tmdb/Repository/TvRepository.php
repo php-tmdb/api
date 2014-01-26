@@ -28,7 +28,7 @@ class TvRepository extends AbstractRepository {
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return Tv
+     * @return null|\Tmdb\Model\AbstractModel
      */
     public function load($id, array $parameters = array(), array $headers = array())
     {
@@ -57,7 +57,7 @@ class TvRepository extends AbstractRepository {
      * @param Tv $tv
      * @param array $parameters
      * @param array $headers
-     * @return Tv
+     * @return null|\Tmdb\Model\AbstractModel
      */
     public function refresh(Tv $tv, array $parameters = array(), array $headers = array())
     {

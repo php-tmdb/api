@@ -31,7 +31,7 @@ class Companies
     /**
      * Get the list of movies associated with a particular company.
      *
-     * @param $company_id
+     * @param integer $company_id
      * @param array $options
      * @param array $headers
      * @return mixed

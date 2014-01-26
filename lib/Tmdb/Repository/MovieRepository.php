@@ -28,7 +28,7 @@ class MovieRepository extends AbstractRepository {
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return Movie
+     * @return null|\Tmdb\Model\AbstractModel
      */
     public function load($id, array $parameters = array(), array $headers = array())
     {
@@ -70,7 +70,7 @@ class MovieRepository extends AbstractRepository {
      * Get the latest movie.
      *
      * @param array $options
-     * @return Movie
+     * @return null|\Tmdb\Model\AbstractModel
      */
     public function getLatest(array $options = array())
     {

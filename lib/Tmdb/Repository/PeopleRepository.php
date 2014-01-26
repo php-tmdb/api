@@ -14,7 +14,6 @@ namespace Tmdb\Repository;
 
 use Tmdb\Factory\People\PeopleFactory;
 use Tmdb\Model\Person;
-
 use Tmdb\Model\Person\QueryParameter\AppendToResponse;
 
 class PeopleRepository extends AbstractRepository {

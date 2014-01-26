@@ -12,6 +12,7 @@
  */
 namespace Tmdb\HttpClient;
 
+use Guzzle\Common\Exception\InvalidArgumentException;
 use Guzzle\Http\Message\RequestInterface;
 use Guzzle\Http\Message\Response;
 
@@ -24,7 +25,7 @@ interface HttpClientInterface
      * @param  array  $parameters GET Parameters
      * @param  array  $headers    Reconfigure the request headers for this call only
      *
-     * @return array              Data
+     * @return Response           Data
      */
     public function get($path, array $parameters = array(), array $headers = array());
 
@@ -36,7 +37,7 @@ interface HttpClientInterface
      * @param  array  $parameters POST Parameters
      * @param  array  $headers    Reconfigure the request headers for this call only
      *
-     * @return array              Data
+     * @return Response              Data
      */
     public function post($path, $postBody, array $parameters = array(), array $headers = array());
 
@@ -48,7 +49,7 @@ interface HttpClientInterface
      * @param  array  $parameters PATCH Parameters
      * @param  array  $headers    Reconfigure the request headers for this call only
      *
-     * @return array              Data
+     * @return Response           Data
      */
     public function patch($path, $body = null, array $parameters = array(), array $headers = array());
 
@@ -60,7 +61,7 @@ interface HttpClientInterface
      * @param  array  $parameters PUT Parameters
      * @param  array  $headers    Reconfigure the request headers for this call only
      *
-     * @return array              Data
+     * @return Response           Data
      */
     public function put($path, $body = null, array $parameters = array(), array $headers = array());
 
@@ -72,7 +73,7 @@ interface HttpClientInterface
      * @param  array  $parameters DELETE Parameters
      * @param  array  $headers    Reconfigure the request headers for this call only
      *
-     * @return array              Data
+     * @return Response           Data
      */
     public function delete($path, $body = null, array $parameters = array(), array $headers = array());
 
@@ -91,6 +92,7 @@ interface HttpClientInterface
      * @param mixed  $value  The value
      *
      * @throws InvalidArgumentException
+     * @return void
      */
     public function setOption($name, $value);
 
@@ -98,6 +100,7 @@ interface HttpClientInterface
      * Set HTTP headers
      *
      * @param array $headers
+     * @return void
      */
     public function setHeaders(array $headers);
 }
