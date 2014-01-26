@@ -54,10 +54,14 @@ abstract class AbstractRepository {
     protected function parseQueryParameters(array $parameters = array())
     {
         foreach($parameters as $key => $candidate) {
-            if ($candidate instanceof QueryParameterInterface) {
-                unset($parameters[$key]);
+            if (is_object($candidate)) {
+                $interfaces = class_implements($candidate);
 
-                $parameters[$candidate->getKey()] = $candidate->getValue();
+                if (array_key_exists('Tmdb\Model\Common\QueryParameter\QueryParameterInterface', $interfaces)) {
+                    unset($parameters[$key]);
+
+                    $parameters[$candidate->getKey()] = $candidate->getValue();
+                }
             }
         }
 

@@ -13,6 +13,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
+use Tmdb\Factory\Common\GenericCollectionFactory;
 use Tmdb\Model\AbstractModel;
 
 abstract class AbstractFactory {
@@ -20,7 +21,7 @@ abstract class AbstractFactory {
      * Convert an array to an hydrated object
      *
      * @param array $data
-     * @return $this
+     * @return AbstractModel
      */
     abstract public static function create(array $data = array());
 
@@ -28,7 +29,7 @@ abstract class AbstractFactory {
      * Convert an array with an collection of items to an hydrated object collection
      *
      * @param array $data
-     * @return $this
+     * @return GenericCollectionFactory
      */
     abstract public static function createCollection(array $data = array());
 

@@ -19,9 +19,6 @@ use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\People;
 
-use Tmdb\Model\Common\Translation;
-use Tmdb\Model\Tv\CastMember;
-use Tmdb\Model\Tv\CrewMember;
 use Tmdb\Model\Tv\ExternalIds;
 use Tmdb\Model\Tv\Network;
 

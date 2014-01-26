@@ -25,7 +25,7 @@ class Genres
      */
     public function getGenre($id, array $options = array(), array $headers = array())
     {
-        $response = $this->getGenres();
+        $response = $this->getGenres($options, $headers);
 
         if (array_key_exists('genres', $response)) {
             foreach($response['genres'] as $genre) {

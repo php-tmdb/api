@@ -18,7 +18,11 @@ use Tmdb\Model\Image;
 class ImageFactory extends AbstractFactory
 {
     /**
-     * {@inheritdoc}
+     * Convert an array to an hydrated object
+     *
+     * @param array $data
+     * @param string $key
+     * @return Image
      */
     public static function create(array $data = array(), $key = null)
     {
@@ -40,7 +44,7 @@ class ImageFactory extends AbstractFactory
      *
      * @param $path
      * @param string $key
-     * @return \Tmdb\Model\Image
+     * @return Image
      */
     public static function createFromPath($path, $key)
     {
@@ -73,6 +77,10 @@ class ImageFactory extends AbstractFactory
         );
     }
 
+    /**
+     * @param null $key
+     * @return Image|Image\BackdropImage|Image\LogoImage|Image\PosterImage|Image\ProfileImage|Image\StillImage
+     */
     private function resolveImageType($key = null)
     {
         switch($key) {
@@ -116,7 +124,10 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * Create generic collection
+     *
+     * @param array $data
+     * @return Images
      */
     public static function createCollection(array $data = array())
     {
@@ -130,7 +141,10 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * Create full collection
+     *
+     * @param array $data
+     * @return Images
      */
     public static function createImageCollection(array $data = array())
     {
@@ -150,7 +164,10 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * Create full movie collection
+     *
+     * @param array $data
+     * @return Images
      */
     public static function createCollectionFromMovie(array $data = array())
     {
@@ -158,7 +175,10 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * Create full tv show collection
+     *
+     * @param array $data
+     * @return Images
      */
     public static function createCollectionFromTv(array $data = array())
     {
@@ -166,7 +186,10 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * Create full tv season collection
+     *
+     * @param array $data
+     * @return Images
      */
     public static function createCollectionFromTvSeason(array $data = array())
     {
@@ -174,7 +197,10 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * Create full tv episode collection
+     *
+     * @param array $data
+     * @return Images
      */
     public static function createCollectionFromTvEpisode(array $data = array())
     {
@@ -182,7 +208,10 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * Create full people collection
+     *
+     * @param array $data
+     * @return Images
      */
     public static function createCollectionFromPeople(array $data = array())
     {

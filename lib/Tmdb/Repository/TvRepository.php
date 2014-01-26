@@ -16,7 +16,7 @@ use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Tv;
 
-use \Tmdb\Model\Tv\QueryParameter\AppendToResponse;
+use Tmdb\Model\Tv\QueryParameter\AppendToResponse;
 
 class TvRepository extends AbstractRepository {
 
