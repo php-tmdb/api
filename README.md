@@ -9,12 +9,16 @@ Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php
 [![Code Coverage](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/coverage.png?s=d416e063debb3b400e9b1bc9db019f54cc1dc40e)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/quality-score.png?s=dad36710f36335bdeffeaf2ac256c222862832fa)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/)
 
+As you can see the code coverage is very low at the moment, as it only covers the API section right now.
+
+Work is being put into reaching at least 80%, but this will take some time.
+
 Work in progress
 ----------------
 
-I've started working on this since the week of October-November 2013. I hoped to finish this pretty quick but I've been slammed with work, if you feel like lending a hand please contribute, wether it's documentation or code they are both more than welcome!
+The API namespace has most things already covered, however this is RAW output from the API.
 
-The API namespace has most things already covered, however this is RAW output from the API. I'm working extensively on finishing the models, which should provide a more natural feeling of working with TMDB.
+I'm working extensively on finishing the models, which should provide a more natural feeling of working with TMDB.
 
 Help & Donate
 --------------
