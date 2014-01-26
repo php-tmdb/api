@@ -30,6 +30,20 @@ class TvSeason
     }
 
     /**
+     * Get the cast & crew credits for a TV season by season number.
+     *
+     * @param $tvshow_id
+     * @param $season_number
+     * @param array $options
+     * @param array $headers
+     * @return mixed
+     */
+    public function getSeasonCredits($tvshow_id, $season_number, array $options = array(), array $headers = array())
+    {
+        return $this->get(sprintf('tv/%s/season/%s/credits', $tvshow_id, $season_number), $options, $headers);
+    }
+
+    /**
      * Get the external ids that we have stored for a TV season by season number.
      *
      * @param $tvshow_id
@@ -41,5 +55,19 @@ class TvSeason
     public function getSeasonExternalIds($tvshow_id, $season_number, array $options = array(), array $headers = array())
     {
         return $this->get(sprintf('tv/%s/season/%s/external_ids', $tvshow_id, $season_number), $options, $headers);
+    }
+
+    /**
+     * Get the images (posters) that we have stored for a TV season by season number.
+     *
+     * @param $tvshow_id
+     * @param $season_number
+     * @param array $options
+     * @param array $headers
+     * @return mixed
+     */
+    public function getSeasonImages($tvshow_id, $season_number, array $options = array(), array $headers = array())
+    {
+        return $this->get(sprintf('tv/%s/season/%s/images', $tvshow_id, $season_number), $options, $headers);
     }
 }

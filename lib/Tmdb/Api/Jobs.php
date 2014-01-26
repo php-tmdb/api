@@ -22,7 +22,7 @@ class Jobs
      * @param array $headers
      * @return mixed
      */
-    public function getMovieChanges(array $options = array(), array $headers = array())
+    public function getJobs(array $options = array(), array $headers = array())
     {
         return $this->get('job/list', $options, $headers);
     }

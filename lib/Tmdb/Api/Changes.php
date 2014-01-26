@@ -50,7 +50,7 @@ class Changes
      * @param array $headers
      * @return mixed
      */
-    public function getPeopleChanges(array $options = array(), array $headers = array())
+    public function getPersonChanges(array $options = array(), array $headers = array())
     {
         return $this->get('person/changes', $options, $headers);
     }

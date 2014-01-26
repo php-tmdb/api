@@ -18,19 +18,20 @@ class Keywords
     /**
      * Get the basic information for a specific keyword id.
      *
+     * @param int   $keyword_id
      * @param array $options
      * @param array $headers
      * @return mixed
      */
-    public function getKeywords(array $options = array(), array $headers = array())
+    public function getKeyword($keyword_id, array $options = array(), array $headers = array())
     {
-        return $this->get('keyword/list', $options, $headers);
+        return $this->get('keyword/' . $keyword_id, $options, $headers);
     }
 
     /**
      * Get the list of movies for a particular keyword by id.
      *
-     * @param $keyword_id
+     * @param int   $keyword_id
      * @param array $options
      * @param array $headers
      * @return mixed

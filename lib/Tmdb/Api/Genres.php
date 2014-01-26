@@ -27,9 +27,11 @@ class Genres
     {
         $response = $this->getGenres();
 
-        foreach($response['genres'] as $genre) {
-            if ($id == $genre['id']) {
-                return $genre;
+        if (array_key_exists('genres', $response)) {
+            foreach($response['genres'] as $genre) {
+                if ($id == $genre['id']) {
+                    return $genre;
+                }
             }
         }
 
