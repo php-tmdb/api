@@ -20,12 +20,10 @@ class Account
     /**
      * Get the basic information for an account. You will need to have a valid session id.
      *
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getAccount(array $options = array(), array $headers = array())
+    public function getAccount()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -33,13 +31,10 @@ class Account
     /**
      * Get the lists that you have created and marked as a favorite.
      *
-     * @param $account_id
-     * @param $options array
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getLists($account_id, array $options = array(), array $headers = array())
+    public function getLists()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -47,13 +42,10 @@ class Account
     /**
      * Get the list of favorite movies for an account.
      *
-     * @param $account_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getFavoriteMovies($account_id, array $options = array(), array $headers = array())
+    public function getFavoriteMovies()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -61,13 +53,10 @@ class Account
     /**
      * Add or remove a movie to an accounts favorite list.
      *
-     * @param $account_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function favorite($account_id, array $options = array(), array $headers = array())
+    public function favorite()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -75,13 +64,10 @@ class Account
     /**
      * Get the list of rated movies (and associated rating) for an account.
      *
-     * @param $account_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getRatedMovies($account_id, array $options = array(), array $headers = array())
+    public function getRatedMovies()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -89,13 +75,10 @@ class Account
     /**
      * Get the list of movies on an accounts watchlist.
      *
-     * @param $account_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getMovieWatchlist($account_id, array $options = array(), array $headers = array())
+    public function getMovieWatchlist()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -103,13 +86,10 @@ class Account
     /**
      * Add or remove a movie to an accounts watch list.
      *
-     * @param $account_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function watchlist($account_id, array $options = array(), array $headers = array())
+    public function watchlist()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }

@@ -33,14 +33,10 @@ class Lists
     /**
      * This method lets users create a new list. A valid session id is required.
      *
-     * @param $name
-     * @param $description
-     * @param $options array
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function createList($name, $description, array $options = array(), array $headers = array())
+    public function createList()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -48,14 +44,10 @@ class Lists
     /**
      * Check to see if a movie ID is already added to a list.
      *
-     * @param $list_id
-     * @param $movie_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getItemStatus($list_id, $movie_id, array $options = array(), array $headers = array())
+    public function getItemStatus()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -63,14 +55,10 @@ class Lists
     /**
      * Get the cast information for a specific list id.
      *
-     * @param $list_id
-     * @param $media_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function addMediaToList($list_id, $media_id, array $options = array(), array $headers = array())
+    public function addMediaToList()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -78,14 +66,10 @@ class Lists
     /**
      * Get the images (posters and backdrops) for a specific list id.
      *
-     * @param $list_id
-     * @param $media_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function removeMediaFromList($list_id, $media_id, array $options = array(), array $headers = array())
+    public function removeMediaFromList()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -93,13 +77,10 @@ class Lists
     /**
      * Get the plot keywords for a specific list id.
      *
-     * @param $list_id
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function deleteList($list_id, array $options = array(), array $headers = array())
+    public function deleteList()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }

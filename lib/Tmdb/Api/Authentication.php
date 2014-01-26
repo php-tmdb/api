@@ -24,12 +24,10 @@ class Authentication
      * You can generate any number of request tokens but they will expire after 60 minutes.
      * As soon as a valid session id has been created the token will be destroyed.
      *
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getNewToken(array $options = array(), array $headers = array())
+    public function getNewToken()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -38,13 +36,10 @@ class Authentication
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param $request_token
-     * @param $options array
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getNewSession($request_token, array $options = array(), array $headers = array())
+    public function getNewSession()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }
@@ -60,12 +55,10 @@ class Authentication
      *
      * If a guest session is not used for the first time within 24 hours, it will be automatically discarded.
      *
-     * @param array $options
-     * @param array $headers
      * @throws NotImplementedException
      * @return mixed
      */
-    public function getNewGuestSession(array $options = array(), array $headers = array())
+    public function getNewGuestSession()
     {
         throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
     }

@@ -236,12 +236,9 @@ class Movies
     /**
      * This method lets users get the status of whether or not the movie has been rated or added to their favourite or watch lists. A valid session id is required.
      *
-     * @param $movie_id
-     * @param array $options
-	 * @param array $headers
      * @throws \Tmdb\Exception\NotImplementedException
      */
-    public function getAccountStates($movie_id, array $options = array(), array $headers = array())
+    public function getAccountStates()
     {
         throw new NotImplementedException('TMDB account sessions have not been implemented yet!');
     }
@@ -249,12 +246,9 @@ class Movies
     /**
      * TThis method lets users rate a movie. A valid session id or guest session id is required.
      *
-     * @param $movie_id
-     * @param array $options
-	 * @param array $headers
      * @throws \Tmdb\Exception\NotImplementedException
      */
-    public function rateMovie($movie_id, array $options = array(), array $headers = array())
+    public function rateMovie()
     {
         throw new NotImplementedException('TMDB account sessions have not been implemented yet!');
     }
