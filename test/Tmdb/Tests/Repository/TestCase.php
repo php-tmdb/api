@@ -22,7 +22,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     abstract protected function getRepositoryClass();
 
-    protected function getRepositoryWithMockedClient()
+    protected function getRepositoryWithMockedHttpClient()
     {
         $class = $this->getRepositoryClass();
 
@@ -35,7 +35,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             $client  = $this->getMockedTmdbClient();
         }
 
-        return $this->getMock($this->getRepositoryClass(), array('getApi'), array($client));
+        return $this->getMock($this->getRepositoryClass(), array_merge(array('getApi'), $methods), array($client));
     }
 
     protected function getMockedTmdbClient()

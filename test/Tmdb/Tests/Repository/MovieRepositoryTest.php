@@ -21,14 +21,19 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldLoadMovie()
     {
-        $repository = $this->getRepositoryWithMockedClient();
-
-        $repository->getClient()->getHttpClient()->getClient()
-            ->expects($this->once())
-            ->method('send')
-        ;
+        $repository = $this->getRepositoryWithMockedHttpClient();
 
         $repository->load(self::MOVIE_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetLatestMovie()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getLatest();
     }
 
     protected function getApiClass()

@@ -16,10 +16,16 @@ use Tmdb\ApiToken;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
+    private $_api = null;
+
     abstract protected function getApiClass();
 
     protected function getApiMock()
     {
+        if ($this->_api) {
+            return $this->_api;
+        }
+
         $token      = new ApiToken('abcdef');
 
         $httpClient = $this->getMock('Guzzle\Http\Client', array('send'));
