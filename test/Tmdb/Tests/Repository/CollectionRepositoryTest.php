@@ -33,7 +33,7 @@ class CollectionRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        $repository->load(self::COLLECTION_ID);
+        $repository->getImages(self::COLLECTION_ID);
     }
 
     protected function getApiClass()
