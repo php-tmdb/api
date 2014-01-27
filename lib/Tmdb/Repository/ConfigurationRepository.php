@@ -26,7 +26,7 @@ class ConfigurationRepository extends AbstractRepository {
     public function load(array $headers = array()) {
         $data = $this->getApi()->getConfiguration($headers);
 
-        return $this->factory->create($data);
+        return $this->getFactory()->create($data);
     }
 
     /**

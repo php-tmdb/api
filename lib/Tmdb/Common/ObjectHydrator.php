@@ -40,15 +40,15 @@ class ObjectHydrator {
                         sprintf('set_%s', $k)
                     );
 
-                    if (!method_exists($object, $method)) {
+                    if (!is_callable(array($object, $method))) {
                         throw new RuntimeException(sprintf(
                             'Trying to call method "%s" on "%s" but it does not exist or is private.',
                             $method,
                             get_class($object)
                         ));
+                    }else{
+                        $object->$method($v);
                     }
-
-                    $object->$method($v);
                 }
             }
         }
@@ -74,22 +74,6 @@ class ObjectHydrator {
                         )
                     )
                 )
-            )
-        );
-    }
-
-    /**
-     * Transforms a camelCasedString to an under_scored_one
-     *
-     * @see https://gist.github.com/troelskn/751517
-     *
-     * @param $camelized
-     * @return string
-     */
-    private function uncamelize($camelized) {
-        return implode('_',
-            array_map('strtolower',
-                preg_split('/([A-Z]{1}[^A-Z]*)/', $camelized, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY)
             )
         );
     }

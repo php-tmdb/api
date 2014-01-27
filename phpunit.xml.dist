@@ -33,7 +33,5 @@
         <log type="coverage-html" target="phpunit/coverage" charset="UTF-8"
              yui="true" highlight="true"
              lowUpperBound="35" highLowerBound="70"/>
-        <log type="coverage-clover" target="phpunit/clover.xml"/>
-        <log type="junit" target="phpunit/logs/junit.xml" logIncompleteSkipped="false"/>
     </logging>
 </phpunit>

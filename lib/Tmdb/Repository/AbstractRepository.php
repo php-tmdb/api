@@ -79,16 +79,6 @@ abstract class AbstractRepository {
     }
 
     /**
-     * @param null|\Tmdb\Factory\FactoryInterface $factory
-     * @return $this
-     */
-    public function setFactory($factory)
-    {
-        $this->factory = $factory;
-        return $this;
-    }
-
-    /**
      * Return the API Class
      *
      * @return ApiInterface

@@ -24,25 +24,6 @@ use Tmdb\Model\Tv;
 
 class DiscoverRepository extends AbstractRepository {
     /**
-     * @var MovieFactory
-     */
-    private $movieFactory;
-
-    /**
-     * @var TvFactory
-     */
-    private $tvFactory;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->movieFactory  = new MovieFactory();
-        $this->tvFactory     = new TvFactory();
-    }
-
-    /**
      * Discover movies by different types of data like average rating, number of votes, genres and certifications.
      *
      * @param DiscoverMoviesQuery $query
@@ -96,31 +77,11 @@ class DiscoverRepository extends AbstractRepository {
     }
 
     /**
-     * @param \Tmdb\Factory\MovieFactory $movieFactory
-     * @return $this
-     */
-    public function setMovieFactory($movieFactory)
-    {
-        $this->movieFactory = $movieFactory;
-        return $this;
-    }
-
-    /**
      * @return \Tmdb\Factory\MovieFactory
      */
     public function getMovieFactory()
     {
-        return $this->movieFactory;
-    }
-
-    /**
-     * @param \Tmdb\Factory\TvFactory $tvFactory
-     * @return $this
-     */
-    public function setTvFactory($tvFactory)
-    {
-        $this->tvFactory = $tvFactory;
-        return $this;
+        return new MovieFactory();
     }
 
     /**
@@ -128,6 +89,6 @@ class DiscoverRepository extends AbstractRepository {
      */
     public function getTvFactory()
     {
-        return $this->tvFactory;
+        return new TvFactory();
     }
 }

@@ -36,6 +36,46 @@ class MovieRepositoryTest extends TestCase
         $repository->getLatest();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetUpcoming()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getUpcoming();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetNowPlaying()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getNowPlaying();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetPopular()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getPopular();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTopRated()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getLatest();
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Movies';
