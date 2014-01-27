@@ -33,7 +33,7 @@ class GenreFactory extends AbstractFactory
         $collection = new Genres();
 
         foreach($data as $item) {
-            $collection->add(null, $this->create($item));
+            $collection->add(null, $this->create((array) $item));
         }
 
         return $collection;

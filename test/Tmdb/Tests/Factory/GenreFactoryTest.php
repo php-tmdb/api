@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Factory;
 
+use Tmdb\Factory\GenreFactory;
+
 class GenreFactoryTest extends TestCase
 {
     const GENRE_ID = 28;
@@ -19,15 +21,26 @@ class GenreFactoryTest extends TestCase
     /**
      * @test
      */
-    public function shouldConstructGenre()
+    public function shouldConstructGenres()
     {
-        $object = $this->loadByFile(
-            'file.json'
-        );
+        $factory = $this->getFactory();
+        $data    = (array) $this->loadByFile('genre/result.json');
 
-        $this->assertInstanceOf('Tmdb\Model\Genre', $object);
-        $this->assertEquals('28', $object->getId());
-        $this->assertEquals('Action', $object->getName());
+        $collection = $factory->createCollection($data['genres']);
+
+        $this->assertInstanceOf('Tmdb\Model\Collection\Genres', $collection);
+
+        $filteredGenres = $collection->filterId(self::GENRE_ID);
+
+        // @todo actually get the first
+        foreach($filteredGenres as $filteredGenre) {
+            $this->assertInstanceOf('Tmdb\Model\Genre', $filteredGenre);
+        }
+    }
+
+    protected function getFactory()
+    {
+        return new GenreFactory();
     }
 
     protected function getFactoryClass()

@@ -18,13 +18,21 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function loadByFile($file)
     {
-        $class   = $this->getFactoryClass();
-        $factory = new $class();
+        return json_decode(
+            file_get_contents(
+                sprintf(
+                    '%s/%s',
+                    'test/Tmdb/Tests/Resources/',
+                    $file
+                )
+            )
+        );
+    }
 
-        //$data = json_decode(file_get_contents($file));
-        $data = array();
-
-        return $factory->create($data);
+    protected function getFactory()
+    {
+        $class = $this->getFactoryClass();
+        return new $class();
     }
 
     abstract protected function getFactoryClass();
