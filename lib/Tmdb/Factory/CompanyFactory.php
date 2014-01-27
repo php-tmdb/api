@@ -20,20 +20,20 @@ class CompanyFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public function create(array $data = array())
     {
-        return parent::hydrate(new Company(), $data);
+        return $this->hydrate(new Company(), $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public function createCollection(array $data = array())
     {
         $collection = new GenericCollection();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;

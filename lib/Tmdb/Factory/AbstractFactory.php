@@ -15,15 +15,16 @@ namespace Tmdb\Factory;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Factory\Common\GenericCollectionFactory;
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Common\GenericCollection;
 
-abstract class AbstractFactory {
+abstract class AbstractFactory implements FactoryInterface {
     /**
      * Convert an array to an hydrated object
      *
      * @param array $data
      * @return AbstractModel
      */
-    abstract public static function create(array $data = array());
+    abstract public function create(array $data = array());
 
     /**
      * Convert an array with an collection of items to an hydrated object collection
@@ -31,7 +32,29 @@ abstract class AbstractFactory {
      * @param array $data
      * @return GenericCollectionFactory
      */
-    abstract public static function createCollection(array $data = array());
+    abstract public function createCollection(array $data = array());
+
+    /**
+     * Create a generic collection of data and map it on the class by it's static parameter $_properties
+     *
+     * @param array $data
+     * @param $class
+     * @return GenericCollection
+     */
+    protected function createGenericCollection(array $data = array(), $class)
+    {
+        if (is_object($class)) {
+            $class = get_class($class);
+        }
+
+        $collection = new GenericCollection();
+
+        foreach($data as $item) {
+            $collection->add(null, $this->hydrate(new $class(), $item));
+        }
+
+        return $collection;
+    }
 
     /**
      * Hydrate the object with data
@@ -40,7 +63,7 @@ abstract class AbstractFactory {
      * @param array $data
      * @return AbstractModel
      */
-    public function hydrate(AbstractModel $object, $data = array())
+    protected function hydrate(AbstractModel $object, $data = array())
     {
         return ObjectHydrator::hydrate($object, $data);
     }

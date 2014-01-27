@@ -10,15 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Repository;
+namespace Tmdb\Factory;
 
-// @todo
-class FindRepository extends AbstractRepository {
-    public function getApi()
-    {
-    }
-
-    public function getFactory()
-    {
-    }
+interface FactoryInterface {
+    function create();
 }

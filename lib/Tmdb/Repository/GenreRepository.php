@@ -34,7 +34,7 @@ class GenreRepository extends AbstractRepository {
      *
      * @param array $parameters
      * @param array $headers
-     * @return Genre[]
+     * @return GenericCollection|Genre[]
      */
     public function loadCollection(array $parameters = array(), array $headers = array())
     {
@@ -47,7 +47,7 @@ class GenreRepository extends AbstractRepository {
      * Create an collection of an array
      *
      * @param $data
-     * @return Genre[]
+     * @return GenericCollection|Genre[]
      */
     private function createCollection($data){
         $collection = new GenericCollection();
@@ -57,7 +57,7 @@ class GenreRepository extends AbstractRepository {
         }
 
         foreach($data as $item) {
-            $collection->add(null, GenreFactory::create($item));
+            $collection->add(null, $this->getFactory()->create($item));
         }
 
         return $collection;
@@ -71,5 +71,13 @@ class GenreRepository extends AbstractRepository {
     public function getApi()
     {
         return $this->getClient()->getGenresApi();
+    }
+
+    /**
+     * @return GenreFactory
+     */
+    public function getFactory()
+    {
+        return new GenreFactory();
     }
 }

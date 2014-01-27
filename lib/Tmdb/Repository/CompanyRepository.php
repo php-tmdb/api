@@ -19,6 +19,7 @@ use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
 
 class CompanyRepository extends AbstractRepository {
+
     /**
      * Load a company with the given identifier
      *
@@ -30,9 +31,8 @@ class CompanyRepository extends AbstractRepository {
     public function load($id, array $parameters = array(), array $headers = array()) {
         $data = $this->getApi()->getCompany($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
 
-        return CompanyFactory::create($data);
+        return $this->getFactory()->create($data);
     }
-
 
     /**
      * Get the list of movies associated with a particular company.
@@ -57,6 +57,14 @@ class CompanyRepository extends AbstractRepository {
     public function getApi()
     {
         return $this->getClient()->getCompaniesApi();
+    }
+
+    /**
+     * @return CompanyFactory
+     */
+    public function getFactory()
+    {
+        return new CompanyFactory();
     }
 
     /**

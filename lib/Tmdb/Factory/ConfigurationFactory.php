@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Configuration;
 
 class ConfigurationFactory extends AbstractFactory
@@ -20,25 +19,18 @@ class ConfigurationFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public function create(array $data = array())
     {
         $config = new Configuration();
 
-        return parent::hydrate($config, $data);
+        return $this->hydrate($config, $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public function createCollection(array $data = array())
     {
-        $collection = new GenericCollection();
-
-        foreach($data as $item) {
-            $collection->add(null, self::create($item));
-        }
-
-        return $collection;
+        return null;
     }
-
-} 
+}

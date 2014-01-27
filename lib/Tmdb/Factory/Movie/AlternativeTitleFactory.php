@@ -21,22 +21,22 @@ class AlternativeTitleFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public function create(array $data = array())
     {
         $title = new AlternativeTitle();
 
-        return $title->hydrate($data);
+        return $this->hydrate($title, $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public function createCollection(array $data = array())
     {
         $collection = new GenericCollection();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;

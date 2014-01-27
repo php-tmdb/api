@@ -45,22 +45,7 @@ class TvRepository extends AbstractRepository {
 
         $data = $this->getApi()->getTvshow($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
 
-        return TvFactory::create($data);
-    }
-
-    /**
-     * If you obtained an tv model which is not completely hydrated, you can use this function.
-     *
-     * @todo store the previous given parameters so the same conditions apply to a refresh, and merge the new set
-     *
-     * @param Tv $tv
-     * @param array $parameters
-     * @param array $headers
-     * @return null|\Tmdb\Model\AbstractModel
-     */
-    public function refresh(Tv $tv, array $parameters = array(), array $headers = array())
-    {
-        return $this->load($tv->getId(), $parameters, $headers);
+        return $this->getFactory()->create($data);
     }
 
     /**
@@ -73,6 +58,13 @@ class TvRepository extends AbstractRepository {
         return $this->getClient()->getTvApi();
     }
 
+    /**
+     * @return TvFactory
+     */
+    public function getFactory()
+    {
+        return new TvFactory();
+    }
 
     /**
      * Get the list of popular tvs on The Tv Database. This list refreshes every day.
@@ -121,5 +113,4 @@ class TvRepository extends AbstractRepository {
 
         return $collection;
     }
-
 }

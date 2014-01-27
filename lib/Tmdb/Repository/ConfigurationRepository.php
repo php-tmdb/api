@@ -26,7 +26,7 @@ class ConfigurationRepository extends AbstractRepository {
     public function load(array $headers = array()) {
         $data = $this->getApi()->getConfiguration($headers);
 
-        return ConfigurationFactory::create($data);
+        return $this->factory->create($data);
     }
 
     /**
@@ -39,4 +39,11 @@ class ConfigurationRepository extends AbstractRepository {
         return $this->getClient()->getConfigurationApi();
     }
 
+    /**
+     * @return ConfigurationFactory
+     */
+    public function getFactory()
+    {
+        return new ConfigurationFactory();
+    }
 }

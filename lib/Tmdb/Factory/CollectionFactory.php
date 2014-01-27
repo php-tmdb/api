@@ -12,48 +12,105 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Model\Common\GenericCollection;
+
 class CollectionFactory extends AbstractFactory
 {
+    /**
+     * @var MovieFactory
+     */
+    private $movieFactory;
+
+    /**
+     * @var ImageFactory
+     */
+    private $imageFactory;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->movieFactory = new MovieFactory();
+        $this->imageFactory = new ImageFactory();
+    }
+
     /**
      * {@inheritdoc}
      * @return \Tmdb\Model\Collection
      */
-    public static function create(array $data = array())
+    public function create(array $data = array())
     {
         $collection = new \Tmdb\Model\Collection();
 
         if (array_key_exists('parts', $data)) {
             $collection->setParts(
-                MovieFactory::createCollection($data['parts'])
+                $this->getMovieFactory()->createCollection($data['parts'])
             );
         }
 
         if (array_key_exists('backdrop_path', $data)) {
-            $collection->setBackdrop(ImageFactory::createFromPath($data['backdrop_path'], 'backdrop_path'));
+            $collection->setBackdrop($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
         }
 
         if (array_key_exists('images', $data)) {
-            $collection->setImages(ImageFactory::createCollectionFromMovie($data['images']));
+            $collection->setImages($this->getImageFactory()->createCollectionFromMovie($data['images']));
         }
 
         if (array_key_exists('poster_path', $data)) {
-            $collection->setPoster(ImageFactory::createFromPath($data['poster_path'], 'poster_path'));
+            $collection->setPoster($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
-        return parent::hydrate($collection, $data);
+        return $this->hydrate($collection, $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public function createCollection(array $data = array())
     {
-        $collection = new \Tmdb\Model\Common\Collection();
+        $collection = new GenericCollection();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;
+    }
+
+    /**
+     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\MovieFactory $movieFactory
+     * @return $this
+     */
+    public function setMovieFactory($movieFactory)
+    {
+        $this->movieFactory = $movieFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\MovieFactory
+     */
+    public function getMovieFactory()
+    {
+        return $this->movieFactory;
     }
 }

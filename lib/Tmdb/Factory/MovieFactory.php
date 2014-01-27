@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Factory\Common\GenericCollectionFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
@@ -22,9 +21,40 @@ use Tmdb\Model\Movie;
 
 class MovieFactory extends AbstractFactory {
     /**
+     * @var People\CastFactory
+     */
+    private $castFactory;
+
+    /**
+     * @var People\CrewFactory
+     */
+    private $crewFactory;
+
+    /**
+     * @var GenreFactory
+     */
+    private $genreFactory;
+
+    /**
+     * @var ImageFactory
+     */
+    private $imageFactory;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->castFactory  = new CastFactory();
+        $this->crewFactory  = new CrewFactory();
+        $this->genreFactory = new GenreFactory();
+        $this->imageFactory = new ImageFactory();
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public function create(array $data = array())
     {
         if (!$data) {
             return null;
@@ -34,60 +64,60 @@ class MovieFactory extends AbstractFactory {
 
         if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
             $movie->setAlternativeTitles(
-                GenericCollectionFactory::createCollection($data['alternative_titles']['titles'], new Movie\AlternativeTitle())
+                $this->createGenericCollection($data['alternative_titles']['titles'], new Movie\AlternativeTitle())
             );
         }
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits'])) {
-                $movie->getCredits()->setCast(CastFactory::createCollection($data['credits']['cast']));
+                $movie->getCredits()->setCast($this->getCastFactory()->createCollection($data['credits']['cast']));
             }
 
             if (array_key_exists('crew', $data['credits'])) {
-                $movie->getCredits()->setCrew(CrewFactory::createCollection($data['credits']['crew']));
+                $movie->getCredits()->setCrew($this->getCrewFactory()->createCollection($data['credits']['crew']));
             }
         }
 
         /** Genres */
         if (array_key_exists('genres', $data)) {
-            $movie->setGenres(GenreFactory::createCollection($data['genres']));
+            $movie->setGenres($this->getGenreFactory()->createCollection($data['genres']));
         }
 
         /** Images */
         if (array_key_exists('backdrop_path', $data)) {
-            $movie->setBackdrop(ImageFactory::createFromPath($data['backdrop_path'], 'backdrop_path'));
+            $movie->setBackdrop($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
         }
 
         if (array_key_exists('images', $data)) {
-            $movie->setImages(ImageFactory::createCollectionFromMovie($data['images']));
+            $movie->setImages($this->getImageFactory()->createCollectionFromMovie($data['images']));
         }
 
         if (array_key_exists('poster_path', $data)) {
-            $movie->setPoster(ImageFactory::createFromPath($data['poster_path'], 'poster_path'));
+            $movie->setPoster($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
         /** Keywords */
         if (array_key_exists('keywords', $data)) {
-            $movie->setKeywords(GenericCollectionFactory::createCollection($data['keywords']['keywords'], new Movie\Keyword()));
+            $movie->setKeywords($this->createGenericCollection($data['keywords']['keywords'], new Movie\Keyword()));
         }
 
         if (array_key_exists('releases', $data)) {
-            $movie->setReleases(GenericCollectionFactory::createCollection($data['releases']['countries'], new Movie\Release()));
+            $movie->setReleases($this->createGenericCollection($data['releases']['countries'], new Movie\Release()));
         }
 
         /**
          * @TODO actually implement more providers? ( Can't seem to find any quicktime related trailers anyways? ). For now KISS
          */
         if (array_key_exists('trailers', $data)) {
-            $movie->setTrailers(GenericCollectionFactory::createCollection($data['trailers']['youtube'], new Youtube()));
+            $movie->setTrailers($this->createGenericCollection($data['trailers']['youtube'], new Youtube()));
         }
 
         if (array_key_exists('translations', $data)) {
-            $movie->setTranslations(GenericCollectionFactory::createCollection($data['translations']['translations'], new Translation()));
+            $movie->setTranslations($this->createGenericCollection($data['translations']['translations'], new Translation()));
         }
 
         if (array_key_exists('similar_movies', $data)) {
-            $movie->setSimilarMovies(self::createCollection($data['similar_movies']['results']));
+            $movie->setSimilarMovies($this->createCollection($data['similar_movies']['results']));
         }
 
 //        if (array_key_exists('reviews', $data)) {
@@ -99,13 +129,13 @@ class MovieFactory extends AbstractFactory {
 //        if (array_key_exists('changes', $data)) {
 //        }
 
-        return parent::hydrate($movie, $data);
+        return $this->hydrate($movie, $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public function createCollection(array $data = array())
     {
         $collection = new GenericCollection();
 
@@ -114,9 +144,83 @@ class MovieFactory extends AbstractFactory {
         }
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;
     }
+
+    /**
+     * @param \Tmdb\Factory\People\CastFactory $castFactory
+     * @return $this
+     */
+    public function setCastFactory($castFactory)
+    {
+        $this->castFactory = $castFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\People\CastFactory
+     */
+    public function getCastFactory()
+    {
+        return $this->castFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\People\CrewFactory $crewFactory
+     * @return $this
+     */
+    public function setCrewFactory($crewFactory)
+    {
+        $this->crewFactory = $crewFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\People\CrewFactory
+     */
+    public function getCrewFactory()
+    {
+        return $this->crewFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\GenreFactory $genreFactory
+     * @return $this
+     */
+    public function setGenreFactory($genreFactory)
+    {
+        $this->genreFactory = $genreFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\GenreFactory
+     */
+    public function getGenreFactory()
+    {
+        return $this->genreFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
+    }
+
+
 }

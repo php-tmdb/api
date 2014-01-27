@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Repository;
 
+use Tmdb\Api\People;
 use Tmdb\Factory\People\PeopleFactory;
 use Tmdb\Model\Person;
 use Tmdb\Model\Person\QueryParameter\AppendToResponse;
@@ -42,7 +43,7 @@ class PeopleRepository extends AbstractRepository {
 
         $data = $this->getApi()->getPerson($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
 
-        return PeopleFactory::create($data);
+        return $this->getFactory()->create($data);
     }
 
     /**
@@ -53,5 +54,13 @@ class PeopleRepository extends AbstractRepository {
     public function getApi()
     {
         return $this->getClient()->getPeopleApi();
+    }
+
+    /**
+     * @return PeopleFactory
+     */
+    public function getFactory()
+    {
+        return new PeopleFactory();
     }
 }

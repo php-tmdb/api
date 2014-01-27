@@ -24,7 +24,7 @@ class ImageFactory extends AbstractFactory
      * @param string|null $key
      * @return Image
      */
-    public static function create(array $data = array(), $key = null)
+    public function create(array $data = array(), $key = null)
     {
         $type = self::resolveImageType($key);
 
@@ -34,7 +34,7 @@ class ImageFactory extends AbstractFactory
             );
         }
 
-        return parent::hydrate($type, $data);
+        return $this->hydrate($type, $data);
     }
 
     /**
@@ -46,9 +46,9 @@ class ImageFactory extends AbstractFactory
      * @param string $key
      * @return Image
      */
-    public static function createFromPath($path, $key)
+    public function createFromPath($path, $key)
     {
-        return parent::hydrate(
+        return $this->hydrate(
             self::resolveImageType($key),
             array('file_path' => $path)
         );
@@ -59,7 +59,7 @@ class ImageFactory extends AbstractFactory
      *
      * @return string[]
      */
-    public static function getPossibleKeys()
+    public function getPossibleKeys()
     {
         return array(
             'poster',
@@ -129,12 +129,12 @@ class ImageFactory extends AbstractFactory
      * @param array $data
      * @return Images
      */
-    public static function createCollection(array $data = array())
+    public function createCollection(array $data = array())
     {
         $collection = new Images();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;
@@ -146,14 +146,14 @@ class ImageFactory extends AbstractFactory
      * @param array $data
      * @return Images
      */
-    public static function createImageCollection(array $data = array())
+    public function createImageCollection(array $data = array())
     {
         $collection = new Images();
 
         foreach($data as $format => $formatCollection) {
             foreach($formatCollection as $item) {
                 if (array_key_exists($format, Image::$_formats)) {
-                    $item = self::create($item, $format);
+                    $item = $this->create($item, $format);
 
                     $collection->add(null, $item);
                 }
@@ -169,9 +169,9 @@ class ImageFactory extends AbstractFactory
      * @param array $data
      * @return Images
      */
-    public static function createCollectionFromMovie(array $data = array())
+    public function createCollectionFromMovie(array $data = array())
     {
-        return self::createImageCollection($data);
+        return $this->createImageCollection($data);
     }
 
     /**
@@ -180,9 +180,9 @@ class ImageFactory extends AbstractFactory
      * @param array $data
      * @return Images
      */
-    public static function createCollectionFromTv(array $data = array())
+    public function createCollectionFromTv(array $data = array())
     {
-        return self::createImageCollection($data);
+        return $this->createImageCollection($data);
     }
 
     /**
@@ -191,9 +191,9 @@ class ImageFactory extends AbstractFactory
      * @param array $data
      * @return Images
      */
-    public static function createCollectionFromTvSeason(array $data = array())
+    public function createCollectionFromTvSeason(array $data = array())
     {
-        return self::createImageCollection($data);
+        return $this->createImageCollection($data);
     }
 
     /**
@@ -202,9 +202,9 @@ class ImageFactory extends AbstractFactory
      * @param array $data
      * @return Images
      */
-    public static function createCollectionFromTvEpisode(array $data = array())
+    public function createCollectionFromTvEpisode(array $data = array())
     {
-        return self::createImageCollection($data);
+        return $this->createImageCollection($data);
     }
 
     /**
@@ -213,9 +213,8 @@ class ImageFactory extends AbstractFactory
      * @param array $data
      * @return Images
      */
-    public static function createCollectionFromPeople(array $data = array())
+    public function createCollectionFromPeople(array $data = array())
     {
-        return self::createImageCollection($data);
+        return $this->createImageCollection($data);
     }
-
 }

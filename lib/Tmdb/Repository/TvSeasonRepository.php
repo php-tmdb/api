@@ -61,7 +61,7 @@ class TvSeasonRepository extends AbstractRepository {
 
         $data = $this->getApi()->getSeason($tvShow, $season, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
 
-        return TvSeasonFactory::create($data);
+        return $this->getFactory()->create($data);
     }
 
     /**
@@ -72,6 +72,14 @@ class TvSeasonRepository extends AbstractRepository {
     public function getApi()
     {
         return $this->getClient()->getTvSeasonApi();
+    }
+
+    /**
+     * @return TvSeasonFactory
+     */
+    public function getFactory()
+    {
+        return new TvSeasonFactory();
     }
 
     /**
@@ -90,10 +98,9 @@ class TvSeasonRepository extends AbstractRepository {
         }
 
         foreach($data as $item) {
-            $collection->add(null, TvSeasonFactory::create($item));
+            $collection->add(null, $this->getFactory()->create($item));
         }
 
         return $collection;
     }
-
 }

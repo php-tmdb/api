@@ -14,13 +14,13 @@ namespace Tmdb\Repository;
 
 use Tmdb\Api\ApiInterface;
 use Tmdb\Client;
+use Tmdb\Factory\FactoryInterface;
 use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 
 abstract class AbstractRepository {
 
-    protected $client = null;
-
-    protected $api = null;
+    protected $client  = null;
+    protected $api     = null;
 
     /**
      * Constructor
@@ -32,7 +32,7 @@ abstract class AbstractRepository {
      */
     public function __construct(Client $client)
     {
-        $this->client = $client;
+        $this->client  = $client;
     }
 
     /**
@@ -54,7 +54,7 @@ abstract class AbstractRepository {
     protected function parseQueryParameters(array $parameters = array())
     {
         foreach($parameters as $key => $candidate) {
-            if (is_object($candidate)) {
+            if (is_a($candidate, 'Tmdb\Model\Common\QueryParameter\QueryParameterInterface')) {
                 $interfaces = class_implements($candidate);
 
                 if (array_key_exists('Tmdb\Model\Common\QueryParameter\QueryParameterInterface', $interfaces)) {
@@ -79,9 +79,26 @@ abstract class AbstractRepository {
     }
 
     /**
+     * @param null|\Tmdb\Factory\FactoryInterface $factory
+     * @return $this
+     */
+    public function setFactory($factory)
+    {
+        $this->factory = $factory;
+        return $this;
+    }
+
+    /**
      * Return the API Class
      *
      * @return ApiInterface
      */
     abstract public function getApi();
-} 
+
+    /**
+     * Return the Factory Class
+     *
+     * @return FactoryInterface
+     */
+    abstract public function getFactory();
+}

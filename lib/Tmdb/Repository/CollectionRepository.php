@@ -41,7 +41,7 @@ class CollectionRepository extends AbstractRepository {
         }
 
         $data = $this->getApi()->getCollection($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
-        return CollectionFactory::create($data);
+        return $this->getFactory()->create($data);
     }
 
     /**
@@ -55,6 +55,22 @@ class CollectionRepository extends AbstractRepository {
     }
 
     /**
+     * @return CollectionFactory
+     */
+    public function getFactory()
+    {
+        return new CollectionFactory();
+    }
+
+    /**
+     * @return ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return new ImageFactory();
+    }
+
+    /**
      * Get all of the images for a particular collection by collection id.
      *
      * @param $id
@@ -64,7 +80,7 @@ class CollectionRepository extends AbstractRepository {
      */
     public function getImages($id, array $parameters = array(), array $headers = array())
     {
-        return ImageFactory::createCollection(
+        return $this->getImageFactory()->createCollection(
             $this->getApi()->getImages($id, $parameters, $headers)
         );
     }

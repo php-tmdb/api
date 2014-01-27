@@ -15,15 +15,21 @@ namespace Tmdb\Factory\Common;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * @deprecated
+ *
+ * Class GenericCollectionFactory
+ * @package Tmdb\Factory\Common
+ */
 class GenericCollectionFactory {
     /**
      * @param array $data
      * @param $class
      * @return GenericCollection
      */
-    public static function create(array $data = array(), $class)
+    public function create(array $data = array(), $class)
     {
-        return self::createCollection($data, $class);
+        return $this->createCollection($data, $class);
     }
 
     /**
@@ -31,7 +37,7 @@ class GenericCollectionFactory {
      * @param $class
      * @return GenericCollection
      */
-    public static function createCollection(array $data = array(), $class)
+    public function createCollection(array $data = array(), $class)
     {
         if (is_object($class)) {
             $class = get_class($class);

@@ -53,7 +53,7 @@ class MovieRepository extends AbstractRepository {
 
         $data = $this->getApi()->getMovie($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
 
-        return MovieFactory::create($data);
+        return $this->getFactory()->create($data);
     }
 
     /**
@@ -67,6 +67,16 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
+     * Return the Movie Factory
+     *
+     * @return MovieFactory
+     */
+    public function getFactory()
+    {
+        return new MovieFactory();
+    }
+
+    /**
      * Get the latest movie.
      *
      * @param array $options
@@ -74,7 +84,7 @@ class MovieRepository extends AbstractRepository {
      */
     public function getLatest(array $options = array())
     {
-        return MovieFactory::create(
+        return $this->getFactory()->create(
             $this->getApi()->getLatest($options)
         );
     }
@@ -145,10 +155,9 @@ class MovieRepository extends AbstractRepository {
         }
 
         foreach($data as $item) {
-            $collection->add(null, MovieFactory::create($item));
+            $collection->add(null, $this->getFactory()->create($item));
         }
 
         return $collection;
     }
-
 }

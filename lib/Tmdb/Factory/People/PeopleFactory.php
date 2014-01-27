@@ -21,9 +21,22 @@ use Tmdb\Model\Person;
 
 class PeopleFactory extends AbstractFactory {
     /**
+     * @var ImageFactory
+     */
+    private $imageFactory;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->imageFactory = new ImageFactory();
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array(), Person\AbstractMember $person = null)
+    public function create(array $data = array(), Person\AbstractMember $person = null)
     {
         if (!is_object($person)) {
             if (array_key_exists('character', $data)) {
@@ -41,20 +54,20 @@ class PeopleFactory extends AbstractFactory {
 
         /** Images */
         if (array_key_exists('images', $data)) {
-            $person->setImages(ImageFactory::createCollectionFromPeople($data['images']));
+            $person->setImages($this->getImageFactory()->createCollectionFromPeople($data['images']));
         }
 
         if (array_key_exists('profile_path', $data)) {
-            $person->setProfile(ImageFactory::createFromPath($data['profile_path'], 'profile_path'));
+            $person->setProfile($this->getImageFactory()->createFromPath($data['profile_path'], 'profile_path'));
         }
 
-        return parent::hydrate($person, $data);
+        return $this->hydrate($person, $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array(), Person\AbstractMember $person = null)
+    public function createCollection(array $data = array(), Person\AbstractMember $person = null)
     {
         $collection = new GenericCollection();
 
@@ -63,9 +76,27 @@ class PeopleFactory extends AbstractFactory {
         }
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item, $person));
+            $collection->add(null, $this->create($item, $person));
         }
 
         return $collection;
+    }
+
+    /**
+     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
     }
 }

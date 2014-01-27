@@ -22,9 +22,40 @@ use Tmdb\Model\Tv\Season;
 
 class TvSeasonFactory extends AbstractFactory {
     /**
+     * @var People\CastFactory
+     */
+    private $castFactory;
+
+    /**
+     * @var People\CrewFactory
+     */
+    private $crewFactory;
+
+    /**
+     * @var ImageFactory
+     */
+    private $imageFactory;
+
+    /**
+     * @var TvEpisodeFactory
+     */
+    private $tvEpisodeFactory;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->castFactory      = new CastFactory();
+        $this->crewFactory      = new CrewFactory();
+        $this->imageFactory     = new ImageFactory();
+        $this->tvEpisodeFactory = new TvEpisodeFactory();
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public function create(array $data = array())
     {
         if (!$data) {
             return null;
@@ -34,45 +65,117 @@ class TvSeasonFactory extends AbstractFactory {
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits'])) {
-                $tvSeason->getCredits()->setCast(CastFactory::createCollection($data['credits']['cast'], new CastMember()));
+                $tvSeason->getCredits()->setCast($this->getCastFactory()->createCollection($data['credits']['cast'], new CastMember()));
             }
 
             if (array_key_exists('crew', $data['credits'])) {
-                $tvSeason->getCredits()->setCrew(CrewFactory::createCollection($data['credits']['crew'], new CrewMember()));
+                $tvSeason->getCredits()->setCrew($this->getCrewFactory()->createCollection($data['credits']['crew'], new CrewMember()));
             }
         }
 
         /** External ids */
         if (array_key_exists('external_ids', $data)) {
             $tvSeason->setExternalIds(
-                parent::hydrate(new ExternalIds(), $data['external_ids'])
+                $this->hydrate(new ExternalIds(), $data['external_ids'])
             );
         }
 
         /** Images */
         if (array_key_exists('images', $data)) {
-            $tvSeason->setImages(ImageFactory::createCollectionFromTv($data['images']));
+            $tvSeason->setImages($this->getImageFactory()->createCollectionFromTv($data['images']));
         }
 
         /** Episodes */
         if (array_key_exists('episodes', $data)) {
-            $tvSeason->setEpisodes(TvEpisodeFactory::createCollection($data['episodes']));
+            $tvSeason->setEpisodes($this->getTvEpisodeFactory()->createCollection($data['episodes']));
         }
 
-        return parent::hydrate($tvSeason, $data);
+        return $this->hydrate($tvSeason, $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public function createCollection(array $data = array())
     {
         $collection = new GenericCollection();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;
+    }
+
+    /**
+     * @param \Tmdb\Factory\People\CastFactory $castFactory
+     * @return $this
+     */
+    public function setCastFactory($castFactory)
+    {
+        $this->castFactory = $castFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\People\CastFactory
+     */
+    public function getCastFactory()
+    {
+        return $this->castFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\People\CrewFactory $crewFactory
+     * @return $this
+     */
+    public function setCrewFactory($crewFactory)
+    {
+        $this->crewFactory = $crewFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\People\CrewFactory
+     */
+    public function getCrewFactory()
+    {
+        return $this->crewFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\TvEpisodeFactory $tvEpisodeFactory
+     * @return $this
+     */
+    public function setTvEpisodeFactory($tvEpisodeFactory)
+    {
+        $this->tvEpisodeFactory = $tvEpisodeFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\TvEpisodeFactory
+     */
+    public function getTvEpisodeFactory()
+    {
+        return $this->tvEpisodeFactory;
     }
 }

@@ -22,9 +22,34 @@ use Tmdb\Model\Tv\Episode;
 
 class TvEpisodeFactory extends AbstractFactory {
     /**
+     * @var People\CastFactory
+     */
+    private $castFactory;
+
+    /**
+     * @var People\CrewFactory
+     */
+    private $crewFactory;
+
+    /**
+     * @var ImageFactory
+     */
+    private $imageFactory;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->castFactory  = new CastFactory();
+        $this->crewFactory  = new CrewFactory();
+        $this->imageFactory = new ImageFactory();
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array())
+    public function create(array $data = array())
     {
         if (!$data) {
             return null;
@@ -34,40 +59,100 @@ class TvEpisodeFactory extends AbstractFactory {
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits'])) {
-                $tvEpisode->getCredits()->setCast(CastFactory::createCollection($data['credits']['cast'], new CastMember()));
+                $tvEpisode->getCredits()->setCast(
+                    $this->getCastFactory()->createCollection($data['credits']['cast'],
+                        new CastMember())
+                );
             }
 
             if (array_key_exists('crew', $data['credits'])) {
-                $tvEpisode->getCredits()->setCrew(CrewFactory::createCollection($data['credits']['crew'], new CrewMember()));
+                $tvEpisode->getCredits()->setCrew(
+                    $this->getCrewFactory()->createCollection($data['credits']['crew'],
+                    new CrewMember())
+                );
             }
         }
 
         /** External ids */
         if (array_key_exists('external_ids', $data)) {
             $tvEpisode->setExternalIds(
-                parent::hydrate(new ExternalIds(), $data['external_ids'])
+                $this->hydrate(new ExternalIds(), $data['external_ids'])
             );
         }
 
         /** Images */
         if (array_key_exists('images', $data)) {
-            $tvEpisode->setImages(ImageFactory::createCollectionFromTv($data['images']));
+            $tvEpisode->setImages($this->getImageFactory()->createCollectionFromTv($data['images']));
         }
 
-        return parent::hydrate($tvEpisode, $data);
+        return $this->hydrate($tvEpisode, $data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function createCollection(array $data = array())
+    public function createCollection(array $data = array())
     {
         $collection = new GenericCollection();
 
         foreach($data as $item) {
-            $collection->add(null, self::create($item));
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;
+    }
+
+    /**
+     * @param \Tmdb\Factory\People\CastFactory $castFactory
+     * @return $this
+     */
+    public function setCastFactory($castFactory)
+    {
+        $this->castFactory = $castFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\People\CastFactory
+     */
+    public function getCastFactory()
+    {
+        return $this->castFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\People\CrewFactory $crewFactory
+     * @return $this
+     */
+    public function setCrewFactory($crewFactory)
+    {
+        $this->crewFactory = $crewFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\People\CrewFactory
+     */
+    public function getCrewFactory()
+    {
+        return $this->crewFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
     }
 }

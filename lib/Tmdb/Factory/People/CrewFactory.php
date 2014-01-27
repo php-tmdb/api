@@ -19,7 +19,7 @@ class CrewFactory extends PeopleFactory
     /**
      * {@inheritdoc}
      */
-    public static function create(array $data = array(), $person = null)
+    public function create(array $data = array(), $person = null)
     {
         return parent::create($data, $person);
     }
@@ -28,7 +28,7 @@ class CrewFactory extends PeopleFactory
      * {@inheritdoc}
      * @param \Tmdb\Model\Tv\Person\CrewMember $person
      */
-    public static function createCollection(array $data = array(), $person = null)
+    public function createCollection(array $data = array(), $person = null)
     {
         $collection = new Crew();
 

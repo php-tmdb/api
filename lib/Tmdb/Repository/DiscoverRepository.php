@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Repository;
 
+use Tmdb\Exception\NotImplementedException;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\TvFactory;
@@ -20,7 +21,27 @@ use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
 
 use Tmdb\Model\Tv;
+
 class DiscoverRepository extends AbstractRepository {
+    /**
+     * @var MovieFactory
+     */
+    private $movieFactory;
+
+    /**
+     * @var TvFactory
+     */
+    private $tvFactory;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->movieFactory  = new MovieFactory();
+        $this->tvFactory     = new TvFactory();
+    }
+
     /**
      * Discover movies by different types of data like average rating, number of votes, genres and certifications.
      *
@@ -38,7 +59,7 @@ class DiscoverRepository extends AbstractRepository {
 
         $data = $this->getApi()->discoverMovies($query, $this->parseHeaders($headers));
 
-        return MovieFactory::createCollection($data);
+        return $this->getMovieFactory()->createCollection($data);
     }
 
     /**
@@ -51,7 +72,7 @@ class DiscoverRepository extends AbstractRepository {
     public function discoverTv(DiscoverTvQuery $query, array $headers = array()) {
         $data = $this->getApi()->discoverTv($query->toArray(), $this->parseHeaders($headers));
 
-        return TvFactory::createCollection($data);
+        return $this->getTvFactory()->createCollection($data);
     }
 
     /**
@@ -62,5 +83,51 @@ class DiscoverRepository extends AbstractRepository {
     public function getApi()
     {
         return $this->getClient()->getDiscoverApi();
+    }
+
+    /**
+     * Discover currently does not offer an factory
+     *
+     * @throws NotImplementedException
+     * @return null|\Tmdb\Factory\FactoryInterface
+     */
+    public function getFactory(){
+        throw new NotImplementedException('Discover does not support a generic factory.');
+    }
+
+    /**
+     * @param \Tmdb\Factory\MovieFactory $movieFactory
+     * @return $this
+     */
+    public function setMovieFactory($movieFactory)
+    {
+        $this->movieFactory = $movieFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\MovieFactory
+     */
+    public function getMovieFactory()
+    {
+        return $this->movieFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\TvFactory $tvFactory
+     * @return $this
+     */
+    public function setTvFactory($tvFactory)
+    {
+        $this->tvFactory = $tvFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\TvFactory
+     */
+    public function getTvFactory()
+    {
+        return $this->tvFactory;
     }
 }
