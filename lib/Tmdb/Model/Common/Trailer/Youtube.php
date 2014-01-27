@@ -113,6 +113,4 @@ class Youtube extends AbstractTrailer {
     {
         return $this->type;
     }
-
-
 }

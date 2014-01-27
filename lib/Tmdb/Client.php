@@ -306,5 +306,4 @@ class Client {
     {
         return $this->secure;
     }
-
 }

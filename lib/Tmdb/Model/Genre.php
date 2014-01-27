@@ -57,6 +57,4 @@ class Genre extends AbstractModel {
     {
         return $this->name;
     }
-
-
 }

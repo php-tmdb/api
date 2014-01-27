@@ -60,6 +60,4 @@ class AlternativeTitle extends AbstractModel implements CountryFilter {
     {
         return $this->title;
     }
-
-
 }

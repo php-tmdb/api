@@ -353,6 +353,4 @@ class Episode extends AbstractModel {
     {
         return $this->images;
     }
-
-
 }

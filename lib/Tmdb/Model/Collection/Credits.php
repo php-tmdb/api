@@ -70,6 +70,4 @@ class Credits {
     {
         return $this->crew;
     }
-
-
 }

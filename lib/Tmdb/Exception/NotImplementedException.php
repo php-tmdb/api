@@ -14,4 +14,4 @@ namespace Tmdb\Exception;
 
 class NotImplementedException extends \Exception {
 
-} 
+}

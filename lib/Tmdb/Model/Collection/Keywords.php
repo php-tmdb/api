@@ -52,4 +52,4 @@ class Keywords extends GenericCollection {
     {
         $this->data[] = $keyword;
     }
-} 
+}

@@ -15,6 +15,12 @@ namespace Tmdb\Common;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Utilisation class to hydrate objects.
+ *
+ * Class ObjectHydrator
+ * @package Tmdb\Common
+ */
 class ObjectHydrator {
     /**
      * Hydrate the object with data

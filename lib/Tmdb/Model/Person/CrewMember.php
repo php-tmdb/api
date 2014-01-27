@@ -62,5 +62,4 @@ class CrewMember extends AbstractMember implements PersonInterface {
     {
         return $this->job;
     }
-
 }

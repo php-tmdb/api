@@ -215,6 +215,4 @@ class Collection extends AbstractModel {
     {
         return $this->posterPath;
     }
-
-
 }

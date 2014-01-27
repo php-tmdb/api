@@ -35,4 +35,4 @@ class Cast extends People {
     public function getCastMember($id) {
         return parent::getPerson($id);
     }
-} 
+}

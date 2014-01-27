@@ -178,6 +178,4 @@ class Company extends AbstractModel {
     {
         return $this->parentCompany;
     }
-
-
 }

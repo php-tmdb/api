@@ -190,6 +190,4 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter {
     {
         return $this->width;
     }
-
-
 }

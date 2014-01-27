@@ -121,6 +121,4 @@ abstract class AbstractMember extends AbstractModel {
     {
         return $this->profile;
     }
-
-
 }

@@ -32,17 +32,17 @@ class Configuration extends AbstractModel {
     );
 
     /**
-     * @param GenericCollection $change_keys
+     * @param array $change_keys
      * @return $this
      */
-    public function setChangeKeys(GenericCollection $change_keys)
+    public function setChangeKeys(array $change_keys = array())
     {
         $this->change_keys = $change_keys;
         return $this;
     }
 
     /**
-     * @return GenericCollection
+     * @return array
      */
     public function getChangeKeys()
     {
@@ -50,17 +50,17 @@ class Configuration extends AbstractModel {
     }
 
     /**
-     * @param GenericCollection $images
+     * @param array $images
      * @return $this
      */
-    public function setImages(GenericCollection $images)
+    public function setImages(array $images = array())
     {
         $this->images = $images;
         return $this;
     }
 
     /**
-     * @return GenericCollection
+     * @return array
      */
     public function getImages()
     {

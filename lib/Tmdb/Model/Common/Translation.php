@@ -80,6 +80,4 @@ class Translation extends AbstractModel implements LanguageFilter {
     {
         return $this->name;
     }
-
-
 }

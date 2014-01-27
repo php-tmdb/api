@@ -15,4 +15,4 @@ namespace Tmdb\Model\Collection\People;
 interface PersonInterface {
     function getName();
     function getId();
-} 
+}

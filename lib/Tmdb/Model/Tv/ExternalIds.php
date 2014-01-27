@@ -139,6 +139,4 @@ class ExternalIds extends AbstractModel {
     {
         return $this->tvrageId;
     }
-
-
 }

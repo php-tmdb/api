@@ -66,6 +66,4 @@ class Change extends AbstractModel {
     {
         return $this->id;
     }
-
-
 }

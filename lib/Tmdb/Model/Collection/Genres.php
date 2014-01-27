@@ -52,4 +52,4 @@ class Genres extends GenericCollection {
     {
         $this->data[] = $genre;
     }
-} 
+}

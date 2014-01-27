@@ -53,4 +53,4 @@ class People extends GenericCollection {
     {
         $this->data[] = $person;
     }
-} 
+}

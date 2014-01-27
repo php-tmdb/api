@@ -12,6 +12,9 @@
  */
 namespace Tmdb\Model\Common;
 
+use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Filter\LanguageFilter;
+
 class SpokenLanguage extends AbstractModel implements LanguageFilter {
 
     private $iso6391;
@@ -57,6 +60,4 @@ class SpokenLanguage extends AbstractModel implements LanguageFilter {
     {
         return $this->name;
     }
-
-
 }

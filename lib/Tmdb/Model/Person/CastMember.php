@@ -82,5 +82,4 @@ class CastMember extends AbstractMember implements PersonInterface {
     {
         return $this->castId;
     }
-
 }

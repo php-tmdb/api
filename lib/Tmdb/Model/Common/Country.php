@@ -60,6 +60,4 @@ class Country extends AbstractModel implements CountryFilter {
     {
         return $this->name;
     }
-
-
 }

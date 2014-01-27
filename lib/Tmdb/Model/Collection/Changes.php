@@ -14,6 +14,4 @@ namespace Tmdb\Model\Common\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
 
-class Images extends GenericCollection {
-
-} 
+class Images extends GenericCollection {}

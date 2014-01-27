@@ -281,6 +281,4 @@ class Season extends AbstractModel {
     {
         return $this->images;
     }
-
-
 }

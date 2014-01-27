@@ -82,7 +82,4 @@ class CastMember extends AbstractMember {
     {
         return $this->creditId;
     }
-
-
-
 }

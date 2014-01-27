@@ -80,6 +80,4 @@ class Release extends AbstractModel implements CountryFilter {
     {
         return $this->releaseDate;
     }
-
-
 }

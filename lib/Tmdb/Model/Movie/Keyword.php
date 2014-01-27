@@ -59,6 +59,4 @@ class Keyword extends AbstractModel {
     {
         return $this->name;
     }
-
-
 }

@@ -27,7 +27,7 @@ class ImageHelper {
     /**
      * Load the image configuration collection
      *
-     * @return \Tmdb\Model\Common\Collection
+     * @return \Tmdb\Model\Common\GenericCollection
      */
     public function getImageConfiguration()
     {
@@ -52,6 +52,8 @@ class ImageHelper {
      *
      * @param Image $image
      * @param string $size
+     * @param int|null $width
+     * @param int|null $height
      * @return string
      */
     public function getHtml(Image $image, $size = 'original', $width = null, $height = null) {

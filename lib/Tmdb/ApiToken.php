@@ -42,5 +42,4 @@ class ApiToken {
     {
         return $this->apiToken;
     }
-
 }
