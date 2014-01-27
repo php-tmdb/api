@@ -68,6 +68,14 @@ class CompanyRepository extends AbstractRepository {
     }
 
     /**
+     * @return MovieFactory
+     */
+    public function getMovieFactory()
+    {
+        return new MovieFactory();
+    }
+
+    /**
      * Create an collection of an array
      *
      * @param $data
@@ -81,7 +89,7 @@ class CompanyRepository extends AbstractRepository {
         }
 
         foreach($data as $item) {
-            $collection->add(null, MovieFactory::create($item));
+            $collection->add(null, $this->getMovieFactory()->create($item));
         }
 
         return $collection;

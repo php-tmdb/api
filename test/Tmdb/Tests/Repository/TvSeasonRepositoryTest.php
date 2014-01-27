@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Repository;
 
+use Tmdb\Model\Tv;
+
 class TvSeasonRepositoryTest extends TestCase
 {
     const TV_ID     = 3572;
@@ -26,6 +28,47 @@ class TvSeasonRepositoryTest extends TestCase
 
         $repository->load(self::TV_ID, self::SEASON_ID);
     }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToLoadTvSeasonWithTvAndSeason()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Tv\Season();
+        $season->setId(self::SEASON_ID);
+
+        $repository->load($tv, $season);
+    }
+
+    /**
+     * @expectedException Tmdb\Exception\RuntimeException
+     * @test
+     */
+    public function shouldThrowExceptionWhenConditionsNotMet()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $repository->load($tv, null);
+    }
+
+    /**
+     * @expectedException Tmdb\Exception\RuntimeException
+     * @test
+     */
+    public function shouldThrowExceptionWhenConditionsNotMetAll()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository->load(null, null);
+    }
+
 
     protected function getApiClass()
     {

@@ -26,6 +26,17 @@ class CompanyRepositoryTest extends TestCase
         $repository->load(self::COMPANY_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetMovies()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getMovies(self::COMPANY_ID);
+    }
+
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Company';

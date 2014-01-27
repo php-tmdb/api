@@ -12,10 +12,9 @@
  */
 namespace Tmdb\Repository;
 
-use \RuntimeException;
+use Tmdb\Exception\RuntimeException;
 
 use Tmdb\Factory\TvSeasonFactory;
-use Tmdb\Model\Common\GenericCollection;
 
 use \Tmdb\Model\Tv\Season\QueryParameter\AppendToResponse;
 use Tmdb\Model\Tv\Season;
@@ -80,27 +79,5 @@ class TvSeasonRepository extends AbstractRepository {
     public function getFactory()
     {
         return new TvSeasonFactory();
-    }
-
-    /**
-     * Create an collection of an array
-     *
-     * @todo Allow an array of Season objects to pass ( custom collection )
-     *
-     * @param $data
-     * @return Season[]
-     */
-    private function createCollection($data){
-        $collection = new GenericCollection();
-
-        if (array_key_exists('results', $data)) {
-            $data = $data['results'];
-        }
-
-        foreach($data as $item) {
-            $collection->add(null, $this->getFactory()->create($item));
-        }
-
-        return $collection;
     }
 }

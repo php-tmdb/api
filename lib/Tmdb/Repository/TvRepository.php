@@ -108,7 +108,7 @@ class TvRepository extends AbstractRepository {
         }
 
         foreach($data as $item) {
-            $collection->add(null, TvFactory::create($item));
+            $collection->add(null, $this->getFactory()->create($item));
         }
 
         return $collection;

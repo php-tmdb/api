@@ -73,7 +73,7 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        $repository->getLatest();
+        $repository->getTopRated();
     }
 
     protected function getApiClass()

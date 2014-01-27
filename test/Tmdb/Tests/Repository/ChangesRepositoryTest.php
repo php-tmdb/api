@@ -12,47 +12,53 @@
  */
 namespace Tmdb\Tests\Repository;
 
-class TvRepositoryTest extends TestCase
+use Tmdb\Model\Query\ChangesQuery;
+
+class ChangesRepositoryTest extends TestCase
 {
-    const TV_ID = 3572;
-
     /**
      * @test
      */
-    public function shouldLoadTv()
+    public function shouldGetMovieChanges()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        $repository->load(self::TV_ID);
+        $query = new ChangesQuery();
+
+        $repository->getMovieChanges($query);
     }
 
     /**
      * @test
      */
-    public function shouldGetPopular()
+    public function shouldGetPeopleChanges()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        $repository->getPopular();
+        $query = new ChangesQuery();
+
+        $repository->getPeopleChanges($query);
     }
 
     /**
+     * There is no generic factory for changes so it should never be called.
+     *
+     * @expectedException Tmdb\Exception\NotImplementedException
      * @test
      */
-    public function shouldGetTopRated()
+    public function getFactoryShouldThrowException()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
-
-        $repository->getTopRated();
+        $repository->getFactory();
     }
 
     protected function getApiClass()
     {
-        return 'Tmdb\Api\Tv';
+        return 'Tmdb\Api\Changes';
     }
 
     protected function getRepositoryClass()
     {
-        return 'Tmdb\Repository\TvRepository';
+        return 'Tmdb\Repository\ChangesRepository';
     }
 }
