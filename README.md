@@ -1,5 +1,6 @@
 A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.io/).
 ==============
+[![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api) [![Total Downloads](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/downloads.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api) [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api) [![License](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/license.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
 
