@@ -35,6 +35,8 @@ class GenreFactoryTest extends TestCase
         // @todo actually get the first
         foreach($filteredGenres as $filteredGenre) {
             $this->assertInstanceOf('Tmdb\Model\Genre', $filteredGenre);
+
+            $this->assertEquals('Action', $filteredGenre->getName());
         }
     }
 
