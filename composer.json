@@ -1,9 +1,9 @@
 {
     "name": "wtfzdotnet/php-tmdb-api",
     "type": "library",
-    "description": "TMDB API client",
+    "description": "TMDB API v3 client",
     "homepage": "https://github.com/wtfzdotnet/php-tmdb-api",
-    "keywords": ["tmdb", "api", "php"],
+    "keywords": ["tmdb", "api", "php","wrapper", "movie", "tv", "tv show", "tvdb"],
     "license": "MIT",
     "authors": [
         {
