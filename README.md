@@ -10,12 +10,9 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
 
-** WARNING, The model namespace is not ready for production yet, however the API namespace should be stabilizing by now so feel free to try it out. **
+__WARNING, The model namespace is not ready for production yet, however the API namespace should be stabilizing by now so feel free to try it out.__
 
-
-As you can see the code coverage is very low at the moment, as it only covers the API section right now.
-
-Work is being put into reaching at least 80%, but this will take some time.
+Work is being put into reaching at least 80% code coverage, but this will take some time.
 
 Work in progress
 ----------------
