@@ -23,16 +23,4 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Tmdb\HttpClient\HttpClient', $client->getHttpClient());
     }
 
-    /**
-     * @test
-     */
-    public function clearHeadersFunctionActuallyClears()
-    {
-        $token  = new \Tmdb\ApiToken('abcdef');
-        $client = new \Tmdb\Client($token);
-
-        $headers = array(
-            'a' => 'b'
-        );
-    }
 }

@@ -25,6 +25,11 @@ class Company extends AbstractModel {
     private $name;
     private $parentCompany;
 
+    public function __construct()
+    {
+        $this->logo = new LogoImage();
+    }
+
     public static $_properties = array(
         'description',
         'headquarters',

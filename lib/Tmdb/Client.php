@@ -276,6 +276,14 @@ class Client {
     }
 
     /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        $this->httpClient->getHeaders();
+    }
+
+    /**
      * Return the base url with preferred schema
      *
      * @return string

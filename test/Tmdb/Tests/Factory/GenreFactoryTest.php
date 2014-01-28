@@ -40,11 +40,6 @@ class GenreFactoryTest extends TestCase
         }
     }
 
-    protected function getFactory()
-    {
-        return new GenreFactory();
-    }
-
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\GenreFactory';

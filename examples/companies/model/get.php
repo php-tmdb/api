@@ -17,6 +17,6 @@ $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
 $repository = new \Tmdb\Repository\CompanyRepository($client);
-$company    = $repository->load(28);
+$company    = $repository->load(1);
 
 var_dump($company);

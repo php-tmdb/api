@@ -76,6 +76,14 @@ class HttpClient
     }
 
     /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
      * @param array $headers
      */
     public function setHeaders(array $headers = array())
