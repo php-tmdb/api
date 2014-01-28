@@ -28,11 +28,7 @@ class Genres
         $response = $this->getGenres($options, $headers);
 
         if (array_key_exists('genres', $response)) {
-            foreach($response['genres'] as $genre) {
-                if ($id == $genre['id']) {
-                    return $genre;
-                }
-            }
+            return $this->extractGenreByIdFromResponse($id, $response['genres']);
         }
 
         return null;
@@ -61,5 +57,20 @@ class Genres
     public function getMovies($genre_id, array $options = array(), array $headers = array())
     {
         return $this->get('genre/' . $genre_id . '/movies', $options, $headers);
+    }
+
+    /**
+     * @param $id
+     * @param array $data
+     * @return mixed
+     */
+    private function extractGenreByIdFromResponse($id, array $data = array())
+    {
+        foreach($data as $genre) {
+            if ($id == $genre['id'])
+                return $genre;
+        }
+
+        return null;
     }
 }

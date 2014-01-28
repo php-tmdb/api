@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Tests\Factory;
 
-use Tmdb\Factory\GenreFactory;
-
 class GenreFactoryTest extends TestCase
 {
     const GENRE_ID = 28;

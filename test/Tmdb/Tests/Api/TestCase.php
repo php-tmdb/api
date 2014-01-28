@@ -20,15 +20,30 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     abstract protected function getApiClass();
 
-    protected function getApiMock()
+    protected function getApiMock(array $methods = array())
     {
         if ($this->_api) {
             return $this->_api;
         }
 
+        $client = $this->getClientWithMockedHttpClient();
+
+        return $this->getMockBuilder($this->getApiClass())
+            ->setMethods(
+                array_merge(
+                    array('get', 'post', 'postRaw', 'patch', 'delete', 'put'),
+                    $methods
+                )
+            )
+            ->setConstructorArgs(array($client))
+            ->getMock();
+    }
+
+    protected function getClientWithMockedHttpClient()
+    {
         $token      = new ApiToken('abcdef');
 
-        $httpClient = $this->getMock('Guzzle\Http\Client', array('send'));
+        $httpClient = $this->getMockedHttpClient();
         $httpClient
             ->expects($this->any())
             ->method('send');
@@ -42,9 +57,11 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $client = new \Tmdb\Client($token, $httpClient);
         $client->setHttpClient($mock);
 
-        return $this->getMockBuilder($this->getApiClass())
-            ->setMethods(array('get', 'post', 'postRaw', 'patch', 'delete', 'put'))
-            ->setConstructorArgs(array($client))
-            ->getMock();
+        return $client;
+    }
+
+    protected function getMockedHttpClient()
+    {
+        return $this->getMock('Guzzle\Http\Client', array('send'));
     }
 }

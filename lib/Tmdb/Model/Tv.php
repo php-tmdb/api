@@ -205,7 +205,7 @@ class Tv extends AbstractModel {
     {
         $this->createdBy      = new Images();
         $this->episodeRunTime = new GenericCollection();
-        $this->genres         = new GenericCollection();
+        $this->genres         = new Genres();
         $this->languages      = new GenericCollection();
         $this->networks       = new GenericCollection();
         $this->originCountry  = new GenericCollection();

@@ -57,6 +57,45 @@ class GenresTest extends TestCase
         $api->getMovies(self::GENRE_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetGenreAndReturnOne()
+    {
+        $api = $this->getApiMock(array('getGenres'));
+
+        $api->expects($this->once())
+            ->method('getGenres')
+            ->will($this->returnCallback(function(){
+                return array('genres' => array(array('id' => 28, 'name' => 'Action')));
+            }))
+        ;
+
+        $genre = $api->getGenre(self::GENRE_ID);
+
+        $this->assertEquals(28, $genre['id']);
+        $this->assertEquals('Action', $genre['name']);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReturnNullWithNoData()
+    {
+        $api = $this->getApiMock(array('getGenres'));
+
+        $api->expects($this->once())
+            ->method('getGenres')
+            ->will($this->returnCallback(function(){
+                return array('genres' => array());
+            }))
+        ;
+
+        $genre = $api->getGenre(self::GENRE_ID);
+
+        $this->assertEquals(null, $genre);
+    }
+
     protected function getApiClass() {
         return 'Tmdb\Api\Genres';
     }
