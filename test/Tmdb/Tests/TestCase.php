@@ -36,4 +36,23 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             }
         }
     }
+
+    /**
+     * Load an json file from the Resources directory
+     *
+     * @param $file
+     * @return mixed
+     */
+    protected function loadByFile($file)
+    {
+        return json_decode(
+            file_get_contents(
+                sprintf(
+                    '%s/%s',
+                    'test/Tmdb/Tests/Resources/',
+                    $file
+                )
+            )
+        );
+    }
 }

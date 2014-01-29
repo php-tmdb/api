@@ -12,22 +12,11 @@
  */
 namespace Tmdb\Tests\Factory;
 
-abstract class TestCase extends \PHPUnit_Framework_TestCase
+use Tmdb\Tests\TestCase as Base;
+
+abstract class TestCase extends Base
 {
     protected $factory;
-
-    protected function loadByFile($file)
-    {
-        return json_decode(
-            file_get_contents(
-                sprintf(
-                    '%s/%s',
-                    'test/Tmdb/Tests/Resources/',
-                    $file
-                )
-            )
-        );
-    }
 
     protected function getFactory()
     {
