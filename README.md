@@ -7,14 +7,12 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
 
-__WARNING, The model/factory/repository namespaces are not ready for production yet, however the API namespace is considered stable up unto how far we implemented it ( account functions are not present yet ).__
-
-Work is being put into reaching at least 80% code coverage, but this will take some time.
-
 Stable
 ----------------
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
+
+__The model/factory/repository namespaces are not ready for production yet, however the API namespace is considered stable up unto how far we implemented it ( account functions are not present yet ).__
 
 Currently there is no stable version as I don't consider everything ready yet, however you should be able to use the API namespace without issues.
 
@@ -25,7 +23,7 @@ Unstable
 
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 
-I'm working extensively on finishing the models/repositories/factories, which should most of the work you'd like to be done and just kick off.
+I'm working extensively on finishing the models/repositories/factories, which should allow you to simply jump in with an API key and implement quickly.
 
 Do expect changes to happen a few times per week until the work is done, however structurally seen things will be built further upon the current base.
 
