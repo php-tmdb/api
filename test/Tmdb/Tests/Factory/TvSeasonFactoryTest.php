@@ -22,7 +22,7 @@ class TvSeasonFactoryTest extends TestCase
     /**
      * @test
      */
-    public function shouldConstructTv()
+    public function shouldConstructTvSeason()
     {
         /**
          * @var TvSeasonFactory $factory
@@ -40,10 +40,10 @@ class TvSeasonFactoryTest extends TestCase
         $this->assertInstanceOf('\DateTime', $season->getAirDate());
 
         $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $season->getCredits());
-        $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $season->getCredits());
         $this->assertInstanceOf('Tmdb\Model\Tv\ExternalIds', $season->getExternalIds());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $season->getImages());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $season->getEpisodes());
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $season->getPoster());
     }
 
     /**

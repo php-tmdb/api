@@ -85,6 +85,10 @@ class TvEpisodeFactory extends AbstractFactory {
             $tvEpisode->setImages($this->getImageFactory()->createCollectionFromTvEpisode($data['images']));
         }
 
+        if (array_key_exists('still_path', $data)) {
+            $tvEpisode->setStill($this->getImageFactory()->createFromPath($data['still_path'], 'still_path'));
+        }
+
         return $this->hydrate($tvEpisode, $data);
     }
 

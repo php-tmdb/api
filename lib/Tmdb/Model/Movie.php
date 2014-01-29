@@ -51,8 +51,6 @@ class Movie extends AbstractModel {
     private $budget;
 
     /**
-     * Genres
-     *
      * @var Genres
      */
     private $genres;
@@ -263,7 +261,7 @@ class Movie extends AbstractModel {
      */
     public function setAdult($adult)
     {
-        $this->adult = $adult;
+        $this->adult = (bool) $adult;
         return $this;
     }
 

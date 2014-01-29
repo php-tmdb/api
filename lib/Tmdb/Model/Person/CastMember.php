@@ -48,7 +48,7 @@ class CastMember extends AbstractMember implements PersonInterface {
     }
 
     /**
-     * @param mixed $order
+     * @param int $order
      * @return $this
      */
     public function setOrder($order)
@@ -58,7 +58,7 @@ class CastMember extends AbstractMember implements PersonInterface {
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getOrder()
     {
@@ -71,12 +71,12 @@ class CastMember extends AbstractMember implements PersonInterface {
      */
     public function setCastId($castId)
     {
-        $this->castId = $castId;
+        $this->castId = (int) $castId;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getCastId()
     {

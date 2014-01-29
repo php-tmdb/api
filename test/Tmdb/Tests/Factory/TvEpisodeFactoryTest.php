@@ -40,6 +40,7 @@ class TvEpisodeFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $episode->getCredits());
         $this->assertInstanceOf('Tmdb\Model\Tv\ExternalIds', $episode->getExternalIds());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $episode->getImages());
+        $this->assertInstanceOf('Tmdb\Model\Image\StillImage', $episode->getStill());
     }
 
     /**

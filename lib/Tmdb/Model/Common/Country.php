@@ -26,7 +26,7 @@ class Country extends AbstractModel implements CountryFilter {
     );
 
     /**
-     * @param mixed $iso31661
+     * @param string $iso31661
      * @return $this
      */
     public function setIso31661($iso31661)
@@ -36,7 +36,7 @@ class Country extends AbstractModel implements CountryFilter {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getIso31661()
     {
@@ -44,7 +44,7 @@ class Country extends AbstractModel implements CountryFilter {
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      * @return $this
      */
     public function setName($name)
@@ -54,7 +54,7 @@ class Country extends AbstractModel implements CountryFilter {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {

@@ -16,6 +16,7 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Image\PosterImage;
 
 class Season extends AbstractModel {
 
@@ -74,6 +75,11 @@ class Season extends AbstractModel {
      * @var Images
      */
     protected $images;
+
+    /**
+     * @var PosterImage
+     */
+    protected $poster;
 
     /**
      * Properties that are available in the API
@@ -144,7 +150,7 @@ class Season extends AbstractModel {
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = (int) $id;
         return $this;
     }
 
@@ -280,5 +286,23 @@ class Season extends AbstractModel {
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @param \Tmdb\Model\Image\PosterImage $poster
+     * @return $this
+     */
+    public function setPoster($poster)
+    {
+        $this->poster = $poster;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Image\PosterImage
+     */
+    public function getPoster()
+    {
+        return $this->poster;
     }
 }

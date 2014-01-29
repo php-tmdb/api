@@ -95,6 +95,14 @@ class TvFactory extends AbstractFactory {
             $tvShow->setImages($this->getImageFactory()->createCollectionFromTv($data['images']));
         }
 
+        if (array_key_exists('backdrop_path', $data)) {
+            $tvShow->setBackdrop($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
+        }
+
+        if (array_key_exists('poster_path', $data)) {
+            $tvShow->setPoster($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
+        }
+
         /** Translations */
         if (array_key_exists('translations', $data)) {
             $tvShow->setTranslations($this->createGenericCollection($data['translations']['translations'], new Translation()));

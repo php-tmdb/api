@@ -15,6 +15,7 @@ namespace Tmdb\Model\Tv;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Images;
+use Tmdb\Model\Image\StillImage;
 
 class Episode extends AbstractModel {
 
@@ -89,6 +90,11 @@ class Episode extends AbstractModel {
      */
     protected $images;
 
+    /**
+     * @var StillImage
+     */
+    protected $still;
+
 
     /**
      * Properties that are available in the API
@@ -126,7 +132,11 @@ class Episode extends AbstractModel {
      */
     public function setAirDate($airDate)
     {
-        $this->airDate = new \DateTime($airDate);
+        if (!$airDate instanceof \DateTime) {
+            $airDate = new \DateTime($airDate);
+        }
+
+        $this->airDate = $airDate;
         return $this;
     }
 
@@ -144,7 +154,7 @@ class Episode extends AbstractModel {
      */
     public function setEpisodeNumber($episodeNumber)
     {
-        $this->episodeNumber = $episodeNumber;
+        $this->episodeNumber = (int) $episodeNumber;
         return $this;
     }
 
@@ -162,7 +172,7 @@ class Episode extends AbstractModel {
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = (int) $id;
         return $this;
     }
 
@@ -234,7 +244,7 @@ class Episode extends AbstractModel {
      */
     public function setSeasonNumber($seasonNumber)
     {
-        $this->seasonNumber = $seasonNumber;
+        $this->seasonNumber = (int) $seasonNumber;
         return $this;
     }
 
@@ -270,7 +280,7 @@ class Episode extends AbstractModel {
      */
     public function setVoteAverage($voteAverage)
     {
-        $this->voteAverage = $voteAverage;
+        $this->voteAverage = (float) $voteAverage;
         return $this;
     }
 
@@ -288,7 +298,7 @@ class Episode extends AbstractModel {
      */
     public function setVoteCount($voteCount)
     {
-        $this->voteCount = $voteCount;
+        $this->voteCount = (int) $voteCount;
         return $this;
     }
 
@@ -352,5 +362,23 @@ class Episode extends AbstractModel {
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @param StillImage $still
+     * @return $this
+     */
+    public function setStill($still)
+    {
+        $this->still = $still;
+        return $this;
+    }
+
+    /**
+     * @return StillImage
+     */
+    public function getStill()
+    {
+        return $this->still;
     }
 }

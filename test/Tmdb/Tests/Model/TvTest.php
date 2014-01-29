@@ -14,7 +14,7 @@ namespace Tmdb\Tests\Model;
 
 use Tmdb\Model\Tv;
 
-class TveTest extends TestCase
+class TvTest extends TestCase
 {
     /**
      * @test

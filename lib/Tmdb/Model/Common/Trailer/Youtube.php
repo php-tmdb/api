@@ -43,7 +43,7 @@ class Youtube extends AbstractTrailer {
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      * @return $this
      */
     public function setName($name)
@@ -53,7 +53,7 @@ class Youtube extends AbstractTrailer {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -61,7 +61,7 @@ class Youtube extends AbstractTrailer {
     }
 
     /**
-     * @param mixed $size
+     * @param string $size
      * @return $this
      */
     public function setSize($size)
@@ -71,7 +71,7 @@ class Youtube extends AbstractTrailer {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSize()
     {
@@ -79,7 +79,7 @@ class Youtube extends AbstractTrailer {
     }
 
     /**
-     * @param mixed $source
+     * @param string $source
      * @return $this
      */
     public function setSource($source)
@@ -89,7 +89,7 @@ class Youtube extends AbstractTrailer {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSource()
     {
@@ -97,7 +97,7 @@ class Youtube extends AbstractTrailer {
     }
 
     /**
-     * @param mixed $type
+     * @param string $type
      * @return $this
      */
     public function setType($type)
@@ -107,7 +107,7 @@ class Youtube extends AbstractTrailer {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getType()
     {

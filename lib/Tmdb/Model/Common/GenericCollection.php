@@ -142,14 +142,14 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable 
     /**
      * Remove a specific key value pair
      *
-     * @param string $key A key to remove
+     * @param string $key A key to remove or an object in the same state
      *
      * @return GenericCollection
      */
     public function remove($key)
     {
-        if ($key === null && is_object($value)) {
-            $key = spl_object_hash($value);
+        if (is_object($key)) {
+            $key = spl_object_hash($key);
         }
 
         unset($this->data[$key]);

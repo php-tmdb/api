@@ -66,17 +66,17 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter {
     }
 
     /**
-     * @param mixed $aspectRatio
+     * @param float $aspectRatio
      * @return $this
      */
     public function setAspectRatio($aspectRatio)
     {
-        $this->aspectRatio = $aspectRatio;
+        $this->aspectRatio = (float) $aspectRatio;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getAspectRatio()
     {
@@ -107,7 +107,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter {
      */
     public function setHeight($height)
     {
-        $this->height = $height;
+        $this->height = (int) $height;
         return $this;
     }
 
@@ -138,17 +138,17 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter {
     }
 
     /**
-     * @param mixed $voteAverage
+     * @param float $voteAverage
      * @return $this
      */
     public function setVoteAverage($voteAverage)
     {
-        $this->voteAverage = $voteAverage;
+        $this->voteAverage = (float) $voteAverage;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getVoteAverage()
     {
@@ -156,17 +156,17 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter {
     }
 
     /**
-     * @param mixed $voteCount
+     * @param int $voteCount
      * @return $this
      */
     public function setVoteCount($voteCount)
     {
-        $this->voteCount = $voteCount;
+        $this->voteCount = (int) $voteCount;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getVoteCount()
     {
@@ -174,17 +174,17 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter {
     }
 
     /**
-     * @param mixed $width
+     * @param int $width
      * @return $this
      */
     public function setWidth($width)
     {
-        $this->width = $width;
+        $this->width = (int) $width;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getWidth()
     {

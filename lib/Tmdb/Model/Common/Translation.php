@@ -28,7 +28,7 @@ class Translation extends AbstractModel implements LanguageFilter {
     );
 
     /**
-     * @param mixed $englishName
+     * @param string $englishName
      * @return $this
      */
     public function setEnglishName($englishName)
@@ -38,7 +38,7 @@ class Translation extends AbstractModel implements LanguageFilter {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEnglishName()
     {
@@ -46,7 +46,7 @@ class Translation extends AbstractModel implements LanguageFilter {
     }
 
     /**
-     * @param mixed $iso6391
+     * @param string $iso6391
      * @return $this
      */
     public function setIso6391($iso6391)
@@ -56,7 +56,7 @@ class Translation extends AbstractModel implements LanguageFilter {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getIso6391()
     {
@@ -64,7 +64,7 @@ class Translation extends AbstractModel implements LanguageFilter {
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      * @return $this
      */
     public function setName($name)
@@ -74,7 +74,7 @@ class Translation extends AbstractModel implements LanguageFilter {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {

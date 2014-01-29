@@ -16,6 +16,8 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
+use Tmdb\Model\Image\BackdropImage;
+use Tmdb\Model\Image\PosterImage;
 use Tmdb\Model\Tv\ExternalIds;
 use Tmdb\Model\Tv\Network;
 
@@ -165,6 +167,16 @@ class Tv extends AbstractModel {
     protected $translations;
 
     /**
+     * @var BackdropImage
+     */
+    protected $backdrop;
+
+    /**
+     * @var PosterImage
+     */
+    protected $poster;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -218,7 +230,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Image $backdropPath
+     * @param string $backdropPath
      * @return $this
      */
     public function setBackdropPath($backdropPath)
@@ -228,7 +240,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Image
+     * @return string
      */
     public function getBackdropPath()
     {
@@ -331,7 +343,7 @@ class Tv extends AbstractModel {
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = (int) $id;
         return $this;
     }
 
@@ -380,12 +392,16 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \DateTime $lastAirDate
+     * @param string $lastAirDate
      * @return $this
      */
     public function setLastAirDate($lastAirDate)
     {
-        $this->lastAirDate = new \DateTime($lastAirDate);
+        if (!$lastAirDate instanceof \DateTime) {
+            $lastAirDate = new \DateTime($lastAirDate);
+        }
+
+        $this->lastAirDate = $lastAirDate;
         return $this;
     }
 
@@ -439,7 +455,7 @@ class Tv extends AbstractModel {
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
-        $this->numberOfEpisodes = $numberOfEpisodes;
+        $this->numberOfEpisodes = (int) $numberOfEpisodes;
         return $this;
     }
 
@@ -457,7 +473,7 @@ class Tv extends AbstractModel {
      */
     public function setNumberOfSeasons($numberOfSeasons)
     {
-        $this->numberOfSeasons = $numberOfSeasons;
+        $this->numberOfSeasons = (int) $numberOfSeasons;
         return $this;
     }
 
@@ -529,7 +545,7 @@ class Tv extends AbstractModel {
      */
     public function setPopularity($popularity)
     {
-        $this->popularity = $popularity;
+        $this->popularity = (float) $popularity;
         return $this;
     }
 
@@ -542,7 +558,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Image $posterPath
+     * @param string $posterPath
      * @return $this
      */
     public function setPosterPath($posterPath)
@@ -552,7 +568,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Image
+     * @return string
      */
     public function getPosterPath()
     {
@@ -601,7 +617,7 @@ class Tv extends AbstractModel {
      */
     public function setVoteAverage($voteAverage)
     {
-        $this->voteAverage = $voteAverage;
+        $this->voteAverage = (float) $voteAverage;
         return $this;
     }
 
@@ -619,7 +635,7 @@ class Tv extends AbstractModel {
      */
     public function setVoteCount($voteCount)
     {
-        $this->voteCount = $voteCount;
+        $this->voteCount = (int) $voteCount;
         return $this;
     }
 
@@ -701,5 +717,41 @@ class Tv extends AbstractModel {
     public function getCredits()
     {
         return $this->credits;
+    }
+
+    /**
+     * @param \Tmdb\Model\Image\BackdropImage $backdrop
+     * @return $this
+     */
+    public function setBackdrop(BackdropImage $backdrop)
+    {
+        $this->backdrop = $backdrop;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Image\BackdropImage
+     */
+    public function getBackdrop()
+    {
+        return $this->backdrop;
+    }
+
+    /**
+     * @param \Tmdb\Model\Image\PosterImage $poster
+     * @return $this
+     */
+    public function setPoster(PosterImage $poster)
+    {
+        $this->poster = $poster;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Image\PosterImage
+     */
+    public function getPoster()
+    {
+        return $this->poster;
     }
 }

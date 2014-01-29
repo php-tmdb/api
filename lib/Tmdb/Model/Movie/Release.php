@@ -46,7 +46,7 @@ class Release extends AbstractModel implements CountryFilter {
     }
 
     /**
-     * @param mixed $iso31661
+     * @param string $iso31661
      * @return $this
      */
     public function setIso31661($iso31661)
@@ -56,7 +56,7 @@ class Release extends AbstractModel implements CountryFilter {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getIso31661()
     {
@@ -64,12 +64,16 @@ class Release extends AbstractModel implements CountryFilter {
     }
 
     /**
-     * @param mixed $releaseDate
+     * @param string|\DateTime $releaseDate
      * @return $this
      */
     public function setReleaseDate($releaseDate)
     {
-        $this->releaseDate = new \DateTime($releaseDate);
+        if (!$releaseDate instanceof \DateTime) {
+            $releaseDate = new \DateTime($releaseDate);
+        }
+
+        $this->releaseDate = $releaseDate;
         return $this;
     }
 

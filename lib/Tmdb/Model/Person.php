@@ -213,7 +213,7 @@ class Person extends AbstractModel implements PersonInterface {
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = (int) $id;
         return $this;
     }
 
