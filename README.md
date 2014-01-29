@@ -7,7 +7,7 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
 
-__WARNING, The model/factory/repository namespaces are not ready for production yet, however the API namespace is considered stable up unto how far we implemented it ( account functions are not present __yet__ ).__
+__WARNING, The model/factory/repository namespaces are not ready for production yet, however the API namespace is considered stable up unto how far we implemented it ( account functions are not present yet ).__
 
 Work is being put into reaching at least 80% code coverage, but this will take some time.
 
