@@ -45,7 +45,7 @@ class ResultCollection extends GenericCollection {
      */
     public function setPage($page)
     {
-        $this->page = $page;
+        $this->page = (int) $page;
         return $this;
     }
 
@@ -63,7 +63,7 @@ class ResultCollection extends GenericCollection {
      */
     public function setTotalPages($totalPages)
     {
-        $this->totalPages = $totalPages;
+        $this->totalPages = (int) $totalPages;
         return $this;
     }
 
@@ -81,7 +81,7 @@ class ResultCollection extends GenericCollection {
      */
     public function setTotalResults($totalResults)
     {
-        $this->totalResults = $totalResults;
+        $this->totalResults = (int) $totalResults;
         return $this;
     }
 

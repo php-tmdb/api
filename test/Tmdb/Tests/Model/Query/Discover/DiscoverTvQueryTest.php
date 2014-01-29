@@ -1,0 +1,47 @@
+<?php
+/**
+ * This file is part of the Tmdb PHP API created by Michael Roterman.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @package Tmdb
+ * @author Michael Roterman <michael@wtfz.net>
+ * @copyright (c) 2013, Michael Roterman
+ * @version 0.0.1
+ */
+namespace Tmdb\Tests\Model\Query;
+
+use Tmdb\Model\Query\Discover\DiscoverTvQuery;
+use Tmdb\Tests\TestCase;
+
+class DiscoverTvQueryTest extends TestCase
+{
+    /**
+     * @todo expand
+     * @test
+     */
+    public function shouldCreateValidQuery()
+    {
+        $query = new DiscoverTvQuery();
+        $now   = new \DateTime();
+
+        $query
+            ->page(1)
+            ->language('en')
+            ->sortBy('sort')
+            ->firstAirDateYear($now)
+            ->voteCountGte(5)
+            ->voteAverageGte(3)
+            ->withGenres(array(15,18))
+            ->withGenresOr(array(1,2))
+            ->withGenresAnd(array(18))
+            ->firstAirDateGte($now)
+            ->firstAirDateLte($now)
+            ->withNetworks(array(1,2))
+            ->withNetworksAnd(array(1,2,3))
+        ;
+
+        $this->assertEquals(10, count($query));
+    }
+}

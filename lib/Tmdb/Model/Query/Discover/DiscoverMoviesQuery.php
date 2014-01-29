@@ -268,7 +268,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
      */
     public function withCompaniesAnd(array $companies = array())
     {
-        return $this->withGenres(
+        return $this->withCompanies(
             implode(',', $companies)
         );
     }

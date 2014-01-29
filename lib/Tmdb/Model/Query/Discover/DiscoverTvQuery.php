@@ -208,7 +208,7 @@ class DiscoverTvQuery extends QueryParametersCollection {
      */
     public function withNetworksAnd(array $networks = array())
     {
-        return $this->withGenres(
+        return $this->withNetworks(
             implode(',', $networks)
         );
     }
