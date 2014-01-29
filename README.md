@@ -3,23 +3,31 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 [![Build Status Develop Branch](https://travis-ci.org/wtfzdotnet/php-tmdb-api.png?branch=develop)](https://travis-ci.org/wtfzdotnet/php-tmdb-api)
 [![Code Coverage](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/coverage.png?s=d416e063debb3b400e9b1bc9db019f54cc1dc40e)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/quality-score.png?s=dad36710f36335bdeffeaf2ac256c222862832fa)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/)
-
 [![License](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/license.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-[![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-[![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/).
 
-__WARNING, The model namespace is not ready for production yet, however the API namespace should be stabilizing by now so feel free to try it out.__
+__WARNING, The model/factory/repository namespaces are not ready for production yet, however the API namespace is considered stable up unto how far we implemented it ( account functions are not present __yet__ ).__
 
 Work is being put into reaching at least 80% code coverage, but this will take some time.
 
-Work in progress
+Stable
 ----------------
 
-The API namespace has most things already covered, however this is RAW output from the API.
+[![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 
-I'm working extensively on finishing the models, which should provide a more natural feeling of working with TMDB.
+Currently there is no stable version as I don't consider everything ready yet, however you should be able to use the API namespace without issues.
+
+Do note that this is just raw output from The Movie Database API.
+
+Unstable
+----------------
+
+[![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
+
+I'm working extensively on finishing the models/repositories/factories, which should most of the work you'd like to be done and just kick off.
+
+Do expect changes to happen a few times per week until the work is done, however structurally seen things will be built further upon the current base.
 
 Help & Donate
 --------------
