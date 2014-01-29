@@ -260,30 +260,6 @@ class Client {
     }
 
     /**
-     * Clears used headers
-     */
-    public function clearHeaders()
-    {
-        $this->httpClient->clearHeaders();
-    }
-
-    /**
-     * @param array $headers
-     */
-    public function setHeaders(array $headers)
-    {
-        $this->httpClient->setHeaders($headers);
-    }
-
-    /**
-     * @return array
-     */
-    public function getHeaders()
-    {
-        $this->httpClient->getHeaders();
-    }
-
-    /**
      * Return the base url with preferred schema
      *
      * @return string
