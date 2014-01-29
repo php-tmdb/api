@@ -22,7 +22,7 @@ class CompanyFactoryTest extends TestCase
     public function shouldConstructCompany()
     {
         $factory = $this->getFactory();
-        $data    = (array) $this->loadByFile('company/get.json');
+        $data    = $this->loadByFile('company/get.json');
 
         $company = $factory->create($data);
 

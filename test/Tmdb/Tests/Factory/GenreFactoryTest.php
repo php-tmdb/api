@@ -22,7 +22,7 @@ class GenreFactoryTest extends TestCase
     public function shouldConstructGenres()
     {
         $factory = $this->getFactory();
-        $data    = (array) $this->loadByFile('genre/result.json');
+        $data    = $this->loadByFile('genre/result.json');
 
         $collection = $factory->createCollection($data['genres']);
 
