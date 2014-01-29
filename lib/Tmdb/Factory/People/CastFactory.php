@@ -13,7 +13,6 @@
 namespace Tmdb\Factory\People;
 
 use Tmdb\Factory\PeopleFactory;
-
 use Tmdb\Model\Collection\People\Cast;
 
 class CastFactory extends PeopleFactory

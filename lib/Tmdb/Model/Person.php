@@ -218,7 +218,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -236,7 +236,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @return mixed
+     * @return Images
      */
     public function getImages()
     {

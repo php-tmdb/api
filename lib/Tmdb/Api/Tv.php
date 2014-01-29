@@ -18,7 +18,7 @@ class Tv
     /**
      * Get the primary information about a TV series by id.
      *
-     * @param $tvshow_id
+     * @param integer $tvshow_id
      * @param array $options
      * @param array $headers
      * @return mixed

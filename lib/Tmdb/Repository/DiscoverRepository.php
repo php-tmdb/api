@@ -19,7 +19,6 @@ use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Movie;
 use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
-
 use Tmdb\Model\Tv;
 
 class DiscoverRepository extends AbstractRepository {
@@ -49,6 +48,7 @@ class DiscoverRepository extends AbstractRepository {
      * @param DiscoverTvQuery $query
      * @param array $headers
      * @return Tv[]
+     * @return \Tmdb\Model\Common\GenericCollection
      */
     public function discoverTv(DiscoverTvQuery $query, array $headers = array()) {
         $data = $this->getApi()->discoverTv($query->toArray(), $this->parseHeaders($headers));

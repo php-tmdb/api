@@ -13,5 +13,9 @@
 namespace Tmdb\Model\Filter;
 
 interface CountryFilter {
+
+    /**
+     * @return string
+     */
     public function getIso31661();
 }

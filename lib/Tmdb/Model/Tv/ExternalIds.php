@@ -79,7 +79,7 @@ class ExternalIds extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {

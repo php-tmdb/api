@@ -112,7 +112,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getHeight()
     {

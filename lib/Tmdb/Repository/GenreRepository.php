@@ -14,7 +14,6 @@ namespace Tmdb\Repository;
 
 use Tmdb\Factory\GenreFactory;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Genre;
 
 class GenreRepository extends AbstractRepository {
     /**
@@ -34,7 +33,7 @@ class GenreRepository extends AbstractRepository {
      *
      * @param array $parameters
      * @param array $headers
-     * @return GenericCollection|Genre[]
+     * @return GenericCollection
      */
     public function loadCollection(array $parameters = array(), array $headers = array())
     {

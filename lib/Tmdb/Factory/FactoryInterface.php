@@ -13,5 +13,9 @@
 namespace Tmdb\Factory;
 
 interface FactoryInterface {
+
+    /**
+     * @return \Tmdb\Model\AbstractModel|null
+     */
     function create();
 }

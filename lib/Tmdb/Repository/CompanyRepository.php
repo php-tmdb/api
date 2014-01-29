@@ -16,7 +16,6 @@ use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
-use Tmdb\Model\Movie;
 
 class CompanyRepository extends AbstractRepository {
 

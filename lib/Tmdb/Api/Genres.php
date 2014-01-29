@@ -60,7 +60,7 @@ class Genres
     }
 
     /**
-     * @param $id
+     * @param integer $id
      * @param array $data
      * @return mixed
      */

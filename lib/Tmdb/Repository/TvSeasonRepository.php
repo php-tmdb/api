@@ -13,7 +13,6 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Exception\RuntimeException;
-
 use Tmdb\Factory\TvSeasonFactory;
 
 use \Tmdb\Model\Tv\Season\QueryParameter\AppendToResponse;
