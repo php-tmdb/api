@@ -13,7 +13,6 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
-use Tmdb\Factory\Common\GenericCollectionFactory;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\GenericCollection;
 
@@ -30,7 +29,7 @@ abstract class AbstractFactory implements FactoryInterface {
      * Convert an array with an collection of items to an hydrated object collection
      *
      * @param array $data
-     * @return GenericCollectionFactory
+     * @return GenericCollection
      */
     abstract public function createCollection(array $data = array());
 
@@ -65,6 +64,8 @@ abstract class AbstractFactory implements FactoryInterface {
      */
     protected function hydrate(AbstractModel $object, $data = array())
     {
-        return ObjectHydrator::hydrate($object, $data);
+        $objectHydrator = new ObjectHydrator();
+
+        return $objectHydrator->hydrate($object, $data);
     }
 }

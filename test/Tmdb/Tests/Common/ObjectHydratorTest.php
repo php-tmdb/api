@@ -17,7 +17,9 @@ class ObjectHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function canHydrateObject()
     {
-        $subject = \Tmdb\Common\ObjectHydrator::hydrate(new TestModel(), array(
+        $objectHydrator = new \Tmdb\Common\ObjectHydrator();
+
+        $subject = $objectHydrator->hydrate(new TestModel(), array(
             'id'   => 15,
             'name' => 'Michael'
         ));
@@ -33,7 +35,9 @@ class ObjectHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function callingNonExistingMethodThrowsException()
     {
-        \Tmdb\Common\ObjectHydrator::hydrate(new FailingTestModel(), array('lastname' => 'Roterman'));
+        $objectHydrator = new \Tmdb\Common\ObjectHydrator();
+
+        $objectHydrator->hydrate(new FailingTestModel(), array('lastname' => 'Roterman'));
     }
 }
 

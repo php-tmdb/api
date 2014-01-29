@@ -30,13 +30,13 @@ class ObjectHydrator {
      * @return AbstractModel
      * @throws RuntimeException
      */
-    public static function hydrate(AbstractModel $object, $data = array())
+    public function hydrate(AbstractModel $object, $data = array())
     {
         if (!empty($data)) {
             foreach ($data as $k => $v) {
                 if (in_array($k, $object::$_properties)) {
 
-                    $method = self::camelize(
+                    $method = $this->camelize(
                         sprintf('set_%s', $k)
                     );
 
