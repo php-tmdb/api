@@ -13,7 +13,7 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Api\People;
-use Tmdb\Factory\People\PeopleFactory;
+use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Person;
 use Tmdb\Model\Person\QueryParameter\AppendToResponse;
 

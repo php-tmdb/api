@@ -14,7 +14,7 @@ namespace Tmdb\Repository;
 
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Factory\MovieFactory;
-use Tmdb\Factory\People\PeopleFactory;
+use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Query\ChangesQuery;
 

@@ -62,6 +62,7 @@ class ImageHelper {
         }
 
         $aspectRatio = $image->getAspectRatio();
+
         if (null !== $width && null == $height && $aspectRatio !== null) {
             $height = round($width / $aspectRatio);
         }

@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
 
 class CompanyFactory extends AbstractFactory
@@ -30,12 +29,6 @@ class CompanyFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        $collection = new GenericCollection();
-
-        foreach($data as $item) {
-            $collection->add(null, $this->create($item));
-        }
-
-        return $collection;
+        return array();
     }
 }

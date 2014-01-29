@@ -31,6 +31,6 @@ class ConfigurationFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        return null;
+        return array();
     }
 }

@@ -10,10 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Factory\People;
+namespace Tmdb\Factory;
 
-use Tmdb\Factory\AbstractFactory;
-use Tmdb\Factory\ImageFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;

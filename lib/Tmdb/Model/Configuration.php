@@ -12,17 +12,15 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Model\Common\GenericCollection;
-
 class Configuration extends AbstractModel {
 
     /**
-     * @var Collection
+     * @var array
      */
     private $images;
 
     /**
-     * @var Collection
+     * @var array
      */
     private $change_keys;
 

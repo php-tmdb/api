@@ -82,7 +82,7 @@ class TvEpisodeFactory extends AbstractFactory {
 
         /** Images */
         if (array_key_exists('images', $data)) {
-            $tvEpisode->setImages($this->getImageFactory()->createCollectionFromTv($data['images']));
+            $tvEpisode->setImages($this->getImageFactory()->createCollectionFromTvEpisode($data['images']));
         }
 
         return $this->hydrate($tvEpisode, $data);

@@ -12,19 +12,34 @@
  */
 namespace Tmdb\Tests\Factory;
 
+use Tmdb\Factory\CompanyFactory;
+use Tmdb\Model\Company;
+
 class CompanyFactoryTest extends TestCase
 {
     const COMPANY_ID = 1;
+
+    private $data;
+
+    public function setUp()
+    {
+        $this->data = $this->loadByFile('company/get.json');
+    }
 
     /**
      * @test
      */
     public function shouldConstructCompany()
     {
+        /**
+         * @var CompanyFactory $factory
+         */
         $factory = $this->getFactory();
-        $data    = $this->loadByFile('company/get.json');
 
-        $company = $factory->create($data);
+        /**
+         * @var Company $company
+         */
+        $company = $factory->create($this->data);
 
         $this->assertInstanceOf('Tmdb\Model\Company', $company);
         $this->assertInstanceOf('Tmdb\Model\Image\LogoImage', $company->getLogo());
@@ -36,6 +51,41 @@ class CompanyFactoryTest extends TestCase
         $this->assertEquals('/8rUnVMVZjlmQsJ45UGotD0Uznxj.png', $company->getLogoPath());
         $this->assertEquals('Lucasfilm', $company->getName());
         $this->assertEquals(null, $company->getParentCompany());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldMatchExpectations()
+    {
+        /**
+         * @var CompanyFactory $factory
+         */
+        $factory = $this->getFactory();
+
+        /**
+         * @var Company $company
+         */
+        $company = $factory->create($this->data);
+
+        $this->assertEquals(null, $company->getDescription());
+        $this->assertEquals('San Francisco, California', $company->getHeadquarters());
+        $this->assertEquals('http://www.lucasfilm.com', $company->getHomepage());
+        $this->assertEquals(1, $company->getId());
+        $this->assertEquals('/8rUnVMVZjlmQsJ45UGotD0Uznxj.png', $company->getLogoPath());
+        $this->assertEquals('Lucasfilm', $company->getName());
+        $this->assertEquals(null, $company->getParentCompany());
+    }
+
+    /**
+     * @test
+     */
+    public function callingCollectionReturnsEmptyArray()
+    {
+        $factory    = $this->getFactory();
+        $collection = $factory->createCollection(array());
+
+        $this->assertEquals(array(), $collection);
     }
 
     protected function getFactoryClass()

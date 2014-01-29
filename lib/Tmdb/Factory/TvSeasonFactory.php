@@ -82,7 +82,7 @@ class TvSeasonFactory extends AbstractFactory {
 
         /** Images */
         if (array_key_exists('images', $data)) {
-            $tvSeason->setImages($this->getImageFactory()->createCollectionFromTv($data['images']));
+            $tvSeason->setImages($this->getImageFactory()->createCollectionFromTvSeason($data['images']));
         }
 
         /** Episodes */
