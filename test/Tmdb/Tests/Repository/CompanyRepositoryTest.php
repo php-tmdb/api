@@ -37,6 +37,25 @@ class CompanyRepositoryTest extends TestCase
     }
 
 
+    /**
+     * @test
+     */
+    public function callingGetMoviesWithFakeRequestWillReturnMovieCollection()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $collection = $repository->createMovieCollection(
+            array('results' => array(
+                array('id' => 1),
+                array('id' => 2)
+            )
+            ));
+
+        foreach($collection as $movie) {
+            $this->assertInstanceOf('Tmdb\Model\Movie', $movie);
+        }
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Company';

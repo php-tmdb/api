@@ -55,29 +55,6 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Return possible image type keys
-     *
-     * @return string[]
-     */
-    public function getPossibleKeys()
-    {
-        return array(
-            'poster',
-            'posters',
-            'poster_path',
-            'backdrop',
-            'backdrops',
-            'backdrop_path',
-            'profile',
-            'profiles',
-            'profile_path',
-            'logo',
-            'logos',
-            'logo_path',
-        );
-    }
-
-    /**
      * @param string|null $key
      * @return Image|Image\BackdropImage|Image\LogoImage|Image\PosterImage|Image\ProfileImage|Image\StillImage
      */

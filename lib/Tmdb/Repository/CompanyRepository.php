@@ -80,7 +80,7 @@ class CompanyRepository extends AbstractRepository {
      * @param $data
      * @return Movie[]
      */
-    private function createMovieCollection($data){
+    public function createMovieCollection($data){
         $collection = new GenericCollection();
 
         if (array_key_exists('results', $data)) {
