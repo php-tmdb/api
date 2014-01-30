@@ -71,12 +71,4 @@ class GenreRepository extends AbstractRepository {
     {
         return $this->getClient()->getGenresApi();
     }
-
-    /**
-     * @return GenreFactory
-     */
-    public function getFactory()
-    {
-        return new GenreFactory();
-    }
 }
