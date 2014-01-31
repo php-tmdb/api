@@ -19,39 +19,39 @@ class People
      * Get the general person information for a specific id.
      *
      * @param $person_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getPerson($person_id, array $options = array(), array $headers = array())
+    public function getPerson($person_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id, $options, $headers);
+        return $this->get('person/' . $person_id, $parameters, $headers);
     }
 
     /**
      * Get the credits for a specific person id.
      *
      * @param $person_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getCredits($person_id, array $options = array(), array $headers = array())
+    public function getCredits($person_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id . '/credits', $options, $headers);
+        return $this->get('person/' . $person_id . '/credits', $parameters, $headers);
     }
 
     /**
      * Get the images for a specific person id.
      *
      * @param $person_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getImages($person_id, array $options = array(), array $headers = array())
+    public function getImages($person_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id . '/images', $options, $headers);
+        return $this->get('person/' . $person_id . '/images', $parameters, $headers);
     }
 
     /**
@@ -64,36 +64,36 @@ class People
      * The language is present on fields that are translatable.
      *
      * @param $person_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getChanges($person_id, array $options = array(), array $headers = array())
+    public function getChanges($person_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id . '/changes', $options, $headers);
+        return $this->get('person/' . $person_id . '/changes', $parameters, $headers);
     }
 
     /**
      * Get the list of popular people on The Movie Database. This list refreshes every day.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getPopular(array $options = array(), array $headers = array())
+    public function getPopular(array $parameters = array(), array $headers = array())
     {
-        return $this->get('person/popular', $options, $headers);
+        return $this->get('person/popular', $parameters, $headers);
     }
 
     /**
      * Get the latest person id.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getLatest(array $options = array(), array $headers = array())
+    public function getLatest(array $parameters = array(), array $headers = array())
     {
-        return $this->get('person/latest', $options, $headers);
+        return $this->get('person/latest', $parameters, $headers);
     }
 }

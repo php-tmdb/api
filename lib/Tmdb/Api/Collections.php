@@ -25,25 +25,25 @@ class Collections
      * If you would like to sort them yourself you can use the provided release_date.
      *
      * @param $collection_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getCollection($collection_id, array $options = array(), array $headers = array())
+    public function getCollection($collection_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('collection/' . $collection_id, $options, $headers);
+        return $this->get('collection/' . $collection_id, $parameters, $headers);
     }
 
     /**
      * Get all of the images for a particular collection by collection id.
      *
      * @param $collection_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getImages($collection_id, array $options = array(), array $headers = array())
+    public function getImages($collection_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('collection/' . $collection_id . '/images', $options, $headers);
+        return $this->get('collection/' . $collection_id . '/images', $parameters, $headers);
     }
 }

@@ -19,13 +19,13 @@ class Search
      * Search for movies by title.
      *
      * @param $query
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function searchMovies($query, array $options = array(), array $headers = array())
+    public function searchMovies($query, array $parameters = array(), array $headers = array())
     {
-        return $this->get('search/movie', array_merge($options, array(
+        return $this->get('search/movie', array_merge($parameters, array(
             'query' => urlencode($query)
         ), $headers));
     }
@@ -34,13 +34,13 @@ class Search
      * Search for collections by name.
      *
      * @param $query
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function searchCollection($query, array $options = array(), array $headers = array())
+    public function searchCollection($query, array $parameters = array(), array $headers = array())
     {
-        return $this->get('search/collection', array_merge($options, array(
+        return $this->get('search/collection', array_merge($parameters, array(
             'query' => urlencode($query)
         ), $headers));
     }
@@ -49,13 +49,13 @@ class Search
      * Search for TV shows by title.
      *
      * @param $query
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function searchTv($query, array $options = array(), array $headers = array())
+    public function searchTv($query, array $parameters = array(), array $headers = array())
     {
-        return $this->get('search/tv', array_merge($options, array(
+        return $this->get('search/tv', array_merge($parameters, array(
             'query' => urlencode($query)
         ), $headers));
     }
@@ -64,13 +64,13 @@ class Search
      * Search for people by name.
      *
      * @param $query
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function searchPersons($query, array $options = array(), array $headers = array())
+    public function searchPersons($query, array $parameters = array(), array $headers = array())
     {
-        return $this->get('search/person', array_merge($options, array(
+        return $this->get('search/person', array_merge($parameters, array(
             'query' => urlencode($query)
         ), $headers));
     }
@@ -79,13 +79,13 @@ class Search
      * Search for lists by name and description.
      *
      * @param $query
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function searchList($query, array $options = array(), array $headers = array())
+    public function searchList($query, array $parameters = array(), array $headers = array())
     {
-        return $this->get('search/list', array_merge($options, array(
+        return $this->get('search/list', array_merge($parameters, array(
             'query' => urlencode($query)
         ), $headers));
     }
@@ -94,13 +94,13 @@ class Search
      * Search for companies by name.
      *
      * @param $query
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function searchCompany($query, array $options = array(), array $headers = array())
+    public function searchCompany($query, array $parameters = array(), array $headers = array())
     {
-        return $this->get('search/company', array_merge($options, array(
+        return $this->get('search/company', array_merge($parameters, array(
             'query' => urlencode($query)
         ), $headers));
     }
@@ -109,13 +109,13 @@ class Search
      * Search for companies by name.
      *
      * @param $query
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function searchKeyword($query, array $options = array(), array $headers = array())
+    public function searchKeyword($query, array $parameters = array(), array $headers = array())
     {
-        return $this->get('search/keyword', array_merge($options, array(
+        return $this->get('search/keyword', array_merge($parameters, array(
             'query' => urlencode($query)
         ), $headers));
     }

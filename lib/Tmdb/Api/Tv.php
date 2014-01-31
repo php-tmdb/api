@@ -19,13 +19,13 @@ class Tv
      * Get the primary information about a TV series by id.
      *
      * @param integer $tvshow_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getTvshow($tvshow_id, array $options = array(), array $headers = array())
+    public function getTvshow($tvshow_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('tv/' . $tvshow_id, $options, $headers);
+        return $this->get('tv/' . $tvshow_id, $parameters, $headers);
     }
 
     /**
@@ -33,51 +33,51 @@ class Tv
      * Just like the website, we pull this information from the last season of the series.
      *
      * @param $tvshow_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getCredits($tvshow_id, array $options = array(), array $headers = array())
+    public function getCredits($tvshow_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('tv/' . $tvshow_id . '/credits', $options, $headers);
+        return $this->get('tv/' . $tvshow_id . '/credits', $parameters, $headers);
     }
 
     /**
      * Get the external ids that we have stored for a TV series.
      *
      * @param $tvshow_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getExternalIds($tvshow_id, array $options = array(), array $headers = array())
+    public function getExternalIds($tvshow_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('tv/' . $tvshow_id . '/external_ids', $options, $headers);
+        return $this->get('tv/' . $tvshow_id . '/external_ids', $parameters, $headers);
     }
 
     /**
      * Get the images (posters and backdrops) for a TV series.
      *
      * @param $tvshow_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getImages($tvshow_id, array $options = array(), array $headers = array())
+    public function getImages($tvshow_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('tv/' . $tvshow_id . '/images', $options, $headers);
+        return $this->get('tv/' . $tvshow_id . '/images', $parameters, $headers);
     }
 
     /**
      * Get the list of popular TV shows. This list refreshes every day.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getPopular(array $options = array(), array $headers = array())
+    public function getPopular(array $parameters = array(), array $headers = array())
     {
-        return $this->get('tv/popular', $options, $headers);
+        return $this->get('tv/popular', $parameters, $headers);
     }
 
     /**
@@ -86,13 +86,13 @@ class Tv
      * By default, this list will only include TV shows that have 2 or more votes.
      * This list refreshes every day.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getTopRated(array $options = array(), array $headers = array())
+    public function getTopRated(array $parameters = array(), array $headers = array())
     {
-        return $this->get('tv/top_rated', $options, $headers);
+        return $this->get('tv/top_rated', $parameters, $headers);
     }
 
 }

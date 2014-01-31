@@ -19,25 +19,25 @@ class Keywords
      * Get the basic information for a specific keyword id.
      *
      * @param int   $keyword_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getKeyword($keyword_id, array $options = array(), array $headers = array())
+    public function getKeyword($keyword_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('keyword/' . $keyword_id, $options, $headers);
+        return $this->get('keyword/' . $keyword_id, $parameters, $headers);
     }
 
     /**
      * Get the list of movies for a particular keyword by id.
      *
      * @param int   $keyword_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getMovies($keyword_id, array $options = array(), array $headers = array())
+    public function getMovies($keyword_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('keyword/' . $keyword_id . '/movies', $options, $headers);
+        return $this->get('keyword/' . $keyword_id . '/movies', $parameters, $headers);
     }
 }

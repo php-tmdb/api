@@ -19,13 +19,13 @@ class Genres
      * Get the list of genres, and return one by id
      *
      * @param integer $id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getGenre($id, array $options = array(), array $headers = array())
+    public function getGenre($id, array $parameters = array(), array $headers = array())
     {
-        $response = $this->getGenres($options, $headers);
+        $response = $this->getGenres($parameters, $headers);
 
         if (array_key_exists('genres', $response)) {
             return $this->extractGenreByIdFromResponse($id, $response['genres']);
@@ -37,26 +37,26 @@ class Genres
     /**
      * Get the list of genres.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getGenres(array $options = array(), array $headers = array())
+    public function getGenres(array $parameters = array(), array $headers = array())
     {
-        return $this->get('genre/list', $options, $headers);
+        return $this->get('genre/list', $parameters, $headers);
     }
 
     /**
      * Get the list of movies for a particular genre by id. By default, only movies with 10 or more votes are included.
      *
      * @param $genre_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getMovies($genre_id, array $options = array(), array $headers = array())
+    public function getMovies($genre_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('genre/' . $genre_id . '/movies', $options, $headers);
+        return $this->get('genre/' . $genre_id . '/movies', $parameters, $headers);
     }
 
     /**

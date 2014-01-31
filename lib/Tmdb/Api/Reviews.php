@@ -19,12 +19,12 @@ class Reviews
      * Get the full details of a review by ID.
      *
      * @param $review_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getReview($review_id, array $options = array(), array $headers = array())
+    public function getReview($review_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('review/' . $review_id, $options, $headers);
+        return $this->get('review/' . $review_id, $parameters, $headers);
     }
 }

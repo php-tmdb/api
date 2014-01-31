@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Api;
 
-class Jobs
+class Find
     extends AbstractApi
 {
     /**

@@ -19,25 +19,25 @@ class Companies
      * This method is used to retrieve all of the basic information about a company.
      *
      * @param $company_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getCompany($company_id, array $options = array(), array $headers = array())
+    public function getCompany($company_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('company/' . $company_id, $options, $headers);
+        return $this->get('company/' . $company_id, $parameters, $headers);
     }
 
     /**
      * Get the list of movies associated with a particular company.
      *
      * @param integer $company_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getMovies($company_id, array $options = array(), array $headers = array())
+    public function getMovies($company_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('company/' . $company_id . '/movies', $options, $headers);
+        return $this->get('company/' . $company_id . '/movies', $parameters, $headers);
     }
 }

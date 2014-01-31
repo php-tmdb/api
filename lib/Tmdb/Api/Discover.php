@@ -18,24 +18,24 @@ class Discover
     /**
      * Discover movies by different types of data like average rating, number of votes, genres and certifications.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function discoverMovies(array $options = array(), array $headers = array())
+    public function discoverMovies(array $parameters = array(), array $headers = array())
     {
-        return $this->get('discover/movie', $options, $headers);
+        return $this->get('discover/movie', $parameters, $headers);
     }
 
     /**
      * Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function discoverTv(array $options = array(), array $headers = array())
+    public function discoverTv(array $parameters = array(), array $headers = array())
     {
-        return $this->get('discover/tv', $options, $headers);
+        return $this->get('discover/tv', $parameters, $headers);
     }
 }

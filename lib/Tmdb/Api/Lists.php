@@ -21,13 +21,13 @@ class Lists
      * Get a list by id.
      *
      * @param $list_id
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getList($list_id, array $options = array(), array $headers = array())
+    public function getList($list_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('list/' . $list_id, $options, $headers);
+        return $this->get('list/' . $list_id, $parameters, $headers);
     }
 
     /**

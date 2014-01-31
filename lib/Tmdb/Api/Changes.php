@@ -26,13 +26,13 @@ class Changes
      * Please note that the change log system to support this was changed
      * on October 5, 2012 and will only show movies that have been edited since.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getMovieChanges(array $options = array(), array $headers = array())
+    public function getMovieChanges(array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/changes', $options, $headers);
+        return $this->get('movie/changes', $parameters, $headers);
     }
 
     /**
@@ -46,12 +46,12 @@ class Changes
      * Please note that the change log system to support this was changed
      * on October 5, 2012 and will only show movies that have been edited since.
      *
-     * @param array $options
+     * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getPersonChanges(array $options = array(), array $headers = array())
+    public function getPersonChanges(array $parameters = array(), array $headers = array())
     {
-        return $this->get('person/changes', $options, $headers);
+        return $this->get('person/changes', $parameters, $headers);
     }
 }

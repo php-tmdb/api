@@ -21,216 +21,216 @@ class Movies
      * Get the basic movie information for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getMovie($movie_id, array $options = array(), array $headers = array())
+    public function getMovie($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id, $options, $headers);
+        return $this->get('movie/' . $movie_id, $parameters, $headers);
     }
 
     /**
      * Get the alternative titles for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getAlternativeTitles($movie_id, array $options = array(), array $headers = array())
+    public function getAlternativeTitles($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/alternative_titles', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/alternative_titles', $parameters, $headers);
     }
 
     /**
      * Get the cast information for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getCast($movie_id, array $options = array(), array $headers = array())
+    public function getCast($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/casts', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/casts', $parameters, $headers);
     }
 
     /**
      * Get the images (posters and backdrops) for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getImages($movie_id, array $options = array(), array $headers = array())
+    public function getImages($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/images', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/images', $parameters, $headers);
     }
 
     /**
      * Get the plot keywords for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getKeywords($movie_id, array $options = array(), array $headers = array())
+    public function getKeywords($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/keywords', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/keywords', $parameters, $headers);
     }
 
     /**
      * Get the release date by country for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getReleases($movie_id, array $options = array(), array $headers = array())
+    public function getReleases($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/releases', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/releases', $parameters, $headers);
     }
 
     /**
      * Get the trailers for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getTrailers($movie_id, array $options = array(), array $headers = array())
+    public function getTrailers($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/trailers', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/trailers', $parameters, $headers);
     }
 
     /**
      * Get the translations for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getTranslations($movie_id, array $options = array(), array $headers = array())
+    public function getTranslations($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/translations', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/translations', $parameters, $headers);
     }
 
     /**
      * Get the similar movies for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getSimilarMovies($movie_id, array $options = array(), array $headers = array())
+    public function getSimilarMovies($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/similar_movies', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/similar_movies', $parameters, $headers);
     }
 
     /**
      * Get the reviews for a particular movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getReviews($movie_id, array $options = array(), array $headers = array())
+    public function getReviews($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/reviews', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/reviews', $parameters, $headers);
     }
 
     /**
      * Get the lists that the movie belongs to.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getLists($movie_id, array $options = array(), array $headers = array())
+    public function getLists($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/lists', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/lists', $parameters, $headers);
     }
 
     /**
      * Get the changes for a specific movie id.
      *
      * @param $movie_id
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getChanges($movie_id, array $options = array(), array $headers = array())
+    public function getChanges($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/changes', $options, $headers);
+        return $this->get('movie/' . $movie_id . '/changes', $parameters, $headers);
     }
 
     /**
      * Get the latest movie id.
      *
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getLatest(array $options = array(), array $headers = array())
+    public function getLatest(array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/latest', $options, $headers);
+        return $this->get('movie/latest', $parameters, $headers);
     }
 
     /**
      * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
      *
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getUpcoming(array $options = array(), array $headers = array())
+    public function getUpcoming(array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/upcoming', $options, $headers);
+        return $this->get('movie/upcoming', $parameters, $headers);
     }
 
     /**
      * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
      *
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getNowPlaying(array $options = array(), array $headers = array())
+    public function getNowPlaying(array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/now_playing', $options, $headers);
+        return $this->get('movie/now_playing', $parameters, $headers);
     }
 
     /**
      * Get the list of popular movies on The Movie Database. This list refreshes every day.
      *
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getPopular(array $options = array(), array $headers = array())
+    public function getPopular(array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/popular', $options, $headers);
+        return $this->get('movie/popular', $parameters, $headers);
     }
 
     /**
      * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
      *
-     * @param array $options
+     * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getTopRated(array $options = array(), array $headers = array())
+    public function getTopRated(array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/top_rated', $options, $headers);
+        return $this->get('movie/top_rated', $parameters, $headers);
     }
 
     /**
