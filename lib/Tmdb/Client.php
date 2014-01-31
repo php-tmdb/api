@@ -132,6 +132,14 @@ class Client {
     }
 
     /**
+     * @return Api\Find
+     */
+    public function getFindApi()
+    {
+        return new Api\Find($this);
+    }
+
+    /**
      * @return Api\Movies
      */
     public function getMoviesApi()

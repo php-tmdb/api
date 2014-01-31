@@ -12,9 +12,7 @@
  */
 namespace Tmdb\Tests\Repository;
 
-use Tmdb\Model\Query\ChangesQuery;
-
-class ChangesRepositoryTest extends TestCase
+class FindRepositoryTest extends TestCase
 {
     /**
      * @test
@@ -23,18 +21,16 @@ class ChangesRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        $query = new ChangesQuery();
-
-        $repository->getMovieChanges($query);
+        $repository->find('tt2345737');
     }
 
     protected function getApiClass()
     {
-        return 'Tmdb\Api\Changes';
+        return 'Tmdb\Api\FindApi';
     }
 
     protected function getRepositoryClass()
     {
-        return 'Tmdb\Repository\ChangesRepository';
+        return 'Tmdb\Repository\FindRepository';
     }
 }

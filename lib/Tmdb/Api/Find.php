@@ -16,14 +16,25 @@ class Find
     extends AbstractApi
 {
     /**
-     * Get a list of valid jobs.
+     * The find method makes it easy to search for objects in our database by an external id. For instance, an IMDB ID. This will search all objects (movies, TV shows and people) and return the results in a single response. TV season and TV episode searches will be supported shortly.
      *
+     * The supported external sources for each object are as follows:
+     *
+     * Movies: imdb_id
+     * People: imdb_id, freebase_mid, freebase_id, tvrage_id
+     * TV Series: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id
+     *
+     * @param string $id
      * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getJobs(array $parameters = array(), array $headers = array())
+    public function find($id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('job/list', $parameters, $headers);
+        return $this->get(
+            sprintf('find/%s', $id),
+            $parameters,
+            $headers
+        );
     }
 }

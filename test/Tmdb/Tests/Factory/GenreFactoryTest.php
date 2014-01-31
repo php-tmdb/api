@@ -38,6 +38,22 @@ class GenreFactoryTest extends TestCase
         }
     }
 
+    /**
+     * @test
+     */
+    public function shouldFilter()
+    {
+        $factory = $this->getFactory();
+        $data    = $this->loadByFile('genre/result.json');
+
+        $collection     = $factory->createCollection($data['genres']);
+        $filteredGenres = $collection->filterId(self::GENRE_ID);
+
+        foreach($filteredGenres as $filteredGenre) {
+            $this->assertEquals('Action', $filteredGenre->getName());
+        }
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\GenreFactory';

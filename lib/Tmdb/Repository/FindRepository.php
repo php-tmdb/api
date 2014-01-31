@@ -13,12 +13,39 @@
 namespace Tmdb\Repository;
 
 // @todo
+use Tmdb\Factory\FindFactory;
+use Tmdb\Model\Find;
+
 class FindRepository extends AbstractRepository {
-    public function getApi()
-    {
+    /**
+     * Find something
+     *
+     * @param $id
+     * @param array $parameters
+     * @param array $headers
+     * @return Find
+     */
+    public function find($id, array $parameters = array(), array $headers = array()) {
+        return $this->getFactory()->create(
+            $this->getApi()->find($id,$parameters, $headers)
+        );
     }
 
+    /**
+     * Return the related API class
+     *
+     * @return \Tmdb\Api\Find
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getFindApi();
+    }
+
+    /**
+     * @return FindFactory
+     */
     public function getFactory()
     {
+        return new FindFactory();
     }
 }
