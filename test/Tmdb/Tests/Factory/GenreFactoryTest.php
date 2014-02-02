@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Factory;
 
+use Tmdb\Model\Collection\Genres;
+
 class GenreFactoryTest extends TestCase
 {
     const GENRE_ID = 28;
@@ -46,12 +48,39 @@ class GenreFactoryTest extends TestCase
         $factory = $this->getFactory();
         $data    = $this->loadByFile('genre/result.json');
 
-        $collection     = $factory->createCollection($data['genres']);
-        $filteredGenres = $collection->filterId(self::GENRE_ID);
+        /**
+         * @var Genres $genres
+         */
+        $genres = $factory->createCollection($data['genres']);
+
+        $filteredGenres = $genres->filterId(self::GENRE_ID);
 
         foreach($filteredGenres as $filteredGenre) {
             $this->assertEquals('Action', $filteredGenre->getName());
         }
+    }
+
+    /**
+     * @test
+     */
+    public function shouldCollaborateWithCollection()
+    {
+        $factory = $this->getFactory();
+        $data    = $this->loadByFile('genre/result.json');
+
+        /**
+         * @var Genres $genres
+         */
+        $genres = $factory->createCollection($data['genres']);
+
+
+        $this->assertEquals(count($data['genres']), count($genres->getGenres()));
+
+        $genre = $genres->getGenre(28);
+        $this->assertEquals('Action', $genre->getName());
+
+        $genre = $genres->getGenre(-1);
+        $this->assertEquals(null, $genre);
     }
 
     protected function getFactoryClass()

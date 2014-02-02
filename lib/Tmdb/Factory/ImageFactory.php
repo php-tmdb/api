@@ -132,7 +132,7 @@ class ImageFactory extends AbstractFactory
                 if (array_key_exists($format, Image::$_formats)) {
                     $item = $this->create($item, $format);
 
-                    $collection->add(null, $item);
+                    $collection->addImage($item);
                 }
             }
         }
