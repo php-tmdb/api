@@ -12,7 +12,9 @@
  */
 namespace Tmdb\Tests\Factory;
 
+use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\PeopleFactory;
+use Tmdb\Model\Movie;
 use Tmdb\Model\Person;
 
 class PeopleFactoryTest extends TestCase
@@ -37,6 +39,32 @@ class PeopleFactoryTest extends TestCase
 
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $person->getImages());
         $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $person->getProfile());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldConstructCastAndCredits()
+    {
+        $data         = $this->loadByFile('movie/all.json');
+        /**
+         * @var MovieFactory $movieFactory
+         */
+        $movieFactory = new MovieFactory();
+
+        /**
+         * @var Movie $movie
+         */
+        $movie   = $movieFactory->create($data);
+        $credits = $movie->getCredits();
+
+        $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $credits);
+
+        $cast = $credits->getCast();
+        $crew = $credits->getCrew();
+
+        $this->assertInstanceOf('Tmdb\Model\Collection\People\Cast', $cast);
+        $this->assertInstanceOf('Tmdb\Model\Collection\People\Crew', $crew);
     }
 
     protected function getFactoryClass()
