@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Tests;
 
+use Tmdb\ApiToken;
 use Tmdb\Common\ObjectHydrator;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
@@ -57,6 +58,32 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             ),
             true
         );
+    }
+
+    /**
+     * Get a TMDB Client with an mocked HTTP dependency
+     *
+     * @return \Tmdb\Client
+     */
+    protected function getClientWithMockedHttpClient()
+    {
+        $token      = new ApiToken('abcdef');
+
+        $httpClient = $this->getMockedHttpClient();
+        $httpClient
+            ->expects($this->any())
+            ->method('send');
+
+        $mock = $this->getMock(
+            'Tmdb\HttpClient\HttpClientInterface',
+            array(),
+            array(array(), $httpClient)
+        );
+
+        $client = new \Tmdb\Client($token, $httpClient);
+        $client->setHttpClient($mock);
+
+        return $client;
     }
 
     /**

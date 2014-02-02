@@ -28,7 +28,6 @@ class HttpClient
 
     protected $options  = array();
     protected $base_url = null;
-    protected $headers  = array();
 
     /**
      * @var Response
@@ -52,8 +51,6 @@ class HttpClient
         $this->base_url = $baseUrl;
         $this->options  = $options;
         $this->client   = $client;
-
-        $this->clearHeaders();
     }
 
     /**
@@ -64,53 +61,6 @@ class HttpClient
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
         $this->client->addSubscriber($subscriber);
-    }
-
-    /**
-     * Clear up the headers
-     * @return void
-     */
-    public function clearHeaders()
-    {
-        $this->headers = array();
-    }
-
-    /**
-     * @return array
-     */
-    public function getHeaders()
-    {
-        return $this->headers;
-    }
-
-    /**
-     * @param array $headers
-     */
-    public function setHeaders(array $headers = array())
-    {
-        $this->headers = $headers;
-    }
-
-    /**
-     * Set options
-     *
-     * @param string $key
-     * @param mixed $value
-     */
-    public function setOption($key, $value)
-    {
-        $this->options[$key] = $value;
-    }
-
-    /**
-     * Get an option
-     *
-     * @param $key
-     * @return mixed
-     */
-    public function getOption($key)
-    {
-        return $this->options[$key];
     }
 
     /**

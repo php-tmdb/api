@@ -123,6 +123,10 @@ class Person extends AbstractModel implements PersonInterface {
      */
     public function setBirthday($birthday)
     {
+        if (!$birthday instanceof \DateTime) {
+            $birthday = new \DateTime($birthday);
+        }
+
         $this->birthday = $birthday;
         return $this;
     }
@@ -177,6 +181,10 @@ class Person extends AbstractModel implements PersonInterface {
      */
     public function setDeathday($deathday)
     {
+        if (!$deathday instanceof \DateTime) {
+            $deathday = new \DateTime($deathday);
+        }
+
         $this->deathday = $deathday;
         return $this;
     }

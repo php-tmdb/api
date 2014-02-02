@@ -85,22 +85,4 @@ interface HttpClientInterface
      */
     public function request(RequestInterface $request);
 
-    /**
-     * Change an option value.
-     *
-     * @param string $name   The option name
-     * @param mixed  $value  The value
-     *
-     * @throws InvalidArgumentException
-     * @return void
-     */
-    public function setOption($name, $value);
-
-    /**
-     * Set HTTP headers
-     *
-     * @param array $headers
-     * @return void
-     */
-    public function setHeaders(array $headers);
 }

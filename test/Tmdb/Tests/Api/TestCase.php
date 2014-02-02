@@ -41,27 +41,6 @@ abstract class TestCase extends Base
             ->getMock();
     }
 
-    protected function getClientWithMockedHttpClient()
-    {
-        $token      = new ApiToken('abcdef');
-
-        $httpClient = $this->getMockedHttpClient();
-        $httpClient
-            ->expects($this->any())
-            ->method('send');
-
-        $mock = $this->getMock(
-            'Tmdb\HttpClient\HttpClientInterface',
-            array(),
-            array(array(), $httpClient)
-        );
-
-        $client = new \Tmdb\Client($token, $httpClient);
-        $client->setHttpClient($mock);
-
-        return $client;
-    }
-
     protected function getMockedHttpClient()
     {
         return $this->getMock('Guzzle\Http\Client', array('send'));
