@@ -13,15 +13,18 @@
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\MovieFactory;
+use Tmdb\Model\Movie;
 
 class MovieFactoryTest extends TestCase
 {
     const MOVIE_ID = 120;
 
     /**
-     * @test
+     * @var Movie
      */
-    public function shouldConstructMovie()
+    private $movie;
+
+    public function setUp()
     {
         /**
          * @var MovieFactory $factory
@@ -29,9 +32,15 @@ class MovieFactoryTest extends TestCase
         $factory = $this->getFactory();
         $data    = $this->loadByFile('movie/all.json');
 
-        $movie = $factory->create($data);
+        $this->movie = $factory->create($data);
+    }
 
-        $this->assertInstanceOf('Tmdb\Model\Movie', $movie);
+    /**
+     * @test
+     */
+    public function shouldConstructMovie()
+    {
+        $this->assertInstanceOf('Tmdb\Model\Movie', $this->movie);
     }
 
     /**
@@ -52,6 +61,11 @@ class MovieFactoryTest extends TestCase
         $this->assertInstanceOf('stdClass', $factory->getCrewFactory());
         $this->assertInstanceOf('stdClass', $factory->getGenreFactory());
         $this->assertInstanceOf('stdClass', $factory->getImageFactory());
+    }
+
+    public function shouldBeFunctional()
+    {
+        $this->assertEquals(false, $this->movie->getAdult());
     }
 
     protected function getFactoryClass()
