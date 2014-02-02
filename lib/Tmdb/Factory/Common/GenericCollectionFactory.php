@@ -43,10 +43,11 @@ class GenericCollectionFactory {
             $class = get_class($class);
         }
 
-        $collection = new GenericCollection();
+        $collection     = new GenericCollection();
+        $objectHydrator = new ObjectHydrator();
 
         foreach($data as $item) {
-            $collection->add(null, ObjectHydrator::hydrate(new $class(), $item));
+            $collection->add(null, $objectHydrator->hydrate(new $class(), $item));
         }
 
         return $collection;
