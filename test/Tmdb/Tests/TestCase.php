@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests;
 
+use Tmdb\Common\ObjectHydrator;
+
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -55,5 +57,18 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             ),
             true
         );
+    }
+
+    /**
+     * Hydrate object
+     *
+     * @param $object
+     * @param $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    protected function hydrate($object, $data) {
+        $objectHydrator = new ObjectHydrator();
+
+        return $objectHydrator->hydrate($object, $data);
     }
 }
