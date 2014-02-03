@@ -18,9 +18,11 @@ use Tmdb\Model\Collection;
 class CollectionFactoryTest extends TestCase
 {
     /**
-     * @test
+     * @var Collection
      */
-    public function shouldConstructCollection()
+    private $collection;
+
+    public function setUp()
     {
         /**
          * @var CollectionFactory $factory
@@ -28,12 +30,20 @@ class CollectionFactoryTest extends TestCase
         $factory = $this->getFactory();
         $data    = $this->loadByFile('collection/get.json');
 
+        $data['overview'] = 'external';
+
         /**
          * @var Collection $collection
          */
-        $collection = $factory->create($data);
+        $this->collection = $factory->create($data);
+    }
 
-        $this->assertInstanceOf('Tmdb\Model\Collection', $collection);
+    /**
+     * @test
+     */
+    public function shouldConstructCollection()
+    {
+        $this->assertInstanceOf('Tmdb\Model\Collection', $this->collection);
     }
 
     /**
@@ -71,6 +81,22 @@ class CollectionFactoryTest extends TestCase
         $collection = $factory->createCollection($data);
 
         $this->assertEquals(2, count($collection));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeFunctional()
+    {
+        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->collection->getBackdrop());
+        $this->assertEquals('/qCECROwx3TRUEgoZv2Mz2D723QC.jpg', $this->collection->getBackdropPath());
+        $this->assertEquals(10, $this->collection->getId());
+        $this->assertEquals('external', $this->collection->getOverview());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->collection->getImages());
+        $this->assertEquals('Star Wars Collection', $this->collection->getName());
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->collection->getParts());
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->collection->getPoster());
+        $this->assertEquals('/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg', $this->collection->getPosterPath());
     }
 
     protected function getFactoryClass()

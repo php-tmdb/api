@@ -45,6 +45,11 @@ class Collection extends AbstractModel {
     private $name;
 
     /**
+     * @var string
+     */
+    private $overview;
+
+    /**
      * @var Common\GenericCollection
      */
     private $parts;
@@ -63,6 +68,7 @@ class Collection extends AbstractModel {
         'backdrop_path',
         'id',
         'name',
+        'overview',
         'poster_path',
     );
 
@@ -160,6 +166,24 @@ class Collection extends AbstractModel {
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $overview
+     * @return $this
+     */
+    public function setOverview($overview)
+    {
+        $this->overview = $overview;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOverview()
+    {
+        return $this->overview;
     }
 
     /**

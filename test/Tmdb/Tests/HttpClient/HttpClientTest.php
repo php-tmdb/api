@@ -12,7 +12,10 @@
  */
 namespace Tmdb\Tests\HttpClient;
 
-use Guzzle\Common\Event;
+use \Exception;
+use Tmdb\Api\AbstractApi;
+use Tmdb\ApiToken;
+use Tmdb\Client;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Tests\TestCase;
 
@@ -29,7 +32,7 @@ class HttpClientTest extends TestCase
     private $testApi;
 
     /**
-     * @var HttpClient
+     * @var Client
      */
     private $client;
 
@@ -40,7 +43,7 @@ class HttpClientTest extends TestCase
             ->setMethods(array())
             ->getMock();
 
-        $this->client  = new HttpClient('http://www.google.com', array(), $this->guzzleMock);
+        $this->client  = new Client(new ApiToken('abcdef'), $this->guzzleMock);
         $this->testApi = new TestApi($this->client);
     }
 
@@ -170,11 +173,11 @@ class HttpClientTest extends TestCase
     }
 }
 
-class TestApi {
+class TestApi extends AbstractApi {
     /**
      * @var \Tmdb\HttpClient\HttpClient
      */
-    private $client;
+    protected $client;
 
     public function __construct($client)
     {
@@ -182,30 +185,30 @@ class TestApi {
     }
 
     public function get() {
-        $this->client->get('/');
+        $this->client->getHttpClient()->get('/');
     }
 
     public function head() {
-        $this->client->head('/');
+        $this->client->getHttpClient()->head('/');
     }
 
     public function post() {
-        $this->client->post('/', array('id' => 1));
+        $this->client->getHttpClient()->post('/', array('id' => 1));
     }
 
     public function patch() {
-        $this->client->patch('http://www.google.com/');
+        $this->client->getHttpClient()->patch('http://www.google.com/');
     }
 
     public function delete() {
-        $this->client->delete('http://www.google.com/');
+        $this->client->getHttpClient()->delete('http://www.google.com/');
     }
 
     public function put() {
-        $this->client->put('http://www.google.com/');
+        $this->client->getHttpClient()->put('http://www.google.com/');
     }
 
     public function addSubscriber($event) {
-        $this->client->addSubscriber($event);
+        $this->client->getHttpClient()->addSubscriber($event);
     }
 }
