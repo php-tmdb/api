@@ -48,7 +48,7 @@ class MovieFactoryTest extends TestCase
      */
     public function shouldBeAbleToSetFactories()
     {
-        $factory = new MovieFactory();
+        $factory = $this->getFactory();
 
         $class = new \stdClass();
 

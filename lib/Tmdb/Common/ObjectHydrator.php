@@ -64,7 +64,7 @@ class ObjectHydrator {
      * @param string $candidate
      * @return string
      */
-    private function camelize($candidate)
+    public function camelize($candidate)
     {
         return lcfirst(
             implode('',

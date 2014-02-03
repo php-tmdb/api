@@ -26,10 +26,30 @@ class GenreTest extends TestCase
         $this->assertInstancesOf(
             $person,
             array(
-                'getCredits' => 'Tmdb\Model\Collection\Credits',
-                'getImages'  => 'Tmdb\Model\Collection\Images',
-                'getChanges' => 'Tmdb\Model\Common\GenericCollection'
+                'getCredits'         => 'Tmdb\Model\Collection\Credits',
+                'getImages'          => 'Tmdb\Model\Collection\Images',
+                'getChanges'         => 'Tmdb\Model\Common\GenericCollection',
+                'getCombinedCredits' => 'Tmdb\Model\Collection\Credits\CombinedCredits',
+                'getMovieCredits'    => 'Tmdb\Model\Collection\Credits\MovieCredits',
+                'getTvCredits'       => 'Tmdb\Model\Collection\Credits\TvCredits',
             )
         );
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToReplaceCollections()
+    {
+        $factory = new Person();
+        $class   = new \stdClass();
+
+        $factory->setCombinedCredits($class);
+        $factory->setMovieCredits($class);
+        $factory->setTvCredits($class);
+
+        $this->assertInstanceOf('stdClass', $factory->getCombinedCredits());
+        $this->assertInstanceOf('stdClass', $factory->getMovieCredits());
+        $this->assertInstanceOf('stdClass', $factory->getTvCredits());
     }
 }

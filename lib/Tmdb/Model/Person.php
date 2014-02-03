@@ -20,22 +20,89 @@ use Tmdb\Model\Image\ProfileImage;
 
 class Person extends AbstractModel implements PersonInterface {
 
+    /**
+     * @var bool
+     */
     private $adult;
+
+    /**
+     * @var array
+     */
     private $alsoKnownAs = array();
+
+    /**
+     * @var string
+     */
     private $biography;
+    /**
+     * @var \DateTime
+     */
     private $birthday;
+
+    /**
+     * @var \DateTime|boolean
+     */
     private $deathday;
+
+    /**
+     * @var string
+     */
     private $homepage;
+
+    /**
+     * @var integer
+     */
     private $id;
+
+    /**
+     * @var string
+     */
     private $name;
-    private $department;
-    private $job;
+
+    /**
+     * @var string
+     */
     private $placeOfBirth;
+
+    /**
+     * @var string
+     */
     private $profilePath;
+
+    /**
+     * @var ProfileImage
+     */
     private $profile;
 
+    /**
+     * @var Collection\Credits
+     * @deprecated
+     */
     protected $credits;
+
+    /**
+     * @var Credits\MovieCredits
+     */
+    protected $movieCredits;
+
+    /**
+     * @var Credits\TvCredits
+     */
+    protected $tvCredits;
+
+    /**
+     * @var Credits\CombinedCredits
+     */
+    protected $combinedCredits;
+
+    /**
+     * @var Collection\Images
+     */
     protected $images;
+
+    /**
+     * @var Common\GenericCollection
+     */
     protected $changes;
 
     public static $_properties = array(
@@ -58,9 +125,12 @@ class Person extends AbstractModel implements PersonInterface {
      */
     public function __construct()
     {
-        $this->credits = new Credits();
-        $this->images  = new Images();
-        $this->changes = new GenericCollection();
+        $this->credits         = new Credits();
+        $this->movieCredits    = new Credits\MovieCredits();
+        $this->tvCredits       = new Credits\TvCredits();
+        $this->combinedCredits = new Credits\CombinedCredits();
+        $this->images          = new Images();
+        $this->changes         = new GenericCollection();
     }
 
     /**
@@ -181,8 +251,12 @@ class Person extends AbstractModel implements PersonInterface {
      */
     public function setDeathday($deathday)
     {
-        if (!$deathday instanceof \DateTime) {
+        if (!$deathday instanceof \DateTime && !empty($deathday)) {
             $deathday = new \DateTime($deathday);
+        }
+
+        if (empty($deathday)) {
+            $deathday = false;
         }
 
         $this->deathday = $deathday;
@@ -306,42 +380,6 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @param mixed $department
-     * @return $this
-     */
-    public function setDepartment($department)
-    {
-        $this->department = $department;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDepartment()
-    {
-        return $this->department;
-    }
-
-    /**
-     * @param mixed $job
-     * @return $this
-     */
-    public function setJob($job)
-    {
-        $this->job = $job;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getJob()
-    {
-        return $this->job;
-    }
-
-    /**
      * @param ProfileImage  $profile
      * @return $this
      */
@@ -357,5 +395,59 @@ class Person extends AbstractModel implements PersonInterface {
     public function getProfile()
     {
         return $this->profile;
+    }
+
+    /**
+     * @param \Tmdb\Model\Collection\Credits\CombinedCredits $combinedCredits
+     * @return $this
+     */
+    public function setCombinedCredits($combinedCredits)
+    {
+        $this->combinedCredits = $combinedCredits;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Collection\Credits\CombinedCredits
+     */
+    public function getCombinedCredits()
+    {
+        return $this->combinedCredits;
+    }
+
+    /**
+     * @param \Tmdb\Model\Collection\Credits\MovieCredits $movieCredits
+     * @return $this
+     */
+    public function setMovieCredits($movieCredits)
+    {
+        $this->movieCredits = $movieCredits;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Collection\Credits\MovieCredits
+     */
+    public function getMovieCredits()
+    {
+        return $this->movieCredits;
+    }
+
+    /**
+     * @param \Tmdb\Model\Collection\Credits\TvCredits $tvCredits
+     * @return $this
+     */
+    public function setTvCredits($tvCredits)
+    {
+        $this->tvCredits = $tvCredits;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Collection\Credits\TvCredits
+     */
+    public function getTvCredits()
+    {
+        return $this->tvCredits;
     }
 }

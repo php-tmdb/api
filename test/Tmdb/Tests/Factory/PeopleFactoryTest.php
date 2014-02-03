@@ -20,9 +20,11 @@ use Tmdb\Model\Person;
 class PeopleFactoryTest extends TestCase
 {
     /**
-     * @test
+     * @var Person
      */
-    public function shouldConstructPerson()
+    private $person;
+
+    public function setUp()
     {
         /**
          * @var PeopleFactory $factory
@@ -30,15 +32,23 @@ class PeopleFactoryTest extends TestCase
         $factory = $this->getFactory();
         $data    = $this->loadByFile('person/get.json');
 
+        $data['biography'] = 'external';
+
         /**
          * @var Person $person
          */
-        $person = $factory->create($data);
+        $this->person = $factory->create($data);
+    }
 
-        $this->assertInstanceOf('Tmdb\Model\Person', $person);
+    /**
+     * @test
+     */
+    public function shouldConstructPerson()
+    {
+        $this->assertInstanceOf('Tmdb\Model\Person', $this->person);
 
-        $this->assertInstanceOf('Tmdb\Model\Collection\Images', $person->getImages());
-        $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $person->getProfile());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->person->getImages());
+        $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $this->person->getProfile());
     }
 
     /**
@@ -95,6 +105,35 @@ class PeopleFactoryTest extends TestCase
         $collection = $factory->createCollection($data);
 
         $this->assertEquals(2, count($collection));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeFunctional()
+    {
+        $alsoKnownAs = $this->person->getAlsoKnownAs();
+
+        $this->assertEquals(false, $this->person->getAdult());
+        $this->assertEquals(true, empty($alsoKnownAs));
+        $this->assertEquals('external', $this->person->getBiography());
+        $this->assertInstanceOf('\DateTime', $this->person->getBirthday());
+        $this->assertEquals(false, $this->person->getDeathday());
+        $this->assertEquals('', $this->person->getHomepage());
+        $this->assertEquals(33, $this->person->getId());
+        //@todo
+        //$this->assertEquals('nm0000641', $this->person->getImdbId());
+        $this->assertEquals('Gary Sinise', $this->person->getName());
+        $this->assertEquals('Blue Island, Illinois, USA', $this->person->getPlaceOfBirth());
+        //@todo
+        //$this->assertEquals(1.99498054250796, $this->person->getPopularity());
+        $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $this->person->getProfile());
+        $this->assertEquals('/h9YwlLHANaQzaTVkVwxnxLbvCY4.jpg', $this->person->getProfilePath());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->person->getImages());
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->person->getChanges());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Credits\CombinedCredits', $this->person->getCombinedCredits());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Credits\MovieCredits', $this->person->getMovieCredits());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Credits\TvCredits', $this->person->getTvCredits());
     }
 
     protected function getFactoryClass()

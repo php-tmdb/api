@@ -10,8 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Collection;
+namespace Tmdb\Model\Collection\Credits;
 
-use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Collection\Credits;
 
-class Changes extends GenericCollection {}
+class MovieCredits extends Credits {}
