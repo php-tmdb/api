@@ -67,6 +67,36 @@ class PeopleFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Collection\People\Crew', $crew);
     }
 
+    /**
+     * @test
+     */
+    public function shouldBeAbleToSetImageFactory()
+    {
+        $factory = $this->getFactory();
+
+        $newFactory = new \stdClass();
+        $factory->setImageFactory($newFactory);
+
+        $this->assertInstanceOf('\stdClass', $factory->getImageFactory());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToDissectResults()
+    {
+        $factory = $this->getFactory();
+
+        $data = array('results' => array(
+            array('id' => 1),
+            array('id' => 2),
+        ));
+
+        $collection = $factory->createCollection($data);
+
+        $this->assertEquals(2, count($collection));
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\PeopleFactory';

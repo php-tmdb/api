@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Exception\NotImplementedException;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Find;
 
@@ -69,7 +70,7 @@ class FindFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        return array();
+        throw new NotImplementedException(sprintf('Method "%s" is not implemented.', __METHOD__));
     }
 
     /**

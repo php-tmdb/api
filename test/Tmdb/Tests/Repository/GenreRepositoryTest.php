@@ -36,6 +36,16 @@ class GenreRepositoryTest extends TestCase
         $repository->loadCollection();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetFactory()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $this->assertInstanceOf('Tmdb\Factory\GenreFactory', $repository->getFactory());
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Genres';

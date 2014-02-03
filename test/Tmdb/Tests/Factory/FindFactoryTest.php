@@ -47,6 +47,34 @@ class FindFactoryTest extends TestCase
         }
     }
 
+    /**
+     * @test
+     */
+    public function shouldBeAbleToSetFactories()
+    {
+        $factory = $this->getFactory();
+
+        $class = new \stdClass();
+
+        $factory->setMovieFactory($class);
+        $factory->setPeopleFactory($class);
+        $factory->setTvFactory($class);
+
+        $this->assertInstanceOf('stdClass', $factory->getMovieFactory());
+        $this->assertInstanceOf('stdClass', $factory->getPeopleFactory());
+        $this->assertInstanceOf('stdClass', $factory->getTvFactory());
+    }
+
+    /**
+     * @test
+     * @expectedException Tmdb\Exception\NotImplementedException
+     */
+    public function shouldThrowExceptionForCreateCollection()
+    {
+        $factory = $this->getFactory();
+        $factory->createCollection(array());
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\FindFactory';

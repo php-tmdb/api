@@ -28,12 +28,6 @@ class ImageFactory extends AbstractFactory
     {
         $type = self::resolveImageType($key);
 
-        if (is_string($data)) {
-            $data = array(
-                'file_path' => $data
-            );
-        }
-
         return $this->hydrate($type, $data);
     }
 
@@ -55,10 +49,12 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
+     * Helper function to obtain a new object for an image type
+     *
      * @param string|null $key
      * @return Image|Image\BackdropImage|Image\LogoImage|Image\PosterImage|Image\ProfileImage|Image\StillImage
      */
-    private function resolveImageType($key = null)
+    public function resolveImageType($key = null)
     {
         switch($key) {
             case 'poster':

@@ -83,6 +83,23 @@ class GenreFactoryTest extends TestCase
         $this->assertEquals(null, $genre);
     }
 
+    /**
+     * @test
+     */
+    public function shouldBeAbleToDissectResults()
+    {
+        $factory = $this->getFactory();
+
+        $data = array('genres' => array(
+            array('id' => 1),
+            array('id' => 2),
+        ));
+
+        $collection = $factory->createCollection($data);
+
+        $this->assertEquals(2, count($collection));
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\GenreFactory';

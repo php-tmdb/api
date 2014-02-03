@@ -55,6 +55,24 @@ class CollectionFactoryTest extends TestCase
         $this->assertInstanceOf('stdClass', $factory->getImageFactory());
     }
 
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToCreateCollection()
+    {
+        $factory = $this->getFactory();
+
+        $data = array(
+            array('id' => 1),
+            array('id' => 2),
+        );
+
+        $collection = $factory->createCollection($data);
+
+        $this->assertEquals(2, count($collection));
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\CollectionFactory';

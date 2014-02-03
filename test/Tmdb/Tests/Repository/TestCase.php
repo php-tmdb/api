@@ -39,19 +39,4 @@ abstract class TestCase extends Base
 
         return $this->getMock($this->getRepositoryClass(), array_merge(array('getApi'), $methods), array($client));
     }
-
-    protected function getMockedTmdbClient()
-    {
-        $token    = new ApiToken('abcdef');
-        $response = new Response('200');
-
-        $httpClient = $this->getMock('Guzzle\Http\Client', array('send'));
-        $httpClient
-            ->expects($this->any())
-            ->method('send')
-            ->will($this->returnValue($response))
-        ;
-
-        return new Client($token, $httpClient);
-    }
 }

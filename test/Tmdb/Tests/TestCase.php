@@ -12,7 +12,9 @@
  */
 namespace Tmdb\Tests;
 
+use Guzzle\Http\Message\Response;
 use Tmdb\ApiToken;
+use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
@@ -84,6 +86,40 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $client->setHttpClient($mock);
 
         return $client;
+    }
+
+    /**
+     * Get TMDB Client
+     *
+     * @return Client
+     */
+    protected function getMockedTmdbClient()
+    {
+        $token    = new ApiToken('abcdef');
+        $response = new Response('200');
+
+        $httpClient = $this->getMock('Guzzle\Http\Client', array('send'));
+        $httpClient
+            ->expects($this->any())
+            ->method('send')
+            ->will($this->returnValue($response))
+        ;
+
+        return new Client($token, $httpClient);
+    }
+
+    /**
+     * Get mocked http client
+     *
+     * @param array $methods
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getMockedHttpClient(array $methods = array())
+    {
+        return $this->getMock('Guzzle\Http\Client', array_merge(
+            $methods,
+            array('send')
+        ));
     }
 
     /**

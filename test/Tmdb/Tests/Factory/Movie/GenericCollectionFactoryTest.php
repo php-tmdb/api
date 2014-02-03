@@ -12,37 +12,14 @@
  */
 namespace Tmdb\Tests\Factory\Movie;
 
+use Tmdb\Factory\Common\GenericCollectionFactory;
 use Tmdb\Factory\Movie\AlternativeTitleFactory;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Movie\AlternativeTitle;
 use Tmdb\Tests\Factory\TestCase;
 
-class AlternativeTitleFactoryTest extends TestCase
+class GenericCollectionFactoryTest extends TestCase
 {
-
-    /**
-     * @test
-     */
-    public function shouldConstructAlternativeTitle()
-    {
-        /**
-         * @var AlternativeTitleFactory $factory
-         */
-        $factory = $this->getFactory();
-        $data = array(
-            'iso_3166_1' => 'nl',
-            'title' => 'Kaas'
-        );
-
-        /**
-         * @var AlternativeTitle
-         */
-        $title = $factory->create($data);
-
-        $this->assertInstanceOf('Tmdb\Model\Movie\AlternativeTitle', $title);
-        $this->assertEquals('nl', $title->getIso31661());
-        $this->assertEquals('Kaas', $title->getTitle());
-    }
-
 
     /**
      * @test
@@ -52,17 +29,46 @@ class AlternativeTitleFactoryTest extends TestCase
         $factory = $this->getFactory();
 
         $data = array(
-            array('id' => 1),
+            array('id' => 2),
             array('id' => 2),
         );
 
-        $collection = $factory->createCollection($data);
+        $collection = $factory->create($data, new FakeClass());
 
         $this->assertEquals(2, count($collection));
+
+        foreach($collection as $item) {
+            $this->assertEquals(2, $item->getId());
+        }
     }
 
     protected function getFactoryClass()
     {
-        return 'Tmdb\Factory\Movie\AlternativeTitleFactory';
+        return 'Tmdb\Factory\Common\GenericCollectionFactory';
+    }
+}
+
+class FakeClass extends AbstractModel {
+
+    public static $_properties = array('id');
+
+    private $id;
+
+    /**
+     * @param mixed $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

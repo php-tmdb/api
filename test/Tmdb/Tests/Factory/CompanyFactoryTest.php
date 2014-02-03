@@ -88,6 +88,19 @@ class CompanyFactoryTest extends TestCase
         $this->assertEquals(array(), $collection);
     }
 
+    /**
+     * @test
+     */
+    public function shouldBeAbleToSetFactories()
+    {
+        $factory = $this->getFactory();
+
+        $class = new \stdClass();
+        $factory->setImageFactory($class);
+
+        $this->assertInstanceOf('stdClass', $factory->getImageFactory());
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\CompanyFactory';

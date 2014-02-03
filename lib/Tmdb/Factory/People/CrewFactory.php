@@ -34,7 +34,7 @@ class CrewFactory extends PeopleFactory
         $collection = new Crew();
 
         foreach($data as $item) {
-            $collection->add(null, parent::create($item, $person));
+            $collection->add(null, $this->create($item, $person));
         }
 
         return $collection;

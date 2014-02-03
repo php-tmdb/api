@@ -148,16 +148,6 @@ class MovieRepository extends AbstractRepository {
      * @return Movie[]
      */
     private function createCollection($data){
-        $collection = new GenericCollection();
-
-        if (array_key_exists('results', $data)) {
-            $data = $data['results'];
-        }
-
-        foreach($data as $item) {
-            $collection->add(null, $this->getFactory()->create($item));
-        }
-
-        return $collection;
+        return $this->getFactory()->createCollection($data);
     }
 }

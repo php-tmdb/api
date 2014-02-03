@@ -34,7 +34,7 @@ class CastFactory extends PeopleFactory
         $collection = new Cast();
 
         foreach($data as $item) {
-            $collection->add(null, parent::create($item, $person));
+            $collection->add(null, $this->create($item, $person));
         }
 
         return $collection;

@@ -32,8 +32,12 @@ class GenreFactory extends AbstractFactory
     {
         $collection = new Genres();
 
+        if (array_key_exists('genres', $data)) {
+            $data = $data['genres'];
+        }
+
         foreach($data as $item) {
-            $collection->addGenre($this->create((array) $item));
+            $collection->addGenre($this->create($item));
         }
 
         return $collection;

@@ -17,10 +17,29 @@ use Tmdb\Model\Company;
 class CompanyFactory extends AbstractFactory
 {
     /**
+     * @var ImageFactory
+     */
+    private $imageFactory;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->imageFactory = new ImageFactory();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function create(array $data = array())
     {
+        $company = new Company();
+
+        if (array_key_exists('logo_path', $data)) {
+            $company->setLogo($this->getImageFactory()->createFromPath($data['logo_path'], 'logo_path'));
+        }
+
         return $this->hydrate(new Company(), $data);
     }
 
@@ -30,5 +49,23 @@ class CompanyFactory extends AbstractFactory
     public function createCollection(array $data = array())
     {
         return array();
+    }
+
+    /**
+     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
     }
 }

@@ -17,9 +17,18 @@ class ImageFactoryTest extends TestCase
     /**
      * @test
      */
-    public function shouldConstructGenres()
+    public function shouldBeAbleToCreateCollection()
     {
-        $this->assertEquals(true,true);
+        $factory = $this->getFactory();
+
+        $data = array(
+            array('id' => 1),
+            array('id' => 2),
+        );
+
+        $collection = $factory->createCollection($data);
+
+        $this->assertEquals(2, count($collection));
     }
 
     protected function getFactoryClass()

@@ -32,6 +32,31 @@ class DiscoverRepositoryTest extends TestCase
 
     /**
      * @test
+     * @expectedException Tmdb\Exception\RuntimeException
+     */
+    public function shouldThrowExceptionWhenCertificationCountryIssetButCertificationLteIsNot()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $query = new DiscoverMoviesQuery();
+        $query->certificationCountry('nl');
+
+        $repository->discoverMovies($query);
+    }
+
+    /**
+     * @test
+     * @expectedException Tmdb\Exception\NotImplementedException
+     */
+    public function shouldThrowExceptionForGetFactory()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getFactory();
+    }
+
+    /**
+     * @test
      */
     public function shouldDiscoverTv()
     {

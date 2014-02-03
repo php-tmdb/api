@@ -83,7 +83,7 @@ class MovieFactoryTest extends TestCase
         $this->assertEquals('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg', $this->movie->getPosterPath());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getProductionCompanies());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getProductionCountries());
-        // release
+        // @todo release
         $this->assertEquals(42025135, $this->movie->getRevenue());
         $this->assertEquals(119, $this->movie->getRuntime());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getSpokenLanguages());
@@ -100,6 +100,23 @@ class MovieFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getReleases());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getSimilarMovies());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getTrailers());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToDissectResults()
+    {
+        $factory = $this->getFactory();
+
+        $data = array('results' => array(
+            array('id' => 1),
+            array('id' => 2),
+        ));
+
+        $collection = $factory->createCollection($data);
+
+        $this->assertEquals(2, count($collection));
     }
 
     protected function getFactoryClass()

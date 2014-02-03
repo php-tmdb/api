@@ -40,9 +40,4 @@ abstract class TestCase extends Base
             ->setConstructorArgs(array($client))
             ->getMock();
     }
-
-    protected function getMockedHttpClient()
-    {
-        return $this->getMock('Guzzle\Http\Client', array('send'));
-    }
 }
