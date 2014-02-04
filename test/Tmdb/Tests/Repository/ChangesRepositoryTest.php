@@ -40,18 +40,6 @@ class ChangesRepositoryTest extends TestCase
         $repository->getPeopleChanges($query);
     }
 
-    /**
-     * There is no generic factory for changes so it should never be called.
-     *
-     * @expectedException Tmdb\Exception\NotImplementedException
-     * @test
-     */
-    public function getFactoryShouldThrowException()
-    {
-        $repository = $this->getRepositoryWithMockedHttpClient();
-        $repository->getFactory();
-    }
-
     protected function getApiClass()
     {
         return 'Tmdb\Api\Changes';

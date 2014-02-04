@@ -35,13 +35,7 @@ class People extends GenericCollection {
      * @return Person
      */
     public function getPerson($id) {
-        foreach($this->data as $person) {
-            if ($id === $person->getId()) {
-                return $person;
-            }
-        }
-
-        return null;
+        return $this->filterId($id);
     }
 
     /**

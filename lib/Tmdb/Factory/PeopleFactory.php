@@ -17,6 +17,7 @@ use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Collection\People\Crew;
+use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
@@ -121,7 +122,7 @@ class PeopleFactory extends AbstractFactory {
     public function createCollection(array $data = array(), Person\AbstractMember $person = null, $collection = null)
     {
         if (!$collection) {
-            $collection = new GenericCollection();
+            $collection = new People();
         }
 
         if (array_key_exists('results', $data)) {
@@ -133,42 +134,6 @@ class PeopleFactory extends AbstractFactory {
         }
 
         return $collection;
-    }
-
-    /**
-     * @param \Tmdb\Factory\People\CastFactory $castFactory
-     * @return $this
-     */
-    public function setCastFactory($castFactory)
-    {
-        $this->castFactory = $castFactory;
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\People\CastFactory
-     */
-    public function getCastFactory()
-    {
-        return $this->castFactory;
-    }
-
-    /**
-     * @param \Tmdb\Factory\People\CrewFactory $crewFactory
-     * @return $this
-     */
-    public function setCrewFactory($crewFactory)
-    {
-        $this->crewFactory = $crewFactory;
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\People\CrewFactory
-     */
-    public function getCrewFactory()
-    {
-        return $this->crewFactory;
     }
 
     /**

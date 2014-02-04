@@ -31,16 +31,10 @@ class Keywords extends GenericCollection {
      * Retrieve a keyword from the collection
      *
      * @param $id
-     * @return null
+     * @return Keyword
      */
     public function getKeyword($id) {
-        foreach($this->data as $keyword) {
-            if ($id === $keyword->getId()) {
-                return $keyword;
-            }
-        }
-
-        return null;
+        return $this->filterId($id);
     }
 
     /**

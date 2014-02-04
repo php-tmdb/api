@@ -688,42 +688,6 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param People\Cast $cast
-     * @return $this
-     */
-    public function setCast(People\Cast $cast)
-    {
-        $this->credits->setCast($cast);
-        return $this;
-    }
-
-    /**
-     * @return CastMember[]
-     */
-    public function getCast()
-    {
-        return $this->credits->getCast();
-    }
-
-    /**
-     * @param People\Crew $crew
-     * @return $this
-     */
-    public function setCrew(People\Crew $crew)
-    {
-        $this->credits->setCrew($crew);
-        return $this;
-    }
-
-    /**
-     * @return CrewMember[]
-     */
-    public function getCrew()
-    {
-        return $this->credits->getCrew();
-    }
-
-    /**
      * @param GenericCollection $alternativeTitles
      * @return $this
      */

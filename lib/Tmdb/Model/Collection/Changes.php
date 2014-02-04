@@ -12,6 +12,4 @@
  */
 namespace Tmdb\Model\Collection;
 
-use Tmdb\Model\Common\GenericCollection;
-
-class Changes extends GenericCollection {}
+class Changes extends ResultCollection {}

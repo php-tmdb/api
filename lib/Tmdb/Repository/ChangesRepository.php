@@ -12,9 +12,7 @@
  */
 namespace Tmdb\Repository;
 
-use Tmdb\Exception\NotImplementedException;
-use Tmdb\Factory\MovieFactory;
-use Tmdb\Factory\PeopleFactory;
+use Tmdb\Factory\ChangesFactory;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Query\ChangesQuery;
 
@@ -36,7 +34,7 @@ class ChangesRepository extends AbstractRepository {
     public function getMovieChanges(ChangesQuery $query, array $headers = array()) {
         $data = $this->getApi()->getMovieChanges($query->toArray(), $this->parseHeaders($headers));
 
-        return $this->getMovieFactory()->createCollection($data);
+        return $this->getFactory()->createCollection($data);
     }
 
     /**
@@ -56,7 +54,7 @@ class ChangesRepository extends AbstractRepository {
     public function getPeopleChanges(ChangesQuery $query, array $headers = array()) {
         $data = $this->getApi()->getPersonChanges($query->toArray(), $this->parseHeaders($headers));
 
-        return $this->getPeopleFactory()->createCollection($data);
+        return $this->getFactory()->createCollection($data);
     }
 
     /**
@@ -70,28 +68,11 @@ class ChangesRepository extends AbstractRepository {
     }
 
     /**
-     * @return PeopleFactory
-     */
-    public function getPeopleFactory()
-    {
-        return new PeopleFactory();
-    }
-
-    /**
-     * @return MovieFactory
-     */
-    public function getMovieFactory()
-    {
-        return new MovieFactory();
-    }
-
-    /**
      * Changes does not support a generic factory
      *
-     * @throws NotImplementedException
-     * @return null|\Tmdb\Factory\FactoryInterface
+     * @return ChangesFactory
      */
     public function getFactory(){
-        throw new NotImplementedException('Discover does not support a generic factory.');
+        return new ChangesFactory();
     }
 }

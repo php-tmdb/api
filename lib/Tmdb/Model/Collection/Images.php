@@ -35,13 +35,7 @@ class Images extends GenericCollection {
      * @return null
      */
     public function getImage($id) {
-        foreach($this->data as $image) {
-            if ($id === $image->getId()) {
-                return $image;
-            }
-        }
-
-        return null;
+        return $this->filterId($id);
     }
 
     /**
