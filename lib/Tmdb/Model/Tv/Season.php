@@ -235,7 +235,7 @@ class Season extends AbstractModel {
     }
 
     /**
-     * @param GenericCollection $credits
+     * @param Credits $credits
      * @return $this
      */
     public function setCredits($credits)

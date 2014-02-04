@@ -66,17 +66,17 @@ class PeopleFactory extends AbstractFactory {
             }
         }
 
-        /** Images */
-        if (array_key_exists('images', $data)) {
-            $person->setImages($this->getImageFactory()->createCollectionFromPeople($data['images']));
-        }
-
-        if (array_key_exists('profile_path', $data)) {
-            $person->setProfile($this->getImageFactory()->createFromPath($data['profile_path'], 'profile_path'));
-        }
-
-        /** Credits */
         if ($person instanceof Person) {
+            /** Images */
+            if (array_key_exists('images', $data)) {
+                $person->setImages($this->getImageFactory()->createCollectionFromPeople($data['images']));
+            }
+
+            if (array_key_exists('profile_path', $data)) {
+                $person->setProfile($this->getImageFactory()->createFromPath($data['profile_path'], 'profile_path'));
+            }
+
+            /** Credits */
             $this->applyCredits($data, $person);
         }
 

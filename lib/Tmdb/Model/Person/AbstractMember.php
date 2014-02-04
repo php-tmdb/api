@@ -20,6 +20,7 @@ abstract class AbstractMember extends AbstractModel {
     private $id;
     private $name;
     private $profilePath;
+    private $order;
 
     /**
      * @var Image
@@ -29,6 +30,7 @@ abstract class AbstractMember extends AbstractModel {
     public static $_properties = array(
         'id',
         'name',
+        'order',
         'profile_path'
     );
 
@@ -87,7 +89,7 @@ abstract class AbstractMember extends AbstractModel {
     }
 
     /**
-     * @param mixed $order
+     * @param integer $order
      * @return $this
      */
     public function setOrder($order)
@@ -97,7 +99,7 @@ abstract class AbstractMember extends AbstractModel {
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getOrder()
     {

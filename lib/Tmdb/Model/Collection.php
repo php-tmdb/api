@@ -75,7 +75,7 @@ class Collection extends AbstractModel {
     public function __construct()
     {
         $this->parts  = new GenericCollection();
-        $this->iamges = new Images();
+        $this->images = new Images();
     }
 
     /**

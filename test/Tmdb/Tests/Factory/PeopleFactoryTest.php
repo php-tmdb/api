@@ -136,6 +136,17 @@ class PeopleFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Collection\Credits\TvCredits', $this->person->getTvCredits());
     }
 
+    /**
+     * @test
+     */
+    public function shouldSetDeathDay()
+    {
+        $person = new Person();
+        $person->setDeathday('2013-12-12');
+
+        $this->assertInstanceOf('\DateTime', $person->getDeathday());
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\PeopleFactory';
