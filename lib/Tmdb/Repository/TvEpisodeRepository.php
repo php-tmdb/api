@@ -62,7 +62,7 @@ class TvEpisodeRepository extends AbstractRepository {
             );
         }
 
-        $data = $this->getApi()->getEpisode($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+        $data = $this->getApi()->getEpisode($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
 
         return $this->getFactory()->create($data);
     }

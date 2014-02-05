@@ -37,7 +37,7 @@ class DiscoverRepository extends AbstractRepository {
             throw new RuntimeException('When the certification_country option is given the certification.lte option is required.');
         }
 
-        $data = $this->getApi()->discoverMovies($query, $this->parseHeaders($headers));
+        $data = $this->getApi()->discoverMovies($query, $headers);
 
         return $this->getMovieFactory()->createCollection($data);
     }
@@ -51,7 +51,7 @@ class DiscoverRepository extends AbstractRepository {
      * @return \Tmdb\Model\Common\GenericCollection
      */
     public function discoverTv(DiscoverTvQuery $query, array $headers = array()) {
-        $data = $this->getApi()->discoverTv($query->toArray(), $this->parseHeaders($headers));
+        $data = $this->getApi()->discoverTv($query->toArray(), $headers);
 
         return $this->getTvFactory()->createCollection($data);
     }

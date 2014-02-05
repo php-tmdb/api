@@ -41,7 +41,7 @@ class PeopleRepository extends AbstractRepository {
             );
         }
 
-        $data = $this->getApi()->getPerson($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+        $data = $this->getApi()->getPerson($id, $this->parseQueryParameters($parameters), $headers);
 
         return $this->getFactory()->create($data);
     }

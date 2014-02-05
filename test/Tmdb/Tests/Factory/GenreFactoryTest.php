@@ -24,7 +24,7 @@ class GenreFactoryTest extends TestCase
     public function shouldConstructGenres()
     {
         $factory = $this->getFactory();
-        $data    = $this->loadByFile('genre/result.json');
+        $data    = $this->loadByFile('genre/list.json');
 
         $collection = $factory->createCollection($data['genres']);
 
@@ -46,7 +46,7 @@ class GenreFactoryTest extends TestCase
     public function shouldFilter()
     {
         $factory = $this->getFactory();
-        $data    = $this->loadByFile('genre/result.json');
+        $data    = $this->loadByFile('genre/list.json');
 
         /**
          * @var Genres $genres
@@ -66,7 +66,7 @@ class GenreFactoryTest extends TestCase
     public function shouldCollaborateWithCollection()
     {
         $factory = $this->getFactory();
-        $data    = $this->loadByFile('genre/result.json');
+        $data    = $this->loadByFile('genre/list.json');
 
         /**
          * @var Genres $genres

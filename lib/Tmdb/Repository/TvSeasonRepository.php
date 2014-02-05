@@ -57,7 +57,7 @@ class TvSeasonRepository extends AbstractRepository {
             );
         }
 
-        $data = $this->getApi()->getSeason($tvShow, $season, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+        $data = $this->getApi()->getSeason($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
 
         return $this->getFactory()->create($data);
     }

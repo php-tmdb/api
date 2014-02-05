@@ -28,7 +28,7 @@ class CompanyRepository extends AbstractRepository {
      * @return Company
      */
     public function load($id, array $parameters = array(), array $headers = array()) {
-        $data = $this->getApi()->getCompany($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+        $data = $this->getApi()->getCompany($id, $this->parseQueryParameters($parameters), $headers);
 
         return $this->getFactory()->create($data);
     }
@@ -44,7 +44,7 @@ class CompanyRepository extends AbstractRepository {
     public function getMovies($id, array $parameters = array(), array $headers = array())
     {
         return $this->createMovieCollection(
-            $this->getApi()->getMovies($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers))
+            $this->getApi()->getMovies($id, $this->parseQueryParameters($parameters), $headers)
         );
     }
 

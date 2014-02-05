@@ -69,16 +69,6 @@ abstract class AbstractRepository {
     }
 
     /**
-     * @todo implement
-     * @param array $headers
-     * @return array
-     */
-    protected function parseHeaders(array $headers = array())
-    {
-        return $headers;
-    }
-
-    /**
      * Return the API Class
      *
      * @return ApiInterface

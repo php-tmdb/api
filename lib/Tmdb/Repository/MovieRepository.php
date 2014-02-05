@@ -51,7 +51,7 @@ class MovieRepository extends AbstractRepository {
             );
         }
 
-        $data = $this->getApi()->getMovie($id, $this->parseQueryParameters($parameters), $this->parseHeaders($headers));
+        $data = $this->getApi()->getMovie($id, $this->parseQueryParameters($parameters), $headers);
 
         return $this->getFactory()->create($data);
     }
