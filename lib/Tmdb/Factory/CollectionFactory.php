@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Model\Collection;
 use Tmdb\Model\Common\GenericCollection;
 
 class CollectionFactory extends AbstractFactory
@@ -41,7 +42,7 @@ class CollectionFactory extends AbstractFactory
      */
     public function create(array $data = array())
     {
-        $collection = new \Tmdb\Model\Collection();
+        $collection = new Collection();
 
         if (array_key_exists('parts', $data)) {
             $collection->setParts(

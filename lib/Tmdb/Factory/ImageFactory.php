@@ -38,7 +38,7 @@ class ImageFactory extends AbstractFactory
      *
      * @param $path
      * @param string $key
-     * @return Image
+     * @return Image|Image\BackdropImage|Image\LogoImage|Image\PosterImage|Image\ProfileImage|Image\StillImage
      */
     public function createFromPath($path, $key)
     {
