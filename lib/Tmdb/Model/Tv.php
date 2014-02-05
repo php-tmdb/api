@@ -289,7 +289,11 @@ class Tv extends AbstractModel {
      */
     public function setFirstAirDate($firstAirDate)
     {
-        $this->firstAirDate = new \DateTime($firstAirDate);
+        if (!$firstAirDate instanceof \DateTime) {
+            $firstAirDate = new \DateTime($firstAirDate);
+        }
+
+        $this->firstAirDate = $firstAirDate;
         return $this;
     }
 

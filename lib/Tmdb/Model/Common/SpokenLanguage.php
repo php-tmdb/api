@@ -20,7 +20,7 @@ class SpokenLanguage extends AbstractModel implements LanguageFilter {
     private $iso6391;
     private $name;
 
-    protected static $_properties = array(
+    public static $_properties = array(
         'iso_369_1',
         'name',
     );

@@ -223,6 +223,7 @@ class Movie extends AbstractModel {
         'overview',
         'popularity',
         'poster_path',
+        'release_date',
         'revenue',
         'runtime',
         'status',
@@ -526,11 +527,15 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param \DateTime $releaseDate
+     * @param string $releaseDate
      * @return $this
      */
-    public function setReleaseDate(\DateTime $releaseDate)
+    public function setReleaseDate($releaseDate)
     {
+        if (!$releaseDate instanceof \DateTime) {
+            $releaseDate = new \DateTime($releaseDate);
+        }
+
         $this->releaseDate = $releaseDate;
         return $this;
     }

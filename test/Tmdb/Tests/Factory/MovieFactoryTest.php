@@ -41,6 +41,7 @@ class MovieFactoryTest extends TestCase
     public function shouldConstructMovie()
     {
         $this->assertInstanceOf('Tmdb\Model\Movie', $this->movie);
+        $this->assertInstanceOf('\DateTime', $this->movie->getReleaseDate());
     }
 
     /**
@@ -76,6 +77,7 @@ class MovieFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Collection\Genres', $this->movie->getGenres());
         $this->assertEquals('http://www.riddick-movie.com', $this->movie->getHomepage());
         $this->assertEquals(87421, $this->movie->getId());
+        $this->assertEquals('tt1411250', $this->movie->getImdbId());
         $this->assertEquals('Riddick', $this->movie->getTitle());
         $this->assertEquals('Riddick', $this->movie->getOriginalTitle());
         $this->assertEquals('Betrayed by his own kind and left for dead on a desolate planet, Riddick fights for survival against alien predators and becomes more powerful and dangerous than ever before. Soon bounty hunters from throughout the galaxy descend on Riddick only to find themselves pawns in his greater scheme for revenge. With his enemies right where he wants them, Riddick unleashes a vicious attack of vengeance before returning to his home planet of Furya to save it from destruction.', $this->movie->getOverview());
@@ -84,7 +86,7 @@ class MovieFactoryTest extends TestCase
         $this->assertEquals('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg', $this->movie->getPosterPath());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getProductionCompanies());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getProductionCountries());
-        // @todo release
+        $this->assertEquals(new \DateTime('2013-09-06'), $this->movie->getReleaseDate());
         $this->assertEquals(42025135, $this->movie->getRevenue());
         $this->assertEquals(119, $this->movie->getRuntime());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getSpokenLanguages());

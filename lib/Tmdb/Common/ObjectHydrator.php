@@ -34,6 +34,7 @@ class ObjectHydrator {
     {
         if (!empty($data)) {
             foreach ($data as $k => $v) {
+
                 if (in_array($k, $object::$_properties)) {
 
                     $method = $this->camelize(

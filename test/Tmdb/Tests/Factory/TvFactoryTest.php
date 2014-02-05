@@ -43,6 +43,8 @@ class TvFactoryTest extends TestCase
      */
     public function shouldConstructTv()
     {
+        $this->setUp();
+
         $this->assertInstanceOf('Tmdb\Model\Tv', $this->tv);
 
         $this->assertInstanceOf('\DateTime', $this->tv->getLastAirDate());
@@ -56,9 +58,10 @@ class TvFactoryTest extends TestCase
      */
     public function shouldBeAbleToSetFactories()
     {
-        $factory = new TvFactory();
+        $this->setUp();
 
-        $class = new \stdClass();
+        $factory = new TvFactory();
+        $class  = new \stdClass();
 
         $factory->setCastFactory($class);
         $factory->setCrewFactory($class);
@@ -71,6 +74,11 @@ class TvFactoryTest extends TestCase
         $this->assertInstanceOf('stdClass', $factory->getGenreFactory());
         $this->assertInstanceOf('stdClass', $factory->getImageFactory());
         $this->assertInstanceOf('stdClass', $factory->getTvSeasonFactory());
+
+        $model = new Tv();
+        $model->setCredits($class);
+
+        $this->assertInstanceOf('stdClass', $model->getCredits());
     }
 
     /**
@@ -79,6 +87,8 @@ class TvFactoryTest extends TestCase
      */
     public function shouldBeFunctional()
     {
+        $this->setUp();
+
         $this->assertEquals('/sIJyCJedGlZf1TId41gCtkblBGo.jpg', $this->tv->getBackdropPath());
         // created by
         $this->assertEquals(2, count($this->tv->getEpisodeRunTime()));
@@ -107,7 +117,6 @@ class TvFactoryTest extends TestCase
         // images
         // translations
     }
-
 
     /**
      * @test

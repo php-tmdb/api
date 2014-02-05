@@ -17,12 +17,12 @@ use Tmdb\Model\Tv\Season;
 
 class TvSeasonFactoryTest extends TestCase
 {
-    const TV_ID = 3572;
-
     /**
-     * @test
+     * @var Season
      */
-    public function shouldConstructTvSeason()
+    private $season;
+
+    public function setUp()
     {
         /**
          * @var TvSeasonFactory $factory
@@ -31,19 +31,25 @@ class TvSeasonFactoryTest extends TestCase
         $data    = $this->loadByFile('tv/season/all.json');
 
         /**
-         * @var Season $season
+         * @var Season $this->season
          */
-        $season = $factory->create($data);
+        $this->season = $factory->create($data);
+    }
 
-        $this->assertInstanceOf('Tmdb\Model\Tv\Season', $season);
+    /**
+     * @test
+     */
+    public function shouldConstructTvSeason()
+    {
+        $this->assertInstanceOf('Tmdb\Model\Tv\Season', $this->season);
 
-        $this->assertInstanceOf('\DateTime', $season->getAirDate());
+        $this->assertInstanceOf('\DateTime', $this->season->getAirDate());
 
-        $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $season->getCredits());
-        $this->assertInstanceOf('Tmdb\Model\Tv\ExternalIds', $season->getExternalIds());
-        $this->assertInstanceOf('Tmdb\Model\Collection\Images', $season->getImages());
-        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $season->getEpisodes());
-        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $season->getPoster());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $this->season->getCredits());
+        $this->assertInstanceOf('Tmdb\Model\Tv\ExternalIds', $this->season->getExternalIds());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->season->getImages());
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->season->getEpisodes());
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->season->getPoster());
     }
 
     /**
