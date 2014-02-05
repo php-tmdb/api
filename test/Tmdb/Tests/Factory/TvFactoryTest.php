@@ -17,12 +17,12 @@ use Tmdb\Model\Tv;
 
 class TvFactoryTest extends TestCase
 {
-    const TV_ID = 3572;
-
     /**
-     * @test
+     * @var Tv
      */
-    public function shouldConstructTv()
+    private $tv;
+    
+    public function setUp()
     {
         /**
          * @var TvFactory $factory
@@ -30,16 +30,25 @@ class TvFactoryTest extends TestCase
         $factory = $this->getFactory();
         $data    = $this->loadByFile('tv/all.json');
 
+        $data['overview'] = 'external';
+
         /**
-         * @var Tv $tv
+         * @var Tv $this->tv
          */
-        $tv = $factory->create($data);
+        $this->tv = $factory->create($data);
+    }
+    
+    /**
+     * @test
+     */
+    public function shouldConstructTv()
+    {
+        $this->assertInstanceOf('Tmdb\Model\Tv', $this->tv);
 
-        $this->assertInstanceOf('Tmdb\Model\Tv', $tv);
-
-        $this->assertInstanceOf('\DateTime', $tv->getLastAirDate());
-        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $tv->getBackdrop());
-        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $tv->getPoster());
+        $this->assertInstanceOf('\DateTime', $this->tv->getLastAirDate());
+        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->tv->getBackdrop());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Genres', $this->tv->getGenres());
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->tv->getPoster());
     }
 
     /**
@@ -62,6 +71,41 @@ class TvFactoryTest extends TestCase
         $this->assertInstanceOf('stdClass', $factory->getGenreFactory());
         $this->assertInstanceOf('stdClass', $factory->getImageFactory());
         $this->assertInstanceOf('stdClass', $factory->getTvSeasonFactory());
+    }
+
+    /**
+     * @test
+     * @todo see comments
+     */
+    public function shouldBeFunctional()
+    {
+        $this->assertEquals('/sIJyCJedGlZf1TId41gCtkblBGo.jpg', $this->tv->getBackdropPath());
+        // created by
+        $this->assertEquals(2, count($this->tv->getEpisodeRunTime()));
+        $this->assertEquals(new \DateTime('2008-01-19'), $this->tv->getFirstAirDate());
+        // genres
+        $this->assertEquals('http://www.amctv.com/shows/breaking-bad', $this->tv->getHomepage());
+        $this->assertEquals(1396, $this->tv->getId());
+        $this->assertEquals(false, $this->tv->getInProduction());
+        // languages
+        $this->assertEquals(new \DateTime('2013-09-29'), $this->tv->getLastAirDate());
+        $this->assertEquals('Breaking Bad', $this->tv->getName());
+        // networks
+        $this->assertEquals(62, $this->tv->getNumberOfEpisodes());
+        $this->assertEquals(5, $this->tv->getNumberOfSeasons());
+        $this->assertEquals('Breaking Bad', $this->tv->getOriginalName());
+        // origin_country
+        $this->assertEquals('external', $this->tv->getOverview());
+        $this->assertEquals(8.14745667435, $this->tv->getPopularity());
+        $this->assertEquals('/iRDNn9EHKuBhGa77UBteazvsZa1.jpg', $this->tv->getPosterPath());
+        // seasons
+        $this->assertEquals('Ended', $this->tv->getStatus());
+        $this->assertEquals(8.9, $this->tv->getVoteAverage());
+        $this->assertEquals(37, $this->tv->getVoteCount());
+        // credits
+        // external_ids
+        // images
+        // translations
     }
 
 
