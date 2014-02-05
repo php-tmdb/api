@@ -13,12 +13,9 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
-use Tmdb\Factory\People\CastFactory;
-use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Collection\People\Crew;
 use Tmdb\Model\Collection\People;
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Person;
@@ -28,16 +25,6 @@ class PeopleFactory extends AbstractFactory {
      * @var ImageFactory
      */
     private $imageFactory;
-
-    /**
-     * @var People\CastFactory
-     */
-    private $castFactory;
-
-    /**
-     * @var People\CrewFactory
-     */
-    private $crewFactory;
 
     /**
      * Constructor
@@ -66,14 +53,14 @@ class PeopleFactory extends AbstractFactory {
             }
         }
 
+        if (array_key_exists('profile_path', $data)) {
+            $person->setProfile($this->getImageFactory()->createFromPath($data['profile_path'], 'profile_path'));
+        }
+
         if ($person instanceof Person) {
             /** Images */
             if (array_key_exists('images', $data)) {
                 $person->setImages($this->getImageFactory()->createCollectionFromPeople($data['images']));
-            }
-
-            if (array_key_exists('profile_path', $data)) {
-                $person->setProfile($this->getImageFactory()->createFromPath($data['profile_path'], 'profile_path'));
             }
 
             /** Credits */

@@ -698,7 +698,7 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @return AlternativeTitle[]
+     * @return GenericCollection|AlternativeTitle[]
      */
     public function getAlternativeTitles()
     {

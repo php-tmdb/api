@@ -23,7 +23,11 @@ $config = $configRepository->load();
 
 $imageHelper = new \Tmdb\Helper\ImageHelper($config);
 $repository  = new \Tmdb\Repository\MovieRepository($client);
-$movie       = $repository->load(87421);
+
+/**
+ * @var \Tmdb\Model\Movie $movie
+ */
+$movie = $repository->load(87421);
 
 echo $movie->getTitle() . "<br/>";
 
@@ -49,7 +53,7 @@ foreach($movie->getCredits()->getCrew() as $person) {
 
 echo "Images<br/>";
 
-// All collection classes support filtering by closure functions, provided by the Guzzle collection implementation.
+// All collection classes support filtering by closure functions, provided by the generic collection implementation.
 foreach($movie->getImages()->filter(
         function($key, $value){
             if ($value->getIso6391() == 'en' && $value instanceof \Tmdb\Model\Image\PosterImage) { return true; }
