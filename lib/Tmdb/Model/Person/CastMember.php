@@ -16,8 +16,19 @@ use Tmdb\Model\Collection\People\PersonInterface;
 
 class CastMember extends AbstractMember implements PersonInterface {
 
+    /**
+     * @var string
+     */
     private $character;
+
+    /**
+     * @var int
+     */
     private $order;
+
+    /**
+     * @var mixed
+     */
     private $castId;
 
     public static $_properties = array(

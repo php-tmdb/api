@@ -16,7 +16,14 @@ use Tmdb\Model\Collection\People\PersonInterface;
 
 class CrewMember extends AbstractMember implements PersonInterface {
 
+    /**
+     * @var string
+     */
     private $department;
+
+    /**
+     * @var string
+     */
     private $job;
 
     public static $_properties = array(

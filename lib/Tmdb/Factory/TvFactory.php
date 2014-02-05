@@ -16,6 +16,8 @@ use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Translation;
+use Tmdb\Model\Person\CastMember;
+use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Tv\ExternalIds;
 use Tmdb\Model\Tv;
 
@@ -70,11 +72,11 @@ class TvFactory extends AbstractFactory {
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits'])) {
-                $tvShow->getCredits()->setCast($this->getCastFactory()->createCollection($data['credits']['cast'], new Tv\Person\CastMember()));
+                $tvShow->getCredits()->setCast($this->getCastFactory()->createCollection($data['credits']['cast'], new CastMember()));
             }
 
             if (array_key_exists('crew', $data['credits'])) {
-                $tvShow->getCredits()->setCrew($this->getCrewFactory()->createCollection($data['credits']['crew'], new Tv\Person\CrewMember()));
+                $tvShow->getCredits()->setCrew($this->getCrewFactory()->createCollection($data['credits']['crew'], new CrewMember()));
             }
         }
 

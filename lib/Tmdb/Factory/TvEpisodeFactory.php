@@ -15,9 +15,9 @@ namespace Tmdb\Factory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Person\CastMember;
+use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Tv\ExternalIds;
-use Tmdb\Model\Tv\Person\CastMember;
-use Tmdb\Model\Tv\Person\CrewMember;
 use Tmdb\Model\Tv\Episode;
 
 class TvEpisodeFactory extends AbstractFactory {

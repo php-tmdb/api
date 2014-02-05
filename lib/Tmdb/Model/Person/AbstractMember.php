@@ -17,20 +17,29 @@ use Tmdb\Model\Image;
 
 abstract class AbstractMember extends AbstractModel {
 
+    /**
+     * @var int
+     */
     private $id;
-    private $name;
-    private $profilePath;
-    private $order;
 
     /**
-     * @var Image
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $profilePath;
+
+    /**
+     * @var Image\ProfileImage
      */
     private $profile;
 
     public static $_properties = array(
         'id',
         'name',
-        'order',
         'profile_path'
     );
 
@@ -89,35 +98,17 @@ abstract class AbstractMember extends AbstractModel {
     }
 
     /**
-     * @param integer $order
+     * @param Image\ProfileImage $profile
      * @return $this
      */
-    public function setOrder($order)
-    {
-        $this->order = $order;
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
-    /**
-     * @param Image $profile
-     * @return $this
-     */
-    public function setProfile(Image $profile)
+    public function setProfile($profile = null)
     {
         $this->profile = $profile;
         return $this;
     }
 
     /**
-     * @return Image
+     * @return Image\ProfileImage|null
      */
     public function getProfile()
     {
