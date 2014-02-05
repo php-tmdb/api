@@ -12,13 +12,10 @@
  */
 namespace Tmdb\Model\Common;
 
-use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Filter\LanguageFilter;
 
-class Translation extends AbstractModel implements LanguageFilter {
+class Translation extends SpokenLanguage implements LanguageFilter {
 
-    private $iso6391;
-    private $name;
     private $englishName;
 
     public static $_properties = array(
@@ -43,41 +40,5 @@ class Translation extends AbstractModel implements LanguageFilter {
     public function getEnglishName()
     {
         return $this->englishName;
-    }
-
-    /**
-     * @param string $iso6391
-     * @return $this
-     */
-    public function setIso6391($iso6391)
-    {
-        $this->iso6391 = $iso6391;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIso6391()
-    {
-        return $this->iso6391;
-    }
-
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 }
