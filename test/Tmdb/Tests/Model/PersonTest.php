@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Tests\Model;
 
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person;
 
 class GenreTest extends TestCase
@@ -51,5 +52,28 @@ class GenreTest extends TestCase
         $this->assertInstanceOf('stdClass', $factory->getCombinedCredits());
         $this->assertInstanceOf('stdClass', $factory->getMovieCredits());
         $this->assertInstanceOf('stdClass', $factory->getTvCredits());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAllowOverridingDefaultCollectionObjects()
+    {
+        $movie = new Person();
+
+        $class     = new GenericCollection();
+        $className = get_class($class);
+
+        $movie->setChanges($class);
+        $movie->setCredits($class);
+
+        $this->assertInstancesOf(
+            $movie,
+            array(
+                /** Constructor */
+                'getChanges'             => $className,
+                'getCredits'             => $className
+            )
+        );
     }
 }

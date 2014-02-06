@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Model;
 
+use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Movie;
 
 class MovieTest extends TestCase
@@ -21,10 +23,10 @@ class MovieTest extends TestCase
      */
     public function shouldConstructMovie()
     {
-        $person = new Movie();
+        $movie = new Movie();
 
         $this->assertInstancesOf(
-            $person,
+            $movie,
             array(
                 /** Constructor */
                 'getGenres'              => 'Tmdb\Model\Collection\Genres',
@@ -41,6 +43,37 @@ class MovieTest extends TestCase
                 'getSimilarMovies'       => 'Tmdb\Model\Common\GenericCollection',
                 'getTrailers'            => 'Tmdb\Model\Common\GenericCollection',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
+            )
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAllowOverridingDefaultCollectionObjects()
+    {
+        $movie = new Movie();
+
+        $class     = new ResultCollection();
+        $className = get_class($class);
+
+        $movie->setChanges($class);
+        $movie->setProductionCompanies($class);
+        $movie->setProductionCountries($class);
+        $movie->setSpokenLanguages($class);
+        $movie->setCredits(new Credits());
+        $movie->setLists($class);
+
+        $this->assertInstancesOf(
+            $movie,
+            array(
+                /** Constructor */
+                'getChanges'             => $className,
+                'getProductionCompanies' => $className,
+                'getProductionCountries' => $className,
+                'getSpokenLanguages'     => $className,
+                'getCredits'             => 'Tmdb\Model\Collection\Credits',
+                'getLists'               => $className,
             )
         );
     }

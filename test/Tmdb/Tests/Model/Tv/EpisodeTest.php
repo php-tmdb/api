@@ -13,24 +13,23 @@
 namespace Tmdb\Tests\Model\Tv;
 
 use Tmdb\Tests\Model\TestCase;
-use Tmdb\Model\Tv\Season;
+use Tmdb\Model\Tv\Episode;
 
-class TvSeasonTest extends TestCase
+class EpisodeTest extends TestCase
 {
     /**
      * @test
      */
-    public function shouldConstructTvSeason()
+    public function shouldConstructTvEpisode()
     {
-        $season = new Season();
+        $episode = new Episode();
 
         $this->assertInstancesOf(
-            $season,
+            $episode,
             array(
                 'getCredits'     => 'Tmdb\Model\Collection\Credits',
                 'getExternalIds' => 'Tmdb\Model\Tv\ExternalIds',
                 'getImages'      => 'Tmdb\Model\Collection\Images',
-                'getEpisodes'    => 'Tmdb\Model\Common\GenericCollection',
             )
         );
     }

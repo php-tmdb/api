@@ -18,9 +18,11 @@ use Tmdb\Model\Tv\Episode;
 class TvEpisodeFactoryTest extends TestCase
 {
     /**
-     * @test
+     * @var Episode
      */
-    public function shouldConstructTvEpisode()
+    private $episode;
+
+    public function setUp()
     {
         /**
          * @var TvEpisodeFactory $factory
@@ -31,16 +33,22 @@ class TvEpisodeFactoryTest extends TestCase
         /**
          * @var Episode $episode
          */
-        $episode = $factory->create($data);
+        $this->episode = $factory->create($data);
+    }
 
-        $this->assertInstanceOf('Tmdb\Model\Tv\Episode', $episode);
+    /**
+     * @test
+     */
+    public function shouldConstructTvEpisode()
+    {
+        $this->assertInstanceOf('Tmdb\Model\Tv\Episode', $this->episode);
 
-        $this->assertInstanceOf('\DateTime', $episode->getAirDate());
+        $this->assertInstanceOf('\DateTime', $this->episode->getAirDate());
 
-        $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $episode->getCredits());
-        $this->assertInstanceOf('Tmdb\Model\Tv\ExternalIds', $episode->getExternalIds());
-        $this->assertInstanceOf('Tmdb\Model\Collection\Images', $episode->getImages());
-        $this->assertInstanceOf('Tmdb\Model\Image\StillImage', $episode->getStill());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $this->episode->getCredits());
+        $this->assertInstanceOf('Tmdb\Model\Tv\ExternalIds', $this->episode->getExternalIds());
+        $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->episode->getImages());
+        $this->assertInstanceOf('Tmdb\Model\Image\StillImage', $this->episode->getStill());
     }
 
     /**
@@ -62,6 +70,24 @@ class TvEpisodeFactoryTest extends TestCase
         $this->assertInstanceOf('stdClass', $factory->getCastFactory());
         $this->assertInstanceOf('stdClass', $factory->getCrewFactory());
         $this->assertInstanceOf('stdClass', $factory->getImageFactory());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeFunctional()
+    {
+        $this->assertEquals(new \DateTime('2009-03-08'), $this->episode->getAirDate());
+        $this->assertEquals(1, $this->episode->getEpisodeNumber());
+        $this->assertEquals('Seven Thirty-Seven', $this->episode->getName());
+        $this->assertEquals('Walt and Jesse try to figure a way out of their partnership with Tuco. Hank tries to mend the fences between Marie and Skyler.', $this->episode->getOverview());
+        $this->assertEquals(62092, $this->episode->getId());
+        $this->assertEquals(null, $this->episode->getProductionCode());
+        $this->assertEquals(2, $this->episode->getSeasonNumber());
+        $this->assertEquals('/bwgioLAgihPCUK21rLWocDaDM3g.jpg', $this->episode->getStillPath());
+        $this->assertEquals(0, $this->episode->getVoteAverage());
+        $this->assertEquals(0, $this->episode->getVoteCount());
+
     }
 
     protected function getFactoryClass()
