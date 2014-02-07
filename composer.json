@@ -1,7 +1,7 @@
 {
     "name": "wtfzdotnet/php-tmdb-api",
     "type": "library",
-    "description": "TMDB API v3 client",
+    "description": "PHP wrapper for TMDB (TheMovieDatabase) API v3. Supports two types of approaches, one modelled with repositories, models and factories. And the other by simple array access to RAW data from The Movie Database.",
     "homepage": "https://github.com/wtfzdotnet/php-tmdb-api",
     "keywords": ["tmdb", "api", "php","wrapper", "movie", "tv", "tv show", "tvdb"],
     "license": "MIT",
