@@ -150,3 +150,5 @@ $backdrop = $movie
 ```
 
 __And there are more Collections which provide filters, but you will find those out along the way.__
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wtfzdotnet/php-tmdb-api/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
