@@ -252,6 +252,14 @@ class Client {
     }
 
     /**
+     * @return Api\Networks
+     */
+    public function getNetworksApi()
+    {
+        return new Api\Networks($this);
+    }
+
+    /**
      * @return HttpClientInterface
      */
     public function getHttpClient()
