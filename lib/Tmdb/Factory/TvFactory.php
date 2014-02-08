@@ -48,6 +48,11 @@ class TvFactory extends AbstractFactory {
     private $tvSeasonFactory;
 
     /**
+     * @var NetworkFactory
+     */
+    private $networkFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -57,6 +62,7 @@ class TvFactory extends AbstractFactory {
         $this->genreFactory    = new GenreFactory();
         $this->imageFactory    = new ImageFactory();
         $this->tvSeasonFactory = new TvSeasonFactory();
+        $this->networkFactory  = new NetworkFactory();
     }
 
     /**
@@ -117,7 +123,7 @@ class TvFactory extends AbstractFactory {
 
         /** Networks */
         if (array_key_exists('networks', $data)) {
-            $tvShow->setNetworks($this->createGenericCollection($data['networks'], new Tv\Network()));
+            $tvShow->setNetworks($this->getNetworkFactory()->createCollection($data['networks']));
         }
 
         return $this->hydrate($tvShow, $data);
@@ -229,5 +235,23 @@ class TvFactory extends AbstractFactory {
     public function getTvSeasonFactory()
     {
         return $this->tvSeasonFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\NetworkFactory $networkFactory
+     * @return $this
+     */
+    public function setNetworkFactory($networkFactory)
+    {
+        $this->networkFactory = $networkFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\NetworkFactory
+     */
+    public function getNetworkFactory()
+    {
+        return $this->networkFactory;
     }
 }

@@ -194,8 +194,6 @@ class Tv extends AbstractModel {
         'languages',
         'last_air_date',
         'name',
-        //@todo remove networks
-        'networks',
         'number_of_episodes',
         'number_of_seasons',
         'original_name',

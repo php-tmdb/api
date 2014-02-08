@@ -27,9 +27,9 @@ The states for now defined as;
 | Movies                 | Partially Done * |
 | Networks               | Done        |
 | People                 | Done        |
-| Reviews                | Review        |
+| Reviews                | Done        |
 | Search                 | **TODO**        |
-| TV                     | Review        |
+| TV                     | Done        |
 | TV Seasons             | Review        |
 | TV Episodes            | Review        |
 
