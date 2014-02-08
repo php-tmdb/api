@@ -9,7 +9,7 @@ The states for now defined as;
 - Todo, requires everything still to be implemented.
 
 | API Namespace          | Status      |
-|------------------------|------------:|
+|------------------------|:------------|
 | Configuration          | Done        |
 | Account                | **TODO**    |
 | Authentication         | **TODO**    |
