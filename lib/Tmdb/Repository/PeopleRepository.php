@@ -37,6 +37,7 @@ class PeopleRepository extends AbstractRepository {
                     AppendToResponse::COMBINED_CREDITS,
                     AppendToResponse::MOVIE_CREDITS,
                     AppendToResponse::TV_CREDITS,
+                    AppendToResponse::EXTERNAL_IDS
                 ))
             );
         }
