@@ -32,8 +32,8 @@ class PeopleTest extends TestCase
     {
         $this->collection = new People();
 
-        foreach($this->people as $keyword) {
-            $object = $this->hydrate(new Person(), $keyword);
+        foreach($this->people as $person) {
+            $object = $this->hydrate(new Person(), $person);
 
             $this->collection->addPerson($object);
         }

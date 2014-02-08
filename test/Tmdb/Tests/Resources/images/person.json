@@ -1,0 +1,26 @@
+{
+    "id": 287,
+    "profiles": [
+        {
+            "file_path": "/w8zJQuN7tzlm6FY9mfGKihxp3Cb.jpg",
+            "width": 1295,
+            "height": 1969,
+            "iso_639_1": null,
+            "aspect_ratio": 0.66000000000000003
+        },
+        {
+            "file_path": "/cLUacutO7dOMksQK8Zg0q2Gybsx.jpg",
+            "width": 820,
+            "height": 1230,
+            "iso_639_1": null,
+            "aspect_ratio": 0.67000000000000004
+        },
+        {
+            "file_path": "/zEbgoayf0MfuSznehhXdaP2YkeH.jpg",
+            "width": 700,
+            "height": 983,
+            "iso_639_1": null,
+            "aspect_ratio": 0.70999999999999996
+        }
+    ]
+}
