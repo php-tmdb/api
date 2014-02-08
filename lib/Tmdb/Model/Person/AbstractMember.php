@@ -114,4 +114,14 @@ abstract class AbstractMember extends AbstractModel {
     {
         return $this->profile;
     }
+
+    /**
+     * Assert if there is an profile image object
+     *
+     * @return bool
+     */
+    public function hasProfileImage()
+    {
+        return $this->profile instanceof Image;
+    }
 }

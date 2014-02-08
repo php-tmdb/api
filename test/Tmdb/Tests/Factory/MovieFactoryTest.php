@@ -14,6 +14,7 @@ namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Movie;
+use Tmdb\Model\Person\CastMember;
 
 class MovieFactoryTest extends TestCase
 {
@@ -120,6 +121,26 @@ class MovieFactoryTest extends TestCase
         $collection = $factory->createCollection($data);
 
         $this->assertEquals(2, count($collection));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetProfileImages()
+    {
+        $cast = $this->movie->getCredits()->getCast();
+
+        /**
+         * @var CastMember $c
+         */
+        foreach($cast as $c) {
+            if ($c->hasProfileImage()) {
+                $filePath = $c->getProfile()->getFilePath();
+                $this->assertEquals(false, empty($filePath));
+            }else{
+                $this->assertEquals(null, $c->getProfile());
+            }
+        }
     }
 
     protected function getFactoryClass()
