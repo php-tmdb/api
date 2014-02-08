@@ -20,7 +20,7 @@ The states for now defined as;
 | Credits                | **TODO**        |
 | Discover               | Done        |
 | Find                   | Review        |
-| Genres                 | Review        |
+| Genres                 | Done        |
 | Jobs                   | Done        |
 | Keywords               | Review        |
 | Lists                  | Partially Done * |

@@ -14,15 +14,28 @@ namespace Tmdb\Factory;
 
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Genre;
+use Tmdb\Model\Movie;
 
 class GenreFactory extends AbstractFactory
 {
     /**
-     * {@inheritdoc}
+     * @param array $data
+     *
+     * @return Genre
      */
     public function create(array $data = array())
     {
         return $this->hydrate(new Genre(), $data);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Movie
+     */
+    public function createMovie(array $data = array())
+    {
+        return $this->hydrate(new Movie(), $data);
     }
 
     /**

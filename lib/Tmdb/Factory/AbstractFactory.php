@@ -60,9 +60,10 @@ abstract class AbstractFactory implements FactoryInterface {
      * Create a result collection
      *
      * @param array $data
+     * @param string $method
      * @return GenericCollection
      */
-    public function createResultCollection(array $data = array())
+    public function createResultCollection(array $data = array(), $method = 'create')
     {
         $collection = new ResultCollection();
 
@@ -83,7 +84,7 @@ abstract class AbstractFactory implements FactoryInterface {
         }
 
         foreach($data as $item) {
-            $collection->add(null, $this->create($item));
+            $collection->add(null, $this->$method($item));
         }
 
         return $collection;

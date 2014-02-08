@@ -14,6 +14,7 @@ namespace Tmdb\Repository;
 
 use Tmdb\Factory\GenreFactory;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Genre;
 
 class GenreRepository extends AbstractRepository {
     /**
@@ -39,6 +40,21 @@ class GenreRepository extends AbstractRepository {
     {
         return $this->createCollection(
             $this->getApi()->getGenres($parameters, $headers)
+        );
+    }
+
+    /**
+     * Get the list of movies for a particular genre by id. By default, only movies with 10 or more votes are included.
+     *
+     * @param $id
+     * @param array $parameters
+     * @param array $headers
+     * @return Genre[]
+     */
+    public function getMovies($id, array $parameters = array(), array $headers = array()) {
+        return $this->getFactory()->createResultCollection(
+            $this->getApi()->getMovies($id, $parameters, $headers),
+            'createMovie'
         );
     }
 
