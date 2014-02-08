@@ -13,6 +13,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Factory\Common\ChangeFactory;
+use Tmdb\Factory\Movie\ListItemFactory;
 use Tmdb\Factory\Movie\ReviewFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
@@ -53,16 +54,22 @@ class MovieFactory extends AbstractFactory {
     private $reviewFactory;
 
     /**
+     * @var ListItemFactory
+     */
+    private $listItemFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->castFactory   = new CastFactory();
-        $this->crewFactory   = new CrewFactory();
-        $this->genreFactory  = new GenreFactory();
-        $this->imageFactory  = new ImageFactory();
-        $this->changeFactory = new ChangeFactory();
-        $this->reviewFactory = new ReviewFactory();
+        $this->castFactory     = new CastFactory();
+        $this->crewFactory     = new CrewFactory();
+        $this->genreFactory    = new GenreFactory();
+        $this->imageFactory    = new ImageFactory();
+        $this->changeFactory   = new ChangeFactory();
+        $this->reviewFactory   = new ReviewFactory();
+        $this->listItemFactory = new ListItemFactory();
     }
 
     /**
@@ -138,8 +145,9 @@ class MovieFactory extends AbstractFactory {
             $movie->setReviews($this->getReviewFactory()->createCollection($data['reviews']));
         }
 
-//        if (array_key_exists('lists', $data)) {
-//        }
+        if (array_key_exists('lists', $data)) {
+            $movie->setLists($this->getListItemFactory()->createCollection($data['lists']));
+        }
 
         if (array_key_exists('changes', $data)) {
             $movie->setChanges($this->getChangeFactory()->createCollection($data['changes']));
@@ -274,5 +282,21 @@ class MovieFactory extends AbstractFactory {
         return $this->reviewFactory;
     }
 
+    /**
+     * @param \Tmdb\Factory\Movie\ListItemFactory $listItemFactory
+     * @return $this
+     */
+    public function setListItemFactory($listItemFactory)
+    {
+        $this->listItemFactory = $listItemFactory;
+        return $this;
+    }
 
+    /**
+     * @return \Tmdb\Factory\Movie\ListItemFactory
+     */
+    public function getListItemFactory()
+    {
+        return $this->listItemFactory;
+    }
 }
