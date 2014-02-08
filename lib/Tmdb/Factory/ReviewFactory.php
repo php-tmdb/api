@@ -10,11 +10,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Factory\Movie;
+namespace Tmdb\Factory;
 
-use Tmdb\Factory\AbstractFactory;
-use Tmdb\Model\Collection\ResultCollection;
-use Tmdb\Model\Movie\Review;
+use Tmdb\Model\Review;
 
 class ReviewFactory extends AbstractFactory
 {
@@ -33,20 +31,6 @@ class ReviewFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        $collection = new ResultCollection();
-
-        $collection->setPage($data['page']);
-        $collection->setTotalPages($data['total_pages']);
-        $collection->setTotalResults($data['total_results']);
-
-        if (array_key_exists('results', $data)) {
-            $data = $data['results'];
-        }
-
-        foreach($data as $item) {
-            $collection->add(null, $this->create($item));
-        }
-
-        return $collection;
+        return $this->createResultCollection($data);
     }
 }

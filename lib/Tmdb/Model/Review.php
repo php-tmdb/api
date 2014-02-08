@@ -10,9 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Movie;
-
-use Tmdb\Model\AbstractModel;
+namespace Tmdb\Model;
 
 class Review extends AbstractModel {
 

@@ -14,7 +14,7 @@ namespace Tmdb\Factory;
 
 use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Movie\ListItemFactory;
-use Tmdb\Factory\Movie\ReviewFactory;
+use Tmdb\Factory\ReviewFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
@@ -265,7 +265,7 @@ class MovieFactory extends AbstractFactory {
     }
 
     /**
-     * @param \Tmdb\Factory\Movie\ReviewFactory $reviewFactory
+     * @param \Tmdb\Factory\ReviewFactory $reviewFactory
      * @return $this
      */
     public function setReviewFactory($reviewFactory)
@@ -275,7 +275,7 @@ class MovieFactory extends AbstractFactory {
     }
 
     /**
-     * @return \Tmdb\Factory\Movie\ReviewFactory
+     * @return \Tmdb\Factory\ReviewFactory
      */
     public function getReviewFactory()
     {
