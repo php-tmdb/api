@@ -85,7 +85,7 @@ class MovieFactory extends AbstractFactory {
 
         /** Images */
         if (array_key_exists('backdrop_path', $data)) {
-            $movie->setBackdrop($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
+            $movie->setBackdropImage($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
         }
 
         if (array_key_exists('images', $data)) {
@@ -93,7 +93,7 @@ class MovieFactory extends AbstractFactory {
         }
 
         if (array_key_exists('poster_path', $data)) {
-            $movie->setPoster($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
+            $movie->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
         /** Keywords */

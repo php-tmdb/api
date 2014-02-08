@@ -292,7 +292,7 @@ class Season extends AbstractModel {
      * @param \Tmdb\Model\Image\PosterImage $poster
      * @return $this
      */
-    public function setPoster($poster)
+    public function setPosterImage($poster)
     {
         $this->poster = $poster;
         return $this;
@@ -301,7 +301,7 @@ class Season extends AbstractModel {
     /**
      * @return \Tmdb\Model\Image\PosterImage
      */
-    public function getPoster()
+    public function getPosterImage()
     {
         return $this->poster;
     }

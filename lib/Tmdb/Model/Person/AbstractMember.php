@@ -101,7 +101,7 @@ abstract class AbstractMember extends AbstractModel {
      * @param Image\ProfileImage $profile
      * @return $this
      */
-    public function setProfile($profile = null)
+    public function setProfileImage($profile = null)
     {
         $this->profile = $profile;
         return $this;
@@ -110,7 +110,7 @@ abstract class AbstractMember extends AbstractModel {
     /**
      * @return Image\ProfileImage|null
      */
-    public function getProfile()
+    public function getProfileImage()
     {
         return $this->profile;
     }

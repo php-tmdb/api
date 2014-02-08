@@ -54,7 +54,7 @@ class PeopleFactory extends AbstractFactory {
         }
 
         if (array_key_exists('profile_path', $data)) {
-            $person->setProfile($this->getImageFactory()->createFromPath($data['profile_path'], 'profile_path'));
+            $person->setProfileImage($this->getImageFactory()->createFromPath($data['profile_path'], 'profile_path'));
         }
 
         if ($person instanceof Person) {

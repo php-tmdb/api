@@ -51,7 +51,7 @@ class CollectionFactory extends AbstractFactory
         }
 
         if (array_key_exists('backdrop_path', $data)) {
-            $collection->setBackdrop($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
+            $collection->setBackdropImage($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
         }
 
         if (array_key_exists('images', $data)) {
@@ -59,7 +59,7 @@ class CollectionFactory extends AbstractFactory
         }
 
         if (array_key_exists('poster_path', $data)) {
-            $collection->setPoster($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
+            $collection->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
         return $this->hydrate($collection, $data);

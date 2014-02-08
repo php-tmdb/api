@@ -88,14 +88,14 @@ class CollectionFactoryTest extends TestCase
      */
     public function shouldBeFunctional()
     {
-        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->collection->getBackdrop());
+        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->collection->getBackdropImage());
         $this->assertEquals('/qCECROwx3TRUEgoZv2Mz2D723QC.jpg', $this->collection->getBackdropPath());
         $this->assertEquals(10, $this->collection->getId());
         $this->assertEquals('external', $this->collection->getOverview());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->collection->getImages());
         $this->assertEquals('Star Wars Collection', $this->collection->getName());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->collection->getParts());
-        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->collection->getPoster());
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->collection->getPosterImage());
         $this->assertEquals('/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg', $this->collection->getPosterPath());
     }
 

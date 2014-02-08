@@ -116,7 +116,7 @@ class Company extends AbstractModel {
      * @param LogoImage $logo
      * @return $this
      */
-    public function setLogo(LogoImage $logo)
+    public function setLogoImage(LogoImage $logo)
     {
         $this->logo = $logo;
         return $this;
@@ -125,7 +125,7 @@ class Company extends AbstractModel {
     /**
      * @return LogoImage
      */
-    public function getLogo()
+    public function getLogoImage()
     {
         return $this->logo;
     }

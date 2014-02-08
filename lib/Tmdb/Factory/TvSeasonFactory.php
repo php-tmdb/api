@@ -86,7 +86,7 @@ class TvSeasonFactory extends AbstractFactory {
         }
 
         if (array_key_exists('poster_path', $data)) {
-            $tvSeason->setPoster($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
+            $tvSeason->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
         /** Episodes */

@@ -48,7 +48,7 @@ class PeopleFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Person', $this->person);
 
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->person->getImages());
-        $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $this->person->getProfile());
+        $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $this->person->getProfileImage());
     }
 
     /**
@@ -127,7 +127,7 @@ class PeopleFactoryTest extends TestCase
         $this->assertEquals('Blue Island, Illinois, USA', $this->person->getPlaceOfBirth());
         //@todo
         //$this->assertEquals(1.99498054250796, $this->person->getPopularity());
-        $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $this->person->getProfile());
+        $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $this->person->getProfileImage());
         $this->assertEquals('/h9YwlLHANaQzaTVkVwxnxLbvCY4.jpg', $this->person->getProfilePath());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->person->getImages());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->person->getChanges());

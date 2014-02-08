@@ -42,7 +42,7 @@ class CompanyFactoryTest extends TestCase
         $company = $factory->create($this->data);
 
         $this->assertInstanceOf('Tmdb\Model\Company', $company);
-        $this->assertInstanceOf('Tmdb\Model\Image\LogoImage', $company->getLogo());
+        $this->assertInstanceOf('Tmdb\Model\Image\LogoImage', $company->getLogoImage());
 
         $this->assertEquals(null, $company->getDescription());
         $this->assertEquals('San Francisco, California', $company->getHeadquarters());

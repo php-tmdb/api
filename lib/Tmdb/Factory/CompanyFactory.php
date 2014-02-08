@@ -37,7 +37,7 @@ class CompanyFactory extends AbstractFactory
         $company = new Company();
 
         if (array_key_exists('logo_path', $data)) {
-            $company->setLogo($this->getImageFactory()->createFromPath($data['logo_path'], 'logo_path'));
+            $company->setLogoImage($this->getImageFactory()->createFromPath($data['logo_path'], 'logo_path'));
         }
 
         return $this->hydrate(new Company(), $data);

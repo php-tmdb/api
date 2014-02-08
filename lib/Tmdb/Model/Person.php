@@ -383,7 +383,7 @@ class Person extends AbstractModel implements PersonInterface {
      * @param ProfileImage  $profile
      * @return $this
      */
-    public function setProfile(ProfileImage $profile)
+    public function setProfileImage(ProfileImage $profile)
     {
         $this->profile = $profile;
         return $this;
@@ -392,7 +392,7 @@ class Person extends AbstractModel implements PersonInterface {
     /**
      * @return ProfileImage
      */
-    public function getProfile()
+    public function getProfileImage()
     {
         return $this->profile;
     }

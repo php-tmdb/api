@@ -49,7 +49,7 @@ class TvSeasonFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Tv\ExternalIds', $this->season->getExternalIds());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->season->getImages());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->season->getEpisodes());
-        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->season->getPoster());
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->season->getPosterImage());
     }
 
     /**

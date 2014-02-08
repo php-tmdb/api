@@ -48,9 +48,9 @@ class TvFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Tv', $this->tv);
 
         $this->assertInstanceOf('\DateTime', $this->tv->getLastAirDate());
-        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->tv->getBackdrop());
+        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->tv->getBackdropImage());
         $this->assertInstanceOf('Tmdb\Model\Collection\Genres', $this->tv->getGenres());
-        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->tv->getPoster());
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->tv->getPosterImage());
     }
 
     /**

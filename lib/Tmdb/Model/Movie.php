@@ -860,7 +860,7 @@ class Movie extends AbstractModel {
      * @param \Tmdb\Model\Image $backdrop
      * @return $this
      */
-    public function setBackdrop($backdrop)
+    public function setBackdropImage($backdrop)
     {
         $this->backdrop = $backdrop;
         return $this;
@@ -869,7 +869,7 @@ class Movie extends AbstractModel {
     /**
      * @return \Tmdb\Model\Image
      */
-    public function getBackdrop()
+    public function getBackdropImage()
     {
         return $this->backdrop;
     }
@@ -878,7 +878,7 @@ class Movie extends AbstractModel {
      * @param \Tmdb\Model\Image $poster
      * @return $this
      */
-    public function setPoster($poster)
+    public function setPosterImage($poster)
     {
         $this->poster = $poster;
         return $this;
@@ -887,7 +887,7 @@ class Movie extends AbstractModel {
     /**
      * @return \Tmdb\Model\Image
      */
-    public function getPoster()
+    public function getPosterImage()
     {
         return $this->poster;
     }

@@ -72,7 +72,7 @@ class MovieFactoryTest extends TestCase
     {
         $this->assertEquals(false, $this->movie->getAdult());
         $this->assertEquals('/7DlIoyQ3ecGMklVWyKsneZmVnsi.jpg', $this->movie->getBackdropPath());
-        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->movie->getBackdrop());
+        $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->movie->getBackdropImage());
         $this->assertEquals(true, is_array($this->movie->getBelongsToCollection()));
         $this->assertEquals(true, is_int($this->movie->getBudget()));
         $this->assertInstanceOf('Tmdb\Model\Collection\Genres', $this->movie->getGenres());
@@ -83,7 +83,7 @@ class MovieFactoryTest extends TestCase
         $this->assertEquals('Riddick', $this->movie->getOriginalTitle());
         $this->assertEquals('Betrayed by his own kind and left for dead on a desolate planet, Riddick fights for survival against alien predators and becomes more powerful and dangerous than ever before. Soon bounty hunters from throughout the galaxy descend on Riddick only to find themselves pawns in his greater scheme for revenge. With his enemies right where he wants them, Riddick unleashes a vicious attack of vengeance before returning to his home planet of Furya to save it from destruction.', $this->movie->getOverview());
         $this->assertEquals(93.491722439366, $this->movie->getPopularity());
-        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->movie->getPoster());
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->movie->getPosterImage());
         $this->assertEquals('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg', $this->movie->getPosterPath());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getProductionCompanies());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getProductionCountries());
@@ -135,10 +135,10 @@ class MovieFactoryTest extends TestCase
          */
         foreach($cast as $c) {
             if ($c->hasProfileImage()) {
-                $filePath = $c->getProfile()->getFilePath();
+                $filePath = $c->getProfileImage()->getFilePath();
                 $this->assertEquals(false, empty($filePath));
             }else{
-                $this->assertEquals(null, $c->getProfile());
+                $this->assertEquals(null, $c->getProfileImage());
             }
         }
     }

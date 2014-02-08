@@ -82,7 +82,7 @@ class Collection extends AbstractModel {
      * @param \Tmdb\Model\Image\BackdropImage $backdrop
      * @return $this
      */
-    public function setBackdrop(BackdropImage $backdrop)
+    public function setBackdropImage(BackdropImage $backdrop)
     {
         $this->backdrop = $backdrop;
         return $this;
@@ -91,7 +91,7 @@ class Collection extends AbstractModel {
     /**
      * @return \Tmdb\Model\Image\BackdropImage
      */
-    public function getBackdrop()
+    public function getBackdropImage()
     {
         return $this->backdrop;
     }
@@ -208,7 +208,7 @@ class Collection extends AbstractModel {
      * @param \Tmdb\Model\Image\PosterImage $poster
      * @return $this
      */
-    public function setPoster(PosterImage $poster)
+    public function setPosterImage(PosterImage $poster)
     {
         $this->poster = $poster;
         return $this;
@@ -217,7 +217,7 @@ class Collection extends AbstractModel {
     /**
      * @return \Tmdb\Model\Image\PosterImage
      */
-    public function getPoster()
+    public function getPosterImage()
     {
         return $this->poster;
     }

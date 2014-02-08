@@ -368,7 +368,7 @@ class Episode extends AbstractModel {
      * @param StillImage $still
      * @return $this
      */
-    public function setStill($still)
+    public function setStillImage($still)
     {
         $this->still = $still;
         return $this;
@@ -377,7 +377,7 @@ class Episode extends AbstractModel {
     /**
      * @return StillImage
      */
-    public function getStill()
+    public function getStillImage()
     {
         return $this->still;
     }
