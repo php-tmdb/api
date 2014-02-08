@@ -13,6 +13,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Factory\Common\ChangeFactory;
+use Tmdb\Factory\Movie\ReviewFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
@@ -47,6 +48,11 @@ class MovieFactory extends AbstractFactory {
     private $changeFactory;
 
     /**
+     * @var ReviewFactory
+     */
+    private $reviewFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -56,6 +62,7 @@ class MovieFactory extends AbstractFactory {
         $this->genreFactory  = new GenreFactory();
         $this->imageFactory  = new ImageFactory();
         $this->changeFactory = new ChangeFactory();
+        $this->reviewFactory = new ReviewFactory();
     }
 
     /**
@@ -127,8 +134,9 @@ class MovieFactory extends AbstractFactory {
             $movie->setSimilarMovies($this->createCollection($data['similar_movies']['results']));
         }
 
-//        if (array_key_exists('reviews', $data)) {
-//        }
+        if (array_key_exists('reviews', $data)) {
+            $movie->setReviews($this->getReviewFactory()->createCollection($data['reviews']));
+        }
 
 //        if (array_key_exists('lists', $data)) {
 //        }
@@ -247,4 +255,24 @@ class MovieFactory extends AbstractFactory {
     {
         return $this->changeFactory;
     }
+
+    /**
+     * @param \Tmdb\Factory\Movie\ReviewFactory $reviewFactory
+     * @return $this
+     */
+    public function setReviewFactory($reviewFactory)
+    {
+        $this->reviewFactory = $reviewFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\Movie\ReviewFactory
+     */
+    public function getReviewFactory()
+    {
+        return $this->reviewFactory;
+    }
+
+
 }

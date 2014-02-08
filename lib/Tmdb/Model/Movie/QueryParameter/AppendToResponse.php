@@ -23,7 +23,7 @@ final class AppendToResponse extends BaseAppendToResponse {
     const TRAILERS           = 'trailers';
     const TRANSLATIONS       = 'translations';
     const SIMILAR_MOVIES     = 'similar_movies';
-    const REVIEWS            = 'movies_reviews';
+    const REVIEWS            = 'reviews';
     const LISTS              = 'lists';
     const CHANGES            = 'changes';
 }

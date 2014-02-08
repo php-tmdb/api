@@ -28,7 +28,7 @@ $repository  = new \Tmdb\Repository\MovieRepository($client);
  * @var \Tmdb\Model\Movie $movie
  */
 $movie = $repository->load(87421);
-
+var_dump($movie);exit;
 echo $movie->getTitle() . "<br/>";
 
 echo "Alternative Titles<br/>";

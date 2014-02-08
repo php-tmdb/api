@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Model;
 
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Genres;
@@ -203,6 +204,11 @@ class Movie extends AbstractModel {
      * @var Collection
      */
     protected $translations;
+
+    /**
+     * @var ResultCollection
+     */
+    protected $reviews;
 
     /**
      * Properties that are available in the API
@@ -890,5 +896,23 @@ class Movie extends AbstractModel {
     public function getPosterImage()
     {
         return $this->poster;
+    }
+
+    /**
+     * @param \Tmdb\Model\Collection\ResultCollection $reviews
+     * @return $this
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Collection\ResultCollection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
     }
 }
