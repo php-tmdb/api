@@ -34,4 +34,18 @@ class SeasonTest extends TestCase
             )
         );
     }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToOverrideDefaultCollections()
+    {
+        $season = new Season();
+
+        $class = new \stdClass();
+
+        $season->setCredits($class);
+
+        $this->assertInstanceOf('stdClass', $season->getCredits());
+    }
 }

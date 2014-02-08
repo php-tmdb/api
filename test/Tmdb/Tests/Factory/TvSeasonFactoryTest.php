@@ -75,6 +75,19 @@ class TvSeasonFactoryTest extends TestCase
         $this->assertInstanceOf('stdClass', $factory->getTvEpisodeFactory());
     }
 
+    /**
+     * @test
+     */
+    public function shouldBeFunctional()
+    {
+        $this->assertEquals(new \DateTime('2009-03-08'), $this->season->getAirDate());
+        $this->assertEquals('Season 2', $this->season->getName());
+        $this->assertEquals('The second season of the American television drama series Breaking Bad premiered on March 8, 2009 and concluded on May 31, 2009. It consisted of 13 episodes, each running approximately 47 minutes in length. AMC broadcast the second season on Sundays at 10:00 pm in the United States. The complete second season was released on Region 1 DVD and Region A Blu-ray on March 16, 2010.', $this->season->getOverview());
+        $this->assertEquals(3573, $this->season->getId());
+        $this->assertEquals('/rCdISteF1GPvPsy0a5L0LDffjtP.jpg', $this->season->getPosterPath());
+        $this->assertEquals(2, $this->season->getSeasonNumber());
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\TvSeasonFactory';
