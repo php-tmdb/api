@@ -13,6 +13,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
+use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Collection\People\Crew;
 use Tmdb\Model\Collection\People;
@@ -27,11 +28,17 @@ class PeopleFactory extends AbstractFactory {
     private $imageFactory;
 
     /**
+     * @var ChangeFactory
+     */
+    private $changeFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->imageFactory = new ImageFactory();
+        $this->imageFactory  = new ImageFactory();
+        $this->changeFactory = new ChangeFactory();
     }
 
     /**
@@ -65,6 +72,10 @@ class PeopleFactory extends AbstractFactory {
 
             /** Credits */
             $this->applyCredits($data, $person);
+        }
+
+        if (array_key_exists('changes', $data)) {
+            $person->setChanges($this->getChangeFactory()->createCollection($data['changes']));
         }
 
         return $this->hydrate($person, $data);
@@ -139,5 +150,23 @@ class PeopleFactory extends AbstractFactory {
     public function getImageFactory()
     {
         return $this->imageFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\Common\ChangeFactory $changeFactory
+     * @return $this
+     */
+    public function setChangeFactory($changeFactory)
+    {
+        $this->changeFactory = $changeFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\Common\ChangeFactory
+     */
+    public function getChangeFactory()
+    {
+        return $this->changeFactory;
     }
 }
