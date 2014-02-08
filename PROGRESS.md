@@ -13,10 +13,10 @@ The states for now defined as;
 | Configuration          | Done        |
 | Account                | **TODO**    |
 | Authentication         | **TODO**    |
-| Certifications         | Review        |
+| Certifications         | **TODO**        |
 | Changes                | Done        |
-| Collections            | Review        |
-| Companies              | Review        |
+| Collections            | Done        |
+| Companies              | Done        |
 | Credits                | Review        |
 | Discover               | Review        |
 | Find                   | Review        |

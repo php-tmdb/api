@@ -40,7 +40,7 @@ class CompanyFactory extends AbstractFactory
             $company->setLogoImage($this->getImageFactory()->createFromPath($data['logo_path'], 'logo_path'));
         }
 
-        return $this->hydrate(new Company(), $data);
+        return $this->hydrate($company, $data);
     }
 
     /**
