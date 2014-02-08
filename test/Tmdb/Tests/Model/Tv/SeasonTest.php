@@ -28,7 +28,7 @@ class SeasonTest extends TestCase
             $season,
             array(
                 'getCredits'     => 'Tmdb\Model\Collection\Credits',
-                'getExternalIds' => 'Tmdb\Model\Tv\ExternalIds',
+                'getExternalIds' => 'Tmdb\Model\Common\ExternalIds',
                 'getImages'      => 'Tmdb\Model\Collection\Images',
                 'getEpisodes'    => 'Tmdb\Model\Common\GenericCollection',
             )

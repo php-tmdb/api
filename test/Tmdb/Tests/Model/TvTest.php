@@ -34,7 +34,7 @@ class TvTest extends TestCase
                 'getOriginCountry'       => 'Tmdb\Model\Common\GenericCollection',
                 'getSeasons'             => 'Tmdb\Model\Common\GenericCollection',
                 'getCredits'             => 'Tmdb\Model\Collection\Credits',
-                'getExternalIds'         => 'Tmdb\Model\Tv\ExternalIds',
+                'getExternalIds'         => 'Tmdb\Model\Common\ExternalIds',
                 'getImages'              => 'Tmdb\Model\Collection\Images',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
             )

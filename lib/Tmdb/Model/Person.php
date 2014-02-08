@@ -13,6 +13,7 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\People\PersonInterface;
@@ -105,6 +106,13 @@ class Person extends AbstractModel implements PersonInterface {
      */
     protected $changes;
 
+    /**
+     * External Ids
+     *
+     * @var ExternalIds
+     */
+    protected $externalIds;
+
     public static $_properties = array(
         'adult',
         'also_known_as',
@@ -131,6 +139,7 @@ class Person extends AbstractModel implements PersonInterface {
         $this->combinedCredits = new Credits\CombinedCredits();
         $this->images          = new Images();
         $this->changes         = new GenericCollection();
+        $this->externalIds     = new ExternalIds();
     }
 
     /**
@@ -449,5 +458,23 @@ class Person extends AbstractModel implements PersonInterface {
     public function getTvCredits()
     {
         return $this->tvCredits;
+    }
+
+    /**
+     * @param \Tmdb\Model\Common\ExternalIds $externalIds
+     * @return $this
+     */
+    public function setExternalIds($externalIds)
+    {
+        $this->externalIds = $externalIds;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\ExternalIds
+     */
+    public function getExternalIds()
+    {
+        return $this->externalIds;
     }
 }

@@ -18,7 +18,7 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
-use Tmdb\Model\Tv\ExternalIds;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Tv;
 
 class TvFactory extends AbstractFactory {

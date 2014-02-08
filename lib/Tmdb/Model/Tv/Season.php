@@ -15,6 +15,7 @@ namespace Tmdb\Model\Tv;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Images;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Image\PosterImage;
 
@@ -253,7 +254,7 @@ class Season extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Tv\ExternalIds $externalIds
+     * @param \Tmdb\Model\Common\ExternalIds $externalIds
      * @return $this
      */
     public function setExternalIds($externalIds)
@@ -263,7 +264,7 @@ class Season extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Tv\ExternalIds
+     * @return \Tmdb\Model\Common\ExternalIds
      */
     public function getExternalIds()
     {

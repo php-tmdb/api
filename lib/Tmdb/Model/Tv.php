@@ -18,7 +18,7 @@ use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
-use Tmdb\Model\Tv\ExternalIds;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Tv\Network;
 
 class Tv extends AbstractModel {
@@ -688,7 +688,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Tv\ExternalIds $externalIds
+     * @param \Tmdb\Model\Common\ExternalIds $externalIds
      * @return $this
      */
     public function setExternalIds($externalIds)
@@ -698,7 +698,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Tv\ExternalIds
+     * @return \Tmdb\Model\Common\ExternalIds
      */
     public function getExternalIds()
     {

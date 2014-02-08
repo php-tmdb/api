@@ -13,7 +13,7 @@
 namespace Tmdb\Tests\Model\Tv;
 
 use Tmdb\Common\ObjectHydrator;
-use Tmdb\Model\Tv\ExternalIds;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Tests\Model\TestCase;
 
 class ExternalIdsTest extends TestCase

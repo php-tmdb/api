@@ -15,6 +15,7 @@ namespace Tmdb\Model\Tv;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Credits;
 use Tmdb\Model\Collection\Images;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Image\StillImage;
 
 class Episode extends AbstractModel {

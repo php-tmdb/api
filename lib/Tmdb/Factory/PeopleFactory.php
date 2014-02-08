@@ -17,6 +17,7 @@ use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Collection\People\Crew;
 use Tmdb\Model\Collection\People;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Person;
@@ -76,6 +77,13 @@ class PeopleFactory extends AbstractFactory {
 
         if (array_key_exists('changes', $data)) {
             $person->setChanges($this->getChangeFactory()->createCollection($data['changes']));
+        }
+
+        /** External ids */
+        if (array_key_exists('external_ids', $data)) {
+            $person->setExternalIds(
+                $this->hydrate(new ExternalIds(), $data['external_ids'])
+            );
         }
 
         return $this->hydrate($person, $data);
