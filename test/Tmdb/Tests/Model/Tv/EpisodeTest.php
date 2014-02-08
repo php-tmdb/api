@@ -33,4 +33,18 @@ class EpisodeTest extends TestCase
             )
         );
     }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToOverrideDefaultCollections()
+    {
+        $episode = new Episode();
+
+        $class = new \stdClass();
+
+        $episode->setCredits($class);
+
+        $this->assertInstanceOf('stdClass', $episode->getCredits());
+    }
 }
