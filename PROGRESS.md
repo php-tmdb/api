@@ -19,7 +19,7 @@ The states for now defined as;
 | Companies              | Done        |
 | Credits                | **TODO** _added to tmdb recently_       |
 | Discover               | Done        |
-| Find                   | Review        |
+| Find                   | Done        |
 | Genres                 | Done        |
 | Jobs                   | Done        |
 | Keywords               | Review        |
