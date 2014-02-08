@@ -78,13 +78,13 @@ $client = new \Tmdb\Client($token, null, true);
 Then we do some work on it:
 
 ```php
-$images = $client->getMoviesApi()->getMovie(550);
+$movie = $client->getMoviesApi()->getMovie(550);
 ```
 
 If you want to provide any other query arguments.
 
 ```php
-$images = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
+$movie = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
 ```
 
 Model Usage
