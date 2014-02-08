@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
@@ -41,14 +42,20 @@ class MovieFactory extends AbstractFactory {
     private $imageFactory;
 
     /**
+     * @var ChangeFactory
+     */
+    private $changeFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->castFactory  = new CastFactory();
-        $this->crewFactory  = new CrewFactory();
-        $this->genreFactory = new GenreFactory();
-        $this->imageFactory = new ImageFactory();
+        $this->castFactory   = new CastFactory();
+        $this->crewFactory   = new CrewFactory();
+        $this->genreFactory  = new GenreFactory();
+        $this->imageFactory  = new ImageFactory();
+        $this->changeFactory = new ChangeFactory();
     }
 
     /**
@@ -126,8 +133,9 @@ class MovieFactory extends AbstractFactory {
 //        if (array_key_exists('lists', $data)) {
 //        }
 
-//        if (array_key_exists('changes', $data)) {
-//        }
+        if (array_key_exists('changes', $data)) {
+            $movie->setChanges($this->getChangeFactory()->createCollection($data['changes']));
+        }
 
         return $this->hydrate($movie, $data);
     }
@@ -222,5 +230,21 @@ class MovieFactory extends AbstractFactory {
         return $this->imageFactory;
     }
 
+    /**
+     * @param \Tmdb\Factory\Common\ChangeFactory $changeFactory
+     * @return $this
+     */
+    public function setChangeFactory($changeFactory)
+    {
+        $this->changeFactory = $changeFactory;
+        return $this;
+    }
 
+    /**
+     * @return \Tmdb\Factory\Common\ChangeFactory
+     */
+    public function getChangeFactory()
+    {
+        return $this->changeFactory;
+    }
 }

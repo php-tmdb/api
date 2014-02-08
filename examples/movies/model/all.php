@@ -40,14 +40,14 @@ foreach($movie->getAlternativeTitles()->filterCountry('US') as $title) {
 echo "Cast<br/>";
 
 foreach($movie->getCredits()->getCast() as $person) {
-    echo $imageHelper->getHtml($person->getProfile(), 'w45');
+    echo $imageHelper->getHtml($person->getProfileImage(), 'w45');
     printf(" - %s as %s<br/>", $person->getName(), $person->getCharacter());
 }
 
 echo "Crew<br/>";
 
 foreach($movie->getCredits()->getCrew() as $person) {
-    echo $imageHelper->getHtml($person->getProfile(), 'w45');
+    echo $imageHelper->getHtml($person->getProfileImage(), 'w45');
     printf(" - %s as %s<br/>", $person->getName(), $person->getJob());
 }
 

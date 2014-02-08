@@ -25,7 +25,7 @@ Unstable
 
 I'm working extensively on finishing the models/repositories/factories, which should allow you to simply jump in with an API key and implement quickly.
 
-Do expect changes to happen a few times per week until the work is done, however structurally seen things will be built further upon the current base.
+You can see the current state [here](PROGRESS.MD).
 
 Help & Donate
 --------------
