@@ -30,7 +30,7 @@ The states for now defined as;
 | Reviews                | Done        |
 | Search                 | **TODO**        |
 | TV                     | Done        |
-| TV Seasons             | Review        |
+| TV Seasons             | Done        |
 | TV Episodes            | Review        |
 
 __* Currently the account related functions are missing from these sections.__
