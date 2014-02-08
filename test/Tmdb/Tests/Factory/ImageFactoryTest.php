@@ -186,18 +186,6 @@ class ImageFactoryTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
-    public function shouldFilterBestImage()
-    {
-        $this->setUp();
-
-        $image = $this->images->filterBestVotedImage();
-
-        $this->assertInstanceOf('Tmdb\Model\Image', $image);
-    }
-    
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\ImageFactory';

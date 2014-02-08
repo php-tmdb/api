@@ -163,4 +163,27 @@ class Images extends GenericCollection {
             }
         );
     }
+
+    /**
+     * Return a single image that is rated highest
+     *
+     * @return ImageFilter|null
+     */
+    public function filterBestVotedImage()
+    {
+        $currentImage = null;
+        $voteAverage  = 0;
+
+        /**
+         * @var $image Image
+         */
+        foreach($this->data as $image) {
+            if ($image->getVoteAverage() > $voteAverage) {
+                $voteAverage  = $image->getVoteAverage();
+                $currentImage = $image;
+            }
+        }
+
+        return $currentImage;
+    }
 }
