@@ -13,11 +13,11 @@ The states for now defined as;
 | Configuration          | Done        |
 | Account                | **TODO**    |
 | Authentication         | **TODO**    |
-| Certifications         | **TODO**        |
+| Certifications         | **TODO** _added to tmdb recently_        |
 | Changes                | Done        |
 | Collections            | Done        |
 | Companies              | Done        |
-| Credits                | **TODO**        |
+| Credits                | **TODO** _added to tmdb recently_       |
 | Discover               | Done        |
 | Find                   | Review        |
 | Genres                 | Done        |
