@@ -31,6 +31,6 @@ The states for now defined as;
 | Search                 | **TODO**        |
 | TV                     | Done        |
 | TV Seasons             | Done        |
-| TV Episodes            | Review        |
+| TV Episodes            | Done        |
 
 __* Currently the account related functions are missing from these sections.__
