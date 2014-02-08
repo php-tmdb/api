@@ -23,7 +23,7 @@ The states for now defined as;
 | Genres                 | Done        |
 | Jobs                   | Done        |
 | Keywords               | Done        |
-| Lists                  | Partially Done * |
+| Lists                  | Review |
 | Movies                 | Partially Done * |
 | Networks               | Done        |
 | People                 | Done        |
