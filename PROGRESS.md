@@ -4,8 +4,8 @@ Overview of the current implementation status.
 The states for now defined as;
 
 - Done, stable?
-- Review, requires another review before we can mark it as done.
 - Partially done, means there are methods and / or classes missing and is intentional.
+- Review, requires another review before we can mark it as done.
 - Todo, requires everything still to be implemented.
 
 | API Namespace          | Status      |
