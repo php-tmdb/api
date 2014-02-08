@@ -39,7 +39,7 @@ class DiscoverRepository extends AbstractRepository {
 
         $data = $this->getApi()->discoverMovies($query, $headers);
 
-        return $this->getMovieFactory()->createCollection($data);
+        return $this->getMovieFactory()->createResultCollection($data);
     }
 
     /**
@@ -53,7 +53,7 @@ class DiscoverRepository extends AbstractRepository {
     public function discoverTv(DiscoverTvQuery $query, array $headers = array()) {
         $data = $this->getApi()->discoverTv($query->toArray(), $headers);
 
-        return $this->getTvFactory()->createCollection($data);
+        return $this->getTvFactory()->createResultCollection($data);
     }
 
     /**

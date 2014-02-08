@@ -17,7 +17,7 @@ The states for now defined as;
 | Changes                | Done        |
 | Collections            | Done        |
 | Companies              | Done        |
-| Credits                | Review        |
+| Credits                | **TODO**        |
 | Discover               | Review        |
 | Find                   | Review        |
 | Genres                 | Review        |

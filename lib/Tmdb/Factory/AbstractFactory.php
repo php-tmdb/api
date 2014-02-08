@@ -14,6 +14,7 @@ namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
 
 abstract class AbstractFactory implements FactoryInterface {
@@ -50,6 +51,39 @@ abstract class AbstractFactory implements FactoryInterface {
 
         foreach($data as $item) {
             $collection->add(null, $this->hydrate(new $class(), $item));
+        }
+
+        return $collection;
+    }
+
+    /**
+     * Create a result collection
+     *
+     * @param array $data
+     * @return GenericCollection
+     */
+    public function createResultCollection(array $data = array())
+    {
+        $collection = new ResultCollection();
+
+        if (array_key_exists('page', $data)) {
+            $collection->setPage($data['page']);
+        }
+
+        if (array_key_exists('total_pages', $data)) {
+            $collection->setTotalPages($data['total_pages']);
+        }
+
+        if (array_key_exists('total_results', $data)) {
+            $collection->setTotalResults($data['total_results']);
+        }
+
+        if (array_key_exists('results', $data)) {
+            $data = $data['results'];
+        }
+
+        foreach($data as $item) {
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;
