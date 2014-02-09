@@ -95,4 +95,19 @@ class Tv
         return $this->get('tv/top_rated', $parameters, $headers);
     }
 
+    /**
+     * Get the list of translations that exist for a TV series.
+     *
+     * These translations cascade down to the episode level.
+     *
+     * @param int $tvshow_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getTranslations($tvshow_id, array $parameters = array(), array $headers = array())
+    {
+        $this->get('tv/' . $tvshow_id . '/translations', $parameters, $headers);
+    }
+
 }

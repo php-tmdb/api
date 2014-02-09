@@ -66,7 +66,9 @@ class TvFactory extends AbstractFactory {
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $data
+     *
+     * @return Tv
      */
     public function create(array $data = array())
     {
@@ -112,7 +114,7 @@ class TvFactory extends AbstractFactory {
         }
 
         /** Translations */
-        if (array_key_exists('translations', $data)) {
+        if (array_key_exists('translations', $data) && null !== $data['translations']) {
             $tvShow->setTranslations($this->createGenericCollection($data['translations']['translations'], new Translation()));
         }
 

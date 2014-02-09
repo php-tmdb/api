@@ -13,7 +13,6 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\TvFactory;
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\QueryParameter\AppendToResponse;
 
@@ -49,6 +48,74 @@ class TvRepository extends AbstractRepository {
     }
 
     /**
+     * Get the cast & crew information about a TV series.
+     *
+     * Just like the website, we pull this information from the last season of the series.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getCredits($id, array $parameters = array(), array $headers = array())
+    {
+        $data = $this->getApi()->getCredits($id, $this->parseQueryParameters($parameters), $headers);
+        $tv   = $this->getFactory()->create(array('credits' => $data));
+
+        return $tv->getCredits();
+    }
+
+    /**
+     * Get the external ids that we have stored for a TV series.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getExternalIds($id, array $parameters = array(), array $headers = array())
+    {
+        $data = $this->getApi()->getExternalIds($id, $this->parseQueryParameters($parameters), $headers);
+        $tv   = $this->getFactory()->create(array('external_ids' => $data));
+
+        return $tv->getExternalIds();
+    }
+
+    /**
+     * Get the images (posters and backdrops) for a TV series.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getImages($id, array $parameters = array(), array $headers = array())
+    {
+        $data = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
+        $tv   = $this->getFactory()->create(array('images' => $data));
+
+        return $tv->getImages();
+    }
+
+    /**
+     * Get the list of translations that exist for a TV series.
+     *
+     * These translations cascade down to the episode level.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getTranslations($id, array $parameters = array(), array $headers = array())
+    {
+        $data = $this->getApi()->getTranslations($id, $this->parseQueryParameters($parameters), $headers);
+        $tv   = $this->getFactory()->create(array('translations' => $data));
+
+        return $tv->getTranslations();
+    }
+
+    /**
      * Return the Tvs API Class
      *
      * @return \Tmdb\Api\Tv
@@ -74,7 +141,7 @@ class TvRepository extends AbstractRepository {
      */
     public function getPopular(array $options = array())
     {
-        return $this->createCollection(
+        return $this->getFactory()->createResultCollection(
             $this->getApi()->getPopular($options)
         );
     }
@@ -87,7 +154,20 @@ class TvRepository extends AbstractRepository {
      */
     public function getTopRated(array $options = array())
     {
-        return $this->createCollection(
+        return $this->getFactory()->createResultCollection(
+            $this->getApi()->getTopRated($options)
+        );
+    }
+
+    /**
+     * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes. This list refreshes every day.
+     *
+     * @param array $options
+     * @return Tv[]
+     */
+    public function getOnTheAir(array $options = array())
+    {
+        return $this->getFactory()->createResultCollection(
             $this->getApi()->getTopRated($options)
         );
     }
