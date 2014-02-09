@@ -145,6 +145,13 @@ echo $movie->getTitle();
 
 __The repositories also contain the other API methods that are available through the API namespace.__
 
+```php
+$repository = new \Tmdb\Repository\MovieRepository($client);
+$topRated = $repository->getTopRated(array('page' => 3));
+// or
+$popular = $repository->getPopular();
+```
+
 An `ImageHelper` class is provided to take care of the images, which does require the configuration to be loaded:
 
 ```php
