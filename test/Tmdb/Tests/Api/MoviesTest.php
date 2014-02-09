@@ -50,9 +50,9 @@ class MoviesTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/casts');
+            ->with('movie/' . self::MOVIE_ID . '/credits');
 
-        $api->getCast(self::MOVIE_ID);
+        $api->getCredits(self::MOVIE_ID);
     }
 
     /**

@@ -38,7 +38,7 @@ class CollectionRepositoryTest extends TestCase
 
     protected function getApiClass()
     {
-        return 'Tmdb\Api\Collection';
+        return 'Tmdb\Api\Collections';
     }
 
     protected function getRepositoryClass()

@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Repository;
 
+use Tmdb\Client;
 use Tmdb\Factory\CollectionFactory;
 use Tmdb\Factory\ImageFactory;
 use Tmdb\Model\Collection as ApiCollection;
@@ -22,8 +23,10 @@ class CollectionRepository extends AbstractRepository {
 
     private $imageFactory;
 
-    public function __construct()
+    public function __construct(Client $client)
     {
+        parent::__construct($client);
+
         $this->imageFactory = new ImageFactory();
     }
 

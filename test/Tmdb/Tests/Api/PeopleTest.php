@@ -37,7 +37,7 @@ class PeopleTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('person/' . self::PERSON_ID . '/credits');
+            ->with('person/' . self::PERSON_ID . '/combined_credits');
 
         $api->getCredits(self::PERSON_ID);
     }
