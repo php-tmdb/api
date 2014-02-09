@@ -33,7 +33,7 @@ I'm working extensively on finishing the models/repositories/factories, which sh
 | Configuration          | Done        |
 | Account                | **TODO**    |
 | Authentication         | **TODO**    |
-| Certifications         | **TODO** _added to tmdb recently_, available in API namespace. |
+| Certifications         | Done        |
 | Changes                | Done        |
 | Collections            | Done        |
 | Companies              | Done        |
