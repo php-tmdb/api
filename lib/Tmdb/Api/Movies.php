@@ -44,16 +44,16 @@ class Movies
     }
 
     /**
-     * Get the cast information for a specific movie id.
+     * Get the cast and crew information for a specific movie id.
      *
      * @param $movie_id
      * @param array $parameters
 	 * @param array $headers
      * @return mixed
      */
-    public function getCast($movie_id, array $parameters = array(), array $headers = array())
+    public function getCredits($movie_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('movie/' . $movie_id . '/casts', $parameters, $headers);
+        return $this->get('movie/' . $movie_id . '/credits', $parameters, $headers);
     }
 
     /**

@@ -20,6 +20,13 @@ use \Tmdb\Model\Collection\QueryParameter\AppendToResponse;
 
 class CollectionRepository extends AbstractRepository {
 
+    private $imageFactory;
+
+    public function __construct()
+    {
+        $this->imageFactory = new ImageFactory();
+    }
+
     /**
      * Load a collection with the given identifier
      *
@@ -63,11 +70,21 @@ class CollectionRepository extends AbstractRepository {
     }
 
     /**
-     * @return ImageFactory
+     * @param mixed $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+        return $this;
+    }
+
+    /**
+     * @return mixed
      */
     public function getImageFactory()
     {
-        return new ImageFactory();
+        return $this->imageFactory;
     }
 
     /**

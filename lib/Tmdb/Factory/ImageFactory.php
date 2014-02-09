@@ -124,6 +124,11 @@ class ImageFactory extends AbstractFactory
         $collection = new Images();
 
         foreach($data as $format => $formatCollection) {
+
+            if (!is_array($formatCollection)) {
+                continue;
+            }
+
             foreach($formatCollection as $item) {
                 if (array_key_exists($format, Image::$_formats)) {
                     $item = $this->create($item, $format);

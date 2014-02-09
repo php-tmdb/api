@@ -13,6 +13,7 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\KeywordFactory;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Keyword;
 
@@ -37,7 +38,7 @@ class KeywordRepository extends AbstractRepository {
      * @param $id
      * @param array $parameters
      * @param array $headers
-     * @return Keyword[]
+     * @return ResultCollection|Keyword[]
      */
     public function getMovies($id, array $parameters = array(), array $headers = array()) {
         return $this->getFactory()->createResultCollection(

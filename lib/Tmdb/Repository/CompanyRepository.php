@@ -16,6 +16,7 @@ use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
+use Tmdb\Model\Movie;
 
 class CompanyRepository extends AbstractRepository {
 
@@ -39,7 +40,7 @@ class CompanyRepository extends AbstractRepository {
      * @param integer $id
      * @param array $parameters
      * @param array $headers
-     * @return Movie[]
+     * @return GenericCollection|Movie[]
      */
     public function getMovies($id, array $parameters = array(), array $headers = array())
     {

@@ -73,7 +73,8 @@ class MovieFactory extends AbstractFactory {
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $data
+     * @return Movie
      */
     public function create(array $data = array())
     {

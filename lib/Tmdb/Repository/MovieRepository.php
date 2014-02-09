@@ -12,7 +12,10 @@
  */
 namespace Tmdb\Repository;
 
+use Tmdb\Factory\ImageFactory;
+use Tmdb\Factory\Movie\AlternativeTitleFactory;
 use Tmdb\Factory\MovieFactory;
+use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Movie;
 
@@ -57,24 +60,187 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * Return the Movies API Class
+     * Get the alternative titles for a specific movie id.
      *
-     * @return \Tmdb\Api\Movies
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return GenericCollection
      */
-    public function getApi()
+    public function getAlternativeTitles($id, array $parameters = array(), array $headers = array())
     {
-        return $this->getClient()->getMoviesApi();
+        $data  = $this->getApi()->getAlternativeTitles($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('alternative_titles' => $data));
+
+        return $movie->getAlternativeTitles();
     }
 
     /**
-     * Return the Movie Factory
+     * Get the cast and crew information for a specific movie id.
      *
-     * @return MovieFactory
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getFactory()
+    public function getCredits($id, array $parameters = array(), array $headers = array())
     {
-        return new MovieFactory();
+        $data  = $this->getApi()->getCredits($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('credits' => $data));
+
+        return $movie->getCredits();
     }
+
+    /**
+     * Get the images (posters and backdrops) for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getImages($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('images' => $data));
+
+        return $movie->getImages();
+    }
+
+    /**
+     * Get the plot keywords for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getKeywords($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getKeywords($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('keywords' => $data));
+
+        return $movie->getKeywords();
+    }
+
+    /**
+     * Get the release date and certification information by country for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getReleases($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getReleases($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('releases' => $data));
+
+        return $movie->getReleases();
+    }
+
+    /**
+     * Get the trailers for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getTrailers($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getTrailers($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('trailers' => $data));
+
+        return $movie->getTrailers();
+    }
+
+    /**
+     * Get the translations for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getTranslations($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getTranslations($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('translations' => $data));
+
+        return $movie->getTranslations();
+    }
+
+    /**
+     * Get the similar movies for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getSimilarMovies($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getSimilarMovies($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('similar_movies' => $data));
+
+        return $movie->getSimilarMovies();
+    }
+
+    /**
+     * Get the reviews for a particular movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getReviews($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getReviews($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('reviews' => $data));
+
+        return $movie->getReviews();
+    }
+
+    /**
+     * Get the lists that the movie belongs to.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getLists($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getLists($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('lists' => $data));
+
+        return $movie->getLists();
+    }
+
+    /**
+     * Get the changes for a specific movie id.
+     * Changes are grouped by key, and ordered by date in descending order.
+     *
+     * By default, only the last 24 hours of changes are returned.
+     * The maximum number of days that can be returned in a single request is 14.
+     *
+     * The language is present on fields that are translatable.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getChanges($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getChanges($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('changes' => $data));
+
+        return $movie->getChanges();
+    }
+
 
     /**
      * Get the latest movie.
@@ -142,6 +308,26 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
+     * Return the Movies API Class
+     *
+     * @return \Tmdb\Api\Movies
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getMoviesApi();
+    }
+
+    /**
+     * Return the Movie Factory
+     *
+     * @return MovieFactory
+     */
+    public function getFactory()
+    {
+        return new MovieFactory();
+    }
+
+    /**
      * Create an collection of an array
      *
      * @param $data
@@ -150,4 +336,60 @@ class MovieRepository extends AbstractRepository {
     private function createCollection($data){
         return $this->getFactory()->createCollection($data);
     }
+
+    /**
+     * @param mixed $alternativeTitlesFactory
+     * @return $this
+     */
+    public function setAlternativeTitlesFactory($alternativeTitlesFactory)
+    {
+        $this->alternativeTitlesFactory = $alternativeTitlesFactory;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlternativeTitlesFactory()
+    {
+        return $this->alternativeTitlesFactory;
+    }
+
+    /**
+     * @param mixed $imagesFactory
+     * @return $this
+     */
+    public function setImagesFactory($imagesFactory)
+    {
+        $this->imagesFactory = $imagesFactory;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagesFactory()
+    {
+        return $this->imagesFactory;
+    }
+
+    /**
+     * @param mixed $peopleFactory
+     * @return $this
+     */
+    public function setPeopleFactory($peopleFactory)
+    {
+        $this->peopleFactory = $peopleFactory;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPeopleFactory()
+    {
+        return $this->peopleFactory;
+    }
+
+
 }
