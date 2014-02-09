@@ -12,11 +12,7 @@ Stable
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 
-__The model/factory/repository namespaces are not ready for production yet, however the API namespace is considered stable up unto how far we implemented it ( account functions are not present yet ).__
-
-Currently there is no stable version as I don't consider everything ready yet, however you should be able to use the API namespace without issues.
-
-Do note that this is just raw output from The Movie Database API.
+First alpha version will be arriving around the beginning of March, take a look at the current state below.
 
 Unstable
 ----------------
