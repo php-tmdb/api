@@ -259,6 +259,15 @@ class Client {
         return new Api\Networks($this);
     }
 
+
+    /**
+     * @return Api\Credits
+     */
+    public function getCreditsApi()
+    {
+        return new Api\Credits($this);
+    }
+
     /**
      * @return HttpClientInterface
      */
