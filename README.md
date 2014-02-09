@@ -42,7 +42,7 @@ I'm working extensively on finishing the models/repositories/factories, which sh
 | Genres                 | Done        |
 | Jobs                   | Done        |
 | Keywords               | Done        |
-| Lists                  | Review *    |
+| Lists                  | Done *    |
 | Movies                 | Done *      |
 | Networks               | Done        |
 | People                 | Done        |
