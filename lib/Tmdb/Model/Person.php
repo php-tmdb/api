@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Model;
 
-use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\Images;
@@ -76,23 +76,23 @@ class Person extends AbstractModel implements PersonInterface {
     private $profile;
 
     /**
-     * @var Collection\Credits
+     * @var Collection\CreditsCollection
      * @deprecated
      */
     protected $credits;
 
     /**
-     * @var Credits\MovieCredits
+     * @var CreditsCollection\MovieCredits
      */
     protected $movieCredits;
 
     /**
-     * @var Credits\TvCredits
+     * @var CreditsCollection\TvCredits
      */
     protected $tvCredits;
 
     /**
-     * @var Credits\CombinedCredits
+     * @var CreditsCollection\CombinedCredits
      */
     protected $combinedCredits;
 
@@ -133,10 +133,10 @@ class Person extends AbstractModel implements PersonInterface {
      */
     public function __construct()
     {
-        $this->credits         = new Credits();
-        $this->movieCredits    = new Credits\MovieCredits();
-        $this->tvCredits       = new Credits\TvCredits();
-        $this->combinedCredits = new Credits\CombinedCredits();
+        $this->credits         = new CreditsCollection();
+        $this->movieCredits    = new CreditsCollection\MovieCredits();
+        $this->tvCredits       = new CreditsCollection\TvCredits();
+        $this->combinedCredits = new CreditsCollection\CombinedCredits();
         $this->images          = new Images();
         $this->changes         = new GenericCollection();
         $this->externalIds     = new ExternalIds();
@@ -407,7 +407,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\Credits\CombinedCredits $combinedCredits
+     * @param \Tmdb\Model\Collection\CreditsCollection\CombinedCredits $combinedCredits
      * @return $this
      */
     public function setCombinedCredits($combinedCredits)
@@ -417,7 +417,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @return \Tmdb\Model\Collection\Credits\CombinedCredits
+     * @return \Tmdb\Model\Collection\CreditsCollection\CombinedCredits
      */
     public function getCombinedCredits()
     {
@@ -425,7 +425,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\Credits\MovieCredits $movieCredits
+     * @param \Tmdb\Model\Collection\CreditsCollection\MovieCredits $movieCredits
      * @return $this
      */
     public function setMovieCredits($movieCredits)
@@ -435,7 +435,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @return \Tmdb\Model\Collection\Credits\MovieCredits
+     * @return \Tmdb\Model\Collection\CreditsCollection\MovieCredits
      */
     public function getMovieCredits()
     {
@@ -443,7 +443,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\Credits\TvCredits $tvCredits
+     * @param \Tmdb\Model\Collection\CreditsCollection\TvCredits $tvCredits
      * @return $this
      */
     public function setTvCredits($tvCredits)
@@ -453,7 +453,7 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @return \Tmdb\Model\Collection\Credits\TvCredits
+     * @return \Tmdb\Model\Collection\CreditsCollection\TvCredits
      */
     public function getTvCredits()
     {

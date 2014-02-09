@@ -55,6 +55,22 @@ class CollectionRepository extends AbstractRepository {
     }
 
     /**
+     * Get all of the images for a particular collection by collection id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getImages($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('images' => $data));
+
+        return $movie->getImages();
+    }
+
+    /**
      * Return the Collection API Class
      *
      * @return \Tmdb\Api\Collections
@@ -88,20 +104,5 @@ class CollectionRepository extends AbstractRepository {
     public function getImageFactory()
     {
         return $this->imageFactory;
-    }
-
-    /**
-     * Get all of the images for a particular collection by collection id.
-     *
-     * @param $id
-     * @param array $parameters
-     * @param array $headers
-     * @return ApiCollection\Images
-     */
-    public function getImages($id, array $parameters = array(), array $headers = array())
-    {
-        return $this->getImageFactory()->createCollection(
-            $this->getApi()->getImages($id, $parameters, $headers)
-        );
     }
 }

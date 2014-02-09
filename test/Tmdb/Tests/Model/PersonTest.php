@@ -15,24 +15,24 @@ namespace Tmdb\Tests\Model;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person;
 
-class GenreTest extends TestCase
+class PersonTest extends TestCase
 {
     /**
      * @test
      */
-    public function shouldConstructGenres()
+    public function shouldConstructPersons()
     {
         $person = new Person();
 
         $this->assertInstancesOf(
             $person,
             array(
-                'getCredits'         => 'Tmdb\Model\Collection\Credits',
+                'getCredits'         => 'Tmdb\Model\Collection\CreditsCollection',
                 'getImages'          => 'Tmdb\Model\Collection\Images',
                 'getChanges'         => 'Tmdb\Model\Common\GenericCollection',
-                'getCombinedCredits' => 'Tmdb\Model\Collection\Credits\CombinedCredits',
-                'getMovieCredits'    => 'Tmdb\Model\Collection\Credits\MovieCredits',
-                'getTvCredits'       => 'Tmdb\Model\Collection\Credits\TvCredits',
+                'getCombinedCredits' => 'Tmdb\Model\Collection\CreditsCollection\CombinedCredits',
+                'getMovieCredits'    => 'Tmdb\Model\Collection\CreditsCollection\MovieCredits',
+                'getTvCredits'       => 'Tmdb\Model\Collection\CreditsCollection\TvCredits',
             )
         );
     }

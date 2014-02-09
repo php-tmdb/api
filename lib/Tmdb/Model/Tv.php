@@ -13,7 +13,7 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image\BackdropImage;
@@ -221,7 +221,7 @@ class Tv extends AbstractModel {
         $this->originCountry  = new GenericCollection();
         $this->seasons        = new GenericCollection();
 
-        $this->credits        = new Credits();
+        $this->credits        = new CreditsCollection();
         $this->externalIds    = new ExternalIds();
         $this->images         = new Images();
         $this->translations   = new GenericCollection();
@@ -704,7 +704,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\Credits $credits
+     * @param \Tmdb\Model\Collection\CreditsCollection $credits
      * @return $this
      */
     public function setCredits($credits)
@@ -714,7 +714,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @return \Tmdb\Model\Collection\Credits
+     * @return \Tmdb\Model\Collection\CreditsCollection
      */
     public function getCredits()
     {

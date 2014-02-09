@@ -10,8 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Collection\Credits;
+namespace Tmdb\Model\Collection\CreditsCollection;
 
-use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Collection\CreditsCollection;
 
-class CombinedCredits extends Credits {}
+class CombinedCredits extends CreditsCollection {}

@@ -27,7 +27,7 @@ class SeasonTest extends TestCase
         $this->assertInstancesOf(
             $season,
             array(
-                'getCredits'     => 'Tmdb\Model\Collection\Credits',
+                'getCredits'     => 'Tmdb\Model\Collection\CreditsCollection',
                 'getExternalIds' => 'Tmdb\Model\Common\ExternalIds',
                 'getImages'      => 'Tmdb\Model\Collection\Images',
                 'getEpisodes'    => 'Tmdb\Model\Common\GenericCollection',

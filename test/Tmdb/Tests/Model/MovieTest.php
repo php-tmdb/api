@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Tests\Model;
 
-use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Movie;
 
@@ -35,7 +35,7 @@ class MovieTest extends TestCase
                 'getSpokenLanguages'     => 'Tmdb\Model\Common\GenericCollection',
                 'getAlternativeTitles'   => 'Tmdb\Model\Common\GenericCollection',
                 'getChanges'             => 'Tmdb\Model\Common\GenericCollection',
-                'getCredits'             => 'Tmdb\Model\Collection\Credits',
+                'getCredits'             => 'Tmdb\Model\Collection\CreditsCollection',
                 'getImages'              => 'Tmdb\Model\Collection\Images',
                 'getKeywords'            => 'Tmdb\Model\Common\GenericCollection',
                 'getLists'               => 'Tmdb\Model\Common\GenericCollection',
@@ -61,7 +61,7 @@ class MovieTest extends TestCase
         $movie->setProductionCompanies($class);
         $movie->setProductionCountries($class);
         $movie->setSpokenLanguages($class);
-        $movie->setCredits(new Credits());
+        $movie->setCredits(new CreditsCollection());
         $movie->setLists($class);
 
         $this->assertInstancesOf(
@@ -72,7 +72,7 @@ class MovieTest extends TestCase
                 'getProductionCompanies' => $className,
                 'getProductionCountries' => $className,
                 'getSpokenLanguages'     => $className,
-                'getCredits'             => 'Tmdb\Model\Collection\Credits',
+                'getCredits'             => 'Tmdb\Model\Collection\CreditsCollection',
                 'getLists'               => $className,
             )
         );

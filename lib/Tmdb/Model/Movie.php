@@ -14,7 +14,7 @@ namespace Tmdb\Model;
 
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\People;
@@ -252,7 +252,7 @@ class Movie extends AbstractModel {
         $this->spokenLanguages     = new GenericCollection();
         $this->alternativeTitles   = new GenericCollection();
         $this->changes             = new GenericCollection();
-        $this->credits             = new Credits();
+        $this->credits             = new CreditsCollection();
         $this->images              = new Images();
         $this->keywords            = new GenericCollection();
         $this->lists               = new GenericCollection();
@@ -735,17 +735,17 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @param Credits $credits
+     * @param CreditsCollection $credits
      * @return $this
      */
-    public function setCredits(Credits $credits)
+    public function setCredits(CreditsCollection $credits)
     {
         $this->credits = $credits;
         return $this;
     }
 
     /**
-     * @return Credits
+     * @return CreditsCollection
      */
     public function getCredits()
     {

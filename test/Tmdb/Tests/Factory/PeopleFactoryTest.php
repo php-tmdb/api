@@ -68,7 +68,7 @@ class PeopleFactoryTest extends TestCase
         $movie   = $movieFactory->create($data);
         $credits = $movie->getCredits();
 
-        $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $credits);
+        $this->assertInstanceOf('Tmdb\Model\Collection\CreditsCollection', $credits);
 
         $cast = $credits->getCast();
         $crew = $credits->getCrew();
@@ -131,9 +131,9 @@ class PeopleFactoryTest extends TestCase
         $this->assertEquals('/h9YwlLHANaQzaTVkVwxnxLbvCY4.jpg', $this->person->getProfilePath());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->person->getImages());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->person->getChanges());
-        $this->assertInstanceOf('Tmdb\Model\Collection\Credits\CombinedCredits', $this->person->getCombinedCredits());
-        $this->assertInstanceOf('Tmdb\Model\Collection\Credits\MovieCredits', $this->person->getMovieCredits());
-        $this->assertInstanceOf('Tmdb\Model\Collection\Credits\TvCredits', $this->person->getTvCredits());
+        $this->assertInstanceOf('Tmdb\Model\Collection\CreditsCollection\CombinedCredits', $this->person->getCombinedCredits());
+        $this->assertInstanceOf('Tmdb\Model\Collection\CreditsCollection\MovieCredits', $this->person->getMovieCredits());
+        $this->assertInstanceOf('Tmdb\Model\Collection\CreditsCollection\TvCredits', $this->person->getTvCredits());
     }
 
     /**

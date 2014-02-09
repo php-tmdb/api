@@ -97,7 +97,7 @@ class MovieFactoryTest extends TestCase
         $this->assertEquals(625, $this->movie->getVoteCount());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getAlternativeTitles());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getChanges());
-        $this->assertInstanceOf('Tmdb\Model\Collection\Credits', $this->movie->getCredits());
+        $this->assertInstanceOf('Tmdb\Model\Collection\CreditsCollection', $this->movie->getCredits());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->movie->getImages());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getKeywords());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getLists());

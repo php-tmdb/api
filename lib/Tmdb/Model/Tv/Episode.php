@@ -13,7 +13,7 @@
 namespace Tmdb\Model\Tv;
 
 use Tmdb\Model\AbstractModel;
-use Tmdb\Model\Collection\Credits;
+use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Image\StillImage;
@@ -122,7 +122,7 @@ class Episode extends AbstractModel {
      */
     public function __construct()
     {
-        $this->credits     = new Credits();
+        $this->credits     = new CreditsCollection();
         $this->externalIds = new ExternalIds();
         $this->images      = new Images();
     }

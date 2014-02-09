@@ -15,7 +15,7 @@ namespace Tmdb\Model\Collection;
 use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Collection\People\Crew;
 
-class Credits {
+class CreditsCollection {
     /**
      * @var Cast
      */
