@@ -43,7 +43,10 @@ class PeopleFactory extends AbstractFactory {
     }
 
     /**
-     * {@inheritdoc}
+     * @param array $data
+     * @param Person\AbstractMember|null $person
+     *
+     * @return Person|CrewMember|CastMember
      */
     public function create(array $data = array(), Person\AbstractMember $person = null)
     {

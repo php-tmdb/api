@@ -38,7 +38,52 @@ class People
      */
     public function getCredits($person_id, array $parameters = array(), array $headers = array())
     {
-        return $this->get('person/' . $person_id . '/credits', $parameters, $headers);
+        return $this->getCombinedCredits($person_id, $parameters, $headers);
+    }
+
+    /**
+     * Get the movie credits for a specific person id.
+     *
+     * @param $person_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getMovieCredits($person_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('person/' . $person_id . '/movie_credits', $parameters, $headers);
+    }
+
+    /**
+     * Get the TV credits for a specific person id.
+     *
+     * To get the expanded details for each record, call the /credit method with the provided credit_id.
+     * This will provide details about which episode and/or season the credit is for.
+     *
+     * @param $person_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getTvCredits($person_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('person/' . $person_id . '/tv_credits', $parameters, $headers);
+    }
+
+    /**
+     * Get the combined (movie and TV) credits for a specific person id.
+     *
+     * To get the expanded details for each TV record, call the /credit method with the provided credit_id.
+     * This will provide details about which episode and/or season the credit is for.
+     *
+     * @param $person_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getCombinedCredits($person_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('person/' . $person_id . '/combined_credits', $parameters, $headers);
     }
 
     /**

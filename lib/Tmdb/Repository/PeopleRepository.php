@@ -48,6 +48,60 @@ class PeopleRepository extends AbstractRepository {
     }
 
     /**
+     * Get the movie credits for a specific person id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getMovieCredits($id, array $parameters = array(), array $headers = array())
+    {
+        $data   = $this->getApi()->getMovieCredits($id, $this->parseQueryParameters($parameters), $headers);
+        $person = $this->getFactory()->create(array('movie_credits' => $data));
+
+        return $person->getMovieCredits();
+    }
+
+    /**
+     * Get the TV credits for a specific person id.
+     *
+     * To get the expanded details for each record, call the /credit method with the provided credit_id.
+     * This will provide details about which episode and/or season the credit is for.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getTvCredits($id, array $parameters = array(), array $headers = array())
+    {
+        $data   = $this->getApi()->getTvCredits($id, $this->parseQueryParameters($parameters), $headers);
+        $person = $this->getFactory()->create(array('tv_credits' => $data));
+
+        return $person->getTvCredits();
+    }
+
+    /**
+     * Get the combined (movie and TV) credits for a specific person id.
+     *
+     * To get the expanded details for each TV record, call the /credit method with the provided credit_id.
+     * This will provide details about which episode and/or season the credit is for.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getCombinedCredits($id, array $parameters = array(), array $headers = array())
+    {
+        $data   = $this->getApi()->getCombinedCredits($id, $this->parseQueryParameters($parameters), $headers);
+        $person = $this->getFactory()->create(array('combined_credits' => $data));
+
+        return $person->getCombinedCredits();
+    }
+
+    /**
      * Return the related API class
      *
      * @return \Tmdb\Api\People
