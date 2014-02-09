@@ -37,7 +37,7 @@ I'm working extensively on finishing the models/repositories/factories, which sh
 | Changes                | Done        |
 | Collections            | Done        |
 | Companies              | Done        |
-| Credits                | **TODO** _added to tmdb recently_, available in API namespace. |
+| Credits                | Done        |
 | Discover               | Done        |
 | Find                   | Done        |
 | Genres                 | Done        |
