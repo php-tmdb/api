@@ -23,8 +23,7 @@ I'm working extensively on finishing the models/repositories/factories, which sh
 
 **The states for now defined as;**
 
-- Done, everything is functional, however you can run into missing methods in repositories that the API supports, will make sure everything is there within days.
-- Partially done, means there are methods and / or classes missing and is intentional.
+- Done, everything should be functional.
 - Review, requires another review before we can mark it as done.
 - Todo, requires everything still to be implemented.
 
@@ -43,8 +42,8 @@ I'm working extensively on finishing the models/repositories/factories, which sh
 | Genres                 | Done        |
 | Jobs                   | Done        |
 | Keywords               | Done        |
-| Lists                  | Review |
-| Movies                 | Partially Done * |
+| Lists                  | Review *    |
+| Movies                 | Done *      |
 | Networks               | Done        |
 | People                 | Done        |
 | Reviews                | Done        |
