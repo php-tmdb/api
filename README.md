@@ -25,7 +25,40 @@ Unstable
 
 I'm working extensively on finishing the models/repositories/factories, which should allow you to simply jump in with an API key and implement quickly.
 
-You can see the current state [here](PROGRESS.MD).
+**The states for now defined as;**
+
+- Done, stable?
+- Partially done, means there are methods and / or classes missing and is intentional.
+- Review, requires another review before we can mark it as done.
+- Todo, requires everything still to be implemented.
+
+| API Namespace          | Status      |
+|------------------------|:------------|
+| Configuration          | Done        |
+| Account                | **TODO**    |
+| Authentication         | **TODO**    |
+| Certifications         | **TODO** _added to tmdb recently_, available in API namespace. |
+| Changes                | Done        |
+| Collections            | Done        |
+| Companies              | Done        |
+| Credits                | **TODO** _added to tmdb recently_, available in API namespace. |
+| Discover               | Done        |
+| Find                   | Done        |
+| Genres                 | Done        |
+| Jobs                   | Done        |
+| Keywords               | Done        |
+| Lists                  | Review |
+| Movies                 | Partially Done * |
+| Networks               | Done        |
+| People                 | Done        |
+| Reviews                | Done        |
+| Search                 | Done        |
+| TV                     | Done        |
+| TV Seasons             | Done        |
+| TV Episodes            | Done        |
+
+__* Currently the account related functions are missing from these sections.__
+
 
 Help & Donate
 --------------
