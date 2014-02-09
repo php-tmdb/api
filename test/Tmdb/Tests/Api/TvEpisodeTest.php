@@ -41,7 +41,7 @@ class TvEpisodeTest extends TestCase
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/credits');
 
-        $api->getEpisodeCredits(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
+        $api->getCredits(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
 
     /**
@@ -54,7 +54,7 @@ class TvEpisodeTest extends TestCase
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/external_ids');
 
-        $api->getEpisodeExternalIds(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
+        $api->getExternalIds(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
 
     /**
@@ -67,7 +67,7 @@ class TvEpisodeTest extends TestCase
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/images');
 
-        $api->getEpisodeImages(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
+        $api->getImages(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
 
     protected function getApiClass() {

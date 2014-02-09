@@ -68,6 +68,62 @@ class TvEpisodeRepository extends AbstractRepository {
     }
 
     /**
+     * Get the cast & crew information about a TV series.
+     *
+     * Just like the website, we pull this information from the last season of the series.
+     *
+     * @param $id
+     * @param $season
+     * @param $episode
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getCredits($id, $season, $episode, array $parameters = array(), array $headers = array())
+    {
+        $data    = $this->getApi()->getCredits($id, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        $episode = $this->getFactory()->create(array('credits' => $data));
+
+        return $episode->getCredits();
+    }
+
+    /**
+     * Get the external ids that we have stored for a TV series.
+     *
+     * @param $id
+     * @param $season
+     * @param $episode
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getExternalIds($id, $season, $episode, array $parameters = array(), array $headers = array())
+    {
+        $data    = $this->getApi()->getExternalIds($id, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        $episode = $this->getFactory()->create(array('external_ids' => $data));
+
+        return $episode->getExternalIds();
+    }
+
+    /**
+     * Get the images (posters and backdrops) for a TV series.
+     *
+     * @param $id
+     * @param $season
+     * @param $episode
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getImages($id, $season, $episode, array $parameters = array(), array $headers = array())
+    {
+        $data    = $this->getApi()->getImages($id, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        $episode = $this->getFactory()->create(array('images' => $data));
+
+        return $episode->getImages();
+    }
+    
+    /**
      * Return the Seasons API Class
      *
      * @return \Tmdb\Api\TvEpisode

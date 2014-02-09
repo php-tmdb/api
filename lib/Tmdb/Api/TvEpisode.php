@@ -40,7 +40,7 @@ class TvEpisode
      * @param array $headers
      * @return mixed
      */
-    public function getEpisodeCredits($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
+    public function getCredits($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
     {
         return $this->get(sprintf('tv/%s/season/%s/episode/%s/credits', $tvshow_id, $season_number,$episode_number), $parameters, $headers);
     }
@@ -55,7 +55,7 @@ class TvEpisode
      * @param array $headers
      * @return mixed
      */
-    public function getEpisodeExternalIds($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
+    public function getExternalIds($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
     {
         return $this->get(sprintf('tv/%s/season/%s/episode/%s/external_ids', $tvshow_id, $season_number,$episode_number), $parameters, $headers);
     }
@@ -70,7 +70,7 @@ class TvEpisode
      * @param array $headers
      * @return mixed
      */
-    public function getEpisodeImages($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
+    public function getImages($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
     {
         return $this->get(sprintf('tv/%s/season/%s/episode/%s/images', $tvshow_id, $season_number,$episode_number), $parameters, $headers);
     }

@@ -40,7 +40,7 @@ class TvSeasonTest extends TestCase
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/credits');
 
-        $api->getSeasonCredits(self::TV_ID, self::SEASON_ID);
+        $api->getCredits(self::TV_ID, self::SEASON_ID);
     }
 
     /**
@@ -53,7 +53,7 @@ class TvSeasonTest extends TestCase
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids');
 
-        $api->getSeasonExternalIds(self::TV_ID, self::SEASON_ID);
+        $api->getExternalIds(self::TV_ID, self::SEASON_ID);
     }
 
     /**
@@ -66,7 +66,7 @@ class TvSeasonTest extends TestCase
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/images');
 
-        $api->getSeasonImages(self::TV_ID, self::SEASON_ID);
+        $api->getImages(self::TV_ID, self::SEASON_ID);
     }
 
     protected function getApiClass() {
