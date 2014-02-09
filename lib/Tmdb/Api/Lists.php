@@ -44,12 +44,14 @@ class Lists
     /**
      * Check to see if a movie ID is already added to a list.
      *
-     * @throws NotImplementedException
+     * @param $list_id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getItemStatus()
+    public function getItemStatus($list_id, array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('list/' . $list_id . '/item_status', $parameters, $headers);
     }
 
     /**

@@ -41,12 +41,15 @@ class ListsTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetItemStatus()
     {
         $api = $this->getApiMock();
-        $api->getItemStatus(self::LIST_ID, 'movie_id');
+        $api->expects($this->once())
+            ->method('get')
+            ->with('list/' . self::LIST_ID . '/item_status');
+
+        $api->getItemStatus(self::LIST_ID);
     }
 
     /**
