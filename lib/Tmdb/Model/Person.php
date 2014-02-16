@@ -73,7 +73,7 @@ class Person extends AbstractModel implements PersonInterface {
     /**
      * @var ProfileImage
      */
-    private $profile;
+    private $profileImage;
 
     /**
      * @var Collection\CreditsCollection
@@ -389,12 +389,12 @@ class Person extends AbstractModel implements PersonInterface {
     }
 
     /**
-     * @param ProfileImage  $profile
+     * @param ProfileImage $profileImage
      * @return $this
      */
-    public function setProfileImage(ProfileImage $profile)
+    public function setProfileImage(ProfileImage $profileImage)
     {
-        $this->profile = $profile;
+        $this->profileImage = $profileImage;
         return $this;
     }
 
@@ -403,7 +403,7 @@ class Person extends AbstractModel implements PersonInterface {
      */
     public function getProfileImage()
     {
-        return $this->profile;
+        return $this->profileImage;
     }
 
     /**

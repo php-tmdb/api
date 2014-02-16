@@ -14,6 +14,7 @@ namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Collection\People\Crew;
+use Tmdb\Model\Common\GenericCollection;
 
 class CreditsCollection {
     /**
@@ -36,10 +37,10 @@ class CreditsCollection {
     }
 
     /**
-     * @param Cast $cast
+     * @param Cast|GenericCollection $cast
      * @return $this
      */
-    public function setCast(Cast $cast)
+    public function setCast(GenericCollection $cast)
     {
         $this->cast = $cast;
         return $this;
@@ -54,10 +55,10 @@ class CreditsCollection {
     }
 
     /**
-     * @param Crew $crew
+     * @param Crew|GenericCollection $crew
      * @return $this
      */
-    public function setCrew(Crew $crew)
+    public function setCrew(GenericCollection $crew)
     {
         $this->crew = $crew;
         return $this;

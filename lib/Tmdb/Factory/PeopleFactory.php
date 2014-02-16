@@ -107,22 +107,37 @@ class PeopleFactory extends AbstractFactory {
                 $method = $hydrator->camelize(sprintf('get_%s', $type));
 
                 if (array_key_exists('cast', $data[$type])) {
-                    $person->$method()->setCast($this->createCollection(
+                    $cast = $this->createGenericCollection(
                         $data[$type]['cast'],
-                        new CastMember(),
-                        new Cast())
+                        new Person\MovieCredit()
                     );
+
+                    foreach($cast as $member) {
+                        $member->setPosterImage($member->getPosterPath());
+                    }
+
+                    $person->$method()->setCast($cast);
                 }
 
                 if (array_key_exists('crew', $data[$type])) {
-                    $person->$method()->setCrew($this->createCollection(
+                    $crew = $this->createGenericCollection(
                         $data[$type]['crew'],
-                        new CrewMember(),
-                        new Crew())
+                        new Person\MovieCredit()
                     );
+
+                    foreach($crew as $member) {
+                        $member->setPosterImage($member->getPosterPath());
+                    }
+
+                    $person->$method()->setCrew($crew);
                 }
             }
         }
+    }
+
+    protected function getPosterImageForCredit($posterPath)
+    {
+        return $this->getImageFactory()->createFromPath($posterPath, 'poster_path');
     }
 
     /**
@@ -138,10 +153,11 @@ class PeopleFactory extends AbstractFactory {
             $data = $data['results'];
         }
 
-        foreach($data as $item) {
-            $collection->add(null, $this->create($item, $person));
-        }
+        $class = get_class($person);
 
+        foreach($data as $item) {
+            $collection->add(null, $this->create($item, new $class()));
+        }
         return $collection;
     }
 
