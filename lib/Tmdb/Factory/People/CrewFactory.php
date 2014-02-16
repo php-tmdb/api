@@ -33,8 +33,10 @@ class CrewFactory extends PeopleFactory
     {
         $collection = new Crew();
 
+        $class = get_class($person);
+
         foreach($data as $item) {
-            $collection->add(null, $this->create($item, $person));
+            $collection->add(null, $this->create($item, new $class()));
         }
 
         return $collection;
