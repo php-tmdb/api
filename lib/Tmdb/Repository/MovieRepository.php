@@ -302,7 +302,7 @@ class MovieRepository extends AbstractRepository {
      */
     public function getTopRated(array $options = array())
     {
-        return $this->createCollection(
+        return $this->getFactory()->createResultCollection(
             $this->getApi()->getTopRated($options)
         );
     }
