@@ -289,7 +289,7 @@ class MovieRepository extends AbstractRepository {
      */
     public function getPopular(array $options = array())
     {
-        return $this->createCollection(
+        return $this->getFactory()->createResultCollection(
             $this->getApi()->getPopular($options)
         );
     }
