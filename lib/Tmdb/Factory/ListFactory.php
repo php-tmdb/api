@@ -14,6 +14,7 @@ namespace Tmdb\Factory;
 
 use Tmdb\Factory\Lists\ListItemFactory;
 use Tmdb\Model\Collection\Genres;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Lists;
 use Tmdb\Model\Movie;
@@ -77,14 +78,10 @@ class ListFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        $collection = new Genres();
-
-        if (array_key_exists('genres', $data)) {
-            $data = $data['genres'];
-        }
+        $collection = new GenericCollection();
 
         foreach($data as $item) {
-            $collection->addGenre($this->create($item));
+            $collection->add(null, $this->create($item));
         }
 
         return $collection;
