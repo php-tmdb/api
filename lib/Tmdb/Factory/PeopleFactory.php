@@ -48,7 +48,7 @@ class PeopleFactory extends AbstractFactory {
      *
      * @return Person|CrewMember|CastMember
      */
-    public function create(array $data = array(), Person\AbstractMember $person = null)
+    public function create(array $data = array(), $person = null)
     {
         if (!is_object($person)) {
             if (array_key_exists('character', $data)) {
@@ -143,7 +143,7 @@ class PeopleFactory extends AbstractFactory {
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array(), Person\AbstractMember $person = null, $collection = null)
+    public function createCollection(array $data = array(), $person = null, $collection = null)
     {
         if (!$collection) {
             $collection = new People();
@@ -153,7 +153,12 @@ class PeopleFactory extends AbstractFactory {
             $data = $data['results'];
         }
 
-        $class = get_class($person);
+        if (is_object($person)) {
+            $class = get_class($person);
+        }
+        else{
+            $class = '\Tmdb\Model\Person';
+        }
 
         foreach($data as $item) {
             $collection->add(null, $this->create($item, new $class()));

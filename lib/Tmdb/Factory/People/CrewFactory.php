@@ -27,13 +27,18 @@ class CrewFactory extends PeopleFactory
 
     /**
      * {@inheritdoc}
-     * @param \Tmdb\Model\Tv\Person\CrewMember $person
+     * @param \Tmdb\Model\Person\CrewMember $person
      */
     public function createCollection(array $data = array(), $person = null)
     {
         $collection = new Crew();
 
-        $class = get_class($person);
+        if (is_object($person)) {
+            $class = get_class($person);
+        }
+        else{
+            $class = '\Tmdb\Model\Person\CrewMember';
+        }
 
         foreach($data as $item) {
             $collection->add(null, $this->create($item, new $class()));
