@@ -48,8 +48,8 @@ class CompanyRepositoryTest extends TestCase
             array('results' => array(
                 array('id' => 1),
                 array('id' => 2)
-            )
-            ));
+            ))
+        );
 
         foreach($collection as $movie) {
             $this->assertInstanceOf('Tmdb\Model\Movie', $movie);
