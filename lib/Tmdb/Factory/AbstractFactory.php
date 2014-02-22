@@ -61,7 +61,7 @@ abstract class AbstractFactory implements FactoryInterface {
      *
      * @param array $data
      * @param string $method
-     * @return GenericCollection
+     * @return ResultCollection
      */
     public function createResultCollection(array $data = array(), $method = 'create')
     {

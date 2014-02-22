@@ -17,12 +17,20 @@ class Review extends AbstractModel {
     private $id;
     private $author;
     private $content;
+    private $iso6391;
+    private $mediaId;
+    private $mediaTitle;
+    private $mediaType;
     private $url;
 
     public static $_properties = array(
         'id',
         'author',
         'content',
+        'iso_639_1',
+        'media_id',
+        'media_title',
+        'media_type',
         'url'
     );
 
@@ -78,6 +86,78 @@ class Review extends AbstractModel {
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $iso6391
+     * @return $this
+     */
+    public function setIso6391($iso6391)
+    {
+        $this->iso6391 = $iso6391;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIso6391()
+    {
+        return $this->iso6391;
+    }
+
+    /**
+     * @param mixed $mediaId
+     * @return $this
+     */
+    public function setMediaId($mediaId)
+    {
+        $this->mediaId = $mediaId;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMediaId()
+    {
+        return $this->mediaId;
+    }
+
+    /**
+     * @param mixed $mediaTitle
+     * @return $this
+     */
+    public function setMediaTitle($mediaTitle)
+    {
+        $this->mediaTitle = $mediaTitle;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMediaTitle()
+    {
+        return $this->mediaTitle;
+    }
+
+    /**
+     * @param mixed $mediaType
+     * @return $this
+     */
+    public function setMediaType($mediaType)
+    {
+        $this->mediaType = $mediaType;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMediaType()
+    {
+        return $this->mediaType;
     }
 
     /**
