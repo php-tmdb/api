@@ -71,6 +71,19 @@ class TvTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetTranslations()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('tv/' . self::TV_ID . '/translations');
+
+        $api->getTranslations(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetPopular()
     {
         $api = $this->getApiMock();

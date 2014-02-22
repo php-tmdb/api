@@ -45,6 +45,32 @@ class PeopleTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetMovieCredits()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('person/' . self::PERSON_ID . '/movie_credits');
+
+        $api->getMovieCredits(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTvCredits()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('person/' . self::PERSON_ID . '/tv_credits');
+
+        $api->getTvCredits(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetImages()
     {
         $api = $this->getApiMock();
