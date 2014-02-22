@@ -13,7 +13,7 @@
 namespace Tmdb\Tests\Model\Common;
 
 use Tmdb\Model\Collection\Keywords;
-use Tmdb\Model\Movie\Keyword;
+use Tmdb\Model\Keyword;
 use Tmdb\Tests\Model\TestCase;
 
 class KeywordsTest extends TestCase

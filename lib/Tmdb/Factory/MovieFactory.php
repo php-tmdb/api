@@ -59,6 +59,11 @@ class MovieFactory extends AbstractFactory {
     private $listItemFactory;
 
     /**
+     * @var KeywordFactory
+     */
+    private $keywordFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -70,6 +75,7 @@ class MovieFactory extends AbstractFactory {
         $this->changeFactory   = new ChangeFactory();
         $this->reviewFactory   = new ReviewFactory();
         $this->listItemFactory = new ListItemFactory();
+        $this->keywordFactory  = new KeywordFactory();
     }
 
     /**
@@ -120,7 +126,7 @@ class MovieFactory extends AbstractFactory {
 
         /** Keywords */
         if (array_key_exists('keywords', $data)) {
-            $movie->setKeywords($this->createGenericCollection($data['keywords']['keywords'], new Movie\Keyword()));
+            $movie->setKeywords($this->getKeywordFactory()->createCollection($data['keywords']));
         }
 
         if (array_key_exists('releases', $data)) {
@@ -299,5 +305,23 @@ class MovieFactory extends AbstractFactory {
     public function getListItemFactory()
     {
         return $this->listItemFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\KeywordFactory $keywordFactory
+     * @return $this
+     */
+    public function setKeywordFactory($keywordFactory)
+    {
+        $this->keywordFactory = $keywordFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\KeywordFactory
+     */
+    public function getKeywordFactory()
+    {
+        return $this->keywordFactory;
     }
 }

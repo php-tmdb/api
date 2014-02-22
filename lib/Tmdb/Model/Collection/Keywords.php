@@ -13,7 +13,7 @@
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Movie\Keyword;
+use Tmdb\Model\Keyword;
 
 class Keywords extends GenericCollection {
 
