@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Exception\NotImplementedException;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Movie;
@@ -77,31 +78,11 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @param array $data
-     *
-     * @return Movie
-     */
-    public function createMovie(array $data = array())
-    {
-        return $this->hydrate(new Movie(), $data);
-    }
-
-    /**
-     * {@inheritdoc}
+     * @throws NotImplementedException
      */
     public function createCollection(array $data = array())
     {
-        $collection = new Genres();
-
-        if (array_key_exists('genres', $data)) {
-            $data = $data['genres'];
-        }
-
-        foreach($data as $item) {
-            $collection->addGenre($this->create($item));
-        }
-
-        return $collection;
+        throw new NotImplementedException('Credits are usually obtained through the PeopleFactory, however we might add a shortcut for that here.');
     }
 
     /**
