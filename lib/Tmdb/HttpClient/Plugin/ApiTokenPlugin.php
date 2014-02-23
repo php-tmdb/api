@@ -37,11 +37,8 @@ class ApiTokenPlugin implements EventSubscriberInterface
     {
         $url = $event['request']->getUrl(true);
 
-        $origionalQuery = $url->getQuery();
-        $newQuery       = clone $origionalQuery;
+        $url->getQuery()->set('api_key', $this->token->getApiToken());
 
-        $newQuery->set('api_key', $this->token->getApiToken());
-
-        $event['request']->setUrl($url->setQuery($newQuery));
+        $event['request']->setUrl($url);
     }
 }
