@@ -72,16 +72,28 @@ class TvEpisodeRepository extends AbstractRepository {
      *
      * Just like the website, we pull this information from the last season of the series.
      *
-     * @param $id
+     * @param $tvShow
      * @param $season
      * @param $episode
      * @param $parameters
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getCredits($id, $season, $episode, array $parameters = array(), array $headers = array())
+    public function getCredits($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
     {
-        $data    = $this->getApi()->getCredits($id, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getId();
+        }
+
+        if ($episode instanceof Tv\Episode) {
+            $episode = $episode->getId();
+        }
+
+        $data    = $this->getApi()->getCredits($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
         $episode = $this->getFactory()->create(array('credits' => $data));
 
         return $episode->getCredits();
@@ -90,16 +102,28 @@ class TvEpisodeRepository extends AbstractRepository {
     /**
      * Get the external ids that we have stored for a TV series.
      *
-     * @param $id
+     * @param $tvShow
      * @param $season
      * @param $episode
      * @param $parameters
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getExternalIds($id, $season, $episode, array $parameters = array(), array $headers = array())
+    public function getExternalIds($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
     {
-        $data    = $this->getApi()->getExternalIds($id, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getId();
+        }
+
+        if ($episode instanceof Tv\Episode) {
+            $episode = $episode->getId();
+        }
+
+        $data    = $this->getApi()->getExternalIds($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
         $episode = $this->getFactory()->create(array('external_ids' => $data));
 
         return $episode->getExternalIds();
@@ -108,16 +132,28 @@ class TvEpisodeRepository extends AbstractRepository {
     /**
      * Get the images (posters and backdrops) for a TV series.
      *
-     * @param $id
+     * @param $tvShow
      * @param $season
      * @param $episode
      * @param $parameters
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getImages($id, $season, $episode, array $parameters = array(), array $headers = array())
+    public function getImages($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
     {
-        $data    = $this->getApi()->getImages($id, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getId();
+        }
+
+        if ($episode instanceof Tv\Episode) {
+            $episode = $episode->getId();
+        }
+        
+        $data    = $this->getApi()->getImages($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
         $episode = $this->getFactory()->create(array('images' => $data));
 
         return $episode->getImages();

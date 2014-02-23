@@ -52,6 +52,63 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function shouldGetCredits()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Season();
+        $season->setId(self::SEASON_ID);
+
+        $episode = new Episode();
+        $episode->setId(self::EPISODE_ID);
+
+        $repository->getCredits($tv, $season, $episode);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetExternalIds()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Season();
+        $season->setId(self::SEASON_ID);
+
+        $episode = new Episode();
+        $episode->setId(self::EPISODE_ID);
+
+        $repository->getExternalIds($tv, $season, $episode);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetImages()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Season();
+        $season->setId(self::SEASON_ID);
+
+        $episode = new Episode();
+        $episode->setId(self::EPISODE_ID);
+
+        $repository->getImages($tv, $season, $episode);
+    }
+
+    /**
      * @expectedException Tmdb\Exception\RuntimeException
      * @test
      */

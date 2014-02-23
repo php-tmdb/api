@@ -19,4 +19,5 @@ class AbstractModel {
      * @var array
      */
     public static $_properties = array();
+
 }
