@@ -13,7 +13,6 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Exception\NotImplementedException;
-use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Movie;
 use Tmdb\Model\Credits as Credits;

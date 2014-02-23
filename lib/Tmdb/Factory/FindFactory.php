@@ -13,7 +13,6 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Exception\NotImplementedException;
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Find;
 
 class FindFactory extends AbstractFactory
