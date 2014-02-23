@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Repository;
 
+use Tmdb\Repository\CollectionRepository;
+
 class CollectionRepositoryTest extends TestCase
 {
     const COLLECTION_ID = 120;
@@ -34,6 +36,22 @@ class CollectionRepositoryTest extends TestCase
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $repository->getImages(self::COLLECTION_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToSetFactories()
+    {
+        /**
+         * @var CollectionRepository $repository
+         */
+        $repository = $this->getRepositoryWithMockedHttpClient();
+        $class      = new \stdClass();
+
+        $repository->setImageFactory($class);
+
+        $this->assertInstanceOf('stdClass', $repository->getImageFactory());
     }
 
     protected function getApiClass()
