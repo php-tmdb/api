@@ -149,7 +149,7 @@ class MovieFactory extends AbstractFactory {
         }
 
         if (array_key_exists('reviews', $data)) {
-            $movie->setReviews($this->getReviewFactory()->createResultCollection($data['reviews']));
+            $movie->setReviews($this->getReviewFactory()->createCollection($data['reviews']));
         }
 
         if (array_key_exists('lists', $data)) {
