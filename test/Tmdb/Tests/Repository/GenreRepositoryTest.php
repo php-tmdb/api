@@ -39,6 +39,16 @@ class GenreRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetMovies()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getMovies(self::GENRE_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetFactory()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
