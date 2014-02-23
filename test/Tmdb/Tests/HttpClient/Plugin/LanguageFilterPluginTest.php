@@ -17,7 +17,7 @@ use Guzzle\Http\Message\Request;
 use Tmdb\HttpClient\Plugin\LanguageFilterPlugin;
 use Tmdb\Tests\TestCase;
 
-class LanguageFilterTest extends TestCase
+class LanguageFilterPluginTest extends TestCase
 {
     /**
      * @test
