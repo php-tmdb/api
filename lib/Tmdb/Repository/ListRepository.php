@@ -18,6 +18,8 @@ use Tmdb\Model\Job;
 
 class ListRepository extends AbstractRepository {
     /**
+     * Get a list by id.
+     *
      * @param string $id
      * @param array $parameters
      * @param array $headers
@@ -30,7 +32,7 @@ class ListRepository extends AbstractRepository {
     }
 
     /**
-     * Get the list of jobs.
+     * Check to see if a movie ID is already added to a list.
      *
      * @param int $id
      * @param array $parameters

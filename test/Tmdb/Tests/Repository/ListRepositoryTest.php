@@ -26,6 +26,16 @@ class ListRepositoryTest extends TestCase
         $repository->load(self::LIST_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldLoadListItem()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getItemStatus(self::LIST_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Lists';
