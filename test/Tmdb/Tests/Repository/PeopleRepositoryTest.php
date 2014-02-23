@@ -26,6 +26,36 @@ class PeopleRepositoryTest extends TestCase
         $repository->load(self::PERSON_ID);
     }
 
+    /**
+     * @test
+     */
+    public function souldGetMovieCredits()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getMovieCredits(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function souldGetTvCredits()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getTvCredits(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function souldGetCombinedCredits()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getCombinedCredits(self::PERSON_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\People';
