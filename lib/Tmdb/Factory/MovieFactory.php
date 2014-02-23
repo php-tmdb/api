@@ -129,23 +129,23 @@ class MovieFactory extends AbstractFactory {
             $movie->setKeywords($this->getKeywordFactory()->createCollection($data['keywords']));
         }
 
-        if (array_key_exists('releases', $data)) {
+        if (array_key_exists('releases', $data) && array_key_exists('countries', $data['releases'])) {
             $movie->setReleases($this->createGenericCollection($data['releases']['countries'], new Movie\Release()));
         }
 
         /**
          * @TODO actually implement more providers? ( Can't seem to find any quicktime related trailers anyways? ). For now KISS
          */
-        if (array_key_exists('trailers', $data)) {
+        if (array_key_exists('trailers', $data) && array_key_exists('youtube', $data['trailers'])) {
             $movie->setTrailers($this->createGenericCollection($data['trailers']['youtube'], new Youtube()));
         }
 
-        if (array_key_exists('translations', $data)) {
+        if (array_key_exists('translations', $data) && array_key_exists('translations', $data['translations'])) {
             $movie->setTranslations($this->createGenericCollection($data['translations']['translations'], new Translation()));
         }
 
         if (array_key_exists('similar_movies', $data)) {
-            $movie->setSimilarMovies($this->createCollection($data['similar_movies']['results']));
+            $movie->setSimilarMovies($this->createResultCollection($data['similar_movies']));
         }
 
         if (array_key_exists('reviews', $data)) {
