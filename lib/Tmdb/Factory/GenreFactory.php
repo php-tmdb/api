@@ -29,16 +29,6 @@ class GenreFactory extends AbstractFactory
     }
 
     /**
-     * @param array $data
-     *
-     * @return Movie
-     */
-    public function createMovie(array $data = array())
-    {
-        return $this->hydrate(new Movie(), $data);
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function createCollection(array $data = array())
