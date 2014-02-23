@@ -18,8 +18,7 @@ Unstable
 ----------------
 
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-
-I'm working extensively on finishing the models/repositories/factories, which should allow you to simply jump in with an API key and implement quickly.
+[![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
 
 **The states for now defined as;**
 
@@ -185,5 +184,3 @@ $backdrop = $movie
 ```
 
 __And there are more Collections which provide filters, but you will find those out along the way.__
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wtfzdotnet/php-tmdb-api/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
