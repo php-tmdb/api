@@ -14,8 +14,6 @@ namespace Tmdb\Repository;
 
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\CreditsFactory;
-use Tmdb\Factory\TvFactory;
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
 
@@ -51,33 +49,5 @@ class CreditsRepository extends AbstractRepository {
     public function getFactory()
     {
         return new CreditsFactory();
-    }
-
-    /**
-     * @return TvFactory
-     */
-    public function getTvFactory()
-    {
-        return new TvFactory();
-    }
-
-    /**
-     * Create an collection of an array
-     *
-     * @param $data
-     * @return Movie[]
-     */
-    public function createMovieCollection($data){
-        $collection = new GenericCollection();
-
-        if (array_key_exists('results', $data)) {
-            $data = $data['results'];
-        }
-
-        foreach($data as $item) {
-            $collection->add(null, $this->getMovieFactory()->create($item));
-        }
-
-        return $collection;
     }
 }
