@@ -14,6 +14,7 @@ namespace Tmdb\Repository;
 
 // @todo
 use Tmdb\Client;
+use Tmdb\Exception\NotImplementedException;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\CollectionFactory;
 use Tmdb\Factory\CompanyFactory;
@@ -200,12 +201,12 @@ class SearchRepository extends AbstractRepository {
     }
 
     /**
-     * Changes does not support a generic factory
+     * SearchRepository does not support a generic factory
      *
-     * @throws RuntimeException
+     * @throws NotImplementedException
      */
     public function getFactory(){
-        throw new RuntimeException();
+        throw new NotImplementedException('SearchRepository does not support a generic factory.');
     }
 
     /**

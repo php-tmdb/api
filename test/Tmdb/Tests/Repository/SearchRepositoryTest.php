@@ -114,6 +114,48 @@ class SearchRepositoryTest extends TestCase
         $repository->searchKeyword('alien', new KeywordSearchQuery());
     }
 
+    /**
+     * @test
+     * @expectedException Tmdb\Exception\NotImplementedException
+     */
+    public function shouldGetFactory()
+    {
+        /**
+         * @var SearchRepository $repository
+         */
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getFactory();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToSetFactories()
+    {
+        /**
+         * @var SearchRepository $repository
+         */
+        $repository = $this->getRepositoryWithMockedHttpClient();
+        $class      = new \stdClass();
+
+        $repository->setMovieFactory($class);
+        $repository->setCollectionFactory($class);
+        $repository->setCompanyFactory($class);
+        $repository->setKeywordFactory($class);
+        $repository->setListItemFactory($class);
+        $repository->setPeopleFactory($class);
+        $repository->setTvFactory($class);
+
+        $this->assertInstanceOf('stdClass', $repository->getMovieFactory());
+        $this->assertInstanceOf('stdClass', $repository->getCollectionFactory());
+        $this->assertInstanceOf('stdClass', $repository->getCompanyFactory());
+        $this->assertInstanceOf('stdClass', $repository->getKeywordFactory());
+        $this->assertInstanceOf('stdClass', $repository->getListItemFactory());
+        $this->assertInstanceOf('stdClass', $repository->getPeopleFactory());
+        $this->assertInstanceOf('stdClass', $repository->getTvFactory());
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Search';
