@@ -39,6 +39,56 @@ class TvRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetCredits()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getCredits(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetExternalIds()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getExternalIds(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetImages()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getImages(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTranslations()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getTranslations(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetOnTheAir()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getOnTheAir();
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetTopRated()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
