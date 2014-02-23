@@ -13,6 +13,7 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 
 class Lists extends AbstractModel {
@@ -66,6 +67,11 @@ class Lists extends AbstractModel {
      * @var PosterImage
      */
     private $posterImage;
+
+    /**
+     * @var BackdropImage
+     */
+    private $backdropImage;
 
     public static $_properties = array(
         'created_by',
@@ -261,5 +267,23 @@ class Lists extends AbstractModel {
     public function getPosterPath()
     {
         return $this->posterPath;
+    }
+
+    /**
+     * @param \Tmdb\Model\Image\BackdropImage $backdropImage
+     * @return $this
+     */
+    public function setBackdropImage($backdropImage)
+    {
+        $this->backdropImage = $backdropImage;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Image\BackdropImage
+     */
+    public function getBackdropImage()
+    {
+        return $this->backdropImage;
     }
 }
