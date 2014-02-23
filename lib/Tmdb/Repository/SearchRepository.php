@@ -94,7 +94,7 @@ class SearchRepository extends AbstractRepository {
      *
      * @return ResultCollection|Movie[]
      */
-    public function searchMovie($query, MovieSearchQuery $parameters, array $headers = array()) {
+    public function searchMovie($query, MovieSearchQuery $parameters = null, array $headers = array()) {
         $data = $this->getApi()->searchMovies($query, $parameters->toArray(), $headers);
 
         return $this->getMovieFactory()->createResultCollection($data);
@@ -107,7 +107,7 @@ class SearchRepository extends AbstractRepository {
      *
      * @return ResultCollection|Collection[]
      */
-    public function searchCollection($query, CollectionSearchQuery $parameters, array $headers = array()) {
+    public function searchCollection($query, CollectionSearchQuery $parameters = null, array $headers = array()) {
         $data = $this->getApi()->searchCollection($query, $parameters->toArray(), $headers);
 
         return $this->getCollectionFactory()->createResultCollection($data);
@@ -120,7 +120,7 @@ class SearchRepository extends AbstractRepository {
      *
      * @return ResultCollection|Tv[]
      */
-    public function searchTv($query, TvSearchQuery $parameters, array $headers = array()) {
+    public function searchTv($query, TvSearchQuery $parameters = null, array $headers = array()) {
         $data = $this->getApi()->searchTv($query, $parameters->toArray(), $headers);
 
         return $this->getTvFactory()->createResultCollection($data);
@@ -133,7 +133,7 @@ class SearchRepository extends AbstractRepository {
      *
      * @return ResultCollection|Person[]
      */
-    public function searchPerson($query, PersonSearchQuery $parameters, array $headers = array()) {
+    public function searchPerson($query, PersonSearchQuery $parameters = null, array $headers = array()) {
         $data = $this->getApi()->searchPersons($query, $parameters->toArray(), $headers);
 
         return $this->getPeopleFactory()->createResultCollection($data);
@@ -147,7 +147,7 @@ class SearchRepository extends AbstractRepository {
      * @todo fix return docblock
      * @return ResultCollection
      */
-    public function searchList($query, ListSearchQuery $parameters, array $headers = array()) {
+    public function searchList($query, ListSearchQuery $parameters = null, array $headers = array()) {
         $data = $this->getApi()->searchList($query, $parameters->toArray(), $headers);
 
         return $this->getListitemFactory()->createResultCollection($data);
@@ -160,7 +160,7 @@ class SearchRepository extends AbstractRepository {
      *
      * @return ResultCollection|Company[]
      */
-    public function searchCompany($query, CompanySearchQuery $parameters, array $headers = array()) {
+    public function searchCompany($query, CompanySearchQuery $parameters = null, array $headers = array()) {
         $data = $this->getApi()->searchTv($query, $parameters->toArray(), $headers);
 
         return $this->getCompanyFactory()->createResultCollection($data);
@@ -174,7 +174,7 @@ class SearchRepository extends AbstractRepository {
      *
      * @return ResultCollection|Keyword[]
      */
-    public function searchKeyword($query, KeywordSearchQuery $parameters, array $headers = array()) {
+    public function searchKeyword($query, KeywordSearchQuery $parameters = null, array $headers = array()) {
         $data = $this->getApi()->searchKeyword($query, $parameters->toArray(), $headers);
 
         return $this->getKeywordFactory()->createResultCollection($data);
