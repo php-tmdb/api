@@ -53,13 +53,10 @@ class ListFactory extends AbstractFactory
         }
 
         /** Images */
-        if (array_key_exists('backdrop_path', $data)) {
-            $lists->setBackdropImage($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
-        }
-
         if (array_key_exists('poster_path', $data)) {
             $lists->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
+
         return $this->hydrate($lists, $data);
     }
 
