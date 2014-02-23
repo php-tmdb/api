@@ -46,6 +46,54 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function shouldGetCredits()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Tv\Season();
+        $season->setId(self::SEASON_ID);
+
+        $repository->getCredits($tv, $season);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetExternalIds()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Tv\Season();
+        $season->setId(self::SEASON_ID);
+
+        $repository->getExternalIds($tv, $season);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetImages()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Tv\Season();
+        $season->setId(self::SEASON_ID);
+
+        $repository->getImages($tv, $season);
+    }
+
+    /**
      * @expectedException Tmdb\Exception\RuntimeException
      * @test
      */
