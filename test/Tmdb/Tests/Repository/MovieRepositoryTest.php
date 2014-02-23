@@ -124,9 +124,9 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetLists()
     {
-//        $repository = $this->getRepositoryWithMockedHttpClient();
-//
-//        $repository->getLists(self::MOVIE_ID);
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getLists(self::MOVIE_ID);
     }
 
     /**

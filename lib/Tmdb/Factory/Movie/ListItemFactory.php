@@ -45,21 +45,7 @@ class ListItemFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        $collection = new ResultCollection();
-
-        $collection->setPage($data['page']);
-        $collection->setTotalPages($data['total_pages']);
-        $collection->setTotalResults($data['total_results']);
-
-        if (array_key_exists('results', $data)) {
-            $data = $data['results'];
-        }
-
-        foreach($data as $item) {
-            $collection->add(null, $this->create($item));
-        }
-
-        return $collection;
+        return $this->createResultCollection($data);
     }
 
     /**
