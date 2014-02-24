@@ -12,13 +12,14 @@
  */
 namespace Tmdb\Api;
 
-use Tmdb\Client;
+use Symfony\Component\Yaml\Exception\RuntimeException;
 use Tmdb\Exception\NotImplementedException;
+use Tmdb\Exception\UnauthorizedRequestTokenException;
 
 class Authentication
     extends AbstractApi
 {
-    const REQUEST_TOKEN_URI = 'https://www.themoviedb.org/authenticate/%s';
+    const REQUEST_TOKEN_URI = 'https://www.themoviedb.org/authenticate';
 
     /**
      * This method is used to generate a valid request token for user based authentication.
@@ -27,20 +28,24 @@ class Authentication
      * You can generate any number of request tokens but they will expire after 60 minutes.
      * As soon as a valid session id has been created the token will be destroyed.
      *
-     * @param array $parameters
-     * @param array $headers
      * @return mixed
      */
-    public function getNewToken($parameters = array(), $headers = array())
+    public function getNewToken()
     {
-        return $this->get('authentication/token/new', $parameters, $headers);
+        return $this->get('authentication/token/new');
     }
 
+    /**
+     * Redirect the user to authenticate the request token
+     *
+     * @param $token
+     */
     public function authenticateRequestToken($token)
     {
         header(sprintf(
             'Location: %s/%s',
-            sprintf(self::REQUEST_TOKEN_URI, $token)
+            self::REQUEST_TOKEN_URI,
+            $token
         ));
     }
 
@@ -48,12 +53,20 @@ class Authentication
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @throws NotImplementedException
+     * @param string $requestToken
+     * @throws UnauthorizedRequestTokenException
      * @return mixed
      */
-    public function getNewSession()
+    public function getNewSession($requestToken)
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        try {
+            return $this->get('authentication/session/new', array('request_token' => $requestToken));
+        }
+        catch(\Exception $e) {
+            if ($e->getCode() == 401) {
+                throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
+            }
+        }
     }
 
     /**
