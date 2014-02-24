@@ -7,10 +7,13 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
 
+If you use this in a project whether personal or business, I'd like to know where it's used!
+
 Stable
 ----------------
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
+[![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
 
 First alpha version will be arriving around the beginning of March, take a look at the current state below.
 
@@ -18,7 +21,6 @@ Unstable
 ----------------
 
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-[![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
 
 **The states for now defined as;**
 
@@ -41,7 +43,7 @@ Unstable
 | Genres                 | Done        |
 | Jobs                   | Done        |
 | Keywords               | Done        |
-| Lists                  | Done *    |
+| Lists                  | Done *      |
 | Movies                 | Done *      |
 | Networks               | Done        |
 | People                 | Done        |
