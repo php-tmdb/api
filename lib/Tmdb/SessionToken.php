@@ -12,26 +12,26 @@
  */
 namespace Tmdb;
 
-class ApiToken {
-    private $apiToken = null;
+class SessionToken {
+    private $sessionToken = null;
 
     /**
      * Token bag
      *
-     * @param $api_token
+     * @param $session_token
      */
-    public function __construct($api_token = null)
+    public function __construct($session_token = null)
     {
-        $this->apiToken = $api_token;
+        $this->sessionToken = $session_token;
     }
 
     /**
-     * @param null $apiToken
+     * @param null $sessionToken
      * @return $this
      */
-    public function setToken($apiToken)
+    public function setToken($sessionToken)
     {
-        $this->apiToken = $apiToken;
+        $this->sessionToken = $sessionToken;
         return $this;
     }
 
@@ -40,6 +40,6 @@ class ApiToken {
      */
     public function getToken()
     {
-        return $this->apiToken;
+        return $this->sessionToken;
     }
 }

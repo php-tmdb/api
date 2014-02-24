@@ -10,18 +10,18 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-class ApiTokenTest extends \PHPUnit_Framework_TestCase
+class SessionTokenTest extends \PHPUnit_Framework_TestCase
 {
-    const API_TOKEN = 'abcdefg';
+    const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
 
     /**
      * @test
      */
     public function testSetGet()
     {
-        $token  = new \Tmdb\ApiToken();
-        $token->setToken(self::API_TOKEN);
+        $token  = new \Tmdb\SessionToken();
+        $token->setToken(self::SESSION_TOKEN);
 
-        $this->assertEquals(self::API_TOKEN, $token->getToken());
+        $this->assertEquals(self::SESSION_TOKEN, $token->getToken());
     }
 }
