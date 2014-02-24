@@ -16,7 +16,6 @@ class AuthenticationTest extends TestCase
 {
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetNewToken()
     {

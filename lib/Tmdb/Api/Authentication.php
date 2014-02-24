@@ -12,11 +12,14 @@
  */
 namespace Tmdb\Api;
 
+use Tmdb\Client;
 use Tmdb\Exception\NotImplementedException;
 
 class Authentication
     extends AbstractApi
 {
+    const REQUEST_TOKEN_URI = 'https://www.themoviedb.org/authenticate/%s';
+
     /**
      * This method is used to generate a valid request token for user based authentication.
      * A request token is required in order to request a session id.
@@ -24,12 +27,21 @@ class Authentication
      * You can generate any number of request tokens but they will expire after 60 minutes.
      * As soon as a valid session id has been created the token will be destroyed.
      *
-     * @throws NotImplementedException
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getNewToken()
+    public function getNewToken($parameters = array(), $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('authentication/token/new', $parameters, $headers);
+    }
+
+    public function authenticateRequestToken($token)
+    {
+        header(sprintf(
+            'Location: %s/%s',
+            sprintf(self::REQUEST_TOKEN_URI, $token)
+        ));
     }
 
     /**

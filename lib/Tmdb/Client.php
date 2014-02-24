@@ -303,7 +303,7 @@ class Client {
      *
      * @return string
      */
-    private function getBaseUrl()
+    public function getBaseUrl()
     {
         return sprintf(
             '%s:%s',
