@@ -7,7 +7,7 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
 
-If you use this in a project whether personal or business, I'd like to know where it's used!
+If you use this in a project whether personal or business, I'd like to know where it is being used, so please drop me an e-mail :-)!
 
 Stable
 ----------------
