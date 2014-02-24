@@ -85,6 +85,6 @@ class Authentication
      */
     public function getNewGuestSession()
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('authentication/guest_session/new');
     }
 }
