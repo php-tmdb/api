@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Api;
 
-use Tmdb\Exception\NotImplementedException;
-
 class Lists
     extends AbstractApi
 {
@@ -47,20 +45,25 @@ class Lists
     /**
      * Check to see if a movie ID is already added to a list.
      *
-     * @param $list_id
+     * @param string $id
+     * @param int $movieId
      * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getItemStatus($list_id, array $parameters = array(), array $headers = array())
+    public function getItemStatus($id, $movieId, array $parameters = array(), array $headers = array())
     {
-        return $this->get('list/' . $list_id . '/item_status', $parameters, $headers);
+        return $this->get(
+            'list/' . $id . '/item_status',
+            array_merge($parameters, array('movie_id' => $movieId)),
+            $headers
+        );
     }
 
     /**
      * Get the cast information for a specific list id.
      *
-     * @param integer $id
+     * @param string $id
      * @param string $mediaId
      * @return mixed
      */
@@ -72,7 +75,7 @@ class Lists
     /**
      * Get the images (posters and backdrops) for a specific list id.
      *
-     * @param integer $id
+     * @param string $id
      * @param string $mediaId
      * @return mixed
      */
@@ -84,7 +87,7 @@ class Lists
     /**
      * Get the plot keywords for a specific list id.
      *
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function deleteList($id)
