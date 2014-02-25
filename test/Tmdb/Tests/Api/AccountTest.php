@@ -25,7 +25,6 @@ class AccountTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetLists()
     {
@@ -35,7 +34,6 @@ class AccountTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetFavoriteMovies()
     {
@@ -45,17 +43,15 @@ class AccountTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldFavorite()
     {
         $api = $this->getApiMock();
-        $api->favorite('account_id');
+        $api->favorite('account_id', true);
     }
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetRatedMovies()
     {
@@ -65,7 +61,6 @@ class AccountTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetMovieWatchlist()
     {
@@ -75,12 +70,11 @@ class AccountTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldWatchlist()
     {
         $api = $this->getApiMock();
-        $api->watchlist('account_id');
+        $api->watchlist('account_id', true);
     }
 
     protected function getApiClass() {

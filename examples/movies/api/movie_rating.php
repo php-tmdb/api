@@ -13,7 +13,12 @@
 require_once('../../../vendor/autoload.php');
 require_once('../../../apikey.php');
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$token = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$images = $client->getMoviesApi()->getImages(550);
+$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
+$client->setSessionToken($sessionToken);
+
+$rating = $client->getMoviesApi()->rateMovie(550, 8.5);
+
+var_dump($rating);

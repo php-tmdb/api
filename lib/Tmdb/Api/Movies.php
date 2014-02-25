@@ -234,22 +234,26 @@ class Movies
     }
 
     /**
-     * This method lets users get the status of whether or not the movie has been rated or added to their favourite or watch lists. A valid session id is required.
+     * This method lets users get the status of whether or not the movie has been rated or added to their favourite or watch lists.
+     *
+     * A valid session id is required.
      *
      * @throws \Tmdb\Exception\NotImplementedException
      */
-    public function getAccountStates()
+    public function getAccountStates($id)
     {
-        throw new NotImplementedException('TMDB account sessions have not been implemented yet!');
+        return $this->get('movie/' . $id . '/account_states');
     }
 
     /**
-     * TThis method lets users rate a movie. A valid session id or guest session id is required.
+     * TThis method lets users rate a movie.
+     *
+     * A valid session id or guest session id is required.
      *
      * @throws \Tmdb\Exception\NotImplementedException
      */
-    public function rateMovie()
+    public function rateMovie($id, $rating)
     {
-        throw new NotImplementedException('TMDB account sessions have not been implemented yet!');
+        return $this->post('movie/' . $id . '/rating', json_encode(array('value' => (float) $rating)));
     }
 }
