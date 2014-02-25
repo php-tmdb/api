@@ -32,12 +32,14 @@ class Account
     /**
      * Get the lists that you have created and marked as a favorite.
      *
-     * @throws NotImplementedException
+     * @param integer $id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getLists()
+    public function getLists($id, array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('account/' . $id . '/lists', $parameters, $headers);
     }
 
     /**
