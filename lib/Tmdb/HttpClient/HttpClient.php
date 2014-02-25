@@ -113,6 +113,18 @@ class HttpClient
     /**
      * {@inheritDoc}
      */
+    public function postJson($path, $postBody, array $parameters = array(), array $headers = array())
+    {
+        $parameters = $this->buildQueryParameters($parameters);
+        $request    = $this->client->post($path, $headers, null, $parameters);
+        $request->setBody($postBody, 'application/json');
+
+        return $this->request($request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function patch($path, $body = null, array $parameters = array(), array $headers = array())
     {
         $parameters = $this->buildQueryParameters($parameters);

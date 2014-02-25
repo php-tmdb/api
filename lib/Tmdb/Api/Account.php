@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Api;
 
-use Tmdb\Exception\NotImplementedException;
-
 class Account
     extends AbstractApi
 {
@@ -62,14 +60,13 @@ class Account
      * @param integer $movieId
      * @param boolean $isFavorite
      * @return mixed
-     * @todo refuses to function? review
      */
     public function favorite($accountId, $movieId, $isFavorite = true)
     {
-        return $this->post('account/' . $accountId . '/favorite', json_encode(array(
+        return $this->postJson('account/' . $accountId . '/favorite', array(
             'movie_id' => $movieId,
             'favorite' => $isFavorite
-        )));
+        ));
     }
 
     /**
@@ -105,13 +102,12 @@ class Account
      * @param integer $movieId
      * @param boolean $isOnWatchlist
      * @return mixed
-     * @todo refuses to function? review
      */
     public function watchlist($accountId, $movieId, $isOnWatchlist = true)
     {
-        return $this->post('account/' . $accountId . '/movie_watchlist', json_encode(array(
+        return $this->postJson('account/' . $accountId . '/movie_watchlist', array(
             'movie_id' => $movieId,
             'movie_watchlist' => $isOnWatchlist
-        )));
+        ));
     }
 }

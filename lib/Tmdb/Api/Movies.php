@@ -254,6 +254,6 @@ class Movies
      */
     public function rateMovie($id, $rating)
     {
-        return $this->post('movie/' . $id . '/rating', json_encode(array('value' => (float) $rating)));
+        return $this->postJson('movie/' . $id . '/rating', array('value' => (float) $rating));
     }
 }

@@ -80,7 +80,6 @@ class Authentication
      *
      * If a guest session is not used for the first time within 24 hours, it will be automatically discarded.
      *
-     * @throws NotImplementedException
      * @return mixed
      */
     public function getNewGuestSession()
