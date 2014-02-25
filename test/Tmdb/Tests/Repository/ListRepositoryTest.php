@@ -14,7 +14,8 @@ namespace Tmdb\Tests\Repository;
 
 class ListRepositoryTest extends TestCase
 {
-    const LIST_ID = '509ec17b19c2950a0600050d';
+    const LIST_ID  = '509ec17b19c2950a0600050d';
+    const MOVIE_ID = 150;
 
     /**
      * @test
@@ -29,11 +30,51 @@ class ListRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function shouldLoadListItem()
+    public function shouldGetItemStatus()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        $repository->getItemStatus(self::LIST_ID);
+        $repository->getItemStatus(self::LIST_ID, self::MOVIE_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldCreateList()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->createList('list-name', 'list-description');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAdd()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->add('list-id', 'movie-id');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRemove()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->remove('list-id', 'movie-id');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldDeleteList()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->deleteList('list-id');
     }
 
     protected function getApiClass()

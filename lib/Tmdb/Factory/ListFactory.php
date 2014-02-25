@@ -63,11 +63,31 @@ class ListFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return Movie
+     * @return Lists\ItemStatus
      */
     public function createItemStatus(array $data = array())
     {
         return $this->hydrate(new Lists\ItemStatus(), $data);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Lists\Result
+     */
+    public function createResult(array $data = array())
+    {
+        return $this->hydrate(new Lists\Result(), $data);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Lists\ResultWithListId
+     */
+    public function createResultWithListId(array $data = array())
+    {
+        return $this->hydrate(new Lists\ResultWithListId(), $data);
     }
 
     /**

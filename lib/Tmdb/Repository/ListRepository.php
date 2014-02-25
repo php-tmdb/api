@@ -13,8 +13,8 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\ListFactory;
-use Tmdb\Model\Collection\Jobs;
-use Tmdb\Model\Job;
+use Tmdb\Model\Lists\ItemStatus;
+use Tmdb\Model\Lists;
 
 class ListRepository extends AbstractRepository {
     /**
@@ -23,7 +23,7 @@ class ListRepository extends AbstractRepository {
      * @param string $id
      * @param array $parameters
      * @param array $headers
-     * @return Job
+     * @return Lists
      */
     public function load($id, array $parameters = array(), array $headers = array()) {
         return $this->getFactory()->create(
@@ -34,15 +34,73 @@ class ListRepository extends AbstractRepository {
     /**
      * Check to see if a movie ID is already added to a list.
      *
-     * @param int $id
+     * @param string $id
+     * @param int $mediaId
      * @param array $parameters
      * @param array $headers
-     * @return Jobs|Job[]
+     * @return ItemStatus
      */
-    public function getItemStatus($id, array $parameters = array(), array $headers = array())
+    public function getItemStatus($id, $mediaId, array $parameters = array(), array $headers = array())
     {
         return $this->getFactory()->createItemStatus(
-            $this->getApi()->getItemStatus($id, $parameters, $headers)
+            $this->getApi()->getItemStatus($id, $mediaId, $parameters, $headers)
+        );
+    }
+
+    /**
+     * This method lets users create a new list. A valid session id is required.
+     *
+     * @param string $name
+     * @param string $description
+     * @param array $parameters
+     * @param array $headers
+     * @return string The list id
+     */
+    public function createList($name, $description = null, array $parameters = array(), array $headers = array())
+    {
+        return $this->getFactory()->createResultWithListId(
+            $this->getApi()->createList($name, $description, $parameters, $headers)
+        );
+    }
+
+    /**
+     * This method lets users add new movies to a list that they created. A valid session id is required.
+     *
+     * @param string $id
+     * @param int $mediaId
+     * @return ItemStatus
+     */
+    public function add($id, $mediaId)
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->addMediaToList($id, $mediaId)
+        );
+    }
+
+    /**
+     * This method lets users delete movies from a list that they created. A valid session id is required.
+     *
+     * @param string $id
+     * @param int $mediaId
+     * @return ItemStatus
+     */
+    public function remove($id, $mediaId)
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->removeMediaFromList($id, $mediaId)
+        );
+    }
+
+    /**
+     * This method lets users delete a list that they created. A valid session id is required.
+     *
+     * @param string $id
+     * @return ItemStatus
+     */
+    public function deleteList($id)
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->deleteList($id)
         );
     }
 

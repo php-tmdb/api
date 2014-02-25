@@ -61,7 +61,7 @@ class Lists
     }
 
     /**
-     * Get the cast information for a specific list id.
+     * This method lets users add new movies to a list that they created. A valid session id is required.
      *
      * @param string $id
      * @param string $mediaId
@@ -73,7 +73,7 @@ class Lists
     }
 
     /**
-     * Get the images (posters and backdrops) for a specific list id.
+     * This method lets users delete movies from a list that they created. A valid session id is required.
      *
      * @param string $id
      * @param string $mediaId
@@ -85,7 +85,7 @@ class Lists
     }
 
     /**
-     * Get the plot keywords for a specific list id.
+     * This method lets users delete a list that they created. A valid session id is required.
      *
      * @param string $id
      * @return mixed
