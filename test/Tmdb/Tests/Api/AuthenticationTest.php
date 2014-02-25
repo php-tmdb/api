@@ -25,7 +25,6 @@ class AuthenticationTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetNewSession()
     {
@@ -35,7 +34,6 @@ class AuthenticationTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetNewGuestSession()
     {

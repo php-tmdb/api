@@ -16,7 +16,6 @@ class AccountTest extends TestCase
 {
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetAccount()
     {
