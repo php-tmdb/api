@@ -20,12 +20,13 @@ class Account
     /**
      * Get the basic information for an account. You will need to have a valid session id.
      *
-     * @throws NotImplementedException
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getAccount()
+    public function getAccount(array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('account', $parameters, $headers);
     }
 
     /**
