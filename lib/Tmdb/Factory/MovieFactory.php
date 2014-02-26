@@ -20,6 +20,7 @@ use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Trailer\Youtube;
 use Tmdb\Model\Common\Translation;
+use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Movie;
 
 class MovieFactory extends AbstractFactory {
@@ -179,6 +180,45 @@ class MovieFactory extends AbstractFactory {
         }
 
         return $collection;
+    }
+
+    /**
+     * Create result
+     *
+     * @param array $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createResult(array $data = array()) {
+        return $this->hydrate(new Result(), $data);
+    }
+
+    /**
+     * Create rating
+     *
+     * @param array $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createRating(array $data = array()) {
+        return $this->hydrate(new Movie\Rating(), $data);
+    }
+
+    /**
+     * Create the account states
+     *
+     * @param array $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createAccountStates(array $data = array())
+    {
+        $accountStates = new Movie\AccountStates();
+
+        if (array_key_exists('rated', $data)) {
+            $rating = new Movie\Rating();
+
+            $accountStates->setRated($this->hydrate($rating, $data['rated']));
+        }
+
+        return $this->hydrate($accountStates, $data);
     }
 
     /**

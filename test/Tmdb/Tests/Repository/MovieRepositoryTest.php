@@ -200,12 +200,12 @@ class MovieRepositoryTest extends TestCase
         $repository = $this->getRepositoryWithMockedHttpClient();
         $class      = new \stdClass();
 
-        $repository->setAlternativeTitlesFactory($class);
-        $repository->setImagesFactory($class);
+        $repository->setAlternativeTitleFactory($class);
+        $repository->setImageFactory($class);
         $repository->setPeopleFactory($class);
 
-        $this->assertInstanceOf('stdClass', $repository->getAlternativeTitlesFactory());
-        $this->assertInstanceOf('stdClass', $repository->getImagesFactory());
+        $this->assertInstanceOf('stdClass', $repository->getAlternativeTitleFactory());
+        $this->assertInstanceOf('stdClass', $repository->getImageFactory());
         $this->assertInstanceOf('stdClass', $repository->getPeopleFactory());
     }
 

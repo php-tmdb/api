@@ -19,7 +19,7 @@ $client = new \Tmdb\Client($token);
 $sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 
-$repository = new \Tmdb\Repository\ListRepository($client);
-$list       = $repository->getItemStatus('509ec17b19c2950a0600050d', 150);
+$repository = new \Tmdb\Repository\MovieRepository($client);
+$rate = $repository->rate(49047, 6.5);
 
-var_dump($list);
+var_dump($rate);
