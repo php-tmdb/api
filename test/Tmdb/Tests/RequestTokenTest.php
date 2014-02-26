@@ -22,8 +22,10 @@ class RequestTokenTest extends \PHPUnit_Framework_TestCase
         $token  = new \Tmdb\RequestToken();
         $token->setToken(self::REQUEST_TOKEN);
         $token->setExpiresAt('2012-02-09 19:50:25 UTC');
+        $token->setSuccess(true);
 
         $this->assertEquals(self::REQUEST_TOKEN, $token->getToken());
         $this->assertInstanceOf('DateTime', $token->getExpiresAt());
+        $this->assertEquals(true, $token->getSuccess());
     }
 }

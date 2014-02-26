@@ -28,6 +28,11 @@ class RequestToken {
     private $expiresAt;
 
     /**
+     * @var bool
+     */
+    private $success;
+
+    /**
      * Token bag
      *
      * @param $request_token
@@ -75,5 +80,23 @@ class RequestToken {
     public function getExpiresAt()
     {
         return $this->expiresAt;
+    }
+
+    /**
+     * @param boolean $success
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getSuccess()
+    {
+        return $this->success;
     }
 }

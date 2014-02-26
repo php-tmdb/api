@@ -21,7 +21,11 @@ class SessionTokenTest extends \PHPUnit_Framework_TestCase
     {
         $token  = new \Tmdb\SessionToken();
         $token->setToken(self::SESSION_TOKEN);
+        $token->setExpiresAt('2012-12-04 22:51:19 UTC');
+        $token->setSuccess(true);
 
         $this->assertEquals(self::SESSION_TOKEN, $token->getToken());
+        $this->assertEquals('04-12-2012', $token->getExpiresAt()->format('d-m-Y'));
+        $this->assertEquals(true, $token->getSuccess());
     }
 }

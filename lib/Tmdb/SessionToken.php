@@ -13,7 +13,20 @@
 namespace Tmdb;
 
 class SessionToken {
+    /**
+     * @var string
+     */
     private $sessionToken = null;
+
+    /**
+     * @var \DateTime
+     */
+    private $expiresAt;
+
+    /**
+     * @var bool
+     */
+    private $success;
 
     /**
      * Token bag
@@ -41,5 +54,45 @@ class SessionToken {
     public function getToken()
     {
         return $this->sessionToken;
+    }
+
+    /**
+     * @param \DateTime $expiresAt
+     * @return $this
+     */
+    public function setExpiresAt($expiresAt)
+    {
+        if (!$expiresAt instanceof \DateTime) {
+            $expiresAt = new \DateTime($expiresAt);
+        }
+
+        $this->expiresAt = $expiresAt;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
+
+    /**
+     * @param mixed $success
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSuccess()
+    {
+        return $this->success;
     }
 }
