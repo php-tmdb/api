@@ -14,6 +14,7 @@ namespace Tmdb\Repository;
 
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\MovieFactory;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
@@ -87,7 +88,7 @@ class CompanyRepository extends AbstractRepository {
      * @return Movie[]
      */
     public function createMovieCollection($data){
-        $collection = new GenericCollection();
+        $collection = new ResultCollection();
 
         if (array_key_exists('results', $data)) {
             $data = $data['results'];

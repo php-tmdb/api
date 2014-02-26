@@ -153,11 +153,11 @@ class MovieFactory extends AbstractFactory {
         }
 
         if (array_key_exists('reviews', $data)) {
-            $movie->setReviews($this->getReviewFactory()->createCollection($data['reviews']));
+            $movie->setReviews($this->getReviewFactory()->createResultCollection($data['reviews']));
         }
 
         if (array_key_exists('lists', $data)) {
-            $movie->setLists($this->getListItemFactory()->createCollection($data['lists']));
+            $movie->setLists($this->getListItemFactory()->createResultCollection($data['lists']));
         }
 
         if (array_key_exists('changes', $data)) {

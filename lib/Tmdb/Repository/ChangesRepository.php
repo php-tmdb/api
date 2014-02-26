@@ -39,7 +39,7 @@ class ChangesRepository extends AbstractRepository {
     public function getMovieChanges(ChangesQuery $query, array $headers = array()) {
         $data = $this->getApi()->getMovieChanges($query->toArray(), $headers);
 
-        return $this->getFactory()->createCollection($data);
+        return $this->getFactory()->createResultCollection($data);
     }
 
     /**
@@ -59,7 +59,7 @@ class ChangesRepository extends AbstractRepository {
     public function getPeopleChanges(ChangesQuery $query, array $headers = array()) {
         $data = $this->getApi()->getPersonChanges($query->toArray(), $headers);
 
-        return $this->getFactory()->createCollection($data);
+        return $this->getFactory()->createResultCollection($data);
     }
 
     /**

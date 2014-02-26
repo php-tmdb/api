@@ -282,7 +282,7 @@ class MovieRepository extends AbstractRepository {
      */
     public function getUpcoming(array $options = array())
     {
-        return $this->createCollection(
+        return $this->getFactory()->createResultCollection(
             $this->getApi()->getUpcoming($options)
         );
     }
@@ -295,7 +295,7 @@ class MovieRepository extends AbstractRepository {
      */
     public function getNowPlaying(array $options = array())
     {
-        return $this->createCollection(
+        return $this->getFactory()->createResultCollection(
             $this->getApi()->getNowPlaying($options)
         );
     }

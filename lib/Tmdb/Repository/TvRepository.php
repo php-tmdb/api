@@ -176,16 +176,4 @@ class TvRepository extends AbstractRepository {
             $this->getApi()->getTopRated($options)
         );
     }
-
-    /**
-     * Create an collection of an array
-     *
-     * @todo Allow an array of Tv objects to pass ( custom collection )
-     *
-     * @param $data
-     * @return Tv[]
-     */
-    private function createCollection($data){
-        return $this->getFactory()->createCollection($data);
-    }
 }

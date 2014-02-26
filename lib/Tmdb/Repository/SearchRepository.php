@@ -185,6 +185,12 @@ class SearchRepository extends AbstractRepository {
         return $this->getKeywordFactory()->createResultCollection($data);
     }
 
+    /**
+     * Convert parameters back to an array
+     *
+     * @param array $parameters
+     * @return array
+     */
     private function getParameters($parameters = array()) {
         if ($parameters instanceof SearchQuery) {
             return $parameters->toArray();
