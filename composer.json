@@ -22,5 +22,10 @@
     },
     "autoload": {
         "psr-0": { "Tmdb\\": "lib/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0-ALPHA1"
+        }
     }
 }
