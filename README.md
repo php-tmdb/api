@@ -15,46 +15,10 @@ Stable
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 [![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
 
-First alpha version will be arriving around the beginning of March, take a look at the current state below.
-
 Unstable
 ----------------
 
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-
-**The states for now defined as;**
-
-- Done, everything should be functional.
-- Review, requires another review before we can mark it as done.
-- Todo, requires everything still to be implemented.
-
-| API Namespace          | Status      |
-|------------------------|:------------|
-| Configuration          | Done        |
-| Account                | **TODO**    |
-| Authentication         | **TODO**    |
-| Certifications         | Done        |
-| Changes                | Done        |
-| Collections            | Done        |
-| Companies              | Done        |
-| Credits                | Done        |
-| Discover               | Done        |
-| Find                   | Done        |
-| Genres                 | Done        |
-| Jobs                   | Done        |
-| Keywords               | Done        |
-| Lists                  | Done *      |
-| Movies                 | Done *      |
-| Networks               | Done        |
-| People                 | Done        |
-| Reviews                | Done        |
-| Search                 | Done        |
-| TV                     | Done        |
-| TV Seasons             | Done        |
-| TV Episodes            | Done        |
-
-__* Currently the account related functions are missing from these sections.__
-
 
 Help & Donate
 --------------
