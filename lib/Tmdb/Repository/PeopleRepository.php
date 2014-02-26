@@ -114,7 +114,7 @@ class PeopleRepository extends AbstractRepository {
      */
     public function getExternalIds($id)
     {
-        $data   = $this->getApi()->getCombinedCredits($id);
+        $data   = $this->getApi()->getExternalIds($id);
         $person = $this->getFactory()->create(array('external_ids' => $data));
 
         return $person->getExternalIds();
@@ -161,11 +161,13 @@ class PeopleRepository extends AbstractRepository {
      *
      * This list refreshes every day.
      *
+     * @param array $parameters
+     * @param array $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getPopular()
+    public function getPopular(array $parameters = array(), array $headers = array())
     {
-        $data   = $this->getApi()->getPopular();
+        $data   = $this->getApi()->getPopular($parameters, $headers);
         return $this->getFactory()->createResultCollection($data);
     }
 

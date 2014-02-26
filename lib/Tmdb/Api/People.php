@@ -124,6 +124,19 @@ class People
     }
 
     /**
+     * Get the external ids for a specific person id.
+     *
+     * @param $person_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getExternalIds($person_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('person/' . $person_id . '/external_ids', $parameters, $headers);
+    }
+
+    /**
      * Get the list of popular people on The Movie Database. This list refreshes every day.
      *
      * @param array $parameters
@@ -138,12 +151,10 @@ class People
     /**
      * Get the latest person id.
      *
-     * @param array $parameters
-     * @param array $headers
      * @return mixed
      */
-    public function getLatest(array $parameters = array(), array $headers = array())
+    public function getLatest()
     {
-        return $this->get('person/latest', $parameters, $headers);
+        return $this->get('person/latest');
     }
 }
