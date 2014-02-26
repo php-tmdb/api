@@ -16,6 +16,11 @@ use Tmdb\Factory\AccountFactory;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Movie;
 
+/**
+ * Class AccountRepository
+ * @package Tmdb\Repository
+ * http://docs.themoviedb.apiary.io/#account
+ */
 class AccountRepository extends AbstractRepository {
 
     /**

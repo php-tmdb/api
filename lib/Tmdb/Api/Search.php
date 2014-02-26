@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Search
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#search
+ */
 class Search
     extends AbstractApi
 {

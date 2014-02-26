@@ -14,9 +14,13 @@ namespace Tmdb\Repository;
 
 use Tmdb\Factory\KeywordFactory;
 use Tmdb\Model\Collection\ResultCollection;
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Keyword;
 
+/**
+ * Class KeywordRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#keywords
+ */
 class KeywordRepository extends AbstractRepository {
     /**
      * Get the basic information for a specific keyword id.

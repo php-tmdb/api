@@ -17,6 +17,11 @@ use Tmdb\Factory\CreditsFactory;
 use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
 
+/**
+ * Class CreditsRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#credits
+ */
 class CreditsRepository extends AbstractRepository {
 
     /**

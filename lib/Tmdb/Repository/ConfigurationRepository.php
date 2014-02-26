@@ -15,6 +15,11 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\ConfigurationFactory;
 use Tmdb\Model\Configuration;
 
+/**
+ * Class ConfigurationRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#configuration
+ */
 class ConfigurationRepository extends AbstractRepository {
 
     /**

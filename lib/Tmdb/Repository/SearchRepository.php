@@ -12,10 +12,8 @@
  */
 namespace Tmdb\Repository;
 
-// @todo
 use Tmdb\Client;
 use Tmdb\Exception\NotImplementedException;
-use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\CollectionFactory;
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\KeywordFactory;
@@ -39,6 +37,11 @@ use Tmdb\Model\Search\SearchQuery\TvSearchQuery;
 use Tmdb\Model\Search\SearchQuery;
 use Tmdb\Model\Tv;
 
+/**
+ * Class SearchRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#search
+ */
 class SearchRepository extends AbstractRepository {
 
     /**

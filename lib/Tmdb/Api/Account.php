@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Account
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#account
+ */
 class Account
     extends AbstractApi
 {

@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Networks
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#networks
+ */
 class Networks
     extends AbstractApi
 {

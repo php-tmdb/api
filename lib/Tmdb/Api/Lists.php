@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Lists
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#lists
+ */
 class Lists
     extends AbstractApi
 {

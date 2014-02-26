@@ -15,6 +15,11 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\ReviewFactory;
 use Tmdb\Model\Review;
 
+/**
+ * Class ReviewRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#reviews
+ */
 class ReviewRepository extends AbstractRepository {
     /**
      * Get the full details of a review by ID.

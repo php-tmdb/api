@@ -21,6 +21,11 @@ use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
 use Tmdb\Model\Tv;
 
+/**
+ * Class DiscoverRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#discover
+ */
 class DiscoverRepository extends AbstractRepository {
     /**
      * Discover movies by different types of data like average rating, number of votes, genres and certifications.

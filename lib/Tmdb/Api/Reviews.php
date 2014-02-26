@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Reviews
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#reviews
+ */
 class Reviews
     extends AbstractApi
 {

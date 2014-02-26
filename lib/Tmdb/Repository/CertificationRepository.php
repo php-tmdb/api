@@ -15,6 +15,11 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\CertificationFactory;
 use Tmdb\Model\Collection as ApiCollection;
 
+/**
+ * Class CertificationRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#certifications
+ */
 class CertificationRepository extends AbstractRepository {
 
     /**

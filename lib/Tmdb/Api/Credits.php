@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Credits
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#credits
+ */
 class Credits
     extends AbstractApi
 {

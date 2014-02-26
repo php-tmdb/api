@@ -13,9 +13,13 @@
 namespace Tmdb\Api;
 
 use Symfony\Component\Yaml\Exception\RuntimeException;
-use Tmdb\Exception\NotImplementedException;
 use Tmdb\Exception\UnauthorizedRequestTokenException;
 
+/**
+ * Class Authentication
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#authentication
+ */
 class Authentication
     extends AbstractApi
 {

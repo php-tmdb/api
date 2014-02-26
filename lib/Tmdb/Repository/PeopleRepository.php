@@ -12,11 +12,15 @@
  */
 namespace Tmdb\Repository;
 
-use Tmdb\Api\People;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Person;
 use Tmdb\Model\Person\QueryParameter\AppendToResponse;
 
+/**
+ * Class PeopleRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#people
+ */
 class PeopleRepository extends AbstractRepository {
     /**
      * Load a person with the given identifier

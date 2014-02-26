@@ -18,6 +18,11 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
 
+/**
+ * Class CompanyRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#movies
+ */
 class CompanyRepository extends AbstractRepository {
 
     /**

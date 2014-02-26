@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Companies
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#companies
+ */
 class Companies
     extends AbstractApi
 {

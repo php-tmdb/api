@@ -16,6 +16,11 @@ use Tmdb\Factory\ChangesFactory;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Query\ChangesQuery;
 
+/**
+ * Class ChangesRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#changes
+ */
 class ChangesRepository extends AbstractRepository {
     /**
      * Get a list of movie ids that have been edited.

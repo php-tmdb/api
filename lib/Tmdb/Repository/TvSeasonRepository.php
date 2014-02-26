@@ -19,6 +19,11 @@ use \Tmdb\Model\Tv\Season\QueryParameter\AppendToResponse;
 use Tmdb\Model\Tv\Season;
 use Tmdb\Model\Tv;
 
+/**
+ * Class TvSeasonRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#tvseasons
+ */
 class TvSeasonRepository extends AbstractRepository {
 
     /**

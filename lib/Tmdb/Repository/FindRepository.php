@@ -12,10 +12,14 @@
  */
 namespace Tmdb\Repository;
 
-// @todo
 use Tmdb\Factory\FindFactory;
 use Tmdb\Model\Find;
 
+/**
+ * Class FindRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#find
+ */
 class FindRepository extends AbstractRepository {
     /**
      * Find something

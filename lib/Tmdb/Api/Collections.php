@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Collections
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#collections
+ */
 class Collections
     extends AbstractApi
 {

@@ -16,6 +16,11 @@ use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\QueryParameter\AppendToResponse;
 
+/**
+ * Class TvRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#tv
+ */
 class TvRepository extends AbstractRepository {
 
     /**

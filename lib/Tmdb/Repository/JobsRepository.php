@@ -16,6 +16,11 @@ use Tmdb\Factory\JobsFactory;
 use Tmdb\Model\Collection\Jobs;
 use Tmdb\Model\Job;
 
+/**
+ * Class JobsRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#jobs
+ */
 class JobsRepository extends AbstractRepository {
     /**
      * @param array $parameters

@@ -16,9 +16,13 @@ use Tmdb\Client;
 use Tmdb\Factory\CollectionFactory;
 use Tmdb\Factory\ImageFactory;
 use Tmdb\Model\Collection as ApiCollection;
+use Tmdb\Model\Collection\QueryParameter\AppendToResponse;
 
-use \Tmdb\Model\Collection\QueryParameter\AppendToResponse;
-
+/**
+ * Class CollectionRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#collections
+ */
 class CollectionRepository extends AbstractRepository {
 
     private $imageFactory;

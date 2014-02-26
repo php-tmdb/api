@@ -18,9 +18,13 @@ use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Movie;
+use Tmdb\Model\Movie\QueryParameter\AppendToResponse;
 
-use \Tmdb\Model\Movie\QueryParameter\AppendToResponse;
-
+/**
+ * Class MovieRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#movies
+ */
 class MovieRepository extends AbstractRepository {
 
     /**

@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class People
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#people
+ */
 class People
     extends AbstractApi
 {

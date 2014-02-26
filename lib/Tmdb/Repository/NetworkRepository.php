@@ -15,6 +15,11 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\NetworkFactory;
 use Tmdb\Model\Network;
 
+/**
+ * Class NetworkRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#networks
+ */
 class NetworkRepository extends AbstractRepository {
     /**
      * This method is used to retrieve the basic information about a TV network.

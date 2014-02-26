@@ -19,6 +19,11 @@ use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\Season;
 use Tmdb\Model\Tv\Episode;
 
+/**
+ * Class TvEpisodeRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#tvepisodes
+ */
 class TvEpisodeRepository extends AbstractRepository {
 
     /**

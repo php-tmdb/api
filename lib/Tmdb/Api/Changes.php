@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Changes
+ * @package Tmdb\Api
+ * http://docs.themoviedb.apiary.io/#changes
+ */
 class Changes
     extends AbstractApi
 {

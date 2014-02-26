@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Jobs
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#jobs
+ */
 class Jobs
     extends AbstractApi
 {

@@ -16,6 +16,11 @@ use Tmdb\Factory\ListFactory;
 use Tmdb\Model\Lists\ItemStatus;
 use Tmdb\Model\Lists;
 
+/**
+ * Class ListRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#lists
+ */
 class ListRepository extends AbstractRepository {
     /**
      * Get a list by id.

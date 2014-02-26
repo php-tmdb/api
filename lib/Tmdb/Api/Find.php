@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Find
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#find
+ */
 class Find
     extends AbstractApi
 {

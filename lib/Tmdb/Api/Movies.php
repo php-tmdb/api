@@ -12,8 +12,11 @@
  */
 namespace Tmdb\Api;
 
-use Tmdb\Exception\NotImplementedException;
-
+/**
+ * Class Movies
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#movies
+ */
 class Movies
     extends AbstractApi
 {

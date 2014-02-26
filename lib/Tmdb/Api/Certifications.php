@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Certifications
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#certifications
+ */
 class Certifications
     extends AbstractApi
 {

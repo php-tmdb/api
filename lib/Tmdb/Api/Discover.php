@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Discover
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#discover
+ */
 class Discover
     extends AbstractApi
 {

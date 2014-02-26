@@ -16,6 +16,11 @@ use Tmdb\Factory\GenreFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Genre;
 
+/**
+ * Class GenreRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#genres
+ */
 class GenreRepository extends AbstractRepository {
     /**
      * Load a genre with the given identifier

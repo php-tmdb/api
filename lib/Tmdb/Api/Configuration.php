@@ -12,6 +12,12 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Configuration
+ * @package Tmdb\Api
+ *
+ * @see http://docs.themoviedb.apiary.io/#configuration
+ */
 class Configuration
     extends AbstractApi
 {

@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Genres
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#genres
+ */
 class Genres
     extends AbstractApi
 {

@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class TvSeason
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#tvseasons
+ */
 class TvSeason
     extends AbstractApi
 {

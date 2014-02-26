@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class TvEpisode
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#tvepisodes
+ */
 class TvEpisode
     extends AbstractApi
 {

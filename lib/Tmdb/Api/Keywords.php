@@ -12,6 +12,11 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Class Keywords
+ * @package Tmdb\Api
+ * @see http://docs.themoviedb.apiary.io/#keywords
+ */
 class Keywords
     extends AbstractApi
 {

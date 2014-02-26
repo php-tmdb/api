@@ -15,6 +15,11 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\AuthenticationFactory;
 use Tmdb\RequestToken;
 
+/**
+ * Class AuthenticationRepository
+ * @package Tmdb\Repository
+ * @see http://docs.themoviedb.apiary.io/#authentication
+ */
 class AuthenticationRepository extends AbstractRepository {
 
     /**
