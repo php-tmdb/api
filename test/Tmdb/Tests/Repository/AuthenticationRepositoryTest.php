@@ -16,7 +16,6 @@ use Tmdb\Api\Authentication;
 use Tmdb\Model\Movie;
 use Tmdb\Repository\AuthenticationRepository;
 use Tmdb\RequestToken;
-use Tmdb\SessionToken;
 
 class AuthenticationRepositoryTest extends TestCase
 {
@@ -34,6 +33,18 @@ class AuthenticationRepositoryTest extends TestCase
      * @test
      */
     public function shouldGetSessionToken()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $token = new RequestToken('test');
+
+        $repository->getSessionToken($token);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAuthenticateRequestToken()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 

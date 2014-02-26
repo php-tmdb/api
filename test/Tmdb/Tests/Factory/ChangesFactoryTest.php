@@ -14,12 +14,9 @@ namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Model\Collection\Changes;
-use Tmdb\Model\Company;
 
 class ChangesFactoryTest extends TestCase
 {
-    const COMPANY_ID = 1;
-
     private $data;
 
     /**
@@ -37,7 +34,7 @@ class ChangesFactoryTest extends TestCase
         $factory = $this->getFactory();
 
         /**
-         * @var Company $company
+         * @var Changes $changes
          */
         $this->changes = $factory->createCollection($this->data);
     }

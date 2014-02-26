@@ -192,6 +192,26 @@ class MovieRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetAccountStates()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getAccountStates('id');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRate()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->rate('id', 5.2);
+    }
+
+    /**
+     * @test
+     */
     public function shouldBeAbleToSetFactories()
     {
         /**

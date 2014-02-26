@@ -1,0 +1,157 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "description": "A list of \"frightful flicks waiting to be rediscovered\" -- compiled by the self-described leading name in the world of horror: Fangoria magazine.",
+            "favorite_count": 2,
+            "id": "50a6724919c295084b000028",
+            "item_count": 101,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "Fangoria's 101 Best Horror Movies You've Never Seen",
+            "poster_path": "/3sL73Vy4kkrH4P61RA0n6UyYGlQ.jpg"
+        },
+        {
+            "description": "Part of the AFI 100 Years… series, AFI's 100 Years…100 Thrills is a list of the top 100 heart-pounding movies in American cinema. The list was unveiled by the American Film Institute on June 12, 2001, during a CBS special hosted by Harrison Ford.",
+            "favorite_count": 2,
+            "id": "50a54d01760ee32e1400000b",
+            "item_count": 100,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "AFI's 100 Most Thrilling American Films",
+            "poster_path": "/tayO4gCLyEo8Uul8FHkJGy3Kppb.jpg"
+        },
+        {
+            "description": "A list of films that earned its actresses the Razzie Award for Worst Actress of the year.",
+            "favorite_count": 2,
+            "id": "509fca90760ee3490f000a12",
+            "item_count": 40,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "Films featuring a Razzie winning Worst Actress Performance",
+            "poster_path": "/eL61XP1l8H0qrBPJoKqhXdxumkw.jpg"
+        },
+        {
+            "description": "A list of all films in the Star Wars universe including the theatrical motion picture releases.",
+            "favorite_count": 2,
+            "id": "509fc02119c295114a0007cb",
+            "item_count": 14,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "Star Wars Expanded Universe",
+            "poster_path": "/rf6uEcD5V8zs4J7Huo5L9sYgSki.jpg"
+        },
+        {
+            "description": "Here's my list of best picture winners for the Oscars. Thought it would be neat to see them all together. There's a lot of movies here I have never even heard of.",
+            "favorite_count": 1,
+            "id": "509ec17c19c2950a0600050e",
+            "item_count": 84,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "Best Picture Winners - The Academy Awards",
+            "poster_path": "/efBm2Nm2v5kQnO0w3hYcW6hVsJU.jpg"
+        },
+        {
+            "description": "A list of the films that were nominated at the 2008 Oscars for best picture.",
+            "favorite_count": 1,
+            "id": "509ec007760ee36f0c000917",
+            "item_count": 5,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "80th Academy Awards (2008) - Best Picture Nominations",
+            "poster_path": "/nWwFabqFaBbukXdkUCmtnrFxPNh.jpg"
+        },
+        {
+            "description": "The View Askewniverse is a fictional universe created by writer/director Kevin Smith, featured in several films, comics and a television series; it is named for Smith's production company, View Askew Productions.",
+            "favorite_count": 2,
+            "id": "509691b119c29532730008fb",
+            "item_count": 6,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "The View Askewniverse",
+            "poster_path": "/tGmU66LL8edoRm1RO7sbrz1xuhr.jpg"
+        },
+        {
+            "description": "Name pretty much says it all, here's the top 50 grossing films of all time.",
+            "favorite_count": 2,
+            "id": "50957b1419c295013800023e",
+            "item_count": 50,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "Top 50 Grossing Films of All Time (Worldwide)",
+            "poster_path": "/sRbZeVtRKIWybTOVpCRPZtzW5bd.jpg"
+        },
+        {
+            "description": "A list of the films that were nominated at the 2009 Oscars for best picture.",
+            "favorite_count": 2,
+            "id": "50957064760ee3698a001fc1",
+            "item_count": 5,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "81st Academy Awards (2009) - Best Picture Nominations",
+            "poster_path": "/gShtwIvdSHgCEQRZfymNkEUEwFm.jpg"
+        },
+        {
+            "description": "A list of the films that were nominated at the 2010 Oscars for best picture.",
+            "favorite_count": 2,
+            "id": "50956fd2760ee3698a001fb1",
+            "item_count": 10,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "82nd Academy Awards (2010) - Best Picture Nominations",
+            "poster_path": "/8iwe0iP49A6Gqcv31jBleZDZqI4.jpg"
+        },
+        {
+            "description": "A list of the theatrical releases for Marvel's Avengers characters that are in the latest Avengers movie.",
+            "favorite_count": 3,
+            "id": "50953114760ee34b91000293",
+            "item_count": 7,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "The Avengers",
+            "poster_path": "/2i89ujVkhJebuoB2zy6QZcwbr2N.jpg"
+        },
+        {
+            "description": "A list of the films that were nominated at the 2011 Oscars for best picture.",
+            "favorite_count": 1,
+            "id": "509431ad19c2950b01000004",
+            "item_count": 10,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "83rd Academy Awards (2011) - Best Picture Nominations",
+            "poster_path": "/iAHDZPyLD3NW7GuNV6U1TVtb0hN.jpg"
+        },
+        {
+            "description": "Here's a list of the films that take place in the DC Comics universe.",
+            "favorite_count": 2,
+            "id": "5094147819c2955e4c00006b",
+            "item_count": 22,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "The DC Comics Universe",
+            "poster_path": "/4H1jWsgEQOgTs4KeG5j5BorKMfX.jpg"
+        },
+        {
+            "description": "A list of the films that were nominated at the 2012 Oscars for best picture.",
+            "favorite_count": 1,
+            "id": "50941340760ee35da9000054",
+            "item_count": 9,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "84th Academy Awards (2012) - Best Picture Nominations",
+            "poster_path": "/zRqBleU93WncYnIwt8LAanQerZ7.jpg"
+        },
+        {
+            "description": "The idea behind this list is to collect the live action comic book movies from within the Marvel franchise.",
+            "favorite_count": 5,
+            "id": "50941077760ee35e1500000d",
+            "item_count": 33,
+            "iso_639_1": "en",
+            "list_type": "movie",
+            "name": "The Marvel Universe",
+            "poster_path": "/w2JbuNpBnfevl0yCcYEm6vNFWdi.jpg"
+        }
+    ],
+    "total_pages": 1,
+    "total_results": 15
+}

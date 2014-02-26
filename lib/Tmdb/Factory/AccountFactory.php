@@ -23,9 +23,15 @@ class AccountFactory extends AbstractFactory
      */
     private $movieFactory;
 
+    /**
+     * @var ImageFactory
+     */
+    private $imageFactory;
+
     public function __construct()
     {
         $this->movieFactory = new MovieFactory();
+        $this->imageFactory = new ImageFactory();
     }
 
     /**
@@ -66,7 +72,13 @@ class AccountFactory extends AbstractFactory
      */
     public function createListItem(array $data = array())
     {
-        return $this->hydrate(new Account\ListItem(), $data);
+        $listItem = new Account\ListItem();
+
+        if (array_key_exists('poster_path', $data)) {
+            $listItem->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
+        }
+
+        return $this->hydrate($listItem, $data);
     }
 
     /**
@@ -93,5 +105,23 @@ class AccountFactory extends AbstractFactory
     public function getMovieFactory()
     {
         return $this->movieFactory;
+    }
+
+    /**
+     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
     }
 }
