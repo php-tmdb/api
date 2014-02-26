@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.net/config">
+      <project name="php-tmdb-api" source="${basedir}/lib" workdir="${basedir}/docs/xml">
+              <collector backend="parser" />
+                  <generator output="${basedir}/docs">
+                            <build engine="html" output="html"/>
+                  </generator>
+       </project>
+</phpdox>
