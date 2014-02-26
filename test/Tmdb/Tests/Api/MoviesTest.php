@@ -239,7 +239,6 @@ class MoviesTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetAccountStates()
     {
@@ -249,12 +248,11 @@ class MoviesTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldRateMovie()
     {
         $api = $this->getApiMock();
-        $api->rateMovie(self::MOVIE_ID);
+        $api->rateMovie(self::MOVIE_ID, 7.5);
     }
 
     protected function getApiClass() {

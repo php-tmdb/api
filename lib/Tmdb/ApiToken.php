@@ -29,7 +29,7 @@ class ApiToken {
      * @param null $apiToken
      * @return $this
      */
-    public function setApiToken($apiToken)
+    public function setToken($apiToken)
     {
         $this->apiToken = $apiToken;
         return $this;
@@ -38,7 +38,7 @@ class ApiToken {
     /**
      * @return null
      */
-    public function getApiToken()
+    public function getToken()
     {
         return $this->apiToken;
     }

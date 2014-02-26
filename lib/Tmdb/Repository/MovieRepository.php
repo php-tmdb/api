@@ -24,6 +24,21 @@ use \Tmdb\Model\Movie\QueryParameter\AppendToResponse;
 class MovieRepository extends AbstractRepository {
 
     /**
+     * @var ImageFactory
+     */
+    private $imageFactory;
+
+    /**
+     * @var AlternativeTitleFactory
+     */
+    private $alternativeTitleFactory;
+
+    /**
+     * @var PeopleFactory
+     */
+    private $peopleFactory;
+
+    /**
      * Load a movie with the given identifier
      *
      * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
@@ -308,6 +323,33 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
+     * This method lets users get the status of whether or not the movie has been rated or added to their favourite or watch lists. A valid session id is required.
+     *
+     * @param integer $id
+     * @return Movie[]
+     */
+    public function getAccountStates($id)
+    {
+        return $this->getFactory()->createAccountStates(
+            $this->getApi()->getAccountStates($id)
+        );
+    }
+
+    /**
+     * This method lets users rate a movie. A valid session id or guest session id is required.
+     *
+     * @param integer $id
+     * @param float $rating
+     * @return Movie[]
+     */
+    public function rate($id, $rating)
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->rateMovie($id, $rating)
+        );
+    }
+
+    /**
      * Return the Movies API Class
      *
      * @return \Tmdb\Api\Movies
@@ -338,39 +380,39 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * @param mixed $alternativeTitlesFactory
+     * @param mixed $alternativeTitleFactory
      * @return $this
      */
-    public function setAlternativeTitlesFactory($alternativeTitlesFactory)
+    public function setAlternativeTitleFactory($alternativeTitleFactory)
     {
-        $this->alternativeTitlesFactory = $alternativeTitlesFactory;
+        $this->alternativeTitleFactory = $alternativeTitleFactory;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAlternativeTitlesFactory()
+    public function getAlternativeTitleFactory()
     {
-        return $this->alternativeTitlesFactory;
+        return $this->alternativeTitleFactory;
     }
 
     /**
-     * @param mixed $imagesFactory
+     * @param mixed $imageFactory
      * @return $this
      */
-    public function setImagesFactory($imagesFactory)
+    public function setImageFactory($imageFactory)
     {
-        $this->imagesFactory = $imagesFactory;
+        $this->imageFactory = $imageFactory;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getImagesFactory()
+    public function getImageFactory()
     {
-        return $this->imagesFactory;
+        return $this->imageFactory;
     }
 
     /**

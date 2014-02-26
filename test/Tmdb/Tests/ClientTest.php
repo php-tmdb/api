@@ -12,12 +12,21 @@
  */
 class ClientTest extends \Tmdb\Tests\TestCase
 {
+    const API_TOKEN = 'abcdef';
+    const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
+
+    /**
+     * @var Tmdb\Client
+     */
     private $client = null;
 
     public function setUp()
     {
-        $token  = new \Tmdb\ApiToken('abcdef');
+        $token        = new \Tmdb\ApiToken(self::API_TOKEN);
+        $sessionToken = new \Tmdb\SessionToken(self::SESSION_TOKEN);
+
         $client = new \Tmdb\Client($token);
+        $client->setSessionToken($sessionToken);
 
         $this->client = $client;
     }
@@ -28,6 +37,15 @@ class ClientTest extends \Tmdb\Tests\TestCase
     public function shouldNotHaveToPassHttpClientToConstructor()
     {
         $this->assertInstanceOf('Tmdb\HttpClient\HttpClient', $this->client->getHttpClient());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldContainSessionToken()
+    {
+        $this->assertInstanceOf('Tmdb\SessionToken', $this->client->getSessionToken());
+        $this->assertEquals(self::SESSION_TOKEN, $this->client->getSessionToken()->getToken());
     }
 
     /**

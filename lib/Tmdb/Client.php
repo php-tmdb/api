@@ -19,6 +19,7 @@ use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
+use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 
 /**
  * Simple wrapper for the Tmdb API
@@ -47,6 +48,13 @@ class Client {
      * @var Token
      */
     private $token;
+
+    /**
+     * Stores API user session token
+     *
+     * @var SessionToken
+     */
+    private $sessionToken;
 
     /**
      * Whether the request is supposed to use a secure schema
@@ -296,7 +304,7 @@ class Client {
      *
      * @return string
      */
-    private function getBaseUrl()
+    public function getBaseUrl()
     {
         return sprintf(
             '%s:%s',
@@ -321,5 +329,28 @@ class Client {
     public function getSecure()
     {
         return $this->secure;
+    }
+
+    /**
+     * @param SessionToken $sessionToken
+     * @return $this
+     */
+    public function setSessionToken($sessionToken)
+    {
+        if ($this->httpClient->getClient() instanceof \Guzzle\Common\HasDispatcherInterface) {
+            $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
+            $this->httpClient->getClient()->addSubscriber($sessionTokenPlugin);
+        }
+
+        $this->sessionToken = $sessionToken;
+        return $this;
+    }
+
+    /**
+     * @return SessionToken
+     */
+    public function getSessionToken()
+    {
+        return $this->sessionToken;
     }
 }

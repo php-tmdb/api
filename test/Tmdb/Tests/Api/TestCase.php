@@ -33,7 +33,7 @@ abstract class TestCase extends Base
         return $this->getMockBuilder($this->getApiClass())
             ->setMethods(
                 array_merge(
-                    array('get', 'post', 'postRaw', 'head', 'patch', 'delete', 'put'),
+                    array('get', 'post', 'postJson', 'postRaw', 'head', 'patch', 'delete', 'put'),
                     $methods
                 )
             )

@@ -10,7 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-require_once('vendor/autoload.php');
+require_once('../../../vendor/autoload.php');
 require_once('../../../apikey.php');
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);

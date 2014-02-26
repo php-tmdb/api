@@ -88,6 +88,28 @@ abstract class AbstractApi
     }
 
     /**
+     * Send a POST request but json_encode the post body in the request
+     *
+     * @param $path
+     * @param null $postBody
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function postJson($path, $postBody = null, array $parameters = array(), $headers = array())
+    {
+        /**
+         * @var Response $response
+         */
+        if (is_array($postBody)) {
+            $postBody = json_encode($postBody);
+        }
+
+        $response = $this->client->getHttpClient()->postJson($path, $postBody, $parameters, $headers);
+        return $response->json();
+    }
+
+    /**
      * Send a PUT request
      *
      * @param $path

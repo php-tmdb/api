@@ -37,7 +37,7 @@ class ApiTokenPlugin implements EventSubscriberInterface
     {
         $url = $event['request']->getUrl(true);
 
-        $url->getQuery()->set('api_key', $this->token->getApiToken());
+        $url->getQuery()->set('api_key', $this->token->getToken());
 
         $event['request']->setUrl($url);
     }

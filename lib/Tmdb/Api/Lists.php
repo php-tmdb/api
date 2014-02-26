@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Api;
 
-use Tmdb\Exception\NotImplementedException;
-
 class Lists
     extends AbstractApi
 {
@@ -33,57 +31,67 @@ class Lists
     /**
      * This method lets users create a new list. A valid session id is required.
      *
-     * @throws NotImplementedException
+     * @param string $name
+     * @param string $description
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function createList()
+    public function createList($name, $description, array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->postJson('list', array('name' => $name, 'description' => $description), $parameters, $headers);
     }
 
     /**
      * Check to see if a movie ID is already added to a list.
      *
-     * @param $list_id
+     * @param string $id
+     * @param int $movieId
      * @param array $parameters
      * @param array $headers
      * @return mixed
      */
-    public function getItemStatus($list_id, array $parameters = array(), array $headers = array())
+    public function getItemStatus($id, $movieId, array $parameters = array(), array $headers = array())
     {
-        return $this->get('list/' . $list_id . '/item_status', $parameters, $headers);
+        return $this->get(
+            'list/' . $id . '/item_status',
+            array_merge($parameters, array('movie_id' => $movieId)),
+            $headers
+        );
     }
 
     /**
-     * Get the cast information for a specific list id.
+     * This method lets users add new movies to a list that they created. A valid session id is required.
      *
-     * @throws NotImplementedException
+     * @param string $id
+     * @param string $mediaId
      * @return mixed
      */
-    public function addMediaToList()
+    public function addMediaToList($id, $mediaId)
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->postJson('list/' . $id . '/add_item', array('media_id' => $mediaId));
     }
 
     /**
-     * Get the images (posters and backdrops) for a specific list id.
+     * This method lets users delete movies from a list that they created. A valid session id is required.
      *
-     * @throws NotImplementedException
+     * @param string $id
+     * @param string $mediaId
      * @return mixed
      */
-    public function removeMediaFromList()
+    public function removeMediaFromList($id, $mediaId)
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->postJson('list/' . $id . '/remove_item', array('media_id' => $mediaId));
     }
 
     /**
-     * Get the plot keywords for a specific list id.
+     * This method lets users delete a list that they created. A valid session id is required.
      *
-     * @throws NotImplementedException
+     * @param string $id
      * @return mixed
      */
-    public function deleteList()
+    public function deleteList($id)
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->delete('list/' . $id);
     }
 }

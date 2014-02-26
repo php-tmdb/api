@@ -12,85 +12,102 @@
  */
 namespace Tmdb\Api;
 
-use Tmdb\Exception\NotImplementedException;
-
 class Account
     extends AbstractApi
 {
     /**
      * Get the basic information for an account. You will need to have a valid session id.
      *
-     * @throws NotImplementedException
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getAccount()
+    public function getAccount(array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('account', $parameters, $headers);
     }
 
     /**
      * Get the lists that you have created and marked as a favorite.
      *
-     * @throws NotImplementedException
+     * @param integer $accountId
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getLists()
+    public function getLists($accountId, array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('account/' . $accountId . '/lists', $parameters, $headers);
     }
 
     /**
      * Get the list of favorite movies for an account.
      *
-     * @throws NotImplementedException
+     * @param integer $accountId
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getFavoriteMovies()
+    public function getFavoriteMovies($accountId, array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('account/' . $accountId . '/favorite_movies', $parameters, $headers);
     }
 
     /**
      * Add or remove a movie to an accounts favorite list.
      *
-     * @throws NotImplementedException
+     * @param integer $accountId
+     * @param integer $movieId
+     * @param boolean $isFavorite
      * @return mixed
      */
-    public function favorite()
+    public function favorite($accountId, $movieId, $isFavorite = true)
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->postJson('account/' . $accountId . '/favorite', array(
+            'movie_id' => $movieId,
+            'favorite' => $isFavorite
+        ));
     }
 
     /**
      * Get the list of rated movies (and associated rating) for an account.
      *
-     * @throws NotImplementedException
+     * @param integer $accountId
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getRatedMovies()
+    public function getRatedMovies($accountId, array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('account/' . $accountId . '/rated_movies', $parameters, $headers);
     }
 
     /**
      * Get the list of movies on an accounts watchlist.
      *
-     * @throws NotImplementedException
+     * @param integer $accountId
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getMovieWatchlist()
+    public function getMovieWatchlist($accountId, array $parameters = array(), array $headers = array())
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('account/' . $accountId . '/movie_watchlist', $parameters, $headers);
     }
 
     /**
      * Add or remove a movie to an accounts watch list.
      *
-     * @throws NotImplementedException
+     * @param integer $accountId
+     * @param integer $movieId
+     * @param boolean $isOnWatchlist
      * @return mixed
      */
-    public function watchlist()
+    public function watchlist($accountId, $movieId, $isOnWatchlist = true)
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->postJson('account/' . $accountId . '/movie_watchlist', array(
+            'movie_id' => $movieId,
+            'movie_watchlist' => $isOnWatchlist
+        ));
     }
 }

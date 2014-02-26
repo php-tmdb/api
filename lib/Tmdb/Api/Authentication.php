@@ -12,11 +12,15 @@
  */
 namespace Tmdb\Api;
 
+use Symfony\Component\Yaml\Exception\RuntimeException;
 use Tmdb\Exception\NotImplementedException;
+use Tmdb\Exception\UnauthorizedRequestTokenException;
 
 class Authentication
     extends AbstractApi
 {
+    const REQUEST_TOKEN_URI = 'https://www.themoviedb.org/authenticate';
+
     /**
      * This method is used to generate a valid request token for user based authentication.
      * A request token is required in order to request a session id.
@@ -24,24 +28,45 @@ class Authentication
      * You can generate any number of request tokens but they will expire after 60 minutes.
      * As soon as a valid session id has been created the token will be destroyed.
      *
-     * @throws NotImplementedException
      * @return mixed
      */
     public function getNewToken()
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('authentication/token/new');
+    }
+
+    /**
+     * Redirect the user to authenticate the request token
+     *
+     * @param $token
+     */
+    public function authenticateRequestToken($token)
+    {
+        header(sprintf(
+            'Location: %s/%s',
+            self::REQUEST_TOKEN_URI,
+            $token
+        ));
     }
 
     /**
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @throws NotImplementedException
+     * @param string $requestToken
+     * @throws UnauthorizedRequestTokenException
      * @return mixed
      */
-    public function getNewSession()
+    public function getNewSession($requestToken)
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        try {
+            return $this->get('authentication/session/new', array('request_token' => $requestToken));
+        }
+        catch(\Exception $e) {
+            if ($e->getCode() == 401) {
+                throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
+            }
+        }
     }
 
     /**
@@ -55,11 +80,10 @@ class Authentication
      *
      * If a guest session is not used for the first time within 24 hours, it will be automatically discarded.
      *
-     * @throws NotImplementedException
      * @return mixed
      */
     public function getNewGuestSession()
     {
-        throw new NotImplementedException(__METHOD__ . ' has not been implemented yet.');
+        return $this->get('authentication/guest_session/new');
     }
 }

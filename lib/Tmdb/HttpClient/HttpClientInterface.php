@@ -42,6 +42,18 @@ interface HttpClientInterface
     public function post($path, $postBody, array $parameters = array(), array $headers = array());
 
     /**
+     * Compose a POST request but json_encode the body
+     *
+     * @param  string $path       Request path
+     * @param  array  $postBody   The post BODY
+     * @param  array  $parameters POST Parameters
+     * @param  array  $headers    Reconfigure the request headers for this call only
+     *
+     * @return Response              Data
+     */
+    public function postJson($path, $postBody, array $parameters = array(), array $headers = array());
+
+    /**
      * Compose a PATCH request
      *
      * @param  string $path       Request path

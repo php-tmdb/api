@@ -16,7 +16,10 @@ require_once('../../../apikey.php');
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
+$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
+$client->setSessionToken($sessionToken);
+
 $repository = new \Tmdb\Repository\ListRepository($client);
-$list       = $repository->getItemStatus('509ec17b19c2950a0600050d');
+$list       = $repository->getItemStatus('509ec17b19c2950a0600050d', 150);
 
 var_dump($list);

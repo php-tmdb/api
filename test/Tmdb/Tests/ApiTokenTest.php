@@ -12,14 +12,16 @@
  */
 class ApiTokenTest extends \PHPUnit_Framework_TestCase
 {
+    const API_TOKEN = 'abcdefg';
+
     /**
      * @test
      */
     public function testSetGet()
     {
         $token  = new \Tmdb\ApiToken();
-        $token->setApiToken('abcdefg');
+        $token->setToken(self::API_TOKEN);
 
-        $this->assertEquals('abcdefg', $token->getApiToken());
+        $this->assertEquals(self::API_TOKEN, $token->getToken());
     }
 }

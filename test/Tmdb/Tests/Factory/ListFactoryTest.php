@@ -73,7 +73,87 @@ class ListFactoryTest extends TestCase
         $this->assertEquals('Best Picture Winners - The Academy Awards', $this->lists->getName());
         $this->assertEquals('/efBm2Nm2v5kQnO0w3hYcW6hVsJU.jpg', $this->lists->getPosterPath());
         $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->lists->getPosterImage());
+    }
 
+    /**
+     * @test
+     */
+    public function shouldGetItemStatus()
+    {
+        /**
+         * @var ListFactory $factory
+         */
+        $factory = $this->getFactory();
+
+        $result = $factory->createItemStatus($this->loadByFile('lists/item_status.json'));
+
+        $this->assertEquals('509ec17b19c2950a0600050d', $result->getId());
+        $this->assertEquals(true, $result->getItemPresent());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldCreateList()
+    {
+        /**
+         * @var ListFactory $factory
+         */
+        $factory = $this->getFactory();
+
+        $result = $factory->createResultWithListId($this->loadByFile('lists/list_create.json'));
+
+        $this->assertEquals(1, $result->getStatusCode());
+        $this->assertEquals('Success', $result->getStatusMessage());
+        $this->assertEquals('50941077760ee35e1500000c', $result->getListId());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAddItemToList()
+    {
+        /**
+         * @var ListFactory $factory
+         */
+        $factory = $this->getFactory();
+
+        $result = $factory->createResult($this->loadByFile('lists/add.json'));
+
+        $this->assertEquals(12, $result->getStatusCode());
+        $this->assertEquals('The item/record was updated successfully', $result->getStatusMessage());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRemoveItemFromList()
+    {
+        /**
+         * @var ListFactory $factory
+         */
+        $factory = $this->getFactory();
+
+        $result = $factory->createResult($this->loadByFile('lists/remove.json'));
+
+        $this->assertEquals(12, $result->getStatusCode());
+        $this->assertEquals('The item/record was updated successfully', $result->getStatusMessage());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRemoveList()
+    {
+        /**
+         * @var ListFactory $factory
+         */
+        $factory = $this->getFactory();
+
+        $result = $factory->createResult($this->loadByFile('lists/list_delete.json'));
+
+        $this->assertEquals(13, $result->getStatusCode());
+        $this->assertEquals('The item/record was deleted successfully', $result->getStatusMessage());
     }
 
     protected function getFactoryClass()

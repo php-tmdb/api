@@ -31,7 +31,6 @@ class ListsTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldCreateList()
     {
@@ -49,32 +48,29 @@ class ListsTest extends TestCase
             ->method('get')
             ->with('list/' . self::LIST_ID . '/item_status');
 
-        $api->getItemStatus(self::LIST_ID);
+        $api->getItemStatus(self::LIST_ID, 150);
     }
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldAddMediaToList()
     {
         $api = $this->getApiMock();
-        $api->addMediaToList(self::LIST_ID, 'media_id');
+        $api->addMediaToList(self::LIST_ID, 150);
     }
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldRemoveMediaFromList()
     {
         $api = $this->getApiMock();
-        $api->removeMediaFromList(self::LIST_ID, 'media_id');
+        $api->removeMediaFromList(self::LIST_ID, 150);
     }
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldDeleteList()
     {
