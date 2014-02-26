@@ -18,6 +18,10 @@ use Guzzle\Http\Message\RequestInterface;
 use Guzzle\Http\Message\Response;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Class HttpClient
+ * @package Tmdb\HttpClient
+ */
 class HttpClient
     implements HttpClientInterface
 {

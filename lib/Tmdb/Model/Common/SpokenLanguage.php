@@ -15,6 +15,10 @@ namespace Tmdb\Model\Common;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Filter\LanguageFilter;
 
+/**
+ * Class SpokenLanguage
+ * @package Tmdb\Model\Common
+ */
 class SpokenLanguage extends AbstractModel implements LanguageFilter {
 
     private $iso6391;

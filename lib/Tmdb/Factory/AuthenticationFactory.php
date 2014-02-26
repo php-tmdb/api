@@ -16,6 +16,10 @@ use Tmdb\Exception\NotImplementedException;
 use Tmdb\RequestToken;
 use Tmdb\SessionToken;
 
+/**
+ * Class AuthenticationFactory
+ * @package Tmdb\Factory
+ */
 class AuthenticationFactory extends AbstractFactory
 {
     /**

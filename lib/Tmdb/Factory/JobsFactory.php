@@ -15,6 +15,10 @@ namespace Tmdb\Factory;
 use Tmdb\Model\Collection\Jobs;
 use Tmdb\Model\Job;
 
+/**
+ * Class JobsFactory
+ * @package Tmdb\Factory
+ */
 class JobsFactory extends AbstractFactory
 {
     /**

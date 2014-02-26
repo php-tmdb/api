@@ -14,6 +14,10 @@ namespace Tmdb\Model\Search;
 
 use Tmdb\Model\Collection\QueryParametersCollection;
 
+/**
+ * Class SearchQuery
+ * @package Tmdb\Model\Search
+ */
 class SearchQuery extends QueryParametersCollection {
     /**
      * CGI escaped string

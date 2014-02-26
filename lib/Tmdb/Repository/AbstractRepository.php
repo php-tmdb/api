@@ -17,6 +17,10 @@ use Tmdb\Client;
 use Tmdb\Factory\FactoryInterface;
 use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 
+/**
+ * Class AbstractRepository
+ * @package Tmdb\Repository
+ */
 abstract class AbstractRepository {
 
     protected $client  = null;

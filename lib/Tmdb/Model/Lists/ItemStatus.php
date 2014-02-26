@@ -14,6 +14,10 @@ namespace Tmdb\Model\Lists;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class ItemStatus
+ * @package Tmdb\Model\Lists
+ */
 class ItemStatus extends AbstractModel {
     /**
      * @var string

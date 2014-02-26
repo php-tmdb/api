@@ -16,6 +16,10 @@ use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Collection\People\Crew;
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class CreditsCollection
+ * @package Tmdb\Model\Collection
+ */
 class CreditsCollection {
     /**
      * @var Cast

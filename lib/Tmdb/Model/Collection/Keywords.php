@@ -15,6 +15,10 @@ namespace Tmdb\Model\Collection;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Keyword;
 
+/**
+ * Class Keywords
+ * @package Tmdb\Model\Collection
+ */
 class Keywords extends GenericCollection {
 
     /**

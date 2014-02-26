@@ -14,6 +14,10 @@ namespace Tmdb\Factory;
 
 use Tmdb\Model\Configuration;
 
+/**
+ * Class ConfigurationFactory
+ * @package Tmdb\Factory
+ */
 class ConfigurationFactory extends AbstractFactory
 {
     /**

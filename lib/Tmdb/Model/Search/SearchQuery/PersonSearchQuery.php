@@ -14,6 +14,10 @@ namespace Tmdb\Model\Search\SearchQuery;
 
 use Tmdb\Model\Search\SearchQuery;
 
+/**
+ * Class PersonSearchQuery
+ * @package Tmdb\Model\Search\SearchQuery
+ */
 class PersonSearchQuery extends SearchQuery {
 
     /**

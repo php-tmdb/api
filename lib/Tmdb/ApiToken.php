@@ -12,6 +12,10 @@
  */
 namespace Tmdb;
 
+/**
+ * Class ApiToken
+ * @package Tmdb
+ */
 class ApiToken {
     private $apiToken = null;
 

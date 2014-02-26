@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model;
 
+/**
+ * Class Keyword
+ * @package Tmdb\Model
+ */
 class Keyword extends AbstractModel {
 
     private $id;

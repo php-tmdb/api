@@ -15,6 +15,10 @@ namespace Tmdb\Model\Movie;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Filter\CountryFilter;
 
+/**
+ * Class AlternativeTitle
+ * @package Tmdb\Model\Movie
+ */
 class AlternativeTitle extends AbstractModel implements CountryFilter {
 
     private $iso31661;

@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model;
 
+/**
+ * Class Account
+ * @package Tmdb\Model
+ */
 class Account extends AbstractModel {
     /**
      * @var integer

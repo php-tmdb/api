@@ -15,6 +15,10 @@ namespace Tmdb\Model\Person;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image;
 
+/**
+ * Class AbstractMember
+ * @package Tmdb\Model\Person
+ */
 abstract class AbstractMember extends AbstractModel {
 
     /**

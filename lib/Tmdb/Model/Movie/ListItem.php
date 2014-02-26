@@ -15,6 +15,10 @@ namespace Tmdb\Model\Movie;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image\PosterImage;
 
+/**
+ * Class ListItem
+ * @package Tmdb\Model\Movie
+ */
 class ListItem extends AbstractModel {
 
     /**

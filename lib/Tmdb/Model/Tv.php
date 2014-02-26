@@ -21,6 +21,10 @@ use Tmdb\Model\Image\PosterImage;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Tv\Network;
 
+/**
+ * Class Tv
+ * @package Tmdb\Model
+ */
 class Tv extends AbstractModel {
 
     /**

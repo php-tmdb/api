@@ -15,6 +15,10 @@ namespace Tmdb\Model\Common\QueryParameter\Type;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 
+/**
+ * Class CollectionToCommaSeperatedString
+ * @package Tmdb\Model\Common\QueryParameter\Type
+ */
 abstract class CollectionToCommaSeperatedString extends GenericCollection implements QueryParameterInterface {
     /**
      * @param array $collection

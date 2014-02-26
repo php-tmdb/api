@@ -16,6 +16,10 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 
+/**
+ * Class ListItem
+ * @package Tmdb\Model\Lists
+ */
 class ListItem extends AbstractModel {
     /**
      * @var string

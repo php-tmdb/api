@@ -14,4 +14,8 @@ namespace Tmdb\Model\Image;
 
 use Tmdb\Model\Image;
 
+/**
+ * Class StillImage
+ * @package Tmdb\Model\Image
+ */
 class StillImage extends Image {}

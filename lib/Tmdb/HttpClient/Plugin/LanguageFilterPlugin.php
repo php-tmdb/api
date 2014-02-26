@@ -15,6 +15,10 @@ namespace Tmdb\HttpClient\Plugin;
 use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Class LanguageFilterPlugin
+ * @package Tmdb\HttpClient\Plugin
+ */
 class LanguageFilterPlugin implements EventSubscriberInterface
 {
     private $language;

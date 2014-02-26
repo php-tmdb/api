@@ -15,6 +15,10 @@ namespace Tmdb\Model;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class Find
+ * @package Tmdb\Model
+ */
 class Find extends AbstractModel {
 
     /**

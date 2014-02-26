@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model;
 
+/**
+ * Class Configuration
+ * @package Tmdb\Model
+ */
 class Configuration extends AbstractModel {
 
     /**

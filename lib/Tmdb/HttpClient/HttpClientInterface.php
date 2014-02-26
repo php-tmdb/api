@@ -12,10 +12,13 @@
  */
 namespace Tmdb\HttpClient;
 
-use Guzzle\Common\Exception\InvalidArgumentException;
 use Guzzle\Http\Message\RequestInterface;
 use Guzzle\Http\Message\Response;
 
+/**
+ * Interface HttpClientInterface
+ * @package Tmdb\HttpClient
+ */
 interface HttpClientInterface
 {
     /**

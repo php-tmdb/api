@@ -14,4 +14,8 @@ namespace Tmdb\Model\Collection\CreditsCollection;
 
 use Tmdb\Model\Collection\CreditsCollection;
 
+/**
+ * Class CombinedCredits
+ * @package Tmdb\Model\Collection\CreditsCollection
+ */
 class CombinedCredits extends CreditsCollection {}

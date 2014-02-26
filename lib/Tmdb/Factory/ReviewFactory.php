@@ -14,6 +14,10 @@ namespace Tmdb\Factory;
 
 use Tmdb\Model\Review;
 
+/**
+ * Class ReviewFactory
+ * @package Tmdb\Factory
+ */
 class ReviewFactory extends AbstractFactory
 {
     /**

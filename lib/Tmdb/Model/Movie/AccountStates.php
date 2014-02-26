@@ -14,6 +14,10 @@ namespace Tmdb\Model\Movie;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class AccountStates
+ * @package Tmdb\Model\Movie
+ */
 class AccountStates extends AbstractModel {
 
     /**

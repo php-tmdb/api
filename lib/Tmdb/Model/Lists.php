@@ -13,9 +13,12 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 
+/**
+ * Class Lists
+ * @package Tmdb\Model
+ */
 class Lists extends AbstractModel {
 
     /**

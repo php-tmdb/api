@@ -15,6 +15,10 @@ namespace Tmdb\Factory\People;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Collection\People\Cast;
 
+/**
+ * Class CastFactory
+ * @package Tmdb\Factory\People
+ */
 class CastFactory extends PeopleFactory
 {
     /**

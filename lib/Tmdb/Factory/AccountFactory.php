@@ -16,6 +16,10 @@ use Tmdb\Exception\NotImplementedException;
 use Tmdb\Model\Account;
 use Tmdb\Model\Lists\Result;
 
+/**
+ * Class AccountFactory
+ * @package Tmdb\Factory
+ */
 class AccountFactory extends AbstractFactory
 {
     /**

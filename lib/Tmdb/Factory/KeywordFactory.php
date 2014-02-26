@@ -16,6 +16,10 @@ use Tmdb\Model\Collection\Keywords;
 use Tmdb\Model\Keyword;
 use Tmdb\Model\Movie;
 
+/**
+ * Class KeywordFactory
+ * @package Tmdb\Factory
+ */
 class KeywordFactory extends AbstractFactory
 {
     /**

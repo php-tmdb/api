@@ -15,6 +15,10 @@ namespace Tmdb\Model\Account;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image\PosterImage;
 
+/**
+ * Class ListItem
+ * @package Tmdb\Model\Account
+ */
 class ListItem extends AbstractModel {
     /**
      * @var string

@@ -19,6 +19,10 @@ use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Image\PosterImage;
 
+/**
+ * Class Season
+ * @package Tmdb\Model\Tv
+ */
 class Season extends AbstractModel {
 
     /**

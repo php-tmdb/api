@@ -16,6 +16,10 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Filter\ImageFilter;
 use Tmdb\Model\Image;
 
+/**
+ * Class Images
+ * @package Tmdb\Model\Collection
+ */
 class Images extends GenericCollection {
 
     /**

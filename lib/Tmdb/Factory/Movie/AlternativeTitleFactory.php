@@ -16,6 +16,10 @@ use Tmdb\Factory\AbstractFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Movie\AlternativeTitle;
 
+/**
+ * Class AlternativeTitleFactory
+ * @package Tmdb\Factory\Movie
+ */
 class AlternativeTitleFactory extends AbstractFactory
 {
     /**

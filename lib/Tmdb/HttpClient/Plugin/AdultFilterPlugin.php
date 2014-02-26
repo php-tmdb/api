@@ -15,6 +15,10 @@ namespace Tmdb\HttpClient\Plugin;
 use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Class AdultFilterPlugin
+ * @package Tmdb\HttpClient\Plugin
+ */
 class AdultFilterPlugin implements EventSubscriberInterface
 {
     private $includeAdult;

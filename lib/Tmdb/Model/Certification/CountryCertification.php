@@ -14,6 +14,10 @@ namespace Tmdb\Model\Certification;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class CountryCertification
+ * @package Tmdb\Model\Certification
+ */
 class CountryCertification extends AbstractModel {
 
     /**

@@ -14,6 +14,10 @@ namespace Tmdb\Factory;
 
 use Tmdb\Model\Company;
 
+/**
+ * Class CompanyFactory
+ * @package Tmdb\Factory
+ */
 class CompanyFactory extends AbstractFactory
 {
     /**

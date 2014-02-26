@@ -15,6 +15,10 @@ namespace Tmdb\Helper;
 use Tmdb\Model\Configuration;
 use Tmdb\Model\Image;
 
+/**
+ * Class ImageHelper
+ * @package Tmdb\Helper
+ */
 class ImageHelper {
 
     private $config;

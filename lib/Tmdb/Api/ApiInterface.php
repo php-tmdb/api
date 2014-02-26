@@ -12,5 +12,9 @@
  */
 namespace Tmdb\Api;
 
+/**
+ * Interface ApiInterface
+ * @package Tmdb\Api
+ */
 interface ApiInterface {
 }

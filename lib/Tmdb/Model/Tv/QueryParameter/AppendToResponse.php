@@ -14,6 +14,10 @@ namespace Tmdb\Model\Tv\QueryParameter;
 
 use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
 
+/**
+ * Class AppendToResponse
+ * @package Tmdb\Model\Tv\QueryParameter
+ */
 class AppendToResponse extends BaseAppendToResponse {
     const CREDITS       = 'credits';
     const EXTERNAL_IDS  = 'external_ids';

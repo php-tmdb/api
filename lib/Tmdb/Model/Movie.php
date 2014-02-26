@@ -22,9 +22,12 @@ use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Movie\AlternativeTitle;
-use Tmdb\Model\Movie\Keyword;
 use Tmdb\Model\Movie\Release;
 
+/**
+ * Class Movie
+ * @package Tmdb\Model
+ */
 class Movie extends AbstractModel {
     /**
      * @var bool

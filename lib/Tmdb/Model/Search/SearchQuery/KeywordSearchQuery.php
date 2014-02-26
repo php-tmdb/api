@@ -14,4 +14,8 @@ namespace Tmdb\Model\Search\SearchQuery;
 
 use Tmdb\Model\Search\SearchQuery;
 
+/**
+ * Class KeywordSearchQuery
+ * @package Tmdb\Model\Search\SearchQuery
+ */
 class KeywordSearchQuery extends SearchQuery {}

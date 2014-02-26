@@ -14,9 +14,12 @@ namespace Tmdb\Factory\Movie;
 
 use Tmdb\Factory\AbstractFactory;
 use Tmdb\Factory\ImageFactory;
-use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Movie\ListItem;
 
+/**
+ * Class ListItemFactory
+ * @package Tmdb\Factory\Movie
+ */
 class ListItemFactory extends AbstractFactory
 {
     private $imageFactory;

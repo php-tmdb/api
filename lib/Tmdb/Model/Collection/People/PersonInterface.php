@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model\Collection\People;
 
+/**
+ * Interface PersonInterface
+ * @package Tmdb\Model\Collection\People
+ */
 interface PersonInterface {
     function getName();
 

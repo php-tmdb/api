@@ -15,6 +15,10 @@ namespace Tmdb\Model\Common;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Filter\CountryFilter;
 
+/**
+ * Class Country
+ * @package Tmdb\Model\Common
+ */
 class Country extends AbstractModel implements CountryFilter {
 
     private $iso31661;

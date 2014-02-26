@@ -15,6 +15,10 @@ namespace Tmdb\Model\Collection;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Genre;
 
+/**
+ * Class Genres
+ * @package Tmdb\Model\Collection
+ */
 class Genres extends GenericCollection {
 
     /**

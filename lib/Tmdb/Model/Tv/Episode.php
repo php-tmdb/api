@@ -18,6 +18,10 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Image\StillImage;
 
+/**
+ * Class Episode
+ * @package Tmdb\Model\Tv
+ */
 class Episode extends AbstractModel {
 
     /**

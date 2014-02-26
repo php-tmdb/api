@@ -15,6 +15,10 @@ namespace Tmdb\Factory;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image;
 
+/**
+ * Class ImageFactory
+ * @package Tmdb\Factory
+ */
 class ImageFactory extends AbstractFactory
 {
     /**

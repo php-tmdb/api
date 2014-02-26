@@ -14,6 +14,10 @@ namespace Tmdb\Model\Common;
 
 use Tmdb\Model\Filter\LanguageFilter;
 
+/**
+ * Class Translation
+ * @package Tmdb\Model\Common
+ */
 class Translation extends SpokenLanguage implements LanguageFilter {
 
     private $englishName;

@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model;
 
+/**
+ * Class Job
+ * @package Tmdb\Model
+ */
 class Job extends AbstractModel {
 
     public static $_properties = array(

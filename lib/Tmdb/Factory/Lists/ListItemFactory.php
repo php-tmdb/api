@@ -17,6 +17,10 @@ use Tmdb\Factory\ImageFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Lists\ListItem;
 
+/**
+ * Class ListItemFactory
+ * @package Tmdb\Factory\Lists
+ */
 class ListItemFactory extends AbstractFactory
 {
     /**

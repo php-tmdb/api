@@ -14,6 +14,10 @@ namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class ResultCollection
+ * @package Tmdb\Model\Collection
+ */
 class ResultCollection extends GenericCollection {
     /**
      * @var int

@@ -15,6 +15,10 @@ namespace Tmdb\Model;
 use Tmdb\Model\Filter\ImageFilter;
 use Tmdb\Model\Filter\LanguageFilter;
 
+/**
+ * Class Image
+ * @package Tmdb\Model
+ */
 class Image extends AbstractModel implements ImageFilter, LanguageFilter {
 
     const FORMAT_POSTER   = 'poster';

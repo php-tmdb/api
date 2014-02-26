@@ -19,6 +19,10 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\People\PersonInterface;
 use Tmdb\Model\Image\ProfileImage;
 
+/**
+ * Class Person
+ * @package Tmdb\Model
+ */
 class Person extends AbstractModel implements PersonInterface {
 
     /**

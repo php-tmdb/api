@@ -17,6 +17,10 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class AbstractFactory
+ * @package Tmdb\Factory
+ */
 abstract class AbstractFactory implements FactoryInterface {
     /**
      * Convert an array to an hydrated object

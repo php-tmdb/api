@@ -15,6 +15,10 @@ namespace Tmdb\Model\Person;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image\PosterImage;
 
+/**
+ * Class MovieCredit
+ * @package Tmdb\Model\Person
+ */
 class MovieCredit extends AbstractModel {
 
     /**

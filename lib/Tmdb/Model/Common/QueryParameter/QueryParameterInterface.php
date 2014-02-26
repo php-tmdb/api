@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model\Common\QueryParameter;
 
+/**
+ * Interface QueryParameterInterface
+ * @package Tmdb\Model\Common\QueryParameter
+ */
 interface QueryParameterInterface {
     /**
      * @return string

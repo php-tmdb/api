@@ -14,6 +14,10 @@ namespace Tmdb\Model;
 
 use Tmdb\Model\Credits\Media;
 
+/**
+ * Class Credits
+ * @package Tmdb\Model
+ */
 class Credits extends AbstractModel {
     /**
      * @var string

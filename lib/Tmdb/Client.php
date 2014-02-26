@@ -22,8 +22,7 @@ use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 
 /**
- * Simple wrapper for the Tmdb API
- *
+ * Client wrapper for TMDB
  * @package Tmdb
  */
 class Client {

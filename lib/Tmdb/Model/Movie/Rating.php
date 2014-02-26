@@ -14,6 +14,10 @@ namespace Tmdb\Model\Movie;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class Rating
+ * @package Tmdb\Model\Movie
+ */
 class Rating extends AbstractModel {
 
     /**

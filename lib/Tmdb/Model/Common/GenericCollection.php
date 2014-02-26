@@ -19,6 +19,10 @@ use Tmdb\Model\Filter\AdultFilter;
 use Tmdb\Model\Filter\CountryFilter;
 use Tmdb\Model\Filter\LanguageFilter;
 
+/**
+ * Class GenericCollection
+ * @package Tmdb\Model\Common
+ */
 class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable {
     /** @var array Data associated with the object. */
     protected $data = array();

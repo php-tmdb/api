@@ -16,6 +16,10 @@ use Tmdb\Factory\AbstractFactory;
 use Tmdb\Model\Common\Change;
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class ChangeFactory
+ * @package Tmdb\Factory\Common
+ */
 class ChangeFactory extends AbstractFactory
 {
     /**

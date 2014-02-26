@@ -12,6 +12,10 @@
  */
 namespace Tmdb;
 
+/**
+ * Class SessionToken
+ * @package Tmdb
+ */
 class SessionToken {
     /**
      * @var string

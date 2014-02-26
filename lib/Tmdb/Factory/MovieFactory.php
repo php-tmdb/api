@@ -14,7 +14,6 @@ namespace Tmdb\Factory;
 
 use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Movie\ListItemFactory;
-use Tmdb\Factory\ReviewFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
@@ -23,6 +22,10 @@ use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Movie;
 
+/**
+ * Class MovieFactory
+ * @package Tmdb\Factory
+ */
 class MovieFactory extends AbstractFactory {
     /**
      * @var People\CastFactory

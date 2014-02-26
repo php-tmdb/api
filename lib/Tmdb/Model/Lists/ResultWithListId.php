@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model\Lists;
 
+/**
+ * Class ResultWithListId
+ * @package Tmdb\Model\Lists
+ */
 class ResultWithListId extends Result {
     /**
      * @var string

@@ -15,6 +15,10 @@ namespace Tmdb\Factory;
 use Tmdb\Model\Change;
 use Tmdb\Model\Collection\Changes;
 
+/**
+ * Class ChangesFactory
+ * @package Tmdb\Factory
+ */
 class ChangesFactory extends AbstractFactory
 {
     /**

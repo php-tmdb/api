@@ -12,11 +12,14 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Model\Collection\Networks;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Network;
 use Tmdb\Model\Movie;
 
+/**
+ * Class NetworkFactory
+ * @package Tmdb\Factory
+ */
 class NetworkFactory extends AbstractFactory
 {
     /**

@@ -14,6 +14,10 @@ namespace Tmdb\Model;
 
 use Tmdb\Model\Image\LogoImage;
 
+/**
+ * Class Company
+ * @package Tmdb\Model
+ */
 class Company extends AbstractModel {
 
     private $description;

@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Factory;
 
+/**
+ * Interface FactoryInterface
+ * @package Tmdb\Factory
+ */
 interface FactoryInterface {
 
     /**

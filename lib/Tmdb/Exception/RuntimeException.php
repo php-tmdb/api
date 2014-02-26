@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Exception;
 
+/**
+ * Class RuntimeException
+ * @package Tmdb\Exception
+ */
 class RuntimeException extends \RuntimeException {
 
 }

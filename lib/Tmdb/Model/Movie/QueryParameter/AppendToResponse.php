@@ -14,6 +14,10 @@ namespace Tmdb\Model\Movie\QueryParameter;
 
 use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
 
+/**
+ * Class AppendToResponse
+ * @package Tmdb\Model\Movie\QueryParameter
+ */
 final class AppendToResponse extends BaseAppendToResponse {
     const ALTERNATIVE_TITLES = 'alternative_titles';
     const CREDITS            = 'credits';

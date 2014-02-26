@@ -17,6 +17,10 @@ use Tmdb\Model\Genre;
 use Tmdb\Model\Movie;
 use Tmdb\Model\Credits as Credits;
 
+/**
+ * Class CreditsFactory
+ * @package Tmdb\Factory
+ */
 class CreditsFactory extends AbstractFactory
 {
     /**

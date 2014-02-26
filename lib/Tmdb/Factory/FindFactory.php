@@ -15,6 +15,10 @@ namespace Tmdb\Factory;
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Model\Find;
 
+/**
+ * Class FindFactory
+ * @package Tmdb\Factory
+ */
 class FindFactory extends AbstractFactory
 {
     /**

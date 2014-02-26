@@ -14,6 +14,10 @@ namespace Tmdb\Model\Tv;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class Network
+ * @package Tmdb\Model\Tv
+ */
 class Network extends AbstractModel {
 
     /**

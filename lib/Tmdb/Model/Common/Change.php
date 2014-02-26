@@ -14,6 +14,10 @@ namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class Change
+ * @package Tmdb\Model\Common
+ */
 class Change extends AbstractModel {
 
     /**

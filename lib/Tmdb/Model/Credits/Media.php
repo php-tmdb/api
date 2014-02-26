@@ -15,6 +15,10 @@ namespace Tmdb\Model\Credits;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class Media
+ * @package Tmdb\Model\Credits
+ */
 class Media extends AbstractModel {
     /**
      * @var integer

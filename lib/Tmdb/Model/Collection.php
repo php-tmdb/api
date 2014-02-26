@@ -17,6 +17,10 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 
+/**
+ * Class Collection
+ * @package Tmdb\Model
+ */
 class Collection extends AbstractModel {
 
     /**

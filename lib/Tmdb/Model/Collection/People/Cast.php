@@ -15,6 +15,10 @@ namespace Tmdb\Model\Collection\People;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Person;
 
+/**
+ * Class Cast
+ * @package Tmdb\Model\Collection\People
+ */
 class Cast extends People {
     /**
      * Returns all people

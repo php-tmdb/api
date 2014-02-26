@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model;
 
+/**
+ * Class Genre
+ * @package Tmdb\Model
+ */
 class Genre extends AbstractModel {
 
     private $id;

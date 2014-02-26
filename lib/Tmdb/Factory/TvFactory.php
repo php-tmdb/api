@@ -21,6 +21,10 @@ use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Tv;
 
+/**
+ * Class TvFactory
+ * @package Tmdb\Factory
+ */
 class TvFactory extends AbstractFactory {
     /**
      * @var People\CastFactory

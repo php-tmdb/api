@@ -16,6 +16,10 @@ use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Movie;
 
+/**
+ * Class GenreFactory
+ * @package Tmdb\Factory
+ */
 class GenreFactory extends AbstractFactory
 {
     /**

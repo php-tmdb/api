@@ -15,6 +15,10 @@ namespace Tmdb\Factory;
 use Tmdb\Model\Certification;
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class CertificationFactory
+ * @package Tmdb\Factory
+ */
 class CertificationFactory extends AbstractFactory
 {
     /**

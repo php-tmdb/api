@@ -15,6 +15,10 @@ namespace Tmdb\Factory;
 use Tmdb\Model\Collection;
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class CollectionFactory
+ * @package Tmdb\Factory
+ */
 class CollectionFactory extends AbstractFactory
 {
     /**

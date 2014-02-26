@@ -12,4 +12,8 @@
  */
 namespace Tmdb\Model\Collection;
 
+/**
+ * Class Changes
+ * @package Tmdb\Model\Collection
+ */
 class Changes extends ResultCollection {}

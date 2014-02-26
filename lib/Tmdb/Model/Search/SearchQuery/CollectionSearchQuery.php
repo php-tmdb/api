@@ -14,6 +14,10 @@ namespace Tmdb\Model\Search\SearchQuery;
 
 use Tmdb\Model\Search\SearchQuery;
 
+/**
+ * Class CollectionSearchQuery
+ * @package Tmdb\Model\Search\SearchQuery
+ */
 class CollectionSearchQuery extends SearchQuery {
     /**
      * ISO 639-1 code.

@@ -13,12 +13,15 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Factory\Lists\ListItemFactory;
-use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Lists;
 use Tmdb\Model\Movie;
 
+/**
+ * Class ListFactory
+ * @package Tmdb\Factory
+ */
 class ListFactory extends AbstractFactory
 {
     /**

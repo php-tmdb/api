@@ -14,6 +14,10 @@ namespace Tmdb\Model\Person;
 
 use Tmdb\Model\Collection\People\PersonInterface;
 
+/**
+ * Class CastMember
+ * @package Tmdb\Model\Person
+ */
 class CastMember extends AbstractMember implements PersonInterface {
 
     /**

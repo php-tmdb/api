@@ -16,6 +16,10 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\People\PersonInterface;
 use Tmdb\Model\Person;
 
+/**
+ * Class People
+ * @package Tmdb\Model\Collection
+ */
 class People extends GenericCollection {
 
     /**

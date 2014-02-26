@@ -15,6 +15,10 @@ namespace Tmdb\HttpClient\Plugin;
 use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Class AcceptJsonHeaderPlugin
+ * @package Tmdb\HttpClient\Plugin
+ */
 class AcceptJsonHeaderPlugin implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()

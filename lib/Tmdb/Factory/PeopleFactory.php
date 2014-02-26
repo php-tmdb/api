@@ -14,14 +14,16 @@ namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Factory\Common\ChangeFactory;
-use Tmdb\Model\Collection\People\Cast;
-use Tmdb\Model\Collection\People\Crew;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Person;
 
+/**
+ * Class PeopleFactory
+ * @package Tmdb\Factory
+ */
 class PeopleFactory extends AbstractFactory {
     /**
      * @var ImageFactory

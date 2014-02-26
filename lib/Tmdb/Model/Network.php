@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model;
 
+/**
+ * Class Network
+ * @package Tmdb\Model
+ */
 class Network extends AbstractModel {
 
     private $id;

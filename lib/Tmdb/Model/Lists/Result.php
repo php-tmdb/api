@@ -14,6 +14,10 @@ namespace Tmdb\Model\Lists;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class Result
+ * @package Tmdb\Model\Lists
+ */
 class Result extends AbstractModel {
     /**
      * @var int

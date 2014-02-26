@@ -14,6 +14,10 @@ namespace Tmdb\Model;
 
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class Certification
+ * @package Tmdb\Model
+ */
 class Certification extends AbstractModel {
 
     /**

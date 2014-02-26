@@ -14,6 +14,10 @@ namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class ExternalIds
+ * @package Tmdb\Model\Common
+ */
 class ExternalIds extends AbstractModel {
 
     private $imdbId;

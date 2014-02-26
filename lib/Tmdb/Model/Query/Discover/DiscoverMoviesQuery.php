@@ -14,6 +14,10 @@ namespace Tmdb\Model\Query\Discover;
 
 use Tmdb\Model\Collection\QueryParametersCollection;
 
+/**
+ * Class DiscoverMoviesQuery
+ * @package Tmdb\Model\Query\Discover
+ */
 class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Minimum value is 1, expected value is an integer.

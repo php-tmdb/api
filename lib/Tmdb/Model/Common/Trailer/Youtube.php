@@ -14,6 +14,10 @@ namespace Tmdb\Model\Common\Trailer;
 
 use Tmdb\Model\Common\AbstractTrailer;
 
+/**
+ * Class Youtube
+ * @package Tmdb\Model\Common\Trailer
+ */
 class Youtube extends AbstractTrailer {
 
     const URL = 'http://www.youtube.com/watch?v=%s';

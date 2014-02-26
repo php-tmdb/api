@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model;
 
+/**
+ * Class Review
+ * @package Tmdb\Model
+ */
 class Review extends AbstractModel {
 
     private $id;

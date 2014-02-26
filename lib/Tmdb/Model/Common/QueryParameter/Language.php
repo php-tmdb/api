@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model\Common\QueryParameter;
 
+/**
+ * Class Language
+ * @package Tmdb\Model\Common\QueryParameter
+ */
 class Language implements QueryParameterInterface {
 
     private $language;

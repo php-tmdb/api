@@ -16,6 +16,10 @@ use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\ApiToken;
 
+/**
+ * Class ApiTokenPlugin
+ * @package Tmdb\HttpClient\Plugin
+ */
 class ApiTokenPlugin implements EventSubscriberInterface
 {
     /**

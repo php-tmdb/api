@@ -12,6 +12,10 @@
  */
 namespace Tmdb;
 
+/**
+ * Class RequestToken
+ * @package Tmdb
+ */
 class RequestToken {
     /**
      * The token for obtaining a session

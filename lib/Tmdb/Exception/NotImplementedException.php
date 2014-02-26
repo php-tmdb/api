@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Exception;
 
+/**
+ * Class NotImplementedException
+ * @package Tmdb\Exception
+ */
 class NotImplementedException extends \Exception {
 
 }

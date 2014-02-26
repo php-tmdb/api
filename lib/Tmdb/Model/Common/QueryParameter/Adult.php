@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Model\Common\QueryParameter;
 
+/**
+ * Class Adult
+ * @package Tmdb\Model\Common\QueryParameter
+ */
 class Adult implements QueryParameterInterface {
 
     private $adult;

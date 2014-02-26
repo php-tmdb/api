@@ -15,6 +15,10 @@ namespace Tmdb\Model\Collection\People;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Person;
 
+/**
+ * Class Crew
+ * @package Tmdb\Model\Collection\People
+ */
 class Crew extends People {
     /**
      * Returns all people

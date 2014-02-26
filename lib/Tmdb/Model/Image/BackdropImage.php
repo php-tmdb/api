@@ -14,4 +14,8 @@ namespace Tmdb\Model\Image;
 
 use Tmdb\Model\Image;
 
+/**
+ * Class BackdropImage
+ * @package Tmdb\Model\Image
+ */
 class BackdropImage extends Image {}

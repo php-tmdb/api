@@ -16,6 +16,10 @@ use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\SessionToken;
 
+/**
+ * Class SessionTokenPlugin
+ * @package Tmdb\HttpClient\Plugin
+ */
 class SessionTokenPlugin implements EventSubscriberInterface
 {
     /**

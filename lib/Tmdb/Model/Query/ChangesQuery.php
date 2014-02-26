@@ -14,6 +14,10 @@ namespace Tmdb\Model\Query;
 
 use Tmdb\Model\Collection\QueryParametersCollection;
 
+/**
+ * Class ChangesQuery
+ * @package Tmdb\Model\Query
+ */
 class ChangesQuery extends QueryParametersCollection {
 
     /**

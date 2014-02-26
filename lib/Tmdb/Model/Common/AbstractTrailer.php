@@ -14,6 +14,10 @@ namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
 
+/**
+ * Class AbstractTrailer
+ * @package Tmdb\Model\Common
+ */
 abstract class AbstractTrailer extends AbstractModel {
     /**
      * Returns the http url to the trailer

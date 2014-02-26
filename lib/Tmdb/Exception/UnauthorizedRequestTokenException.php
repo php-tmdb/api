@@ -12,6 +12,10 @@
  */
 namespace Tmdb\Exception;
 
+/**
+ * Class UnauthorizedRequestTokenException
+ * @package Tmdb\Exception
+ */
 class UnauthorizedRequestTokenException extends \RuntimeException {
 
 }

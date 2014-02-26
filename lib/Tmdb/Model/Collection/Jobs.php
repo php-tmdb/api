@@ -14,6 +14,10 @@ namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
 
+/**
+ * Class Jobs
+ * @package Tmdb\Model\Collection
+ */
 class Jobs extends GenericCollection {
 
     /**
