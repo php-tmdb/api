@@ -20,7 +20,6 @@ class TranslationTest extends TestCase
 {
     /**
      * @test
-     * @todo fix
      */
     public function shouldBeFunctional()
     {

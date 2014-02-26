@@ -838,8 +838,6 @@ class Movie extends AbstractModel {
     }
 
     /**
-     * @todo fix the phpdoc when we have actually implemented support for more providers in the future
-     *
      * @return \Tmdb\Model\Common\Trailer\Youtube[]
      */
     public function getTrailers()

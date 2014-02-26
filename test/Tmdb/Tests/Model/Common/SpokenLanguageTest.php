@@ -20,7 +20,6 @@ class SpokenLanguageTest extends TestCase
 {
     /**
      * @test
-     * @todo fix
      */
     public function shouldBeFunctional()
     {

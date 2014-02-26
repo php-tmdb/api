@@ -234,7 +234,6 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
      * Expected value is a valid certification for the specificed 'certification_country'.
      *
      * @param mixed $value
-     * @todo fix method parameter name and specification
      * @return $this
      */
     public function certificationLte($value)

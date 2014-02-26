@@ -18,7 +18,6 @@ use Tmdb\Tests\TestCase;
 class DiscoverTvQueryTest extends TestCase
 {
     /**
-     * @todo expand
      * @test
      */
     public function shouldCreateValidQuery()

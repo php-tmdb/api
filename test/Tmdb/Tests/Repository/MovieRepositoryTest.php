@@ -120,7 +120,6 @@ class MovieRepositoryTest extends TestCase
 
     /**
      * @test
-     * @todo FIX
      */
     public function shouldGetLists()
     {

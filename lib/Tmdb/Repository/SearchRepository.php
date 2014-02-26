@@ -149,7 +149,6 @@ class SearchRepository extends AbstractRepository {
      * @param ListSearchQuery $parameters
      * @param array $headers
      *
-     * @todo fix return docblock
      * @return ResultCollection
      */
     public function searchList($query, ListSearchQuery $parameters, array $headers = array()) {
