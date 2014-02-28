@@ -224,9 +224,9 @@ class TestApi extends AbstractApi {
         $this->client->getHttpClient()->delete('http://www.google.com/');
     }
 
-    public function postJson($path, $postBody = null, array $parameters = array(), $headers = array())
+    public function postJson($path, $postBody, array $parameters = array(), $headers = array())
     {
-        $this->client->getHttpClient()->postJson('http://www.google.com/');
+        $this->client->getHttpClient()->postJson('http://www.google.com/', $postBody);
     }
 
     public function put($path, $body = null, array $parameters = array(), $headers = array())
