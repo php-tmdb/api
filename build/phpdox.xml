@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.net/config">
+    <project name="php-tmdb-api" source="${basedir}/lib" workdir="${basedir}/docs/xml">
+        <collector backend="parser" />
+
+        <generator output="${basedir}/build/api">
+            <enrich base="${basedir}/build">
+                <source type="build" />
+
+                <source type="git">
+                    <git binary="/usr/bin/git" />
+                    <history enabled="true" limit="25" cache="${phpDox.project.workdir}/gitlog.xml" />
+                </source>
+
+                <source type="phploc">
+                    <file name="logs/phploc.xml" />
+                </source>
+
+                <source type="checkstyle">
+                    <file name="logs/checkstyle.xml" />
+                </source>
+
+                <source type="pmd">
+                    <file name="logs/pmd.xml" />
+                </source>
+
+            </enrich>
+
+            <build engine="html" output="html"/>
+        </generator>
+    </project>
+</phpdox>

@@ -1,5 +1,8 @@
 /bin
 /docs
+/build/*
+!/build/phpmd.xml
+!/build/phpdox.xml
 /vendor/
 /composer.lock
 /*.php
