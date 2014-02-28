@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="php-tmdb-api" default="build">
+<project name="php-tmdb-api" default="build-parallel">
     <target name="build"
             depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpunit,phpdox"/>
 
     <target name="build-parallel"
-            depends="prepare,lint,tools-parallel,phpunit"/>
+            depends="prepare,lint,tools-parallel,phpunit,phpdox"/>
 
     <target name="tools-parallel" description="Run tools in parallel">
         <parallel threadCount="2">
@@ -13,12 +13,9 @@
                 <antcall target="pdepend"/>
                 <antcall target="phpmd-ci"/>
             </sequential>
+            <antcall target="phploc"/>
             <antcall target="phpcpd"/>
             <antcall target="phpcs-ci"/>
-            <antcall target="phploc"/>
-            <!--
-            <antcall target="phpdox"/>
-            -->
         </parallel>
     </target>
 
@@ -122,6 +119,9 @@
     </target>
 
     <target name="phpunit" description="Run unit tests with PHPUnit">
-        <exec executable="phpunit" failonerror="true"/>
+        <exec executable="phpunit" failonerror="true">
+            <arg value="-c" />
+            <arg path="${basedir}/build/phpunit.xml" />
+        </exec>
     </target>
 </project>
