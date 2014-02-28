@@ -10,6 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+namespace Tmdb\Tests;
+
 class RequestTokenTest extends \PHPUnit_Framework_TestCase
 {
     const REQUEST_TOKEN = '641bf16c663db167c6cffcdff41126039d4445bf';

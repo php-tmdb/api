@@ -10,6 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+namespace Tmdb\Tests;
+
 class ClientTest extends \Tmdb\Tests\TestCase
 {
     const API_TOKEN = 'abcdef';
