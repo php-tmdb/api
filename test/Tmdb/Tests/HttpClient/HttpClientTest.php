@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Tests\HttpClient;
 
-use \Exception;
 use Tmdb\Api\AbstractApi;
 use Tmdb\ApiToken;
 use Tmdb\Client;
@@ -131,7 +130,7 @@ class HttpClientTest extends TestCase
     /**
      * @test
      */
-    public function put()
+    public function shouldCallPut()
     {
         $this->setUp();
 
@@ -184,27 +183,33 @@ class TestApi extends AbstractApi {
         $this->client = $client;
     }
 
-    public function get() {
+    public function get($path, array $parameters = array(), $headers = array())
+    {
         $this->client->getHttpClient()->get('/');
     }
 
-    public function head() {
+    public function head($path, array $parameters = array(), $headers = array())
+    {
         $this->client->getHttpClient()->head('/');
     }
 
-    public function post() {
+    public function post($path, $postBody = null, array $parameters = array(), $headers = array())
+    {
         $this->client->getHttpClient()->post('/', array('id' => 1));
     }
 
-    public function patch() {
+    public function patch($path, $body = null, array $parameters = array(), $headers = array())
+    {
         $this->client->getHttpClient()->patch('http://www.google.com/');
     }
 
-    public function delete() {
+    public function delete($path, $body = null, array $parameters = array(), $headers = array())
+    {
         $this->client->getHttpClient()->delete('http://www.google.com/');
     }
 
-    public function put() {
+    public function put($path, $body = null, array $parameters = array(), $headers = array())
+    {
         $this->client->getHttpClient()->put('http://www.google.com/');
     }
 

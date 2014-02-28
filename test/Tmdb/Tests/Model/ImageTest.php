@@ -57,7 +57,8 @@ class ImageTest extends TestCase
         /**
          * @var Image $subject
          */
-        $subject = array_pop($this->collection->toArray());
+        $results = $this->collection->toArray();
+        $subject = array_pop($results);
 
         $this->assertEquals('/abc.jpg', $subject->getFilePath());
         $this->assertEquals(1000, $subject->getWidth());

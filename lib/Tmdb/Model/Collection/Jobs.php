@@ -35,7 +35,8 @@ class Jobs extends GenericCollection {
         );
 
         if ($result && 1 === count($result)) {
-            return array_shift($result->toArray());
+            $results = $result->toArray();
+            return array_shift($results);
         }
 
         return $result;
@@ -56,7 +57,8 @@ class Jobs extends GenericCollection {
         );
 
         if ($result && 1 === count($result)) {
-            $data =  array_shift($result->toArray());
+            $results = $result->toArray();
+            $data =  array_shift($results);
 
             return $data->getJobList();
         }
@@ -83,7 +85,8 @@ class Jobs extends GenericCollection {
         );
 
         if ($result && 1 === count($result)) {
-            return array_shift($result->toArray());
+            $results = $result->toArray();
+            return array_shift($results);
         }
 
         return $result;

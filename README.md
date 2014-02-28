@@ -39,7 +39,7 @@ $ sudo mv composer.phar /usr/local/bin/composer
 Add the following to your require block in composer.json config.
 
 ```
-"wtfzdotnet/php-tmdb-api": "dev-develop"
+"wtfzdotnet/php-tmdb-api": "dev-master"
 ```
 
 Include Composer's autoloader:
