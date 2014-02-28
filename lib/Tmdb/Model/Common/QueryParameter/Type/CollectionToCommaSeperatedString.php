@@ -37,11 +37,6 @@ abstract class CollectionToCommaSeperatedString extends GenericCollection implem
     /**
      * {@inheritdoc}
      */
-    abstract public function getKey();
-
-    /**
-     * {@inheritdoc}
-     */
     public function getValue()
     {
         return implode(',', $this->data);
