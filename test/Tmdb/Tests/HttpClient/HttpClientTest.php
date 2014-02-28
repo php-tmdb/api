@@ -97,22 +97,6 @@ class HttpClientTest extends TestCase
     /**
      * @test
      */
-    public function shouldCallPostJson()
-    {
-        $this->setUp();
-
-        $this->guzzleMock
-            ->expects($this->once())
-            ->method('postJson')
-            ->will($this->returnValue($this->getMock('Guzzle\Http\Message\RequestInterface')))
-        ;
-
-        $this->testApi->postJson('/', array('name' => 'Henk'));
-    }
-
-    /**
-     * @test
-     */
     public function shouldCallPatch()
     {
         $this->setUp();
