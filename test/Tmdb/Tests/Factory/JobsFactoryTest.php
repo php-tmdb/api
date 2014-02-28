@@ -14,7 +14,7 @@ namespace Tmdb\Tests\Factory;
 
 use Tmdb\Model\Collection\Jobs;
 
-class JobFactoryTest extends TestCase
+class JobsFactoryTest extends TestCase
 {
     private $jobs;
 
@@ -49,7 +49,7 @@ class JobFactoryTest extends TestCase
             'Special Guest'
         );
 
-        foreach($filteredJobs->getJobList() as $filteredJob) {
+        foreach ($filteredJobs->getJobList() as $filteredJob) {
             $this->assertEquals(true, in_array($filteredJob, $expectedJobs));
         }
     }
@@ -79,7 +79,7 @@ class JobFactoryTest extends TestCase
             'Special Guest'
         );
 
-        foreach($filteredJobs as $filteredJob) {
+        foreach ($filteredJobs as $filteredJob) {
             $this->assertEquals(true, in_array($filteredJob, $expectedJobs));
         }
     }
@@ -113,7 +113,6 @@ class JobFactoryTest extends TestCase
 
         $this->assertEquals(true, empty($filteredJobs));
     }
-
 
     protected function getFactoryClass()
     {

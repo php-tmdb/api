@@ -63,7 +63,7 @@ class ImageFactoryTest extends TestCase
 
         $posters = $this->images->filterPosters();
 
-        foreach($posters as $poster) {
+        foreach ($posters as $poster) {
             $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $poster);
         }
     }
@@ -77,7 +77,7 @@ class ImageFactoryTest extends TestCase
 
         $backdrops = $this->images->filterBackdrops();
 
-        foreach($backdrops as $backdrop) {
+        foreach ($backdrops as $backdrop) {
             $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $backdrop);
         }
     }
@@ -91,7 +91,7 @@ class ImageFactoryTest extends TestCase
 
         $profiles = $this->images->filterProfile();
 
-        foreach($profiles as $profile) {
+        foreach ($profiles as $profile) {
             $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $profile);
         }
     }
@@ -105,7 +105,7 @@ class ImageFactoryTest extends TestCase
 
         $stills = $this->images->filterStills();
 
-        foreach($stills as $still) {
+        foreach ($stills as $still) {
             $this->assertInstanceOf('Tmdb\Model\Image\StillImage', $still);
         }
     }
@@ -124,7 +124,7 @@ class ImageFactoryTest extends TestCase
         /**
          * @var Image $image
          */
-        foreach($images as $image) {
+        foreach ($images as $image) {
             $this->assertEquals(true, $image->getHeight() >= 1000);
         }
     }
@@ -143,7 +143,7 @@ class ImageFactoryTest extends TestCase
         /**
          * @var Image $image
          */
-        foreach($images as $image) {
+        foreach ($images as $image) {
             $this->assertEquals(true, $image->getWidth() >= 1000);
         }
     }
@@ -162,7 +162,7 @@ class ImageFactoryTest extends TestCase
         /**
          * @var Image $image
          */
-        foreach($images as $image) {
+        foreach ($images as $image) {
             $this->assertEquals(true, $image->getHeight() <= 1000);
         }
     }
@@ -181,7 +181,7 @@ class ImageFactoryTest extends TestCase
         /**
          * @var Image $image
          */
-        foreach($images as $image) {
+        foreach ($images as $image) {
             $this->assertEquals(true, $image->getWidth() <= 1000);
         }
     }

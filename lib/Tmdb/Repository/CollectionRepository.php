@@ -23,8 +23,8 @@ use Tmdb\Model\Collection\QueryParameter\AppendToResponse;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#collections
  */
-class CollectionRepository extends AbstractRepository {
-
+class CollectionRepository extends AbstractRepository
+{
     private $imageFactory;
 
     public function __construct(Client $client)
@@ -55,6 +55,7 @@ class CollectionRepository extends AbstractRepository {
         }
 
         $data = $this->getApi()->getCollection($id, $this->parseQueryParameters($parameters), $headers);
+
         return $this->getFactory()->create($data);
     }
 
@@ -93,12 +94,13 @@ class CollectionRepository extends AbstractRepository {
     }
 
     /**
-     * @param mixed $imageFactory
+     * @param  mixed $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
     {
         $this->imageFactory = $imageFactory;
+
         return $this;
     }
 

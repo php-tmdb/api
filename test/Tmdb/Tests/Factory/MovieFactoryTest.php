@@ -133,11 +133,11 @@ class MovieFactoryTest extends TestCase
         /**
          * @var CastMember $c
          */
-        foreach($cast as $c) {
+        foreach ($cast as $c) {
             if ($c->hasProfileImage()) {
                 $filePath = $c->getProfileImage()->getFilePath();
                 $this->assertEquals(false, empty($filePath));
-            }else{
+            } else {
                 $this->assertEquals(null, $c->getProfileImage());
             }
         }

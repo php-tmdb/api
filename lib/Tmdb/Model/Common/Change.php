@@ -18,8 +18,8 @@ use Tmdb\Model\AbstractModel;
  * Class Change
  * @package Tmdb\Model\Common
  */
-class Change extends AbstractModel {
-
+class Change extends AbstractModel
+{
     /**
      * @var string
      */
@@ -40,12 +40,13 @@ class Change extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\GenericCollection $items
+     * @param  \Tmdb\Model\Common\GenericCollection $items
      * @return $this
      */
     public function setItems($items)
     {
         $this->items = $items;
+
         return $this;
     }
 
@@ -58,12 +59,13 @@ class Change extends AbstractModel {
     }
 
     /**
-     * @param string $key
+     * @param  string $key
      * @return $this
      */
     public function setKey($key)
     {
         $this->key = $key;
+
         return $this;
     }
 
@@ -74,6 +76,5 @@ class Change extends AbstractModel {
     {
         return $this->key;
     }
-
 
 }

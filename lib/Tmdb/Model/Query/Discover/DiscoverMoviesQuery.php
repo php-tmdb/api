@@ -18,11 +18,12 @@ use Tmdb\Model\Collection\QueryParametersCollection;
  * Class DiscoverMoviesQuery
  * @package Tmdb\Model\Query\Discover
  */
-class DiscoverMoviesQuery extends QueryParametersCollection {
+class DiscoverMoviesQuery extends QueryParametersCollection
+{
     /**
      * Minimum value is 1, expected value is an integer.
      *
-     * @param integer $page
+     * @param  integer $page
      * @return $this
      */
     public function page($page = 1)
@@ -35,7 +36,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * ISO 639-1 code.
      *
-     * @param string $language
+     * @param  string $language
      * @return $this
      */
     public function language($language)
@@ -48,7 +49,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Available options are vote_average.desc, vote_average.asc, release_date.desc, release_date.asc, popularity.desc, popularity.asc
      *
-     * @param string $option
+     * @param  string $option
      * @return $this
      */
     public function sortBy($option)
@@ -61,7 +62,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Toggle the inclusion of adult titles. Expected value is a boolean, true or false
      *
-     * @param boolean $allow
+     * @param  boolean $allow
      * @return $this
      */
     public function includeAdult($allow = true)
@@ -74,7 +75,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Filter the results release dates to matches that include this value. Expected value is a year.
      *
-     * @param \DateTime|integer $year
+     * @param  \DateTime|integer $year
      * @return $this
      */
     public function year($year)
@@ -91,7 +92,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Filter the results so that only the primary release date year has this value. Expected value is a year.
      *
-     * @param \DateTime|integer $year
+     * @param  \DateTime|integer $year
      * @return $this
      */
     public function primaryReleaseYear($year)
@@ -108,7 +109,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Only include movies that are equal to, or have a vote count higher than this value. Expected value is an integer.
      *
-     * @param integer $count
+     * @param  integer $count
      * @return $this
      */
     public function voteCountGte($count)
@@ -121,7 +122,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Only include movies that are equal to, or have a higher average rating than this value. Expected value is a float.
      *
-     * @param float $average
+     * @param  float $average
      * @return $this
      */
     public function voteAverageGte($average)
@@ -139,7 +140,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
      *
      * If an array is supplied this defaults to an AND query
      *
-     * @param array|string $genres
+     * @param  array|string $genres
      * @return $this
      */
     public function withGenres($genres)
@@ -156,7 +157,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Creates an or query for genres
      *
-     * @param array $genres
+     * @param  array $genres
      * @return $this
      */
     public function withGenresOr(array $genres = array())
@@ -169,7 +170,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Creates an and query for genres
      *
-     * @param array $genres
+     * @param  array $genres
      * @return $this
      */
     public function withGenresAnd(array $genres = array())
@@ -182,7 +183,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * The minimum release to include.
      *
-     * @param \DateTime|string $date
+     * @param  \DateTime|string $date
      * @return $this
      */
     public function releaseDateGte($date)
@@ -199,7 +200,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * The maximum release to include.
      *
-     * @param \DateTime $date
+     * @param  \DateTime $date
      * @return $this
      */
     public function releaseDateLte(\DateTime $date)
@@ -218,7 +219,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
      *
      * When this value is specified, 'certification.lte' is required. A ISO 3166-1 is expected.
      *
-     * @param string $country
+     * @param  string $country
      * @return $this
      */
     public function certificationCountry($country)
@@ -233,7 +234,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
      *
      * Expected value is a valid certification for the specificed 'certification_country'.
      *
-     * @param mixed $value
+     * @param  mixed $value
      * @return $this
      */
     public function certificationLte($value)
@@ -249,7 +250,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
      * Expected value is an integer (the id of a company).
      * They can be comma separated to indicate an 'AND' query.
      *
-     * @param array|string $companies
+     * @param  array|string $companies
      * @return $this
      */
     public function withCompanies($companies)
@@ -266,7 +267,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection {
     /**
      * Creates an and query for companies
      *
-     * @param array $companies
+     * @param  array $companies
      * @return $this
      */
     public function withCompaniesAnd(array $companies = array())

@@ -25,7 +25,8 @@ use Tmdb\Model\Tv;
  * Class TvFactory
  * @package Tmdb\Factory
  */
-class TvFactory extends AbstractFactory {
+class TvFactory extends AbstractFactory
+{
     /**
      * @var People\CastFactory
      */
@@ -146,7 +147,7 @@ class TvFactory extends AbstractFactory {
             $data = $data['results'];
         }
 
-        foreach($data as $item) {
+        foreach ($data as $item) {
             $collection->add(null, $this->create($item));
         }
 
@@ -154,12 +155,13 @@ class TvFactory extends AbstractFactory {
     }
 
     /**
-     * @param \Tmdb\Factory\People\CastFactory $castFactory
+     * @param  \Tmdb\Factory\People\CastFactory $castFactory
      * @return $this
      */
     public function setCastFactory($castFactory)
     {
         $this->castFactory = $castFactory;
+
         return $this;
     }
 
@@ -172,12 +174,13 @@ class TvFactory extends AbstractFactory {
     }
 
     /**
-     * @param \Tmdb\Factory\People\CrewFactory $crewFactory
+     * @param  \Tmdb\Factory\People\CrewFactory $crewFactory
      * @return $this
      */
     public function setCrewFactory($crewFactory)
     {
         $this->crewFactory = $crewFactory;
+
         return $this;
     }
 
@@ -190,12 +193,13 @@ class TvFactory extends AbstractFactory {
     }
 
     /**
-     * @param \Tmdb\Factory\GenreFactory $genreFactory
+     * @param  \Tmdb\Factory\GenreFactory $genreFactory
      * @return $this
      */
     public function setGenreFactory($genreFactory)
     {
         $this->genreFactory = $genreFactory;
+
         return $this;
     }
 
@@ -208,12 +212,13 @@ class TvFactory extends AbstractFactory {
     }
 
     /**
-     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @param  \Tmdb\Factory\ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
     {
         $this->imageFactory = $imageFactory;
+
         return $this;
     }
 
@@ -226,12 +231,13 @@ class TvFactory extends AbstractFactory {
     }
 
     /**
-     * @param \Tmdb\Factory\TvSeasonFactory $tvSeasonFactory
+     * @param  \Tmdb\Factory\TvSeasonFactory $tvSeasonFactory
      * @return $this
      */
     public function setTvSeasonFactory($tvSeasonFactory)
     {
         $this->tvSeasonFactory = $tvSeasonFactory;
+
         return $this;
     }
 
@@ -244,12 +250,13 @@ class TvFactory extends AbstractFactory {
     }
 
     /**
-     * @param \Tmdb\Factory\NetworkFactory $networkFactory
+     * @param  \Tmdb\Factory\NetworkFactory $networkFactory
      * @return $this
      */
     public function setNetworkFactory($networkFactory)
     {
         $this->networkFactory = $networkFactory;
+
         return $this;
     }
 

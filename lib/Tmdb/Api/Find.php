@@ -29,9 +29,9 @@ class Find
      * People: imdb_id, freebase_mid, freebase_id, tvrage_id
      * TV Series: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id
      *
-     * @param string $id
-     * @param array $parameters
-     * @param array $headers
+     * @param  string $id
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function find($id, array $parameters = array(), array $headers = array())

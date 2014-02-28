@@ -27,7 +27,8 @@ class CreditsTest extends TestCase
         $api->getCredit('5240760b5dbf5b0c2c0139db');
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Credits';
     }
 }

@@ -27,7 +27,8 @@ class JobsTest extends TestCase
         $api->getJobs();
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Jobs';
     }
 }

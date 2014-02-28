@@ -117,7 +117,6 @@ class TvSeasonRepositoryTest extends TestCase
         $repository->load(null, null);
     }
 
-
     protected function getApiClass()
     {
         return 'Tmdb\Api\TvSeason';

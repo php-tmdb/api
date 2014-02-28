@@ -14,7 +14,6 @@ namespace Tmdb\Factory;
 
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Model\Genre;
-use Tmdb\Model\Movie;
 use Tmdb\Model\Credits as Credits;
 
 /**
@@ -89,12 +88,13 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @param \Tmdb\Factory\TvEpisodeFactory $tvEpisodeFactory
+     * @param  \Tmdb\Factory\TvEpisodeFactory $tvEpisodeFactory
      * @return $this
      */
     public function setTvEpisodeFactory($tvEpisodeFactory)
     {
         $this->tvEpisodeFactory = $tvEpisodeFactory;
+
         return $this;
     }
 
@@ -107,12 +107,13 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @param \Tmdb\Factory\TvSeasonFactory $tvSeasonFactory
+     * @param  \Tmdb\Factory\TvSeasonFactory $tvSeasonFactory
      * @return $this
      */
     public function setTvSeasonFactory($tvSeasonFactory)
     {
         $this->tvSeasonFactory = $tvSeasonFactory;
+
         return $this;
     }
 
@@ -125,12 +126,13 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @param \Tmdb\Factory\PeopleFactory $peopleFactory
+     * @param  \Tmdb\Factory\PeopleFactory $peopleFactory
      * @return $this
      */
     public function setPeopleFactory($peopleFactory)
     {
         $this->peopleFactory = $peopleFactory;
+
         return $this;
     }
 

@@ -40,7 +40,8 @@ class ChangesTest extends TestCase
         $api->getPersonChanges();
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Changes';
     }
 }

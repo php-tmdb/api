@@ -16,7 +16,8 @@ namespace Tmdb\Model\Lists;
  * Class ResultWithListId
  * @package Tmdb\Model\Lists
  */
-class ResultWithListId extends Result {
+class ResultWithListId extends Result
+{
     /**
      * @var string
      */
@@ -32,12 +33,13 @@ class ResultWithListId extends Result {
     );
 
     /**
-     * @param string $listId
+     * @param  string $listId
      * @return $this
      */
     public function setListId($listId)
     {
         $this->listId = $listId;
+
         return $this;
     }
 

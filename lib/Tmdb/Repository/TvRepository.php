@@ -21,14 +21,14 @@ use Tmdb\Model\Tv\QueryParameter\AppendToResponse;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#tv
  */
-class TvRepository extends AbstractRepository {
-
+class TvRepository extends AbstractRepository
+{
     /**
      * Load a tv with the given identifier
      *
      * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
      *
-     * @param integer $id
+     * @param  integer                        $id
      * @param $parameters
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
@@ -141,7 +141,7 @@ class TvRepository extends AbstractRepository {
     /**
      * Get the list of popular tvs on The Tv Database. This list refreshes every day.
      *
-     * @param array $options
+     * @param  array $options
      * @return Tv[]
      */
     public function getPopular(array $options = array())
@@ -154,7 +154,7 @@ class TvRepository extends AbstractRepository {
     /**
      * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes. This list refreshes every day.
      *
-     * @param array $options
+     * @param  array $options
      * @return Tv[]
      */
     public function getTopRated(array $options = array())
@@ -167,7 +167,7 @@ class TvRepository extends AbstractRepository {
     /**
      * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes. This list refreshes every day.
      *
-     * @param array $options
+     * @param  array $options
      * @return Tv[]
      */
     public function getOnTheAir(array $options = array())

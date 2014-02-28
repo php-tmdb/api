@@ -24,8 +24,8 @@ use Tmdb\Model\Tv;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#tvseasons
  */
-class TvSeasonRepository extends AbstractRepository {
-
+class TvSeasonRepository extends AbstractRepository
+{
     /**
      * Load a tv season with the given identifier
      *
@@ -66,7 +66,6 @@ class TvSeasonRepository extends AbstractRepository {
 
         return $this->getFactory()->create($data);
     }
-
 
     /**
      * Get the cast & crew information about a TV series.

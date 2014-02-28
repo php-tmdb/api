@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Api;
 
-use Symfony\Component\Yaml\Exception\RuntimeException;
 use Tmdb\Exception\UnauthorizedRequestTokenException;
 
 /**
@@ -57,7 +56,7 @@ class Authentication
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param string $requestToken
+     * @param  string                            $requestToken
      * @throws UnauthorizedRequestTokenException
      * @return mixed
      */
@@ -65,8 +64,7 @@ class Authentication
     {
         try {
             return $this->get('authentication/session/new', array('request_token' => $requestToken));
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             if ($e->getCode() == 401) {
                 throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
             }

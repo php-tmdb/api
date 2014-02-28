@@ -47,7 +47,7 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * Create request token
      *
-     * @param array $data
+     * @param  array        $data
      * @return RequestToken
      */
     public function createRequestToken(array $data = array())
@@ -72,7 +72,7 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * Create session token for user
      *
-     * @param array $data
+     * @param  array        $data
      * @return SessionToken
      */
     public function createSessionToken(array $data = array())
@@ -93,7 +93,7 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * Create session token for guest
      *
-     * @param array $data
+     * @param  array        $data
      * @return SessionToken
      */
     public function createGuestSessionToken(array $data = array())

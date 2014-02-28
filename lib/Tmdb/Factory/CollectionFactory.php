@@ -76,7 +76,7 @@ class CollectionFactory extends AbstractFactory
     {
         $collection = new GenericCollection();
 
-        foreach($data as $item) {
+        foreach ($data as $item) {
             $collection->add(null, $this->create($item));
         }
 
@@ -84,12 +84,13 @@ class CollectionFactory extends AbstractFactory
     }
 
     /**
-     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @param  \Tmdb\Factory\ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
     {
         $this->imageFactory = $imageFactory;
+
         return $this;
     }
 
@@ -102,12 +103,13 @@ class CollectionFactory extends AbstractFactory
     }
 
     /**
-     * @param \Tmdb\Factory\MovieFactory $movieFactory
+     * @param  \Tmdb\Factory\MovieFactory $movieFactory
      * @return $this
      */
     public function setMovieFactory($movieFactory)
     {
         $this->movieFactory = $movieFactory;
+
         return $this;
     }
 

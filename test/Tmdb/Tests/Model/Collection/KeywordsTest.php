@@ -32,7 +32,7 @@ class KeywordsTest extends TestCase
     {
         $this->collection = new Keywords();
 
-        foreach($this->keywords as $keyword) {
+        foreach ($this->keywords as $keyword) {
             $object = $this->hydrate(new Keyword(), $keyword);
 
             $this->collection->addKeyword($object);

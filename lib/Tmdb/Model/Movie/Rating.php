@@ -18,8 +18,8 @@ use Tmdb\Model\AbstractModel;
  * Class Rating
  * @package Tmdb\Model\Movie
  */
-class Rating extends AbstractModel {
-
+class Rating extends AbstractModel
+{
     /**
      * @var float
      */
@@ -30,12 +30,13 @@ class Rating extends AbstractModel {
     );
 
     /**
-     * @param float $value
+     * @param  float $value
      * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+
         return $this;
     }
 

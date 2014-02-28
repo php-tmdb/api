@@ -46,8 +46,8 @@ class HttpClient
     /**
      * Constructor
      *
-     * @param string $baseUrl
-     * @param array $options
+     * @param string          $baseUrl
+     * @param array           $options
      * @param ClientInterface $client
      */
     public function __construct($baseUrl, array $options, ClientInterface $client)
@@ -171,9 +171,7 @@ class HttpClient
 
         try {
             $response = $request->send();
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             // @TODO catch any API errors / timeouts / other specific information from Guzzle?
             throw $e;
         }
@@ -185,12 +183,13 @@ class HttpClient
     }
 
     /**
-     * @param \Guzzle\Http\ClientInterface $client
+     * @param  \Guzzle\Http\ClientInterface $client
      * @return $this
      */
     public function setClient($client)
     {
         $this->client = $client;
+
         return $this;
     }
 

@@ -21,16 +21,18 @@ use Tmdb\Model\Lists;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#lists
  */
-class ListRepository extends AbstractRepository {
+class ListRepository extends AbstractRepository
+{
     /**
      * Get a list by id.
      *
-     * @param string $id
-     * @param array $parameters
-     * @param array $headers
+     * @param  string $id
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return Lists
      */
-    public function load($id, array $parameters = array(), array $headers = array()) {
+    public function load($id, array $parameters = array(), array $headers = array())
+    {
         return $this->getFactory()->create(
             $this->getApi()->getList($id, $parameters, $headers)
         );
@@ -39,10 +41,10 @@ class ListRepository extends AbstractRepository {
     /**
      * Check to see if a movie ID is already added to a list.
      *
-     * @param string $id
-     * @param int $mediaId
-     * @param array $parameters
-     * @param array $headers
+     * @param  string     $id
+     * @param  int        $mediaId
+     * @param  array      $parameters
+     * @param  array      $headers
      * @return ItemStatus
      */
     public function getItemStatus($id, $mediaId, array $parameters = array(), array $headers = array())
@@ -55,10 +57,10 @@ class ListRepository extends AbstractRepository {
     /**
      * This method lets users create a new list. A valid session id is required.
      *
-     * @param string $name
-     * @param string $description
-     * @param array $parameters
-     * @param array $headers
+     * @param  string $name
+     * @param  string $description
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return string The list id
      */
     public function createList($name, $description = null, array $parameters = array(), array $headers = array())
@@ -71,8 +73,8 @@ class ListRepository extends AbstractRepository {
     /**
      * This method lets users add new movies to a list that they created. A valid session id is required.
      *
-     * @param string $id
-     * @param int $mediaId
+     * @param  string     $id
+     * @param  int        $mediaId
      * @return ItemStatus
      */
     public function add($id, $mediaId)
@@ -85,8 +87,8 @@ class ListRepository extends AbstractRepository {
     /**
      * This method lets users delete movies from a list that they created. A valid session id is required.
      *
-     * @param string $id
-     * @param int $mediaId
+     * @param  string     $id
+     * @param  int        $mediaId
      * @return ItemStatus
      */
     public function remove($id, $mediaId)
@@ -99,7 +101,7 @@ class ListRepository extends AbstractRepository {
     /**
      * This method lets users delete a list that they created. A valid session id is required.
      *
-     * @param string $id
+     * @param  string     $id
      * @return ItemStatus
      */
     public function deleteList($id)

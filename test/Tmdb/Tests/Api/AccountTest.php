@@ -77,7 +77,8 @@ class AccountTest extends TestCase
         $api->watchlist('account_id', true);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Account';
     }
 }

@@ -18,7 +18,8 @@ use Tmdb\Model\AbstractModel;
  * Class Result
  * @package Tmdb\Model\Lists
  */
-class Result extends AbstractModel {
+class Result extends AbstractModel
+{
     /**
      * @var int
      */
@@ -38,12 +39,13 @@ class Result extends AbstractModel {
     );
 
     /**
-     * @param int $statusCode
+     * @param  int   $statusCode
      * @return $this
      */
     public function setStatusCode($statusCode)
     {
         $this->statusCode = $statusCode;
+
         return $this;
     }
 
@@ -56,12 +58,13 @@ class Result extends AbstractModel {
     }
 
     /**
-     * @param string $statusMessage
+     * @param  string $statusMessage
      * @return $this
      */
     public function setStatusMessage($statusMessage)
     {
         $this->statusMessage = $statusMessage;
+
         return $this;
     }
 

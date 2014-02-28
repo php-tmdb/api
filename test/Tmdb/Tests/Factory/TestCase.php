@@ -21,6 +21,7 @@ abstract class TestCase extends Base
     protected function getFactory()
     {
         $class = $this->getFactoryClass();
+
         return new $class();
     }
 

@@ -23,8 +23,8 @@ class Account
     /**
      * Get the basic information for an account. You will need to have a valid session id.
      *
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getAccount(array $parameters = array(), array $headers = array())
@@ -35,9 +35,9 @@ class Account
     /**
      * Get the lists that you have created and marked as a favorite.
      *
-     * @param integer $accountId
-     * @param array $parameters
-     * @param array $headers
+     * @param  integer $accountId
+     * @param  array   $parameters
+     * @param  array   $headers
      * @return mixed
      */
     public function getLists($accountId, array $parameters = array(), array $headers = array())
@@ -48,9 +48,9 @@ class Account
     /**
      * Get the list of favorite movies for an account.
      *
-     * @param integer $accountId
-     * @param array $parameters
-     * @param array $headers
+     * @param  integer $accountId
+     * @param  array   $parameters
+     * @param  array   $headers
      * @return mixed
      */
     public function getFavoriteMovies($accountId, array $parameters = array(), array $headers = array())
@@ -61,9 +61,9 @@ class Account
     /**
      * Add or remove a movie to an accounts favorite list.
      *
-     * @param integer $accountId
-     * @param integer $movieId
-     * @param boolean $isFavorite
+     * @param  integer $accountId
+     * @param  integer $movieId
+     * @param  boolean $isFavorite
      * @return mixed
      */
     public function favorite($accountId, $movieId, $isFavorite = true)
@@ -77,9 +77,9 @@ class Account
     /**
      * Get the list of rated movies (and associated rating) for an account.
      *
-     * @param integer $accountId
-     * @param array $parameters
-     * @param array $headers
+     * @param  integer $accountId
+     * @param  array   $parameters
+     * @param  array   $headers
      * @return mixed
      */
     public function getRatedMovies($accountId, array $parameters = array(), array $headers = array())
@@ -90,9 +90,9 @@ class Account
     /**
      * Get the list of movies on an accounts watchlist.
      *
-     * @param integer $accountId
-     * @param array $parameters
-     * @param array $headers
+     * @param  integer $accountId
+     * @param  array   $parameters
+     * @param  array   $headers
      * @return mixed
      */
     public function getMovieWatchlist($accountId, array $parameters = array(), array $headers = array())
@@ -103,9 +103,9 @@ class Account
     /**
      * Add or remove a movie to an accounts watch list.
      *
-     * @param integer $accountId
-     * @param integer $movieId
-     * @param boolean $isOnWatchlist
+     * @param  integer $accountId
+     * @param  integer $movieId
+     * @param  boolean $isOnWatchlist
      * @return mixed
      */
     public function watchlist($accountId, $movieId, $isOnWatchlist = true)

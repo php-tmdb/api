@@ -23,9 +23,9 @@ class Genres
     /**
      * Get the list of genres, and return one by id
      *
-     * @param integer $id
-     * @param array $parameters
-     * @param array $headers
+     * @param  integer $id
+     * @param  array   $parameters
+     * @param  array   $headers
      * @return mixed
      */
     public function getGenre($id, array $parameters = array(), array $headers = array())
@@ -42,8 +42,8 @@ class Genres
     /**
      * Get the list of genres.
      *
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getGenres(array $parameters = array(), array $headers = array())
@@ -55,8 +55,8 @@ class Genres
      * Get the list of movies for a particular genre by id. By default, only movies with 10 or more votes are included.
      *
      * @param $genre_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getMovies($genre_id, array $parameters = array(), array $headers = array())
@@ -65,13 +65,13 @@ class Genres
     }
 
     /**
-     * @param integer $id
-     * @param array $data
+     * @param  integer $id
+     * @param  array   $data
      * @return mixed
      */
     private function extractGenreByIdFromResponse($id, array $data = array())
     {
-        foreach($data as $genre) {
+        foreach ($data as $genre) {
             if ($id == $genre['id'])
                 return $genre;
         }

@@ -33,7 +33,7 @@ class GenreFactoryTest extends TestCase
         $filteredGenres = $collection->filterId(self::GENRE_ID);
 
         // @todo actually get the first
-        foreach($filteredGenres as $filteredGenre) {
+        foreach ($filteredGenres as $filteredGenre) {
             $this->assertInstanceOf('Tmdb\Model\Genre', $filteredGenre);
 
             $this->assertEquals('Action', $filteredGenre->getName());
@@ -55,7 +55,7 @@ class GenreFactoryTest extends TestCase
 
         $filteredGenres = $genres->filterId(self::GENRE_ID);
 
-        foreach($filteredGenres as $filteredGenre) {
+        foreach ($filteredGenres as $filteredGenre) {
             $this->assertEquals('Action', $filteredGenre->getName());
         }
     }
@@ -72,7 +72,6 @@ class GenreFactoryTest extends TestCase
          * @var Genres $genres
          */
         $genres = $factory->createCollection($data['genres']);
-
 
         $this->assertEquals(count($data['genres']), count($genres->getGenres()));
 

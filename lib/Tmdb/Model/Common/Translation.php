@@ -18,8 +18,8 @@ use Tmdb\Model\Filter\LanguageFilter;
  * Class Translation
  * @package Tmdb\Model\Common
  */
-class Translation extends SpokenLanguage implements LanguageFilter {
-
+class Translation extends SpokenLanguage implements LanguageFilter
+{
     private $englishName;
 
     public static $_properties = array(
@@ -29,12 +29,13 @@ class Translation extends SpokenLanguage implements LanguageFilter {
     );
 
     /**
-     * @param string $englishName
+     * @param  string $englishName
      * @return $this
      */
     public function setEnglishName($englishName)
     {
         $this->englishName = $englishName;
+
         return $this;
     }
 

@@ -18,8 +18,8 @@ use Tmdb\Model\Collection\People\PersonInterface;
  * Class CrewMember
  * @package Tmdb\Model\Person
  */
-class CrewMember extends AbstractMember implements PersonInterface {
-
+class CrewMember extends AbstractMember implements PersonInterface
+{
     /**
      * @var string
      */
@@ -39,12 +39,13 @@ class CrewMember extends AbstractMember implements PersonInterface {
     );
 
     /**
-     * @param mixed $department
+     * @param  mixed $department
      * @return $this
      */
     public function setDepartment($department)
     {
         $this->department = $department;
+
         return $this;
     }
 
@@ -57,12 +58,13 @@ class CrewMember extends AbstractMember implements PersonInterface {
     }
 
     /**
-     * @param mixed $job
+     * @param  mixed $job
      * @return $this
      */
     public function setJob($job)
     {
         $this->job = $job;
+
         return $this;
     }
 

@@ -24,8 +24,8 @@ class People
      * Get the general person information for a specific id.
      *
      * @param $person_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getPerson($person_id, array $parameters = array(), array $headers = array())
@@ -37,8 +37,8 @@ class People
      * Get the credits for a specific person id.
      *
      * @param $person_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getCredits($person_id, array $parameters = array(), array $headers = array())
@@ -50,8 +50,8 @@ class People
      * Get the movie credits for a specific person id.
      *
      * @param $person_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getMovieCredits($person_id, array $parameters = array(), array $headers = array())
@@ -66,8 +66,8 @@ class People
      * This will provide details about which episode and/or season the credit is for.
      *
      * @param $person_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getTvCredits($person_id, array $parameters = array(), array $headers = array())
@@ -82,8 +82,8 @@ class People
      * This will provide details about which episode and/or season the credit is for.
      *
      * @param $person_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getCombinedCredits($person_id, array $parameters = array(), array $headers = array())
@@ -95,8 +95,8 @@ class People
      * Get the images for a specific person id.
      *
      * @param $person_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getImages($person_id, array $parameters = array(), array $headers = array())
@@ -114,8 +114,8 @@ class People
      * The language is present on fields that are translatable.
      *
      * @param $person_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getChanges($person_id, array $parameters = array(), array $headers = array())
@@ -127,8 +127,8 @@ class People
      * Get the external ids for a specific person id.
      *
      * @param $person_id
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getExternalIds($person_id, array $parameters = array(), array $headers = array())
@@ -139,8 +139,8 @@ class People
     /**
      * Get the list of popular people on The Movie Database. This list refreshes every day.
      *
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getPopular(array $parameters = array(), array $headers = array())

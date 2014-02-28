@@ -24,8 +24,8 @@ class Search
      * Search for movies by title.
      *
      * @param $query
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function searchMovies($query, array $parameters = array(), array $headers = array())
@@ -39,8 +39,8 @@ class Search
      * Search for collections by name.
      *
      * @param $query
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function searchCollection($query, array $parameters = array(), array $headers = array())
@@ -54,8 +54,8 @@ class Search
      * Search for TV shows by title.
      *
      * @param $query
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function searchTv($query, array $parameters = array(), array $headers = array())
@@ -69,8 +69,8 @@ class Search
      * Search for people by name.
      *
      * @param $query
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function searchPersons($query, array $parameters = array(), array $headers = array())
@@ -84,8 +84,8 @@ class Search
      * Search for lists by name and description.
      *
      * @param $query
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function searchList($query, array $parameters = array(), array $headers = array())
@@ -99,8 +99,8 @@ class Search
      * Search for companies by name.
      *
      * @param $query
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function searchCompany($query, array $parameters = array(), array $headers = array())
@@ -114,8 +114,8 @@ class Search
      * Search for companies by name.
      *
      * @param $query
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function searchKeyword($query, array $parameters = array(), array $headers = array())

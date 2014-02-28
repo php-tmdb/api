@@ -23,7 +23,8 @@ use Tmdb\Model\Filter\LanguageFilter;
  * Class GenericCollection
  * @package Tmdb\Model\Common
  */
-class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable {
+class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
+{
     /** @var array Data associated with the object. */
     protected $data = array();
 
@@ -309,13 +310,13 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable 
     /**
      * Filter by id
      *
-     * @param integer $id
+     * @param  integer           $id
      * @return GenericCollection
      */
     public function filterId($id)
     {
         $result = $this->filter(
-            function($key, $value) use ($id) {
+            function ($key, $value) use ($id) {
                 if ($value->getId() == $id) { return true; }
             }
         );
@@ -330,13 +331,13 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable 
     /**
      * Filter by language ISO 639-1 code.
      *
-     * @param string $language
+     * @param  string            $language
      * @return GenericCollection
      */
     public function filterLanguage($language = 'en')
     {
         return $this->filter(
-            function($key, $value) use ($language) {
+            function ($key, $value) use ($language) {
                 if ($value instanceof LanguageFilter && $value->getIso6391() == $language) { return true; }
             }
         );
@@ -345,13 +346,13 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable 
     /**
      * Filter by country ISO 3166-1 code.
      *
-     * @param string $country
+     * @param  string            $country
      * @return GenericCollection
      */
     public function filterCountry($country = 'US')
     {
         return $this->filter(
-            function($key, $value) use ($country) {
+            function ($key, $value) use ($country) {
                 if ($value instanceof CountryFilter && $value->getIso31661() == $country) { return true; }
             }
         );
@@ -360,13 +361,13 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable 
     /**
      * Filter by adult content
      *
-     * @param boolean $adult
+     * @param  boolean           $adult
      * @return GenericCollection
      */
     public function filterAdult($adult = false)
     {
         return $this->filter(
-            function($key, $value) use ($adult) {
+            function ($key, $value) use ($adult) {
                 if ($value instanceof AdultFilter && $value->getAdult() == $adult) { return true; }
             }
         );

@@ -16,8 +16,8 @@ namespace Tmdb\Model;
  * Class Keyword
  * @package Tmdb\Model
  */
-class Keyword extends AbstractModel {
-
+class Keyword extends AbstractModel
+{
     private $id;
     private $name;
 
@@ -27,12 +27,13 @@ class Keyword extends AbstractModel {
     );
 
     /**
-     * @param mixed $id
+     * @param  mixed $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = (int) $id;
+
         return $this;
     }
 
@@ -45,12 +46,13 @@ class Keyword extends AbstractModel {
     }
 
     /**
-     * @param mixed $name
+     * @param  mixed $name
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 

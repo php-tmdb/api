@@ -13,9 +13,7 @@
 namespace Tmdb\Tests\Factory\Movie;
 
 use Tmdb\Factory\Common\GenericCollectionFactory;
-use Tmdb\Factory\Movie\AlternativeTitleFactory;
 use Tmdb\Model\AbstractModel;
-use Tmdb\Model\Movie\AlternativeTitle;
 use Tmdb\Tests\Factory\TestCase;
 
 class GenericCollectionFactoryTest extends TestCase
@@ -37,7 +35,7 @@ class GenericCollectionFactoryTest extends TestCase
 
         $this->assertEquals(2, count($collection));
 
-        foreach($collection as $item) {
+        foreach ($collection as $item) {
             $this->assertEquals(2, $item->getId());
         }
     }
@@ -48,19 +46,20 @@ class GenericCollectionFactoryTest extends TestCase
     }
 }
 
-class FakeClass extends AbstractModel {
-
+class FakeClass extends AbstractModel
+{
     public static $_properties = array('id');
 
     private $id;
 
     /**
-     * @param mixed $id
+     * @param  mixed $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 

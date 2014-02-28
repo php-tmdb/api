@@ -39,7 +39,7 @@ class ImageTest extends TestCase
     {
         $this->collection = new Images();
 
-        foreach($this->images as $image) {
+        foreach ($this->images as $image) {
             $factory = new ImageFactory();
             $object  = $factory->create($image);
 

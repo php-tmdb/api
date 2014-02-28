@@ -24,8 +24,8 @@ use Tmdb\Model\Tv\Episode;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#tvepisodes
  */
-class TvEpisodeRepository extends AbstractRepository {
-
+class TvEpisodeRepository extends AbstractRepository
+{
     /**
      * Load a tv season with the given identifier
      *
@@ -157,13 +157,13 @@ class TvEpisodeRepository extends AbstractRepository {
         if ($episode instanceof Tv\Episode) {
             $episode = $episode->getId();
         }
-        
+
         $data    = $this->getApi()->getImages($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
         $episode = $this->getFactory()->create(array('images' => $data));
 
         return $episode->getImages();
     }
-    
+
     /**
      * Return the Seasons API Class
      *

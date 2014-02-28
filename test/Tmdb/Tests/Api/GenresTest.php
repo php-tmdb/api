@@ -66,7 +66,7 @@ class GenresTest extends TestCase
 
         $api->expects($this->once())
             ->method('getGenres')
-            ->will($this->returnCallback(function(){
+            ->will($this->returnCallback(function () {
                 return array('genres' => array(array('id' => 28, 'name' => 'Action')));
             }))
         ;
@@ -86,7 +86,7 @@ class GenresTest extends TestCase
 
         $api->expects($this->once())
             ->method('getGenres')
-            ->will($this->returnCallback(function(){
+            ->will($this->returnCallback(function () {
                 return array('genres' => array());
             }))
         ;
@@ -96,7 +96,8 @@ class GenresTest extends TestCase
         $this->assertEquals(null, $genre);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Genres';
     }
 }

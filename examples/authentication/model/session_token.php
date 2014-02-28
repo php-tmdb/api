@@ -10,8 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-require_once('../../../vendor/autoload.php');
-require_once('../../../apikey.php');
+require_once '../../../vendor/autoload.php';
+require_once '../../../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
@@ -22,4 +22,3 @@ $authenticationRepository = new \Tmdb\Repository\AuthenticationRepository($clien
 $sessionToken             = $authenticationRepository->getSessionToken($requestToken);
 
 var_dump($sessionToken);
-

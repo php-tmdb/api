@@ -12,8 +12,8 @@
  */
 header('Content-Type: text/html; charset=utf-8');
 
-require_once('../../../vendor/autoload.php');
-require_once('../../../apikey.php');
+require_once '../../../vendor/autoload.php';
+require_once '../../../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
@@ -33,20 +33,20 @@ echo $movie->getTitle() . "<br/>";
 
 echo "Alternative Titles<br/>";
 
-foreach($movie->getAlternativeTitles()->filterCountry('US') as $title) {
+foreach ($movie->getAlternativeTitles()->filterCountry('US') as $title) {
     printf(" - %s [%s]<br/>", $title->getTitle(), $title->getIso31661());
 }
 
 echo "Cast<br/>";
 
-foreach($movie->getCredits()->getCast() as $person) {
+foreach ($movie->getCredits()->getCast() as $person) {
     echo $imageHelper->getHtml($person->getProfileImage(), 'w45');
     printf(" - %s as %s<br/>", $person->getName(), $person->getCharacter());
 }
 
 echo "Crew<br/>";
 
-foreach($movie->getCredits()->getCrew() as $person) {
+foreach ($movie->getCredits()->getCrew() as $person) {
     echo $imageHelper->getHtml($person->getProfileImage(), 'w45');
     printf(" - %s as %s<br/>", $person->getName(), $person->getJob());
 }
@@ -55,7 +55,7 @@ echo "Images<br/>";
 
 // All collection classes support filtering by closure functions, provided by the generic collection implementation.
 foreach($movie->getImages()->filter(
-        function($key, $value){
+        function ($key, $value) {
             if ($value->getIso6391() == 'en' && $value instanceof \Tmdb\Model\Image\PosterImage) { return true; }
         }
     ) as $image) {
@@ -75,31 +75,31 @@ echo $imageHelper->getHtml($backdrop, 'original', '1024');
 
 echo "Genres<br/>";
 
-foreach($movie->getGenres() as $genre) {
+foreach ($movie->getGenres() as $genre) {
     printf(" - %s<br/>", $genre->getName());
 }
 
 echo "Keywords<br/>";
 
-foreach($movie->getKeywords() as $keyword) {
+foreach ($movie->getKeywords() as $keyword) {
     printf(" - %s [%s]<br/>", $keyword->getName(), $keyword->getId());
 }
 
 echo "Releases<br/>";
 
-foreach($movie->getReleases()->filterCountry('US') as $release) {
+foreach ($movie->getReleases()->filterCountry('US') as $release) {
     printf(" - %s on %s<br/>", $release->getIso31661(), $release->getReleaseDate()->format('d-m-Y'));
 }
 
 echo "Translations<br/>";
 
-foreach($movie->getTranslations()->filterLanguage('en') as $translation) {
+foreach ($movie->getTranslations()->filterLanguage('en') as $translation) {
     printf(" - %s<br/>", $translation->getName());
 }
 
 echo "Trailers<br/>";
 
-foreach($movie->getTrailers() as $trailer) {
+foreach ($movie->getTrailers() as $trailer) {
     printf(" - %s<br/>", $trailer->getUrl());
 }
 
@@ -107,7 +107,7 @@ $popular = $repository->getPopular();
 
 echo "Popular titles<br/>";
 
-foreach($popular as $p) {
+foreach ($popular as $p) {
     printf(" - %s<br/>", $p->getTitle());
 }
 
@@ -115,6 +115,6 @@ $topRated = $repository->getTopRated(array('page' => 3));
 
 echo "Top rated<br/>";
 
-foreach($topRated as $t) {
+foreach ($topRated as $t) {
     printf(" - %s<br/>", $t->getTitle());
 }

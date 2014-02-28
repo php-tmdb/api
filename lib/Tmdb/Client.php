@@ -25,7 +25,8 @@ use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
  * Client wrapper for TMDB
  * @package Tmdb
  */
-class Client {
+class Client
+{
     /**
      * Base API URI
      */
@@ -73,8 +74,8 @@ class Client {
      * Construct our client
      *
      * @param ClientInterface|null $httpClient
-     * @param ApiToken $token
-     * @param boolean $secure
+     * @param ApiToken             $token
+     * @param boolean              $secure
      */
     public function __construct(Token $token, ClientInterface $httpClient = null, $secure = false)
     {
@@ -97,12 +98,13 @@ class Client {
     /**
      * Add the token subscriber
      *
-     * @param Token $token
+     * @param  Token $token
      * @return $this
      */
     public function setToken(Token $token)
     {
         $this->token = $token;
+
         return $this;
     }
 
@@ -313,12 +315,13 @@ class Client {
     }
 
     /**
-     * @param boolean $secure
+     * @param  boolean $secure
      * @return $this
      */
     public function setSecure($secure)
     {
         $this->secure = $secure;
+
         return $this;
     }
 
@@ -331,7 +334,7 @@ class Client {
     }
 
     /**
-     * @param SessionToken $sessionToken
+     * @param  SessionToken $sessionToken
      * @return $this
      */
     public function setSessionToken($sessionToken)
@@ -342,6 +345,7 @@ class Client {
         }
 
         $this->sessionToken = $sessionToken;
+
         return $this;
     }
 

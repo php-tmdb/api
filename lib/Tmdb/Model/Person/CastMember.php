@@ -18,8 +18,8 @@ use Tmdb\Model\Collection\People\PersonInterface;
  * Class CastMember
  * @package Tmdb\Model\Person
  */
-class CastMember extends AbstractMember implements PersonInterface {
-
+class CastMember extends AbstractMember implements PersonInterface
+{
     /**
      * @var string
      */
@@ -45,12 +45,13 @@ class CastMember extends AbstractMember implements PersonInterface {
     );
 
     /**
-     * @param mixed $character
+     * @param  mixed $character
      * @return $this
      */
     public function setCharacter($character)
     {
         $this->character = $character;
+
         return $this;
     }
 
@@ -63,12 +64,13 @@ class CastMember extends AbstractMember implements PersonInterface {
     }
 
     /**
-     * @param int $order
+     * @param  int   $order
      * @return $this
      */
     public function setOrder($order)
     {
         $this->order = (int) $order;
+
         return $this;
     }
 
@@ -81,12 +83,13 @@ class CastMember extends AbstractMember implements PersonInterface {
     }
 
     /**
-     * @param mixed $castId
+     * @param  mixed $castId
      * @return $this
      */
     public function setCastId($castId)
     {
         $this->castId = (int) $castId;
+
         return $this;
     }
 

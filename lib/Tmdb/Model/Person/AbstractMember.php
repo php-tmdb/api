@@ -19,8 +19,8 @@ use Tmdb\Model\Image;
  * Class AbstractMember
  * @package Tmdb\Model\Person
  */
-abstract class AbstractMember extends AbstractModel {
-
+abstract class AbstractMember extends AbstractModel
+{
     /**
      * @var int
      */
@@ -48,12 +48,13 @@ abstract class AbstractMember extends AbstractModel {
     );
 
     /**
-     * @param mixed $id
+     * @param  mixed $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = (int) $id;
+
         return $this;
     }
 
@@ -66,12 +67,13 @@ abstract class AbstractMember extends AbstractModel {
     }
 
     /**
-     * @param mixed $name
+     * @param  mixed $name
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -84,12 +86,13 @@ abstract class AbstractMember extends AbstractModel {
     }
 
     /**
-     * @param mixed $profilePath
+     * @param  mixed $profilePath
      * @return $this
      */
     public function setProfilePath($profilePath)
     {
         $this->profilePath = $profilePath;
+
         return $this;
     }
 
@@ -102,12 +105,13 @@ abstract class AbstractMember extends AbstractModel {
     }
 
     /**
-     * @param Image\ProfileImage $profile
+     * @param  Image\ProfileImage $profile
      * @return $this
      */
     public function setProfileImage($profile = null)
     {
         $this->profile = $profile;
+
         return $this;
     }
 

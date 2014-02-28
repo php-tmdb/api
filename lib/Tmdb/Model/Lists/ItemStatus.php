@@ -18,7 +18,8 @@ use Tmdb\Model\AbstractModel;
  * Class ItemStatus
  * @package Tmdb\Model\Lists
  */
-class ItemStatus extends AbstractModel {
+class ItemStatus extends AbstractModel
+{
     /**
      * @var string
      */
@@ -38,12 +39,13 @@ class ItemStatus extends AbstractModel {
     );
 
     /**
-     * @param string $id
+     * @param  string $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -56,12 +58,13 @@ class ItemStatus extends AbstractModel {
     }
 
     /**
-     * @param boolean $itemPresent
+     * @param  boolean $itemPresent
      * @return $this
      */
     public function setItemPresent($itemPresent)
     {
         $this->itemPresent = $itemPresent;
+
         return $this;
     }
 

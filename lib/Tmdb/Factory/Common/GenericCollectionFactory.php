@@ -21,9 +21,10 @@ use Tmdb\Model\Common\GenericCollection;
  * Class GenericCollectionFactory
  * @package Tmdb\Factory\Common
  */
-class GenericCollectionFactory {
+class GenericCollectionFactory
+{
     /**
-     * @param array $data
+     * @param  array             $data
      * @param $class
      * @return GenericCollection
      */
@@ -33,7 +34,7 @@ class GenericCollectionFactory {
     }
 
     /**
-     * @param array $data
+     * @param  array             $data
      * @param $class
      * @return GenericCollection
      */
@@ -46,7 +47,7 @@ class GenericCollectionFactory {
         $collection     = new GenericCollection();
         $objectHydrator = new ObjectHydrator();
 
-        foreach($data as $item) {
+        foreach ($data as $item) {
             $collection->add(null, $objectHydrator->hydrate(new $class(), $item));
         }
 

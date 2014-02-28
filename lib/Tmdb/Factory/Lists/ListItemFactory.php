@@ -65,7 +65,7 @@ class ListItemFactory extends AbstractFactory
             $data = $data['items'];
         }
 
-        foreach($data as $item) {
+        foreach ($data as $item) {
             $collection->add(null, $this->create($item));
         }
 
@@ -73,12 +73,13 @@ class ListItemFactory extends AbstractFactory
     }
 
     /**
-     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @param  \Tmdb\Factory\ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
     {
         $this->imageFactory = $imageFactory;
+
         return $this;
     }
 

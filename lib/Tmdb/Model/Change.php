@@ -16,7 +16,8 @@ namespace Tmdb\Model;
  * Class Change
  * @package Tmdb\Model
  */
-class Change extends AbstractModel {
+class Change extends AbstractModel
+{
     /**
      * @var integer
      */
@@ -36,12 +37,13 @@ class Change extends AbstractModel {
     );
 
     /**
-     * @param boolean $adult
+     * @param  boolean $adult
      * @return $this
      */
     public function setAdult($adult)
     {
         $this->adult = (bool) $adult;
+
         return $this;
     }
 
@@ -54,12 +56,13 @@ class Change extends AbstractModel {
     }
 
     /**
-     * @param int $id
+     * @param  int   $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = (int) $id;
+
         return $this;
     }
 

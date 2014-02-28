@@ -23,8 +23,8 @@ class Discover
     /**
      * Discover movies by different types of data like average rating, number of votes, genres and certifications.
      *
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function discoverMovies(array $parameters = array(), array $headers = array())
@@ -35,8 +35,8 @@ class Discover
     /**
      * Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.
      *
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function discoverTv(array $parameters = array(), array $headers = array())

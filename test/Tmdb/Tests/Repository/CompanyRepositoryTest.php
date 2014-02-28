@@ -36,7 +36,6 @@ class CompanyRepositoryTest extends TestCase
         $repository->getMovies(self::COMPANY_ID);
     }
 
-
     /**
      * @test
      */
@@ -51,7 +50,7 @@ class CompanyRepositoryTest extends TestCase
             ))
         );
 
-        foreach($collection as $movie) {
+        foreach ($collection as $movie) {
             $this->assertInstanceOf('Tmdb\Model\Movie', $movie);
         }
     }

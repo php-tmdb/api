@@ -25,8 +25,8 @@ class TvSeason
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getSeason($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
@@ -39,8 +39,8 @@ class TvSeason
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getCredits($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
@@ -53,8 +53,8 @@ class TvSeason
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getExternalIds($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
@@ -67,8 +67,8 @@ class TvSeason
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getImages($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
