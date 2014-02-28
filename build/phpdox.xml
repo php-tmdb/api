@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://phpdox.net/config">
-    <project name="php-tmdb-api" source="${basedir}/lib" workdir="${basedir}/docs/xml">
+    <project name="php-tmdb-api" source="${basedir}/../lib" workdir="${basedir}/phpdox">
         <collector backend="parser" />
 
-        <generator output="${basedir}/build/api">
-            <enrich base="${basedir}/build">
+        <generator output="${basedir}/api">
+            <enrich base="${basedir}">
                 <source type="build" />
 
                 <source type="git">
-                    <git binary="/usr/bin/git" />
                     <history enabled="true" limit="25" cache="${phpDox.project.workdir}/gitlog.xml" />
                 </source>
 
@@ -24,6 +23,9 @@
                     <file name="logs/pmd.xml" />
                 </source>
 
+                <source type="phpunit">
+                    <coverage path="coverage/xml" />
+                </source>
             </enrich>
 
             <build engine="html" output="html"/>
