@@ -16,9 +16,9 @@ require_once '../../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$client->setCaching(true);
+$client->setCaching(true, '/tmp/php-tmdb-api');
 
 $repository = new \Tmdb\Repository\MovieRepository($client);
 $movie      = $repository->load(87421);
 
-var_dump($movie);
+echo $movie->getTitle();

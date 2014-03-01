@@ -199,4 +199,42 @@ class HttpClient implements HttpClientInterface
     {
         return $this->client;
     }
+
+    /**
+     * @param  \Guzzle\Http\Message\Request $lastRequest
+     * @return $this
+     */
+    public function setLastRequest($lastRequest)
+    {
+        $this->lastRequest = $lastRequest;
+
+        return $this;
+    }
+
+    /**
+     * @return \Guzzle\Http\Message\Request
+     */
+    public function getLastRequest()
+    {
+        return $this->lastRequest;
+    }
+
+    /**
+     * @param  \Guzzle\Http\Message\Response $lastResponse
+     * @return $this
+     */
+    public function setLastResponse($lastResponse)
+    {
+        $this->lastResponse = $lastResponse;
+
+        return $this;
+    }
+
+    /**
+     * @return \Guzzle\Http\Message\Response
+     */
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
+    }
 }
