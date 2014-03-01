@@ -96,7 +96,7 @@ class Client
      * @param ApiToken             $token
      * @param boolean              $secure
      */
-    public function __construct(Token $token, ClientInterface $httpClient = null, $secure = false)
+    public function __construct(ApiToken $token, ClientInterface $httpClient = null, $secure = false)
     {
         $this->setToken($token);
         $this->setSecure($secure);
@@ -118,16 +118,18 @@ class Client
             $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
             $httpClient->addSubscriber($acceptJsonHeaderPlugin);
 
-            if ($this->getToken() instanceof Token) {
+            if ($this->getToken() instanceof ApiToken) {
                 $apiTokenPlugin = new ApiTokenPlugin($this->getToken());
                 $httpClient->addSubscriber($apiTokenPlugin);
             }
 
             if ($this->cacheEnabled && !empty($this->cachePath)) {
                 if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
+                    /** @codeCoverageIgnoreStart */
                     throw new RuntimeException(
                         'Could not find the doctrine cache library, have you added doctrone-cache to your composer.json?'
                     );
+                    /** @codeCoverageIgnoreEnd */
                 }
 
                 $cachePlugin = new CachePlugin(array(
@@ -144,7 +146,7 @@ class Client
 
             if ($this->getSessionToken() instanceof SessionToken) {
                 $sessionTokenPlugin = new SessionTokenPlugin($this->getSessionToken());
-                $httpClient->getClient()->addSubscriber($sessionTokenPlugin);
+                $httpClient->addSubscriber($sessionTokenPlugin);
             }
         }
 
@@ -405,12 +407,9 @@ class Client
      */
     public function setSessionToken($sessionToken)
     {
-        if ($this->httpClient->getClient() instanceof \Guzzle\Common\HasDispatcherInterface) {
-            $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
-            $this->httpClient->getClient()->addSubscriber($sessionTokenPlugin);
-        }
-
         $this->sessionToken = $sessionToken;
+
+        $this->constructHttpClient();
 
         return $this;
     }
