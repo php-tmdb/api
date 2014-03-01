@@ -51,7 +51,7 @@ class Media extends AbstractModel
      */
     private $seasons;
 
-    public static $_properties = array(
+    public static $properties = array(
         'id',
         'name',
         'original_name',

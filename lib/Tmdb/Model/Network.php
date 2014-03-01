@@ -21,7 +21,7 @@ class Network extends AbstractModel
     private $id;
     private $name;
 
-    public static $_properties = array(
+    public static $properties = array(
         'id',
         'name',
     );

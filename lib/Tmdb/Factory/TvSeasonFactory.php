@@ -70,11 +70,21 @@ class TvSeasonFactory extends AbstractFactory
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits'])) {
-                $tvSeason->getCredits()->setCast($this->getCastFactory()->createCollection($data['credits']['cast'], new CastMember()));
+                $tvSeason->getCredits()->setCast(
+                    $this->getCastFactory()->createCollection(
+                        $data['credits']['cast'],
+                        new CastMember()
+                    )
+                );
             }
 
             if (array_key_exists('crew', $data['credits'])) {
-                $tvSeason->getCredits()->setCrew($this->getCrewFactory()->createCollection($data['credits']['crew'], new CrewMember()));
+                $tvSeason->getCredits()->setCrew(
+                    $this->getCrewFactory()->createCollection(
+                        $data['credits']['crew'],
+                        new CrewMember()
+                    )
+                );
             }
         }
 

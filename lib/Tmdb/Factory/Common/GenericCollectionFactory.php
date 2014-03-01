@@ -28,7 +28,7 @@ class GenericCollectionFactory
      * @param $class
      * @return GenericCollection
      */
-    public function create(array $data = array(), $class)
+    public function create(array $data, $class)
     {
         return $this->createCollection($data, $class);
     }
@@ -38,7 +38,7 @@ class GenericCollectionFactory
      * @param $class
      * @return GenericCollection
      */
-    public function createCollection(array $data = array(), $class)
+    public function createCollection(array $data, $class)
     {
         if (is_object($class)) {
             $class = get_class($class);

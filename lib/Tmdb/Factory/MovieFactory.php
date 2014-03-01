@@ -139,14 +139,20 @@ class MovieFactory extends AbstractFactory
         }
 
         /**
-         * @TODO actually implement more providers? ( Can't seem to find any quicktime related trailers anyways? ). For now KISS
+         * @TODO actually implement more providers?
+         * ( Can't seem to find any quicktime related trailers anyways? ). For now KISS
          */
         if (array_key_exists('trailers', $data) && array_key_exists('youtube', $data['trailers'])) {
             $movie->setTrailers($this->createGenericCollection($data['trailers']['youtube'], new Youtube()));
         }
 
         if (array_key_exists('translations', $data) && array_key_exists('translations', $data['translations'])) {
-            $movie->setTranslations($this->createGenericCollection($data['translations']['translations'], new Translation()));
+            $movie->setTranslations(
+                $this->createGenericCollection(
+                    $data['translations']['translations'],
+                    new Translation()
+                )
+            );
         }
 
         if (array_key_exists('similar_movies', $data)) {

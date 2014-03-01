@@ -24,7 +24,8 @@ class CertificationRepository extends AbstractRepository
     /**
      * Get the list of supported certifications for movies.
      *
-     * These can be used in conjunction with the certification_country and certification.lte parameters when using discover.
+     * These can be used in conjunction with the certification_country
+     * and certification.lte parameters when using discover.
      *
      * @param $parameters
      * @param $headers

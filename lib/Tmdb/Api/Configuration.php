@@ -18,8 +18,7 @@ namespace Tmdb\Api;
  *
  * @see http://docs.themoviedb.apiary.io/#configuration
  */
-class Configuration
-    extends AbstractApi
+class Configuration extends AbstractApi
 {
     /**
      * Get the system wide configuration information.

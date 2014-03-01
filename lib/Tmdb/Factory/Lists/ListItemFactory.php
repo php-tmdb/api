@@ -44,11 +44,15 @@ class ListItemFactory extends AbstractFactory
 
         /** Images */
         if (array_key_exists('backdrop_path', $data)) {
-            $listItem->setBackdropImage($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
+            $listItem->setBackdropImage(
+                $this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path')
+            );
         }
 
         if (array_key_exists('poster_path', $data)) {
-            $listItem->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
+            $listItem->setPosterImage(
+                $this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path')
+            );
         }
 
         return $this->hydrate($listItem, $data);

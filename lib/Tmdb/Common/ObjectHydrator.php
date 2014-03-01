@@ -36,7 +36,7 @@ class ObjectHydrator
         if (!empty($data)) {
             foreach ($data as $k => $v) {
 
-                if (in_array($k, $object::$_properties)) {
+                if (in_array($k, $object::$properties)) {
 
                     $method = $this->camelize(
                         sprintf('set_%s', $k)
@@ -69,10 +69,15 @@ class ObjectHydrator
     public function camelize($candidate)
     {
         return lcfirst(
-            implode('',
-                array_map('ucfirst',
-                    array_map('strtolower',
-                        explode('_', $candidate
+            implode(
+                '',
+                array_map(
+                    'ucfirst',
+                    array_map(
+                        'strtolower',
+                        explode(
+                            '_',
+                            $candidate
                         )
                     )
                 )

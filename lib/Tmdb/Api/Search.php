@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#search
  */
-class Search
-    extends AbstractApi
+class Search extends AbstractApi
 {
     /**
      * Search for movies by title.

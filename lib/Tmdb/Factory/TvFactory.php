@@ -85,11 +85,21 @@ class TvFactory extends AbstractFactory
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits'])) {
-                $tvShow->getCredits()->setCast($this->getCastFactory()->createCollection($data['credits']['cast'], new CastMember()));
+                $tvShow->getCredits()->setCast(
+                    $this->getCastFactory()->createCollection(
+                        $data['credits']['cast'],
+                        new CastMember()
+                    )
+                );
             }
 
             if (array_key_exists('crew', $data['credits'])) {
-                $tvShow->getCredits()->setCrew($this->getCrewFactory()->createCollection($data['credits']['crew'], new CrewMember()));
+                $tvShow->getCredits()->setCrew(
+                    $this->getCrewFactory()->createCollection(
+                        $data['credits']['crew'],
+                        new CrewMember()
+                    )
+                );
             }
         }
 
@@ -107,20 +117,28 @@ class TvFactory extends AbstractFactory
 
         /** Images */
         if (array_key_exists('images', $data)) {
-            $tvShow->setImages($this->getImageFactory()->createCollectionFromTv($data['images']));
+            $tvShow->setImages(
+                $this->getImageFactory()->createCollectionFromTv($data['images'])
+            );
         }
 
         if (array_key_exists('backdrop_path', $data)) {
-            $tvShow->setBackdropImage($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
+            $tvShow->setBackdropImage(
+                $this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path')
+            );
         }
 
         if (array_key_exists('poster_path', $data)) {
-            $tvShow->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
+            $tvShow->setPosterImage(
+                $this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path')
+            );
         }
 
         /** Translations */
         if (array_key_exists('translations', $data) && null !== $data['translations']) {
-            $tvShow->setTranslations($this->createGenericCollection($data['translations']['translations'], new Translation()));
+            $tvShow->setTranslations(
+                $this->createGenericCollection($data['translations']['translations'], new Translation())
+            );
         }
 
         /** Seasons */

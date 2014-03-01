@@ -68,7 +68,7 @@ class Collection extends AbstractModel
      */
     private $poster;
 
-    public static $_properties = array(
+    public static $properties = array(
         'backdrop_path',
         'id',
         'name',

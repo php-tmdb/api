@@ -62,7 +62,9 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) {
-                if ($value instanceof ImageFilter && $value instanceof Image\PosterImage) { return true; }
+                if ($value instanceof ImageFilter && $value instanceof Image\PosterImage) {
+                    return true;
+                }
             }
         );
     }
@@ -76,7 +78,9 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) {
-                if ($value instanceof ImageFilter && $value instanceof Image\BackdropImage) { return true; }
+                if ($value instanceof ImageFilter && $value instanceof Image\BackdropImage) {
+                    return true;
+                }
             }
         );
     }
@@ -90,7 +94,9 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) {
-                if ($value instanceof ImageFilter && $value instanceof Image\ProfileImage) { return true; }
+                if ($value instanceof ImageFilter && $value instanceof Image\ProfileImage) {
+                    return true;
+                }
             }
         );
     }
@@ -104,7 +110,9 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) {
-                if ($value instanceof ImageFilter && $value instanceof Image\StillImage) { return true; }
+                if ($value instanceof ImageFilter && $value instanceof Image\StillImage) {
+                    return true;
+                }
             }
         );
     }
@@ -119,7 +127,9 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($width) {
-                if ($value instanceof ImageFilter && $value->getWidth() <= $width && $value->getWidth() !== null) { return true; }
+                if ($value instanceof ImageFilter && $value->getWidth() <= $width && $value->getWidth() !== null) {
+                    return true;
+                }
             }
         );
     }
@@ -134,7 +144,9 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($width) {
-                if ($value instanceof ImageFilter && $value->getWidth() >= $width && $value->getWidth() !== null) { return true; }
+                if ($value instanceof ImageFilter && $value->getWidth() >= $width && $value->getWidth() !== null) {
+                    return true;
+                }
             }
         );
     }
@@ -149,7 +161,11 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($height) {
-                if ($value instanceof ImageFilter && $value->getHeight() <= $height && $value->getHeight() !== null) { return true; }
+                if ($value instanceof ImageFilter &&
+                    $value->getHeight() <= $height && $value->getHeight() !== null
+                ) {
+                    return true;
+                }
             }
         );
     }
@@ -164,7 +180,11 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($height) {
-                if ($value instanceof ImageFilter && $value->getHeight() >= $height && $value->getHeight() !== null) { return true; }
+                if ($value instanceof ImageFilter &&
+                    $value->getHeight() >= $height &&
+                    $value->getHeight() !== null) {
+                    return true;
+                }
             }
         );
     }

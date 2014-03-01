@@ -27,7 +27,7 @@ class Youtube extends AbstractTrailer
     private $source;
     private $type;
 
-    public static $_properties = array(
+    public static $properties = array(
         'name',
         'size',
         'source',

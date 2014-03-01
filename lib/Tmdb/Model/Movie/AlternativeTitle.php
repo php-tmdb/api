@@ -24,7 +24,7 @@ class AlternativeTitle extends AbstractModel implements CountryFilter
     private $iso31661;
     private $title;
 
-    public static $_properties = array(
+    public static $properties = array(
         'iso_3166_1',
         'title',
     );

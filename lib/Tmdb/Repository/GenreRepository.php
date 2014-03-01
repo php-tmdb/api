@@ -51,7 +51,8 @@ class GenreRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of movies for a particular genre by id. By default, only movies with 10 or more votes are included.
+     * Get the list of movies for a particular genre by id.
+     * By default, only movies with 10 or more votes are included.
      *
      * @param $id
      * @param  array   $parameters

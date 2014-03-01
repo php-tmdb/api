@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * http://docs.themoviedb.apiary.io/#changes
  */
-class Changes
-    extends AbstractApi
+class Changes extends AbstractApi
 {
     /**
      * Get a list of movie ids that have been edited.

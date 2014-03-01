@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#tv
  */
-class Tv
-    extends AbstractApi
+class Tv extends AbstractApi
 {
     /**
      * Get the primary information about a TV series by id.
@@ -114,5 +113,4 @@ class Tv
     {
         $this->get('tv/' . $tvshow_id . '/translations', $parameters, $headers);
     }
-
 }

@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#tvseasons
  */
-class TvSeason
-    extends AbstractApi
+class TvSeason extends AbstractApi
 {
     /**
      * Get the primary information about a TV season by its season number.

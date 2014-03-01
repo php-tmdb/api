@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#keywords
  */
-class Keywords
-    extends AbstractApi
+class Keywords extends AbstractApi
 {
     /**
      * Get the basic information for a specific keyword id.

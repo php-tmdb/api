@@ -26,7 +26,8 @@ class TvRepository extends AbstractRepository
     /**
      * Load a tv with the given identifier
      *
-     * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
+     * If you want to optimize the result set/bandwidth you should
+     * define the AppendToResponse parameter
      *
      * @param  integer                        $id
      * @param $parameters
@@ -152,7 +153,8 @@ class TvRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes. This list refreshes every day.
+     * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes.
+     * This list refreshes every day.
      *
      * @param  array $options
      * @return Tv[]
@@ -165,7 +167,8 @@ class TvRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes. This list refreshes every day.
+     * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes.
+     * This list refreshes every day.
      *
      * @param  array $options
      * @return Tv[]

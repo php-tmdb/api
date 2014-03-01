@@ -22,8 +22,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  * Class HttpClient
  * @package Tmdb\HttpClient
  */
-class HttpClient
-    implements HttpClientInterface
+class HttpClient implements HttpClientInterface
 {
     /**
      * @var \Guzzle\Http\ClientInterface

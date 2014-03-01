@@ -46,7 +46,7 @@ class TestModel extends \Tmdb\Model\AbstractModel
     private $id;
     private $name;
 
-    static $_properties = array('id', 'name');
+    static $properties = array('id', 'name');
 
     /**
      * @param  mixed $id
@@ -89,5 +89,5 @@ class TestModel extends \Tmdb\Model\AbstractModel
 
 class FailingTestModel extends \Tmdb\Model\AbstractModel
 {
-    static $_properties = array('lastname');
+    static $properties = array('lastname');
 }

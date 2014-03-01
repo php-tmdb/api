@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#movies
  */
-class Movies
-    extends AbstractApi
+class Movies extends AbstractApi
 {
     /**
      * Get the basic movie information for a specific movie id.
@@ -189,7 +188,8 @@ class Movies
     }
 
     /**
-     * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
+     * Get the list of upcoming movies. This list refreshes every day.
+     * The maximum number of items this list will include is 100.
      *
      * @param  array $parameters
      * @param  array $headers
@@ -201,7 +201,8 @@ class Movies
     }
 
     /**
-     * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
+     * Get the list of movies playing in theatres. This list refreshes every day.
+     * The maximum number of items this list will include is 100.
      *
      * @param  array $parameters
      * @param  array $headers
@@ -213,7 +214,8 @@ class Movies
     }
 
     /**
-     * Get the list of popular movies on The Movie Database. This list refreshes every day.
+     * Get the list of popular movies on The Movie Database.
+     * This list refreshes every day.
      *
      * @param  array $parameters
      * @param  array $headers
@@ -225,7 +227,8 @@ class Movies
     }
 
     /**
-     * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
+     * Get the list of top rated movies. By default, this list will only include
+     * movies that have 10 or more votes. This list refreshes every day.
      *
      * @param  array $parameters
      * @param  array $headers
@@ -237,7 +240,8 @@ class Movies
     }
 
     /**
-     * This method lets users get the status of whether or not the movie has been rated or added to their favourite or watch lists.
+     * This method lets users get the status of whether or not the movie has been rated
+     * or added to their favourite or watch lists.
      *
      * A valid session id is required.
      *

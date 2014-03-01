@@ -220,7 +220,7 @@ class Movie extends AbstractModel
      *
      * @var array
      */
-    public static $_properties = array(
+    public static $properties = array(
         'adult',
         'backdrop_path',
         'belongs_to_collection',

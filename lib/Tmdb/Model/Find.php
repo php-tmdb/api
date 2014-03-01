@@ -92,5 +92,4 @@ class Find extends AbstractModel
     {
         return $this->tvResults;
     }
-
 }

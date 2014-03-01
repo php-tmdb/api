@@ -71,7 +71,8 @@ class ListRepository extends AbstractRepository
     }
 
     /**
-     * This method lets users add new movies to a list that they created. A valid session id is required.
+     * This method lets users add new movies to a list that they created.
+     * A valid session id is required.
      *
      * @param  string     $id
      * @param  int        $mediaId
@@ -85,7 +86,8 @@ class ListRepository extends AbstractRepository
     }
 
     /**
-     * This method lets users delete movies from a list that they created. A valid session id is required.
+     * This method lets users delete movies from a list that they created.
+     * A valid session id is required.
      *
      * @param  string     $id
      * @param  int        $mediaId
@@ -99,7 +101,8 @@ class ListRepository extends AbstractRepository
     }
 
     /**
-     * This method lets users delete a list that they created. A valid session id is required.
+     * This method lets users delete a list that they created.
+     * A valid session id is required.
      *
      * @param  string     $id
      * @return ItemStatus

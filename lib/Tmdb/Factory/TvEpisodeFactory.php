@@ -64,16 +64,23 @@ class TvEpisodeFactory extends AbstractFactory
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits'])) {
-                $tvEpisode->getCredits()->setCast(
-                    $this->getCastFactory()->createCollection($data['credits']['cast'],
-                        new CastMember())
-                );
+                $tvEpisode
+                    ->getCredits()
+                    ->setCast(
+                        $this->getCastFactory()
+                            ->createCollection(
+                                $data['credits']['cast'],
+                                new CastMember()
+                            )
+                    );
             }
 
             if (array_key_exists('crew', $data['credits'])) {
                 $tvEpisode->getCredits()->setCrew(
-                    $this->getCrewFactory()->createCollection($data['credits']['crew'],
-                    new CrewMember())
+                    $this->getCrewFactory()->createCollection(
+                        $data['credits']['crew'],
+                        new CrewMember()
+                    )
                 );
             }
         }

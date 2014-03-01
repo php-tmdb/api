@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#collections
  */
-class Collections
-    extends AbstractApi
+class Collections extends AbstractApi
 {
     /**
      * Get the basic collection information for a specific collection id.

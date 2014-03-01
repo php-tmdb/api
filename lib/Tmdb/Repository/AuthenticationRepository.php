@@ -56,11 +56,14 @@ class AuthenticationRepository extends AbstractRepository
      * This method is used to generate a guest session id.
      *
      * A guest session can be used to rate movies without having a registered TMDb user account.
-     * You should only generate a single guest session per user (or device) as you will be able to
-     * attach the ratings to a TMDb user account in the future.
+     * You should only generate a single guest session per user (or device)
+     * as you will be able to attach the ratings to a TMDb user account in the future.
      *
-     * There is also IP limits in place so you should always make sure it's the end user doing the guest session actions.
-     * If a guest session is not used for the first time within 24 hours, it will be automatically discarded.
+     * There is also IP limits in place so you should always make sure it's
+     * the end user doing the guest session actions.
+     *
+     * If a guest session is not used for the first time within 24 hours,
+     * it will be automatically discarded.
      *
      * @return RequestToken
      */

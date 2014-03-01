@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#lists
  */
-class Lists
-    extends AbstractApi
+class Lists extends AbstractApi
 {
     /**
      * Get a list by id.

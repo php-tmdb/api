@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#reviews
  */
-class Reviews
-    extends AbstractApi
+class Reviews extends AbstractApi
 {
     /**
      * Get the full details of a review by ID.

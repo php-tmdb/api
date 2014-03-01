@@ -24,7 +24,8 @@ use Tmdb\Model\Movie;
 class AccountRepository extends AbstractRepository
 {
     /**
-     * Get the basic information for an account. You will need to have a valid session id.
+     * Get the basic information for an account.
+     * You will need to have a valid session id.
      *
      * @return null|\Tmdb\Model\AbstractModel
      */

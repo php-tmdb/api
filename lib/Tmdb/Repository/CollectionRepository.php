@@ -37,7 +37,8 @@ class CollectionRepository extends AbstractRepository
     /**
      * Load a collection with the given identifier
      *
-     * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
+     * If you want to optimize the result set/bandwidth you
+     * should define the AppendToResponse parameter
      *
      * @param $id
      * @param $parameters

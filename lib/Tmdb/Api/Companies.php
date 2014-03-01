@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#companies
  */
-class Companies
-    extends AbstractApi
+class Companies extends AbstractApi
 {
     /**
      * This method is used to retrieve all of the basic information about a company.

@@ -19,8 +19,7 @@ use Tmdb\Client;
  * Class AbstractApi
  * @package Tmdb\Api
  */
-abstract class AbstractApi
-    implements ApiInterface
+abstract class AbstractApi implements ApiInterface
 {
     /**
      * The client

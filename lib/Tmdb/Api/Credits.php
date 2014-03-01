@@ -17,12 +17,14 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#credits
  */
-class Credits
-    extends AbstractApi
+class Credits extends AbstractApi
 {
     /**
-     * Get the detailed information about a particular credit record. This is currently only supported with the new credit model found in TV.
-     * These ids can be found from any TV credit response as well as the tv_credits and combined_credits methods for people.
+     * Get the detailed information about a particular credit record.
+     *
+     * This is currently only supported with the new credit model found in TV.
+     * These ids can be found from any TV credit response as well as
+     * the tv_credits and combined_credits methods for people.
      *
      * The episodes object returns a list of episodes and are generally going to be guest stars.
      * The season array will return a list of season numbers.

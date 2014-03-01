@@ -38,7 +38,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     protected $id;
     protected $type;
 
-    public static $_properties = array(
+    public static $properties = array(
         'file_path',
         'width',
         'height',
@@ -48,7 +48,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
         'vote_count'
     );
 
-    public static $_formats = array(
+    public static $formats = array(
         'posters'   => self::FORMAT_POSTER,
         'backdrops' => self::FORMAT_BACKDROP,
         'profiles'  => self::FORMAT_PROFILE,
@@ -64,8 +64,8 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
      */
     public static function getTypeFromCollectionName($name)
     {
-        if (array_key_exists($name, self::$_formats)) {
-            return self::$_formats[$name];
+        if (array_key_exists($name, self::$formats)) {
+            return self::$formats[$name];
         }
     }
 

@@ -73,7 +73,9 @@ class PeopleRepository extends AbstractRepository
     /**
      * Get the TV credits for a specific person id.
      *
-     * To get the expanded details for each record, call the /credit method with the provided credit_id.
+     * To get the expanded details for each record,
+     * call the /credit method with the provided credit_id.
+     *
      * This will provide details about which episode and/or season the credit is for.
      *
      * @param $id
@@ -92,7 +94,9 @@ class PeopleRepository extends AbstractRepository
     /**
      * Get the combined (movie and TV) credits for a specific person id.
      *
-     * To get the expanded details for each TV record, call the /credit method with the provided credit_id.
+     * To get the expanded details for each TV record,
+     * call the /credit method with the provided credit_id.
+     *
      * This will provide details about which episode and/or season the credit is for.
      *
      * @param $id

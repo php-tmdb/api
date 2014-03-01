@@ -30,7 +30,7 @@ class Change extends AbstractModel
      */
     private $items;
 
-    public static $_properties = array(
+    public static $properties = array(
         'key',
     );
 
@@ -76,5 +76,4 @@ class Change extends AbstractModel
     {
         return $this->key;
     }
-
 }

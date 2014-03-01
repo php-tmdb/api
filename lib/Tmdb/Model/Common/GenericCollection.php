@@ -317,7 +317,9 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
     {
         $result = $this->filter(
             function ($key, $value) use ($id) {
-                if ($value->getId() == $id) { return true; }
+                if ($value->getId() == $id) {
+                    return true;
+                }
             }
         );
 
@@ -338,7 +340,9 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
     {
         return $this->filter(
             function ($key, $value) use ($language) {
-                if ($value instanceof LanguageFilter && $value->getIso6391() == $language) { return true; }
+                if ($value instanceof LanguageFilter && $value->getIso6391() == $language) {
+                    return true;
+                }
             }
         );
     }
@@ -353,7 +357,9 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
     {
         return $this->filter(
             function ($key, $value) use ($country) {
-                if ($value instanceof CountryFilter && $value->getIso31661() == $country) { return true; }
+                if ($value instanceof CountryFilter && $value->getIso31661() == $country) {
+                    return true;
+                }
             }
         );
     }
@@ -368,7 +374,9 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
     {
         return $this->filter(
             function ($key, $value) use ($adult) {
-                if ($value instanceof AdultFilter && $value->getAdult() == $adult) { return true; }
+                if ($value instanceof AdultFilter && $value->getAdult() == $adult) {
+                    return true;
+                }
             }
         );
     }

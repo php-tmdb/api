@@ -101,7 +101,7 @@ class PeopleFactory extends AbstractFactory
      * @param array  $data
      * @param Person $person
      */
-    protected function applyCredits(array $data = array(), Person $person)
+    protected function applyCredits(array $data, Person $person)
     {
         $hydrator = new ObjectHydrator();
         $types    = array('movie_credits', 'tv_credits', 'combined_credits');

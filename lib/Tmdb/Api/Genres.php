@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#genres
  */
-class Genres
-    extends AbstractApi
+class Genres extends AbstractApi
 {
     /**
      * Get the list of genres, and return one by id
@@ -72,8 +71,9 @@ class Genres
     private function extractGenreByIdFromResponse($id, array $data = array())
     {
         foreach ($data as $genre) {
-            if ($id == $genre['id'])
+            if ($id == $genre['id']) {
                 return $genre;
+            }
         }
 
         return null;

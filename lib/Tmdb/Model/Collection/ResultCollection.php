@@ -38,7 +38,7 @@ class ResultCollection extends GenericCollection
     /**
      * @var array
      */
-    public static $_properties = array(
+    public static $properties = array(
         'page',
         'total_pages',
         'total_results'

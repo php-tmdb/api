@@ -132,5 +132,4 @@ class FindFactory extends AbstractFactory
     {
         return $this->tvFactory;
     }
-
 }

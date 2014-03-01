@@ -27,7 +27,7 @@ class ExternalIds extends AbstractModel
     private $tvdbId;
     private $tvrageId;
 
-    public static $_properties = array(
+    public static $properties = array(
         'imdb_id',
         'freebase_id',
         'freebase_mid',

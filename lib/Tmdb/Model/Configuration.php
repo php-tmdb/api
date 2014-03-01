@@ -28,7 +28,7 @@ class Configuration extends AbstractModel
      */
     private $change_keys;
 
-    public static $_properties = array(
+    public static $properties = array(
         'images',
         'change_keys',
     );

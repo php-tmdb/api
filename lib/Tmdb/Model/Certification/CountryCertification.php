@@ -35,7 +35,7 @@ class CountryCertification extends AbstractModel
      */
     private $order;
 
-    public static $_properties = array(
+    public static $properties = array(
         'certification',
         'meaning',
         'order',
@@ -97,5 +97,4 @@ class CountryCertification extends AbstractModel
     {
         return $this->order;
     }
-
 }

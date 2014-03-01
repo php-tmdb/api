@@ -71,7 +71,7 @@ class Lists extends AbstractModel
      */
     private $posterImage;
 
-    public static $_properties = array(
+    public static $properties = array(
         'created_by',
         'description',
         'favorite_count',

@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#account
  */
-class Account
-    extends AbstractApi
+class Account extends AbstractApi
 {
     /**
      * Get the basic information for an account. You will need to have a valid session id.

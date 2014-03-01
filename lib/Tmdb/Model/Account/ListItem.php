@@ -69,7 +69,7 @@ class ListItem extends AbstractModel
     /**
      * @var array
      */
-    public static $_properties = array(
+    public static $properties = array(
         'description',
         'favorite_count',
         'id',

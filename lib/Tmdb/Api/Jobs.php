@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#jobs
  */
-class Jobs
-    extends AbstractApi
+class Jobs extends AbstractApi
 {
     /**
      * Get a list of valid jobs.

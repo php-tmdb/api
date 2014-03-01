@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#tvepisodes
  */
-class TvEpisode
-    extends AbstractApi
+class TvEpisode extends AbstractApi
 {
     /**
      * Get the primary information about a TV episode by combination of a season and episode number.
@@ -30,9 +29,23 @@ class TvEpisode
      * @param  array $headers
      * @return mixed
      */
-    public function getEpisode($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
-    {
-        return $this->get(sprintf('tv/%s/season/%s/episode/%s', $tvshow_id, $season_number,$episode_number), $parameters, $headers);
+    public function getEpisode(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        array $parameters = array(),
+        array $headers = array()
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            ),
+            $parameters,
+            $headers
+        );
     }
 
     /**
@@ -45,9 +58,23 @@ class TvEpisode
      * @param  array $headers
      * @return mixed
      */
-    public function getCredits($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
-    {
-        return $this->get(sprintf('tv/%s/season/%s/episode/%s/credits', $tvshow_id, $season_number,$episode_number), $parameters, $headers);
+    public function getCredits(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        array $parameters = array(),
+        array $headers = array()
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/credits',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            ),
+            $parameters,
+            $headers
+        );
     }
 
     /**
@@ -60,9 +87,23 @@ class TvEpisode
      * @param  array $headers
      * @return mixed
      */
-    public function getExternalIds($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
-    {
-        return $this->get(sprintf('tv/%s/season/%s/episode/%s/external_ids', $tvshow_id, $season_number,$episode_number), $parameters, $headers);
+    public function getExternalIds(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        array $parameters = array(),
+        array $headers = array()
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/external_ids',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            ),
+            $parameters,
+            $headers
+        );
     }
 
     /**
@@ -75,8 +116,22 @@ class TvEpisode
      * @param  array $headers
      * @return mixed
      */
-    public function getImages($tvshow_id, $season_number, $episode_number, array $parameters = array(), array $headers = array())
-    {
-        return $this->get(sprintf('tv/%s/season/%s/episode/%s/images', $tvshow_id, $season_number,$episode_number), $parameters, $headers);
+    public function getImages(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        array $parameters = array(),
+        array $headers = array()
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/images',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            ),
+            $parameters,
+            $headers
+        );
     }
 }

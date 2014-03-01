@@ -27,7 +27,7 @@ class Review extends AbstractModel
     private $mediaType;
     private $url;
 
-    public static $_properties = array(
+    public static $properties = array(
         'id',
         'author',
         'content',
@@ -189,5 +189,4 @@ class Review extends AbstractModel
     {
         return $this->url;
     }
-
 }

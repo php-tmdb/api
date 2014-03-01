@@ -45,7 +45,8 @@ class MovieRepository extends AbstractRepository
     /**
      * Load a movie with the given identifier
      *
-     * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
+     * If you want to optimize the result set/bandwidth you
+     * should define the AppendToResponse parameter
      *
      * @param $id
      * @param $parameters
@@ -274,7 +275,8 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
+     * Get the list of upcoming movies. This list refreshes every day.
+     * The maximum number of items this list will include is 100.
      *
      * @param  array   $options
      * @return Movie[]
@@ -287,7 +289,8 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
+     * Get the list of movies playing in theatres. This list refreshes every day.
+     * The maximum number of items this list will include is 100.
      *
      * @param  array   $options
      * @return Movie[]
@@ -300,7 +303,8 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of popular movies on The Movie Database. This list refreshes every day.
+     * Get the list of popular movies on The Movie Database.
+     * This list refreshes every day.
      *
      * @param  array   $options
      * @return Movie[]
@@ -313,7 +317,10 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
+     * Get the list of top rated movies.
+     *
+     * By default, this list will only include movies that have 10 or more votes.
+     * This list refreshes every day.
      *
      * @param  array   $options
      * @return Movie[]
@@ -326,7 +333,8 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * This method lets users get the status of whether or not the movie has been rated or added to their favourite or watch lists. A valid session id is required.
+     * This method lets users get the status of whether or not the movie has been rated
+     * or added to their favourite or watch lists. A valid session id is required.
      *
      * @param  integer $id
      * @return Movie[]
@@ -439,5 +447,4 @@ class MovieRepository extends AbstractRepository
     {
         return $this->peopleFactory;
     }
-
 }

@@ -35,7 +35,7 @@ class CastMember extends AbstractMember implements PersonInterface
      */
     private $castId;
 
-    public static $_properties = array(
+    public static $properties = array(
         'id',
         'cast_id',
         'name',

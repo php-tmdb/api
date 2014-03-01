@@ -51,7 +51,7 @@ class Account extends AbstractModel
     /**
      * @var array
      */
-    public static $_properties = array(
+    public static $properties = array(
         'id',
         'include_adult',
         'iso_3166_1',
@@ -173,5 +173,4 @@ class Account extends AbstractModel
     {
         return $this->username;
     }
-
 }

@@ -117,7 +117,7 @@ class Person extends AbstractModel implements PersonInterface
      */
     protected $externalIds;
 
-    public static $_properties = array(
+    public static $properties = array(
         'adult',
         'also_known_as',
         'biography',

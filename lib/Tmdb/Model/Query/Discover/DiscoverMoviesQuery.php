@@ -47,7 +47,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * Available options are vote_average.desc, vote_average.asc, release_date.desc, release_date.asc, popularity.desc, popularity.asc
+     * Available options are vote_average.desc, vote_average.asc, release_date.desc,
+     * release_date.asc, popularity.desc, popularity.asc
      *
      * @param  string $option
      * @return $this
@@ -73,7 +74,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * Filter the results release dates to matches that include this value. Expected value is a year.
+     * Filter the results release dates to matches that include this value.
+     * Expected value is a year.
      *
      * @param  \DateTime|integer $year
      * @return $this
@@ -90,7 +92,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * Filter the results so that only the primary release date year has this value. Expected value is a year.
+     * Filter the results so that only the primary release date year has this value.
+     * Expected value is a year.
      *
      * @param  \DateTime|integer $year
      * @return $this
@@ -107,7 +110,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * Only include movies that are equal to, or have a vote count higher than this value. Expected value is an integer.
+     * Only include movies that are equal to, or have a vote count higher than this value.
+     * Expected value is an integer.
      *
      * @param  integer $count
      * @return $this
@@ -120,7 +124,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * Only include movies that are equal to, or have a higher average rating than this value. Expected value is a float.
+     * Only include movies that are equal to, or have a higher average rating than this value.
+     * Expected value is a float.
      *
      * @param  float $average
      * @return $this
@@ -133,7 +138,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * Only include movies with the specified genres. Expected value is an integer (the id of a genre).
+     * Only include movies with the specified genres.
+     * Expected value is an integer (the id of a genre).
+     *
      * Multiple values can be specified.
      *
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
@@ -217,7 +224,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Only include movies with certifications for a specific country.
      *
-     * When this value is specified, 'certification.lte' is required. A ISO 3166-1 is expected.
+     * When this value is specified, 'certification.lte' is required.
+     * A ISO 3166-1 is expected.
      *
      * @param  string $country
      * @return $this

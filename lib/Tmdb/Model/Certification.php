@@ -30,7 +30,7 @@ class Certification extends AbstractModel
      */
     private $certifications;
 
-    public static $_properties = array(
+    public static $properties = array(
         'country',
     );
 

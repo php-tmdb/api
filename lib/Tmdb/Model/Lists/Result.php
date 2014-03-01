@@ -33,7 +33,7 @@ class Result extends AbstractModel
     /**
      * @var array
      */
-    public static $_properties = array(
+    public static $properties = array(
         'status_code',
         'status_message'
     );

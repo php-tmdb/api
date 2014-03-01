@@ -84,7 +84,10 @@ class CreditsFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        throw new NotImplementedException('Credits are usually obtained through the PeopleFactory, however we might add a shortcut for that here.');
+        throw new NotImplementedException(
+            'Credits are usually obtained through the PeopleFactory,
+            however we might add a shortcut for that here.'
+        );
     }
 
     /**

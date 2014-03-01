@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#people
  */
-class People
-    extends AbstractApi
+class People extends AbstractApi
 {
     /**
      * Get the general person information for a specific id.

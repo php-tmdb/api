@@ -22,7 +22,7 @@ class Translation extends SpokenLanguage implements LanguageFilter
 {
     private $englishName;
 
-    public static $_properties = array(
+    public static $properties = array(
         'iso_639_1',
         'name',
         'english_name'

@@ -29,7 +29,8 @@ use Tmdb\Model\Tv;
 class DiscoverRepository extends AbstractRepository
 {
     /**
-     * Discover movies by different types of data like average rating, number of votes, genres and certifications.
+     * Discover movies by different types of data like average rating,
+     * number of votes, genres and certifications.
      *
      * @param  DiscoverMoviesQuery $query
      * @param  array               $headers
@@ -41,7 +42,9 @@ class DiscoverRepository extends AbstractRepository
         $query = $query->toArray();
 
         if (array_key_exists('certification_country', $query) && !array_key_exists('certification.lte', $query)) {
-            throw new RuntimeException('When the certification_country option is given the certification.lte option is required.');
+            throw new RuntimeException(
+                'When the certification_country option is given the certification.lte option is required.'
+            );
         }
 
         $data = $this->getApi()->discoverMovies($query, $headers);
@@ -50,7 +53,8 @@ class DiscoverRepository extends AbstractRepository
     }
 
     /**
-     * Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.
+     * Discover TV shows by different types of data like average rating,
+     * number of votes, genres, the network they aired on and air dates.
      *
      * @param  DiscoverTvQuery                      $query
      * @param  array                                $headers

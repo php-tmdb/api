@@ -40,7 +40,7 @@ class Item extends AbstractModel
      */
     private $value;
 
-    public static $_properties = array(
+    public static $properties = array(
         'id',
         'action',
         'time',
@@ -126,5 +126,4 @@ class Item extends AbstractModel
     {
         return $this->value;
     }
-
 }

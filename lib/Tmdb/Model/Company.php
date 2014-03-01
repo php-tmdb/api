@@ -29,7 +29,7 @@ class Company extends AbstractModel
     private $name;
     private $parentCompany;
 
-    public static $_properties = array(
+    public static $properties = array(
         'description',
         'headquarters',
         'homepage',

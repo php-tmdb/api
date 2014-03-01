@@ -40,13 +40,13 @@ abstract class AbstractFactory
     abstract public function createCollection(array $data = array());
 
     /**
-     * Create a generic collection of data and map it on the class by it's static parameter $_properties
+     * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
      * @param  array             $data
      * @param $class
      * @return GenericCollection
      */
-    protected function createGenericCollection(array $data = array(), $class)
+    protected function createGenericCollection(array $data, $class)
     {
         if (is_object($class)) {
             $class = get_class($class);

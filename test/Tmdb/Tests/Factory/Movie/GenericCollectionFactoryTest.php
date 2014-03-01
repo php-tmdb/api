@@ -48,7 +48,7 @@ class GenericCollectionFactoryTest extends TestCase
 
 class FakeClass extends AbstractModel
 {
-    public static $_properties = array('id');
+    public static $properties = array('id');
 
     private $id;
 

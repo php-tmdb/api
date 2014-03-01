@@ -47,7 +47,8 @@ class DiscoverTvQuery extends QueryParametersCollection
     }
 
     /**
-     * Available options are vote_average.desc, vote_average.asc, first_air_date.desc, first_air_date.asc, popularity.desc, popularity.asc
+     * Available options are vote_average.desc, vote_average.asc, first_air_date.desc,
+     * first_air_date.asc, popularity.desc, popularity.asc
      *
      * @param  string $option
      * @return $this
@@ -60,7 +61,8 @@ class DiscoverTvQuery extends QueryParametersCollection
     }
 
     /**
-     * Filter the results release dates to matches that include this value. Expected value is a year.
+     * Filter the results release dates to matches that include this value.
+     * Expected value is a year.
      *
      * @param  \DateTime|integer $year
      * @return $this
@@ -77,7 +79,8 @@ class DiscoverTvQuery extends QueryParametersCollection
     }
 
     /**
-     * Only include TV shows that are equal to, or have a vote count higher than this value. Expected value is an integer.
+     * Only include TV shows that are equal to, or have a vote count higher than this value.
+     * Expected value is an integer.
      *
      * @param  integer $count
      * @return $this
@@ -90,7 +93,8 @@ class DiscoverTvQuery extends QueryParametersCollection
     }
 
     /**
-     * Only include TV shows that are equal to, or have a higher average rating than this value. Expected value is a float.
+     * Only include TV shows that are equal to, or have a higher average rating than this value.
+     * Expected value is a float.
      *
      * @param  float $average
      * @return $this
@@ -103,10 +107,13 @@ class DiscoverTvQuery extends QueryParametersCollection
     }
 
     /**
-     * Only include TV shows with the specified genres. Expected value is an integer (the id of a genre).
+     * Only include TV shows with the specified genres.
+     * Expected value is an integer (the id of a genre).
      *
      * Multiple values can be specified.
-     * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
+     *
+     * Comma separated indicates an 'AND' query,
+     * while a pipe (|) separated value indicates an 'OR'.
      *
      * @param  array|string $genres
      * @return $this
@@ -185,7 +192,8 @@ class DiscoverTvQuery extends QueryParametersCollection
     /**
      * Filter TV shows to include a specific network.
      *
-     * Expected value is an integer (the id of a network). They can be comma separated to indicate an 'AND' query.
+     * Expected value is an integer (the id of a network).
+     * They can be comma separated to indicate an 'AND' query.
      *
      * Expected value is an integer (the id of a company).
      * They can be comma separated to indicate an 'AND' query.

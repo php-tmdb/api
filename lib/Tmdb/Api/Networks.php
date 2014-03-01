@@ -17,8 +17,7 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#networks
  */
-class Networks
-    extends AbstractApi
+class Networks extends AbstractApi
 {
     /**
      * This method is used to retrieve the basic information about a TV network.

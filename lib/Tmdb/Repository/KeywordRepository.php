@@ -39,7 +39,8 @@ class KeywordRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of movies for a particular keyword by id. By default, only movies with 10 or more votes are included.
+     * Get the list of movies for a particular keyword by id.
+     * By default, only movies with 10 or more votes are included.
      *
      * @param $id
      * @param  array                      $parameters

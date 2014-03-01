@@ -30,7 +30,9 @@ class Jobs extends GenericCollection
     {
         $result = $this->filter(
             function ($key, $value) use ($department) {
-                if ($value->getDepartment() == $department) { return true; }
+                if ($value->getDepartment() == $department) {
+                    return true;
+                }
             }
         );
 
@@ -53,7 +55,9 @@ class Jobs extends GenericCollection
     {
         $result = $this->filter(
             function ($key, $value) use ($department) {
-                if ($value->getDepartment() == $department) { return true; }
+                if ($value->getDepartment() == $department) {
+                    return true;
+                }
             }
         );
 
@@ -80,7 +84,9 @@ class Jobs extends GenericCollection
                 $jobList = $value->getJobList();
 
                 foreach ($jobList as $job) {
-                    if ($filterByJob == $job) { return true; }
+                    if ($filterByJob == $job) {
+                        return true;
+                    }
                 }
             }
         );
