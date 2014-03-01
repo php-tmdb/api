@@ -285,7 +285,7 @@ class Client
     }
 
     /**
-     * @return HttpClientInterface
+     * @return HttpClient|HttpClientInterface
      */
     public function getHttpClient()
     {
