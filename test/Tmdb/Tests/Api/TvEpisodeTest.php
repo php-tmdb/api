@@ -70,7 +70,8 @@ class TvEpisodeTest extends TestCase
         $api->getImages(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\TvEpisode';
     }
 }

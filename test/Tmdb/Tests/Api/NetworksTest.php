@@ -27,7 +27,8 @@ class NetworksTest extends TestCase
         $api->getNetwork(49);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Networks';
     }
 }

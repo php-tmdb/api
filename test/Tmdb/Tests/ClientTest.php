@@ -10,6 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+namespace Tmdb\Tests;
+
 class ClientTest extends \Tmdb\Tests\TestCase
 {
     const API_TOKEN = 'abcdef';
@@ -75,5 +77,53 @@ class ClientTest extends \Tmdb\Tests\TestCase
                 'getJobsApi'           => 'Tmdb\Api\Jobs',
             )
         );
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAddCachePluginWhenEnabled()
+    {
+        $token  = new \Tmdb\ApiToken(self::API_TOKEN);
+        $client = new \Tmdb\Client($token);
+        $client->setCaching(true, '/tmp/php-tmdb-api');
+
+        $listeners = $client->getHttpClient()
+            ->getClient()
+            ->getEventDispatcher()
+            ->getListeners();
+
+        $this->assertEquals(true, $this->isListenerRegistered(
+            $listeners,
+            'Guzzle\Plugin\Cache\CachePlugin'
+        ));
+    }
+
+    /**
+     * Find an plugin in an listeners array
+     *
+     * @param $listeners
+     * @param $class
+     * @return bool
+     */
+    private function isListenerRegistered($listeners, $class)
+    {
+        if (is_object($class)) {
+            $class = get_class($class);
+        }
+
+        if (is_array($listeners)) {
+            foreach ($listeners as $subject) {
+                if (is_object($subject) && get_class($subject) === $class) {
+                    return true;
+                }
+
+                if (is_array($subject)) {
+                    return $this->isListenerRegistered($subject, $class);
+                }
+            }
+        }
+
+        return false;
     }
 }

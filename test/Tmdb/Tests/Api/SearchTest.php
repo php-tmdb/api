@@ -113,7 +113,8 @@ class SearchTest extends TestCase
         $api->searchKeyword(self::QUERY_KEYWORD);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Search';
     }
 }

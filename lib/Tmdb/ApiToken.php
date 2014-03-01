@@ -16,7 +16,8 @@ namespace Tmdb;
  * Class ApiToken
  * @package Tmdb
  */
-class ApiToken {
+class ApiToken
+{
     private $apiToken = null;
 
     /**
@@ -30,12 +31,13 @@ class ApiToken {
     }
 
     /**
-     * @param null $apiToken
+     * @param  null  $apiToken
      * @return $this
      */
     public function setToken($apiToken)
     {
         $this->apiToken = $apiToken;
+
         return $this;
     }
 

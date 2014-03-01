@@ -40,11 +40,11 @@ class CertificationFactoryTest extends TestCase
         /**
          * @var Certification $certificationCountry
          */
-        foreach($certificationCollection as $certificationCountry) {
+        foreach ($certificationCollection as $certificationCountry) {
             $this->assertInstanceOf('Tmdb\Model\Certification', $certificationCountry);
             $this->assertNotEmpty($certificationCountry->getCountry());
 
-            foreach($certificationCountry->getCertifications() as $certification) {
+            foreach ($certificationCountry->getCertifications() as $certification) {
                 $this->assertInstanceOf('Tmdb\Model\Certification\CountryCertification', $certification);
             }
         }

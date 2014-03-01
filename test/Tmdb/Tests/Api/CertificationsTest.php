@@ -27,7 +27,8 @@ class CertificationsTest extends TestCase
         $api->getMovieList();
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Certifications';
     }
 }

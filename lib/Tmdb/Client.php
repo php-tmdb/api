@@ -12,8 +12,13 @@
  */
 namespace Tmdb;
 
+use Guzzle\Cache\DoctrineCacheAdapter;
+use Guzzle\Common\Exception\RuntimeException;
+use Guzzle\Common\HasDispatcherInterface;
 use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
+use Guzzle\Plugin\Cache\CachePlugin;
+use Guzzle\Plugin\Cache\DefaultCacheStorage;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
@@ -25,7 +30,8 @@ use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
  * Client wrapper for TMDB
  * @package Tmdb
  */
-class Client {
+class Client
+{
     /**
      * Base API URI
      */
@@ -70,25 +76,78 @@ class Client {
     private $httpClient;
 
     /**
+     * Stores the cache path
+     *
+     * @var string
+     */
+    private $cachePath;
+
+    /**
+     * Stores wether the cache is enabled or not
+     *
+     * @var boolean
+     */
+    private $cacheEnabled = false;
+
+    /**
      * Construct our client
      *
      * @param ClientInterface|null $httpClient
-     * @param ApiToken $token
-     * @param boolean $secure
+     * @param ApiToken             $token
+     * @param boolean              $secure
      */
-    public function __construct(Token $token, ClientInterface $httpClient = null, $secure = false)
+    public function __construct(ApiToken $token, ClientInterface $httpClient = null, $secure = false)
     {
         $this->setToken($token);
         $this->setSecure($secure);
+        $this->constructHttpClient($httpClient);
+    }
 
+    /**
+     * Construct the http client
+     *
+     * @param  ClientInterface  $httpClient
+     * @throws RuntimeException
+     * @return void
+     */
+    private function constructHttpClient(ClientInterface $httpClient = null)
+    {
         $httpClient = $httpClient ?: new GuzzleClient($this->getBaseUrl());
 
-        if ($httpClient instanceof \Guzzle\Common\HasDispatcherInterface) {
-            $apiTokenPlugin = new ApiTokenPlugin($token);
-            $httpClient->addSubscriber($apiTokenPlugin);
-
+        if ($httpClient instanceof HasDispatcherInterface) {
             $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
             $httpClient->addSubscriber($acceptJsonHeaderPlugin);
+
+            if ($this->getToken() instanceof ApiToken) {
+                $apiTokenPlugin = new ApiTokenPlugin($this->getToken());
+                $httpClient->addSubscriber($apiTokenPlugin);
+            }
+
+            if ($this->cacheEnabled && !empty($this->cachePath)) {
+                if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
+                    /** @codeCoverageIgnoreStart */
+                    throw new RuntimeException(
+                        'Could not find the doctrine cache library, have you added doctrone-cache to your composer.json?'
+                    );
+                    /** @codeCoverageIgnoreEnd */
+                }
+
+                $cachePlugin = new CachePlugin(array(
+                    'storage' => new DefaultCacheStorage(
+                                new DoctrineCacheAdapter(
+                                new \Doctrine\Common\Cache\FilesystemCache($this->cachePath)
+                            )
+                        )
+                    )
+                );
+
+                $httpClient->addSubscriber($cachePlugin);
+            }
+
+            if ($this->getSessionToken() instanceof SessionToken) {
+                $sessionTokenPlugin = new SessionTokenPlugin($this->getSessionToken());
+                $httpClient->addSubscriber($sessionTokenPlugin);
+            }
         }
 
         $this->httpClient = new HttpClient($this->getBaseUrl(), array(), $httpClient);
@@ -97,12 +156,23 @@ class Client {
     /**
      * Add the token subscriber
      *
-     * @param Token $token
+     * @return Token
+     */
+    public function getToken()
+    {
+        return $this->token !== null ? $this->token : null;
+    }
+
+    /**
+     * Add the token subscriber
+     *
+     * @param  Token $token
      * @return $this
      */
     public function setToken(Token $token)
     {
         $this->token = $token;
+
         return $this;
     }
 
@@ -283,7 +353,7 @@ class Client {
     }
 
     /**
-     * @return HttpClientInterface
+     * @return HttpClient|HttpClientInterface
      */
     public function getHttpClient()
     {
@@ -313,12 +383,13 @@ class Client {
     }
 
     /**
-     * @param boolean $secure
+     * @param  boolean $secure
      * @return $this
      */
     public function setSecure($secure)
     {
         $this->secure = $secure;
+
         return $this;
     }
 
@@ -331,17 +402,15 @@ class Client {
     }
 
     /**
-     * @param SessionToken $sessionToken
+     * @param  SessionToken $sessionToken
      * @return $this
      */
     public function setSessionToken($sessionToken)
     {
-        if ($this->httpClient->getClient() instanceof \Guzzle\Common\HasDispatcherInterface) {
-            $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
-            $this->httpClient->getClient()->addSubscriber($sessionTokenPlugin);
-        }
-
         $this->sessionToken = $sessionToken;
+
+        $this->constructHttpClient();
+
         return $this;
     }
 
@@ -351,5 +420,44 @@ class Client {
     public function getSessionToken()
     {
         return $this->sessionToken;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getCacheEnabled()
+    {
+        return $this->cacheEnabled;
+    }
+
+    /**
+     * Set cache path
+     *
+     * You could simply pass an empty string to let the sys_get_temp_dir be used
+     *
+     * @param  boolean $enabled
+     * @param  string  $path
+     * @return $this
+     */
+    public function setCaching($enabled = true, $path = null)
+    {
+        $this->cacheEnabled = $enabled;
+        $this->cachePath    = (null === $path) ?
+            sys_get_temp_dir() . '/php-tmdb-api' :
+            $path
+        ;
+
+        // @todo doesn't cover a custom client, would require un-registering all known plugins
+        $this->constructHttpClient();
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCachePath()
+    {
+        return $this->cachePath;
     }
 }

@@ -10,7 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-function includeIfExists($file) {
+function includeIfExists($file)
+{
     if (file_exists($file)) {
         return include $file;
     }

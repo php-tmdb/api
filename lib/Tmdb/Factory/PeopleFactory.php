@@ -24,7 +24,8 @@ use Tmdb\Model\Person;
  * Class PeopleFactory
  * @package Tmdb\Factory
  */
-class PeopleFactory extends AbstractFactory {
+class PeopleFactory extends AbstractFactory
+{
     /**
      * @var ImageFactory
      */
@@ -45,7 +46,7 @@ class PeopleFactory extends AbstractFactory {
     }
 
     /**
-     * @param array $data
+     * @param array                      $data
      * @param Person\AbstractMember|null $person
      *
      * @return Person|CrewMember|CastMember
@@ -97,14 +98,15 @@ class PeopleFactory extends AbstractFactory {
     /**
      * Apply credits
      *
-     * @param array $data
+     * @param array  $data
      * @param Person $person
      */
-    protected function applyCredits(array $data = array(), Person $person) {
+    protected function applyCredits(array $data, Person $person)
+    {
         $hydrator = new ObjectHydrator();
         $types    = array('movie_credits', 'tv_credits', 'combined_credits');
 
-        foreach($types as $type) {
+        foreach ($types as $type) {
             if (array_key_exists($type, $data)) {
                 $method = $hydrator->camelize(sprintf('get_%s', $type));
 
@@ -114,7 +116,7 @@ class PeopleFactory extends AbstractFactory {
                         new Person\MovieCredit()
                     );
 
-                    foreach($cast as $member) {
+                    foreach ($cast as $member) {
                         $member->setPosterImage($member->getPosterPath());
                     }
 
@@ -127,7 +129,7 @@ class PeopleFactory extends AbstractFactory {
                         new Person\MovieCredit()
                     );
 
-                    foreach($crew as $member) {
+                    foreach ($crew as $member) {
                         $member->setPosterImage($member->getPosterPath());
                     }
 
@@ -157,24 +159,25 @@ class PeopleFactory extends AbstractFactory {
 
         if (is_object($person)) {
             $class = get_class($person);
-        }
-        else{
+        } else {
             $class = '\Tmdb\Model\Person';
         }
 
-        foreach($data as $item) {
+        foreach ($data as $item) {
             $collection->add(null, $this->create($item, new $class()));
         }
+
         return $collection;
     }
 
     /**
-     * @param \Tmdb\Factory\ImageFactory $imageFactory
+     * @param  \Tmdb\Factory\ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
     {
         $this->imageFactory = $imageFactory;
+
         return $this;
     }
 
@@ -187,12 +190,13 @@ class PeopleFactory extends AbstractFactory {
     }
 
     /**
-     * @param \Tmdb\Factory\Common\ChangeFactory $changeFactory
+     * @param  \Tmdb\Factory\Common\ChangeFactory $changeFactory
      * @return $this
      */
     public function setChangeFactory($changeFactory)
     {
         $this->changeFactory = $changeFactory;
+
         return $this;
     }
 

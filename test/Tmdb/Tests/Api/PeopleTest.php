@@ -120,7 +120,8 @@ class PeopleTest extends TestCase
         $api->getLatest();
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\People';
     }
 }

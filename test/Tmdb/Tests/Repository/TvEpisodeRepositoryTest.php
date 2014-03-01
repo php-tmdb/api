@@ -125,7 +125,6 @@ class TvEpisodeRepositoryTest extends TestCase
         $repository->load($tv, $season, null);
     }
 
-
     /**
      * @expectedException Tmdb\Exception\RuntimeException
      * @test
@@ -136,7 +135,6 @@ class TvEpisodeRepositoryTest extends TestCase
 
         $repository->load(null, null, null);
     }
-
 
     protected function getApiClass()
     {

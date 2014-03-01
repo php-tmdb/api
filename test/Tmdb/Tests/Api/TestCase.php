@@ -14,8 +14,6 @@ namespace Tmdb\Tests\Api;
 
 use Tmdb\Tests\TestCase as Base;
 
-use Tmdb\ApiToken;
-
 abstract class TestCase extends Base
 {
     private $_api = null;

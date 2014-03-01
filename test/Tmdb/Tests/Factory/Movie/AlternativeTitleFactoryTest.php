@@ -43,7 +43,6 @@ class AlternativeTitleFactoryTest extends TestCase
         $this->assertEquals('Kaas', $title->getTitle());
     }
 
-
     /**
      * @test
      */

@@ -27,7 +27,8 @@ class ConfigurationTest extends TestCase
         $api->getConfiguration();
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Configuration';
     }
 }

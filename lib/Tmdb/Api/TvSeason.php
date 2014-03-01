@@ -17,16 +17,15 @@ namespace Tmdb\Api;
  * @package Tmdb\Api
  * @see http://docs.themoviedb.apiary.io/#tvseasons
  */
-class TvSeason
-    extends AbstractApi
+class TvSeason extends AbstractApi
 {
     /**
      * Get the primary information about a TV season by its season number.
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getSeason($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
@@ -39,8 +38,8 @@ class TvSeason
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getCredits($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
@@ -53,8 +52,8 @@ class TvSeason
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getExternalIds($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
@@ -67,8 +66,8 @@ class TvSeason
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param array $parameters
-     * @param array $headers
+     * @param  array $parameters
+     * @param  array $headers
      * @return mixed
      */
     public function getImages($tvshow_id, $season_number, array $parameters = array(), array $headers = array())

@@ -24,12 +24,13 @@ use Tmdb\Model\Tv\Episode;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#tvepisodes
  */
-class TvEpisodeRepository extends AbstractRepository {
-
+class TvEpisodeRepository extends AbstractRepository
+{
     /**
      * Load a tv season with the given identifier
      *
-     * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
+     * If you want to optimize the result set/bandwidth you should
+     * define the AppendToResponse parameter
      *
      * @param $tvShow Tv|integer
      * @param $season Season|integer
@@ -67,7 +68,13 @@ class TvEpisodeRepository extends AbstractRepository {
             );
         }
 
-        $data = $this->getApi()->getEpisode($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getEpisode(
+            $tvShow,
+            $season,
+            $episode,
+            $this->parseQueryParameters($parameters),
+            $headers
+        );
 
         return $this->getFactory()->create($data);
     }
@@ -98,7 +105,14 @@ class TvEpisodeRepository extends AbstractRepository {
             $episode = $episode->getId();
         }
 
-        $data    = $this->getApi()->getCredits($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getCredits(
+            $tvShow,
+            $season,
+            $episode,
+            $this->parseQueryParameters($parameters),
+            $headers
+        );
+
         $episode = $this->getFactory()->create(array('credits' => $data));
 
         return $episode->getCredits();
@@ -128,7 +142,14 @@ class TvEpisodeRepository extends AbstractRepository {
             $episode = $episode->getId();
         }
 
-        $data    = $this->getApi()->getExternalIds($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getExternalIds(
+            $tvShow,
+            $season,
+            $episode,
+            $this->parseQueryParameters($parameters),
+            $headers
+        );
+
         $episode = $this->getFactory()->create(array('external_ids' => $data));
 
         return $episode->getExternalIds();
@@ -157,13 +178,20 @@ class TvEpisodeRepository extends AbstractRepository {
         if ($episode instanceof Tv\Episode) {
             $episode = $episode->getId();
         }
-        
-        $data    = $this->getApi()->getImages($tvShow, $season, $episode, $this->parseQueryParameters($parameters), $headers);
+
+        $data = $this->getApi()->getImages(
+            $tvShow,
+            $season,
+            $episode,
+            $this->parseQueryParameters($parameters),
+            $headers
+        );
+
         $episode = $this->getFactory()->create(array('images' => $data));
 
         return $episode->getImages();
     }
-    
+
     /**
      * Return the Seasons API Class
      *

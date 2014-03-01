@@ -10,7 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Tests\Model\Query;
+namespace Tmdb\Tests\Model\Query\Discover;
 
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
 use Tmdb\Tests\TestCase;

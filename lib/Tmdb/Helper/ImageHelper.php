@@ -19,8 +19,8 @@ use Tmdb\Model\Image;
  * Class ImageHelper
  * @package Tmdb\Helper
  */
-class ImageHelper {
-
+class ImageHelper
+{
     private $config;
 
     public function __construct(Configuration $config)
@@ -41,11 +41,12 @@ class ImageHelper {
     /**
      * Get the url for the image resource
      *
-     * @param Image $image
-     * @param string $size
+     * @param  Image  $image
+     * @param  string $size
      * @return string
      */
-    public function getUrl(Image $image, $size = 'original') {
+    public function getUrl(Image $image, $size = 'original')
+    {
         $config = $this->getImageConfiguration();
 
         return $config['base_url'] . $size . $image->getFilePath();
@@ -54,13 +55,14 @@ class ImageHelper {
     /**
      * Get an img html tag for the image in the specified size
      *
-     * @param Image $image
-     * @param string $size
-     * @param int|null $width
-     * @param int|null $height
+     * @param  Image    $image
+     * @param  string   $size
+     * @param  int|null $width
+     * @param  int|null $height
      * @return string
      */
-    public function getHtml(Image $image, $size = 'original', $width = null, $height = null) {
+    public function getHtml(Image $image, $size = 'original', $width = null, $height = null)
+    {
         if (null == $image->getFilePath()) {
             return '';
         }

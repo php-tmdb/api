@@ -20,8 +20,8 @@ use Tmdb\RequestToken;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#authentication
  */
-class AuthenticationRepository extends AbstractRepository {
-
+class AuthenticationRepository extends AbstractRepository
+{
     /**
      * This method is used to generate a valid request token for user based authentication.
      * A request token is required in order to request a session id.
@@ -34,6 +34,7 @@ class AuthenticationRepository extends AbstractRepository {
     public function getRequestToken()
     {
         $data  = $this->getApi()->getNewToken();
+
         return $this->getFactory()->createRequestToken($data);
     }
 
@@ -41,12 +42,13 @@ class AuthenticationRepository extends AbstractRepository {
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param RequestToken $requestToken
+     * @param  RequestToken $requestToken
      * @return RequestToken
      */
     public function getSessionToken(RequestToken $requestToken)
     {
         $data  = $this->getApi()->getNewSession($requestToken->getToken());
+
         return $this->getFactory()->createSessionToken($data);
     }
 
@@ -54,24 +56,28 @@ class AuthenticationRepository extends AbstractRepository {
      * This method is used to generate a guest session id.
      *
      * A guest session can be used to rate movies without having a registered TMDb user account.
-     * You should only generate a single guest session per user (or device) as you will be able to
-     * attach the ratings to a TMDb user account in the future.
+     * You should only generate a single guest session per user (or device)
+     * as you will be able to attach the ratings to a TMDb user account in the future.
      *
-     * There is also IP limits in place so you should always make sure it's the end user doing the guest session actions.
-     * If a guest session is not used for the first time within 24 hours, it will be automatically discarded.
+     * There is also IP limits in place so you should always make sure it's
+     * the end user doing the guest session actions.
+     *
+     * If a guest session is not used for the first time within 24 hours,
+     * it will be automatically discarded.
      *
      * @return RequestToken
      */
     public function getGuestSessionToken()
     {
         $data  = $this->getApi()->getNewGuestSession();
+
         return $this->getFactory()->createGuestSessionToken($data);
     }
 
     /**
      * Authenticate request token, redirects the user
      *
-     * @param RequestToken $requestToken
+     * @param  RequestToken $requestToken
      * @return void
      */
     public function authenticateRequestToken(RequestToken $requestToken)

@@ -21,7 +21,7 @@ class TvFactoryTest extends TestCase
      * @var Tv
      */
     private $tv;
-    
+
     public function setUp()
     {
         /**
@@ -37,7 +37,7 @@ class TvFactoryTest extends TestCase
          */
         $this->tv = $factory->create($data);
     }
-    
+
     /**
      * @test
      */

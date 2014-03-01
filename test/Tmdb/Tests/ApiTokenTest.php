@@ -10,6 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+namespace Tmdb\Tests;
+
 class ApiTokenTest extends \PHPUnit_Framework_TestCase
 {
     const API_TOKEN = 'abcdefg';

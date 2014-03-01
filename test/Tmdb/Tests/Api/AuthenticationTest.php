@@ -41,7 +41,8 @@ class AuthenticationTest extends TestCase
         $api->getNewGuestSession();
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Authentication';
     }
 }

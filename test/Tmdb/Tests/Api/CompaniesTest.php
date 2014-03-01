@@ -42,7 +42,8 @@ class CompaniesTest extends TestCase
         $api->getMovies(self::COMPANY_ID);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Companies';
     }
 }

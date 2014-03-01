@@ -10,7 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Tests\Model\Common;
+namespace Tmdb\Tests\Model\Collection;
 
 use Tmdb\Model\Collection\Keywords;
 use Tmdb\Model\Keyword;
@@ -32,7 +32,7 @@ class KeywordsTest extends TestCase
     {
         $this->collection = new Keywords();
 
-        foreach($this->keywords as $keyword) {
+        foreach ($this->keywords as $keyword) {
             $object = $this->hydrate(new Keyword(), $keyword);
 
             $this->collection->addKeyword($object);

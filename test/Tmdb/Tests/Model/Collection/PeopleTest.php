@@ -10,7 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Tests\Model\Common;
+namespace Tmdb\Tests\Model\Collection;
 
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Person;
@@ -32,7 +32,7 @@ class PeopleTest extends TestCase
     {
         $this->collection = new People();
 
-        foreach($this->people as $person) {
+        foreach ($this->people as $person) {
             $object = $this->hydrate(new Person(), $person);
 
             $this->collection->addPerson($object);

@@ -41,19 +41,21 @@ class ObjectHydratorTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-class TestModel extends \Tmdb\Model\AbstractModel {
+class TestModel extends \Tmdb\Model\AbstractModel
+{
     private $id;
     private $name;
 
-    static $_properties = array('id', 'name');
+    static $properties = array('id', 'name');
 
     /**
-     * @param mixed $id
+     * @param  mixed $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -66,12 +68,13 @@ class TestModel extends \Tmdb\Model\AbstractModel {
     }
 
     /**
-     * @param mixed $name
+     * @param  mixed $name
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -84,6 +87,7 @@ class TestModel extends \Tmdb\Model\AbstractModel {
     }
 }
 
-class FailingTestModel extends \Tmdb\Model\AbstractModel {
-    static $_properties = array('lastname');
+class FailingTestModel extends \Tmdb\Model\AbstractModel
+{
+    static $properties = array('lastname');
 }

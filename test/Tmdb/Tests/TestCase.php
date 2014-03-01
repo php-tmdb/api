@@ -23,16 +23,15 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * Assert that an array of methods and corresponding classes match
      *
      * @param $subject
-     * @param array $instances
+     * @param  array      $instances
      * @throws \Exception
      */
     protected function assertInstancesOf($subject, array $instances = array())
     {
-        foreach($instances as $method => $instance) {
+        foreach ($instances as $method => $instance) {
             try {
                 $this->assertInstanceOf($instance, $subject->$method());
-            }
-            catch(\Exception $e){
+            } catch (\Exception $e) {
                 throw new \Exception(sprintf(
                     'Failed asserting that calling "%s" returns an instance of expected "%s".',
                     sprintf('%s::%s', get_class($subject), $method),
@@ -111,7 +110,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Get mocked http client
      *
-     * @param array $methods
+     * @param  array                                    $methods
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     protected function getMockedHttpClient(array $methods = array())
@@ -129,7 +128,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param $data
      * @return \Tmdb\Model\AbstractModel
      */
-    protected function hydrate($object, $data) {
+    protected function hydrate($object, $data)
+    {
         $objectHydrator = new ObjectHydrator();
 
         return $objectHydrator->hydrate($object, $data);

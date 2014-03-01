@@ -10,6 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+namespace Tmdb\Tests\Helper;
 
 use Tmdb\Tests\TestCase as Base;
 

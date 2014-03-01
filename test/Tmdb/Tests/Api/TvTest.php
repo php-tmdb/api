@@ -107,7 +107,8 @@ class TvTest extends TestCase
         $api->getTopRated();
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Tv';
     }
 }

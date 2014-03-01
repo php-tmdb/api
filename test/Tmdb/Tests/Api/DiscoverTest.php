@@ -40,7 +40,8 @@ class DiscoverTest extends TestCase
         $api->discoverTv();
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Discover';
     }
 }

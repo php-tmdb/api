@@ -25,8 +25,8 @@ use Tmdb\Model\Tv\Network;
  * Class Tv
  * @package Tmdb\Model
  */
-class Tv extends AbstractModel {
-
+class Tv extends AbstractModel
+{
     /**
      * @var Image
      */
@@ -187,7 +187,7 @@ class Tv extends AbstractModel {
      *
      * @var array
      */
-    public static $_properties = array(
+    public static $properties = array(
         'backdrop_path',
         'created_by',
         'episode_run_time',
@@ -232,12 +232,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param string $backdropPath
+     * @param  string $backdropPath
      * @return $this
      */
     public function setBackdropPath($backdropPath)
     {
         $this->backdropPath = $backdropPath;
+
         return $this;
     }
 
@@ -250,12 +251,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $createdBy
+     * @param  \Tmdb\Model\Common\Collection $createdBy
      * @return $this
      */
     public function setCreatedBy($createdBy)
     {
         $this->createdBy = $createdBy;
+
         return $this;
     }
 
@@ -268,12 +270,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param array $episodeRunTime
+     * @param  array $episodeRunTime
      * @return $this
      */
     public function setEpisodeRunTime($episodeRunTime)
     {
         $this->episodeRunTime = $episodeRunTime;
+
         return $this;
     }
 
@@ -286,7 +289,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \DateTime $firstAirDate
+     * @param  \DateTime $firstAirDate
      * @return $this
      */
     public function setFirstAirDate($firstAirDate)
@@ -296,6 +299,7 @@ class Tv extends AbstractModel {
         }
 
         $this->firstAirDate = $firstAirDate;
+
         return $this;
     }
 
@@ -308,12 +312,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\Genres $genres
+     * @param  \Tmdb\Model\Collection\Genres $genres
      * @return $this
      */
     public function setGenres($genres)
     {
         $this->genres = $genres;
+
         return $this;
     }
 
@@ -326,12 +331,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param string $homepage
+     * @param  string $homepage
      * @return $this
      */
     public function setHomepage($homepage)
     {
         $this->homepage = $homepage;
+
         return $this;
     }
 
@@ -344,12 +350,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param int $id
+     * @param  int   $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = (int) $id;
+
         return $this;
     }
 
@@ -362,12 +369,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param boolean $inProduction
+     * @param  boolean $inProduction
      * @return $this
      */
     public function setInProduction($inProduction)
     {
         $this->inProduction = $inProduction;
+
         return $this;
     }
 
@@ -380,12 +388,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param array $languages
+     * @param  array $languages
      * @return $this
      */
     public function setLanguages($languages)
     {
         $this->languages = $languages;
+
         return $this;
     }
 
@@ -398,7 +407,7 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param string $lastAirDate
+     * @param  string $lastAirDate
      * @return $this
      */
     public function setLastAirDate($lastAirDate)
@@ -408,6 +417,7 @@ class Tv extends AbstractModel {
         }
 
         $this->lastAirDate = $lastAirDate;
+
         return $this;
     }
 
@@ -420,12 +430,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -438,12 +449,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param GenericCollection $networks
+     * @param  GenericCollection $networks
      * @return $this
      */
     public function setNetworks($networks)
     {
         $this->networks = $networks;
+
         return $this;
     }
 
@@ -456,12 +468,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param int $numberOfEpisodes
+     * @param  int   $numberOfEpisodes
      * @return $this
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
         $this->numberOfEpisodes = (int) $numberOfEpisodes;
+
         return $this;
     }
 
@@ -474,12 +487,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param int $numberOfSeasons
+     * @param  int   $numberOfSeasons
      * @return $this
      */
     public function setNumberOfSeasons($numberOfSeasons)
     {
         $this->numberOfSeasons = (int) $numberOfSeasons;
+
         return $this;
     }
 
@@ -492,12 +506,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\Collection $originCountry
+     * @param  \Tmdb\Model\Common\Collection $originCountry
      * @return $this
      */
     public function setOriginCountry($originCountry)
     {
         $this->originCountry = $originCountry;
+
         return $this;
     }
 
@@ -510,12 +525,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param string $originalName
+     * @param  string $originalName
      * @return $this
      */
     public function setOriginalName($originalName)
     {
         $this->originalName = $originalName;
+
         return $this;
     }
 
@@ -528,12 +544,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param string $overview
+     * @param  string $overview
      * @return $this
      */
     public function setOverview($overview)
     {
         $this->overview = $overview;
+
         return $this;
     }
 
@@ -546,12 +563,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param float $popularity
+     * @param  float $popularity
      * @return $this
      */
     public function setPopularity($popularity)
     {
         $this->popularity = (float) $popularity;
+
         return $this;
     }
 
@@ -564,12 +582,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param string $posterPath
+     * @param  string $posterPath
      * @return $this
      */
     public function setPosterPath($posterPath)
     {
         $this->posterPath = $posterPath;
+
         return $this;
     }
 
@@ -582,12 +601,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param GenericCollection $seasons
+     * @param  GenericCollection $seasons
      * @return $this
      */
     public function setSeasons($seasons)
     {
         $this->seasons = $seasons;
+
         return $this;
     }
 
@@ -600,12 +620,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param string $status
+     * @param  string $status
      * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -618,12 +639,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param float $voteAverage
+     * @param  float $voteAverage
      * @return $this
      */
     public function setVoteAverage($voteAverage)
     {
         $this->voteAverage = (float) $voteAverage;
+
         return $this;
     }
 
@@ -636,12 +658,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param int $voteCount
+     * @param  int   $voteCount
      * @return $this
      */
     public function setVoteCount($voteCount)
     {
         $this->voteCount = (int) $voteCount;
+
         return $this;
     }
 
@@ -654,12 +677,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param GenericCollection $translations
+     * @param  GenericCollection $translations
      * @return $this
      */
     public function setTranslations($translations)
     {
         $this->translations = $translations;
+
         return $this;
     }
 
@@ -672,12 +696,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\Images $images
+     * @param  \Tmdb\Model\Collection\Images $images
      * @return $this
      */
     public function setImages($images)
     {
         $this->images = $images;
+
         return $this;
     }
 
@@ -690,12 +715,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Common\ExternalIds $externalIds
+     * @param  \Tmdb\Model\Common\ExternalIds $externalIds
      * @return $this
      */
     public function setExternalIds($externalIds)
     {
         $this->externalIds = $externalIds;
+
         return $this;
     }
 
@@ -708,12 +734,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Collection\CreditsCollection $credits
+     * @param  \Tmdb\Model\Collection\CreditsCollection $credits
      * @return $this
      */
     public function setCredits($credits)
     {
         $this->credits = $credits;
+
         return $this;
     }
 
@@ -726,12 +753,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Image\BackdropImage $backdrop
+     * @param  \Tmdb\Model\Image\BackdropImage $backdrop
      * @return $this
      */
     public function setBackdropImage(BackdropImage $backdrop)
     {
         $this->backdrop = $backdrop;
+
         return $this;
     }
 
@@ -744,12 +772,13 @@ class Tv extends AbstractModel {
     }
 
     /**
-     * @param \Tmdb\Model\Image\PosterImage $poster
+     * @param  \Tmdb\Model\Image\PosterImage $poster
      * @return $this
      */
     public function setPosterImage(PosterImage $poster)
     {
         $this->poster = $poster;
+
         return $this;
     }
 

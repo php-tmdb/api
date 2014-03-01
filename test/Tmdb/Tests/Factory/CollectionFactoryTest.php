@@ -65,7 +65,6 @@ class CollectionFactoryTest extends TestCase
         $this->assertInstanceOf('stdClass', $factory->getImageFactory());
     }
 
-
     /**
      * @test
      */

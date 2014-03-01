@@ -16,23 +16,24 @@ namespace Tmdb\Model;
  * Class Network
  * @package Tmdb\Model
  */
-class Network extends AbstractModel {
-
+class Network extends AbstractModel
+{
     private $id;
     private $name;
 
-    public static $_properties = array(
+    public static $properties = array(
         'id',
         'name',
     );
 
     /**
-     * @param mixed $id
+     * @param  mixed $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = (int) $id;
+
         return $this;
     }
 
@@ -45,12 +46,13 @@ class Network extends AbstractModel {
     }
 
     /**
-     * @param mixed $name
+     * @param  mixed $name
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 

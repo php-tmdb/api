@@ -126,7 +126,6 @@ class HttpClientTest extends TestCase
         $this->testApi->delete('/');
     }
 
-
     /**
      * @test
      */
@@ -172,7 +171,8 @@ class HttpClientTest extends TestCase
     }
 }
 
-class TestApi extends AbstractApi {
+class TestApi extends AbstractApi
+{
     /**
      * @var \Tmdb\HttpClient\HttpClient
      */
@@ -213,7 +213,8 @@ class TestApi extends AbstractApi {
         $this->client->getHttpClient()->put('http://www.google.com/');
     }
 
-    public function addSubscriber($event) {
+    public function addSubscriber($event)
+    {
         $this->client->getHttpClient()->addSubscriber($event);
     }
 }

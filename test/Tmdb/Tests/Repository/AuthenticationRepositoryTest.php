@@ -13,7 +13,6 @@
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Api\Authentication;
-use Tmdb\Model\Movie;
 use Tmdb\Repository\AuthenticationRepository;
 use Tmdb\RequestToken;
 

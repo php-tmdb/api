@@ -25,8 +25,8 @@ use Tmdb\Model\Movie\QueryParameter\AppendToResponse;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#movies
  */
-class MovieRepository extends AbstractRepository {
-
+class MovieRepository extends AbstractRepository
+{
     /**
      * @var ImageFactory
      */
@@ -45,7 +45,8 @@ class MovieRepository extends AbstractRepository {
     /**
      * Load a movie with the given identifier
      *
-     * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
+     * If you want to optimize the result set/bandwidth you
+     * should define the AppendToResponse parameter
      *
      * @param $id
      * @param $parameters
@@ -260,11 +261,10 @@ class MovieRepository extends AbstractRepository {
         return $movie->getChanges();
     }
 
-
     /**
      * Get the latest movie.
      *
-     * @param array $options
+     * @param  array                          $options
      * @return null|\Tmdb\Model\AbstractModel
      */
     public function getLatest(array $options = array())
@@ -275,9 +275,10 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * Get the list of upcoming movies. This list refreshes every day. The maximum number of items this list will include is 100.
+     * Get the list of upcoming movies. This list refreshes every day.
+     * The maximum number of items this list will include is 100.
      *
-     * @param array $options
+     * @param  array   $options
      * @return Movie[]
      */
     public function getUpcoming(array $options = array())
@@ -288,9 +289,10 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * Get the list of movies playing in theatres. This list refreshes every day. The maximum number of items this list will include is 100.
+     * Get the list of movies playing in theatres. This list refreshes every day.
+     * The maximum number of items this list will include is 100.
      *
-     * @param array $options
+     * @param  array   $options
      * @return Movie[]
      */
     public function getNowPlaying(array $options = array())
@@ -301,9 +303,10 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * Get the list of popular movies on The Movie Database. This list refreshes every day.
+     * Get the list of popular movies on The Movie Database.
+     * This list refreshes every day.
      *
-     * @param array $options
+     * @param  array   $options
      * @return Movie[]
      */
     public function getPopular(array $options = array())
@@ -314,9 +317,12 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * Get the list of top rated movies. By default, this list will only include movies that have 10 or more votes. This list refreshes every day.
+     * Get the list of top rated movies.
      *
-     * @param array $options
+     * By default, this list will only include movies that have 10 or more votes.
+     * This list refreshes every day.
+     *
+     * @param  array   $options
      * @return Movie[]
      */
     public function getTopRated(array $options = array())
@@ -327,9 +333,10 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * This method lets users get the status of whether or not the movie has been rated or added to their favourite or watch lists. A valid session id is required.
+     * This method lets users get the status of whether or not the movie has been rated
+     * or added to their favourite or watch lists. A valid session id is required.
      *
-     * @param integer $id
+     * @param  integer $id
      * @return Movie[]
      */
     public function getAccountStates($id)
@@ -342,8 +349,8 @@ class MovieRepository extends AbstractRepository {
     /**
      * This method lets users rate a movie. A valid session id or guest session id is required.
      *
-     * @param integer $id
-     * @param float $rating
+     * @param  integer $id
+     * @param  float   $rating
      * @return Movie[]
      */
     public function rate($id, $rating)
@@ -379,17 +386,19 @@ class MovieRepository extends AbstractRepository {
      * @param $data
      * @return Movie[]
      */
-    private function createCollection($data){
+    private function createCollection($data)
+    {
         return $this->getFactory()->createCollection($data);
     }
 
     /**
-     * @param mixed $alternativeTitleFactory
+     * @param  mixed $alternativeTitleFactory
      * @return $this
      */
     public function setAlternativeTitleFactory($alternativeTitleFactory)
     {
         $this->alternativeTitleFactory = $alternativeTitleFactory;
+
         return $this;
     }
 
@@ -402,12 +411,13 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * @param mixed $imageFactory
+     * @param  mixed $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
     {
         $this->imageFactory = $imageFactory;
+
         return $this;
     }
 
@@ -420,12 +430,13 @@ class MovieRepository extends AbstractRepository {
     }
 
     /**
-     * @param mixed $peopleFactory
+     * @param  mixed $peopleFactory
      * @return $this
      */
     public function setPeopleFactory($peopleFactory)
     {
         $this->peopleFactory = $peopleFactory;
+
         return $this;
     }
 
@@ -436,6 +447,4 @@ class MovieRepository extends AbstractRepository {
     {
         return $this->peopleFactory;
     }
-
-
 }

@@ -22,8 +22,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  * Class HttpClient
  * @package Tmdb\HttpClient
  */
-class HttpClient
-    implements HttpClientInterface
+class HttpClient implements HttpClientInterface
 {
     /**
      * @var \Guzzle\Http\ClientInterface
@@ -46,8 +45,8 @@ class HttpClient
     /**
      * Constructor
      *
-     * @param string $baseUrl
-     * @param array $options
+     * @param string          $baseUrl
+     * @param array           $options
      * @param ClientInterface $client
      */
     public function __construct($baseUrl, array $options, ClientInterface $client)
@@ -171,9 +170,7 @@ class HttpClient
 
         try {
             $response = $request->send();
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             // @TODO catch any API errors / timeouts / other specific information from Guzzle?
             throw $e;
         }
@@ -185,12 +182,13 @@ class HttpClient
     }
 
     /**
-     * @param \Guzzle\Http\ClientInterface $client
+     * @param  \Guzzle\Http\ClientInterface $client
      * @return $this
      */
     public function setClient($client)
     {
         $this->client = $client;
+
         return $this;
     }
 
@@ -200,5 +198,43 @@ class HttpClient
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * @param  \Guzzle\Http\Message\Request $lastRequest
+     * @return $this
+     */
+    public function setLastRequest($lastRequest)
+    {
+        $this->lastRequest = $lastRequest;
+
+        return $this;
+    }
+
+    /**
+     * @return \Guzzle\Http\Message\Request
+     */
+    public function getLastRequest()
+    {
+        return $this->lastRequest;
+    }
+
+    /**
+     * @param  \Guzzle\Http\Message\Response $lastResponse
+     * @return $this
+     */
+    public function setLastResponse($lastResponse)
+    {
+        $this->lastResponse = $lastResponse;
+
+        return $this;
+    }
+
+    /**
+     * @return \Guzzle\Http\Message\Response
+     */
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
     }
 }

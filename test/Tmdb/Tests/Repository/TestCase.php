@@ -14,8 +14,6 @@ namespace Tmdb\Tests\Repository;
 
 use Tmdb\Tests\TestCase as Base;
 
-use Guzzle\Http\Message\Response;
-use Tmdb\ApiToken;
 use Tmdb\Client;
 
 abstract class TestCase extends Base

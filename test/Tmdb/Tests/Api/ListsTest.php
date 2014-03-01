@@ -78,7 +78,8 @@ class ListsTest extends TestCase
         $api->deleteList(self::LIST_ID);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Lists';
     }
 }

@@ -18,8 +18,8 @@ use Tmdb\Model\AbstractModel;
  * Class Network
  * @package Tmdb\Model\Tv
  */
-class Network extends AbstractModel {
-
+class Network extends AbstractModel
+{
     /**
      * @var integer
      */
@@ -37,18 +37,19 @@ class Network extends AbstractModel {
      *
      * @var array
      */
-    public static $_properties = array(
+    public static $properties = array(
         'id',
         'name',
     );
 
     /**
-     * @param int $id
+     * @param  int   $id
      * @return $this
      */
     public function setId($id)
     {
         $this->id = (int) $id;
+
         return $this;
     }
 
@@ -61,12 +62,13 @@ class Network extends AbstractModel {
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 

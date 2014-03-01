@@ -1,5 +1,9 @@
 /bin
 /docs
+/build/*
+!/build/phpunit.xml
+!/build/phpmd.xml
+!/build/phpdox.xml
 /vendor/
 /composer.lock
 /*.php
@@ -7,3 +11,4 @@
 /apikey.php
 /phpunit
 /public_html
+/cache.properties

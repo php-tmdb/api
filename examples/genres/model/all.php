@@ -10,8 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-require_once('../../../vendor/autoload.php');
-require_once('../../../apikey.php');
+require_once '../../../vendor/autoload.php';
+require_once '../../../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
@@ -19,6 +19,6 @@ $client = new \Tmdb\Client($token);
 $repository = new \Tmdb\Repository\GenreRepository($client);
 $genres     = $repository->loadCollection();
 
-foreach($genres as $genre) {
+foreach ($genres as $genre) {
     var_dump($genre);
 }

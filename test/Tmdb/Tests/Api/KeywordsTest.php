@@ -42,7 +42,8 @@ class KeywordsTest extends TestCase
         $api->getMovies(self::KEYWORD_ID);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Keywords';
     }
 }

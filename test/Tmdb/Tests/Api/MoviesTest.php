@@ -255,7 +255,8 @@ class MoviesTest extends TestCase
         $api->rateMovie(self::MOVIE_ID, 7.5);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Movies';
     }
 }

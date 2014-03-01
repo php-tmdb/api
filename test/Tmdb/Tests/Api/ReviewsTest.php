@@ -29,7 +29,8 @@ class ReviewsTest extends TestCase
         $api->getReview(self::REVIEW_ID);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Reviews';
     }
 }

@@ -34,15 +34,15 @@ class FindFactoryTest extends TestCase
 
         $this->assertInstanceOf('Tmdb\Model\Find', $find);
 
-        foreach($find->getMovieResults() as $movie) {
+        foreach ($find->getMovieResults() as $movie) {
             $this->assertInstanceOf('Tmdb\Model\Movie', $movie);
         }
 
-        foreach($find->getPersonResults() as $person) {
+        foreach ($find->getPersonResults() as $person) {
             $this->assertInstanceOf('Tmdb\Model\Person', $person);
         }
 
-        foreach($find->getTvResults() as $tv) {
+        foreach ($find->getTvResults() as $tv) {
             $this->assertInstanceOf('Tmdb\Model\Tv', $tv);
         }
     }

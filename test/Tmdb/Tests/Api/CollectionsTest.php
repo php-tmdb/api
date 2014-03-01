@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Tests\Api;
 
-class ColletionsTest extends TestCase
+class CollectionsTest extends TestCase
 {
     const COLLECTION_ID = 120;
 
@@ -42,7 +42,8 @@ class ColletionsTest extends TestCase
         $api->getImages(self::COLLECTION_ID);
     }
 
-    protected function getApiClass() {
+    protected function getApiClass()
+    {
         return 'Tmdb\Api\Collections';
     }
 }
