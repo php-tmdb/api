@@ -153,7 +153,8 @@ class Client
                 if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
                     /** @codeCoverageIgnoreStart */
                     throw new RuntimeException(
-                        'Could not find the doctrine cache library, have you added doctrone-cache to your composer.json?'
+                        'Could not find the doctrine cache library,
+                        have you added doctrine-cache to your composer.json?'
                     );
                     /** @codeCoverageIgnoreEnd */
                 }
