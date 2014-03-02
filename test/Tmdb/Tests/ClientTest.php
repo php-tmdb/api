@@ -100,6 +100,26 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
+     * @test
+     */
+    public function shouldAddLoggingPluginWhenEnabled()
+    {
+        $token  = new \Tmdb\ApiToken(self::API_TOKEN);
+        $client = new \Tmdb\Client($token);
+        $client->setLogging(true, '/tmp/php-tmdb-api.log');
+
+        $listeners = $client->getHttpClient()
+            ->getClient()
+            ->getEventDispatcher()
+            ->getListeners();
+
+        $this->assertEquals(true, $this->isListenerRegistered(
+            $listeners,
+            'Guzzle\Plugin\Log\LogPlugin'
+        ));
+    }
+
+    /**
      * Find an plugin in an listeners array
      *
      * @param $listeners
@@ -125,5 +145,31 @@ class ClientTest extends \Tmdb\Tests\TestCase
         }
 
         return false;
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleSetCache()
+    {
+        $path = '/tmp/php-tmdb-api';
+
+        $this->client->setCaching(true, $path);
+
+        $this->assertEquals(true, $this->client->getCacheEnabled());
+        $this->assertEquals($path, $this->client->getCachePath());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleSetLogging()
+    {
+        $path = '/tmp/php-tmdb-api.log';
+
+        $this->client->setLogging(true, $path);
+
+        $this->assertEquals(true, $this->client->getLogEnabled());
+        $this->assertEquals($path, $this->client->getLogPath());
     }
 }

@@ -10,11 +10,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Tests\Model\Tv;
+namespace Tmdb\Tests\Model;
 
 use Tmdb\Common\ObjectHydrator;
-use Tmdb\Model\Tv\Network;
-use Tmdb\Tests\Model\TestCase;
+use Tmdb\Model\Network;
 
 class NetworkTest extends TestCase
 {

@@ -14,11 +14,18 @@ Stable
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 [![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
-
-Unstable
-----------------
-
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
+
+First stable version is just around the corner, currently making a last thorough review and improving test coverage.
+
+Currently unit tests are run on travis, with the following versions:
+
+- 5.3.3
+- 5.3
+- 5.4
+- 5.5
+- 5.6
+- hhvm _( we do not officially support this, however tests indicate it should be functional. )_
 
 Help & Donate
 --------------
@@ -68,6 +75,20 @@ Or if you prefer requests to happen securely:
 $client = new \Tmdb\Client($token, null, true);
 ```
 
+If you want to add some caching capabilities ( currently an implementation of the `GuzzleCachePlugin` );
+
+```php
+$client->setCaching(true, '/tmp/php-tmdb-api';
+```
+
+_This relies on max-age headers being sent back from TMDB, see the [documentation of the CachePlugin](http://guzzle.readthedocs.org/en/latest/plugins/cache-plugin.html)._
+
+If you want to add some logging capabilities ( currently an implementation of the `GuzzleLogPlugin`, requires `monolog/monolog`);
+
+```php
+$client->setLogging(true, '/tmp/php-tmdb-api.log';
+```
+
 Then we do some work on it:
 
 ```php
@@ -96,6 +117,20 @@ Or if you prefer requests to happen securely:
 
 ```php
 $client = new \Tmdb\Client($token, null, true);
+```
+
+If you want to add some caching capabilities ( currently an implementation of the `GuzzleCachePlugin` );
+
+```php
+$client->setCaching(true, '/tmp/php-tmdb-api';
+```
+
+_This relies on max-age headers being sent back from TMDB, see the [documentation of the CachePlugin](http://guzzle.readthedocs.org/en/latest/plugins/cache-plugin.html)._
+
+If you want to add some logging capabilities ( currently an implementation of the `GuzzleLogPlugin`, requires `monolog/monolog`);
+
+```php
+$client->setLogging(true, '/tmp/php-tmdb-api.log';
 ```
 
 Then you pass this client onto one of the many repositories and do some work on it.
@@ -148,5 +183,14 @@ $backdrop = $movie
     ->filterBackdrops()
 ;
 ```
+_And there are more Collections which provide filters, but you will find those out along the way._
 
-__And there are more Collections which provide filters, but you will find those out along the way.__
+Some other useful hints
+-----------------------
+
+__There are 2 types of "main" collections, the `GenericCollection` and the `ResultCollection`.__
+
+The `GenericCollection holds any collection of objects ( e.g. an collection of movies ).
+
+The `ResultCollection` is an extension of the `GenericCollection`, and inherits response parameters _( page, total_pages, total_results )_ from an resultset,
+this can be used to create paginators.

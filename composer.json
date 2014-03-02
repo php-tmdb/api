@@ -19,10 +19,12 @@
     },
     "require-dev": {
         "phpunit/phpunit": ">=3.7",
-        "doctrine/cache": ">=1.3.0"
+        "doctrine/cache": ">=1.3.0",
+        "monolog/monolog": ">=1.7.0"
     },
     "suggest": {
-        "doctrine/cache": "This library is required if you want to make use of caching features."
+        "doctrine/cache": "This library is required if you want to make use of caching features.",
+        "monolog/monolog": "This library is required if you want to make use of logging features."
     },
     "autoload": {
         "psr-0": { "Tmdb\\": "lib/" }
