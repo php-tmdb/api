@@ -78,7 +78,7 @@ $client = new \Tmdb\Client($token, null, true);
 If you want to add some caching capabilities ( currently an implementation of the `GuzzleCachePlugin` );
 
 ```php
-$client->setCaching(true, '/tmp/php-tmdb-api';
+$client->setCaching(true, '/tmp/php-tmdb-api');
 ```
 
 _This relies on max-age headers being sent back from TMDB, see the [documentation of the CachePlugin](http://guzzle.readthedocs.org/en/latest/plugins/cache-plugin.html)._
@@ -130,7 +130,7 @@ _This relies on max-age headers being sent back from TMDB, see the [documentatio
 If you want to add some logging capabilities ( currently an implementation of the `GuzzleLogPlugin`, requires `monolog/monolog`);
 
 ```php
-$client->setLogging(true, '/tmp/php-tmdb-api.log';
+$client->setLogging(true, '/tmp/php-tmdb-api.log');
 ```
 
 Then you pass this client onto one of the many repositories and do some work on it.
