@@ -68,6 +68,14 @@ Or if you prefer requests to happen securely:
 $client = new \Tmdb\Client($token, null, true);
 ```
 
+If you want to add some caching capabilities ( currently an implementation of the `GuzzleCachePlugin` );
+
+```php
+$client->setCaching(true, '/tmp/php-tmdb-api';
+```
+
+_This relies on max-age headers being sent back from TMDB, see the [documentation of the CachePlugin](http://guzzle.readthedocs.org/en/latest/plugins/cache-plugin.html)._
+
 Then we do some work on it:
 
 ```php
@@ -97,6 +105,14 @@ Or if you prefer requests to happen securely:
 ```php
 $client = new \Tmdb\Client($token, null, true);
 ```
+
+If you want to add some caching capabilities ( currently an implementation of the `GuzzleCachePlugin` );
+
+```php
+$client->setCaching(true, '/tmp/php-tmdb-api';
+```
+
+_This relies on max-age headers being sent back from TMDB, see the [documentation of the CachePlugin](http://guzzle.readthedocs.org/en/latest/plugins/cache-plugin.html)._
 
 Then you pass this client onto one of the many repositories and do some work on it.
 
@@ -148,5 +164,14 @@ $backdrop = $movie
     ->filterBackdrops()
 ;
 ```
+_And there are more Collections which provide filters, but you will find those out along the way._
 
-__And there are more Collections which provide filters, but you will find those out along the way.__
+Some other useful hints
+-----------------------
+
+__There are 2 types of "main" collections, the `GenericCollection` and the `ResultCollection`.__
+
+The `GenericCollection holds any collection of objects ( e.g. an collection of movies ).
+
+The `ResultCollection` is an extension of the `GenericCollection`, and inherits response parameters _( page, total_pages, total_results )_ from an resultset,
+this can be used to create paginators.
