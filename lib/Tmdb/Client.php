@@ -17,6 +17,7 @@ use Guzzle\Common\Exception\RuntimeException;
 use Guzzle\Common\HasDispatcherInterface;
 use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
+use Guzzle\Plugin\Backoff\BackoffPlugin;
 use Guzzle\Plugin\Cache\CachePlugin;
 use Guzzle\Plugin\Cache\DefaultCacheStorage;
 use Tmdb\HttpClient\HttpClient;
@@ -117,6 +118,9 @@ class Client
         if ($httpClient instanceof HasDispatcherInterface) {
             $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
             $httpClient->addSubscriber($acceptJsonHeaderPlugin);
+
+            $backoffPlugin = BackoffPlugin::getExponentialBackoff(5);
+            $httpClient->addSubscriber($backoffPlugin);
 
             if ($this->getToken() instanceof ApiToken) {
                 $apiTokenPlugin = new ApiTokenPlugin($this->getToken());
