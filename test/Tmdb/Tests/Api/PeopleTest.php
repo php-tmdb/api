@@ -97,6 +97,19 @@ class PeopleTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetExternalIds()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('person/' . self::PERSON_ID . '/external_ids');
+
+        $api->getExternalIds(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetPopular()
     {
         $api = $this->getApiMock();

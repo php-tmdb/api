@@ -18,9 +18,23 @@ namespace Tmdb\Model;
  */
 class Network extends AbstractModel
 {
+    /**
+     * @var integer
+     */
     private $id;
+
+    /**
+     * @var string
+     */
     private $name;
 
+    /**
+     * Properties that are available in the API
+     *
+     * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
+     *
+     * @var array
+     */
     public static $properties = array(
         'id',
         'name',

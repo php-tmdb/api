@@ -44,11 +44,13 @@ class Authentication extends AbstractApi
      */
     public function authenticateRequestToken($token)
     {
+        //@codeCoverageIgnoreStart
         header(sprintf(
             'Location: %s/%s',
             self::REQUEST_TOKEN_URI,
             $token
         ));
+        //@codeCoverageIgnoreEnd
     }
 
     /**
@@ -63,10 +65,12 @@ class Authentication extends AbstractApi
     {
         try {
             return $this->get('authentication/session/new', array('request_token' => $requestToken));
+            //@codeCoverageIgnoreStart
         } catch (\Exception $e) {
             if ($e->getCode() == 401) {
                 throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
             }
+            //@codeCoverageIgnoreEnd
         }
     }
 
