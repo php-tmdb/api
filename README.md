@@ -14,11 +14,18 @@ Stable
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 [![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
-
-Unstable
-----------------
-
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
+
+First stable version is just around the corner, currently making a last thorough review and improving test coverage.
+
+Currently unit tests are run on travis, with the following versions:
+
+- 5.3.3
+- 5.3
+- 5.4
+- 5.5
+- 5.6
+- hhvm _( we do not officially support this, however tests indicate it should be functional. )_
 
 Help & Donate
 --------------
