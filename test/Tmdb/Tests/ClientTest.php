@@ -146,4 +146,30 @@ class ClientTest extends \Tmdb\Tests\TestCase
 
         return false;
     }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleSetCache()
+    {
+        $path = '/tmp/php-tmdb-api';
+
+        $this->client->setCaching(true, $path);
+
+        $this->assertEquals(true, $this->client->getCacheEnabled());
+        $this->assertEquals($path, $this->client->getCachePath());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleSetLogging()
+    {
+        $path = '/tmp/php-tmdb-api.log';
+
+        $this->client->setLogging(true, $path);
+
+        $this->assertEquals(true, $this->client->getLogEnabled());
+        $this->assertEquals($path, $this->client->getLogPath());
+    }
 }

@@ -11,6 +11,7 @@
  * @version 0.0.1
  */
 namespace Tmdb;
+use Tmdb\Exception\RuntimeException;
 
 /**
  * Class ApiToken
@@ -31,11 +32,16 @@ class ApiToken
     }
 
     /**
-     * @param  null  $apiToken
+     * @param  string           $apiToken
+     * @throws RuntimeException
      * @return $this
      */
     public function setToken($apiToken)
     {
+        if (!is_string($apiToken)) {
+            throw new RuntimeException('The Apitoken must be set.');
+        }
+
         $this->apiToken = $apiToken;
 
         return $this;

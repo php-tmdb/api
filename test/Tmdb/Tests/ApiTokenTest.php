@@ -26,4 +26,14 @@ class ApiTokenTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(self::API_TOKEN, $token->getToken());
     }
+
+    /**
+     * @expectedException Tmdb\Exception\RuntimeException
+     * @test
+     */
+    public function testThrowsErrorOnEmptyApiToken()
+    {
+        $token  = new \Tmdb\ApiToken();
+        $token->setToken(null);
+    }
 }

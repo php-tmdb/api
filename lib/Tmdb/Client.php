@@ -151,12 +151,12 @@ class Client
 
             if ($this->cacheEnabled && !empty($this->cachePath)) {
                 if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
-                    /** @codeCoverageIgnoreStart */
+                    //@codeCoverageIgnoreStart
                     throw new RuntimeException(
                         'Could not find the doctrine cache library,
                         have you added doctrine-cache to your composer.json?'
                     );
-                    /** @codeCoverageIgnoreEnd */
+                    //@codeCoverageIgnoreEnd
                 }
 
                 $cachePlugin = new CachePlugin(array(
@@ -173,16 +173,16 @@ class Client
 
             if ($this->logEnabled && !empty($this->logPath)) {
                 if (empty($this->logger) && !class_exists('\Monolog\Logger')) {
-                    /** @codeCoverageIgnoreStart */
+                    //@codeCoverageIgnoreStart
                     throw new RuntimeException(
                         'Could not find any logger set and the monolog logger library was not found
                         to provide a default, you have to  set a custom logger on the client or
                         have you forgot adding monolog to your composer.json?'
                     );
-                    /** @codeCoverageIgnoreEnd */
+                    //@codeCoverageIgnoreEnd
                 } else {
-                    $this->logger = new \Monolog\Logger('php-tmdb-api');
-                    $this->logger->pushHandler(
+                    $this->setLogger(new \Monolog\Logger('php-tmdb-api'));
+                    $this->getLogger()->pushHandler(
                         new \Monolog\Handler\StreamHandler(
                             $this->logPath,
                             \Monolog\Logger::DEBUG
