@@ -19,7 +19,6 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 use Tmdb\Model\Common\ExternalIds;
-use Tmdb\Model\Tv\Network;
 
 /**
  * Class Tv
