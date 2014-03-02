@@ -100,6 +100,26 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
+     * @test
+     */
+    public function shouldAddLoggingPluginWhenEnabled()
+    {
+        $token  = new \Tmdb\ApiToken(self::API_TOKEN);
+        $client = new \Tmdb\Client($token);
+        $client->setLogging(true, '/tmp/php-tmdb-api.log');
+
+        $listeners = $client->getHttpClient()
+            ->getClient()
+            ->getEventDispatcher()
+            ->getListeners();
+
+        $this->assertEquals(true, $this->isListenerRegistered(
+            $listeners,
+            'Guzzle\Plugin\Log\LogPlugin'
+        ));
+    }
+
+    /**
      * Find an plugin in an listeners array
      *
      * @param $listeners

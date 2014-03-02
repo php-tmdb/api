@@ -17,9 +17,12 @@ use Guzzle\Common\Exception\RuntimeException;
 use Guzzle\Common\HasDispatcherInterface;
 use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
+use Guzzle\Log\MessageFormatter;
+use Guzzle\Log\PsrLogAdapter;
 use Guzzle\Plugin\Backoff\BackoffPlugin;
 use Guzzle\Plugin\Cache\CachePlugin;
 use Guzzle\Plugin\Cache\DefaultCacheStorage;
+use Guzzle\Plugin\Log\LogPlugin;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
@@ -75,6 +78,25 @@ class Client
      * @var HttpClientInterface
      */
     private $httpClient;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * Holds the log path
+     *
+     * @var string
+     */
+    private $logPath;
+
+    /**
+     * Enable logging?
+     *
+     * @var bool
+     */
+    private $logEnabled = false;
 
     /**
      * Stores the cache path
@@ -146,6 +168,35 @@ class Client
                 );
 
                 $httpClient->addSubscriber($cachePlugin);
+            }
+
+            if ($this->logEnabled && !empty($this->logPath)) {
+                if (empty($this->logger) && !class_exists('\Monolog\Logger')) {
+                    /** @codeCoverageIgnoreStart */
+                    throw new RuntimeException(
+                        'Could not find any logger set and the monolog logger library was not found
+                        to provide a default, you have to  set a custom logger on the client or
+                        have you forgot adding monolog to your composer.json?'
+                    );
+                    /** @codeCoverageIgnoreEnd */
+                } else {
+                    $this->logger = new \Monolog\Logger('php-tmdb-api');
+                    $this->logger->pushHandler(
+                        new \Monolog\Handler\StreamHandler(
+                            $this->logPath,
+                            \Monolog\Logger::DEBUG
+                        )
+                    );
+                }
+
+                if ($this->logger instanceof \Psr\Log\LoggerInterface) {
+                    $logPlugin = new LogPlugin(
+                        new PsrLogAdapter($this->logger),
+                        MessageFormatter::SHORT_FORMAT
+                    );
+
+                    $httpClient->addSubscriber($logPlugin);
+                }
             }
 
             if ($this->getSessionToken() instanceof SessionToken) {
@@ -437,7 +488,7 @@ class Client
     /**
      * Set cache path
      *
-     * You could simply pass an empty string to let the sys_get_temp_dir be used
+     * Leaving the second argument out will use sys_get_temp_dir()
      *
      * @param  boolean $enabled
      * @param  string  $path
@@ -463,5 +514,63 @@ class Client
     public function getCachePath()
     {
         return $this->cachePath;
+    }
+
+    /**
+     * @param  \Psr\Log\LoggerInterface $logger
+     * @return $this
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+
+        return $this;
+    }
+
+    /**
+     * @return \Psr\Log\LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getLogEnabled()
+    {
+        return $this->logEnabled;
+    }
+
+    /**
+     * Set log path
+     *
+     * Leaving the second argument out will use sys_get_temp_dir()
+     *
+     * @param  boolean $enabled
+     * @param  string  $path
+     * @return $this
+     */
+    public function setLogging($enabled = true, $path = null)
+    {
+        $this->logEnabled = $enabled;
+        $this->logPath    = (null === $path) ?
+            sys_get_temp_dir() . '/php-tmdb-api.log' :
+            $path
+        ;
+
+        // @todo doesn't cover a custom client, would require un-registering all known plugins
+        $this->constructHttpClient();
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogPath()
+    {
+        return $this->logPath;
     }
 }
