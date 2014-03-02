@@ -13,8 +13,8 @@ Stable
 ----------------
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-[![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
+[![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
 
 First stable version is just around the corner, currently making a last thorough review and improving test coverage.
 
@@ -86,7 +86,7 @@ _This relies on max-age headers being sent back from TMDB, see the [documentatio
 If you want to add some logging capabilities ( currently an implementation of the `GuzzleLogPlugin`, requires `monolog/monolog`);
 
 ```php
-$client->setLogging(true, '/tmp/php-tmdb-api.log';
+$client->setLogging(true, '/tmp/php-tmdb-api.log');
 ```
 
 Then we do some work on it:
@@ -122,7 +122,7 @@ $client = new \Tmdb\Client($token, null, true);
 If you want to add some caching capabilities ( currently an implementation of the `GuzzleCachePlugin` );
 
 ```php
-$client->setCaching(true, '/tmp/php-tmdb-api';
+$client->setCaching(true, '/tmp/php-tmdb-api');
 ```
 
 _This relies on max-age headers being sent back from TMDB, see the [documentation of the CachePlugin](http://guzzle.readthedocs.org/en/latest/plugins/cache-plugin.html)._
