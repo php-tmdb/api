@@ -34,6 +34,17 @@ If this project saved you a bunch of work, or you just simply appreciate my effo
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMLZ362KQ8K8W"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
 
+Features
+----------------
+
+- An complete integration of TMDB ( accounts, movies, tv etc. _if something is missing I haven't added the updates yet!_ ).
+- Array implementation of the movie database
+- Model implentation of the movie database _trying to follow their model as closely as possible_.
+- An `ImageHelper` class to help build image urls or html <img> elements.
+- BackoffRetry plugin enabled by default to handle any rate limit errors.
+- Caching support based on `max-age` headers returned by TMDB, requires `doctrine-cache`.
+- Logging support, requires `monolog`.
+
 Installation
 ------------
 Install Composer
