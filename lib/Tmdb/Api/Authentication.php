@@ -13,6 +13,7 @@
 namespace Tmdb\Api;
 
 use Tmdb\Exception\UnauthorizedRequestTokenException;
+use Tmdb\RequestToken;
 
 /**
  * Class Authentication
@@ -63,8 +64,42 @@ class Authentication extends AbstractApi
      */
     public function getNewSession($requestToken)
     {
+        if ($requestToken instanceof RequestToken) {
+            $requestToken = $requestToken->getToken();
+        }
+
         try {
             return $this->get('authentication/session/new', array('request_token' => $requestToken));
+            //@codeCoverageIgnoreStart
+        } catch (\Exception $e) {
+            if ($e->getCode() == 401) {
+                throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
+            }
+            //@codeCoverageIgnoreEnd
+        }
+    }
+
+    /**
+     * This method is used to generate a session id for user based authentication.
+     * A session id is required in order to use any of the write methods.
+     *
+     * @param  string                            $requestToken
+     * @param  string                            $username
+     * @param  string                            $password
+     * @throws UnauthorizedRequestTokenException
+     * @return mixed
+     */
+    public function getUsernamePasswordToken($requestToken, $username, $password)
+    {
+        if ($requestToken instanceof RequestToken) {
+            $requestToken = $requestToken->getToken();
+        }
+
+        try {
+            return $this->get('authenticate/'. $requestToken .'/validate_with_login', array(
+                'username' => $username,
+                'password' => $password
+            ));
             //@codeCoverageIgnoreStart
         } catch (\Exception $e) {
             if ($e->getCode() == 401) {
