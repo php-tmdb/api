@@ -35,8 +35,14 @@ class CastMember extends AbstractMember implements PersonInterface
      */
     private $castId;
 
+    /**
+     * @var mixed
+     */
+    private $creditId;
+
     public static $properties = array(
         'id',
+        'credit_id',
         'cast_id',
         'name',
         'character',
@@ -99,5 +105,24 @@ class CastMember extends AbstractMember implements PersonInterface
     public function getCastId()
     {
         return $this->castId;
+    }
+
+    /**
+     * @param  mixed $creditId
+     * @return $this
+     */
+    public function setCreditId($creditId)
+    {
+        $this->creditId = $creditId;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditId()
+    {
+        return $this->creditId;
     }
 }
