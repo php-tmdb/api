@@ -127,4 +127,27 @@ class ImageHelperTest extends Base
 
         $this->assertEquals('', $this->helper->getHtml($image));
     }
+
+    /**
+     * @test
+     */
+    public function shouldGetImageUrlByString()
+    {
+        $imageUrl = $this->helper->getUrl('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg');
+
+        $this->assertEquals('http://image.tmdb.org/t/p/original/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg', $imageUrl);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetImageElementByString()
+    {
+        $imageUrl = $this->helper->getHtml('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg');
+
+        $this->assertEquals(
+            '<img src="http://image.tmdb.org/t/p/original/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="" height="" />',
+            $imageUrl
+        );
+    }
 }
