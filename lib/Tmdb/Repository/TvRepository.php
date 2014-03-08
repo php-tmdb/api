@@ -143,12 +143,13 @@ class TvRepository extends AbstractRepository
      * Get the list of popular tvs on The Tv Database. This list refreshes every day.
      *
      * @param  array $options
+     * @param  array $headers
      * @return Tv[]
      */
-    public function getPopular(array $options = array())
+    public function getPopular(array $options = array(), array $headers = array())
     {
         return $this->getFactory()->createResultCollection(
-            $this->getApi()->getPopular($options)
+            $this->getApi()->getPopular($options, $headers)
         );
     }
 
@@ -157,12 +158,13 @@ class TvRepository extends AbstractRepository
      * This list refreshes every day.
      *
      * @param  array $options
+     * @param  array $headers
      * @return Tv[]
      */
-    public function getTopRated(array $options = array())
+    public function getTopRated(array $options = array(), array $headers = array())
     {
         return $this->getFactory()->createResultCollection(
-            $this->getApi()->getTopRated($options)
+            $this->getApi()->getTopRated($options, $headers)
         );
     }
 
@@ -171,12 +173,13 @@ class TvRepository extends AbstractRepository
      * This list refreshes every day.
      *
      * @param  array $options
+     * @param  array $headers
      * @return Tv[]
      */
-    public function getOnTheAir(array $options = array())
+    public function getOnTheAir(array $options = array(), array $headers = array())
     {
         return $this->getFactory()->createResultCollection(
-            $this->getApi()->getOnTheAir($options)
+            $this->getApi()->getOnTheAir($options, $headers)
         );
     }
 }
