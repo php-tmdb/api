@@ -176,7 +176,7 @@ class TvRepository extends AbstractRepository
     public function getOnTheAir(array $options = array())
     {
         return $this->getFactory()->createResultCollection(
-            $this->getApi()->getTopRated($options)
+            $this->getApi()->getOnTheAir($options)
         );
     }
 }
