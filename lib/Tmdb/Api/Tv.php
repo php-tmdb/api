@@ -113,4 +113,18 @@ class Tv extends AbstractApi
     {
         $this->get('tv/' . $tvshow_id . '/translations', $parameters, $headers);
     }
+
+    /**
+     * Get the list of TV shows that are currently on the air.
+     *
+     * This query looks for any TV show that has an episode with an air date in the next 7 days.
+     *
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getOnTheAir(array $parameters = array(), array $headers = array())
+    {
+        $this->get('tv/on_the_air', $parameters, $headers);
+    }
 }
