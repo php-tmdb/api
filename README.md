@@ -7,7 +7,7 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
 
-If you use this in a project whether personal or business, I'd like to know where it is being used, so please drop me an e-mail :-)!
+Won't be adding any more commits until next Wednesday/Thursday due to personal circumstances, feel free to add pull requests or issues meanwhile.
 
 Stable
 ----------------
@@ -29,6 +29,8 @@ Currently unit tests are run on travis, with the following versions:
 
 Help & Donate
 --------------
+
+If you use this in a project whether personal or business, I'd like to know where it is being used, so please drop me an e-mail :-)!
 
 If this project saved you a bunch of work, or you just simply appreciate my efforts, please consider donating a beer ( or two ;) )!
 
