@@ -201,4 +201,14 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     {
         return $this->width;
     }
+
+    /**
+     * Return the file path when casted to string
+     *
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->getFilePath();
+    }
 }

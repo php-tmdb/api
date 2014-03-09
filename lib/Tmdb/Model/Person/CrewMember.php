@@ -30,8 +30,14 @@ class CrewMember extends AbstractMember implements PersonInterface
      */
     private $job;
 
+    /**
+     * @var mixed
+     */
+    private $creditId;
+
     public static $properties = array(
         'id',
+        'credit_id',
         'name',
         'department',
         'job',
@@ -74,5 +80,24 @@ class CrewMember extends AbstractMember implements PersonInterface
     public function getJob()
     {
         return $this->job;
+    }
+
+    /**
+     * @param  mixed $creditId
+     * @return $this
+     */
+    public function setCreditId($creditId)
+    {
+        $this->creditId = $creditId;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditId()
+    {
+        return $this->creditId;
     }
 }
