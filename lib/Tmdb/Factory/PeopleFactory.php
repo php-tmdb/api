@@ -14,16 +14,14 @@ namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Factory\Common\ChangeFactory;
+use Tmdb\Model\Collection\People\Cast;
+use Tmdb\Model\Collection\People\Crew;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Person;
 
-/**
- * Class PeopleFactory
- * @package Tmdb\Factory
- */
 class PeopleFactory extends AbstractFactory
 {
     /**
@@ -51,7 +49,7 @@ class PeopleFactory extends AbstractFactory
      *
      * @return Person|CrewMember|CastMember
      */
-    public function create(array $data = array(), $person = null)
+    public function create(array $data = array(), Person\AbstractMember $person = null)
     {
         if (!is_object($person)) {
             if (array_key_exists('character', $data)) {
@@ -101,7 +99,7 @@ class PeopleFactory extends AbstractFactory
      * @param array  $data
      * @param Person $person
      */
-    protected function applyCredits(array $data, Person $person)
+    protected function applyCredits(array $data = array(), Person $person)
     {
         $hydrator = new ObjectHydrator();
         $types    = array('movie_credits', 'tv_credits', 'combined_credits');
@@ -117,7 +115,7 @@ class PeopleFactory extends AbstractFactory
                     );
 
                     foreach ($cast as $member) {
-                        $member->setPosterImage($member->getPosterPath());
+                        $member->setPosterImage($this->getPosterImageForCredit($member->getPosterPath()));
                     }
 
                     $person->$method()->setCast($cast);
@@ -130,7 +128,7 @@ class PeopleFactory extends AbstractFactory
                     );
 
                     foreach ($crew as $member) {
-                        $member->setPosterImage($member->getPosterPath());
+                        $member->setPosterImage($this->getPosterImageForCredit($member->getPosterPath()));
                     }
 
                     $person->$method()->setCrew($crew);
@@ -147,7 +145,7 @@ class PeopleFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array(), $person = null, $collection = null)
+    public function createCollection(array $data = array(), Person\AbstractMember $person = null, $collection = null)
     {
         if (!$collection) {
             $collection = new People();
@@ -157,11 +155,7 @@ class PeopleFactory extends AbstractFactory
             $data = $data['results'];
         }
 
-        if (is_object($person)) {
-            $class = get_class($person);
-        } else {
-            $class = '\Tmdb\Model\Person';
-        }
+        $class = get_class($person);
 
         foreach ($data as $item) {
             $collection->add(null, $this->create($item, new $class()));
