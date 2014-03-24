@@ -28,6 +28,7 @@ use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
+use Tmdb\HttpClient\Plugin\BackoffRetryAfterPlugin;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 
 /**
@@ -141,7 +142,7 @@ class Client
             $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
             $httpClient->addSubscriber($acceptJsonHeaderPlugin);
 
-            $backoffPlugin = BackoffPlugin::getExponentialBackoff(5);
+            $backoffPlugin = new BackoffRetryAfterPlugin();
             $httpClient->addSubscriber($backoffPlugin);
 
             if ($this->getToken() instanceof ApiToken) {

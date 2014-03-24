@@ -20,8 +20,8 @@ First stable version is just around the corner, currently making a last thorough
 
 Currently unit tests are run on travis, with the following versions:
 
+- 5.3.2
 - 5.3.3
-- 5.3
 - 5.4
 - 5.5
 - 5.6
