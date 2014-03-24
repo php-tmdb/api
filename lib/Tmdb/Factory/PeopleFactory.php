@@ -14,8 +14,6 @@ namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Factory\Common\ChangeFactory;
-use Tmdb\Model\Collection\People\Cast;
-use Tmdb\Model\Collection\People\Crew;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Person\CastMember;
@@ -49,7 +47,7 @@ class PeopleFactory extends AbstractFactory
      *
      * @return Person|CrewMember|CastMember
      */
-    public function create(array $data = array(), Person\AbstractMember $person = null)
+    public function create(array $data = array(), $person = null)
     {
         if (!is_object($person)) {
             if (array_key_exists('character', $data)) {
@@ -99,7 +97,7 @@ class PeopleFactory extends AbstractFactory
      * @param array  $data
      * @param Person $person
      */
-    protected function applyCredits(array $data = array(), Person $person)
+    protected function applyCredits(array $data, Person $person)
     {
         $hydrator = new ObjectHydrator();
         $types    = array('movie_credits', 'tv_credits', 'combined_credits');
@@ -145,7 +143,7 @@ class PeopleFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array(), Person\AbstractMember $person = null, $collection = null)
+    public function createCollection(array $data = array(), $person = null, $collection = null)
     {
         if (!$collection) {
             $collection = new People();
@@ -155,7 +153,11 @@ class PeopleFactory extends AbstractFactory
             $data = $data['results'];
         }
 
-        $class = get_class($person);
+        if (is_object($person)) {
+            $class = get_class($person);
+        } else {
+            $class = '\Tmdb\Model\Person';
+        }
 
         foreach ($data as $item) {
             $collection->add(null, $this->create($item, new $class()));
