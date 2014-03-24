@@ -24,7 +24,7 @@ use Guzzle\Plugin\Backoff\AbstractErrorCodeBackoffStrategy;
  *
  * @package Tmdb\HttpClient\Plugin
  */
-class BackoffRetryAfterPlugin extends AbstractErrorCodeBackoffStrategy
+class BackoffWithRetryAfterStrategy extends AbstractErrorCodeBackoffStrategy
 {
     /**
      * {@inheritdoc}
