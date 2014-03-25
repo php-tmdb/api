@@ -14,7 +14,7 @@ namespace Tmdb\Tests\HttpClient\Plugin;
 
 use Guzzle\Http\Message\Request;
 use Guzzle\Http\Message\Response;
-use Tmdb\HttpClient\Plugin\BackoffRetryAfterPlugin;
+use Tmdb\HttpClient\Plugin\BackoffWithRetryAfterStrategy;
 use Tmdb\Tests\TestCase;
 
 class BackoffRetryAfterPluginTest extends TestCase
@@ -31,7 +31,7 @@ class BackoffRetryAfterPluginTest extends TestCase
         $response = new Response('429', array('Retry-After' => 8));
 
         $plugin = self::getMethod('getDelay');
-        $delay  = $plugin->invokeArgs(new BackoffRetryAfterPlugin(), array(0, $request, $response));
+        $delay  = $plugin->invokeArgs(new BackoffWithRetryAfterStrategy(), array(0, $request, $response));
 
         $this->assertEquals(8, $delay);
     }
@@ -44,7 +44,7 @@ class BackoffRetryAfterPluginTest extends TestCase
      */
     protected static function getMethod($name)
     {
-        $class = new \ReflectionClass('Tmdb\HttpClient\Plugin\BackoffRetryAfterPlugin');
+        $class = new \ReflectionClass('Tmdb\HttpClient\Plugin\BackoffWithRetryAfterStrategy');
         $method = $class->getMethod($name);
         $method->setAccessible(true);
 

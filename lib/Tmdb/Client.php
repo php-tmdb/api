@@ -28,7 +28,6 @@ use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
-use Tmdb\HttpClient\Plugin\BackoffRetryAfterPlugin;
 use Tmdb\HttpClient\Plugin\BackoffWithRetryAfterStrategy;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 
@@ -140,11 +139,10 @@ class Client
         $httpClient = $httpClient ?: new GuzzleClient($this->getBaseUrl());
 
         if ($httpClient instanceof HasDispatcherInterface) {
-            $acceptJsonHeaderPlugin = new BackoffPlugin(new BackoffWithRetryAfterStrategy());
-            $httpClient->
+            $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
             $httpClient->addSubscriber($acceptJsonHeaderPlugin);
 
-            $backoffPlugin = new BackoffRetryAfterPlugin();
+            $backoffPlugin = new BackoffPlugin(new BackoffWithRetryAfterStrategy());
             $httpClient->addSubscriber($backoffPlugin);
 
             if ($this->getToken() instanceof ApiToken) {
