@@ -46,13 +46,17 @@ abstract class AbstractFactory
      * @param $class
      * @return GenericCollection
      */
-    protected function createGenericCollection(array $data, $class)
+    protected function createGenericCollection($data = array(), $class)
     {
         if (is_object($class)) {
             $class = get_class($class);
         }
 
         $collection = new GenericCollection();
+
+        if (null === $data) {
+            return $collection;
+        }
 
         foreach ($data as $item) {
             $collection->add(null, $this->hydrate(new $class(), $item));
@@ -68,9 +72,13 @@ abstract class AbstractFactory
      * @param  string           $method
      * @return ResultCollection
      */
-    public function createResultCollection(array $data = array(), $method = 'create')
+    public function createResultCollection($data = array(), $method = 'create')
     {
         $collection = new ResultCollection();
+
+        if (null === $data) {
+            return $collection;
+        }
 
         if (array_key_exists('page', $data)) {
             $collection->setPage($data['page']);
