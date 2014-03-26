@@ -12,13 +12,17 @@
  */
 namespace Tmdb\Tests;
 
+use Guzzle\Http\Message\Request;
+use Guzzle\Http\Message\Response;
+use Tmdb\Client;
+
 class ClientTest extends \Tmdb\Tests\TestCase
 {
     const API_TOKEN = 'abcdef';
     const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
 
     /**
-     * @var Tmdb\Client
+     * @var Client
      */
     private $client = null;
 
@@ -171,5 +175,56 @@ class ClientTest extends \Tmdb\Tests\TestCase
 
         $this->assertEquals(true, $this->client->getLogEnabled());
         $this->assertEquals($path, $this->client->getLogPath());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToGetRateLimit()
+    {
+        $response = $this->createFakeResponseWithHeaders(array('X-RateLimit-Limit' => 30));
+        $this->client->getHttpClient()->setLastResponse($response);
+
+        $this->assertEquals(30, $this->client->getRateLimitFromLastResponse());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToGetRateLimitRemaining()
+    {
+        $response = $this->createFakeResponseWithHeaders(array('X-RateLimit-Remaining' => 18));
+        $this->client->getHttpClient()->setLastResponse($response);
+
+        $this->assertEquals(18, $this->client->getRateLimitRemainingFromLastResponse());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleToGetRateLimitReset()
+    {
+        $response = $this->createFakeResponseWithHeaders(array('X-RateLimit-Reset' => 1394060670));
+        $this->client->getHttpClient()->setLastResponse($response);
+
+        $this->assertEquals(1394060670, $this->client->getRateLimitResetFromLastResponse());
+    }
+
+    /**
+     * Create a fake response based on an array with headers
+     *
+     * @param  integer  $statusCode
+     * @param  array    $headers
+     * @return Response
+     */
+    protected static function createFakeResponseWithHeaders($headers = array(), $statusCode = 200)
+    {
+        /**
+         * @var Request $request
+         */
+        $request  = new Request('/', '');
+        $response = new Response($statusCode, $headers);
+
+        return $response;
     }
 }

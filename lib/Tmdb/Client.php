@@ -17,6 +17,7 @@ use Guzzle\Common\Exception\RuntimeException;
 use Guzzle\Common\HasDispatcherInterface;
 use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
+use Guzzle\Http\Message\Response;
 use Guzzle\Log\MessageFormatter;
 use Guzzle\Log\PsrLogAdapter;
 use Guzzle\Plugin\Backoff\BackoffPlugin;
@@ -574,5 +575,69 @@ class Client
     public function getLogPath()
     {
         return $this->logPath;
+    }
+
+    /**
+     * Get the current limit of calls from the last response.
+     *
+     * @return string
+     */
+    public function getRateLimitFromLastResponse()
+    {
+        $lastResponse = $this->getLastResponse();
+
+        if ($lastResponse instanceof Response) {
+            return (string) $lastResponse->getHeader('X-RateLimit-Limit');
+        }
+
+        return null;
+    }
+
+    /**
+     * Get remaining calls within the limit from the last response.
+     *
+     * @return string
+     */
+    public function getRateLimitRemainingFromLastResponse()
+    {
+        $lastResponse = $this->getLastResponse();
+
+        if ($lastResponse instanceof Response) {
+            return (string) $lastResponse->getHeader('X-RateLimit-Remaining');
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the unix time the limit is reset from the last response.
+     *
+     * @return string
+     */
+    public function getRateLimitResetFromLastResponse()
+    {
+        $lastResponse = $this->getLastResponse();
+
+        if ($lastResponse instanceof Response) {
+            return (string) $lastResponse->getHeader('X-RateLimit-Reset');
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the last response or return null
+     *
+     * @return Response|null
+     */
+    public function getLastResponse()
+    {
+        $lastResponse = $this->getHttpClient()->getLastResponse();
+
+        if (null === $lastResponse) {
+            return null;
+        }
+
+        return $lastResponse;
     }
 }
