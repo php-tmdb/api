@@ -205,10 +205,20 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     /**
      * Return the file path when casted to string
      *
+     * @throws \Exception when the filepath is empty.
      * @return mixed
      */
     public function __toString()
     {
+        $filePath = $this->getFilePath();
+
+        if (empty($filePath)) {
+            throw new \Exception(sprintf(
+                'Trying to convert an instance of "%s" into an string, but there was no filePath found.',
+                get_class($this)
+            ));
+        }
+
         return $this->getFilePath();
     }
 }
