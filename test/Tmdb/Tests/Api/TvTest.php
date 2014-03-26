@@ -107,6 +107,32 @@ class TvTest extends TestCase
         $api->getTopRated();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetOnTheAir()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('tv/on_the_air');
+
+        $api->getOnTheAir();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetAiringToday()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('tv/airing_today');
+
+        $api->getAiringToday();
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Tv';

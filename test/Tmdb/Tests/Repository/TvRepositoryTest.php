@@ -78,13 +78,22 @@ class TvRepositoryTest extends TestCase
 
     /**
      * @test
-     * @todo fix later
      */
     public function shouldGetOnTheAir()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        //$repository->getOnTheAir();
+        $repository->getOnTheAir();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetAiringToday()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getAiringToday();
     }
 
     /**

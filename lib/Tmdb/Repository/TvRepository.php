@@ -182,4 +182,20 @@ class TvRepository extends AbstractRepository
             $this->getApi()->getOnTheAir($options, $headers)
         );
     }
+
+    /**
+     * Get the list of TV shows that air today.
+     *
+     * Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).
+     *
+     * @param  array $options
+     * @param  array $headers
+     * @return Tv[]
+     */
+    public function getAiringToday(array $options = array(), array $headers = array())
+    {
+        return $this->getFactory()->createResultCollection(
+            $this->getApi()->getAiringToday($options, $headers)
+        );
+    }
 }

@@ -127,4 +127,18 @@ class Tv extends AbstractApi
     {
         $this->get('tv/on_the_air', $parameters, $headers);
     }
+
+    /**
+     * Get the list of TV shows that air today.
+     *
+     * Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).
+     *
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getAiringToday(array $parameters = array(), array $headers = array())
+    {
+        $this->get('tv/airing_today', $parameters, $headers);
+    }
 }
