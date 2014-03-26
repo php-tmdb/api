@@ -7,16 +7,12 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
 
-Won't be adding any more commits until next Wednesday/Thursday due to personal circumstances, feel free to add pull requests or issues meanwhile.
-
 Stable
 ----------------
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 [![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
-
-First stable version is just around the corner, currently making a last thorough review and improving test coverage.
 
 Currently unit tests are run on travis, with the following versions:
 
@@ -30,7 +26,7 @@ Currently unit tests are run on travis, with the following versions:
 Help & Donate
 --------------
 
-If you use this in a project whether personal or business, I'd like to know where it is being used, so please drop me an e-mail :-)!
+If you use this in a project whether personal or business, I'd like to know where it is being used, __so please drop me an e-mail :-)__!
 
 If this project saved you a bunch of work, or you just simply appreciate my efforts, please consider donating a beer ( or two ;) )!
 
@@ -62,10 +58,10 @@ $ curl -sS https://getcomposer.org/installer | php
 $ sudo mv composer.phar /usr/local/bin/composer
 ```
 
-Add the following to your require block in composer.json config.
+Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/php-tmdb-api": "dev-master"
+"wtfzdotnet/php-tmdb-api": ">=1.0.0"
 ```
 
 Include Composer's autoloader:
@@ -75,6 +71,17 @@ Include Composer's autoloader:
 require_once dirname(__DIR__).'/vendor/autoload.php';
 ```
 
+#### New to composer?
+
+Just create a file named `composer.json` in your document root:
+
+```
+{
+    "require": {
+        "wtfzdotnet/php-tmdb-api": ">=1.0.0"
+    }
+}
+```
 
 General API Usage
 -----------------
