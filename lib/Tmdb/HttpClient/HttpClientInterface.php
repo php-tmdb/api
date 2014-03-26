@@ -99,4 +99,7 @@ interface HttpClientInterface
      * @return Response
      */
     public function request(RequestInterface $request);
+
+    public function getBaseUrl();
+    public function setBaseUrl($url);
 }

@@ -446,6 +446,10 @@ class Client
     {
         $this->secure = $secure;
 
+        if ($this->httpClient instanceof HttpClientInterface) {
+            $this->getHttpClient()->setBaseUrl($this->getBaseUrl());
+        }
+
         return $this;
     }
 

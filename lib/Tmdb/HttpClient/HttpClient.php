@@ -237,4 +237,14 @@ class HttpClient implements HttpClientInterface
     {
         return $this->lastResponse;
     }
+
+    public function getBaseUrl()
+    {
+        return $this->getClient()->getBaseUrl();
+    }
+
+    public function setBaseUrl($url)
+    {
+        return $this->getClient()->setBaseUrl($url);
+    }
 }
