@@ -98,4 +98,23 @@ class Lists extends AbstractApi
     {
         return $this->delete('list/' . $id);
     }
+
+    /**
+     * Clear all of the items within a list.
+     *
+     * This is a irreversible action and should be treated with caution.
+     * A valid session id is required.
+     *
+     * @param  string  $id
+     * @param  boolean $confirm
+     * @return mixed
+     */
+    public function clearList($id, $confirm)
+    {
+        return $this->post(sprintf(
+                'list/%s/clear?confirm=%s',
+                $id,
+                (bool) $confirm === true ? 'true':'false'
+            ));
+    }
 }

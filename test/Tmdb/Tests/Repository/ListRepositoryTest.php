@@ -77,6 +77,16 @@ class ListRepositoryTest extends TestCase
         $repository->deleteList('list-id');
     }
 
+    /**
+     * @test
+     */
+    public function shouldClearList()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->clearList('list-id', true);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Lists';

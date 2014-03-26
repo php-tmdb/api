@@ -115,6 +115,23 @@ class ListRepository extends AbstractRepository
     }
 
     /**
+     * Clear all of the items within a list.
+     *
+     * This is a irreversible action and should be treated with caution.
+     * A valid session id is required.
+     *
+     * @param  string     $id
+     * @param  boolean    $confirm
+     * @return ItemStatus
+     */
+    public function clearList($id, $confirm)
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->deleteList($id, (bool) $confirm)
+        );
+    }
+
+    /**
      * Return the related API class
      *
      * @return \Tmdb\Api\Lists

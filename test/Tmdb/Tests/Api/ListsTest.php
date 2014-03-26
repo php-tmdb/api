@@ -78,6 +78,15 @@ class ListsTest extends TestCase
         $api->deleteList(self::LIST_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldClearList()
+    {
+        $api = $this->getApiMock();
+        $api->clearList(self::LIST_ID, true);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Lists';
