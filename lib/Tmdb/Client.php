@@ -584,13 +584,7 @@ class Client
      */
     public function getRateLimitFromLastResponse()
     {
-        $lastResponse = $this->getLastResponse();
-
-        if ($lastResponse instanceof Response) {
-            return (string) $lastResponse->getHeader('X-RateLimit-Limit');
-        }
-
-        return null;
+        return $this->getHeader('X-RateLimit-Limit');
     }
 
     /**
@@ -600,13 +594,7 @@ class Client
      */
     public function getRateLimitRemainingFromLastResponse()
     {
-        $lastResponse = $this->getLastResponse();
-
-        if ($lastResponse instanceof Response) {
-            return (string) $lastResponse->getHeader('X-RateLimit-Remaining');
-        }
-
-        return null;
+        return $this->getHeader('X-RateLimit-Remaining');
     }
 
     /**
@@ -616,10 +604,21 @@ class Client
      */
     public function getRateLimitResetFromLastResponse()
     {
+        return $this->getHeader('X-RateLimit-Reset');
+    }
+
+    /**
+     * Get the header from the client
+     *
+     * @param $header
+     * @return null|string
+     */
+    private function getHeader($header)
+    {
         $lastResponse = $this->getLastResponse();
 
         if ($lastResponse instanceof Response) {
-            return (string) $lastResponse->getHeader('X-RateLimit-Reset');
+            return (string) $lastResponse->getHeader($header);
         }
 
         return null;
