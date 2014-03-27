@@ -580,7 +580,7 @@ class Client
     /**
      * Get the current limit of calls from the last response.
      *
-     * @return string
+     * @return null|string
      */
     public function getRateLimitFromLastResponse()
     {
@@ -590,7 +590,7 @@ class Client
     /**
      * Get remaining calls within the limit from the last response.
      *
-     * @return string
+     * @return null|string
      */
     public function getRateLimitRemainingFromLastResponse()
     {
@@ -600,7 +600,7 @@ class Client
     /**
      * Get the unix time the limit is reset from the last response.
      *
-     * @return string
+     * @return null|string
      */
     public function getRateLimitResetFromLastResponse()
     {
