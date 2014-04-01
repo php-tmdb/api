@@ -409,6 +409,14 @@ class Client
     }
 
     /**
+     * @return Api\Timezones
+     */
+    public function getTimezonesApi()
+    {
+        return new Api\Timezones($this);
+    }
+
+    /**
      * @return HttpClient|HttpClientInterface
      */
     public function getHttpClient()
