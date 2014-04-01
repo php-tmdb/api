@@ -106,7 +106,7 @@ class Client
     private $cachePath;
 
     /**
-     * Stores wether the cache is enabled or not
+     * Stores whether the cache is enabled or not
      *
      * @var boolean
      */
