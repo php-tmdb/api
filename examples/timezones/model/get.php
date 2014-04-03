@@ -16,7 +16,9 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$repository = new \Tmdb\Repository\CollectionRepository($client);
-$collection = $repository->load(10);
+$repository = new \Tmdb\Repository\TimezoneRepository($client);
+$timezones  = $repository->getTimezones();
 
-var_dump($collection);
+var_dump($timezones->getCountry('NL')->supports('Europe/Amsterdam'));
+
+var_dump($timezones);

@@ -133,8 +133,10 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
             $key = spl_object_hash($value);
         }
 
-        if (!array_key_exists($key, $this->data)) {
+        if (!array_key_exists($key, $this->data) && null !== $key) {
             $this->data[$key] = $value;
+        } elseif (!array_key_exists($key, $this->data) && null == $key) {
+            $this->data[] = $value;
         } elseif (is_array($this->data[$key])) {
             $this->data[$key][] = $value;
         } else {
