@@ -263,4 +263,17 @@ class Movies extends AbstractApi
     {
         return $this->postJson('movie/' . $id . '/rating', array('value' => (float) $rating));
     }
+
+    /**
+     * Get the videos (trailers, teasers, clips, etc...) for a specific movie id.
+     *
+     * @param $movie_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getVideos($movie_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('movie/' . $movie_id . '/videos', $parameters, $headers);
+    }
 }

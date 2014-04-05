@@ -111,7 +111,7 @@ class Tv extends AbstractApi
      */
     public function getTranslations($tvshow_id, array $parameters = array(), array $headers = array())
     {
-        $this->get('tv/' . $tvshow_id . '/translations', $parameters, $headers);
+        return $this->get('tv/' . $tvshow_id . '/translations', $parameters, $headers);
     }
 
     /**
@@ -125,7 +125,7 @@ class Tv extends AbstractApi
      */
     public function getOnTheAir(array $parameters = array(), array $headers = array())
     {
-        $this->get('tv/on_the_air', $parameters, $headers);
+        return $this->get('tv/on_the_air', $parameters, $headers);
     }
 
     /**
@@ -139,6 +139,19 @@ class Tv extends AbstractApi
      */
     public function getAiringToday(array $parameters = array(), array $headers = array())
     {
-        $this->get('tv/airing_today', $parameters, $headers);
+        return $this->get('tv/airing_today', $parameters, $headers);
+    }
+
+    /**
+     * Get the videos that have been added to a TV series (trailers, opening credits, etc...)
+     *
+     * @param  int   $tvshow_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getVideos($tvshow_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('tv/' . $tvshow_id . '/videos', $parameters, $headers);
     }
 }

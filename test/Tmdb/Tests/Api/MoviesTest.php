@@ -255,6 +255,19 @@ class MoviesTest extends TestCase
         $api->rateMovie(self::MOVIE_ID, 7.5);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetVideos()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('movie/' . self::MOVIE_ID . '/videos');
+
+        $api->getVideos(self::MOVIE_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Movies';

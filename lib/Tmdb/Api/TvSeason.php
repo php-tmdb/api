@@ -74,4 +74,18 @@ class TvSeason extends AbstractApi
     {
         return $this->get(sprintf('tv/%s/season/%s/images', $tvshow_id, $season_number), $parameters, $headers);
     }
+
+    /**
+     * Get the videos that have been added to a TV season (trailers, teasers, etc...)
+     *
+     * @param $tvshow_id
+     * @param $season_number
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getVideos($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
+    {
+        return $this->get(sprintf('tv/%s/season/%s/videos', $tvshow_id, $season_number), $parameters, $headers);
+    }
 }

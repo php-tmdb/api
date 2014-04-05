@@ -133,6 +133,19 @@ class TvTest extends TestCase
         $api->getAiringToday();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetVideos()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('tv/' . self::TV_ID . '/videos');
+
+        $api->getVideos(self::TV_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Tv';

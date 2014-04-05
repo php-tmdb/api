@@ -134,4 +134,33 @@ class TvEpisode extends AbstractApi
             $headers
         );
     }
+
+    /**
+     * Get the videos that have been added to a TV episode (teasers, clips, etc...)
+     *
+     * @param $tvshow_id
+     * @param $season_number
+     * @param $episode_number
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getVideos(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        array $parameters = array(),
+        array $headers = array()
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/videos',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            ),
+            $parameters,
+            $headers
+        );
+    }
 }

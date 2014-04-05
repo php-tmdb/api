@@ -136,8 +136,15 @@ class TvFactory extends AbstractFactory
 
         /** Translations */
         if (array_key_exists('translations', $data) && null !== $data['translations']) {
+
+            if (array_key_exists('translations', $data['translations'])) {
+                $translations = $data['translations']['translations'];
+            } else {
+                $translations = $data['translations'];
+            }
+
             $tvShow->setTranslations(
-                $this->createGenericCollection($data['translations']['translations'], new Translation())
+                $this->createGenericCollection($translations, new Translation())
             );
         }
 

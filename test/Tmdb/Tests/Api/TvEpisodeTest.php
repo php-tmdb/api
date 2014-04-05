@@ -70,6 +70,19 @@ class TvEpisodeTest extends TestCase
         $api->getImages(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetEpisodeVideos()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/videos');
+
+        $api->getVideos(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\TvEpisode';
