@@ -100,6 +100,7 @@ class Movies extends AbstractApi
     /**
      * Get the trailers for a specific movie id.
      *
+     * @deprecated TMDB changed the way of requesting trailers, see getVideos instead!
      * @param $movie_id
      * @param  array $parameters
      * @param  array $headers
