@@ -2,6 +2,19 @@
 #### [Current]
 
 #### 
+ * [e3a5319](../../commit/e3a5319) - __(Michael Roterman)__ Adding the video method, fixes [#24](../../issues/24)
+ * [d3a4041](../../commit/d3a4041) - __(Michael Roterman)__ Making the getTrailers method in Movies deprecated since this is being replaced by videos.
+ * [e0cf947](../../commit/e0cf947) - __(Michael Roterman)__ Adding videos method on the API scope.
+ * [4d92a83](../../commit/4d92a83) - __(Michael Roterman)__ Removing hardcoded log paths from the examples.
+ * [1baed86](../../commit/1baed86) - __(Michael Roterman)__ Adding the username and password authentication method for authentication.
+ * [7f732a8](../../commit/7f732a8) - __(Michael Roterman)__ Complying with the API.
+ * [78864fd](../../commit/78864fd) - __(Michael Roterman)__ Implemented first citizen for GuestSession's, fixes [#20](../../issues/20)
+ * [d458133](../../commit/d458133) - __(Michael Roterman)__ Implemented Timezones first citizen, fixes [#19](../../issues/19).
+ * [93842bb](../../commit/93842bb) - __(Michael Roterman)__ Adding test
+ * [78de26f](../../commit/78de26f) - __(Michael Roterman)__ Adding timezone first citizen for API
+ * [4c20afe](../../commit/4c20afe) - __(Michael Roterman)__ Typo
+ * [42dfae7](../../commit/42dfae7) - __(Michael Roterman)__ Improving the way https is enabled.
+ * [ff6c4e1](../../commit/ff6c4e1) - __(Michael Roterman)__ Adding CHANGELOG.md
  * [3d6b85f](../../commit/3d6b85f) - __(Michael Roterman)__ Make sure any __toString modification meets the requirements.
  * [2f3150f](../../commit/2f3150f) - __(Michael Roterman)__ Adding airing_today and fixing tests for on_the_air, fixes [#23](../../issues/23) and thus can be closed
  * [ef7af10](../../commit/ef7af10) - __(Michael Roterman)__ Fixing issue when the response from TMDB is null.
@@ -39,6 +52,11 @@
  * [2b28284](../../commit/2b28284) - __(Michael Roterman)__ Modify behaviour of the ImageHelper, which now supports string input, and adding missing credit_id parameters in cast and crewmember objects.
  * [d443ad6](../../commit/d443ad6) - __(Michael Roterman)__ Allowing to input the file_path's in string format in the ImageHelper methods `getUrl`, `getHtml` as this helper should also support the array approach.
  * [20a3507](../../commit/20a3507) - __(Michael Roterman)__ Adding credit_id
+ * [cc0ec44](../../commit/cc0ec44) - __(Michael Roterman)__ Adding username and password authentication, failes for some reason and added an ticket at TMDB API http://tmdb.lighthouseapp.com/projects/83077-api/tickets/358-improve-authentication-api#ticket-358-8.
+
+I suspect the api_key has to be ignored from the request as the request matches the earlier discussion in this ticket,
+but this would require extra work and actually doesn't make sense as all other authentication requests do require the api_key.
+
  * [b676689](../../commit/b676689) - __(Michael Roterman)__ Changing suggest descriptions in composer.json
  * [6a2e7b2](../../commit/6a2e7b2) - __(Michael Roterman)__ Adding plug-ins section
  * [0c309c7](../../commit/0c309c7) - __(Michael Roterman)__ Adding features block in README.md

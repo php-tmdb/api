@@ -7,6 +7,8 @@ A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.i
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
 
+If you have any questions or feature requests, please visit the [google+ community](https://plus.google.com/communities/113373898362999515939).
+
 Stable
 ----------------
 
@@ -61,7 +63,7 @@ $ sudo mv composer.phar /usr/local/bin/composer
 Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/php-tmdb-api": ">=1.0.0"
+"wtfzdotnet/php-tmdb-api": ">=1.1.0"
 ```
 
 Include Composer's autoloader:
@@ -78,7 +80,7 @@ Just create a file named `composer.json` in your document root:
 ```
 {
     "require": {
-        "wtfzdotnet/php-tmdb-api": ">=1.0.0"
+        "wtfzdotnet/php-tmdb-api": ">=1.1.0"
     }
 }
 ```
