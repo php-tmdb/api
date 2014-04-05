@@ -54,6 +54,27 @@ class AuthenticationRepository extends AbstractRepository
     }
 
     /**
+     * This method is used to validate a request_token for user based authentication.
+     * A request_token is required in order to use any of the write methods.
+     *
+     * @param  RequestToken                      $requestToken
+     * @param  string                            $username
+     * @param  string                            $password
+     * @throws UnauthorizedRequestTokenException
+     * @return mixed
+     */
+    public function validateRequestTokenWithLogin(RequestToken $requestToken, $username, $password)
+    {
+        $data = $this->getApi()->validateRequestTokenWithLogin(
+            $requestToken,
+            $username,
+            $password
+        );
+
+        return $this->getFactory()->createRequestToken($data);
+    }
+
+    /**
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
@@ -63,10 +84,10 @@ class AuthenticationRepository extends AbstractRepository
      * @throws UnauthorizedRequestTokenException
      * @return mixed
      */
-    public function getUsernamePasswordToken(RequestToken $requestToken, $username, $password)
+    public function getSessionTokenWithLogin(RequestToken $requestToken, $username, $password)
     {
-        $data = $this->getApi()->getUsernamePasswordToken(
-            $requestToken->getToken(),
+        $data = $this->getApi()->getSessionTokenWithLogin(
+            $requestToken,
             $username,
             $password
         );

@@ -70,6 +70,7 @@ class Authentication extends AbstractApi
 
         try {
             return $this->get('authentication/session/new', array('request_token' => $requestToken));
+
             //@codeCoverageIgnoreStart
         } catch (\Exception $e) {
             if ($e->getCode() == 401) {
@@ -77,6 +78,30 @@ class Authentication extends AbstractApi
             }
             //@codeCoverageIgnoreEnd
         }
+    }
+
+    /**
+     * Helper method to validate the request_token and obtain a session_token
+     *
+     * @param $requestToken
+     * @param $username
+     * @param $password
+     * @return mixed
+     * @throws \InvalidArgumentException
+     */
+    public function getSessionTokenWithLogin($requestToken, $username, $password)
+    {
+        if ($requestToken instanceof RequestToken) {
+            $requestToken = $requestToken->getToken();
+        }
+
+        $validatedRequestToken = $this->validateRequestTokenWithLogin($requestToken, $username, $password);
+
+        if (!$validatedRequestToken['success']) {
+            throw new \InvalidArgumentException('Unable to validate the request_token, please check your credentials.');
+        }
+
+        return $this->getNewSession($validatedRequestToken['request_token']);
     }
 
     /**
@@ -89,16 +114,17 @@ class Authentication extends AbstractApi
      * @throws UnauthorizedRequestTokenException
      * @return mixed
      */
-    public function getUsernamePasswordToken($requestToken, $username, $password)
+    public function validateRequestTokenWithLogin($requestToken, $username, $password)
     {
         if ($requestToken instanceof RequestToken) {
             $requestToken = $requestToken->getToken();
         }
 
         try {
-            return $this->get('authenticate/'. $requestToken .'/validate_with_login', array(
-                'username' => $username,
-                'password' => $password
+            return $this->get('authentication/token/validate_with_login', array(
+                'username'      => $username,
+                'password'      => $password,
+                'request_token' => $requestToken
             ));
             //@codeCoverageIgnoreStart
         } catch (\Exception $e) {
