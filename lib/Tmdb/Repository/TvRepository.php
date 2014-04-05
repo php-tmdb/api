@@ -13,6 +13,8 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\TvFactory;
+use Tmdb\Model\Collection\Videos;
+use Tmdb\Model\Common\Video;
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\QueryParameter\AppendToResponse;
 
@@ -119,6 +121,22 @@ class TvRepository extends AbstractRepository
         $tv   = $this->getFactory()->create(array('translations' => $data));
 
         return $tv->getTranslations();
+    }
+
+    /**
+     * Get the images (posters and backdrops) for a TV series.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return Videos|Video[]
+     */
+    public function getVideos($id, array $parameters = array(), array $headers = array())
+    {
+        $data = $this->getApi()->getVideos($id, $this->parseQueryParameters($parameters), $headers);
+        $tv   = $this->getFactory()->create(array('videos' => $data));
+
+        return $tv->getVideos();
     }
 
     /**

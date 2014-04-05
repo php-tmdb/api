@@ -106,6 +106,16 @@ class TvRepositoryTest extends TestCase
         $repository->getTopRated();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetVideos()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getVideos(self::TV_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Tv';

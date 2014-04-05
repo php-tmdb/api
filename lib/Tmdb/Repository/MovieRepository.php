@@ -16,7 +16,9 @@ use Tmdb\Factory\ImageFactory;
 use Tmdb\Factory\Movie\AlternativeTitleFactory;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\PeopleFactory;
+use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\Video;
 use Tmdb\Model\Movie;
 use Tmdb\Model\Movie\QueryParameter\AppendToResponse;
 
@@ -358,6 +360,22 @@ class MovieRepository extends AbstractRepository
         return $this->getFactory()->createResult(
             $this->getApi()->rateMovie($id, $rating)
         );
+    }
+
+    /**
+     * Get the videos (trailers, teasers, clips, etc...) for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return Videos|Video[]
+     */
+    public function getVideos($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getVideos($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('videos' => $data));
+
+        return $movie->getVideos();
     }
 
     /**

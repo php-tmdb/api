@@ -15,6 +15,8 @@ namespace Tmdb\Repository;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\TvSeasonFactory;
 
+use Tmdb\Model\Collection\Videos;
+use Tmdb\Model\Common\Video;
 use \Tmdb\Model\Tv\Season\QueryParameter\AppendToResponse;
 use Tmdb\Model\Tv\Season;
 use Tmdb\Model\Tv;
@@ -142,6 +144,31 @@ class TvSeasonRepository extends AbstractRepository
         $season = $this->getFactory()->create(array('images' => $data));
 
         return $season->getImages();
+    }
+
+    /**
+     * Get the videos that have been added to a TV season (trailers, teasers, etc...)
+     *
+     * @param $tvShow
+     * @param $season
+     * @param $parameters
+     * @param $headers
+     * @return Videos|Video[]
+     */
+    public function getVideos($tvShow, $season, array $parameters = array(), array $headers = array())
+    {
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getId();
+        }
+
+        $data   = $this->getApi()->getVideos($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
+        $season = $this->getFactory()->create(array('videos' => $data));
+
+        return $season->getVideos();
     }
 
     /**

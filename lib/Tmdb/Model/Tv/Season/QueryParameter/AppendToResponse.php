@@ -23,4 +23,5 @@ class AppendToResponse extends BaseAppendToResponse
     const CREDITS      = 'credits';
     const EXTERNAL_IDS = 'external_ids';
     const IMAGES       = 'images';
+    const VIDEOS       = 'videos';
 }

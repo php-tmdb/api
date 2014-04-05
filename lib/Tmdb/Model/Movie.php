@@ -13,6 +13,7 @@
 namespace Tmdb\Model;
 
 use Tmdb\Model\Collection\ResultCollection;
+use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Genres;
@@ -214,6 +215,11 @@ class Movie extends AbstractModel
     protected $reviews;
 
     /**
+     * @var Videos
+     */
+    protected $videos;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -263,6 +269,7 @@ class Movie extends AbstractModel
         $this->similarMovies       = new GenericCollection();
         $this->trailers            = new GenericCollection();
         $this->translations        = new GenericCollection();
+        $this->videos              = new Videos();
     }
 
     /**
@@ -951,5 +958,24 @@ class Movie extends AbstractModel
     public function getReviews()
     {
         return $this->reviews;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Collection\Videos $videos
+     * @return $this
+     */
+    public function setVideos($videos)
+    {
+        $this->videos = $videos;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Collection\Videos
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }

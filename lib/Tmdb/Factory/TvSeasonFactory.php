@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
@@ -47,6 +48,11 @@ class TvSeasonFactory extends AbstractFactory
     private $tvEpisodeFactory;
 
     /**
+     * @var Common\VideoFactory
+     */
+    private $videoFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -55,6 +61,7 @@ class TvSeasonFactory extends AbstractFactory
         $this->crewFactory      = new CrewFactory();
         $this->imageFactory     = new ImageFactory();
         $this->tvEpisodeFactory = new TvEpisodeFactory();
+        $this->videoFactory     = new VideoFactory();
     }
 
     /**
@@ -107,6 +114,10 @@ class TvSeasonFactory extends AbstractFactory
         /** Episodes */
         if (array_key_exists('episodes', $data)) {
             $tvSeason->setEpisodes($this->getTvEpisodeFactory()->createCollection($data['episodes']));
+        }
+
+        if (array_key_exists('videos', $data)) {
+            $tvSeason->setVideos($this->getVideoFactory()->createCollection($data['videos']));
         }
 
         return $this->hydrate($tvSeason, $data);
@@ -200,5 +211,24 @@ class TvSeasonFactory extends AbstractFactory
     public function getTvEpisodeFactory()
     {
         return $this->tvEpisodeFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\Common\VideoFactory $videoFactory
+     * @return $this
+     */
+    public function setVideoFactory($videoFactory)
+    {
+        $this->videoFactory = $videoFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\Common\VideoFactory
+     */
+    public function getVideoFactory()
+    {
+        return $this->videoFactory;
     }
 }

@@ -15,8 +15,10 @@ namespace Tmdb\Model\Tv;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Images;
+use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\Video;
 use Tmdb\Model\Image\PosterImage;
 
 /**
@@ -87,6 +89,11 @@ class Season extends AbstractModel
     protected $poster;
 
     /**
+     * @var Videos
+     */
+    protected $videos;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -111,6 +118,7 @@ class Season extends AbstractModel
         $this->externalIds = new ExternalIds();
         $this->images      = new Images();
         $this->episodes    = new GenericCollection();
+        $this->videos      = new Videos();
     }
 
     /**
@@ -320,5 +328,24 @@ class Season extends AbstractModel
     public function getPosterImage()
     {
         return $this->poster;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Collection\Videos $videos
+     * @return $this
+     */
+    public function setVideos($videos)
+    {
+        $this->videos = $videos;
+
+        return $this;
+    }
+
+    /**
+     * @return Videos|Video[]
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }

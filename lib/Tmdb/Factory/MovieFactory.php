@@ -13,6 +13,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Factory\Common\ChangeFactory;
+use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\Movie\ListItemFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
@@ -69,6 +70,11 @@ class MovieFactory extends AbstractFactory
     private $keywordFactory;
 
     /**
+     * @var Common\VideoFactory
+     */
+    private $videoFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -81,6 +87,7 @@ class MovieFactory extends AbstractFactory
         $this->reviewFactory   = new ReviewFactory();
         $this->listItemFactory = new ListItemFactory();
         $this->keywordFactory  = new KeywordFactory();
+        $this->videoFactory    = new VideoFactory();
     }
 
     /**
@@ -144,6 +151,10 @@ class MovieFactory extends AbstractFactory
          */
         if (array_key_exists('trailers', $data) && array_key_exists('youtube', $data['trailers'])) {
             $movie->setTrailers($this->createGenericCollection($data['trailers']['youtube'], new Youtube()));
+        }
+
+        if (array_key_exists('videos', $data)) {
+            $movie->setVideos($this->getVideoFactory()->createCollection($data['videos']));
         }
 
         if (array_key_exists('translations', $data) && array_key_exists('translations', $data['translations'])) {
@@ -383,5 +394,24 @@ class MovieFactory extends AbstractFactory
     public function getKeywordFactory()
     {
         return $this->keywordFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\Common\VideoFactory $videoFactory
+     * @return $this
+     */
+    public function setVideoFactory($videoFactory)
+    {
+        $this->videoFactory = $videoFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\Common\VideoFactory
+     */
+    public function getVideoFactory()
+    {
+        return $this->videoFactory;
     }
 }

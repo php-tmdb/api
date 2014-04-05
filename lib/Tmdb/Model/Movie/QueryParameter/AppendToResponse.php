@@ -31,4 +31,5 @@ final class AppendToResponse extends BaseAppendToResponse
     const REVIEWS            = 'reviews';
     const LISTS              = 'lists';
     const CHANGES            = 'changes';
+    const VIDEOS             = 'videos';
 }

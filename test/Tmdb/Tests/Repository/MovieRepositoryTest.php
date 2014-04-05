@@ -211,6 +211,16 @@ class MovieRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetVideos()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getVideos(self::MOVIE_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldBeAbleToSetFactories()
     {
         /**

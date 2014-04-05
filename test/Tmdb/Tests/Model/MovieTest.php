@@ -43,6 +43,7 @@ class MovieTest extends TestCase
                 'getSimilarMovies'       => 'Tmdb\Model\Common\GenericCollection',
                 'getTrailers'            => 'Tmdb\Model\Common\GenericCollection',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
+                'getVideos'              => 'Tmdb\Model\Collection\Videos',
             )
         );
     }
@@ -63,6 +64,7 @@ class MovieTest extends TestCase
         $movie->setSpokenLanguages($class);
         $movie->setCredits(new CreditsCollection());
         $movie->setLists($class);
+        $movie->setVideos($class);
 
         $this->assertInstancesOf(
             $movie,
@@ -74,6 +76,7 @@ class MovieTest extends TestCase
                 'getSpokenLanguages'     => $className,
                 'getCredits'             => 'Tmdb\Model\Collection\CreditsCollection',
                 'getLists'               => $className,
+                'getVideos'              => $className,
             )
         );
     }

@@ -94,6 +94,22 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function shouldGetVideos()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Tv\Season();
+        $season->setId(self::SEASON_ID);
+
+        $repository->getVideos($tv, $season);
+    }
+
+    /**
      * @expectedException Tmdb\Exception\RuntimeException
      * @test
      */

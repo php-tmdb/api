@@ -37,6 +37,7 @@ class TvTest extends TestCase
                 'getExternalIds'         => 'Tmdb\Model\Common\ExternalIds',
                 'getImages'              => 'Tmdb\Model\Collection\Images',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
+                'getVideos'              => 'Tmdb\Model\Collection\Videos',
             )
         );
     }
