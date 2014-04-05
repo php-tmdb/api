@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Repository;
 
+use Tmdb\Exception\UnauthorizedRequestTokenException;
 use Tmdb\Factory\AuthenticationFactory;
 use Tmdb\RequestToken;
 
@@ -48,6 +49,48 @@ class AuthenticationRepository extends AbstractRepository
     public function getSessionToken(RequestToken $requestToken)
     {
         $data  = $this->getApi()->getNewSession($requestToken->getToken());
+
+        return $this->getFactory()->createSessionToken($data);
+    }
+
+    /**
+     * This method is used to validate a request_token for user based authentication.
+     * A request_token is required in order to use any of the write methods.
+     *
+     * @param  RequestToken                      $requestToken
+     * @param  string                            $username
+     * @param  string                            $password
+     * @throws UnauthorizedRequestTokenException
+     * @return mixed
+     */
+    public function validateRequestTokenWithLogin(RequestToken $requestToken, $username, $password)
+    {
+        $data = $this->getApi()->validateRequestTokenWithLogin(
+            $requestToken,
+            $username,
+            $password
+        );
+
+        return $this->getFactory()->createRequestToken($data);
+    }
+
+    /**
+     * This method is used to generate a session id for user based authentication.
+     * A session id is required in order to use any of the write methods.
+     *
+     * @param  RequestToken                      $requestToken
+     * @param  string                            $username
+     * @param  string                            $password
+     * @throws UnauthorizedRequestTokenException
+     * @return mixed
+     */
+    public function getSessionTokenWithLogin(RequestToken $requestToken, $username, $password)
+    {
+        $data = $this->getApi()->getSessionTokenWithLogin(
+            $requestToken,
+            $username,
+            $password
+        );
 
         return $this->getFactory()->createSessionToken($data);
     }
