@@ -16,8 +16,6 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$client->setLogging(true, '/www/dev/php-tmdb-api/tmdb.log');
-
 $requestToken = new \Tmdb\RequestToken(TMDB_REQUEST_TOKEN);
 
 $authenticationRepository = new \Tmdb\Repository\AuthenticationRepository($client);

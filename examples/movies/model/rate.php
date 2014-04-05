@@ -21,8 +21,6 @@ $sessionToken      = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 */
 
-$client->setLogging(true, '/www/dev/php-tmdb-api/tmdb.log');
-
 $guestSessionToken = new \Tmdb\GuestSessionToken(TMDB_GUEST_SESSION_TOKEN);
 $client->setSessionToken($guestSessionToken);
 
