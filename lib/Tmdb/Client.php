@@ -417,6 +417,14 @@ class Client
     }
 
     /**
+     * @return Api\GuestSession
+     */
+    public function getGuestSessionApi()
+    {
+        return new Api\GuestSession($this);
+    }
+
+    /**
      * @return HttpClient|HttpClientInterface
      */
     public function getHttpClient()

@@ -13,6 +13,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Exception\NotImplementedException;
+use Tmdb\GuestSessionToken;
 use Tmdb\RequestToken;
 use Tmdb\SessionToken;
 
@@ -98,7 +99,7 @@ class AuthenticationFactory extends AbstractFactory
      */
     public function createGuestSessionToken(array $data = array())
     {
-        $token = new SessionToken();
+        $token = new GuestSessionToken();
 
         if (array_key_exists('expires_at', $data)) {
             $token->setExpiresAt(new \DateTime($data['expires_at']));

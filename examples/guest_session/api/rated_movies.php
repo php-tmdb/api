@@ -13,20 +13,12 @@
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$token = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-/**
-$sessionToken      = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
+$sessionToken = new \Tmdb\GuestSessionToken(TMDB_GUEST_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
-*/
 
-$client->setLogging(true, '/www/dev/php-tmdb-api/tmdb.log');
+$rated_movies = $client->getGuestSessionApi()->getRatedMovies();
 
-$guestSessionToken = new \Tmdb\GuestSessionToken(TMDB_GUEST_SESSION_TOKEN);
-$client->setSessionToken($guestSessionToken);
-
-$repository = new \Tmdb\Repository\MovieRepository($client);
-$rate = $repository->rate(49047, 6.5);
-
-var_dump($rate);
+var_dump($rated_movies);

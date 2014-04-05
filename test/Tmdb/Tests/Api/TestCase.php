@@ -20,13 +20,17 @@ abstract class TestCase extends Base
 
     abstract protected function getApiClass();
 
-    protected function getApiMock(array $methods = array())
+    protected function getApiMock(array $methods = array(), array $clientMethods = array(), $sessionToken = null)
     {
         if ($this->_api) {
             return $this->_api;
         }
 
-        $client = $this->getClientWithMockedHttpClient();
+        $client = $this->getClientWithMockedHttpClient($clientMethods);
+
+        if ($sessionToken) {
+            $client->setSessionToken($sessionToken);
+        }
 
         return $this->getMockBuilder($this->getApiClass())
             ->setMethods(
