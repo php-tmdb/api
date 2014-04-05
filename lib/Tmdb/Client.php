@@ -17,6 +17,7 @@ use Guzzle\Common\Exception\RuntimeException;
 use Guzzle\Common\HasDispatcherInterface;
 use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
+use Guzzle\Http\Message\Response;
 use Guzzle\Log\MessageFormatter;
 use Guzzle\Log\PsrLogAdapter;
 use Guzzle\Plugin\Backoff\BackoffPlugin;
@@ -28,6 +29,7 @@ use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
+use Tmdb\HttpClient\Plugin\BackoffWithRetryAfterStrategy;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 
 /**
@@ -141,7 +143,7 @@ class Client
             $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
             $httpClient->addSubscriber($acceptJsonHeaderPlugin);
 
-            $backoffPlugin = BackoffPlugin::getExponentialBackoff(5);
+            $backoffPlugin = new BackoffPlugin(new BackoffWithRetryAfterStrategy());
             $httpClient->addSubscriber($backoffPlugin);
 
             if ($this->getToken() instanceof ApiToken) {
@@ -593,5 +595,68 @@ class Client
     public function getLogPath()
     {
         return $this->logPath;
+    }
+
+    /**
+     * Get the current limit of calls from the last response.
+     *
+     * @return null|string
+     */
+    public function getRateLimitFromLastResponse()
+    {
+        return $this->getHeader('X-RateLimit-Limit');
+    }
+
+    /**
+     * Get remaining calls within the limit from the last response.
+     *
+     * @return null|string
+     */
+    public function getRateLimitRemainingFromLastResponse()
+    {
+        return $this->getHeader('X-RateLimit-Remaining');
+    }
+
+    /**
+     * Get the unix time the limit is reset from the last response.
+     *
+     * @return null|string
+     */
+    public function getRateLimitResetFromLastResponse()
+    {
+        return $this->getHeader('X-RateLimit-Reset');
+    }
+
+    /**
+     * Get the header from the client
+     *
+     * @param $header
+     * @return null|string
+     */
+    private function getHeader($header)
+    {
+        $lastResponse = $this->getLastResponse();
+
+        if ($lastResponse instanceof Response) {
+            return (string) $lastResponse->getHeader($header);
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the last response or return null
+     *
+     * @return Response|null
+     */
+    public function getLastResponse()
+    {
+        $lastResponse = $this->getHttpClient()->getLastResponse();
+
+        if (null === $lastResponse) {
+            return null;
+        }
+
+        return $lastResponse;
     }
 }
