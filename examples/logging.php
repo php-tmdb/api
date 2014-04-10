@@ -16,7 +16,7 @@ require_once '../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$client->setLogging(true, '/www/dev/php-tmdb-api/api.log');
+$client->setLogging(true, '../tmdb.log');
 
 $repository = new \Tmdb\Repository\MovieRepository($client);
 $movie      = $repository->load(19995);
