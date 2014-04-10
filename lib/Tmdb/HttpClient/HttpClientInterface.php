@@ -14,6 +14,7 @@ namespace Tmdb\HttpClient;
 
 use Guzzle\Http\Message\RequestInterface;
 use Guzzle\Http\Message\Response;
+use Tmdb\SessionToken;
 
 /**
  * Interface HttpClientInterface
@@ -102,4 +103,6 @@ interface HttpClientInterface
 
     public function getBaseUrl();
     public function setBaseUrl($url);
+
+    public function setSessionToken(SessionToken $sessionToken);
 }

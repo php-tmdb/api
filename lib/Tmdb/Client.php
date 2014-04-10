@@ -12,23 +12,10 @@
  */
 namespace Tmdb;
 
-use Guzzle\Cache\DoctrineCacheAdapter;
-use Guzzle\Common\Exception\RuntimeException;
-use Guzzle\Common\HasDispatcherInterface;
-use Guzzle\Http\Client as GuzzleClient;
 use Guzzle\Http\ClientInterface;
-use Guzzle\Log\MessageFormatter;
-use Guzzle\Log\PsrLogAdapter;
-use Guzzle\Plugin\Backoff\BackoffPlugin;
-use Guzzle\Plugin\Cache\CachePlugin;
-use Guzzle\Plugin\Cache\DefaultCacheStorage;
-use Guzzle\Plugin\Log\LogPlugin;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
-use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
-use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
-use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 
 /**
  * Client wrapper for TMDB
@@ -106,7 +93,7 @@ class Client
     private $cachePath;
 
     /**
-     * Stores whether the cache is enabled or not
+     * Stores wether the cache is enabled or not
      *
      * @var boolean
      */
@@ -118,95 +105,44 @@ class Client
      * @param ClientInterface|null $httpClient
      * @param ApiToken             $token
      * @param boolean              $secure
+     * @param array                $options
      */
-    public function __construct(ApiToken $token, ClientInterface $httpClient = null, $secure = false)
+    public function __construct(
+        ApiToken $token,
+        ClientInterface $httpClient = null,
+        $secure = false,
+        $options = array()
+    )
     {
         $this->setToken($token);
         $this->setSecure($secure);
-        $this->constructHttpClient($httpClient);
+        $this->constructHttpClient(
+            $httpClient,
+            array_merge(
+                array(
+                    'token'  => $this->getToken(),
+                    'secure' => $this->getSecure()
+                ),
+                $options
+            )
+        );
     }
 
     /**
      * Construct the http client
      *
-     * @param  ClientInterface  $httpClient
-     * @throws RuntimeException
+     * @param  ClientInterface $httpClient
+     * @param  array           $options
      * @return void
      */
-    private function constructHttpClient(ClientInterface $httpClient = null)
+    private function constructHttpClient(ClientInterface $httpClient = null, array $options)
     {
-        $httpClient = $httpClient ?: new GuzzleClient($this->getBaseUrl());
-
-        if ($httpClient instanceof HasDispatcherInterface) {
-            $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
-            $httpClient->addSubscriber($acceptJsonHeaderPlugin);
-
-            $backoffPlugin = BackoffPlugin::getExponentialBackoff(5);
-            $httpClient->addSubscriber($backoffPlugin);
-
-            if ($this->getToken() instanceof ApiToken) {
-                $apiTokenPlugin = new ApiTokenPlugin($this->getToken());
-                $httpClient->addSubscriber($apiTokenPlugin);
-            }
-
-            if ($this->cacheEnabled && !empty($this->cachePath)) {
-                if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
-                    //@codeCoverageIgnoreStart
-                    throw new RuntimeException(
-                        'Could not find the doctrine cache library,
-                        have you added doctrine-cache to your composer.json?'
-                    );
-                    //@codeCoverageIgnoreEnd
-                }
-
-                $cachePlugin = new CachePlugin(array(
-                    'storage' => new DefaultCacheStorage(
-                                new DoctrineCacheAdapter(
-                                new \Doctrine\Common\Cache\FilesystemCache($this->cachePath)
-                            )
-                        )
-                    )
-                );
-
-                $httpClient->addSubscriber($cachePlugin);
-            }
-
-            if ($this->logEnabled && !empty($this->logPath)) {
-                if (empty($this->logger) && !class_exists('\Monolog\Logger')) {
-                    //@codeCoverageIgnoreStart
-                    throw new RuntimeException(
-                        'Could not find any logger set and the monolog logger library was not found
-                        to provide a default, you have to  set a custom logger on the client or
-                        have you forgot adding monolog to your composer.json?'
-                    );
-                    //@codeCoverageIgnoreEnd
-                } else {
-                    $this->setLogger(new \Monolog\Logger('php-tmdb-api'));
-                    $this->getLogger()->pushHandler(
-                        new \Monolog\Handler\StreamHandler(
-                            $this->logPath,
-                            \Monolog\Logger::DEBUG
-                        )
-                    );
-                }
-
-                if ($this->logger instanceof \Psr\Log\LoggerInterface) {
-                    $logPlugin = new LogPlugin(
-                        new PsrLogAdapter($this->logger),
-                        MessageFormatter::SHORT_FORMAT
-                    );
-
-                    $httpClient->addSubscriber($logPlugin);
-                }
-            }
-
-            if ($this->getSessionToken() instanceof SessionToken) {
-                $sessionTokenPlugin = new SessionTokenPlugin($this->getSessionToken());
-                $httpClient->addSubscriber($sessionTokenPlugin);
-            }
-        }
-
-        $this->httpClient = new HttpClient($this->getBaseUrl(), array(), $httpClient);
+        $httpClient       = $httpClient ?: new \Guzzle\Http\Client($this->getBaseUrl());
+        $this->httpClient = new HttpClient(
+            $this->getBaseUrl(),
+            $options,
+            $httpClient
+        );
     }
 
     /**
@@ -485,7 +421,9 @@ class Client
     {
         $this->sessionToken = $sessionToken;
 
-        $this->constructHttpClient();
+        if ($this->httpClient instanceof HttpClientInterface) {
+            $this->getHttpClient()->setSessionToken($sessionToken);
+        }
 
         return $this;
     }
@@ -523,8 +461,10 @@ class Client
             $path
         ;
 
-        // @todo doesn't cover a custom client, would require un-registering all known plugins
-        $this->constructHttpClient();
+        $this->getHttpClient()->setCaching(array(
+            'enabled'    => $enabled,
+            'cache_path' => $path
+        ));
 
         return $this;
     }
@@ -581,8 +521,10 @@ class Client
             $path
         ;
 
-        // @todo doesn't cover a custom client, would require un-registering all known plugins
-        $this->constructHttpClient();
+        $this->getHttpClient()->setLogging(array(
+            'enabled'  => $enabled,
+            'log_path' => $path
+        ));
 
         return $this;
     }
