@@ -26,6 +26,7 @@ use Guzzle\Plugin\Cache\CachePlugin;
 use Guzzle\Plugin\Cache\DefaultCacheStorage;
 use Guzzle\Plugin\Log\LogPlugin;
 use Tmdb\ApiToken;
+use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
@@ -186,8 +187,8 @@ class HttpClient implements HttpClientInterface
         try {
             $response = $request->send();
         } catch (\Exception $e) {
-            // @TODO catch any API errors / timeouts / other specific information from Guzzle?
-            throw $e;
+            $error = $e->getResponse()->json();
+            throw new TmdbApiException($error['status_message'], $error['status_code']);
         }
 
         $this->lastRequest  = $request;
