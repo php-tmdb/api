@@ -63,7 +63,7 @@ $ sudo mv composer.phar /usr/local/bin/composer
 Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/php-tmdb-api": ">=1.1.0"
+"wtfzdotnet/php-tmdb-api": ">=1.2.0"
 ```
 
 Include Composer's autoloader:
@@ -80,7 +80,7 @@ Just create a file named `composer.json` in your document root:
 ```
 {
     "require": {
-        "wtfzdotnet/php-tmdb-api": ">=1.1.0"
+        "wtfzdotnet/php-tmdb-api": ">=1.2.0"
     }
 }
 ```

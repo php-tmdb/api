@@ -2,6 +2,14 @@
 #### [Current]
 
 #### 
+ * [9cb0dae](../../commit/9cb0dae) - __(Michael Roterman)__ Throws exceptions whenever 4xx status codes are returned, all other responses don't neccasarily require the status codes right now, but will review this again later.
+ * [927657f](../../commit/927657f) - __(Michael Roterman)__ Consistency is a virtue
+ * [40bd79b](../../commit/40bd79b) - __(Michael Roterman)__ Refactor of Client and HttpClient
+ * [2f65004](../../commit/2f65004) - __(Michael Roterman)__ Adding examples for the remaining two filters.
+ * [633af14](../../commit/633af14) - __(Michael Roterman)__ Removing absolute path from example
+ * [a279902](../../commit/a279902) - __(Michael Roterman)__ Refactoring client
+ * [08971f6](../../commit/08971f6) - __(Michael Roterman)__ Fixing link in README.md
+ * [636f508](../../commit/636f508) - __(Michael Roterman)__ Preparing v1.1.0
  * [e3a5319](../../commit/e3a5319) - __(Michael Roterman)__ Adding the video method, fixes [#24](../../issues/24)
  * [d3a4041](../../commit/d3a4041) - __(Michael Roterman)__ Making the getTrailers method in Movies deprecated since this is being replaced by videos.
  * [e0cf947](../../commit/e0cf947) - __(Michael Roterman)__ Adding videos method on the API scope.
