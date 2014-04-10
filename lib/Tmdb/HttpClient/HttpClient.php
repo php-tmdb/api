@@ -17,6 +17,19 @@ use Guzzle\Http\Message\Request;
 use Guzzle\Http\Message\RequestInterface;
 use Guzzle\Http\Message\Response;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Guzzle\Cache\DoctrineCacheAdapter;
+use Guzzle\Common\Exception\RuntimeException;
+use Guzzle\Log\MessageFormatter;
+use Guzzle\Log\PsrLogAdapter;
+use Guzzle\Plugin\Backoff\BackoffPlugin;
+use Guzzle\Plugin\Cache\CachePlugin;
+use Guzzle\Plugin\Cache\DefaultCacheStorage;
+use Guzzle\Plugin\Log\LogPlugin;
+use Tmdb\ApiToken;
+use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
+use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
+use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
+use Tmdb\SessionToken;
 
 /**
  * Class HttpClient
@@ -54,6 +67,8 @@ class HttpClient implements HttpClientInterface
         $this->base_url = $baseUrl;
         $this->options  = $options;
         $this->client   = $client;
+
+        $this->registerGuzzleSubscribers($options);
     }
 
     /**
@@ -238,13 +253,127 @@ class HttpClient implements HttpClientInterface
         return $this->lastResponse;
     }
 
+    /**
+     * Get the current base url
+     *
+     * @return null|string
+     */
     public function getBaseUrl()
     {
         return $this->getClient()->getBaseUrl();
     }
 
+    /**
+     * Set the base url secure / insecure
+     *
+     * @param $url
+     * @return ClientInterface
+     */
     public function setBaseUrl($url)
     {
         return $this->getClient()->setBaseUrl($url);
+    }
+
+    /**
+     * Register the default subscribers for Guzzle
+     *
+     * @param array $options
+     */
+    public function registerGuzzleSubscribers(array $options)
+    {
+        $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
+        $this->addSubscriber($acceptJsonHeaderPlugin);
+
+        $backoffPlugin = BackoffPlugin::getExponentialBackoff(5);
+        $this->addSubscriber($backoffPlugin);
+
+        if (array_key_exists('token', $options) && $options['token'] instanceof ApiToken) {
+            $apiTokenPlugin = new ApiTokenPlugin($options['token']);
+            $this->addSubscriber($apiTokenPlugin);
+        }
+    }
+
+    /**
+     * Add an subscriber to enable caching.
+     *
+     * @param  array                                     $parameters
+     * @throws \Guzzle\Common\Exception\RuntimeException
+     */
+    public function setCaching(array $parameters = array())
+    {
+        if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
+            //@codeCoverageIgnoreStart
+            throw new RuntimeException(
+                'Could not find the doctrine cache library,
+                have you added doctrine-cache to your composer.json?'
+            );
+            //@codeCoverageIgnoreEnd
+        }
+
+        $cachePlugin = new CachePlugin(array(
+                'storage' => new DefaultCacheStorage(
+                        new DoctrineCacheAdapter(
+                            new \Doctrine\Common\Cache\FilesystemCache($parameters['cache_path'])
+                        )
+                    )
+            )
+        );
+
+        $this->addSubscriber($cachePlugin);
+    }
+
+    /**
+     * Add an subscriber to enable logging.
+     *
+     * @param  array                                     $parameters
+     * @throws \Guzzle\Common\Exception\RuntimeException
+     */
+    public function setLogging(array $parameters = array())
+    {
+        if (!array_key_exists('logger', $parameters) && !class_exists('\Monolog\Logger')) {
+            //@codeCoverageIgnoreStart
+            throw new RuntimeException(
+                'Could not find any logger set and the monolog logger library was not found
+                to provide a default, you have to  set a custom logger on the client or
+                have you forgot adding monolog to your composer.json?'
+            );
+            //@codeCoverageIgnoreEnd
+        } else {
+            $logger = new \Monolog\Logger('php-tmdb-api');
+            $logger->pushHandler(
+                new \Monolog\Handler\StreamHandler(
+                    $parameters['log_path'],
+                    \Monolog\Logger::DEBUG
+                )
+            );
+        }
+
+        if (array_key_exists('logger', $parameters)) {
+            $logger = $parameters['logger'];
+        }
+
+        $logPlugin = null;
+
+        if ($logger instanceof \Psr\Log\LoggerInterface) {
+            $logPlugin = new LogPlugin(
+                new PsrLogAdapter($logger),
+                MessageFormatter::SHORT_FORMAT
+            );
+        }
+
+        if (null !== $logPlugin) {
+            $this->addSubscriber($logPlugin);
+        }
+    }
+
+    /**
+     * Add an subscriber to append the session_token to the query parameters.
+     *
+     * @param SessionToken $sessionToken
+     */
+    public function setSessionToken(SessionToken $sessionToken)
+    {
+        $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
+        $this->addSubscriber($sessionTokenPlugin);
     }
 }
