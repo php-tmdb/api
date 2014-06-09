@@ -45,7 +45,7 @@ class TvSearchQuery extends SearchQuery
             $year = $year->format('Y');
         }
 
-        $this->set('year', (int) $year);
+        $this->set('first_air_date_year', (int) $year);
 
         return $this;
     }
