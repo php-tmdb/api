@@ -17,9 +17,11 @@ use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\Movie\ListItemFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
+use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Trailer\Youtube;
 use Tmdb\Model\Common\Translation;
+use Tmdb\Model\Company;
 use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Movie;
 
@@ -180,6 +182,18 @@ class MovieFactory extends AbstractFactory
 
         if (array_key_exists('changes', $data)) {
             $movie->setChanges($this->getChangeFactory()->createCollection($data['changes']));
+        }
+
+        if (array_key_exists('production_companies', $data)) {
+            $movie->setProductionCompanies(
+                $this->createGenericCollection($data['production_companies'], new Company())
+            );
+        }
+
+        if (array_key_exists('production_countries', $data)) {
+            $movie->setProductionCountries(
+                $this->createGenericCollection($data['production_countries'], new Country())
+            );
         }
 
         return $this->hydrate($movie, $data);
