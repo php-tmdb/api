@@ -54,22 +54,37 @@ class Account extends AbstractApi
      */
     public function getFavoriteMovies($accountId, array $parameters = array(), array $headers = array())
     {
-        return $this->get('account/' . $accountId . '/favorite_movies', $parameters, $headers);
+        return $this->get('account/' . $accountId . '/favorite/movies', $parameters, $headers);
+    }
+
+    /**
+     * Get the list of favorite TV series for an account.
+     *
+     * @param  integer $accountId
+     * @param  array   $parameters
+     * @param  array   $headers
+     * @return mixed
+     */
+    public function getFavoriteTvShows($accountId, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('account/' . $accountId . '/favorite/tv', $parameters, $headers);
     }
 
     /**
      * Add or remove a movie to an accounts favorite list.
      *
      * @param  integer $accountId
-     * @param  integer $movieId
+     * @param  integer $mediaId
      * @param  boolean $isFavorite
+     * @param  string  $mediaType  Either movie or tv
      * @return mixed
      */
-    public function favorite($accountId, $movieId, $isFavorite = true)
+    public function favorite($accountId, $mediaId, $isFavorite = true, $mediaType = 'movie')
     {
         return $this->postJson('account/' . $accountId . '/favorite', array(
-            'movie_id' => $movieId,
-            'favorite' => $isFavorite
+            'media_id'   => $mediaId,
+            'media_type' => $mediaType,
+            'favorite'   => $isFavorite
         ));
     }
 
@@ -83,7 +98,20 @@ class Account extends AbstractApi
      */
     public function getRatedMovies($accountId, array $parameters = array(), array $headers = array())
     {
-        return $this->get('account/' . $accountId . '/rated_movies', $parameters, $headers);
+        return $this->get('account/' . $accountId . '/rated/movies', $parameters, $headers);
+    }
+
+    /**
+     * Get the list of rated TV shows (and associated rating) for an account.
+     *
+     * @param  integer $accountId
+     * @param  array   $parameters
+     * @param  array   $headers
+     * @return mixed
+     */
+    public function getRatedTvShows($accountId, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('account/' . $accountId . '/rated/tv', $parameters, $headers);
     }
 
     /**
@@ -96,22 +124,37 @@ class Account extends AbstractApi
      */
     public function getMovieWatchlist($accountId, array $parameters = array(), array $headers = array())
     {
-        return $this->get('account/' . $accountId . '/movie_watchlist', $parameters, $headers);
+        return $this->get('account/' . $accountId . '/watchlist/movies', $parameters, $headers);
+    }
+
+    /**
+     * Get the list of TV series on an accounts watchlist.
+     *
+     * @param  integer $accountId
+     * @param  array   $parameters
+     * @param  array   $headers
+     * @return mixed
+     */
+    public function getTvWatchlist($accountId, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('account/' . $accountId . '/watchlist/tv', $parameters, $headers);
     }
 
     /**
      * Add or remove a movie to an accounts watch list.
      *
      * @param  integer $accountId
-     * @param  integer $movieId
+     * @param  integer $mediaId
      * @param  boolean $isOnWatchlist
+     * @param  string  $mediaType     Either movie or tv
      * @return mixed
      */
-    public function watchlist($accountId, $movieId, $isOnWatchlist = true)
+    public function watchlist($accountId, $mediaId, $isOnWatchlist = true, $mediaType = 'movie')
     {
         return $this->postJson('account/' . $accountId . '/movie_watchlist', array(
-            'movie_id' => $movieId,
-            'movie_watchlist' => $isOnWatchlist
+            'media_id'   => $mediaId,
+            'media_type' => $mediaType,
+            'watchlist'  => $isOnWatchlist
         ));
     }
 }
