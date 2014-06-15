@@ -45,7 +45,9 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
-                    AppendToResponse::TRANSLATIONS
+                    AppendToResponse::TRANSLATIONS,
+                    AppendToResponse::KEYWORDS,
+                    AppendToResponse::CHANGES
                 ))
             );
         }
