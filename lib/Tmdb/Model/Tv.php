@@ -196,6 +196,11 @@ class Tv extends AbstractModel
     protected $keywords;
 
     /**
+     * @var Common\GenericCollection
+     */
+    protected $similar;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -247,6 +252,7 @@ class Tv extends AbstractModel
         $this->videos         = new Videos();
         $this->changes        = new GenericCollection();
         $this->keywords       = new GenericCollection();
+        $this->similar        = new GenericCollection();
     }
 
     /**
@@ -863,5 +869,24 @@ class Tv extends AbstractModel
     public function getKeywords()
     {
         return $this->keywords;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Common\GenericCollection $similar
+     * @return $this
+     */
+    public function setSimilar($similar)
+    {
+        $this->similar = $similar;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\GenericCollection
+     */
+    public function getSimilar()
+    {
+        return $this->similar;
     }
 }

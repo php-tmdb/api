@@ -190,6 +190,10 @@ class TvFactory extends AbstractFactory
             $tvShow->setChanges($this->getChangesFactory()->createCollection($data['changes']));
         }
 
+        if (array_key_exists('similar', $data)) {
+            $tvShow->setSimilar($this->createResultCollection($data['similar']));
+        }
+
         return $this->hydrate($tvShow, $data);
     }
 

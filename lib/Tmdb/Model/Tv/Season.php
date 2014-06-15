@@ -13,6 +13,7 @@
 namespace Tmdb\Model\Tv;
 
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Collection\Changes;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\Videos;
@@ -94,6 +95,11 @@ class Season extends AbstractModel
     protected $videos;
 
     /**
+     * @var \Tmdb\Model\Collection\Changes
+     */
+    protected $changes;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -119,6 +125,7 @@ class Season extends AbstractModel
         $this->images      = new Images();
         $this->episodes    = new GenericCollection();
         $this->videos      = new Videos();
+        $this->changes     = new Changes();
     }
 
     /**
@@ -347,5 +354,24 @@ class Season extends AbstractModel
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Collection\Changes $changes
+     * @return $this
+     */
+    public function setChanges($changes)
+    {
+        $this->changes = $changes;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Collection\Changes
+     */
+    public function getChanges()
+    {
+        return $this->changes;
     }
 }

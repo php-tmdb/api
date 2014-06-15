@@ -46,6 +46,7 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
                     AppendToResponse::TRANSLATIONS,
+                    AppendToResponse::SIMILAR,
                     AppendToResponse::KEYWORDS,
                     AppendToResponse::CHANGES
                 ))

@@ -66,6 +66,7 @@ class TvEpisodeRepository extends AbstractRepository
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
+                    AppendToResponse::CHANGES
                 ))
             );
         }
@@ -77,6 +78,7 @@ class TvEpisodeRepository extends AbstractRepository
             $this->parseQueryParameters($parameters),
             $headers
         );
+var_dump($data);exit;
 
         return $this->getFactory()->create($data);
     }
