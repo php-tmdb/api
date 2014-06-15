@@ -75,6 +75,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
                 'getReviewsApi'        => 'Tmdb\Api\Reviews',
                 'getChangesApi'        => 'Tmdb\Api\Changes',
                 'getJobsApi'           => 'Tmdb\Api\Jobs',
+                'getTimezonesApi'      => 'Tmdb\Api\Timezones',
             )
         );
     }
