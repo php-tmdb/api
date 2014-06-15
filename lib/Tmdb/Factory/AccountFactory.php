@@ -32,10 +32,16 @@ class AccountFactory extends AbstractFactory
      */
     private $imageFactory;
 
+    /**
+     * @var TvFactory
+     */
+    private $tvFactory;
+
     public function __construct()
     {
         $this->movieFactory = new MovieFactory();
         $this->imageFactory = new ImageFactory();
+        $this->tvFactory    = new TvFactory();
     }
 
     /**
@@ -67,6 +73,17 @@ class AccountFactory extends AbstractFactory
     public function createMovie(array $data = array())
     {
         return $this->getMovieFactory()->create($data);
+    }
+
+    /**
+     * Create TV show
+     *
+     * @param  array          $data
+     * @return \Tmdb\Model\Tv
+     */
+    public function createTvShow(array $data = array())
+    {
+        return $this->getTvFactory()->create($data);
     }
 
     /**
@@ -130,5 +147,24 @@ class AccountFactory extends AbstractFactory
     public function getImageFactory()
     {
         return $this->imageFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\TvFactory $tvFactory
+     * @return $this
+     */
+    public function setTvFactory($tvFactory)
+    {
+        $this->tvFactory = $tvFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\TvFactory
+     */
+    public function getTvFactory()
+    {
+        return $this->tvFactory;
     }
 }
