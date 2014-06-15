@@ -16,7 +16,6 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$repository = new \Tmdb\Repository\MovieRepository($client);
-$collection = $repository->getSimilarMovies(87421);
+$similarMovies = $client->getMoviesApi()->getSimilar(87421);
 
-var_dump($collection);
+var_dump($similarMovies);

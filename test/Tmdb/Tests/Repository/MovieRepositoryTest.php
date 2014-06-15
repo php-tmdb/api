@@ -101,11 +101,11 @@ class MovieRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function shouldGetSimilarMovies()
+    public function shouldGetSimilar()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        $repository->getSimilarMovies(self::MOVIE_ID);
+        $repository->getSimilar(self::MOVIE_ID);
     }
 
     /**

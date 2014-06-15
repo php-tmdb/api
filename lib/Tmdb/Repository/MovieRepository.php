@@ -200,13 +200,28 @@ class MovieRepository extends AbstractRepository
      * @param $parameters
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @deprecated Will be removed in one of the upcoming versions, has been updated to getSimilar ( following TMDB ).
      */
     public function getSimilarMovies($id, array $parameters = array(), array $headers = array())
     {
-        $data  = $this->getApi()->getSimilarMovies($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('similar_movies' => $data));
+        return $this->getSimilar($id, $parameters, $headers);
+    }
 
-        return $movie->getSimilarMovies();
+    /**
+     * Get the similar movies for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getSimilar($id, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getSimilar($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(array('similar' => $data));
+
+        return $movie->getSimilar();
     }
 
     /**
