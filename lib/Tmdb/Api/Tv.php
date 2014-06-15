@@ -154,4 +154,54 @@ class Tv extends AbstractApi
     {
         return $this->get('tv/' . $tvshow_id . '/videos', $parameters, $headers);
     }
+
+    /**
+     * Get the changes for a specific TV show id.
+     *
+     * Changes are grouped by key, and ordered by date in descending order.
+     * By default, only the last 24 hours of changes are returned.
+     * The maximum number of days that can be returned in a single request is 14.
+     * The language is present on fields that are translatable.
+     *
+     * TV changes are different than movie changes in that there are some edits on seasons and episodes
+     * that will create a change entry at the show level. They can be found under the season and episode keys.
+     * These keys will contain a series_id and episode_id.
+     *
+     * You can use the /tv/season/{id}/changes and /tv/episode/{id}/changes methods to look up these specific changes.
+     *
+     * @param $tvshow_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getChanges($tvshow_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('tv/' . $tvshow_id . '/changes', $parameters, $headers);
+    }
+
+    /**
+     * Get the plot keywords for a specific TV show id.
+     *
+     * @param $tvshow_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getKeywords($tvshow_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('tv/' . $tvshow_id . '/keywords', $parameters, $headers);
+    }
+
+    /**
+     * Get the similar TV shows for a specific tv id.
+     *
+     * @param $tvshow_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getSimilar($tvshow_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('tv/' . $tvshow_id . '/similar', $parameters, $headers);
+    }
 }
