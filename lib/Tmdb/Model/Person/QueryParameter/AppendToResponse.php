@@ -26,4 +26,5 @@ final class AppendToResponse extends BaseAppendToResponse
     const IMAGES            = 'images';
     const CHANGES           = 'changes';
     const EXTERNAL_IDS      = 'external_ids';
+    const TAGGED_IMAGES     = 'tagged_images';
 }

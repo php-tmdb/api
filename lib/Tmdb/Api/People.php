@@ -136,6 +136,23 @@ class People extends AbstractApi
     }
 
     /**
+     * Get the images that have been tagged with a specific person id.
+     *
+     * We return all of the image results with a media object mapped for each image.
+     *
+     * @param $person_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     *
+     * @todo Still does not contain the media and media_type properties, this will be worked on later on.
+     */
+    public function getTaggedImages($person_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('person/' . $person_id . '/tagged_images', $parameters, $headers);
+    }
+
+    /**
      * Get the list of popular people on The Movie Database. This list refreshes every day.
      *
      * @param  array $parameters
