@@ -28,7 +28,7 @@ class ChangesQuery extends QueryParametersCollection
      */
     public function from(\DateTime $date)
     {
-        $this->set('from', $date->format('Y-m-d'));
+        $this->set('start_date', $date->format('Y-m-d'));
 
         return $this;
     }
@@ -41,7 +41,7 @@ class ChangesQuery extends QueryParametersCollection
      */
     public function to(\DateTime $date)
     {
-        $this->set('to', $date->format('Y-m-d'));
+        $this->set('end_date', $date->format('Y-m-d'));
 
         return $this;
     }
