@@ -154,4 +154,16 @@ class Tv extends AbstractApi
     {
         return $this->get('tv/' . $tvshow_id . '/videos', $parameters, $headers);
     }
+    
+    /**
+     * Get the latest TV show id.
+     *
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getLatest(array $parameters = array(), array $headers = array())
+    {
+        return $this->get('tv/latest', $parameters, $headers);
+    }
 }
