@@ -116,6 +116,16 @@ class TvRepositoryTest extends TestCase
         $repository->getVideos(self::TV_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetLatestTvShow()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->getLatest();
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Tv';

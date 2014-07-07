@@ -146,6 +146,19 @@ class TvTest extends TestCase
         $api->getVideos(self::TV_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetLatest()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('tv/latest');
+
+        $api->getLatest();
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Tv';
