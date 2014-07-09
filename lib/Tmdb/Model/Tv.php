@@ -186,6 +186,21 @@ class Tv extends AbstractModel
     protected $videos;
 
     /**
+     * @var Common\GenericCollection
+     */
+    protected $changes;
+
+    /**
+     * @var Common\GenericCollection
+     */
+    protected $keywords;
+
+    /**
+     * @var Common\GenericCollection
+     */
+    protected $similar;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -235,6 +250,9 @@ class Tv extends AbstractModel
         $this->images         = new Images();
         $this->translations   = new GenericCollection();
         $this->videos         = new Videos();
+        $this->changes        = new GenericCollection();
+        $this->keywords       = new GenericCollection();
+        $this->similar        = new GenericCollection();
     }
 
     /**
@@ -813,5 +831,62 @@ class Tv extends AbstractModel
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Common\GenericCollection $changes
+     * @return $this
+     */
+    public function setChanges($changes)
+    {
+        $this->changes = $changes;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\GenericCollection
+     */
+    public function getChanges()
+    {
+        return $this->changes;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Common\GenericCollection $keywords
+     * @return $this
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\GenericCollection
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Common\GenericCollection $similar
+     * @return $this
+     */
+    public function setSimilar($similar)
+    {
+        $this->similar = $similar;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\GenericCollection
+     */
+    public function getSimilar()
+    {
+        return $this->similar;
     }
 }

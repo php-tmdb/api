@@ -168,8 +168,8 @@ class MovieFactory extends AbstractFactory
             );
         }
 
-        if (array_key_exists('similar_movies', $data)) {
-            $movie->setSimilarMovies($this->createResultCollection($data['similar_movies']));
+        if (array_key_exists('similar', $data)) {
+            $movie->setSimilar($this->createResultCollection($data['similar']));
         }
 
         if (array_key_exists('reviews', $data)) {

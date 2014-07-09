@@ -13,6 +13,7 @@
 namespace Tmdb\Model\Tv;
 
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Collection\Changes;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\Videos;
@@ -107,6 +108,8 @@ class Episode extends AbstractModel
      */
     protected $videos;
 
+    protected $changes;
+
     /**
      * Properties that are available in the API
      *
@@ -136,6 +139,7 @@ class Episode extends AbstractModel
         $this->externalIds = new ExternalIds();
         $this->images      = new Images();
         $this->videos      = new Videos();
+        $this->changes     = new Changes();
     }
 
     /**
@@ -425,5 +429,24 @@ class Episode extends AbstractModel
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Collection\Changes $changes
+     * @return $this
+     */
+    public function setChanges($changes)
+    {
+        $this->changes = $changes;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Collection\Changes
+     */
+    public function getChanges()
+    {
+        return $this->changes;
     }
 }

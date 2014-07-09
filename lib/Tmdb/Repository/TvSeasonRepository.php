@@ -60,6 +60,7 @@ class TvSeasonRepository extends AbstractRepository
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
+                    AppendToResponse::CHANGES
                 ))
             );
         }

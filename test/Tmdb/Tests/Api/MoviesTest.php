@@ -128,9 +128,9 @@ class MoviesTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/similar_movies');
+            ->with('movie/' . self::MOVIE_ID . '/similar');
 
-        $api->getSimilarMovies(self::MOVIE_ID);
+        $api->getSimilar(self::MOVIE_ID);
     }
 
     /**

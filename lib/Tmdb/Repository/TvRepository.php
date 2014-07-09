@@ -45,7 +45,10 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
-                    AppendToResponse::TRANSLATIONS
+                    AppendToResponse::TRANSLATIONS,
+                    AppendToResponse::SIMILAR,
+                    AppendToResponse::KEYWORDS,
+                    AppendToResponse::CHANGES
                 ))
             );
         }
@@ -214,6 +217,19 @@ class TvRepository extends AbstractRepository
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getAiringToday($options, $headers)
+        );
+    }
+
+    /**
+     * Get the latest tv-show.
+     *
+     * @param  array                          $options
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getLatest(array $options = array())
+    {
+        return $this->getFactory()->create(
+            $this->getApi()->getLatest($options)
         );
     }
 }

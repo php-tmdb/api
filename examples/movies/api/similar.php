@@ -16,18 +16,6 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$query = new \Tmdb\Model\Query\ChangesQuery();
+$similarMovies = $client->getMoviesApi()->getSimilar(87421);
 
-$from = new \DateTime('14-01-2014');
-$to   = new \DateTime('21-01-2014');
-
-$query
-    ->page(1)
-    ->from($from)
-    ->to($to)
-;
-
-$repository = new \Tmdb\Repository\ChangesRepository($client);
-$response = $repository->getPeopleChanges($query);
-
-var_dump($response);
+var_dump($similarMovies);

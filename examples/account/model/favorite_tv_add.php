@@ -16,6 +16,13 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$similarMovies = $client->getMoviesApi()->getSimilarMovies(87421);
+$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
+$client->setSessionToken($sessionToken);
 
-var_dump($similarMovies);
+/**
+ * @var \Tmdb\Repository\AccountRepository $accountRepository
+ */
+$accountRepository = new \Tmdb\Repository\AccountRepository($client);
+$lists = $accountRepository->favorite(TMDB_ACCOUNT_ID, 1973, true, 'tv');
+
+var_dump($lists);

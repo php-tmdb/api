@@ -44,7 +44,8 @@ class PeopleRepository extends AbstractRepository
                     AppendToResponse::COMBINED_CREDITS,
                     AppendToResponse::MOVIE_CREDITS,
                     AppendToResponse::TV_CREDITS,
-                    AppendToResponse::EXTERNAL_IDS
+                    AppendToResponse::EXTERNAL_IDS,
+                    AppendToResponse::TAGGED_IMAGES
                 ))
             );
         }
@@ -160,6 +161,28 @@ class PeopleRepository extends AbstractRepository
         $person = $this->getFactory()->create(array('changes' => $data));
 
         return $person->getChanges();
+    }
+
+    /**
+     * Get the changes for a specific person id.
+     *
+     * Changes are grouped by key, and ordered by date in descending order.
+     *
+     * By default, only the last 24 hours of changes are returned.
+     * The maximum number of days that can be returned in a single request is 14.
+     * The language is present on fields that are translatable.
+     *
+     * @param $id
+     * @param  array                          $parameters
+     * @param  array                          $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getTaggedImages($id, array $parameters = array(), array $headers = array())
+    {
+        $data   = $this->getApi()->getTaggedImages($id, $this->parseQueryParameters($parameters), $headers);
+        $person = $this->getFactory()->create(array('tagged_images' => $data));
+
+        return $person->getTaggedImages();
     }
 
     /**

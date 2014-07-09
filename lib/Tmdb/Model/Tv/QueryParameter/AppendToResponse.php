@@ -25,4 +25,7 @@ class AppendToResponse extends BaseAppendToResponse
     const IMAGES        = 'images';
     const TRANSLATIONS  = 'translations';
     const VIDEOS        = 'videos';
+    const CHANGES       = 'changes';
+    const KEYWORDS      = 'keywords';
+    const SIMILAR       = 'similar';
 }

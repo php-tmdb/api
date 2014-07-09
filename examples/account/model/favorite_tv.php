@@ -16,18 +16,13 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$query = new \Tmdb\Model\Query\ChangesQuery();
+$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
+$client->setSessionToken($sessionToken);
 
-$from = new \DateTime('14-01-2014');
-$to   = new \DateTime('21-01-2014');
+/**
+ * @var \Tmdb\Repository\AccountRepository $accountRepository
+ */
+$accountRepository = new \Tmdb\Repository\AccountRepository($client);
+$lists = $accountRepository->getFavoriteTvShows(TMDB_ACCOUNT_ID);
 
-$query
-    ->page(1)
-    ->from($from)
-    ->to($to)
-;
-
-$repository = new \Tmdb\Repository\ChangesRepository($client);
-$response = $repository->getPeopleChanges($query);
-
-var_dump($response);
+var_dump($lists);

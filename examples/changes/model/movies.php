@@ -18,8 +18,8 @@ $client = new \Tmdb\Client($token);
 
 $query = new \Tmdb\Model\Query\ChangesQuery();
 
-$from = new \DateTime('01-01-2012');
-$to   = new \DateTime('08-01-2012');
+$from = new \DateTime('01-01-2014');
+$to   = new \DateTime('02-01-2014');
 
 $query
     ->page(1)

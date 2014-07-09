@@ -117,6 +117,11 @@ class Person extends AbstractModel implements PersonInterface
      */
     protected $externalIds;
 
+    /**
+     * @var GenericCollection
+     */
+    protected $taggedImages;
+
     public static $properties = array(
         'adult',
         'also_known_as',
@@ -498,5 +503,24 @@ class Person extends AbstractModel implements PersonInterface
     public function getExternalIds()
     {
         return $this->externalIds;
+    }
+
+    /**
+     * @param  mixed $taggedImages
+     * @return $this
+     */
+    public function setTaggedImages($taggedImages)
+    {
+        $this->taggedImages = $taggedImages;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaggedImages()
+    {
+        return $this->taggedImages;
     }
 }

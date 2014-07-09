@@ -197,7 +197,7 @@ class Movie extends AbstractModel
     /**
      * @var Collection
      */
-    protected $similarMovies;
+    protected $similar;
 
     /**
      * @var Collection
@@ -266,7 +266,7 @@ class Movie extends AbstractModel
         $this->keywords            = new GenericCollection();
         $this->lists               = new GenericCollection();
         $this->releases            = new GenericCollection();
-        $this->similarMovies       = new GenericCollection();
+        $this->similar             = new GenericCollection();
         $this->trailers            = new GenericCollection();
         $this->translations        = new GenericCollection();
         $this->videos              = new Videos();
@@ -847,12 +847,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $similarMovies
+     * @param  GenericCollection $similar
      * @return $this
      */
-    public function setSimilarMovies($similarMovies)
+    public function setSimilar($similar)
     {
-        $this->similarMovies = $similarMovies;
+        $this->similar = $similar;
 
         return $this;
     }
@@ -860,9 +860,18 @@ class Movie extends AbstractModel
     /**
      * @return Movie[]
      */
+    public function getSimilar()
+    {
+        return $this->similar;
+    }
+
+    /**
+     * @return Movie[]
+     * @deprecated
+     */
     public function getSimilarMovies()
     {
-        return $this->similarMovies;
+        return $this->getSimilar();
     }
 
     /**

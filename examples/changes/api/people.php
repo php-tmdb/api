@@ -17,9 +17,9 @@ $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
 $personChanges = $client->getChangesApi()->getPersonChanges(array(
-    'page' => 1,
-    'from' => '01-01-2012',
-    'to'   => '08-01-2012'
+    'page'       => 1,
+    'start_date' => '2014-01-14',
+    'end_date'   => '2014-01-21'
 ));
 
 var_dump($personChanges);

@@ -15,6 +15,7 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\AccountFactory;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Movie;
+use Tmdb\Model\Tv;
 
 /**
  * Class AccountRepository
@@ -67,20 +68,39 @@ class AccountRepository extends AbstractRepository
     }
 
     /**
+     * Get the list of favorite movies for an account.
+     *
+     * @param  string           $accountId
+     * @param  array            $parameters
+     * @param  array            $headers
+     * @return ResultCollection
+     */
+    public function getFavoriteTvShows($accountId, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getFavoriteTvShows($accountId, $parameters, $headers);
+
+        return $this->getFactory()->createResultCollection($data, 'createTvShow');
+    }
+
+    /**
      * Add or remove a movie to an accounts favorite list.
      *
      * @param  string           $accountId
-     * @param  int|Movie        $movie
+     * @param  int|Movie|Tv     $media
      * @param  boolean          $isFavorite
      * @return ResultCollection
      */
-    public function favorite($accountId, $movie, $isFavorite = true)
+    public function favorite($accountId, $media, $isFavorite = true)
     {
-        if ($movie instanceof Movie) {
-            $movie = $movie->getId();
+        if ($media instanceof Movie) {
+            $media = $media->getId();
         }
 
-        $data  = $this->getApi()->favorite($accountId, $movie, $isFavorite);
+        if ($media instanceof Tv) {
+            $media = $media->getId();
+        }
+
+        $data  = $this->getApi()->favorite($accountId, $media, $isFavorite);
 
         return $this->getFactory()->createStatusResult($data);
     }
@@ -92,12 +112,31 @@ class AccountRepository extends AbstractRepository
      * @param  array            $parameters
      * @param  array            $headers
      * @return ResultCollection
+     *
+     * @todo   Include the user rating
      */
     public function getRatedMovies($accountId, array $parameters = array(), array $headers = array())
     {
         $data  = $this->getApi()->getRatedMovies($accountId, $parameters, $headers);
 
         return $this->getFactory()->createResultCollection($data, 'createMovie');
+    }
+
+    /**
+     * Get the list of rated TV shows (and associated rating) for an account.
+     *
+     * @param  string           $accountId
+     * @param  array            $parameters
+     * @param  array            $headers
+     * @return ResultCollection
+     *
+     * @todo   Include the user rating
+     */
+    public function getRatedTvShows($accountId, array $parameters = array(), array $headers = array())
+    {
+        $data  = $this->getApi()->getRatedTvShows($accountId, $parameters, $headers);
+
+        return $this->getFactory()->createResultCollection($data, 'createTvShow');
     }
 
     /**
@@ -116,20 +155,40 @@ class AccountRepository extends AbstractRepository
     }
 
     /**
-     * Add or remove a movie to an accounts watch list.
+     * Get the list of TV series on an accounts watchlist.
      *
      * @param  string           $accountId
-     * @param  int|Movie        $movie
-     * @param  boolean          $isOnWatchlist
+     * @param  array            $parameters
+     * @param  array            $headers
      * @return ResultCollection
      */
-    public function watchlist($accountId, $movie, $isOnWatchlist = true)
+    public function getTvWatchlist($accountId, array $parameters = array(), array $headers = array())
     {
-        if ($movie instanceof Movie) {
-            $movie = $movie->getId();
+        $data  = $this->getApi()->getTvWatchlist($accountId, $parameters, $headers);
+
+        return $this->getFactory()->createResultCollection($data, 'createTvShow');
+    }
+
+    /**
+     * Add or remove a movie to an accounts watch list.
+     *
+     * @param  string                   $accountId
+     * @param  integer                  $media
+     * @param  bool                     $isOnWatchlist
+     * @param  string                   $mediaType
+     * @return \Tmdb\Model\Lists\Result
+     */
+    public function watchlist($accountId, $media, $isOnWatchlist = true, $mediaType = 'movie')
+    {
+        if ($media instanceof Movie || $media instanceof Tv) {
+            $media = $media->getId();
         }
 
-        $data  = $this->getApi()->watchlist($accountId, $movie, $isOnWatchlist);
+        if ($media instanceof Tv) {
+            $mediaType = 'tv';
+        }
+
+        $data  = $this->getApi()->watchlist($accountId, $media, $isOnWatchlist, $mediaType);
 
         return $this->getFactory()->createStatusResult($data);
     }

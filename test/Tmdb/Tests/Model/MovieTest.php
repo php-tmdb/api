@@ -40,7 +40,7 @@ class MovieTest extends TestCase
                 'getKeywords'            => 'Tmdb\Model\Common\GenericCollection',
                 'getLists'               => 'Tmdb\Model\Common\GenericCollection',
                 'getReleases'            => 'Tmdb\Model\Common\GenericCollection',
-                'getSimilarMovies'       => 'Tmdb\Model\Common\GenericCollection',
+                'getSimilar'             => 'Tmdb\Model\Common\GenericCollection',
                 'getTrailers'            => 'Tmdb\Model\Common\GenericCollection',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
                 'getVideos'              => 'Tmdb\Model\Collection\Videos',

@@ -17,9 +17,9 @@ $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
 $movieChanges = $client->getChangesApi()->getMovieChanges(array(
-    'page' => 1,
-    'from' => '01-01-2012',
-    'to'   => '08-01-2012'
+    'page'       => 1,
+    'start_date' => '2014-01-01',
+    'end_date'   => '2014-01-02'
 ));
 
 var_dump($movieChanges);

@@ -163,4 +163,37 @@ class TvEpisode extends AbstractApi
             $headers
         );
     }
+
+    /**
+     * Look up a TV episode's changes by episode ID.
+     *
+     * This method is used in conjunction with the /tv/{id}/changes method.
+     * This method uses the episode_id value found in the change entries.
+     *
+     * @param $tvshow_id
+     * @param $season_number
+     * @param $episode_number
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getChanges(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        array $parameters = array(),
+        array $headers = array()
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/changes',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            ),
+            $parameters,
+            $headers
+        );
+    }
+
 }

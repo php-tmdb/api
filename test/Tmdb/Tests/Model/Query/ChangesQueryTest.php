@@ -33,8 +33,8 @@ class ChangesQueryTest extends TestCase
             ->page(1)
         ;
 
-        $this->assertEquals($now->format('Y-m-d'), $query->get('from'));
-        $this->assertEquals($tomorrow->format('Y-m-d'), $query->get('to'));
+        $this->assertEquals($now->format('Y-m-d'), $query->get('start_date'));
+        $this->assertEquals($tomorrow->format('Y-m-d'), $query->get('end_date'));
         $this->assertEquals(1, $query->get('page'));
     }
 }

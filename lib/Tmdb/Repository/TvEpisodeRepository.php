@@ -66,6 +66,7 @@ class TvEpisodeRepository extends AbstractRepository
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
+                    AppendToResponse::CHANGES
                 ))
             );
         }

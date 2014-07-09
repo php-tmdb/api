@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
@@ -64,6 +65,16 @@ class TvFactory extends AbstractFactory
     private $videoFactory;
 
     /**
+     * @var ChangeFactory
+     */
+    private $changesFactory;
+
+    /**
+     * @var KeywordFactory
+     */
+    private $keywordFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -75,6 +86,8 @@ class TvFactory extends AbstractFactory
         $this->tvSeasonFactory = new TvSeasonFactory();
         $this->networkFactory  = new NetworkFactory();
         $this->videoFactory    = new VideoFactory();
+        $this->changesFactory  = new ChangeFactory();
+        $this->keywordFactory  = new KeywordFactory();
     }
 
     /**
@@ -167,6 +180,18 @@ class TvFactory extends AbstractFactory
 
         if (array_key_exists('videos', $data)) {
             $tvShow->setVideos($this->getVideoFactory()->createCollection($data['videos']));
+        }
+
+        if (array_key_exists('keywords', $data) && array_key_exists('results', $data['keywords'])) {
+            $tvShow->setKeywords($this->getKeywordFactory()->createCollection($data['keywords']['results']));
+        }
+
+        if (array_key_exists('changes', $data)) {
+            $tvShow->setChanges($this->getChangesFactory()->createCollection($data['changes']));
+        }
+
+        if (array_key_exists('similar', $data)) {
+            $tvShow->setSimilar($this->createResultCollection($data['similar']));
         }
 
         return $this->hydrate($tvShow, $data);
@@ -321,5 +346,43 @@ class TvFactory extends AbstractFactory
     public function getVideoFactory()
     {
         return $this->videoFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\Common\ChangeFactory $changesFactory
+     * @return $this
+     */
+    public function setChangesFactory($changesFactory)
+    {
+        $this->changesFactory = $changesFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\Common\ChangeFactory
+     */
+    public function getChangesFactory()
+    {
+        return $this->changesFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\KeywordFactory $keywordFactory
+     * @return $this
+     */
+    public function setKeywordFactory($keywordFactory)
+    {
+        $this->keywordFactory = $keywordFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\KeywordFactory
+     */
+    public function getKeywordFactory()
+    {
+        return $this->keywordFactory;
     }
 }

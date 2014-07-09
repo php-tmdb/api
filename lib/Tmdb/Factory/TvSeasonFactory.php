@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
@@ -53,6 +54,11 @@ class TvSeasonFactory extends AbstractFactory
     private $videoFactory;
 
     /**
+     * @var ChangeFactory
+     */
+    private $changesFactory;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -62,6 +68,8 @@ class TvSeasonFactory extends AbstractFactory
         $this->imageFactory     = new ImageFactory();
         $this->tvEpisodeFactory = new TvEpisodeFactory();
         $this->videoFactory     = new VideoFactory();
+        $this->changesFactory   = new ChangeFactory();
+
     }
 
     /**
@@ -118,6 +126,10 @@ class TvSeasonFactory extends AbstractFactory
 
         if (array_key_exists('videos', $data)) {
             $tvSeason->setVideos($this->getVideoFactory()->createCollection($data['videos']));
+        }
+
+        if (array_key_exists('changes', $data)) {
+            $tvSeason->setChanges($this->getChangesFactory()->createCollection($data['changes']));
         }
 
         return $this->hydrate($tvSeason, $data);
@@ -230,5 +242,24 @@ class TvSeasonFactory extends AbstractFactory
     public function getVideoFactory()
     {
         return $this->videoFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\Common\ChangeFactory $changesFactory
+     * @return $this
+     */
+    public function setChangesFactory($changesFactory)
+    {
+        $this->changesFactory = $changesFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\Common\ChangeFactory
+     */
+    public function getChangesFactory()
+    {
+        return $this->changesFactory;
     }
 }

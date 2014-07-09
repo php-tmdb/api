@@ -88,6 +88,14 @@ class PeopleFactory extends AbstractFactory
             );
         }
 
+        if (array_key_exists('tagged_images', $data)) {
+            $person->setTaggedImages(
+                $this->getImageFactory()->createResultCollection(
+                    $data['tagged_images']
+                )
+            );
+        }
+
         return $this->hydrate($person, $data);
     }
 
