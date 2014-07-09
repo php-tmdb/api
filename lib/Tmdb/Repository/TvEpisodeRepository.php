@@ -78,7 +78,6 @@ class TvEpisodeRepository extends AbstractRepository
             $this->parseQueryParameters($parameters),
             $headers
         );
-var_dump($data);exit;
 
         return $this->getFactory()->create($data);
     }
