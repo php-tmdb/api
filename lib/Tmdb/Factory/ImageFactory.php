@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image;
 
@@ -50,6 +51,50 @@ class ImageFactory extends AbstractFactory
             self::resolveImageType($key),
             array('file_path' => $path)
         );
+    }
+
+    /**
+     * Create an Media/Image type which is used in calls like person/tagged_images, which contains an getMedia()
+     * reference either referring to movies / tv shows etc.
+     *
+     * @param  array       $data
+     * @param  string|null $key
+     * @return Image
+     */
+    public function createMediaImage(array $data = array(), $key = null)
+    {
+        $type  = self::resolveImageType($key);
+        $image = $this->hydrate($type, $data);
+        $media = null;
+
+        if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
+            $factory = null;
+
+            switch ($data['media_type']) {
+                case "movie":
+                    $factory = new MovieFactory();
+                    break;
+
+                case "tv":
+                    $factory = new TvFactory();
+                    break;
+
+                default:
+                    throw new RuntimeException(sprintf(
+                        'Unrecognized media_type "%s" for method "%s".',
+                        $data['media_type'],
+                        __METHOD__
+                    ));
+            }
+
+            $media = $factory->create($data['media']);
+        }
+
+        if ($media) {
+            $image->setMedia();
+        }
+
+        return $this->hydrate($type, $data);
     }
 
     /**

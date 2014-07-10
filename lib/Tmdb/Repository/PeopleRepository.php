@@ -180,7 +180,7 @@ class PeopleRepository extends AbstractRepository
     public function getTaggedImages($id, array $parameters = array(), array $headers = array())
     {
         $data   = $this->getApi()->getTaggedImages($id, $this->parseQueryParameters($parameters), $headers);
-        $person = $this->getFactory()->create(array('tagged_images' => $data));
+        $person = $this->getFactory()->create(array('tagged_images' => $data), 'createMediaImage');
 
         return $person->getTaggedImages();
     }
