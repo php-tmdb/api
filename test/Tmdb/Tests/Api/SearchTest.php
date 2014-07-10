@@ -113,6 +113,19 @@ class SearchTest extends TestCase
         $api->searchKeyword(self::QUERY_KEYWORD);
     }
 
+    /**
+     * @test
+     */
+    public function shouldSearchMulti()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('search/multi', array('query' => urlencode(self::QUERY_KEYWORD)));
+
+        $api->searchMulti(self::QUERY_KEYWORD);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Search';

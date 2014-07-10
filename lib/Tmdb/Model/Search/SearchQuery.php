@@ -21,6 +21,14 @@ use Tmdb\Model\Collection\QueryParametersCollection;
 class SearchQuery extends QueryParametersCollection
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->page(1);
+    }
+
+    /**
      * CGI escaped string
      *
      * @param string

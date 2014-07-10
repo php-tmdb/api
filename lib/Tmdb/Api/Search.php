@@ -123,4 +123,22 @@ class Search extends AbstractApi
             'query' => urlencode($query)
         ), $headers));
     }
+
+    /**
+     * Search the movie, tv show and person collections with a single query.
+     *
+     * Each item returned in the result array has a media_type field that maps to either movie, tv or person.
+     * Each mapped result is the same response you would get from each independent search.
+     *
+     * @param $query
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function searchMulti($query, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('search/multi', array_merge($parameters, array(
+            'query' => urlencode($query)
+        ), $headers));
+    }
 }
