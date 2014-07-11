@@ -10,6 +10,8 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+ini_set('display_errors', 'On');
+
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 

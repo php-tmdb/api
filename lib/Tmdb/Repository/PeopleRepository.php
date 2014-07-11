@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Repository;
 
+use Tmdb\Factory\ImageFactory;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Person;
 use Tmdb\Model\Person\QueryParameter\AppendToResponse;
@@ -179,10 +180,11 @@ class PeopleRepository extends AbstractRepository
      */
     public function getTaggedImages($id, array $parameters = array(), array $headers = array())
     {
-        $data   = $this->getApi()->getTaggedImages($id, $this->parseQueryParameters($parameters), $headers);
-        $person = $this->getFactory()->create(array('tagged_images' => $data), 'createMediaImage');
+        $data = $this->getApi()->getTaggedImages($id, $this->parseQueryParameters($parameters), $headers);
 
-        return $person->getTaggedImages();
+        $factory = new ImageFactory();
+
+        return $factory->createResultCollection($data, 'createMediaImage', 'tagged_images');
     }
 
     /**

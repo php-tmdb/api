@@ -60,16 +60,20 @@ class ImageFactory extends AbstractFactory
      * @param  array       $data
      * @param  string|null $key
      * @return Image
+     *
+     * @throws \RuntimeException
      */
     public function createMediaImage(array $data = array(), $key = null)
     {
-        $type  = self::resolveImageType($key);
+        if (!array_key_exists('image_type', $data)) {
+            throw new \RuntimeException('Unable to detect the image type.');
+        }
+
+        $type  = $this->resolveImageType($data['image_type']);
         $image = $this->hydrate($type, $data);
         $media = null;
 
         if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
-            $factory = null;
-
             switch ($data['media_type']) {
                 case "movie":
                     $factory = new MovieFactory();
@@ -79,10 +83,16 @@ class ImageFactory extends AbstractFactory
                     $factory = new TvFactory();
                     break;
 
+                // I don't think this ever occurs, but just in case..
+                case "person":
+                    $factory = new PeopleFactory();
+                    break;
+
                 default:
                     throw new RuntimeException(sprintf(
-                        'Unrecognized media_type "%s" for method "%s".',
+                        'Unrecognized media_type "%s" for method "%s::%s".',
                         $data['media_type'],
+                        __CLASS__,
                         __METHOD__
                     ));
             }
@@ -91,7 +101,7 @@ class ImageFactory extends AbstractFactory
         }
 
         if ($media) {
-            $image->setMedia();
+            $image->setMedia($media);
         }
 
         return $this->hydrate($type, $data);

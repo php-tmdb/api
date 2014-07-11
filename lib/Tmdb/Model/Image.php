@@ -34,6 +34,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     private $aspectRatio;
     private $voteAverage;
     private $voteCount;
+    private $media;
 
     protected $id;
     protected $type;
@@ -200,6 +201,25 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     public function getWidth()
     {
         return $this->width;
+    }
+
+    /**
+     * @param  mixed $media
+     * @return $this
+     */
+    public function setMedia($media)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
 
     /**
