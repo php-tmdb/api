@@ -66,6 +66,28 @@ class ChangesRepository extends AbstractRepository
     }
 
     /**
+     * Get a list of tv show ids that have been edited.
+     *
+     * By default we show the last 24 hours and only 100 items per page.
+     * The maximum number of days that can be returned in a single request is 14.
+     *
+     * You can then use the tv changes API to get the actual data that has been changed.
+     *
+     * Please note that the change log system to support this was changed
+     * on May 13, 2014 and will only show tv shows that have been edited since.
+     *
+     * @param  ChangesQuery                         $query
+     * @param  array                                $headers
+     * @return \Tmdb\Model\Common\GenericCollection
+     */
+    public function getTvChanges(ChangesQuery $query, array $headers = array())
+    {
+        $data = $this->getApi()->getTvChanges($query->toArray(), $headers);
+
+        return $this->getFactory()->createResultCollection($data);
+    }
+
+    /**
      * Return the related API class
      *
      * @return \Tmdb\Api\Changes

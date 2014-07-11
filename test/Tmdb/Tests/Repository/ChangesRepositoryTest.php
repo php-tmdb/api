@@ -40,6 +40,18 @@ class ChangesRepositoryTest extends TestCase
         $repository->getPeopleChanges($query);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetTvChanges()
+    {
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $query = new ChangesQuery();
+
+        $repository->getTvChanges($query);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Changes';
