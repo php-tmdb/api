@@ -17,6 +17,7 @@ use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
@@ -192,6 +193,19 @@ class TvFactory extends AbstractFactory
 
         if (array_key_exists('similar', $data)) {
             $tvShow->setSimilar($this->createResultCollection($data['similar']));
+        }
+
+        if (array_key_exists('languages', $data)) {
+            $collection = new GenericCollection();
+
+            foreach ($data['languages'] as $iso6391) {
+                $object = new SpokenLanguage();
+                $object->setIso6391($iso6391);
+
+                $collection->add(null, $object);
+            }
+
+            $tvShow->setLanguages($collection);
         }
 
         return $this->hydrate($tvShow, $data);

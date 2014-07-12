@@ -215,7 +215,6 @@ class Tv extends AbstractModel
         'homepage',
         'id',
         'in_production',
-        'languages',
         'last_air_date',
         'name',
         'number_of_episodes',
