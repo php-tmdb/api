@@ -196,4 +196,59 @@ class TvEpisode extends AbstractApi
         );
     }
 
+    /**
+     * This method lets users get the status of whether or not the TV episode has been rated.
+     *
+     * A valid session id is required.
+     *
+     * @param $tvshow_id
+     * @param $season_number
+     * @param $episode_number
+     *
+     * @return mixed
+     */
+    public function getAccountStates(
+        $tvshow_id,
+        $season_number,
+        $episode_number
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/account_states',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            )
+        );
+    }
+
+    /**
+     * This method lets users rate a TV episode.
+     *
+     * A valid session id or guest session id is required.
+     *
+     * @param $tvshow_id
+     * @param $season_number
+     * @param $episode_number
+     * @param double $rating
+     *
+     * @return mixed
+     */
+    public function rate(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        $rating
+    ) {
+        return $this->postJson(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/rating',
+                $tvshow_id,
+                $season_number,
+                $episode_number,
+                array('value' => (float) $rating)
+            )
+        );
+    }
+
 }

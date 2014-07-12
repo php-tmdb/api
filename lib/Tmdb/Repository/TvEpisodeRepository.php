@@ -15,7 +15,9 @@ namespace Tmdb\Repository;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\TvEpisodeFactory;
 use Tmdb\Model\Collection\Videos;
+use Tmdb\Model\Common\AccountStates;
 use Tmdb\Model\Common\Video;
+use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Tv\Episode\QueryParameter\AppendToResponse;
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\Season;
@@ -230,6 +232,38 @@ class TvEpisodeRepository extends AbstractRepository
         $episode = $this->getFactory()->create(array('videos' => $data));
 
         return $episode->getVideos();
+    }
+
+    /**
+     * This method lets users get the status of whether or not the TV show has been rated
+     * or added to their favourite or watch lists.
+     *
+     * A valid session id is required.
+     *
+     * @param  integer       $id
+     * @return AccountStates
+     */
+    public function getAccountStates($id)
+    {
+        return $this->getFactory()->createAccountStates(
+            $this->getApi()->getAccountStates($id)
+        );
+    }
+
+    /**
+     * This method lets users rate a TV show.
+     *
+     * A valid session id or guest session id is required.
+     *
+     * @param  integer $id
+     * @param  float   $rating
+     * @return Result
+     */
+    public function rate($id, $rating)
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->rateTvEpisode($id, $rating)
+        );
     }
 
     /**
