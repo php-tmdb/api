@@ -69,9 +69,9 @@ class MovieRepository extends AbstractRepository
                     AppendToResponse::LISTS,
                     AppendToResponse::RELEASES,
                     AppendToResponse::REVIEWS,
-                    AppendToResponse::SIMILAR_MOVIES,
-                    AppendToResponse::TRAILERS,
+                    AppendToResponse::SIMILAR,
                     AppendToResponse::TRANSLATIONS,
+                    AppendToResponse::VIDEOS,
                 ))
             );
         }
@@ -159,22 +159,6 @@ class MovieRepository extends AbstractRepository
         $movie = $this->getFactory()->create(array('releases' => $data));
 
         return $movie->getReleases();
-    }
-
-    /**
-     * Get the trailers for a specific movie id.
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
-     */
-    public function getTrailers($id, array $parameters = array(), array $headers = array())
-    {
-        $data  = $this->getApi()->getTrailers($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('trailers' => $data));
-
-        return $movie->getTrailers();
     }
 
     /**
