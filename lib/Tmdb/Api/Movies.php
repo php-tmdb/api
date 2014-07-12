@@ -260,7 +260,9 @@ class Movies extends AbstractApi
      * or added to their favourite or watch lists.
      *
      * A valid session id is required.
-     * @param integer $id
+     *
+     * @param  integer $id
+     * @return mixed
      */
     public function getAccountStates($id)
     {
@@ -271,8 +273,10 @@ class Movies extends AbstractApi
      * TThis method lets users rate a movie.
      *
      * A valid session id or guest session id is required.
-     * @param integer $id
-     * @param double  $rating
+     *
+     * @param  integer $id
+     * @param  double  $rating
+     * @return mixed
      */
     public function rateMovie($id, $rating)
     {
