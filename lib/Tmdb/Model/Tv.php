@@ -209,7 +209,6 @@ class Tv extends AbstractModel
      */
     public static $properties = array(
         'backdrop_path',
-        'created_by',
         'episode_run_time',
         'first_air_date',
         'homepage',

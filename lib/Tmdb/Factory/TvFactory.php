@@ -222,6 +222,19 @@ class TvFactory extends AbstractFactory
             $tvShow->setOriginCountry($collection);
         }
 
+        if (array_key_exists('created_by', $data)) {
+            $collection = new GenericCollection();
+            $factory = new PeopleFactory();
+
+            foreach ($data['created_by'] as $castMember) {
+                $object = $factory->create($castMember, new CastMember());
+
+                $collection->add(null, $object);
+            }
+
+            $tvShow->setCreatedBy($collection);
+        }
+
         return $this->hydrate($tvShow, $data);
     }
 
