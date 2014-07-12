@@ -71,7 +71,7 @@ class Network extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {

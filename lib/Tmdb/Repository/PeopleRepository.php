@@ -62,7 +62,7 @@ class PeopleRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return \Tmdb\Model\Collection\CreditsCollection\MovieCredits
      */
     public function getMovieCredits($id, array $parameters = array(), array $headers = array())
     {
@@ -83,7 +83,7 @@ class PeopleRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return \Tmdb\Model\Collection\CreditsCollection\TvCredits
      */
     public function getTvCredits($id, array $parameters = array(), array $headers = array())
     {
@@ -104,7 +104,7 @@ class PeopleRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return \Tmdb\Model\Collection\CreditsCollection\CombinedCredits
      */
     public function getCombinedCredits($id, array $parameters = array(), array $headers = array())
     {
@@ -118,7 +118,7 @@ class PeopleRepository extends AbstractRepository
      * Get the external ids for a specific person id.
      *
      * @param $id
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return \Tmdb\Model\Common\ExternalIds
      */
     public function getExternalIds($id)
     {
@@ -132,7 +132,7 @@ class PeopleRepository extends AbstractRepository
      * Get the images for a specific person id.
      *
      * @param $id
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return \Tmdb\Model\Collection\Images
      */
     public function getImages($id)
     {
@@ -152,9 +152,9 @@ class PeopleRepository extends AbstractRepository
      * The language is present on fields that are translatable.
      *
      * @param $id
-     * @param  array                          $parameters
-     * @param  array                          $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @param  array                                $parameters
+     * @param  array                                $headers
+     * @return \Tmdb\Model\Common\GenericCollection
      */
     public function getChanges($id, array $parameters = array(), array $headers = array())
     {
@@ -174,9 +174,9 @@ class PeopleRepository extends AbstractRepository
      * The language is present on fields that are translatable.
      *
      * @param $id
-     * @param  array                          $parameters
-     * @param  array                          $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @param  array                                   $parameters
+     * @param  array                                   $headers
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
     public function getTaggedImages($id, array $parameters = array(), array $headers = array())
     {
@@ -192,9 +192,9 @@ class PeopleRepository extends AbstractRepository
      *
      * This list refreshes every day.
      *
-     * @param  array                          $parameters
-     * @param  array                          $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @param  array                                   $parameters
+     * @param  array                                   $headers
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
     public function getPopular(array $parameters = array(), array $headers = array())
     {
@@ -206,7 +206,7 @@ class PeopleRepository extends AbstractRepository
     /**
      * Get the latest person id.
      *
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return Person
      */
     public function getLatest()
     {

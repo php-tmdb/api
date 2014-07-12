@@ -420,7 +420,7 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * @return mixed
+     * @return AlternativeTitleFactory
      */
     public function getAlternativeTitleFactory()
     {
@@ -439,7 +439,7 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * @return mixed
+     * @return ImageFactory
      */
     public function getImageFactory()
     {
@@ -458,7 +458,7 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * @return mixed
+     * @return PeopleFactory
      */
     public function getPeopleFactory()
     {

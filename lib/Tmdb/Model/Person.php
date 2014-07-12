@@ -156,7 +156,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
     public function getAdult()
     {
@@ -194,7 +194,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getBiography()
     {
@@ -217,7 +217,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getBirthday()
     {
@@ -236,7 +236,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return GenericCollection
      */
     public function getChanges()
     {
@@ -282,7 +282,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getHomepage()
     {
@@ -339,7 +339,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -358,7 +358,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPlaceOfBirth()
     {
@@ -377,7 +377,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getProfilePath()
     {
@@ -491,7 +491,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return GenericCollection
      */
     public function getTaggedImages()
     {

@@ -18,7 +18,6 @@ use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\ExternalIds;
-use Tmdb\Model\Common\Video;
 use Tmdb\Model\Image\StillImage;
 
 /**
@@ -424,7 +423,7 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @return Videos|Video[]
+     * @return Videos
      */
     public function getVideos()
     {

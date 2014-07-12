@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Repository;
 
-use Guzzle\Common\Exception\RuntimeException;
 use Tmdb\Client;
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Factory\CollectionFactory;
@@ -23,7 +22,6 @@ use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Collection\ResultCollection;
-use Tmdb\Model\Collection;
 use Tmdb\Model\Company;
 use Tmdb\Model\Keyword;
 use Tmdb\Model\Movie;
@@ -112,7 +110,7 @@ class SearchRepository extends AbstractRepository
      * @param CollectionSearchQuery $parameters
      * @param array                 $headers
      *
-     * @return ResultCollection|Collection[]
+     * @return ResultCollection[]
      */
     public function searchCollection($query, CollectionSearchQuery $parameters, array $headers = array())
     {

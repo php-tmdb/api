@@ -55,7 +55,7 @@ class SessionToken
     }
 
     /**
-     * @return null
+     * @return string
      */
     public function getToken()
     {
@@ -97,7 +97,7 @@ class SessionToken
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
     public function getSuccess()
     {

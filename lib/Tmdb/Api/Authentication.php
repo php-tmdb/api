@@ -41,7 +41,7 @@ class Authentication extends AbstractApi
     /**
      * Redirect the user to authenticate the request token
      *
-     * @param $token
+     * @param string $token
      */
     public function authenticateRequestToken($token)
     {
@@ -83,9 +83,9 @@ class Authentication extends AbstractApi
     /**
      * Helper method to validate the request_token and obtain a session_token
      *
-     * @param $requestToken
-     * @param $username
-     * @param $password
+     * @param  RequestToken              $requestToken
+     * @param  string                    $username
+     * @param  string                    $password
      * @return mixed
      * @throws \InvalidArgumentException
      */

@@ -18,7 +18,6 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
-use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Movie\AlternativeTitle;
@@ -316,7 +315,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Collection|null
+     * @return GenericCollection
      */
     public function getBelongsToCollection()
     {
@@ -336,6 +335,7 @@ class Movie extends AbstractModel
 
     /**
      * @return mixed
+     * @return GenericCollection
      */
     public function getChanges()
     {
@@ -354,7 +354,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Genre[]
+     * @return Genres
      */
     public function getGenres()
     {
@@ -468,7 +468,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getOverview()
     {
@@ -544,7 +544,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Country
+     * @return GenericCollection
      */
     public function getProductionCountries()
     {

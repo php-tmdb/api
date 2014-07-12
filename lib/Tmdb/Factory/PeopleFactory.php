@@ -45,7 +45,7 @@ class PeopleFactory extends AbstractFactory
      * @param array                      $data
      * @param Person\AbstractMember|null $person
      *
-     * @return Person|CrewMember|CastMember
+     * @return Person
      */
     public function create(array $data = array(), $person = null)
     {

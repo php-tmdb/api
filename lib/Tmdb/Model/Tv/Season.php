@@ -19,7 +19,6 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Common\Video;
 use Tmdb\Model\Image\PosterImage;
 
 /**
@@ -235,7 +234,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Tv\Image
+     * @return string
      */
     public function getPosterPath()
     {
@@ -349,7 +348,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return Videos|Video[]
+     * @return Videos
      */
     public function getVideos()
     {

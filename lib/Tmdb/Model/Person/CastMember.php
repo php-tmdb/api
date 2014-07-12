@@ -62,7 +62,7 @@ class CastMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCharacter()
     {

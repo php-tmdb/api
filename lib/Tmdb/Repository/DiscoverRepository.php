@@ -16,10 +16,8 @@ use Tmdb\Exception\NotImplementedException;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\TvFactory;
-use Tmdb\Model\Movie;
 use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
-use Tmdb\Model\Tv;
 
 /**
  * Class DiscoverRepository
@@ -56,10 +54,9 @@ class DiscoverRepository extends AbstractRepository
      * Discover TV shows by different types of data like average rating,
      * number of votes, genres, the network they aired on and air dates.
      *
-     * @param  DiscoverTvQuery                      $query
-     * @param  array                                $headers
+     * @param  DiscoverTvQuery $query
+     * @param  array           $headers
      * @return Tv[]
-     * @return \Tmdb\Model\Common\GenericCollection
      */
     public function discoverTv(DiscoverTvQuery $query, array $headers = array())
     {

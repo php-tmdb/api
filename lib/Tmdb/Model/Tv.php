@@ -286,7 +286,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getCreatedBy()
     {
@@ -541,7 +541,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getOriginCountry()
     {
@@ -636,7 +636,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getSeasons()
     {
@@ -712,7 +712,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getTranslations()
     {

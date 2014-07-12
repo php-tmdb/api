@@ -43,8 +43,8 @@ class AuthenticationRepository extends AbstractRepository
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param  RequestToken $requestToken
-     * @return RequestToken
+     * @param  RequestToken       $requestToken
+     * @return \Tmdb\SessionToken
      */
     public function getSessionToken(RequestToken $requestToken)
     {
@@ -61,7 +61,7 @@ class AuthenticationRepository extends AbstractRepository
      * @param  string                            $username
      * @param  string                            $password
      * @throws UnauthorizedRequestTokenException
-     * @return mixed
+     * @return RequestToken
      */
     public function validateRequestTokenWithLogin(RequestToken $requestToken, $username, $password)
     {
@@ -82,7 +82,7 @@ class AuthenticationRepository extends AbstractRepository
      * @param  string                            $username
      * @param  string                            $password
      * @throws UnauthorizedRequestTokenException
-     * @return mixed
+     * @return \Tmdb\SessionToken
      */
     public function getSessionTokenWithLogin(RequestToken $requestToken, $username, $password)
     {
@@ -108,7 +108,7 @@ class AuthenticationRepository extends AbstractRepository
      * If a guest session is not used for the first time within 24 hours,
      * it will be automatically discarded.
      *
-     * @return RequestToken
+     * @return \Tmdb\GuestSessionToken
      */
     public function getGuestSessionToken()
     {

@@ -78,7 +78,7 @@ class CountryTimezone extends AbstractModel
      * Verify if a country supports a certain timezone
      *
      * @param $timezone
-     * @return mixed
+     * @return boolean
      */
     public function supports($timezone)
     {

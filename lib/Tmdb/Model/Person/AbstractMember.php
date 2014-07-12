@@ -78,7 +78,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -97,7 +97,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getProfilePath()
     {
@@ -116,7 +116,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @return Image\ProfileImage|null
+     * @return Image\ProfileImage
      */
     public function getProfileImage()
     {

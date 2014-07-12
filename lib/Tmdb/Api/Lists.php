@@ -22,9 +22,9 @@ class Lists extends AbstractApi
     /**
      * Get a list by id.
      *
-     * @param $list_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $list_id
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function getList($list_id, array $parameters = array(), array $headers = array())

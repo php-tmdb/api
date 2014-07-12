@@ -18,6 +18,9 @@ namespace Tmdb\Model\Collection\People;
  */
 interface PersonInterface
 {
+    /**
+     * @return string
+     */
     public function getName();
 
     /**

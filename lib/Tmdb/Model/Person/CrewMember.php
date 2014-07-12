@@ -56,7 +56,7 @@ class CrewMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDepartment()
     {
@@ -75,7 +75,7 @@ class CrewMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getJob()
     {
