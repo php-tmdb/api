@@ -15,7 +15,9 @@ namespace Tmdb\Factory;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\ResultCollection;
+use Tmdb\Model\Common\AccountStates;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\Rating;
 
 /**
  * Class AbstractFactory
@@ -126,6 +128,36 @@ abstract class AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * Create rating
+     *
+     * @param  array                     $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createRating(array $data = array())
+    {
+        return $this->hydrate(new Rating(), $data);
+    }
+
+    /**
+     * Create the account states
+     *
+     * @param  array                     $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createAccountStates(array $data = array())
+    {
+        $accountStates = new AccountStates();
+
+        if (array_key_exists('rated', $data)) {
+            $rating = new Rating();
+
+            $accountStates->setRated($this->hydrate($rating, $data['rated']));
+        }
+
+        return $this->hydrate($accountStates, $data);
     }
 
     /**

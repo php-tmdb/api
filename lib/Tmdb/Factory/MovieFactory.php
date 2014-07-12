@@ -206,36 +206,6 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * Create rating
-     *
-     * @param  array                     $data
-     * @return \Tmdb\Model\AbstractModel
-     */
-    public function createRating(array $data = array())
-    {
-        return $this->hydrate(new Movie\Rating(), $data);
-    }
-
-    /**
-     * Create the account states
-     *
-     * @param  array                     $data
-     * @return \Tmdb\Model\AbstractModel
-     */
-    public function createAccountStates(array $data = array())
-    {
-        $accountStates = new Movie\AccountStates();
-
-        if (array_key_exists('rated', $data)) {
-            $rating = new Movie\Rating();
-
-            $accountStates->setRated($this->hydrate($rating, $data['rated']));
-        }
-
-        return $this->hydrate($accountStates, $data);
-    }
-
-    /**
      * @param  \Tmdb\Factory\People\CastFactory $castFactory
      * @return $this
      */

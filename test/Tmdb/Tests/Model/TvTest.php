@@ -26,10 +26,10 @@ class TvTest extends TestCase
         $this->assertInstancesOf(
             $tv,
             array(
-                'getCreatedBy'           => 'Tmdb\Model\Collection\Images',
-                'getEpisodeRuntime'      => 'Tmdb\Model\Common\GenericCollection',
+//                'getCreatedBy'           => 'Tmdb\Model\Collection\Images',
+//                'getEpisodeRuntime'      => 'Tmdb\Model\Common\GenericCollection',
                 'getGenres'              => 'Tmdb\Model\Collection\Genres',
-                'getLanguages'           => 'Tmdb\Model\Common\GenericCollection',
+//                'getLanguages'           => 'Tmdb\Model\Common\GenericCollection',
                 'getNetworks'            => 'Tmdb\Model\Common\GenericCollection',
                 'getOriginCountry'       => 'Tmdb\Model\Common\GenericCollection',
                 'getSeasons'             => 'Tmdb\Model\Common\GenericCollection',

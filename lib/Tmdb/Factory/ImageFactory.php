@@ -57,13 +57,12 @@ class ImageFactory extends AbstractFactory
      * Create an Media/Image type which is used in calls like person/tagged_images, which contains an getMedia()
      * reference either referring to movies / tv shows etc.
      *
-     * @param  array       $data
-     * @param  string|null $key
+     * @param  array $data
      * @return Image
      *
      * @throws \RuntimeException
      */
-    public function createMediaImage(array $data = array(), $key = null)
+    public function createMediaImage(array $data = array())
     {
         if (!array_key_exists('image_type', $data)) {
             throw new \RuntimeException('Unable to detect the image type.');
@@ -71,7 +70,6 @@ class ImageFactory extends AbstractFactory
 
         $type  = $this->resolveImageType($data['image_type']);
         $image = $this->hydrate($type, $data);
-        $media = null;
 
         if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
             switch ($data['media_type']) {

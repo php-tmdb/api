@@ -10,13 +10,13 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Movie;
+namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
 
 /**
  * Class AccountStates
- * @package Tmdb\Model\Movie
+ * @package Tmdb\Model\Common
  */
 class AccountStates extends AbstractModel
 {
@@ -45,6 +45,14 @@ class AccountStates extends AbstractModel
         'favorite',
         'watchlist',
     );
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rated = new Rating();
+    }
 
     /**
      * @param  boolean $favorite

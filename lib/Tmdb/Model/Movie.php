@@ -457,7 +457,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $overview
+     * @param  string $overview
      * @return $this
      */
     public function setOverview($overview)

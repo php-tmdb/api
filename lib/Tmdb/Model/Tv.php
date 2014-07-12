@@ -85,7 +85,7 @@ class Tv extends AbstractModel
     private $name;
 
     /**
-     * @var Network[]
+     * @var GenericCollection|Network[]
      */
     private $networks;
 
@@ -237,10 +237,7 @@ class Tv extends AbstractModel
      */
     public function __construct()
     {
-        $this->createdBy      = new Images();
-        $this->episodeRunTime = new GenericCollection();
         $this->genres         = new Genres();
-        $this->languages      = new GenericCollection();
         $this->networks       = new GenericCollection();
         $this->originCountry  = new GenericCollection();
         $this->seasons        = new GenericCollection();
