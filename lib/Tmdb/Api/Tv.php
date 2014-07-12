@@ -216,4 +216,32 @@ class Tv extends AbstractApi
     {
         return $this->get('tv/' . $tvshow_id . '/similar', $parameters, $headers);
     }
+
+    /**
+     * This method lets users get the status of whether or not the TV show has been rated
+     * or added to their favourite or watch lists.
+     *
+     * A valid session id is required.
+     *
+     * @param  integer $id
+     * @return mixed
+     */
+    public function getAccountStates($id)
+    {
+        return $this->get('tv/' . $id . '/account_states');
+    }
+
+    /**
+     * This method lets users rate a TV show.
+     *
+     * A valid session id or guest session id is required.
+     *
+     * @param  integer $id
+     * @param  double  $rating
+     * @return mixed
+     */
+    public function rateTvShow($id, $rating)
+    {
+        return $this->postJson('tv/' . $id . '/rating', array('value' => (float) $rating));
+    }
 }
