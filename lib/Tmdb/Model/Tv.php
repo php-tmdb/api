@@ -220,7 +220,6 @@ class Tv extends AbstractModel
         'number_of_episodes',
         'number_of_seasons',
         'original_name',
-        'origin_country',
         'overview',
         'popularity',
         'poster_path',

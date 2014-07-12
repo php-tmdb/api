@@ -16,6 +16,7 @@ use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
+use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
@@ -206,6 +207,19 @@ class TvFactory extends AbstractFactory
             }
 
             $tvShow->setLanguages($collection);
+        }
+
+        if (array_key_exists('origin_country', $data)) {
+            $collection = new GenericCollection();
+
+            foreach ($data['origin_country'] as $iso31661) {
+                $object = new Country();
+                $object->setIso31661($iso31661);
+
+                $collection->add(null, $object);
+            }
+
+            $tvShow->setOriginCountry($collection);
         }
 
         return $this->hydrate($tvShow, $data);
