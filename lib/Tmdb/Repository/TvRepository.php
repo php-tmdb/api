@@ -14,7 +14,9 @@ namespace Tmdb\Repository;
 
 use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Collection\Videos;
+use Tmdb\Model\Common\AccountStates;
 use Tmdb\Model\Common\Video;
+use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\QueryParameter\AppendToResponse;
 
@@ -223,13 +225,45 @@ class TvRepository extends AbstractRepository
     /**
      * Get the latest tv-show.
      *
-     * @param  array $options
+     * @param  array                          $options
      * @return null|\Tmdb\Model\AbstractModel
      */
     public function getLatest(array $options = array())
     {
         return $this->getFactory()->create(
             $this->getApi()->getLatest($options)
+        );
+    }
+
+    /**
+     * This method lets users get the status of whether or not the TV show has been rated
+     * or added to their favourite or watch lists.
+     *
+     * A valid session id is required.
+     *
+     * @param  integer       $id
+     * @return AccountStates
+     */
+    public function getAccountStates($id)
+    {
+        return $this->getFactory()->createAccountStates(
+            $this->getApi()->getAccountStates($id)
+        );
+    }
+
+    /**
+     * This method lets users rate a TV show.
+     *
+     * A valid session id or guest session id is required.
+     *
+     * @param  integer $id
+     * @param  float   $rating
+     * @return Result
+     */
+    public function rate($id, $rating)
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->rateTvShow($id, $rating)
         );
     }
 }

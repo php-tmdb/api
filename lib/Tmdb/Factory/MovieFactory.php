@@ -19,7 +19,6 @@ use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Translation;
-use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Movie;
 
 /**
@@ -192,17 +191,6 @@ class MovieFactory extends AbstractFactory
         }
 
         return $collection;
-    }
-
-    /**
-     * Create result
-     *
-     * @param  array                     $data
-     * @return \Tmdb\Model\AbstractModel
-     */
-    public function createResult(array $data = array())
-    {
-        return $this->hydrate(new Result(), $data);
     }
 
     /**

@@ -18,6 +18,7 @@ use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\AccountStates;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Rating;
+use Tmdb\Model\Lists\Result;
 
 /**
  * Class AbstractFactory
@@ -158,6 +159,17 @@ abstract class AbstractFactory
         }
 
         return $this->hydrate($accountStates, $data);
+    }
+
+    /**
+     * Create result
+     *
+     * @param  array                     $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createResult(array $data = array())
+    {
+        return $this->hydrate(new Result(), $data);
     }
 
     /**
