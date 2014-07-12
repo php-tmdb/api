@@ -18,7 +18,6 @@ use Tmdb\Factory\Movie\ListItemFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Common\Trailer\Youtube;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Movie;
@@ -143,14 +142,6 @@ class MovieFactory extends AbstractFactory
 
         if (array_key_exists('releases', $data) && array_key_exists('countries', $data['releases'])) {
             $movie->setReleases($this->createGenericCollection($data['releases']['countries'], new Movie\Release()));
-        }
-
-        /**
-         * @TODO actually implement more providers?
-         * ( Can't seem to find any quicktime related trailers anyways? ). For now KISS
-         */
-        if (array_key_exists('trailers', $data) && array_key_exists('youtube', $data['trailers'])) {
-            $movie->setTrailers($this->createGenericCollection($data['trailers']['youtube'], new Youtube()));
         }
 
         if (array_key_exists('videos', $data)) {

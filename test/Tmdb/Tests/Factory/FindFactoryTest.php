@@ -67,7 +67,7 @@ class FindFactoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
+     * @expectedException \RuntimeException
      */
     public function shouldThrowExceptionForCreateCollection()
     {

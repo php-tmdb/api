@@ -145,7 +145,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $adult
+     * @param  boolean $adult
      * @return $this
      */
     public function setAdult($adult)
@@ -164,7 +164,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $alsoKnownAs
+     * @param  array $alsoKnownAs
      * @return $this
      */
     public function setAlsoKnownAs($alsoKnownAs)
@@ -183,7 +183,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $biography
+     * @param  string $biography
      * @return $this
      */
     public function setBiography($biography)
@@ -225,10 +225,10 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $changes
+     * @param  GenericCollection $changes
      * @return $this
      */
-    public function setChanges($changes)
+    public function setChanges(GenericCollection $changes)
     {
         $this->changes = $changes;
 
@@ -271,7 +271,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $homepage
+     * @param  string $homepage
      * @return $this
      */
     public function setHomepage($homepage)
@@ -328,7 +328,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)
@@ -347,7 +347,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $placeOfBirth
+     * @param  string $placeOfBirth
      * @return $this
      */
     public function setPlaceOfBirth($placeOfBirth)
@@ -366,7 +366,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $profilePath
+     * @param  string $profilePath
      * @return $this
      */
     public function setProfilePath($profilePath)
@@ -480,7 +480,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param  mixed $taggedImages
+     * @param  GenericCollection $taggedImages
      * @return $this
      */
     public function setTaggedImages($taggedImages)

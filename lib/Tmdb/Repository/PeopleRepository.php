@@ -184,7 +184,7 @@ class PeopleRepository extends AbstractRepository
 
         $factory = new ImageFactory();
 
-        return $factory->createResultCollection($data, 'createMediaImage', 'tagged_images');
+        return $factory->createResultCollection($data, 'createMediaImage');
     }
 
     /**

@@ -67,7 +67,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @param  mixed $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)
@@ -86,7 +86,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @param  mixed $profilePath
+     * @param  string $profilePath
      * @return $this
      */
     public function setProfilePath($profilePath)

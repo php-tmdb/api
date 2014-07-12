@@ -29,7 +29,7 @@ class SessionToken
     private $expiresAt;
 
     /**
-     * @var bool
+     * @var boolean
      */
     private $success;
 
@@ -86,7 +86,7 @@ class SessionToken
     }
 
     /**
-     * @param  mixed $success
+     * @param  boolean $success
      * @return $this
      */
     public function setSuccess($success)

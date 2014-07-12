@@ -29,7 +29,7 @@ class VideoFactory extends AbstractFactory
     {
         $videoType = $this->resolveVideoType($data);
 
-        return $this->hydrate($videoType, $data);
+        return (null === $videoType) ? null : $this->hydrate($videoType, $data);
     }
 
     /**

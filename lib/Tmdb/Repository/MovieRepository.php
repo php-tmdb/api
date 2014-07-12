@@ -409,7 +409,7 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * @param  mixed $alternativeTitleFactory
+     * @param  AlternativeTitleFactory $alternativeTitleFactory
      * @return $this
      */
     public function setAlternativeTitleFactory($alternativeTitleFactory)
@@ -428,7 +428,7 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * @param  mixed $imageFactory
+     * @param  ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
@@ -447,7 +447,7 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * @param  mixed $peopleFactory
+     * @param  PeopleFactory $peopleFactory
      * @return $this
      */
     public function setPeopleFactory($peopleFactory)

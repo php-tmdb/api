@@ -104,6 +104,31 @@ abstract class AbstractFactory
     }
 
     /**
+     * Create a generic collection of data and map it on the class by it's static parameter $properties
+     *
+     * @param  array             $data
+     * @param  AbstractModel     $class
+     * @param  GenericCollection $collection
+     * @return GenericCollection
+     */
+    protected function createCustomCollection($data = array(), $class, $collection)
+    {
+        if (is_object($class)) {
+            $class = get_class($class);
+        }
+
+        if (null === $data) {
+            return $collection;
+        }
+
+        foreach ($data as $item) {
+            $collection->add(null, $this->hydrate(new $class(), $item));
+        }
+
+        return $collection;
+    }
+
+    /**
      * Hydrate the object with data
      *
      * @param  AbstractModel $object

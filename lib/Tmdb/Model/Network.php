@@ -60,7 +60,7 @@ class Network extends AbstractModel
     }
 
     /**
-     * @param  mixed $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)

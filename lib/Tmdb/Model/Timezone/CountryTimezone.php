@@ -14,7 +14,6 @@ namespace Tmdb\Model\Timezone;
 
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Timezones;
-use Tmdb\Model\Common\GenericCollection;
 
 /**
  * Class Timezone
@@ -34,7 +33,7 @@ class CountryTimezone extends AbstractModel
 
     public function __construct()
     {
-        $this->timezones = new GenericCollection();
+        $this->timezones = new Timezones();
     }
 
     /**

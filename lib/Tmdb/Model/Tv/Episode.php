@@ -80,7 +80,7 @@ class Episode extends AbstractModel
     /**
      * Credits
      *
-     * @var Credits
+     * @var CreditsCollection
      */
     protected $credits;
 

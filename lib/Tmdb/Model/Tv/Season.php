@@ -34,7 +34,7 @@ class Season extends AbstractModel
     private $airDate;
 
     /**
-     * @var Episode[]
+     * @var GenericCollection|Episode[]
      */
     private $episodes;
 
@@ -66,7 +66,7 @@ class Season extends AbstractModel
     /**
      * Credits
      *
-     * @var Credits
+     * @var CreditsCollection
      */
     protected $credits;
 
@@ -224,7 +224,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Tv\Image $posterPath
+     * @param  string $posterPath
      * @return $this
      */
     public function setPosterPath($posterPath)

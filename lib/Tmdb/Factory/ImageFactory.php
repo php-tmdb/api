@@ -98,9 +98,7 @@ class ImageFactory extends AbstractFactory
             }
 
             $media = $factory->create($data['media']);
-        }
 
-        if ($media) {
             $image->setMedia($media);
         }
 

@@ -27,7 +27,6 @@ class PersonTest extends TestCase
         $this->assertInstancesOf(
             $person,
             array(
-                'getCredits'         => 'Tmdb\Model\Collection\CreditsCollection',
                 'getImages'          => 'Tmdb\Model\Collection\Images',
                 'getChanges'         => 'Tmdb\Model\Common\GenericCollection',
                 'getCombinedCredits' => 'Tmdb\Model\Collection\CreditsCollection\CombinedCredits',
@@ -65,14 +64,12 @@ class PersonTest extends TestCase
         $className = get_class($class);
 
         $movie->setChanges($class);
-        $movie->setCredits($class);
 
         $this->assertInstancesOf(
             $movie,
             array(
                 /** Constructor */
-                'getChanges'             => $className,
-                'getCredits'             => $className
+                'getChanges' => $className
             )
         );
     }

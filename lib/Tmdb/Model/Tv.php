@@ -28,12 +28,12 @@ use Tmdb\Model\Common\ExternalIds;
 class Tv extends AbstractModel
 {
     /**
-     * @var Image
+     * @var string
      */
     private $backdropPath;
 
     /**
-     * @var Collection
+     * @var Common\GenericCollection
      */
     private $createdBy = null;
 
@@ -105,7 +105,7 @@ class Tv extends AbstractModel
     private $originalName;
 
     /**
-     * @var Collection
+     * @var Common\GenericCollection
      */
     private $originCountry;
 
@@ -120,12 +120,12 @@ class Tv extends AbstractModel
     private $popularity;
 
     /**
-     * @var Image
+     * @var string
      */
     private $posterPath;
 
     /**
-     * @var Collection
+     * @var Common\GenericCollection
      */
     private $seasons;
 
@@ -147,7 +147,7 @@ class Tv extends AbstractModel
     /**
      * Credits
      *
-     * @var Credits
+     * @var CreditsCollection
      */
     protected $credits;
 
@@ -166,7 +166,7 @@ class Tv extends AbstractModel
     protected $images;
 
     /**
-     * @var Collection
+     * @var Common\GenericCollection
      */
     protected $translations;
 

@@ -260,8 +260,6 @@ class Movies extends AbstractApi
      * or added to their favourite or watch lists.
      *
      * A valid session id is required.
-     *
-     * @throws \Tmdb\Exception\NotImplementedException
      */
     public function getAccountStates($id)
     {
@@ -272,8 +270,6 @@ class Movies extends AbstractApi
      * TThis method lets users rate a movie.
      *
      * A valid session id or guest session id is required.
-     *
-     * @throws \Tmdb\Exception\NotImplementedException
      */
     public function rateMovie($id, $rating)
     {
