@@ -80,12 +80,6 @@ class Person extends AbstractModel implements PersonInterface
     private $profileImage;
 
     /**
-     * @var Collection\CreditsCollection
-     * @deprecated
-     */
-    protected $credits;
-
-    /**
      * @var CreditsCollection\MovieCredits
      */
     protected $movieCredits;
@@ -142,7 +136,6 @@ class Person extends AbstractModel implements PersonInterface
      */
     public function __construct()
     {
-        $this->credits         = new CreditsCollection();
         $this->movieCredits    = new CreditsCollection\MovieCredits();
         $this->tvCredits       = new CreditsCollection\TvCredits();
         $this->combinedCredits = new CreditsCollection\CombinedCredits();
@@ -248,25 +241,6 @@ class Person extends AbstractModel implements PersonInterface
     public function getChanges()
     {
         return $this->changes;
-    }
-
-    /**
-     * @param  mixed $credits
-     * @return $this
-     */
-    public function setCredits($credits)
-    {
-        $this->credits = $credits;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCredits()
-    {
-        return $this->credits;
     }
 
     /**
