@@ -20,6 +20,7 @@ use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Translation;
+use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
 
 /**
