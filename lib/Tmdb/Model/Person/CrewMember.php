@@ -45,7 +45,7 @@ class CrewMember extends AbstractMember implements PersonInterface
     );
 
     /**
-     * @param  mixed $department
+     * @param  string $department
      * @return $this
      */
     public function setDepartment($department)
@@ -56,7 +56,7 @@ class CrewMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDepartment()
     {
@@ -64,7 +64,7 @@ class CrewMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @param  mixed $job
+     * @param  string $job
      * @return $this
      */
     public function setJob($job)
@@ -75,7 +75,7 @@ class CrewMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getJob()
     {

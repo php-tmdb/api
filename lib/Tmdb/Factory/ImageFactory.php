@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image;
 
@@ -50,6 +51,56 @@ class ImageFactory extends AbstractFactory
             self::resolveImageType($key),
             array('file_path' => $path)
         );
+    }
+
+    /**
+     * Create an Media/Image type which is used in calls like person/tagged_images, which contains an getMedia()
+     * reference either referring to movies / tv shows etc.
+     *
+     * @param  array $data
+     * @return Image
+     *
+     * @throws \RuntimeException
+     */
+    public function createMediaImage(array $data = array())
+    {
+        if (!array_key_exists('image_type', $data)) {
+            throw new \RuntimeException('Unable to detect the image type.');
+        }
+
+        $type  = $this->resolveImageType($data['image_type']);
+        $image = $this->hydrate($type, $data);
+
+        if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
+            switch ($data['media_type']) {
+                case "movie":
+                    $factory = new MovieFactory();
+                    break;
+
+                case "tv":
+                    $factory = new TvFactory();
+                    break;
+
+                // I don't think this ever occurs, but just in case..
+                case "person":
+                    $factory = new PeopleFactory();
+                    break;
+
+                default:
+                    throw new RuntimeException(sprintf(
+                        'Unrecognized media_type "%s" for method "%s::%s".',
+                        $data['media_type'],
+                        __CLASS__,
+                        __METHOD__
+                    ));
+            }
+
+            $media = $factory->create($data['media']);
+
+            $image->setMedia($media);
+        }
+
+        return $this->hydrate($type, $data);
     }
 
     /**

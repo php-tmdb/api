@@ -28,12 +28,12 @@ use Tmdb\Model\Common\ExternalIds;
 class Tv extends AbstractModel
 {
     /**
-     * @var Image
+     * @var string
      */
     private $backdropPath;
 
     /**
-     * @var Collection
+     * @var Common\GenericCollection
      */
     private $createdBy = null;
 
@@ -85,7 +85,7 @@ class Tv extends AbstractModel
     private $name;
 
     /**
-     * @var Network[]
+     * @var GenericCollection|Network[]
      */
     private $networks;
 
@@ -105,7 +105,7 @@ class Tv extends AbstractModel
     private $originalName;
 
     /**
-     * @var Collection
+     * @var Common\GenericCollection
      */
     private $originCountry;
 
@@ -120,12 +120,12 @@ class Tv extends AbstractModel
     private $popularity;
 
     /**
-     * @var Image
+     * @var string
      */
     private $posterPath;
 
     /**
-     * @var Collection
+     * @var Common\GenericCollection
      */
     private $seasons;
 
@@ -147,7 +147,7 @@ class Tv extends AbstractModel
     /**
      * Credits
      *
-     * @var Credits
+     * @var CreditsCollection
      */
     protected $credits;
 
@@ -166,7 +166,7 @@ class Tv extends AbstractModel
     protected $images;
 
     /**
-     * @var Collection
+     * @var Common\GenericCollection
      */
     protected $translations;
 
@@ -209,19 +209,16 @@ class Tv extends AbstractModel
      */
     public static $properties = array(
         'backdrop_path',
-        'created_by',
         'episode_run_time',
         'first_air_date',
         'homepage',
         'id',
         'in_production',
-        'languages',
         'last_air_date',
         'name',
         'number_of_episodes',
         'number_of_seasons',
         'original_name',
-        'origin_country',
         'overview',
         'popularity',
         'poster_path',
@@ -237,10 +234,7 @@ class Tv extends AbstractModel
      */
     public function __construct()
     {
-        $this->createdBy      = new Images();
-        $this->episodeRunTime = new GenericCollection();
         $this->genres         = new Genres();
-        $this->languages      = new GenericCollection();
         $this->networks       = new GenericCollection();
         $this->originCountry  = new GenericCollection();
         $this->seasons        = new GenericCollection();
@@ -286,7 +280,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getCreatedBy()
     {
@@ -541,7 +535,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getOriginCountry()
     {
@@ -636,7 +630,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getSeasons()
     {
@@ -712,7 +706,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\Collection
+     * @return GenericCollection
      */
     public function getTranslations()
     {

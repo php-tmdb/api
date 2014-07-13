@@ -56,8 +56,8 @@ class GenreRepository extends AbstractRepository
      *
      * @param $id
      * @param  array   $parameters
-     * @param  array   $headers
      * @return Genre[]
+     * @param  array   $headers
      */
     public function getMovies($id, array $parameters = array(), array $headers = array())
     {
@@ -71,7 +71,7 @@ class GenreRepository extends AbstractRepository
      * Create an collection of an array
      *
      * @param $data
-     * @return GenericCollection|Genre[]
+     * @return \Tmdb\Model\Collection\Genres
      */
     private function createCollection($data)
     {

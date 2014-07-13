@@ -18,7 +18,6 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Collection\Images;
-use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Movie\AlternativeTitle;
@@ -46,9 +45,9 @@ class Movie extends AbstractModel
     private $backdrop;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
-    private $belongsToCollection = null;
+    private $belongsToCollection;
 
     /**
      * @var int
@@ -101,12 +100,12 @@ class Movie extends AbstractModel
     private $posterPath;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     private $productionCompanies;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     private $productionCountries;
 
@@ -126,7 +125,7 @@ class Movie extends AbstractModel
     private $runtime;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     private $spokenLanguages;
 
@@ -156,19 +155,19 @@ class Movie extends AbstractModel
     private $voteCount;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     protected $alternativeTitles;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     protected $changes;
 
     /**
      * Credits
      *
-     * @var Credits
+     * @var CreditsCollection
      */
     protected $credits;
 
@@ -180,32 +179,27 @@ class Movie extends AbstractModel
     protected $images;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     protected $keywords;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     protected $lists;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     protected $releases;
 
     /**
-     * @var Collection
+     * @var GenericCollection
      */
     protected $similar;
 
     /**
-     * @var Collection
-     */
-    protected $trailers;
-
-    /**
-     * @var Collection
+     * @var GenericCollection
      */
     protected $translations;
 
@@ -267,7 +261,6 @@ class Movie extends AbstractModel
         $this->lists               = new GenericCollection();
         $this->releases            = new GenericCollection();
         $this->similar             = new GenericCollection();
-        $this->trailers            = new GenericCollection();
         $this->translations        = new GenericCollection();
         $this->videos              = new Videos();
     }
@@ -292,7 +285,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $backdropPath
+     * @param  string $backdropPath
      * @return $this
      */
     public function setBackdropPath($backdropPath)
@@ -303,7 +296,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getBackdropPath()
     {
@@ -322,7 +315,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Collection|null
+     * @return GenericCollection
      */
     public function getBelongsToCollection()
     {
@@ -342,6 +335,7 @@ class Movie extends AbstractModel
 
     /**
      * @return mixed
+     * @return GenericCollection
      */
     public function getChanges()
     {
@@ -360,7 +354,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Genre[]
+     * @return Genres
      */
     public function getGenres()
     {
@@ -368,7 +362,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $homepage
+     * @param  string $homepage
      * @return $this
      */
     public function setHomepage($homepage)
@@ -379,7 +373,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getHomepage()
     {
@@ -425,7 +419,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $imdbId
+     * @param  string $imdbId
      * @return $this
      */
     public function setImdbId($imdbId)
@@ -436,7 +430,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getImdbId()
     {
@@ -444,7 +438,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $originalTitle
+     * @param  string $originalTitle
      * @return $this
      */
     public function setOriginalTitle($originalTitle)
@@ -455,7 +449,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getOriginalTitle()
     {
@@ -463,7 +457,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $overview
+     * @param  string $overview
      * @return $this
      */
     public function setOverview($overview)
@@ -474,7 +468,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getOverview()
     {
@@ -501,7 +495,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $posterPath
+     * @param  string $posterPath
      * @return $this
      */
     public function setPosterPath($posterPath)
@@ -512,7 +506,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPosterPath()
     {
@@ -550,7 +544,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Country
+     * @return GenericCollection
      */
     public function getProductionCountries()
     {
@@ -638,7 +632,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $status
+     * @param  string $status
      * @return $this
      */
     public function setStatus($status)
@@ -649,7 +643,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getStatus()
     {
@@ -657,7 +651,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $tagline
+     * @param  string $tagline
      * @return $this
      */
     public function setTagline($tagline)
@@ -668,7 +662,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTagline()
     {
@@ -676,7 +670,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $title
+     * @param  string $title
      * @return $this
      */
     public function setTitle($title)
@@ -687,7 +681,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -872,25 +866,6 @@ class Movie extends AbstractModel
     public function getSimilarMovies()
     {
         return $this->getSimilar();
-    }
-
-    /**
-     * @param  GenericCollection $trailers
-     * @return $this
-     */
-    public function setTrailers($trailers)
-    {
-        $this->trailers = $trailers;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Model\Common\Trailer\Youtube[]
-     */
-    public function getTrailers()
-    {
-        return $this->trailers;
     }
 
     /**

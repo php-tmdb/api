@@ -10,15 +10,24 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-ini_set('display_errors', 'On');
-
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$repository = new \Tmdb\Repository\PeopleRepository($client);
-$person      = $repository->getTaggedImages(287);
+$query = new \Tmdb\Model\Query\ChangesQuery();
 
-var_dump($person);
+$from = new \DateTime('14-01-2014');
+$to   = new \DateTime('21-01-2014');
+
+$query
+    ->page(1)
+    ->from($from)
+    ->to($to)
+;
+
+$repository = new \Tmdb\Repository\ChangesRepository($client);
+$response = $repository->getTvChanges($query);
+
+var_dump($response);

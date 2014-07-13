@@ -15,7 +15,9 @@ namespace Tmdb\Repository;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\TvEpisodeFactory;
 use Tmdb\Model\Collection\Videos;
+use Tmdb\Model\Common\AccountStates;
 use Tmdb\Model\Common\Video;
+use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Tv\Episode\QueryParameter\AppendToResponse;
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\Season;
@@ -230,6 +232,66 @@ class TvEpisodeRepository extends AbstractRepository
         $episode = $this->getFactory()->create(array('videos' => $data));
 
         return $episode->getVideos();
+    }
+
+    /**
+     * This method lets users get the status of whether or not the TV show has been rated
+     * or added to their favourite or watch lists.
+     *
+     * A valid session id is required.
+     *
+     * @param  mixed         $tvShow
+     * @param  mixed         $season
+     * @param  mixed         $episode
+     * @return AccountStates
+     */
+    public function getAccountStates($tvShow, $season, $episode)
+    {
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getId();
+        }
+
+        if ($episode instanceof Tv\Episode) {
+            $episode = $episode->getId();
+        }
+
+        return $this->getFactory()->createAccountStates(
+            $this->getApi()->getAccountStates($tvShow, $season, $episode)
+        );
+    }
+
+    /**
+     * This method lets users rate a TV show.
+     *
+     * A valid session id or guest session id is required.
+     *
+     * @param  mixed  $tvShow
+     * @param  mixed  $season
+     * @param  mixed  $episode
+     * @param  double $rating
+     * @return Result
+     */
+    public function rate($tvShow, $season, $episode, $rating)
+    {
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getId();
+        }
+
+        if ($episode instanceof Tv\Episode) {
+            $episode = $episode->getId();
+        }
+
+        return $this->getFactory()->createResult(
+            $this->getApi()->rateTvEpisode($tvShow, $season, $episode, $rating)
+        );
     }
 
     /**

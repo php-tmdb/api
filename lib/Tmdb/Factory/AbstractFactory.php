@@ -15,7 +15,10 @@ namespace Tmdb\Factory;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\ResultCollection;
+use Tmdb\Model\Common\AccountStates;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\Rating;
+use Tmdb\Model\Lists\Result;
 
 /**
  * Class AbstractFactory
@@ -101,6 +104,76 @@ abstract class AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * Create a generic collection of data and map it on the class by it's static parameter $properties
+     *
+     * @param  array             $data
+     * @param  AbstractModel     $class
+     * @param  GenericCollection $collection
+     * @return GenericCollection
+     */
+    protected function createCustomCollection($data = array(), $class, $collection)
+    {
+        if (is_object($class)) {
+            $class = get_class($class);
+        }
+
+        if (null === $data) {
+            return $collection;
+        }
+
+        foreach ($data as $item) {
+            $collection->add(null, $this->hydrate(new $class(), $item));
+        }
+
+        return $collection;
+    }
+
+    /**
+     * Create rating
+     *
+     * @param  array                     $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createRating(array $data = array())
+    {
+        return $this->hydrate(new Rating(), $data);
+    }
+
+    /**
+     * Create the account states
+     *
+     * @param  array                     $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createAccountStates(array $data = array())
+    {
+        $accountStates = new AccountStates();
+
+        if (array_key_exists('rated', $data)) {
+            if ($data['rated']) {
+                $rating = new Rating();
+
+                $accountStates->setRated($this->hydrate($rating, $data['rated']));
+            } else {
+                $accountStates->setRated(false);
+            }
+        }
+
+        return $this->hydrate($accountStates, $data);
+    }
+
+    /**
+     * Create result
+     *
+     * @param  array                     $data
+     * @return \Tmdb\Model\AbstractModel
+     */
+    public function createResult(array $data = array())
+    {
+        return $this->hydrate(new Result(), $data);
     }
 
     /**

@@ -144,8 +144,6 @@ class People extends AbstractApi
      * @param  array $parameters
      * @param  array $headers
      * @return mixed
-     *
-     * @todo Still does not contain the media and media_type properties, this will be worked on later on.
      */
     public function getTaggedImages($person_id, array $parameters = array(), array $headers = array())
     {

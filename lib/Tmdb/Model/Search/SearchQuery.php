@@ -21,9 +21,17 @@ use Tmdb\Model\Collection\QueryParametersCollection;
 class SearchQuery extends QueryParametersCollection
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->page(1);
+    }
+
+    /**
      * CGI escaped string
      *
-     * @param string
+     * @param  string $query
      * @return $this
      */
     public function query($query)
@@ -36,7 +44,7 @@ class SearchQuery extends QueryParametersCollection
     /**
      * Minimum 1, maximum 1000.
      *
-     * @param int
+     * @param  int   $page
      * @return $this
      */
     public function page($page)

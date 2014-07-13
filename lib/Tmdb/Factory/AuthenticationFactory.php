@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Exception\NotImplementedException;
 use Tmdb\GuestSessionToken;
 use Tmdb\RequestToken;
 use Tmdb\SessionToken;
@@ -26,23 +25,31 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @throws NotImplementedException
+     * @throws \RuntimeException
      * @return void
      */
     public function create(array $data = array())
     {
-        throw new NotImplementedException();
+        throw new \RuntimeException(sprintf(
+            'Class "%s" does not support method "%s".',
+            __CLASS__,
+            __METHOD__
+        ));
     }
 
     /**
      * @param array $data
      *
-     * @throws NotImplementedException
+     * @throws \RuntimeException
      * @return void
      */
     public function createCollection(array $data = array())
     {
-        throw new NotImplementedException();
+        throw new \RuntimeException(sprintf(
+            'Class "%s" does not support method "%s".',
+            __CLASS__,
+            __METHOD__
+        ));
     }
 
     /**

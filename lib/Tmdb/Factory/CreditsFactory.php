@@ -15,6 +15,7 @@ namespace Tmdb\Factory;
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Credits as Credits;
+use Tmdb\Model\Person;
 
 /**
  * Class CreditsFactory
@@ -71,9 +72,11 @@ class CreditsFactory extends AbstractFactory
         }
 
         if (array_key_exists('person', $data)) {
-            $credits->setPerson(
-                $this->getPeopleFactory()->create($data['person'])
-            );
+            $person = $this->getPeopleFactory()->create($data['person']);
+
+            if ($person instanceof Person) {
+                $credits->setPerson($person);
+            }
         }
 
         return $this->hydrate($credits, $data);

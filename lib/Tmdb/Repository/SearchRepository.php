@@ -22,7 +22,6 @@ use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Collection\ResultCollection;
-use Tmdb\Model\Collection;
 use Tmdb\Model\Company;
 use Tmdb\Model\Keyword;
 use Tmdb\Model\Movie;
@@ -111,7 +110,7 @@ class SearchRepository extends AbstractRepository
      * @param CollectionSearchQuery $parameters
      * @param array                 $headers
      *
-     * @return ResultCollection|Collection[]
+     * @return ResultCollection[]
      */
     public function searchCollection($query, CollectionSearchQuery $parameters, array $headers = array())
     {
@@ -188,6 +187,73 @@ class SearchRepository extends AbstractRepository
         $data = $this->getApi()->searchKeyword($query, $this->getParameters($parameters), $headers);
 
         return $this->getKeywordFactory()->createResultCollection($data);
+    }
+
+    /**
+     * @param string             $query
+     * @param KeywordSearchQuery $parameters
+     * @param array              $headers
+     *
+     * @return ResultCollection|Keyword[]
+     */
+    public function searchMulti($query, KeywordSearchQuery $parameters, array $headers = array())
+    {
+        $data       = $this->getApi()->searchMulti($query, $this->getParameters($parameters), $headers);
+        $collection = new ResultCollection();
+
+        if (null === $data) {
+            return $collection;
+        }
+
+        if (array_key_exists('page', $data)) {
+            $collection->setPage($data['page']);
+        }
+
+        if (array_key_exists('total_pages', $data)) {
+            $collection->setTotalPages($data['total_pages']);
+        }
+
+        if (array_key_exists('total_results', $data)) {
+            $collection->setTotalResults($data['total_results']);
+        }
+
+        if (array_key_exists('results', $data)) {
+            foreach ($data['results'] as $item) {
+                if ($item) {
+                    $collection->add(null, $this->processSearchMultiItem($item));
+                }
+            }
+        }
+
+        return $collection;
+    }
+
+    /**
+     * Process multi search items
+     *
+     * @param  array                                                    $item
+     * @return bool|Movie|Person|Person\CastMember|Person\CrewMember|Tv
+     * @throws \RuntimeException
+     */
+    private function processSearchMultiItem(array $item)
+    {
+        if (array_key_exists('media_type', $item)) {
+            switch ($item['media_type']) {
+                case 'movie':
+                    return $this->getMovieFactory()->create($item);
+                case 'tv':
+                    return $this->getTvFactory()->create($item);
+                case 'person':
+                    return $this->getPeopleFactory()->create($item);
+                default:
+                    throw new \RuntimeException(sprintf(
+                        'Could not process media_type "%s" in multi search, type unknown.',
+                        $item['media_type']
+                    ));
+            }
+        }
+
+        return false;
     }
 
     /**

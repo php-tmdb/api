@@ -45,7 +45,7 @@ class PeopleFactory extends AbstractFactory
      * @param array                      $data
      * @param Person\AbstractMember|null $person
      *
-     * @return Person|CrewMember|CastMember
+     * @return Person
      */
     public function create(array $data = array(), $person = null)
     {
@@ -91,7 +91,8 @@ class PeopleFactory extends AbstractFactory
         if (array_key_exists('tagged_images', $data)) {
             $person->setTaggedImages(
                 $this->getImageFactory()->createResultCollection(
-                    $data['tagged_images']
+                    $data['tagged_images'],
+                    'createMediaImage'
                 )
             );
         }
@@ -115,9 +116,10 @@ class PeopleFactory extends AbstractFactory
                 $method = $hydrator->camelize(sprintf('get_%s', $type));
 
                 if (array_key_exists('cast', $data[$type])) {
-                    $cast = $this->createGenericCollection(
+                    $cast = $this->createCustomCollection(
                         $data[$type]['cast'],
-                        new Person\MovieCredit()
+                        new Person\MovieCredit(),
+                        new People\Cast()
                     );
 
                     foreach ($cast as $member) {
@@ -128,9 +130,10 @@ class PeopleFactory extends AbstractFactory
                 }
 
                 if (array_key_exists('crew', $data[$type])) {
-                    $crew = $this->createGenericCollection(
+                    $crew = $this->createCustomCollection(
                         $data[$type]['crew'],
-                        new Person\MovieCredit()
+                        new Person\MovieCredit(),
+                        new People\Crew()
                     );
 
                     foreach ($crew as $member) {

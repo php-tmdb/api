@@ -36,7 +36,7 @@ class Images extends GenericCollection
      * Retrieve a image from the collection
      *
      * @param $id
-     * @return null
+     * @return GenericCollection
      */
     public function getImage($id)
     {

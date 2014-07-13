@@ -28,7 +28,7 @@ class AccountRepository extends AbstractRepository
      * Get the basic information for an account.
      * You will need to have a valid session id.
      *
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return \Tmdb\Model\Account
      */
     public function getAccount()
     {
@@ -85,10 +85,10 @@ class AccountRepository extends AbstractRepository
     /**
      * Add or remove a movie to an accounts favorite list.
      *
-     * @param  string           $accountId
-     * @param  int|Movie|Tv     $media
-     * @param  boolean          $isFavorite
-     * @return ResultCollection
+     * @param  string                   $accountId
+     * @param  int|Movie|Tv             $media
+     * @param  boolean                  $isFavorite
+     * @return \Tmdb\Model\Lists\Result
      */
     public function favorite($accountId, $media, $isFavorite = true)
     {

@@ -48,7 +48,7 @@ class ApiToken
     }
 
     /**
-     * @return null
+     * @return string
      */
     public function getToken()
     {

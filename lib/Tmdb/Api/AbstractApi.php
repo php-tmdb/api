@@ -77,10 +77,10 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Send a POST request
      *
-     * @param $path
-     * @param  null  $postBody
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $path
+     * @param  null   $postBody
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function post($path, $postBody = null, array $parameters = array(), $headers = array())
@@ -96,10 +96,10 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Send a POST request but json_encode the post body in the request
      *
-     * @param $path
-     * @param  null  $postBody
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string     $path
+     * @param  array|null $postBody
+     * @param  array      $parameters
+     * @param  array      $headers
      * @return mixed
      */
     public function postJson($path, $postBody = null, array $parameters = array(), $headers = array())
@@ -138,10 +138,10 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Send a DELETE request
      *
-     * @param $path
-     * @param  null  $body
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $path
+     * @param  null   $body
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function delete($path, $body = null, array $parameters = array(), $headers = array())

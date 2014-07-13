@@ -10,15 +10,16 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-ini_set('display_errors', 'On');
-
-require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../../../vendor/autoload.php';
+require_once '../../../../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$repository = new \Tmdb\Repository\PeopleRepository($client);
-$person      = $repository->getTaggedImages(287);
+$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
+$client->setSessionToken($sessionToken);
 
-var_dump($person);
+$repository = new \Tmdb\Repository\TvRepository($client);
+$tvShow     = $repository->getAccountStates(1396);
+
+var_dump($tvShow);

@@ -14,7 +14,6 @@ namespace Tmdb\Repository;
 
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\TvSeasonFactory;
-
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\Video;
 use \Tmdb\Model\Tv\Season\QueryParameter\AppendToResponse;

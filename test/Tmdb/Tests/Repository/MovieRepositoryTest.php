@@ -81,16 +81,6 @@ class MovieRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function shouldGetTrailers()
-    {
-        $repository = $this->getRepositoryWithMockedHttpClient();
-
-        $repository->getTrailers(self::MOVIE_ID);
-    }
-
-    /**
-     * @test
-     */
     public function shouldGetTranslations()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();

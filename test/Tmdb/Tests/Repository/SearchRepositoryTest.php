@@ -116,6 +116,19 @@ class SearchRepositoryTest extends TestCase
 
     /**
      * @test
+     */
+    public function shouldSearchMulti()
+    {
+        /**
+         * @var SearchRepository $repository
+         */
+        $repository = $this->getRepositoryWithMockedHttpClient();
+
+        $repository->searchKeyword('jack', new KeywordSearchQuery());
+    }
+
+    /**
+     * @test
      * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldGetFactory()

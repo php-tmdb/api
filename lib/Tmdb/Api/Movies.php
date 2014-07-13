@@ -261,7 +261,8 @@ class Movies extends AbstractApi
      *
      * A valid session id is required.
      *
-     * @throws \Tmdb\Exception\NotImplementedException
+     * @param  integer $id
+     * @return mixed
      */
     public function getAccountStates($id)
     {
@@ -273,7 +274,9 @@ class Movies extends AbstractApi
      *
      * A valid session id or guest session id is required.
      *
-     * @throws \Tmdb\Exception\NotImplementedException
+     * @param  integer $id
+     * @param  double  $rating
+     * @return mixed
      */
     public function rateMovie($id, $rating)
     {

@@ -10,21 +10,16 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Collection\People;
+require_once '../../../vendor/autoload.php';
+require_once '../../../apikey.php';
 
-/**
- * Interface PersonInterface
- * @package Tmdb\Model\Collection\People
- */
-interface PersonInterface
-{
-    /**
-     * @return string
-     */
-    public function getName();
+$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$client = new \Tmdb\Client($token);
 
-    /**
-     * @return integer
-     */
-    public function getId();
-}
+$tvChanges = $client->getChangesApi()->getTvChanges(array(
+    'page'       => 1,
+    'start_date' => '2014-01-14',
+    'end_date'   => '2014-01-21'
+));
+
+var_dump($tvChanges);

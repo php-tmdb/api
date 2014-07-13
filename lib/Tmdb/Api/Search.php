@@ -22,9 +22,9 @@ class Search extends AbstractApi
     /**
      * Search for movies by title.
      *
-     * @param $query
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $query
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function searchMovies($query, array $parameters = array(), array $headers = array())
@@ -37,9 +37,9 @@ class Search extends AbstractApi
     /**
      * Search for collections by name.
      *
-     * @param $query
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $query
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function searchCollection($query, array $parameters = array(), array $headers = array())
@@ -52,9 +52,9 @@ class Search extends AbstractApi
     /**
      * Search for TV shows by title.
      *
-     * @param $query
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $query
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function searchTv($query, array $parameters = array(), array $headers = array())
@@ -67,9 +67,9 @@ class Search extends AbstractApi
     /**
      * Search for people by name.
      *
-     * @param $query
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $query
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function searchPersons($query, array $parameters = array(), array $headers = array())
@@ -82,9 +82,9 @@ class Search extends AbstractApi
     /**
      * Search for lists by name and description.
      *
-     * @param $query
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $query
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function searchList($query, array $parameters = array(), array $headers = array())
@@ -112,14 +112,32 @@ class Search extends AbstractApi
     /**
      * Search for companies by name.
      *
-     * @param $query
-     * @param  array $parameters
-     * @param  array $headers
+     * @param  string $query
+     * @param  array  $parameters
+     * @param  array  $headers
      * @return mixed
      */
     public function searchKeyword($query, array $parameters = array(), array $headers = array())
     {
         return $this->get('search/keyword', array_merge($parameters, array(
+            'query' => urlencode($query)
+        ), $headers));
+    }
+
+    /**
+     * Search the movie, tv show and person collections with a single query.
+     *
+     * Each item returned in the result array has a media_type field that maps to either movie, tv or person.
+     * Each mapped result is the same response you would get from each independent search.
+     *
+     * @param  string $query
+     * @param  array  $parameters
+     * @param  array  $headers
+     * @return mixed
+     */
+    public function searchMulti($query, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('search/multi', array_merge($parameters, array(
             'query' => urlencode($query)
         ), $headers));
     }

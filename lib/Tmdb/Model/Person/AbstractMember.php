@@ -67,7 +67,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @param  mixed $name
+     * @param  string $name
      * @return $this
      */
     public function setName($name)
@@ -78,7 +78,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -86,7 +86,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @param  mixed $profilePath
+     * @param  string $profilePath
      * @return $this
      */
     public function setProfilePath($profilePath)
@@ -97,7 +97,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getProfilePath()
     {
@@ -116,7 +116,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @return Image\ProfileImage|null
+     * @return Image\ProfileImage
      */
     public function getProfileImage()
     {

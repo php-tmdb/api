@@ -51,7 +51,7 @@ class CastMember extends AbstractMember implements PersonInterface
     );
 
     /**
-     * @param  mixed $character
+     * @param  string $character
      * @return $this
      */
     public function setCharacter($character)
@@ -62,7 +62,7 @@ class CastMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCharacter()
     {

@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Exception\NotImplementedException;
 use Tmdb\Model\Account;
 use Tmdb\Model\Lists\Result;
 
@@ -108,7 +107,11 @@ class AccountFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        throw new NotImplementedException('Not implemented');
+        throw new \RuntimeException(sprintf(
+            'Class "%s" does not support method "%s".',
+            __CLASS__,
+            __METHOD__
+        ));
     }
 
     /**

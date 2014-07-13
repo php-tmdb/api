@@ -68,7 +68,7 @@ class AuthenticationFactoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Tmdb\Exception\NotImplementedException
+     * @expectedException \RuntimeException
      */
     public function shouldThrowExceptionForCreate()
     {
@@ -82,7 +82,7 @@ class AuthenticationFactoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Tmdb\Exception\NotImplementedException
+     * @expectedException \RuntimeException
      */
     public function shouldThrowExceptionForCreateCollection()
     {

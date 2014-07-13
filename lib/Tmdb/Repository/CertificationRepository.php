@@ -29,7 +29,7 @@ class CertificationRepository extends AbstractRepository
      *
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return \Tmdb\Model\Common\GenericCollection
      */
     public function getMovieList(array $parameters = array(), array $headers = array())
     {

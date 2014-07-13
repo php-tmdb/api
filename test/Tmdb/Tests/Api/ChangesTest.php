@@ -40,6 +40,19 @@ class ChangesTest extends TestCase
         $api->getPersonChanges();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetTvChanges()
+    {
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('get')
+            ->with('tv/changes');
+
+        $api->getTvChanges();
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Changes';

@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Exception\NotImplementedException;
 use Tmdb\Model\Find;
 
 /**
@@ -73,7 +72,11 @@ class FindFactory extends AbstractFactory
      */
     public function createCollection(array $data = array())
     {
-        throw new NotImplementedException(sprintf('Method "%s" is not implemented.', __METHOD__));
+        throw new \RuntimeException(sprintf(
+            'Class "%s" does not support method "%s".',
+            __CLASS__,
+            __METHOD__
+        ));
     }
 
     /**

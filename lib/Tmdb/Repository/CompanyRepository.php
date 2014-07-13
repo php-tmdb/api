@@ -15,9 +15,7 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Collection\ResultCollection;
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
-use Tmdb\Model\Movie;
 
 /**
  * Class CompanyRepository
@@ -44,10 +42,10 @@ class CompanyRepository extends AbstractRepository
     /**
      * Get the list of movies associated with a particular company.
      *
-     * @param  integer                   $id
-     * @param  array                     $parameters
-     * @param  array                     $headers
-     * @return GenericCollection|Movie[]
+     * @param  integer          $id
+     * @param  array            $parameters
+     * @param  array            $headers
+     * @return ResultCollection
      */
     public function getMovies($id, array $parameters = array(), array $headers = array())
     {
@@ -86,7 +84,7 @@ class CompanyRepository extends AbstractRepository
      * Create an collection of an array
      *
      * @param $data
-     * @return Movie[]
+     * @return ResultCollection
      */
     public function createMovieCollection($data)
     {

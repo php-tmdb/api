@@ -25,9 +25,8 @@ final class AppendToResponse extends BaseAppendToResponse
     const IMAGES             = 'images';
     const KEYWORDS           = 'keywords';
     const RELEASES           = 'releases';
-    const TRAILERS           = 'trailers';
     const TRANSLATIONS       = 'translations';
-    const SIMILAR_MOVIES     = 'similar';
+    const SIMILAR            = 'similar';
     const REVIEWS            = 'reviews';
     const LISTS              = 'lists';
     const CHANGES            = 'changes';

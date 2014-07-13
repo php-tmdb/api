@@ -10,21 +10,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Model\Collection\People;
+require_once '../../../vendor/autoload.php';
+require_once '../../../apikey.php';
 
-/**
- * Interface PersonInterface
- * @package Tmdb\Model\Collection\People
- */
-interface PersonInterface
-{
-    /**
-     * @return string
-     */
-    public function getName();
+$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$client = new \Tmdb\Client($token);
 
-    /**
-     * @return integer
-     */
-    public function getId();
-}
+$result = $client->getSearchApi()->searchMulti('jack');
+
+var_dump($result);

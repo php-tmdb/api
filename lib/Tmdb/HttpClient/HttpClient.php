@@ -13,7 +13,7 @@
 namespace Tmdb\HttpClient;
 
 use Guzzle\Http\ClientInterface;
-use Guzzle\Http\Message\Request;
+use Guzzle\Http\Exception\ClientErrorResponseException;
 use Guzzle\Http\Message\RequestInterface;
 use Guzzle\Http\Message\Response;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -52,7 +52,7 @@ class HttpClient implements HttpClientInterface
     private $lastResponse;
 
     /**
-     * @var Request
+     * @var RequestInterface
      */
     private $lastRequest;
 
@@ -186,7 +186,7 @@ class HttpClient implements HttpClientInterface
 
         try {
             $response = $request->send();
-        } catch (\Exception $e) {
+        } catch (ClientErrorResponseException $e) {
             $error = $e->getResponse()->json();
             throw new TmdbApiException($error['status_message'], $error['status_code']);
         }

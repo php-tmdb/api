@@ -59,7 +59,7 @@ class RequestToken
     }
 
     /**
-     * @return null
+     * @return string
      */
     public function getToken()
     {
@@ -67,7 +67,7 @@ class RequestToken
     }
 
     /**
-     * @param  mixed $expiresAt
+     * @param  \DateTime $expiresAt
      * @return $this
      */
     public function setExpiresAt($expiresAt)
@@ -82,7 +82,7 @@ class RequestToken
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getExpiresAt()
     {

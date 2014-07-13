@@ -12,9 +12,7 @@
  */
 namespace Tmdb\Repository;
 
-use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\CreditsFactory;
-use Tmdb\Model\Company;
 
 /**
  * Class CreditsRepository
@@ -49,7 +47,7 @@ class CreditsRepository extends AbstractRepository
     }
 
     /**
-     * @return CompanyFactory
+     * @return CreditsFactory
      */
     public function getFactory()
     {

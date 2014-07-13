@@ -14,7 +14,6 @@ namespace Tmdb\Model\Timezone;
 
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Timezones;
-use Tmdb\Model\Common\GenericCollection;
 
 /**
  * Class Timezone
@@ -34,7 +33,7 @@ class CountryTimezone extends AbstractModel
 
     public function __construct()
     {
-        $this->timezones = new GenericCollection();
+        $this->timezones = new Timezones();
     }
 
     /**
@@ -79,7 +78,7 @@ class CountryTimezone extends AbstractModel
      * Verify if a country supports a certain timezone
      *
      * @param $timezone
-     * @return mixed
+     * @return boolean
      */
     public function supports($timezone)
     {

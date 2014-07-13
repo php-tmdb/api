@@ -48,10 +48,10 @@ interface HttpClientInterface
     /**
      * Compose a POST request but json_encode the body
      *
-     * @param string $path       Request path
-     * @param array  $postBody   The post BODY
-     * @param array  $parameters POST Parameters
-     * @param array  $headers    Reconfigure the request headers for this call only
+     * @param string      $path       Request path
+     * @param string|null $postBody   The post BODY
+     * @param array       $parameters POST Parameters
+     * @param array       $headers    Reconfigure the request headers for this call only
      *
      * @return Response Data
      */
@@ -101,8 +101,20 @@ interface HttpClientInterface
      */
     public function request(RequestInterface $request);
 
+    /**
+     * @return string|null
+     */
     public function getBaseUrl();
+
+    /**
+     * @param string $url
+     *
+     * @return \Guzzle\Http\ClientInterface
+     */
     public function setBaseUrl($url);
 
+    /**
+     * @return void
+     */
     public function setSessionToken(SessionToken $sessionToken);
 }

@@ -10,15 +10,17 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-ini_set('display_errors', 'On');
-
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$repository = new \Tmdb\Repository\PeopleRepository($client);
-$person      = $repository->getTaggedImages(287);
+$query = new \Tmdb\Model\Search\SearchQuery\KeywordSearchQuery();
+$query->page(1);
 
-var_dump($person);
+$repository = new \Tmdb\Repository\SearchRepository($client);
+
+$find = $repository->searchMulti('jack', $query);
+
+var_dump($find);
