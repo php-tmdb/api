@@ -240,13 +240,27 @@ class TvEpisodeRepository extends AbstractRepository
      *
      * A valid session id is required.
      *
-     * @param  integer       $id
+     * @param  mixed         $tvShow
+     * @param  mixed         $season
+     * @param  mixed         $episode
      * @return AccountStates
      */
-    public function getAccountStates($id)
+    public function getAccountStates($tvShow, $season, $episode)
     {
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getId();
+        }
+
+        if ($episode instanceof Tv\Episode) {
+            $episode = $episode->getId();
+        }
+
         return $this->getFactory()->createAccountStates(
-            $this->getApi()->getAccountStates($id)
+            $this->getApi()->getAccountStates($tvShow, $season, $episode)
         );
     }
 
@@ -255,14 +269,28 @@ class TvEpisodeRepository extends AbstractRepository
      *
      * A valid session id or guest session id is required.
      *
-     * @param  integer $id
-     * @param  float   $rating
+     * @param  mixed  $tvShow
+     * @param  mixed  $season
+     * @param  mixed  $episode
+     * @param  double $rating
      * @return Result
      */
-    public function rate($id, $rating)
+    public function rate($tvShow, $season, $episode, $rating)
     {
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getId();
+        }
+
+        if ($episode instanceof Tv\Episode) {
+            $episode = $episode->getId();
+        }
+
         return $this->getFactory()->createResult(
-            $this->getApi()->rateTvEpisode($id, $rating)
+            $this->getApi()->rateTvEpisode($tvShow, $season, $episode, $rating)
         );
     }
 

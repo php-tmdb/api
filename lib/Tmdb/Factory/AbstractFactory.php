@@ -153,9 +153,13 @@ abstract class AbstractFactory
         $accountStates = new AccountStates();
 
         if (array_key_exists('rated', $data)) {
-            $rating = new Rating();
+            if ($data['rated']) {
+                $rating = new Rating();
 
-            $accountStates->setRated($this->hydrate($rating, $data['rated']));
+                $accountStates->setRated($this->hydrate($rating, $data['rated']));
+            } else {
+                $accountStates->setRated(false);
+            }
         }
 
         return $this->hydrate($accountStates, $data);

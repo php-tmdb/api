@@ -234,7 +234,7 @@ class TvEpisode extends AbstractApi
      *
      * @return mixed
      */
-    public function rate(
+    public function rateTvEpisode(
         $tvshow_id,
         $season_number,
         $episode_number,
@@ -245,9 +245,9 @@ class TvEpisode extends AbstractApi
                 'tv/%s/season/%s/episode/%s/rating',
                 $tvshow_id,
                 $season_number,
-                $episode_number,
-                array('value' => (float) $rating)
-            )
+                $episode_number
+            ),
+            array('value' => (float) $rating)
         );
     }
 

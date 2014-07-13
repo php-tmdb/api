@@ -20,6 +20,6 @@ $client = new \Tmdb\Client($token);
 $sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 
-$result = $client->getTvApi()->rateTvShow(1396, 1, 1, 9.5);
+$result = $client->getTvEpisodeApi()->rateTvEpisode(1396, 1, 1, 9.5);
 
 var_dump($result);

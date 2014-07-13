@@ -19,6 +19,6 @@ $client = new \Tmdb\Client($token);
 $sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 
-$result = $client->getTvApi()->getAccountStates(1396, 1, 1);
+$result = $client->getTvEpisodeApi()->getAccountStates(1396, 1, 1);
 
 var_dump($result);

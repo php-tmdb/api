@@ -21,6 +21,6 @@ $sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 
 $repository = new \Tmdb\Repository\TvEpisodeRepository($client);
-$rate = $repository->rate(1396, 1, 9.5);
+$rate = $repository->rate(1396, 1, 1, 9.5);
 
 var_dump($rate);
