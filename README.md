@@ -1,4 +1,4 @@
-A PHP Wrapper for use with the [TMDB API](http://http://docs.themoviedb.apiary.io/).
+A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
 ---------------
 [![Build Status Develop Branch](https://travis-ci.org/wtfzdotnet/php-tmdb-api.png?branch=develop)](https://travis-ci.org/wtfzdotnet/php-tmdb-api)
 [![Code Coverage](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/coverage.png?s=d416e063debb3b400e9b1bc9db019f54cc1dc40e)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/)
