@@ -188,7 +188,7 @@ class MovieFactory extends AbstractFactory
         }
 
         if (array_key_exists('spoken_languages', $data)) {
-            $movie->setProductionCountries(
+            $movie->setSpokenLanguages(
                 $this->createGenericCollection($data['spoken_languages'], new SpokenLanguage())
             );
         }
