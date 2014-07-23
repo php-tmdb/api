@@ -525,7 +525,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Company[]
+     * @return GenericCollection
      */
     public function getProductionCompanies()
     {
@@ -624,7 +624,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return SpokenLanguage[]
+     * @return GenericCollection
      */
     public function getSpokenLanguages()
     {
@@ -795,7 +795,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Keyword[]
+     * @return GenericCollection
      */
     public function getKeywords()
     {
