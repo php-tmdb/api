@@ -525,7 +525,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return GenericCollection
+     * @return GenericCollection|Company[]
      */
     public function getProductionCompanies()
     {
@@ -544,7 +544,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return GenericCollection
+     * @return GenericCollection|Country[]
      */
     public function getProductionCountries()
     {
@@ -624,7 +624,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return GenericCollection
+     * @return GenericCollection|SpokenLanguage[]
      */
     public function getSpokenLanguages()
     {
@@ -795,7 +795,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return GenericCollection
+     * @return GenericCollection|Keyword[]
      */
     public function getKeywords()
     {
