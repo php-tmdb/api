@@ -19,6 +19,7 @@ use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
@@ -183,6 +184,12 @@ class MovieFactory extends AbstractFactory
         if (array_key_exists('production_countries', $data)) {
             $movie->setProductionCountries(
                 $this->createGenericCollection($data['production_countries'], new Country())
+            );
+        }
+
+        if (array_key_exists('spoken_languages', $data)) {
+            $movie->setProductionCountries(
+                $this->createGenericCollection($data['spoken_languages'], new SpokenLanguage())
             );
         }
 
