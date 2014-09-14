@@ -12,7 +12,9 @@
  */
 namespace Tmdb;
 
-use Guzzle\Http\ClientInterface;
+use GuzzleHttp\ClientInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
@@ -37,6 +39,8 @@ class Client
      * Secure schema
      */
     const SCHEME_SECURE = 'https';
+
+    private $eventDispatcher;
 
     /**
      * Stores API authentication token
@@ -114,6 +118,8 @@ class Client
         $options = array()
     )
     {
+        $this->eventDispatcher = new EventDispatcher();
+
         $this->setToken($token);
         $this->setSecure($secure);
         $this->constructHttpClient(
@@ -137,11 +143,11 @@ class Client
      */
     private function constructHttpClient(ClientInterface $httpClient = null, array $options)
     {
-        $httpClient       = $httpClient ?: new \Guzzle\Http\Client($this->getBaseUrl());
-        $this->httpClient = new HttpClient(
+        $this->httpClient  = new HttpClient(
             $this->getBaseUrl(),
             $options,
-            $httpClient
+            $httpClient ?: new GuzzleAdapter(['base_url' => $this->getBaseUrl()]),
+            $this->eventDispatcher
         );
     }
 

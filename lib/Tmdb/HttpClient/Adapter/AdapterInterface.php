@@ -10,13 +10,14 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\HttpClient;
+namespace Tmdb\HttpClient\Adapter;
+use Tmdb\Common\ParameterBag;
 
 /**
- * Interface HttpClientInterface
+ * Interface AdapterInterface
  * @package Tmdb\HttpClient
  */
-interface HttpClientInterface
+interface AdapterInterface
 {
     /**
      * Compose a GET request
@@ -25,9 +26,9 @@ interface HttpClientInterface
      * @param array  $parameters GET Parameters
      * @param array  $headers    Reconfigure the request headers for this call only
      *
-     * @return mixed Data
+     * @return Response Data
      */
-    public function get($path, array $parameters = array(), array $headers = array());
+    public function get($path, ParameterBag $parameters);
 
     /**
      * Compose a POST request
@@ -37,7 +38,7 @@ interface HttpClientInterface
      * @param array  $parameters POST Parameters
      * @param array  $headers    Reconfigure the request headers for this call only
      *
-     * @return mixed Data
+     * @return Response Data
      */
     public function post($path, $postBody, array $parameters = array(), array $headers = array());
 
@@ -49,7 +50,7 @@ interface HttpClientInterface
      * @param array       $parameters POST Parameters
      * @param array       $headers    Reconfigure the request headers for this call only
      *
-     * @return mixed Data
+     * @return Response Data
      */
     public function postJson($path, $postBody, array $parameters = array(), array $headers = array());
 

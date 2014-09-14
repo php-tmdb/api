@@ -12,9 +12,10 @@
  */
 namespace Tmdb\HttpClient\Plugin;
 
-use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\ApiToken;
+use Tmdb\Event\BeforeSendRequestEvent;
+use Tmdb\Event\TmdbEvents;
 
 /**
  * Class ApiTokenPlugin
@@ -34,15 +35,14 @@ class ApiTokenPlugin implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array('request.before_send' => 'onBeforeSend');
+        return [
+            TmdbEvents::BEFORE_REQUEST => 'onBeforeSend'
+        ];
     }
 
-    public function onBeforeSend(Event $event)
+    public function onBeforeSend(BeforeSendRequestEvent $event)
     {
-        $url = $event['request']->getUrl(true);
-
-        $url->getQuery()->set('api_key', $this->token->getToken());
-
-        $event['request']->setUrl($url);
+        $options = $event->getOptions();
+        $options['query']['api_key'] = $this->token->getToken();
     }
 }

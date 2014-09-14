@@ -12,8 +12,9 @@
  */
 namespace Tmdb\HttpClient\Plugin;
 
-use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Tmdb\Event\BeforeSendRequestEvent;
+use Tmdb\Event\TmdbEvents;
 
 /**
  * Class AcceptJsonHeaderPlugin
@@ -23,11 +24,15 @@ class AcceptJsonHeaderPlugin implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array('request.before_send' => 'onBeforeSend');
+        return [
+            TmdbEvents::BEFORE_REQUEST => 'onBeforeSend'
+        ];
     }
 
-    public function onBeforeSend(Event $event)
+    public function onBeforeSend(BeforeSendRequestEvent $event)
     {
-        $event['request']->setHeader('accept', 'application/json');
+        $options = $event->getOptions();
+
+        $options['headers']['accept'] = 'application/json';
     }
 }

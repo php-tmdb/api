@@ -14,6 +14,8 @@ namespace Tmdb\HttpClient\Plugin;
 
 use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Tmdb\Event\BeforeSendRequestEvent;
+use Tmdb\Event\TmdbEvents;
 
 /**
  * Class AdultFilterPlugin
@@ -30,15 +32,13 @@ class AdultFilterPlugin implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array('request.before_send' => 'onBeforeSend');
+        return array(TmdbEvents::BEFORE_REQUEST => 'onBeforeSend');
     }
 
-    public function onBeforeSend(Event $event)
+    public function onBeforeSend(BeforeSendRequestEvent $event)
     {
-        $url = $event['request']->getUrl(true);
+        $options = $event->getOptions();
 
-        $url->getQuery()->set('include_adult', $this->includeAdult === true ? 'true' : 'false');
-
-        $event['request']->setUrl($url);
+        $options['query']['include_adult'] = $this->includeAdult === true ? 'true' : 'false';
     }
 }

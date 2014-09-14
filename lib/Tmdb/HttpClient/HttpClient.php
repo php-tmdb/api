@@ -12,25 +12,16 @@
  */
 namespace Tmdb\HttpClient;
 
-use Guzzle\Http\ClientInterface;
-use Guzzle\Http\Exception\ClientErrorResponseException;
-use Guzzle\Http\Message\RequestInterface;
-use Guzzle\Http\Message\Response;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Guzzle\Cache\DoctrineCacheAdapter;
-use Guzzle\Common\Exception\RuntimeException;
-use Guzzle\Log\MessageFormatter;
-use Guzzle\Log\PsrLogAdapter;
-use Guzzle\Plugin\Backoff\BackoffPlugin;
-use Guzzle\Plugin\Cache\CachePlugin;
-use Guzzle\Plugin\Cache\DefaultCacheStorage;
-use Guzzle\Plugin\Log\LogPlugin;
-use Tmdb\ApiToken;
-use Tmdb\Exception\TmdbApiException;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Common\ParameterBag;
+use Tmdb\Event\BeforeSendRequestEvent;
+use Tmdb\Event\TmdbEvents;
+use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
-use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 use Tmdb\SessionToken;
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Class HttpClient
@@ -39,9 +30,9 @@ use Tmdb\SessionToken;
 class HttpClient implements HttpClientInterface
 {
     /**
-     * @var \Guzzle\Http\ClientInterface
+     * @var AdapterInterface
      */
-    private $client;
+    private $adapter;
 
     protected $options  = array();
     protected $base_url = null;
@@ -59,17 +50,24 @@ class HttpClient implements HttpClientInterface
     /**
      * Constructor
      *
-     * @param string          $baseUrl
-     * @param array           $options
-     * @param ClientInterface $client
+     * @param $baseUrl
+     * @param array            $options
+     * @param AdapterInterface $adapter
+     * @param EventDispatcher  $eventDispatcher
      */
-    public function __construct($baseUrl, array $options, ClientInterface $client)
+    public function __construct(
+        $baseUrl,
+        array $options,
+        AdapterInterface $adapter,
+        EventDispatcher $eventDispatcher
+    )
     {
-        $this->base_url = $baseUrl;
-        $this->options  = $options;
-        $this->client   = $client;
+        $this->base_url        = $baseUrl;
+        $this->options         = $options;
+        $this->adapter         = $adapter;
+        $this->eventDispatcher = $eventDispatcher;
 
-        $this->registerGuzzleSubscribers($options);
+        $this->registerDefaultPlugins();
     }
 
     /**
@@ -79,179 +77,69 @@ class HttpClient implements HttpClientInterface
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
-        $this->client->addSubscriber($subscriber);
+        $this->eventDispatcher->addSubscriber($subscriber);
     }
 
     /**
      * Set the query parameters
      *
      * @param $queryParameters
+     * @param $headers
+     *
      * @return array
      */
-    protected function buildQueryParameters($queryParameters)
+    protected function prepareOptions($queryParameters = array(), $headers = null)
     {
-        return array_merge($this->options, array('query' => $queryParameters));
+        $this->options = new ParameterBag(array_merge(
+            $this->options,
+            array(
+                'base_url' => $this->base_url,
+                'query'    => $queryParameters,
+                'headers'  => !empty($headers) ? $headers : null
+            )
+        ));
+
+        return $this->options;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function get($path, array $parameters = array(), array $headers = array())
+    public function get($path, array $queryParameters = array(), array $headers = null)
     {
-        $parameters = $this->buildQueryParameters($parameters);
+        $this->prepareOptions($queryParameters, $headers);
 
-        return $this->request(
-            $this->client->get($path, $headers, $parameters)
+        $event = new BeforeSendRequestEvent($this->options);
+        $this->eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
+
+        return $this->adapter->get($path, $this->options);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function post($path, $postBody, array $queryParameters = array(), array $headers = array())
+    {
+        $this->prepareOptions($queryParameters, $headers);
+
+        $event = new BeforeSendRequestEvent($this->options);
+        $this->eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
+
+        return $this->adapter->post($path, $headers, $postBody, $queryParameters);
+    }
+
+    /**
+     * @todo
+     * {@inheritDoc}
+     */
+    public function postJson($path, $postBody, array $queryParameters = array(), array $headers = array())
+    {
+        return $this->post(
+            $path,
+            $postBody,
+            $queryParameters,
+            array_merge($headers, ['Content-Type' => 'application/json'])
         );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function head($path, array $parameters = array(), array $headers = array())
-    {
-        $parameters = $this->buildQueryParameters($parameters);
-
-        return $this->request(
-            $this->client->head($path, $headers, $parameters)
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function post($path, $postBody, array $parameters = array(), array $headers = array())
-    {
-        $parameters = $this->buildQueryParameters($parameters);
-
-        return $this->request(
-            $this->client->post($path, $headers, $postBody, $parameters)
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function postJson($path, $postBody, array $parameters = array(), array $headers = array())
-    {
-        $parameters = $this->buildQueryParameters($parameters);
-        $request    = $this->client->post($path, $headers, null, $parameters);
-        $request->setBody($postBody, 'application/json');
-
-        return $this->request($request);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function patch($path, $body = null, array $parameters = array(), array $headers = array())
-    {
-        $parameters = $this->buildQueryParameters($parameters);
-
-        return $this->request(
-            $this->client->patch($path, $headers, $body, $parameters)
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function delete($path, $body = null, array $parameters = array(), array $headers = array())
-    {
-        $parameters = $this->buildQueryParameters($parameters);
-
-        return $this->request(
-            $this->client->delete($path, $headers, $body, $parameters)
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function put($path, $body = null, array $parameters = array(), array $headers = array())
-    {
-        $parameters = $this->buildQueryParameters($parameters);
-
-        return $this->request(
-            $this->client->put($path, $headers, $body, $parameters)
-        );
-    }
-
-    /**
-     * @{inheritDoc}
-     */
-    public function request(RequestInterface $request)
-    {
-        $response = null;
-
-        try {
-            $response = $request->send();
-        } catch (ClientErrorResponseException $e) {
-            $error = $e->getResponse()->json();
-            throw new TmdbApiException($error['status_message'], $error['status_code']);
-        }
-
-        $this->lastRequest  = $request;
-        $this->lastResponse = $response;
-
-        return $response;
-    }
-
-    /**
-     * @param  \Guzzle\Http\ClientInterface $client
-     * @return $this
-     */
-    public function setClient($client)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * @return \Guzzle\Http\ClientInterface
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    /**
-     * @param  \Guzzle\Http\Message\Request $lastRequest
-     * @return $this
-     */
-    public function setLastRequest($lastRequest)
-    {
-        $this->lastRequest = $lastRequest;
-
-        return $this;
-    }
-
-    /**
-     * @return \Guzzle\Http\Message\Request
-     */
-    public function getLastRequest()
-    {
-        return $this->lastRequest;
-    }
-
-    /**
-     * @param  \Guzzle\Http\Message\Response $lastResponse
-     * @return $this
-     */
-    public function setLastResponse($lastResponse)
-    {
-        $this->lastResponse = $lastResponse;
-
-        return $this;
-    }
-
-    /**
-     * @return \Guzzle\Http\Message\Response
-     */
-    public function getLastResponse()
-    {
-        return $this->lastResponse;
     }
 
     /**
@@ -276,25 +164,6 @@ class HttpClient implements HttpClientInterface
     }
 
     /**
-     * Register the default subscribers for Guzzle
-     *
-     * @param array $options
-     */
-    public function registerGuzzleSubscribers(array $options)
-    {
-        $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
-        $this->addSubscriber($acceptJsonHeaderPlugin);
-
-        $backoffPlugin = BackoffPlugin::getExponentialBackoff(5);
-        $this->addSubscriber($backoffPlugin);
-
-        if (array_key_exists('token', $options) && $options['token'] instanceof ApiToken) {
-            $apiTokenPlugin = new ApiTokenPlugin($options['token']);
-            $this->addSubscriber($apiTokenPlugin);
-        }
-    }
-
-    /**
      * Add an subscriber to enable caching.
      *
      * @param  array                                     $parameters
@@ -311,16 +180,7 @@ class HttpClient implements HttpClientInterface
             //@codeCoverageIgnoreEnd
         }
 
-        $cachePlugin = new CachePlugin(array(
-                'storage' => new DefaultCacheStorage(
-                        new DoctrineCacheAdapter(
-                            new \Doctrine\Common\Cache\FilesystemCache($parameters['cache_path'])
-                        )
-                    )
-            )
-        );
-
-        $this->addSubscriber($cachePlugin);
+        CacheSubscriber::attach($this->client);
     }
 
     /**
@@ -376,5 +236,14 @@ class HttpClient implements HttpClientInterface
     {
         $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
         $this->addSubscriber($sessionTokenPlugin);
+    }
+
+    private function registerDefaultPlugins()
+    {
+        $apiTokenPlugin = new ApiTokenPlugin($this->options['token']);
+        $this->addSubscriber($apiTokenPlugin);
+
+        $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
+        $this->addSubscriber($acceptJsonHeaderPlugin);
     }
 }

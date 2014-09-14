@@ -14,6 +14,8 @@ namespace Tmdb\HttpClient\Plugin;
 
 use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Tmdb\Event\BeforeSendRequestEvent;
+use Tmdb\Event\TmdbEvents;
 
 /**
  * Class LanguageFilterPlugin
@@ -30,15 +32,15 @@ class LanguageFilterPlugin implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array('request.before_send' => 'onBeforeSend');
+        return [
+            TmdbEvents::BEFORE_REQUEST => 'onBeforeSend'
+        ];
     }
 
-    public function onBeforeSend(Event $event)
+    public function onBeforeSend(BeforeSendRequestEvent $event)
     {
-        $url = $event['request']->getUrl(true);
+        $options = $event->getOptions();
 
-        $url->getQuery()->set('language', $this->language);
-
-        $event['request']->setUrl($url);
+        $options['query']['language'] = $this->language;
     }
 }
