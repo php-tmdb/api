@@ -27,7 +27,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getMovie($movie_id, array $parameters = array(), array $headers = array())
+    public function getMovie($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id, $parameters, $headers);
     }
@@ -40,7 +40,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getAlternativeTitles($movie_id, array $parameters = array(), array $headers = array())
+    public function getAlternativeTitles($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/alternative_titles', $parameters, $headers);
     }
@@ -53,7 +53,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getCredits($movie_id, array $parameters = array(), array $headers = array())
+    public function getCredits($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/credits', $parameters, $headers);
     }
@@ -66,7 +66,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getImages($movie_id, array $parameters = array(), array $headers = array())
+    public function getImages($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/images', $parameters, $headers);
     }
@@ -79,7 +79,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getKeywords($movie_id, array $parameters = array(), array $headers = array())
+    public function getKeywords($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/keywords', $parameters, $headers);
     }
@@ -92,7 +92,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getReleases($movie_id, array $parameters = array(), array $headers = array())
+    public function getReleases($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/releases', $parameters, $headers);
     }
@@ -106,7 +106,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getTrailers($movie_id, array $parameters = array(), array $headers = array())
+    public function getTrailers($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/trailers', $parameters, $headers);
     }
@@ -119,7 +119,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getTranslations($movie_id, array $parameters = array(), array $headers = array())
+    public function getTranslations($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/translations', $parameters, $headers);
     }
@@ -134,7 +134,7 @@ class Movies extends AbstractApi
      *
      * @deprecated Will be removed in one of the upcoming versions, has been updated to getSimilar ( following TMDB ).
      */
-    public function getSimilarMovies($movie_id, array $parameters = array(), array $headers = array())
+    public function getSimilarMovies($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->getSimilar($movie_id, $parameters, $headers);
     }
@@ -147,7 +147,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getSimilar($movie_id, array $parameters = array(), array $headers = array())
+    public function getSimilar($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/similar', $parameters, $headers);
     }
@@ -160,7 +160,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getReviews($movie_id, array $parameters = array(), array $headers = array())
+    public function getReviews($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/reviews', $parameters, $headers);
     }
@@ -173,7 +173,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getLists($movie_id, array $parameters = array(), array $headers = array())
+    public function getLists($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/lists', $parameters, $headers);
     }
@@ -186,7 +186,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getChanges($movie_id, array $parameters = array(), array $headers = array())
+    public function getChanges($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/changes', $parameters, $headers);
     }
@@ -198,7 +198,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getLatest(array $parameters = array(), array $headers = array())
+    public function getLatest(array $parameters = [], array $headers = [])
     {
         return $this->get('movie/latest', $parameters, $headers);
     }
@@ -211,7 +211,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getUpcoming(array $parameters = array(), array $headers = array())
+    public function getUpcoming(array $parameters = [], array $headers = [])
     {
         return $this->get('movie/upcoming', $parameters, $headers);
     }
@@ -224,7 +224,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getNowPlaying(array $parameters = array(), array $headers = array())
+    public function getNowPlaying(array $parameters = [], array $headers = [])
     {
         return $this->get('movie/now_playing', $parameters, $headers);
     }
@@ -237,7 +237,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getPopular(array $parameters = array(), array $headers = array())
+    public function getPopular(array $parameters = [], array $headers = [])
     {
         return $this->get('movie/popular', $parameters, $headers);
     }
@@ -250,7 +250,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getTopRated(array $parameters = array(), array $headers = array())
+    public function getTopRated(array $parameters = [], array $headers = [])
     {
         return $this->get('movie/top_rated', $parameters, $headers);
     }
@@ -280,7 +280,7 @@ class Movies extends AbstractApi
      */
     public function rateMovie($id, $rating)
     {
-        return $this->postJson('movie/' . $id . '/rating', array('value' => (float) $rating));
+        return $this->postJson('movie/' . $id . '/rating', ['value' => (float) $rating]);
     }
 
     /**
@@ -291,7 +291,7 @@ class Movies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getVideos($movie_id, array $parameters = array(), array $headers = array())
+    public function getVideos($movie_id, array $parameters = [], array $headers = [])
     {
         return $this->get('movie/' . $movie_id . '/videos', $parameters, $headers);
     }

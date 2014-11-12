@@ -40,11 +40,11 @@ class AccountStates extends AbstractModel
      */
     private $watchlist;
 
-    public static $properties = array(
+    public static $properties = [
         'id',
         'favorite',
         'watchlist',
-    );
+    ];
 
     /**
      * Constructor

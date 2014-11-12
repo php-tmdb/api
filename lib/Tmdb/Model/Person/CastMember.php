@@ -40,7 +40,7 @@ class CastMember extends AbstractMember implements PersonInterface
      */
     private $creditId;
 
-    public static $properties = array(
+    public static $properties = [
         'id',
         'credit_id',
         'cast_id',
@@ -48,7 +48,7 @@ class CastMember extends AbstractMember implements PersonInterface
         'character',
         'order',
         'profile_path'
-    );
+    ];
 
     /**
      * @param  string $character

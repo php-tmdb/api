@@ -21,10 +21,10 @@ class Genre extends AbstractModel
     private $id;
     private $name;
 
-    public static $properties = array(
+    public static $properties = [
         'id',
         'name',
-    );
+    ];
 
     /**
      * @param  mixed $id

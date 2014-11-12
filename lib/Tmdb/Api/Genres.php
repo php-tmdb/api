@@ -27,7 +27,7 @@ class Genres extends AbstractApi
      * @param  array   $headers
      * @return mixed
      */
-    public function getGenre($id, array $parameters = array(), array $headers = array())
+    public function getGenre($id, array $parameters = [], array $headers = [])
     {
         $response = $this->getGenres($parameters, $headers);
 
@@ -45,7 +45,7 @@ class Genres extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getGenres(array $parameters = array(), array $headers = array())
+    public function getGenres(array $parameters = [], array $headers = [])
     {
         return $this->get('genre/list', $parameters, $headers);
     }
@@ -58,7 +58,7 @@ class Genres extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getMovies($genre_id, array $parameters = array(), array $headers = array())
+    public function getMovies($genre_id, array $parameters = [], array $headers = [])
     {
         return $this->get('genre/' . $genre_id . '/movies', $parameters, $headers);
     }
@@ -68,7 +68,7 @@ class Genres extends AbstractApi
      * @param  array   $data
      * @return mixed
      */
-    private function extractGenreByIdFromResponse($id, array $data = array())
+    private function extractGenreByIdFromResponse($id, array $data = [])
     {
         foreach ($data as $genre) {
             if ($id == $genre['id']) {

@@ -23,14 +23,14 @@ class ExternalIdsTest extends TestCase
      */
     public function shouldBeFunctional()
     {
-        $data = array(
+        $data = [
             'imdb_id'      => 'tt0903747',
             'freebase_id'  => '/en/breaking_bad',
             'freebase_mid' => '/m/03d34x8',
             'id'           => 1396,
             'tvdb_id'      => 81189,
             'tvrage_id'    => 18164,
-        );
+        ];
 
         $hydrator = new ObjectHydrator();
 

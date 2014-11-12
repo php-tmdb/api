@@ -37,7 +37,7 @@ class Credits extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getCredit($credit_id, array $parameters = array(), array $headers = array())
+    public function getCredit($credit_id, array $parameters = [], array $headers = [])
     {
         return $this->get('credit/' . $credit_id, $parameters, $headers);
     }

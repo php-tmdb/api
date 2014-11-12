@@ -26,7 +26,7 @@ class Jobs extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getJobs(array $parameters = array(), array $headers = array())
+    public function getJobs(array $parameters = [], array $headers = [])
     {
         return $this->get('job/list', $parameters, $headers);
     }

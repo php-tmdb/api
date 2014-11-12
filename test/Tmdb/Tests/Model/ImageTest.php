@@ -23,8 +23,8 @@ class ImageTest extends TestCase
      */
     private $collection;
 
-    private $images = array(
-        array(
+    private $images = [
+        [
             'file_path'    => '/abc.jpg',
             'width'        => 1000,
             'height'       => 750,
@@ -32,8 +32,8 @@ class ImageTest extends TestCase
             'aspect_ratio' => 0.75,
             'vote_average' => 2.25,
             'vote_count'   => 25
-        ),
-    );
+        ],
+    ];
 
     public function setUp()
     {

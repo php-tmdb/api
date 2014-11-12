@@ -40,8 +40,8 @@ class Configuration extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getConfiguration(array $headers = array())
+    public function getConfiguration(array $headers = [])
     {
-        return $this->get('configuration', array(), $headers);
+        return $this->get('configuration', [], $headers);
     }
 }

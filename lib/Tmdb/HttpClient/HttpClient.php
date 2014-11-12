@@ -38,7 +38,7 @@ class HttpClient implements HttpClientInterface
      */
     private $adapter;
 
-    protected $options  = array();
+    protected $options  = [];
     protected $base_url = null;
 
     /**
@@ -92,7 +92,7 @@ class HttpClient implements HttpClientInterface
      *
      * @return array
      */
-    protected function prepareOptions($queryParameters = array(), $headers = null)
+    protected function prepareOptions($queryParameters = [], $headers = null)
     {
         $this->options = new ParameterBag(array_merge(
             $this->options,
@@ -109,7 +109,7 @@ class HttpClient implements HttpClientInterface
     /**
      * {@inheritDoc}
      */
-    public function get($path, array $queryParameters = array(), array $headers = null)
+    public function get($path, array $queryParameters = [], array $headers = null)
     {
         $this->prepareOptions($queryParameters, $headers);
 
@@ -122,7 +122,7 @@ class HttpClient implements HttpClientInterface
     /**
      * {@inheritDoc}
      */
-    public function post($path, $postBody, array $queryParameters = array(), array $headers = array())
+    public function post($path, $postBody, array $queryParameters = [], array $headers = [])
     {
         $this->prepareOptions($queryParameters, $headers);
 
@@ -136,7 +136,7 @@ class HttpClient implements HttpClientInterface
      * @todo
      * {@inheritDoc}
      */
-    public function postJson($path, $postBody, array $queryParameters = array(), array $headers = array())
+    public function postJson($path, $postBody, array $queryParameters = [], array $headers = [])
     {
         return $this->post(
             $path,
@@ -173,7 +173,7 @@ class HttpClient implements HttpClientInterface
      * @param  array             $parameters
      * @throws \RuntimeException
      */
-    public function setCaching(array $parameters = array())
+    public function setCaching(array $parameters = [])
     {
         if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
             //@codeCoverageIgnoreStart
@@ -193,7 +193,7 @@ class HttpClient implements HttpClientInterface
      * @param  array             $parameters
      * @throws \RuntimeException
      */
-    public function setLogging(array $parameters = array())
+    public function setLogging(array $parameters = [])
     {
         if (!array_key_exists('logger', $parameters) && !class_exists('\Monolog\Logger')) {
             //@codeCoverageIgnoreStart

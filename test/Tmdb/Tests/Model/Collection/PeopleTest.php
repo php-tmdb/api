@@ -23,10 +23,10 @@ class PeopleTest extends TestCase
      */
     private $collection;
 
-    private $people = array(
-        array('id' => 1, 'name' => 'james blunt'),
-        array('id' => 2, 'name' => 'afrojack')
-    );
+    private $people = [
+        ['id' => 1, 'name' => 'james blunt'],
+        ['id' => 2, 'name' => 'afrojack']
+    ];
 
     public function setUp()
     {

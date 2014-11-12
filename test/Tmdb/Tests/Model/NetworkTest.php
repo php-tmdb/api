@@ -22,10 +22,10 @@ class NetworkTest extends TestCase
      */
     public function shouldBeFunctional()
     {
-        $data = array(
+        $data = [
             'id'      => 1,
             'name'  => 'name',
-        );
+        ];
 
         $hydrator = new ObjectHydrator();
 

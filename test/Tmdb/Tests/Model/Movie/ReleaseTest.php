@@ -23,11 +23,11 @@ class ReleaseTest extends TestCase
      */
     public function shouldBeFunctional()
     {
-        $data = array(
+        $data = [
             'iso_3166_1'    => 'US',
             'certification' => 'R',
             'release_date'  => '1999-10-15',
-        );
+        ];
 
         $hydrator = new ObjectHydrator();
 

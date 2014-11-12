@@ -62,7 +62,7 @@ class Video extends AbstractModel
      */
     private $url_format;
 
-    public static $properties = array(
+    public static $properties = [
         'id',
         'iso_639_1',
         'key',
@@ -70,7 +70,7 @@ class Video extends AbstractModel
         'site',
         'size',
         'type'
-    );
+    ];
 
     /**
      * @param  string $id

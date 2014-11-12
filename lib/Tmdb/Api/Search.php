@@ -27,11 +27,11 @@ class Search extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function searchMovies($query, array $parameters = array(), array $headers = array())
+    public function searchMovies($query, array $parameters = [], array $headers = [])
     {
-        return $this->get('search/movie', array_merge($parameters, array(
+        return $this->get('search/movie', array_merge($parameters, [
             'query' => urlencode($query)
-        ), $headers));
+        ], $headers));
     }
 
     /**
@@ -42,11 +42,11 @@ class Search extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function searchCollection($query, array $parameters = array(), array $headers = array())
+    public function searchCollection($query, array $parameters = [], array $headers = [])
     {
-        return $this->get('search/collection', array_merge($parameters, array(
+        return $this->get('search/collection', array_merge($parameters, [
             'query' => urlencode($query)
-        ), $headers));
+        ], $headers));
     }
 
     /**
@@ -57,11 +57,11 @@ class Search extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function searchTv($query, array $parameters = array(), array $headers = array())
+    public function searchTv($query, array $parameters = [], array $headers = [])
     {
-        return $this->get('search/tv', array_merge($parameters, array(
+        return $this->get('search/tv', array_merge($parameters, [
             'query' => urlencode($query)
-        ), $headers));
+        ], $headers));
     }
 
     /**
@@ -72,11 +72,11 @@ class Search extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function searchPersons($query, array $parameters = array(), array $headers = array())
+    public function searchPersons($query, array $parameters = [], array $headers = [])
     {
-        return $this->get('search/person', array_merge($parameters, array(
+        return $this->get('search/person', array_merge($parameters, [
             'query' => urlencode($query)
-        ), $headers));
+        ], $headers));
     }
 
     /**
@@ -87,11 +87,11 @@ class Search extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function searchList($query, array $parameters = array(), array $headers = array())
+    public function searchList($query, array $parameters = [], array $headers = [])
     {
-        return $this->get('search/list', array_merge($parameters, array(
+        return $this->get('search/list', array_merge($parameters, [
             'query' => urlencode($query)
-        ), $headers));
+        ], $headers));
     }
 
     /**
@@ -102,11 +102,11 @@ class Search extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function searchCompany($query, array $parameters = array(), array $headers = array())
+    public function searchCompany($query, array $parameters = [], array $headers = [])
     {
-        return $this->get('search/company', array_merge($parameters, array(
+        return $this->get('search/company', array_merge($parameters, [
             'query' => urlencode($query)
-        ), $headers));
+        ], $headers));
     }
 
     /**
@@ -117,11 +117,11 @@ class Search extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function searchKeyword($query, array $parameters = array(), array $headers = array())
+    public function searchKeyword($query, array $parameters = [], array $headers = [])
     {
-        return $this->get('search/keyword', array_merge($parameters, array(
+        return $this->get('search/keyword', array_merge($parameters, [
             'query' => urlencode($query)
-        ), $headers));
+        ], $headers));
     }
 
     /**
@@ -135,10 +135,10 @@ class Search extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function searchMulti($query, array $parameters = array(), array $headers = array())
+    public function searchMulti($query, array $parameters = [], array $headers = [])
     {
-        return $this->get('search/multi', array_merge($parameters, array(
+        return $this->get('search/multi', array_merge($parameters, [
             'query' => urlencode($query)
-        ), $headers));
+        ], $headers));
     }
 }

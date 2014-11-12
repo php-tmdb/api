@@ -97,10 +97,10 @@ class PeopleFactoryTest extends TestCase
     {
         $factory = $this->getFactory();
 
-        $data = array('results' => array(
-            array('id' => 1),
-            array('id' => 2),
-        ));
+        $data = ['results' => [
+            ['id' => 1],
+            ['id' => 2],
+        ]];
 
         $collection = $factory->createCollection($data);
 

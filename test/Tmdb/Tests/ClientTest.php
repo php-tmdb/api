@@ -57,7 +57,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
     {
         $this->assertInstancesOf(
             $this->client,
-            array(
+            [
                 'getAuthenticationApi' => 'Tmdb\Api\Authentication',
                 'getAccountApi'        => 'Tmdb\Api\Account',
                 'getCollectionsApi'    => 'Tmdb\Api\Collections',
@@ -76,7 +76,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
                 'getChangesApi'        => 'Tmdb\Api\Changes',
                 'getJobsApi'           => 'Tmdb\Api\Jobs',
                 'getTimezonesApi'      => 'Tmdb\Api\Timezones',
-            )
+            ]
         );
     }
 

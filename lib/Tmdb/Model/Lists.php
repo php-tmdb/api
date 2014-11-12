@@ -71,7 +71,7 @@ class Lists extends AbstractModel
      */
     private $posterImage;
 
-    public static $properties = array(
+    public static $properties = [
         'created_by',
         'description',
         'favorite_count',
@@ -80,7 +80,7 @@ class Lists extends AbstractModel
         'iso_639_1',
         'name',
         'poster_path'
-    );
+    ];
 
     public function __construct()
     {

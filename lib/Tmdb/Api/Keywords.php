@@ -27,7 +27,7 @@ class Keywords extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getKeyword($keyword_id, array $parameters = array(), array $headers = array())
+    public function getKeyword($keyword_id, array $parameters = [], array $headers = [])
     {
         return $this->get('keyword/' . $keyword_id, $parameters, $headers);
     }
@@ -40,7 +40,7 @@ class Keywords extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getMovies($keyword_id, array $parameters = array(), array $headers = array())
+    public function getMovies($keyword_id, array $parameters = [], array $headers = [])
     {
         return $this->get('keyword/' . $keyword_id . '/movies', $parameters, $headers);
     }

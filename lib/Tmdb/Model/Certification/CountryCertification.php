@@ -35,11 +35,11 @@ class CountryCertification extends AbstractModel
      */
     private $order;
 
-    public static $properties = array(
+    public static $properties = [
         'certification',
         'meaning',
         'order',
-    );
+    ];
 
     /**
      * @param  string $certification

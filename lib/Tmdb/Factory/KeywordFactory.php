@@ -26,7 +26,7 @@ class KeywordFactory extends AbstractFactory
      *
      * @return Keyword
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         return $this->hydrate(new Keyword(), $data);
     }
@@ -34,7 +34,7 @@ class KeywordFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new Keywords();
 

@@ -33,8 +33,8 @@ class TvEpisode extends AbstractApi
         $tvshow_id,
         $season_number,
         $episode_number,
-        array $parameters = array(),
-        array $headers = array()
+        array $parameters = [],
+        array $headers = []
     ) {
         return $this->get(
             sprintf(
@@ -62,8 +62,8 @@ class TvEpisode extends AbstractApi
         $tvshow_id,
         $season_number,
         $episode_number,
-        array $parameters = array(),
-        array $headers = array()
+        array $parameters = [],
+        array $headers = []
     ) {
         return $this->get(
             sprintf(
@@ -91,8 +91,8 @@ class TvEpisode extends AbstractApi
         $tvshow_id,
         $season_number,
         $episode_number,
-        array $parameters = array(),
-        array $headers = array()
+        array $parameters = [],
+        array $headers = []
     ) {
         return $this->get(
             sprintf(
@@ -120,8 +120,8 @@ class TvEpisode extends AbstractApi
         $tvshow_id,
         $season_number,
         $episode_number,
-        array $parameters = array(),
-        array $headers = array()
+        array $parameters = [],
+        array $headers = []
     ) {
         return $this->get(
             sprintf(
@@ -149,8 +149,8 @@ class TvEpisode extends AbstractApi
         $tvshow_id,
         $season_number,
         $episode_number,
-        array $parameters = array(),
-        array $headers = array()
+        array $parameters = [],
+        array $headers = []
     ) {
         return $this->get(
             sprintf(
@@ -181,8 +181,8 @@ class TvEpisode extends AbstractApi
         $tvshow_id,
         $season_number,
         $episode_number,
-        array $parameters = array(),
-        array $headers = array()
+        array $parameters = [],
+        array $headers = []
     ) {
         return $this->get(
             sprintf(
@@ -247,7 +247,7 @@ class TvEpisode extends AbstractApi
                 $season_number,
                 $episode_number
             ),
-            array('value' => (float) $rating)
+            ['value' => (float) $rating]
         );
     }
 

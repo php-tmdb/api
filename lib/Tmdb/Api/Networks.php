@@ -30,7 +30,7 @@ class Networks extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getNetwork($network_id, array $parameters = array(), array $headers = array())
+    public function getNetwork($network_id, array $parameters = [], array $headers = [])
     {
         return $this->get('network/' . $network_id, $parameters, $headers);
     }

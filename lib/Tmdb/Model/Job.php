@@ -18,10 +18,10 @@ namespace Tmdb\Model;
  */
 class Job extends AbstractModel
 {
-    public static $properties = array(
+    public static $properties = [
         'department',
         'job_list'
-    );
+    ];
 
     /**
      * @var string

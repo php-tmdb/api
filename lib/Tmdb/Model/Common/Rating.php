@@ -25,9 +25,9 @@ class Rating extends AbstractModel
      */
     private $value;
 
-    public static $properties = array(
+    public static $properties = [
         'value',
-    );
+    ];
 
     /**
      * @param  float $value

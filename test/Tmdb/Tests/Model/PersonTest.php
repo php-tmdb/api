@@ -26,13 +26,13 @@ class PersonTest extends TestCase
 
         $this->assertInstancesOf(
             $person,
-            array(
+            [
                 'getImages'          => 'Tmdb\Model\Collection\Images',
                 'getChanges'         => 'Tmdb\Model\Common\GenericCollection',
                 'getCombinedCredits' => 'Tmdb\Model\Collection\CreditsCollection\CombinedCredits',
                 'getMovieCredits'    => 'Tmdb\Model\Collection\CreditsCollection\MovieCredits',
                 'getTvCredits'       => 'Tmdb\Model\Collection\CreditsCollection\TvCredits',
-            )
+            ]
         );
     }
 
@@ -67,10 +67,10 @@ class PersonTest extends TestCase
 
         $this->assertInstancesOf(
             $movie,
-            array(
+            [
                 /** Constructor */
                 'getChanges' => $className
-            )
+            ]
         );
     }
 }

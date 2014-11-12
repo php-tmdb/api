@@ -66,7 +66,7 @@ class MovieCredit extends AbstractModel
      */
     private $posterImage;
 
-    public static $properties = array(
+    public static $properties = [
         'adult',
         'character',
         'credit_id',
@@ -75,7 +75,7 @@ class MovieCredit extends AbstractModel
         'poster_path',
         'release_date',
         'title'
-    );
+    ];
 
     /**
      * @param  boolean $adult

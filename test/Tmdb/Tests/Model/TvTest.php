@@ -25,7 +25,7 @@ class TvTest extends TestCase
 
         $this->assertInstancesOf(
             $tv,
-            array(
+            [
 //                'getCreatedBy'           => 'Tmdb\Model\Collection\Images',
 //                'getEpisodeRuntime'      => 'Tmdb\Model\Common\GenericCollection',
                 'getGenres'              => 'Tmdb\Model\Collection\Genres',
@@ -38,7 +38,7 @@ class TvTest extends TestCase
                 'getImages'              => 'Tmdb\Model\Collection\Images',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
                 'getVideos'              => 'Tmdb\Model\Collection\Videos',
-            )
+            ]
         );
     }
 }

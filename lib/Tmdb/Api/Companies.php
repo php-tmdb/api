@@ -27,7 +27,7 @@ class Companies extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getCompany($company_id, array $parameters = array(), array $headers = array())
+    public function getCompany($company_id, array $parameters = [], array $headers = [])
     {
         return $this->get('company/' . $company_id, $parameters, $headers);
     }
@@ -40,7 +40,7 @@ class Companies extends AbstractApi
      * @param  array   $headers
      * @return mixed
      */
-    public function getMovies($company_id, array $parameters = array(), array $headers = array())
+    public function getMovies($company_id, array $parameters = [], array $headers = [])
     {
         return $this->get('company/' . $company_id . '/movies', $parameters, $headers);
     }

@@ -26,12 +26,12 @@ class EpisodeTest extends TestCase
 
         $this->assertInstancesOf(
             $episode,
-            array(
+            [
                 'getCredits'     => 'Tmdb\Model\Collection\CreditsCollection',
                 'getExternalIds' => 'Tmdb\Model\Common\ExternalIds',
                 'getImages'      => 'Tmdb\Model\Collection\Images',
                 'getVideos'      => 'Tmdb\Model\Collection\Videos',
-            )
+            ]
         );
     }
 

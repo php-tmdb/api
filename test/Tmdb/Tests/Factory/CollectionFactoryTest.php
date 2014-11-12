@@ -72,10 +72,10 @@ class CollectionFactoryTest extends TestCase
     {
         $factory = $this->getFactory();
 
-        $data = array(
-            array('id' => 1),
-            array('id' => 2),
-        );
+        $data = [
+            ['id' => 1],
+            ['id' => 2],
+        ];
 
         $collection = $factory->createCollection($data);
 

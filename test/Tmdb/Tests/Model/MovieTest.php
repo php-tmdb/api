@@ -27,7 +27,7 @@ class MovieTest extends TestCase
 
         $this->assertInstancesOf(
             $movie,
-            array(
+            [
                 /** Constructor */
                 'getGenres'              => 'Tmdb\Model\Collection\Genres',
                 'getProductionCompanies' => 'Tmdb\Model\Common\GenericCollection',
@@ -43,7 +43,7 @@ class MovieTest extends TestCase
                 'getSimilar'             => 'Tmdb\Model\Common\GenericCollection',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
                 'getVideos'              => 'Tmdb\Model\Collection\Videos',
-            )
+            ]
         );
     }
 
@@ -67,7 +67,7 @@ class MovieTest extends TestCase
 
         $this->assertInstancesOf(
             $movie,
-            array(
+            [
                 /** Constructor */
                 'getChanges'             => $className,
                 'getProductionCompanies' => $className,
@@ -76,7 +76,7 @@ class MovieTest extends TestCase
                 'getCredits'             => 'Tmdb\Model\Collection\CreditsCollection',
                 'getLists'               => $className,
                 'getVideos'              => $className,
-            )
+            ]
         );
     }
 }

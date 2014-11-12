@@ -34,12 +34,12 @@ class PeopleRepository extends AbstractRepository
      * @param  array  $headers
      * @return Person
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
         if (empty($parameters) && $parameters !== false) {
             // Load a no-nonsense default set
-            $parameters = array(
-                new AppendToResponse(array(
+            $parameters = [
+                new AppendToResponse([
                     AppendToResponse::IMAGES,
                     AppendToResponse::CHANGES,
                     AppendToResponse::COMBINED_CREDITS,
@@ -47,8 +47,8 @@ class PeopleRepository extends AbstractRepository
                     AppendToResponse::TV_CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::TAGGED_IMAGES
-                ))
-            );
+                ])
+            ];
         }
 
         $data = $this->getApi()->getPerson($id, $this->parseQueryParameters($parameters), $headers);
@@ -64,10 +64,10 @@ class PeopleRepository extends AbstractRepository
      * @param $headers
      * @return \Tmdb\Model\Collection\CreditsCollection\MovieCredits
      */
-    public function getMovieCredits($id, array $parameters = array(), array $headers = array())
+    public function getMovieCredits($id, array $parameters = [], array $headers = [])
     {
         $data   = $this->getApi()->getMovieCredits($id, $this->parseQueryParameters($parameters), $headers);
-        $person = $this->getFactory()->create(array('movie_credits' => $data));
+        $person = $this->getFactory()->create(['movie_credits' => $data]);
 
         return $person->getMovieCredits();
     }
@@ -85,10 +85,10 @@ class PeopleRepository extends AbstractRepository
      * @param $headers
      * @return \Tmdb\Model\Collection\CreditsCollection\TvCredits
      */
-    public function getTvCredits($id, array $parameters = array(), array $headers = array())
+    public function getTvCredits($id, array $parameters = [], array $headers = [])
     {
         $data   = $this->getApi()->getTvCredits($id, $this->parseQueryParameters($parameters), $headers);
-        $person = $this->getFactory()->create(array('tv_credits' => $data));
+        $person = $this->getFactory()->create(['tv_credits' => $data]);
 
         return $person->getTvCredits();
     }
@@ -106,10 +106,10 @@ class PeopleRepository extends AbstractRepository
      * @param $headers
      * @return \Tmdb\Model\Collection\CreditsCollection\CombinedCredits
      */
-    public function getCombinedCredits($id, array $parameters = array(), array $headers = array())
+    public function getCombinedCredits($id, array $parameters = [], array $headers = [])
     {
         $data   = $this->getApi()->getCombinedCredits($id, $this->parseQueryParameters($parameters), $headers);
-        $person = $this->getFactory()->create(array('combined_credits' => $data));
+        $person = $this->getFactory()->create(['combined_credits' => $data]);
 
         return $person->getCombinedCredits();
     }
@@ -123,7 +123,7 @@ class PeopleRepository extends AbstractRepository
     public function getExternalIds($id)
     {
         $data   = $this->getApi()->getExternalIds($id);
-        $person = $this->getFactory()->create(array('external_ids' => $data));
+        $person = $this->getFactory()->create(['external_ids' => $data]);
 
         return $person->getExternalIds();
     }
@@ -137,7 +137,7 @@ class PeopleRepository extends AbstractRepository
     public function getImages($id)
     {
         $data   = $this->getApi()->getCombinedCredits($id);
-        $person = $this->getFactory()->create(array('images' => $data));
+        $person = $this->getFactory()->create(['images' => $data]);
 
         return $person->getImages();
     }
@@ -156,10 +156,10 @@ class PeopleRepository extends AbstractRepository
      * @param  array                                $headers
      * @return \Tmdb\Model\Common\GenericCollection
      */
-    public function getChanges($id, array $parameters = array(), array $headers = array())
+    public function getChanges($id, array $parameters = [], array $headers = [])
     {
         $data   = $this->getApi()->getChanges($id, $this->parseQueryParameters($parameters), $headers);
-        $person = $this->getFactory()->create(array('changes' => $data));
+        $person = $this->getFactory()->create(['changes' => $data]);
 
         return $person->getChanges();
     }
@@ -178,7 +178,7 @@ class PeopleRepository extends AbstractRepository
      * @param  array                                   $headers
      * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getTaggedImages($id, array $parameters = array(), array $headers = array())
+    public function getTaggedImages($id, array $parameters = [], array $headers = [])
     {
         $data = $this->getApi()->getTaggedImages($id, $this->parseQueryParameters($parameters), $headers);
 
@@ -196,7 +196,7 @@ class PeopleRepository extends AbstractRepository
      * @param  array                                   $headers
      * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getPopular(array $parameters = array(), array $headers = array())
+    public function getPopular(array $parameters = [], array $headers = [])
     {
         $data   = $this->getApi()->getPopular($parameters, $headers);
 

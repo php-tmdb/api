@@ -31,10 +31,10 @@ class Change extends AbstractModel
     /**
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'id',
         'adult'
-    );
+    ];
 
     /**
      * @param  boolean $adult

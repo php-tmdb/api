@@ -29,7 +29,7 @@ class Certifications extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getMovieList(array $parameters = array(), array $headers = array())
+    public function getMovieList(array $parameters = [], array $headers = [])
     {
         return $this->get('certification/movie/list', $parameters, $headers);
     }

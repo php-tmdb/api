@@ -39,7 +39,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     protected $id;
     protected $type;
 
-    public static $properties = array(
+    public static $properties = [
         'file_path',
         'width',
         'height',
@@ -47,15 +47,15 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
         'aspect_ratio',
         'vote_average',
         'vote_count'
-    );
+    ];
 
-    public static $formats = array(
+    public static $formats = [
         'posters'   => self::FORMAT_POSTER,
         'backdrops' => self::FORMAT_BACKDROP,
         'profiles'  => self::FORMAT_PROFILE,
         'logos'     => self::FORMAT_LOGO,
         'stills'    => self::FORMAT_STILL
-    );
+    ];
 
     /**
      * Get the singular type as defined in $_types

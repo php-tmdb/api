@@ -38,8 +38,8 @@ class HttpClientTest extends TestCase
     public function setUp()
     {
         $this->guzzleMock = $this->getMockBuilder('Guzzle\Http\Client')
-            ->setConstructorArgs(array('http://www.google.com/', array()))
-            ->setMethods(array())
+            ->setConstructorArgs(['http://www.google.com/', []])
+            ->setMethods([])
             ->getMock();
 
         $this->client  = new Client(new ApiToken('abcdef'), $this->guzzleMock);
@@ -91,7 +91,7 @@ class HttpClientTest extends TestCase
             ->will($this->returnValue($this->getMock('Guzzle\Http\Message\RequestInterface')))
         ;
 
-        $this->testApi->post('/', array('name' => 'Henk'));
+        $this->testApi->post('/', ['name' => 'Henk']);
     }
 
     /**
@@ -163,7 +163,7 @@ class HttpClientTest extends TestCase
      */
     public function shouldBeAbleToOverrideClient()
     {
-        $httpClient = new HttpClient('http://google.nl', array(), new \Guzzle\Http\Client());
+        $httpClient = new HttpClient('http://google.nl', [], new \Guzzle\Http\Client());
 
         $httpClient->setClient(new \stdClass());
 
@@ -183,32 +183,32 @@ class TestApi extends AbstractApi
         $this->client = $client;
     }
 
-    public function get($path, array $parameters = array(), $headers = array())
+    public function get($path, array $parameters = [], $headers = [])
     {
         $this->client->getHttpClient()->get('/');
     }
 
-    public function head($path, array $parameters = array(), $headers = array())
+    public function head($path, array $parameters = [], $headers = [])
     {
         $this->client->getHttpClient()->head('/');
     }
 
-    public function post($path, $postBody = null, array $parameters = array(), $headers = array())
+    public function post($path, $postBody = null, array $parameters = [], $headers = [])
     {
-        $this->client->getHttpClient()->post('/', array('id' => 1));
+        $this->client->getHttpClient()->post('/', ['id' => 1]);
     }
 
-    public function patch($path, $body = null, array $parameters = array(), $headers = array())
+    public function patch($path, $body = null, array $parameters = [], $headers = [])
     {
         $this->client->getHttpClient()->patch('http://www.google.com/');
     }
 
-    public function delete($path, $body = null, array $parameters = array(), $headers = array())
+    public function delete($path, $body = null, array $parameters = [], $headers = [])
     {
         $this->client->getHttpClient()->delete('http://www.google.com/');
     }
 
-    public function put($path, $body = null, array $parameters = array(), $headers = array())
+    public function put($path, $body = null, array $parameters = [], $headers = [])
     {
         $this->client->getHttpClient()->put('http://www.google.com/');
     }

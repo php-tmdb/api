@@ -32,7 +32,7 @@ abstract class AbstractFactory
      * @param  array         $data
      * @return AbstractModel
      */
-    abstract public function create(array $data = array());
+    abstract public function create(array $data = []);
 
     /**
      * Convert an array with an collection of items to an hydrated object collection
@@ -40,7 +40,7 @@ abstract class AbstractFactory
      * @param  array             $data
      * @return GenericCollection
      */
-    abstract public function createCollection(array $data = array());
+    abstract public function createCollection(array $data = []);
 
     /**
      * Create a generic collection of data and map it on the class by it's static parameter $properties
@@ -49,7 +49,7 @@ abstract class AbstractFactory
      * @param $class
      * @return GenericCollection
      */
-    protected function createGenericCollection($data = array(), $class)
+    protected function createGenericCollection($data = [], $class)
     {
         if (is_object($class)) {
             $class = get_class($class);
@@ -75,7 +75,7 @@ abstract class AbstractFactory
      * @param  string           $method
      * @return ResultCollection
      */
-    public function createResultCollection($data = array(), $method = 'create')
+    public function createResultCollection($data = [], $method = 'create')
     {
         $collection = new ResultCollection();
 
@@ -114,7 +114,7 @@ abstract class AbstractFactory
      * @param  GenericCollection $collection
      * @return GenericCollection
      */
-    protected function createCustomCollection($data = array(), $class, $collection)
+    protected function createCustomCollection($data = [], $class, $collection)
     {
         if (is_object($class)) {
             $class = get_class($class);
@@ -137,7 +137,7 @@ abstract class AbstractFactory
      * @param  array                     $data
      * @return \Tmdb\Model\AbstractModel
      */
-    public function createRating(array $data = array())
+    public function createRating(array $data = [])
     {
         return $this->hydrate(new Rating(), $data);
     }
@@ -148,7 +148,7 @@ abstract class AbstractFactory
      * @param  array                     $data
      * @return \Tmdb\Model\AbstractModel
      */
-    public function createAccountStates(array $data = array())
+    public function createAccountStates(array $data = [])
     {
         $accountStates = new AccountStates();
 
@@ -171,7 +171,7 @@ abstract class AbstractFactory
      * @param  array                     $data
      * @return \Tmdb\Model\AbstractModel
      */
-    public function createResult(array $data = array())
+    public function createResult(array $data = [])
     {
         return $this->hydrate(new Result(), $data);
     }
@@ -183,7 +183,7 @@ abstract class AbstractFactory
      * @param  array         $data
      * @return AbstractModel
      */
-    protected function hydrate(AbstractModel $object, $data = array())
+    protected function hydrate(AbstractModel $object, $data = [])
     {
         $objectHydrator = new ObjectHydrator();
 

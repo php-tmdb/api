@@ -28,10 +28,10 @@ class AlternativeTitleFactoryTest extends TestCase
          * @var AlternativeTitleFactory $factory
          */
         $factory = $this->getFactory();
-        $data = array(
+        $data = [
             'iso_3166_1' => 'nl',
             'title' => 'Kaas'
-        );
+        ];
 
         /**
          * @var AlternativeTitle
@@ -50,10 +50,10 @@ class AlternativeTitleFactoryTest extends TestCase
     {
         $factory = $this->getFactory();
 
-        $data = array(
-            array('id' => 1),
-            array('id' => 2),
-        );
+        $data = [
+            ['id' => 1],
+            ['id' => 2],
+        ];
 
         $collection = $factory->createCollection($data);
 

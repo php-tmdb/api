@@ -24,7 +24,7 @@ class CastFactory extends PeopleFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = array(), $person = null)
+    public function create(array $data = [], $person = null)
     {
         return parent::create($data, $person);
     }
@@ -33,7 +33,7 @@ class CastFactory extends PeopleFactory
      * {@inheritdoc}
      * @param \Tmdb\Model\Person\CastMember $person
      */
-    public function createCollection(array $data = array(), $person = null)
+    public function createCollection(array $data = [], $person = null)
     {
         $collection = new Cast();
 

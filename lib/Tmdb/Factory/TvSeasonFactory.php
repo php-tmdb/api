@@ -75,7 +75,7 @@ class TvSeasonFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         if (!$data) {
             return null;
@@ -138,7 +138,7 @@ class TvSeasonFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new GenericCollection();
 

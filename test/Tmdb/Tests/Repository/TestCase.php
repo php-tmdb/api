@@ -29,12 +29,12 @@ abstract class TestCase extends Base
         return new $class($this->getMockedTmdbClient());
     }
 
-    protected function getRepositoryMock($client = null, array $methods = array())
+    protected function getRepositoryMock($client = null, array $methods = [])
     {
         if ($client == null) {
             $client  = $this->getMockedTmdbClient();
         }
 
-        return $this->getMock($this->getRepositoryClass(), array_merge(array('getApi'), $methods), array($client));
+        return $this->getMock($this->getRepositoryClass(), array_merge(['getApi'], $methods), [$client]);
     }
 }

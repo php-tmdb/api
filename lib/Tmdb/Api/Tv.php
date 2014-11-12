@@ -27,7 +27,7 @@ class Tv extends AbstractApi
      * @param  array   $headers
      * @return mixed
      */
-    public function getTvshow($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getTvshow($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id, $parameters, $headers);
     }
@@ -41,7 +41,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getCredits($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getCredits($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id . '/credits', $parameters, $headers);
     }
@@ -54,7 +54,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getExternalIds($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getExternalIds($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id . '/external_ids', $parameters, $headers);
     }
@@ -67,7 +67,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getImages($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getImages($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id . '/images', $parameters, $headers);
     }
@@ -79,7 +79,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getPopular(array $parameters = array(), array $headers = array())
+    public function getPopular(array $parameters = [], array $headers = [])
     {
         return $this->get('tv/popular', $parameters, $headers);
     }
@@ -94,7 +94,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getTopRated(array $parameters = array(), array $headers = array())
+    public function getTopRated(array $parameters = [], array $headers = [])
     {
         return $this->get('tv/top_rated', $parameters, $headers);
     }
@@ -109,7 +109,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getTranslations($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getTranslations($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id . '/translations', $parameters, $headers);
     }
@@ -123,7 +123,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getOnTheAir(array $parameters = array(), array $headers = array())
+    public function getOnTheAir(array $parameters = [], array $headers = [])
     {
         return $this->get('tv/on_the_air', $parameters, $headers);
     }
@@ -137,7 +137,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getAiringToday(array $parameters = array(), array $headers = array())
+    public function getAiringToday(array $parameters = [], array $headers = [])
     {
         return $this->get('tv/airing_today', $parameters, $headers);
     }
@@ -150,7 +150,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getVideos($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getVideos($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id . '/videos', $parameters, $headers);
     }
@@ -174,7 +174,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getChanges($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getChanges($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id . '/changes', $parameters, $headers);
     }
@@ -186,7 +186,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getLatest(array $parameters = array(), array $headers = array())
+    public function getLatest(array $parameters = [], array $headers = [])
     {
         return $this->get('tv/latest', $parameters, $headers);
     }
@@ -199,7 +199,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getKeywords($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getKeywords($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id . '/keywords', $parameters, $headers);
     }
@@ -212,7 +212,7 @@ class Tv extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getSimilar($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getSimilar($tvshow_id, array $parameters = [], array $headers = [])
     {
         return $this->get('tv/' . $tvshow_id . '/similar', $parameters, $headers);
     }
@@ -242,6 +242,6 @@ class Tv extends AbstractApi
      */
     public function rateTvShow($id, $rating)
     {
-        return $this->postJson('tv/' . $id . '/rating', array('value' => (float) $rating));
+        return $this->postJson('tv/' . $id . '/rating', ['value' => (float) $rating]);
     }
 }

@@ -98,7 +98,7 @@ class SearchRepository extends AbstractRepository
      *
      * @return ResultCollection|Movie[]
      */
-    public function searchMovie($query, MovieSearchQuery $parameters, array $headers = array())
+    public function searchMovie($query, MovieSearchQuery $parameters, array $headers = [])
     {
         $data = $this->getApi()->searchMovies($query, $this->getParameters($parameters), $headers);
 
@@ -112,7 +112,7 @@ class SearchRepository extends AbstractRepository
      *
      * @return ResultCollection[]
      */
-    public function searchCollection($query, CollectionSearchQuery $parameters, array $headers = array())
+    public function searchCollection($query, CollectionSearchQuery $parameters, array $headers = [])
     {
         $data = $this->getApi()->searchCollection($query, $this->getParameters($parameters), $headers);
 
@@ -126,7 +126,7 @@ class SearchRepository extends AbstractRepository
      *
      * @return ResultCollection|Tv[]
      */
-    public function searchTv($query, TvSearchQuery $parameters, array $headers = array())
+    public function searchTv($query, TvSearchQuery $parameters, array $headers = [])
     {
         $data = $this->getApi()->searchTv($query, $this->getParameters($parameters), $headers);
 
@@ -140,7 +140,7 @@ class SearchRepository extends AbstractRepository
      *
      * @return ResultCollection|Person[]
      */
-    public function searchPerson($query, PersonSearchQuery $parameters, array $headers = array())
+    public function searchPerson($query, PersonSearchQuery $parameters, array $headers = [])
     {
         $data = $this->getApi()->searchPersons($query, $this->getParameters($parameters), $headers);
 
@@ -154,7 +154,7 @@ class SearchRepository extends AbstractRepository
      *
      * @return ResultCollection
      */
-    public function searchList($query, ListSearchQuery $parameters, array $headers = array())
+    public function searchList($query, ListSearchQuery $parameters, array $headers = [])
     {
         $data = $this->getApi()->searchList($query, $this->getParameters($parameters), $headers);
 
@@ -168,7 +168,7 @@ class SearchRepository extends AbstractRepository
      *
      * @return ResultCollection|Company[]
      */
-    public function searchCompany($query, CompanySearchQuery $parameters, array $headers = array())
+    public function searchCompany($query, CompanySearchQuery $parameters, array $headers = [])
     {
         $data = $this->getApi()->searchTv($query, $this->getParameters($parameters), $headers);
 
@@ -182,7 +182,7 @@ class SearchRepository extends AbstractRepository
      *
      * @return ResultCollection|Keyword[]
      */
-    public function searchKeyword($query, KeywordSearchQuery $parameters, array $headers = array())
+    public function searchKeyword($query, KeywordSearchQuery $parameters, array $headers = [])
     {
         $data = $this->getApi()->searchKeyword($query, $this->getParameters($parameters), $headers);
 
@@ -196,7 +196,7 @@ class SearchRepository extends AbstractRepository
      *
      * @return ResultCollection|Keyword[]
      */
-    public function searchMulti($query, KeywordSearchQuery $parameters, array $headers = array())
+    public function searchMulti($query, KeywordSearchQuery $parameters, array $headers = [])
     {
         $data       = $this->getApi()->searchMulti($query, $this->getParameters($parameters), $headers);
         $collection = new ResultCollection();
@@ -262,7 +262,7 @@ class SearchRepository extends AbstractRepository
      * @param  array $parameters
      * @return array
      */
-    private function getParameters($parameters = array())
+    private function getParameters($parameters = [])
     {
         if ($parameters instanceof SearchQuery) {
             return $parameters->toArray();

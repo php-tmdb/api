@@ -105,14 +105,14 @@ class Season extends AbstractModel
      *
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'air_date',
         'name',
         'overview',
         'id',
         'poster_path',
         'season_number'
-    );
+    ];
 
     /**
      * Constructor

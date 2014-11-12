@@ -31,7 +31,7 @@ class GenreRepository extends AbstractRepository
      * @param  array $headers
      * @return Genre
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
         return $this->loadCollection($parameters, $headers)->filterId($id);
     }
@@ -43,7 +43,7 @@ class GenreRepository extends AbstractRepository
      * @param  array             $headers
      * @return GenericCollection
      */
-    public function loadCollection(array $parameters = array(), array $headers = array())
+    public function loadCollection(array $parameters = [], array $headers = [])
     {
         return $this->createCollection(
             $this->getApi()->getGenres($parameters, $headers)
@@ -59,7 +59,7 @@ class GenreRepository extends AbstractRepository
      * @return Genre[]
      * @param  array   $headers
      */
-    public function getMovies($id, array $parameters = array(), array $headers = array())
+    public function getMovies($id, array $parameters = [], array $headers = [])
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getMovies($id, $parameters, $headers),

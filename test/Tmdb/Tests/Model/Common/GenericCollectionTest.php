@@ -24,10 +24,10 @@ class GenericCollectionTest extends TestCase
 
     public function setUp()
     {
-        $this->collection = new GenericCollection(array(
+        $this->collection = new GenericCollection([
             'id' => 1,
             'name' => 'Dave'
-        ));
+        ]);
     }
 
     /**
@@ -35,8 +35,8 @@ class GenericCollectionTest extends TestCase
      */
     public function shouldConstructGenericCollection()
     {
-        $emptyArray = array();
-        $dataArray  = array('id' => 1);
+        $emptyArray = [];
+        $dataArray  = ['id' => 1];
 
         $emptyConstructCollection  = new GenericCollection();
         $emptyCollection           = new GenericCollection($emptyArray);
@@ -124,23 +124,23 @@ class GenericCollectionTest extends TestCase
         $this->assertEquals(2, count($this->collection));
 
         $keys = $this->collection->getKeys();
-        $this->assertEquals(array('id', 'name'), $keys);
+        $this->assertEquals(['id', 'name'], $keys);
 
         $this->assertEquals(true, $this->collection->hasKey('id'));
 
         $this->assertEquals('id', $this->collection->keySearch('id'));
         $this->assertEquals(false, $this->collection->keySearch('parent'));
 
-        $this->collection->replace(array('id' => 2));
+        $this->collection->replace(['id' => 2]);
         $this->assertEquals(1, count($this->collection));
         $this->assertEquals(2, $this->collection->get('id'));
 
-        $this->collection->merge(array('id' => 1));
-        $this->assertEquals(array(2, 1), $this->collection->get('id'));
+        $this->collection->merge(['id' => 1]);
+        $this->assertEquals([2, 1], $this->collection->get('id'));
 
         $this->setUp();
-        $this->assertEquals(array('id' => 1, 'name' => 'Dave'), $this->collection->getAll());
-        $this->assertEquals(array('name' => 'Dave'), $this->collection->getAll(array('name')));
+        $this->assertEquals(['id' => 1, 'name' => 'Dave'], $this->collection->getAll());
+        $this->assertEquals(['name' => 'Dave'], $this->collection->getAll(['name']));
 
         $this->collection->clear();
         $this->assertEquals(0, count($this->collection));

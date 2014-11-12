@@ -50,7 +50,7 @@ class CreditsFactory extends AbstractFactory
      *
      * @return Genre
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $credits = new Credits();
 
@@ -85,7 +85,7 @@ class CreditsFactory extends AbstractFactory
     /**
      * @throws NotImplementedException
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         throw new NotImplementedException(
             'Credits are usually obtained through the PeopleFactory,

@@ -32,7 +32,7 @@ class ImageFactoryTest extends TestCase
         $tvEpisodeData = $this->loadByFile('images/tv_episode.json');
         $personData    = $this->loadByFile('images/person.json');
 
-        $data = array_merge(array(), array($movieData, $tvData, $tvSeasonData, $tvEpisodeData, $personData));
+        $data = array_merge([], [$movieData, $tvData, $tvSeasonData, $tvEpisodeData, $personData]);
 
         $this->images = $factory->createCollection($data);
     }
@@ -44,10 +44,10 @@ class ImageFactoryTest extends TestCase
     {
         $factory = $this->getFactory();
 
-        $data = array(
-            array('id' => 1),
-            array('id' => 2),
-        );
+        $data = [
+            ['id' => 1],
+            ['id' => 2],
+        ];
 
         $collection = $factory->createCollection($data);
 

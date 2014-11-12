@@ -27,7 +27,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getPerson($person_id, array $parameters = array(), array $headers = array())
+    public function getPerson($person_id, array $parameters = [], array $headers = [])
     {
         return $this->get('person/' . $person_id, $parameters, $headers);
     }
@@ -40,7 +40,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getCredits($person_id, array $parameters = array(), array $headers = array())
+    public function getCredits($person_id, array $parameters = [], array $headers = [])
     {
         return $this->getCombinedCredits($person_id, $parameters, $headers);
     }
@@ -53,7 +53,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getMovieCredits($person_id, array $parameters = array(), array $headers = array())
+    public function getMovieCredits($person_id, array $parameters = [], array $headers = [])
     {
         return $this->get('person/' . $person_id . '/movie_credits', $parameters, $headers);
     }
@@ -69,7 +69,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getTvCredits($person_id, array $parameters = array(), array $headers = array())
+    public function getTvCredits($person_id, array $parameters = [], array $headers = [])
     {
         return $this->get('person/' . $person_id . '/tv_credits', $parameters, $headers);
     }
@@ -85,7 +85,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getCombinedCredits($person_id, array $parameters = array(), array $headers = array())
+    public function getCombinedCredits($person_id, array $parameters = [], array $headers = [])
     {
         return $this->get('person/' . $person_id . '/combined_credits', $parameters, $headers);
     }
@@ -98,7 +98,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getImages($person_id, array $parameters = array(), array $headers = array())
+    public function getImages($person_id, array $parameters = [], array $headers = [])
     {
         return $this->get('person/' . $person_id . '/images', $parameters, $headers);
     }
@@ -117,7 +117,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getChanges($person_id, array $parameters = array(), array $headers = array())
+    public function getChanges($person_id, array $parameters = [], array $headers = [])
     {
         return $this->get('person/' . $person_id . '/changes', $parameters, $headers);
     }
@@ -130,7 +130,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getExternalIds($person_id, array $parameters = array(), array $headers = array())
+    public function getExternalIds($person_id, array $parameters = [], array $headers = [])
     {
         return $this->get('person/' . $person_id . '/external_ids', $parameters, $headers);
     }
@@ -145,7 +145,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getTaggedImages($person_id, array $parameters = array(), array $headers = array())
+    public function getTaggedImages($person_id, array $parameters = [], array $headers = [])
     {
         return $this->get('person/' . $person_id . '/tagged_images', $parameters, $headers);
     }
@@ -157,7 +157,7 @@ class People extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getPopular(array $parameters = array(), array $headers = array())
+    public function getPopular(array $parameters = [], array $headers = [])
     {
         return $this->get('person/popular', $parameters, $headers);
     }

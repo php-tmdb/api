@@ -28,7 +28,7 @@ class AuthenticationFactory extends AbstractFactory
      * @throws \RuntimeException
      * @return void
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         throw new \RuntimeException(sprintf(
             'Class "%s" does not support method "%s".',
@@ -43,7 +43,7 @@ class AuthenticationFactory extends AbstractFactory
      * @throws \RuntimeException
      * @return void
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         throw new \RuntimeException(sprintf(
             'Class "%s" does not support method "%s".',
@@ -58,7 +58,7 @@ class AuthenticationFactory extends AbstractFactory
      * @param  array        $data
      * @return RequestToken
      */
-    public function createRequestToken(array $data = array())
+    public function createRequestToken(array $data = [])
     {
         $token = new RequestToken();
 
@@ -83,7 +83,7 @@ class AuthenticationFactory extends AbstractFactory
      * @param  array        $data
      * @return SessionToken
      */
-    public function createSessionToken(array $data = array())
+    public function createSessionToken(array $data = [])
     {
         $token = new SessionToken();
 
@@ -104,7 +104,7 @@ class AuthenticationFactory extends AbstractFactory
      * @param  array        $data
      * @return SessionToken
      */
-    public function createGuestSessionToken(array $data = array())
+    public function createGuestSessionToken(array $data = [])
     {
         $token = new GuestSessionToken();
 

@@ -32,13 +32,13 @@ class DiscoverTvQueryTest extends TestCase
             ->firstAirDateYear($now)
             ->voteCountGte(5)
             ->voteAverageGte(3)
-            ->withGenres(array(15,18))
-            ->withGenresOr(array(1,2))
-            ->withGenresAnd(array(18))
+            ->withGenres([15,18])
+            ->withGenresOr([1,2])
+            ->withGenresAnd([18])
             ->firstAirDateGte($now)
             ->firstAirDateLte($now)
-            ->withNetworks(array(1,2))
-            ->withNetworksAnd(array(1,2,3))
+            ->withNetworks([1,2])
+            ->withNetworksAnd([1,2,3])
         ;
 
         $this->assertEquals(10, count($query));

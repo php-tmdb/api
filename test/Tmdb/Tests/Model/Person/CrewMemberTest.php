@@ -23,13 +23,13 @@ class CrewMemberTest extends TestCase
      */
     public function shouldBeFunctional()
     {
-        $data = array(
+        $data = [
             'id'           => 7477,
             'name'         => 'John King',
             'department'   => 'Sound',
             'job'          => 'Original Music Composer',
             'profile_path' => null
-        );
+        ];
 
         $hydrator = new ObjectHydrator();
 

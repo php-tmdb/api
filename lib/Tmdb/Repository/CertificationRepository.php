@@ -31,7 +31,7 @@ class CertificationRepository extends AbstractRepository
      * @param $headers
      * @return \Tmdb\Model\Common\GenericCollection
      */
-    public function getMovieList(array $parameters = array(), array $headers = array())
+    public function getMovieList(array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getMovieList($this->parseQueryParameters($parameters), $headers);
 

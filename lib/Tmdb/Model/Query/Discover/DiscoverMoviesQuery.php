@@ -167,7 +167,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * @param  array $genres
      * @return $this
      */
-    public function withGenresOr(array $genres = array())
+    public function withGenresOr(array $genres = [])
     {
         return $this->withGenres(
             implode('|', $genres)
@@ -180,7 +180,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * @param  array $genres
      * @return $this
      */
-    public function withGenresAnd(array $genres = array())
+    public function withGenresAnd(array $genres = [])
     {
         return $this->withGenres(
             implode(',', $genres)
@@ -278,7 +278,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * @param  array $companies
      * @return $this
      */
-    public function withCompaniesAnd(array $companies = array())
+    public function withCompaniesAnd(array $companies = [])
     {
         return $this->withCompanies(
             implode(',', $companies)

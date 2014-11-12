@@ -29,7 +29,7 @@ class TimezoneRepository extends AbstractRepository
      * @param $headers
      * @return Timezones
      */
-    public function getTimezones(array $parameters = array(), array $headers = array())
+    public function getTimezones(array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getTimezones($this->parseQueryParameters($parameters), $headers);
 

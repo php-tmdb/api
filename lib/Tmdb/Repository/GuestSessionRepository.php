@@ -33,7 +33,7 @@ class GuestSessionRepository extends AbstractRepository
      * @param  array                    $options
      * @return ResultCollection|Movie[]
      */
-    public function getRatedMovies(array $options = array())
+    public function getRatedMovies(array $options = [])
     {
         return $this->getMovieFactory()->createResultCollection(
             $this->getApi()->getRatedMovies($options)

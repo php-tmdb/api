@@ -40,7 +40,7 @@ interface AdapterInterface
      *
      * @return Response Data
      */
-    public function post($path, $postBody, array $parameters = array(), array $headers = array());
+    public function post($path, $postBody, array $parameters = [], array $headers = []);
 
     /**
      * Compose a POST request but json_encode the body
@@ -52,6 +52,6 @@ interface AdapterInterface
      *
      * @return Response Data
      */
-    public function postJson($path, $postBody, array $parameters = array(), array $headers = array());
+    public function postJson($path, $postBody, array $parameters = [], array $headers = []);
 
 }

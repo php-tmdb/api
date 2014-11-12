@@ -26,7 +26,7 @@ class Discover extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function discoverMovies(array $parameters = array(), array $headers = array())
+    public function discoverMovies(array $parameters = [], array $headers = [])
     {
         return $this->get('discover/movie', $parameters, $headers);
     }
@@ -39,7 +39,7 @@ class Discover extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function discoverTv(array $parameters = array(), array $headers = array())
+    public function discoverTv(array $parameters = [], array $headers = [])
     {
         return $this->get('discover/tv', $parameters, $headers);
     }

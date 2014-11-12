@@ -26,10 +26,10 @@ class GenericCollectionFactoryTest extends TestCase
     {
         $factory = $this->getFactory();
 
-        $data = array(
-            array('id' => 2),
-            array('id' => 2),
-        );
+        $data = [
+            ['id' => 2],
+            ['id' => 2],
+        ];
 
         $collection = $factory->create($data, new FakeClass());
 
@@ -48,7 +48,7 @@ class GenericCollectionFactoryTest extends TestCase
 
 class FakeClass extends AbstractModel
 {
-    public static $properties = array('id');
+    public static $properties = ['id'];
 
     private $id;
 

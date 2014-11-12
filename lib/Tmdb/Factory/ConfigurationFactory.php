@@ -23,7 +23,7 @@ class ConfigurationFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $config = new Configuration();
 
@@ -33,8 +33,8 @@ class ConfigurationFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
-        return array();
+        return [];
     }
 }

@@ -27,7 +27,7 @@ class Review extends AbstractModel
     private $mediaType;
     private $url;
 
-    public static $properties = array(
+    public static $properties = [
         'id',
         'author',
         'content',
@@ -36,7 +36,7 @@ class Review extends AbstractModel
         'media_title',
         'media_type',
         'url'
-    );
+    ];
 
     /**
      * @param  mixed $author

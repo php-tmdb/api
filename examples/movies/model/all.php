@@ -111,7 +111,7 @@ foreach ($popular as $p) {
     printf(" - %s<br/>", $p->getTitle());
 }
 
-$topRated = $repository->getTopRated(array('page' => 3));
+$topRated = $repository->getTopRated(['page' => 3]);
 
 echo "Top rated<br/>";
 

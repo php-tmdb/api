@@ -26,11 +26,11 @@ class FindFactoryTest extends TestCase
         /**
          * @var Find $find
          */
-        $find = $factory->create(array(
-            'movie_results'  => array(array('id' => 1)),
-            'person_results' => array(array('id' => 1)),
-            'tv_results'     => array(array('id' => 1)),
-        ));
+        $find = $factory->create([
+            'movie_results'  => [['id' => 1]],
+            'person_results' => [['id' => 1]],
+            'tv_results'     => [['id' => 1]],
+        ]);
 
         $this->assertInstanceOf('Tmdb\Model\Find', $find);
 
@@ -72,7 +72,7 @@ class FindFactoryTest extends TestCase
     public function shouldThrowExceptionForCreateCollection()
     {
         $factory = $this->getFactory();
-        $factory->createCollection(array());
+        $factory->createCollection([]);
     }
 
     protected function getFactoryClass()

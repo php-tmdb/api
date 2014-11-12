@@ -77,7 +77,7 @@ class AuthenticationFactoryTest extends TestCase
          */
         $factory = $this->getFactory();
 
-        $factory->create(array());
+        $factory->create([]);
     }
 
     /**
@@ -91,7 +91,7 @@ class AuthenticationFactoryTest extends TestCase
          */
         $factory = $this->getFactory();
 
-        $factory->createCollection(array());
+        $factory->createCollection([]);
     }
 
     protected function getFactoryClass()

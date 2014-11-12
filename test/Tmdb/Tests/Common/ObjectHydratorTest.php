@@ -19,10 +19,10 @@ class ObjectHydratorTest extends \PHPUnit_Framework_TestCase
     {
         $objectHydrator = new \Tmdb\Common\ObjectHydrator();
 
-        $subject = $objectHydrator->hydrate(new TestModel(), array(
+        $subject = $objectHydrator->hydrate(new TestModel(), [
             'id'   => 15,
             'name' => 'Michael'
-        ));
+        ]);
 
         $this->assertInstanceOf('TestModel', $subject);
         $this->assertEquals(15, $subject->getId());
@@ -37,7 +37,7 @@ class ObjectHydratorTest extends \PHPUnit_Framework_TestCase
     {
         $objectHydrator = new \Tmdb\Common\ObjectHydrator();
 
-        $objectHydrator->hydrate(new FailingTestModel(), array('lastname' => 'Roterman'));
+        $objectHydrator->hydrate(new FailingTestModel(), ['lastname' => 'Roterman']);
     }
 }
 
@@ -46,7 +46,7 @@ class TestModel extends \Tmdb\Model\AbstractModel
     private $id;
     private $name;
 
-    static $properties = array('id', 'name');
+    static $properties = ['id', 'name'];
 
     /**
      * @param  mixed $id
@@ -89,5 +89,5 @@ class TestModel extends \Tmdb\Model\AbstractModel
 
 class FailingTestModel extends \Tmdb\Model\AbstractModel
 {
-    static $properties = array('lastname');
+    static $properties = ['lastname'];
 }

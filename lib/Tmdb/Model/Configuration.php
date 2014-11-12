@@ -28,16 +28,16 @@ class Configuration extends AbstractModel
      */
     private $change_keys;
 
-    public static $properties = array(
+    public static $properties = [
         'images',
         'change_keys',
-    );
+    ];
 
     /**
      * @param  array $change_keys
      * @return $this
      */
-    public function setChangeKeys(array $change_keys = array())
+    public function setChangeKeys(array $change_keys = [])
     {
         $this->change_keys = $change_keys;
 
@@ -56,7 +56,7 @@ class Configuration extends AbstractModel
      * @param  array $images
      * @return $this
      */
-    public function setImages(array $images = array())
+    public function setImages(array $images = [])
     {
         $this->images = $images;
 

@@ -23,5 +23,5 @@ class AbstractModel
      *
      * @var array
      */
-    public static $properties = array();
+    public static $properties = [];
 }

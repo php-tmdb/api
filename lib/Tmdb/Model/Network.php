@@ -35,10 +35,10 @@ class Network extends AbstractModel
      *
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'id',
         'name',
-    );
+    ];
 
     /**
      * @param  mixed $id

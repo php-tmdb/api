@@ -33,7 +33,7 @@ class Collections extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getCollection($collection_id, array $parameters = array(), array $headers = array())
+    public function getCollection($collection_id, array $parameters = [], array $headers = [])
     {
         return $this->get('collection/' . $collection_id, $parameters, $headers);
     }
@@ -46,7 +46,7 @@ class Collections extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getImages($collection_id, array $parameters = array(), array $headers = array())
+    public function getImages($collection_id, array $parameters = [], array $headers = [])
     {
         return $this->get('collection/' . $collection_id . '/images', $parameters, $headers);
     }

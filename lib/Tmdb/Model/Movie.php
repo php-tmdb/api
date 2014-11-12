@@ -220,7 +220,7 @@ class Movie extends AbstractModel
      *
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'adult',
         'backdrop_path',
         'belongs_to_collection',
@@ -240,7 +240,7 @@ class Movie extends AbstractModel
         'title',
         'vote_average',
         'vote_count',
-    );
+    ];
 
     /**
      * Constructor

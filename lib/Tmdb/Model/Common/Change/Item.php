@@ -40,12 +40,12 @@ class Item extends AbstractModel
      */
     private $value;
 
-    public static $properties = array(
+    public static $properties = [
         'id',
         'action',
         'time',
         'value'
-    );
+    ];
 
     /**
      * @param  string $action

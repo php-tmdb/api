@@ -27,7 +27,7 @@ interface HttpClientInterface
      *
      * @return mixed Data
      */
-    public function get($path, array $parameters = array(), array $headers = array());
+    public function get($path, array $parameters = [], array $headers = []);
 
     /**
      * Compose a POST request
@@ -39,7 +39,7 @@ interface HttpClientInterface
      *
      * @return mixed Data
      */
-    public function post($path, $postBody, array $parameters = array(), array $headers = array());
+    public function post($path, $postBody, array $parameters = [], array $headers = []);
 
     /**
      * Compose a POST request but json_encode the body
@@ -51,6 +51,6 @@ interface HttpClientInterface
      *
      * @return mixed Data
      */
-    public function postJson($path, $postBody, array $parameters = array(), array $headers = array());
+    public function postJson($path, $postBody, array $parameters = [], array $headers = []);
 
 }

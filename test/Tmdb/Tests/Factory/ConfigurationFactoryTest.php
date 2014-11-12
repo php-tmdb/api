@@ -52,7 +52,7 @@ class ConfigurationFactoryTest extends TestCase
          */
         $factory = $this->getFactory();
 
-        $this->assertEquals(array(), $factory->createCollection(array()));
+        $this->assertEquals([], $factory->createCollection([]));
     }
 
     protected function getFactoryClass()

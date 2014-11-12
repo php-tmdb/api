@@ -44,7 +44,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @throws RuntimeException
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function load($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
+    public function load($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -63,14 +63,14 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if (empty($parameters)) {
-            $parameters = array(
-                new AppendToResponse(array(
+            $parameters = [
+                new AppendToResponse([
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
                     AppendToResponse::CHANGES
-                ))
-            );
+                ])
+            ];
         }
 
         $data = $this->getApi()->getEpisode(
@@ -96,7 +96,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getCredits($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
+    public function getCredits($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -118,7 +118,7 @@ class TvEpisodeRepository extends AbstractRepository
             $headers
         );
 
-        $episode = $this->getFactory()->create(array('credits' => $data));
+        $episode = $this->getFactory()->create(['credits' => $data]);
 
         return $episode->getCredits();
     }
@@ -133,7 +133,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getExternalIds($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
+    public function getExternalIds($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -155,7 +155,7 @@ class TvEpisodeRepository extends AbstractRepository
             $headers
         );
 
-        $episode = $this->getFactory()->create(array('external_ids' => $data));
+        $episode = $this->getFactory()->create(['external_ids' => $data]);
 
         return $episode->getExternalIds();
     }
@@ -170,7 +170,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getImages($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
+    public function getImages($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -192,7 +192,7 @@ class TvEpisodeRepository extends AbstractRepository
             $headers
         );
 
-        $episode = $this->getFactory()->create(array('images' => $data));
+        $episode = $this->getFactory()->create(['images' => $data]);
 
         return $episode->getImages();
     }
@@ -207,7 +207,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $headers
      * @return Videos|Video[]
      */
-    public function getVideos($tvShow, $season, $episode, array $parameters = array(), array $headers = array())
+    public function getVideos($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -229,7 +229,7 @@ class TvEpisodeRepository extends AbstractRepository
             $headers
         );
 
-        $episode = $this->getFactory()->create(array('videos' => $data));
+        $episode = $this->getFactory()->create(['videos' => $data]);
 
         return $episode->getVideos();
     }

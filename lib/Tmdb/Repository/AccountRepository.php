@@ -45,7 +45,7 @@ class AccountRepository extends AbstractRepository
      * @param  array            $headers
      * @return ResultCollection
      */
-    public function getLists($accountId, array $parameters = array(), array $headers = array())
+    public function getLists($accountId, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getLists($accountId, $parameters, $headers);
 
@@ -60,7 +60,7 @@ class AccountRepository extends AbstractRepository
      * @param  array            $headers
      * @return ResultCollection
      */
-    public function getFavoriteMovies($accountId, array $parameters = array(), array $headers = array())
+    public function getFavoriteMovies($accountId, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getFavoriteMovies($accountId, $parameters, $headers);
 
@@ -75,7 +75,7 @@ class AccountRepository extends AbstractRepository
      * @param  array            $headers
      * @return ResultCollection
      */
-    public function getFavoriteTvShows($accountId, array $parameters = array(), array $headers = array())
+    public function getFavoriteTvShows($accountId, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getFavoriteTvShows($accountId, $parameters, $headers);
 
@@ -115,7 +115,7 @@ class AccountRepository extends AbstractRepository
      *
      * @todo   Include the user rating
      */
-    public function getRatedMovies($accountId, array $parameters = array(), array $headers = array())
+    public function getRatedMovies($accountId, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getRatedMovies($accountId, $parameters, $headers);
 
@@ -132,7 +132,7 @@ class AccountRepository extends AbstractRepository
      *
      * @todo   Include the user rating
      */
-    public function getRatedTvShows($accountId, array $parameters = array(), array $headers = array())
+    public function getRatedTvShows($accountId, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getRatedTvShows($accountId, $parameters, $headers);
 
@@ -147,7 +147,7 @@ class AccountRepository extends AbstractRepository
      * @param  array            $headers
      * @return ResultCollection
      */
-    public function getMovieWatchlist($accountId, array $parameters = array(), array $headers = array())
+    public function getMovieWatchlist($accountId, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getMovieWatchlist($accountId, $parameters, $headers);
 
@@ -162,7 +162,7 @@ class AccountRepository extends AbstractRepository
      * @param  array            $headers
      * @return ResultCollection
      */
-    public function getTvWatchlist($accountId, array $parameters = array(), array $headers = array())
+    public function getTvWatchlist($accountId, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getTvWatchlist($accountId, $parameters, $headers);
 

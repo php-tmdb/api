@@ -26,7 +26,7 @@ class CertificationFactory extends AbstractFactory
      *
      * @return Certification
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         return $this->hydrate(new Certification\CountryCertification(), $data);
     }
@@ -34,7 +34,7 @@ class CertificationFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         if (array_key_exists('certifications', $data)) {
             $data = $data['certifications'];

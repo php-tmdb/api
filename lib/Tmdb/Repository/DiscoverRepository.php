@@ -35,7 +35,7 @@ class DiscoverRepository extends AbstractRepository
      * @throws RuntimeException    when certification_country is set but certification.lte is not given
      * @return Movie[]
      */
-    public function discoverMovies(DiscoverMoviesQuery $query, array $headers = array())
+    public function discoverMovies(DiscoverMoviesQuery $query, array $headers = [])
     {
         $query = $query->toArray();
 
@@ -58,7 +58,7 @@ class DiscoverRepository extends AbstractRepository
      * @param  array           $headers
      * @return Tv[]
      */
-    public function discoverTv(DiscoverTvQuery $query, array $headers = array())
+    public function discoverTv(DiscoverTvQuery $query, array $headers = [])
     {
         $data = $this->getApi()->discoverTv($query->toArray(), $headers);
 

@@ -26,12 +26,12 @@ use Tmdb\Model\Filter\LanguageFilter;
 class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
 {
     /** @var array Data associated with the object. */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * @param array $data Associative array of data to set
      */
-    public function __construct(array $data = array())
+    public function __construct(array $data = [])
     {
         $this->data = $data;
     }
@@ -67,7 +67,7 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
      */
     public function clear()
     {
-        $this->data = array();
+        $this->data = [];
 
         return $this;
     }
@@ -140,7 +140,7 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
         } elseif (is_array($this->data[$key])) {
             $this->data[$key][] = $value;
         } else {
-            $this->data[$key] = array($this->data[$key], $value);
+            $this->data[$key] = [$this->data[$key], $value];
         }
 
         return $this;
@@ -257,7 +257,7 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
      *
      * @return GenericCollection
      */
-    public function map(\Closure $closure, array $context = array(), $static = true)
+    public function map(\Closure $closure, array $context = [], $static = true)
     {
         $collection = $static ? new static() : new self();
         foreach ($this as $key => $value) {

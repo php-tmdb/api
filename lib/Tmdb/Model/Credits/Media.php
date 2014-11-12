@@ -51,12 +51,12 @@ class Media extends AbstractModel
      */
     private $seasons;
 
-    public static $properties = array(
+    public static $properties = [
         'id',
         'name',
         'original_name',
         'character',
-    );
+    ];
 
     /**
      * @param  string $character

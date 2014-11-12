@@ -16,10 +16,10 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$tvChanges = $client->getChangesApi()->getTvChanges(array(
+$tvChanges = $client->getChangesApi()->getTvChanges([
     'page'       => 1,
     'start_date' => '2014-01-14',
     'end_date'   => '2014-01-21'
-));
+]);
 
 var_dump($tvChanges);

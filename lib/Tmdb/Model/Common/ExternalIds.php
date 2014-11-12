@@ -27,14 +27,14 @@ class ExternalIds extends AbstractModel
     private $tvdbId;
     private $tvrageId;
 
-    public static $properties = array(
+    public static $properties = [
         'imdb_id',
         'freebase_id',
         'freebase_mid',
         'id',
         'tvdb_id',
         'tvrage_id',
-    );
+    ];
 
     /**
      * @param  mixed $freebaseId

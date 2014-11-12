@@ -20,7 +20,7 @@ abstract class TestCase extends Base
 
     abstract protected function getApiClass();
 
-    protected function getApiMock(array $methods = array(), array $clientMethods = array(), $sessionToken = null)
+    protected function getApiMock(array $methods = [], array $clientMethods = [], $sessionToken = null)
     {
         if ($this->_api) {
             return $this->_api;
@@ -35,11 +35,11 @@ abstract class TestCase extends Base
         return $this->getMockBuilder($this->getApiClass())
             ->setMethods(
                 array_merge(
-                    array('get', 'post', 'postJson', 'postRaw', 'head', 'patch', 'delete', 'put'),
+                    ['get', 'post', 'postJson', 'postRaw', 'head', 'patch', 'delete', 'put'],
                     $methods
                 )
             )
-            ->setConstructorArgs(array($client))
+            ->setConstructorArgs([$client])
             ->getMock();
     }
 }

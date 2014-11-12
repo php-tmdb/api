@@ -37,7 +37,7 @@ class ChangesRepository extends AbstractRepository
      * @param  array                                $headers
      * @return \Tmdb\Model\Common\GenericCollection
      */
-    public function getMovieChanges(ChangesQuery $query, array $headers = array())
+    public function getMovieChanges(ChangesQuery $query, array $headers = [])
     {
         $data = $this->getApi()->getMovieChanges($query->toArray(), $headers);
 
@@ -58,7 +58,7 @@ class ChangesRepository extends AbstractRepository
      * @param  array        $headers
      * @return People
      */
-    public function getPeopleChanges(ChangesQuery $query, array $headers = array())
+    public function getPeopleChanges(ChangesQuery $query, array $headers = [])
     {
         $data = $this->getApi()->getPersonChanges($query->toArray(), $headers);
 
@@ -80,7 +80,7 @@ class ChangesRepository extends AbstractRepository
      * @param  array                                $headers
      * @return \Tmdb\Model\Common\GenericCollection
      */
-    public function getTvChanges(ChangesQuery $query, array $headers = array())
+    public function getTvChanges(ChangesQuery $query, array $headers = [])
     {
         $data = $this->getApi()->getTvChanges($query->toArray(), $headers);
 

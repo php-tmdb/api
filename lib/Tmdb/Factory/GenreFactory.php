@@ -26,7 +26,7 @@ class GenreFactory extends AbstractFactory
      *
      * @return Genre
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         return $this->hydrate(new Genre(), $data);
     }
@@ -34,7 +34,7 @@ class GenreFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new Genres();
 

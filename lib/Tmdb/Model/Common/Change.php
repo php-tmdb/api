@@ -30,9 +30,9 @@ class Change extends AbstractModel
      */
     private $items;
 
-    public static $properties = array(
+    public static $properties = [
         'key',
-    );
+    ];
 
     public function __construct()
     {

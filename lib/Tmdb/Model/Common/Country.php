@@ -24,10 +24,10 @@ class Country extends AbstractModel implements CountryFilter
     private $iso31661;
     private $name;
 
-    public static $properties = array(
+    public static $properties = [
         'iso_3166_1',
         'name',
-    );
+    ];
 
     /**
      * @param  string $iso31661

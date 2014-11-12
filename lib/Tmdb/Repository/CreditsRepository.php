@@ -29,7 +29,7 @@ class CreditsRepository extends AbstractRepository
      * @param  array   $headers
      * @return Company
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
         $data = $this->getApi()->getCredit($id, $this->parseQueryParameters($parameters), $headers);
 

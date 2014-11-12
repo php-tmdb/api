@@ -35,15 +35,15 @@ class DiscoverMoviesQueryTest extends TestCase
             ->primaryReleaseYear($now)
             ->voteCountGte(5)
             ->voteAverageGte(3)
-            ->withGenres(array(15,18))
-            ->withGenresAnd(array(18))
-            ->withGenresOr(array(1,2))
+            ->withGenres([15,18])
+            ->withGenresAnd([18])
+            ->withGenresOr([1,2])
             ->releaseDateGte($now)
             ->releaseDateLte($now)
             ->certificationCountry('NL')
             ->certificationLte(1)
-            ->withCompanies(array(1))
-            ->withCompaniesAnd(array(2,5))
+            ->withCompanies([1])
+            ->withCompaniesAnd([2,5])
         ;
 
         $this->assertEquals(13, count($query));

@@ -51,14 +51,14 @@ class Account extends AbstractModel
     /**
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'id',
         'include_adult',
         'iso_3166_1',
         'iso_639_1',
         'name',
         'username'
-    );
+    ];
 
     /**
      * @param  int   $id

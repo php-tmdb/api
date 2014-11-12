@@ -27,12 +27,12 @@ class Youtube extends AbstractTrailer
     private $source;
     private $type;
 
-    public static $properties = array(
+    public static $properties = [
         'name',
         'size',
         'source',
         'type'
-    );
+    ];
 
     /**
      * Retrieve the url to the source

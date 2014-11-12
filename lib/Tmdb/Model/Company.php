@@ -29,7 +29,7 @@ class Company extends AbstractModel
     private $name;
     private $parentCompany;
 
-    public static $properties = array(
+    public static $properties = [
         'description',
         'headquarters',
         'homepage',
@@ -37,7 +37,7 @@ class Company extends AbstractModel
         'logo_path',
         'name',
         'parent_company'
-    );
+    ];
 
     /**
      * @param  mixed $description

@@ -32,7 +32,7 @@ class GuestSessionTest extends TestCase
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');
-        $api          = $this->getApiMock(array(), array(), $sessionToken);
+        $api          = $this->getApiMock([], [], $sessionToken);
 
         $api->expects($this->once())
             ->method('get')

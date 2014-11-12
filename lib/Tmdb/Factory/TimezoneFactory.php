@@ -26,7 +26,7 @@ class TimezoneFactory extends AbstractFactory
      *
      * @return Timezone\CountryTimezone
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         return $this->hydrate(new Timezone\CountryTimezone(), $data);
     }
@@ -34,7 +34,7 @@ class TimezoneFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new Timezones();
 

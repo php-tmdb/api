@@ -26,11 +26,11 @@ class ResultWithListId extends Result
     /**
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'status_code',
         'status_message',
         'list_id'
-    );
+    ];
 
     /**
      * @param  string $listId

@@ -28,7 +28,7 @@ class TvSeason extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getSeason($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
+    public function getSeason($tvshow_id, $season_number, array $parameters = [], array $headers = [])
     {
         return $this->get(sprintf('tv/%s/season/%s', $tvshow_id, $season_number), $parameters, $headers);
     }
@@ -42,7 +42,7 @@ class TvSeason extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getCredits($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
+    public function getCredits($tvshow_id, $season_number, array $parameters = [], array $headers = [])
     {
         return $this->get(sprintf('tv/%s/season/%s/credits', $tvshow_id, $season_number), $parameters, $headers);
     }
@@ -56,7 +56,7 @@ class TvSeason extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getExternalIds($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
+    public function getExternalIds($tvshow_id, $season_number, array $parameters = [], array $headers = [])
     {
         return $this->get(sprintf('tv/%s/season/%s/external_ids', $tvshow_id, $season_number), $parameters, $headers);
     }
@@ -70,7 +70,7 @@ class TvSeason extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getImages($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
+    public function getImages($tvshow_id, $season_number, array $parameters = [], array $headers = [])
     {
         return $this->get(sprintf('tv/%s/season/%s/images', $tvshow_id, $season_number), $parameters, $headers);
     }
@@ -84,7 +84,7 @@ class TvSeason extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getVideos($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
+    public function getVideos($tvshow_id, $season_number, array $parameters = [], array $headers = [])
     {
         return $this->get(sprintf('tv/%s/season/%s/videos', $tvshow_id, $season_number), $parameters, $headers);
     }
@@ -101,7 +101,7 @@ class TvSeason extends AbstractApi
      * @param  array   $headers
      * @return mixed
      */
-    public function getChanges($tvshow_id, $season_number, array $parameters = array(), array $headers = array())
+    public function getChanges($tvshow_id, $season_number, array $parameters = [], array $headers = [])
     {
         return $this->get(sprintf('tv/%s/season/%s/changes', $tvshow_id, $season_number), $parameters, $headers);
     }

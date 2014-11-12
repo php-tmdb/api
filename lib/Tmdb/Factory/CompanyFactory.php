@@ -36,7 +36,7 @@ class CompanyFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $company = new Company();
 
@@ -50,9 +50,9 @@ class CompanyFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
-        return array();
+        return [];
     }
 
     /**

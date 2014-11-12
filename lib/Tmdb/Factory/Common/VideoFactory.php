@@ -25,7 +25,7 @@ class VideoFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $videoType = $this->resolveVideoType($data);
 
@@ -35,7 +35,7 @@ class VideoFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new Videos();
 

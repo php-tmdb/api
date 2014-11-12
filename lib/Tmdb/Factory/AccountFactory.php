@@ -48,7 +48,7 @@ class AccountFactory extends AbstractFactory
      *
      * @return Account
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         return $this->hydrate(new Account(), $data);
     }
@@ -58,7 +58,7 @@ class AccountFactory extends AbstractFactory
      *
      * @return Result
      */
-    public function createStatusResult(array $data = array())
+    public function createStatusResult(array $data = [])
     {
         return $this->hydrate(new Result(), $data);
     }
@@ -69,7 +69,7 @@ class AccountFactory extends AbstractFactory
      * @param  array             $data
      * @return \Tmdb\Model\Movie
      */
-    public function createMovie(array $data = array())
+    public function createMovie(array $data = [])
     {
         return $this->getMovieFactory()->create($data);
     }
@@ -80,7 +80,7 @@ class AccountFactory extends AbstractFactory
      * @param  array          $data
      * @return \Tmdb\Model\Tv
      */
-    public function createTvShow(array $data = array())
+    public function createTvShow(array $data = [])
     {
         return $this->getTvFactory()->create($data);
     }
@@ -91,7 +91,7 @@ class AccountFactory extends AbstractFactory
      * @param  array                     $data
      * @return \Tmdb\Model\AbstractModel
      */
-    public function createListItem(array $data = array())
+    public function createListItem(array $data = [])
     {
         $listItem = new Account\ListItem();
 
@@ -105,7 +105,7 @@ class AccountFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         throw new \RuntimeException(sprintf(
             'Class "%s" does not support method "%s".',

@@ -16,10 +16,10 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$personChanges = $client->getChangesApi()->getPersonChanges(array(
+$personChanges = $client->getChangesApi()->getPersonChanges([
     'page'       => 1,
     'start_date' => '2014-01-14',
     'end_date'   => '2014-01-21'
-));
+]);
 
 var_dump($personChanges);

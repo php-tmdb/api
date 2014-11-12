@@ -33,7 +33,7 @@ class Person extends AbstractModel implements PersonInterface
     /**
      * @var array
      */
-    private $alsoKnownAs = array();
+    private $alsoKnownAs = [];
 
     /**
      * @var string
@@ -116,7 +116,7 @@ class Person extends AbstractModel implements PersonInterface
      */
     protected $taggedImages;
 
-    public static $properties = array(
+    public static $properties = [
         'adult',
         'also_known_as',
         'biography',
@@ -127,7 +127,7 @@ class Person extends AbstractModel implements PersonInterface
         'name',
         'place_of_birth',
         'profile_path',
-    );
+    ];
 
     /**
      * Constructor

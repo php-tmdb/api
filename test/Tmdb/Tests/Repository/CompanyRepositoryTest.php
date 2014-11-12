@@ -44,10 +44,10 @@ class CompanyRepositoryTest extends TestCase
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $collection = $repository->createMovieCollection(
-            array('results' => array(
-                array('id' => 1),
-                array('id' => 2)
-            ))
+            ['results' => [
+                ['id' => 1],
+                ['id' => 2]
+            ]]
         );
 
         foreach ($collection as $movie) {

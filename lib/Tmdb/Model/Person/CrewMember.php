@@ -35,14 +35,14 @@ class CrewMember extends AbstractMember implements PersonInterface
      */
     private $creditId;
 
-    public static $properties = array(
+    public static $properties = [
         'id',
         'credit_id',
         'name',
         'department',
         'job',
         'profile_path'
-    );
+    ];
 
     /**
      * @param  string $department

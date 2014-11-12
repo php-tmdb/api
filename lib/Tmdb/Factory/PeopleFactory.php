@@ -47,7 +47,7 @@ class PeopleFactory extends AbstractFactory
      *
      * @return Person
      */
-    public function create(array $data = array(), $person = null)
+    public function create(array $data = [], $person = null)
     {
         if (!is_object($person)) {
             if (array_key_exists('character', $data)) {
@@ -109,7 +109,7 @@ class PeopleFactory extends AbstractFactory
     protected function applyCredits(array $data, Person $person)
     {
         $hydrator = new ObjectHydrator();
-        $types    = array('movie_credits', 'tv_credits', 'combined_credits');
+        $types    = ['movie_credits', 'tv_credits', 'combined_credits'];
 
         foreach ($types as $type) {
             if (array_key_exists($type, $data)) {
@@ -154,7 +154,7 @@ class PeopleFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array(), $person = null, $collection = null)
+    public function createCollection(array $data = [], $person = null, $collection = null)
     {
         if (!$collection) {
             $collection = new People();

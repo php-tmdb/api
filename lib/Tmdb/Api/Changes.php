@@ -34,7 +34,7 @@ class Changes extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getMovieChanges(array $parameters = array(), array $headers = array())
+    public function getMovieChanges(array $parameters = [], array $headers = [])
     {
         return $this->get('movie/changes', $parameters, $headers);
     }
@@ -54,7 +54,7 @@ class Changes extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getPersonChanges(array $parameters = array(), array $headers = array())
+    public function getPersonChanges(array $parameters = [], array $headers = [])
     {
         return $this->get('person/changes', $parameters, $headers);
     }
@@ -74,7 +74,7 @@ class Changes extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getTvChanges(array $parameters = array(), array $headers = array())
+    public function getTvChanges(array $parameters = [], array $headers = [])
     {
         return $this->get('tv/changes', $parameters, $headers);
     }

@@ -58,13 +58,13 @@ class Credits extends AbstractModel
     /**
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'credit_type',
         'department',
         'job',
         'media_type',
         'id',
-    );
+    ];
 
     public function __construct()
     {

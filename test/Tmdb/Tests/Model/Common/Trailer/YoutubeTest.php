@@ -24,12 +24,12 @@ class YoutubeTest extends TestCase
 
     public function setUp()
     {
-        $this->subject = $this->hydrate(new Youtube(), array(
+        $this->subject = $this->hydrate(new Youtube(), [
             'name'   => 'Trailer 1',
             'size'   => 'HD',
             'source' => 'SUXWAEX2jlg',
             'type'   => 'Trailer'
-        ));
+        ]);
     }
 
     /**

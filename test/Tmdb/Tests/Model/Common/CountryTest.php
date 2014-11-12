@@ -23,10 +23,10 @@ class CountryTest extends TestCase
      */
     public function shouldBeFunctional()
     {
-        $data = array(
+        $data = [
             'iso_3166_1' => 'US',
             'name'       => 'United States of America'
-        );
+        ];
 
         $hydrator = new ObjectHydrator();
 

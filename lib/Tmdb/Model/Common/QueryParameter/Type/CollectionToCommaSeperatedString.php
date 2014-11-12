@@ -24,7 +24,7 @@ abstract class CollectionToCommaSeperatedString extends GenericCollection implem
     /**
      * @param array $collection
      */
-    public function __construct(array $collection = array())
+    public function __construct(array $collection = [])
     {
         $i = 0;
 

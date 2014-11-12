@@ -55,12 +55,12 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
 
         if (empty($parameters)) {
-            $parameters = array(
-                new AppendToResponse(array(
+            $parameters = [
+                new AppendToResponse([
                     AppendToResponse::ALTERNATIVE_TITLES,
                     AppendToResponse::CHANGES,
                     AppendToResponse::CREDITS,
@@ -72,8 +72,8 @@ class MovieRepository extends AbstractRepository
                     AppendToResponse::SIMILAR,
                     AppendToResponse::TRANSLATIONS,
                     AppendToResponse::VIDEOS,
-                ))
-            );
+                ])
+            ];
         }
 
         $data = $this->getApi()->getMovie($id, $this->parseQueryParameters($parameters), $headers);
@@ -89,10 +89,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return GenericCollection
      */
-    public function getAlternativeTitles($id, array $parameters = array(), array $headers = array())
+    public function getAlternativeTitles($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getAlternativeTitles($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('alternative_titles' => $data));
+        $movie = $this->getFactory()->create(['alternative_titles' => $data]);
 
         return $movie->getAlternativeTitles();
     }
@@ -105,10 +105,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getCredits($id, array $parameters = array(), array $headers = array())
+    public function getCredits($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getCredits($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('credits' => $data));
+        $movie = $this->getFactory()->create(['credits' => $data]);
 
         return $movie->getCredits();
     }
@@ -121,10 +121,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getImages($id, array $parameters = array(), array $headers = array())
+    public function getImages($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('images' => $data));
+        $movie = $this->getFactory()->create(['images' => $data]);
 
         return $movie->getImages();
     }
@@ -137,10 +137,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getKeywords($id, array $parameters = array(), array $headers = array())
+    public function getKeywords($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getKeywords($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('keywords' => $data));
+        $movie = $this->getFactory()->create(['keywords' => $data]);
 
         return $movie->getKeywords();
     }
@@ -153,10 +153,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getReleases($id, array $parameters = array(), array $headers = array())
+    public function getReleases($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getReleases($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('releases' => $data));
+        $movie = $this->getFactory()->create(['releases' => $data]);
 
         return $movie->getReleases();
     }
@@ -169,10 +169,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getTranslations($id, array $parameters = array(), array $headers = array())
+    public function getTranslations($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getTranslations($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('translations' => $data));
+        $movie = $this->getFactory()->create(['translations' => $data]);
 
         return $movie->getTranslations();
     }
@@ -187,7 +187,7 @@ class MovieRepository extends AbstractRepository
      *
      * @deprecated Will be removed in one of the upcoming versions, has been updated to getSimilar ( following TMDB ).
      */
-    public function getSimilarMovies($id, array $parameters = array(), array $headers = array())
+    public function getSimilarMovies($id, array $parameters = [], array $headers = [])
     {
         return $this->getSimilar($id, $parameters, $headers);
     }
@@ -200,10 +200,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getSimilar($id, array $parameters = array(), array $headers = array())
+    public function getSimilar($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getSimilar($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('similar' => $data));
+        $movie = $this->getFactory()->create(['similar' => $data]);
 
         return $movie->getSimilar();
     }
@@ -216,10 +216,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getReviews($id, array $parameters = array(), array $headers = array())
+    public function getReviews($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getReviews($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('reviews' => $data));
+        $movie = $this->getFactory()->create(['reviews' => $data]);
 
         return $movie->getReviews();
     }
@@ -232,10 +232,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getLists($id, array $parameters = array(), array $headers = array())
+    public function getLists($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getLists($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('lists' => $data));
+        $movie = $this->getFactory()->create(['lists' => $data]);
 
         return $movie->getLists();
     }
@@ -254,10 +254,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getChanges($id, array $parameters = array(), array $headers = array())
+    public function getChanges($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getChanges($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('changes' => $data));
+        $movie = $this->getFactory()->create(['changes' => $data]);
 
         return $movie->getChanges();
     }
@@ -268,7 +268,7 @@ class MovieRepository extends AbstractRepository
      * @param  array                          $options
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getLatest(array $options = array())
+    public function getLatest(array $options = [])
     {
         return $this->getFactory()->create(
             $this->getApi()->getLatest($options)
@@ -282,7 +282,7 @@ class MovieRepository extends AbstractRepository
      * @param  array   $options
      * @return Movie[]
      */
-    public function getUpcoming(array $options = array())
+    public function getUpcoming(array $options = [])
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getUpcoming($options)
@@ -296,7 +296,7 @@ class MovieRepository extends AbstractRepository
      * @param  array   $options
      * @return Movie[]
      */
-    public function getNowPlaying(array $options = array())
+    public function getNowPlaying(array $options = [])
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getNowPlaying($options)
@@ -310,7 +310,7 @@ class MovieRepository extends AbstractRepository
      * @param  array   $options
      * @return Movie[]
      */
-    public function getPopular(array $options = array())
+    public function getPopular(array $options = [])
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getPopular($options)
@@ -326,7 +326,7 @@ class MovieRepository extends AbstractRepository
      * @param  array   $options
      * @return Movie[]
      */
-    public function getTopRated(array $options = array())
+    public function getTopRated(array $options = [])
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getTopRated($options)
@@ -369,10 +369,10 @@ class MovieRepository extends AbstractRepository
      * @param $headers
      * @return Videos|Video[]
      */
-    public function getVideos($id, array $parameters = array(), array $headers = array())
+    public function getVideos($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getVideos($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('videos' => $data));
+        $movie = $this->getFactory()->create(['videos' => $data]);
 
         return $movie->getVideos();
     }

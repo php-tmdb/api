@@ -30,7 +30,7 @@ class SearchTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('search/movie', array('query' => urlencode(self::QUERY_MOVIE)));
+            ->with('search/movie', ['query' => urlencode(self::QUERY_MOVIE)]);
 
         $api->searchMovies(self::QUERY_MOVIE);
     }
@@ -43,7 +43,7 @@ class SearchTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('search/collection', array('query' => urlencode(self::QUERY_COLLECTION)));
+            ->with('search/collection', ['query' => urlencode(self::QUERY_COLLECTION)]);
 
         $api->searchCollection(self::QUERY_COLLECTION);
     }
@@ -56,7 +56,7 @@ class SearchTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('search/tv', array('query' => urlencode(self::QUERY_TV)));
+            ->with('search/tv', ['query' => urlencode(self::QUERY_TV)]);
 
         $api->searchTv(self::QUERY_TV);
     }
@@ -69,7 +69,7 @@ class SearchTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('search/person', array('query' => urlencode(self::QUERY_PERSON)));
+            ->with('search/person', ['query' => urlencode(self::QUERY_PERSON)]);
 
         $api->searchPersons(self::QUERY_PERSON);
     }
@@ -82,7 +82,7 @@ class SearchTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('search/list', array('query' => urlencode(self::QUERY_LIST)));
+            ->with('search/list', ['query' => urlencode(self::QUERY_LIST)]);
 
         $api->searchList(self::QUERY_LIST);
     }
@@ -95,7 +95,7 @@ class SearchTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('search/company', array('query' => urlencode(self::QUERY_COMPANY)));
+            ->with('search/company', ['query' => urlencode(self::QUERY_COMPANY)]);
 
         $api->searchCompany(self::QUERY_COMPANY);
     }
@@ -108,7 +108,7 @@ class SearchTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('search/keyword', array('query' => urlencode(self::QUERY_KEYWORD)));
+            ->with('search/keyword', ['query' => urlencode(self::QUERY_KEYWORD)]);
 
         $api->searchKeyword(self::QUERY_KEYWORD);
     }
@@ -121,7 +121,7 @@ class SearchTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('search/multi', array('query' => urlencode(self::QUERY_KEYWORD)));
+            ->with('search/multi', ['query' => urlencode(self::QUERY_KEYWORD)]);
 
         $api->searchMulti(self::QUERY_KEYWORD);
     }

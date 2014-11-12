@@ -116,7 +116,7 @@ class Episode extends AbstractModel
      *
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'air_date',
         'episode_number',
         'name',
@@ -127,7 +127,7 @@ class Episode extends AbstractModel
         'still_path',
         'vote_average',
         'vote_count'
-    );
+    ];
 
     /**
      * Constructor

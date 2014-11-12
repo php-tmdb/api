@@ -38,11 +38,11 @@ class ResultCollection extends GenericCollection
     /**
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'page',
         'total_pages',
         'total_results'
-    );
+    ];
 
     /**
      * @param  int   $page

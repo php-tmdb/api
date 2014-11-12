@@ -21,7 +21,7 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * @{@inheritdoc}
      */
-    public function postJson($path, $postBody, array $parameters = array(), array $headers = array())
+    public function postJson($path, $postBody, array $parameters = [], array $headers = [])
     {
         return $this->post(
             $path,
@@ -34,7 +34,7 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function setQueryParameters(array $queryParameters = array())
+    public function setQueryParameters(array $queryParameters = [])
     {
         foreach ($queryParameters as $key => $value) {
             $this->setQueryParameter($key, $value);

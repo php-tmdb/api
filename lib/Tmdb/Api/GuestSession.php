@@ -29,7 +29,7 @@ class GuestSession extends AbstractApi
      * @throws MissingSessionTokenException when the guest session token was not set on the client.
      * @return mixed
      */
-    public function getRatedMovies(array $parameters = array(), array $headers = array())
+    public function getRatedMovies(array $parameters = [], array $headers = [])
     {
         $sessionToken = $this->client->getSessionToken();
 

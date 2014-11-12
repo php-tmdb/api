@@ -61,7 +61,7 @@ class ListItem extends AbstractModel
      */
     private $posterImage;
 
-    public static $properties = array(
+    public static $properties = [
         'description',
         'favorite_count',
         'id',
@@ -69,7 +69,7 @@ class ListItem extends AbstractModel
         'iso_639_1',
         'name',
         'poster_path'
-    );
+    ];
 
     /**
      * @param  string $description

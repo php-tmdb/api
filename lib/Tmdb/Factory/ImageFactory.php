@@ -29,7 +29,7 @@ class ImageFactory extends AbstractFactory
      * @param  string|null $key
      * @return Image
      */
-    public function create(array $data = array(), $key = null)
+    public function create(array $data = [], $key = null)
     {
         $type = self::resolveImageType($key);
 
@@ -49,7 +49,7 @@ class ImageFactory extends AbstractFactory
     {
         return $this->hydrate(
             self::resolveImageType($key),
-            array('file_path' => $path)
+            ['file_path' => $path]
         );
     }
 
@@ -62,7 +62,7 @@ class ImageFactory extends AbstractFactory
      *
      * @throws \RuntimeException
      */
-    public function createMediaImage(array $data = array())
+    public function createMediaImage(array $data = [])
     {
         if (!array_key_exists('image_type', $data)) {
             throw new \RuntimeException('Unable to detect the image type.');
@@ -157,7 +157,7 @@ class ImageFactory extends AbstractFactory
      * @param  array  $data
      * @return Images
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new Images();
 
@@ -174,7 +174,7 @@ class ImageFactory extends AbstractFactory
      * @param  array  $data
      * @return Images
      */
-    public function createImageCollection(array $data = array())
+    public function createImageCollection(array $data = [])
     {
         $collection = new Images();
 
@@ -202,7 +202,7 @@ class ImageFactory extends AbstractFactory
      * @param  array  $data
      * @return Images
      */
-    public function createCollectionFromMovie(array $data = array())
+    public function createCollectionFromMovie(array $data = [])
     {
         return $this->createImageCollection($data);
     }
@@ -213,7 +213,7 @@ class ImageFactory extends AbstractFactory
      * @param  array  $data
      * @return Images
      */
-    public function createCollectionFromTv(array $data = array())
+    public function createCollectionFromTv(array $data = [])
     {
         return $this->createImageCollection($data);
     }
@@ -224,7 +224,7 @@ class ImageFactory extends AbstractFactory
      * @param  array  $data
      * @return Images
      */
-    public function createCollectionFromTvSeason(array $data = array())
+    public function createCollectionFromTvSeason(array $data = [])
     {
         return $this->createImageCollection($data);
     }
@@ -235,7 +235,7 @@ class ImageFactory extends AbstractFactory
      * @param  array  $data
      * @return Images
      */
-    public function createCollectionFromTvEpisode(array $data = array())
+    public function createCollectionFromTvEpisode(array $data = [])
     {
         return $this->createImageCollection($data);
     }
@@ -246,7 +246,7 @@ class ImageFactory extends AbstractFactory
      * @param  array  $data
      * @return Images
      */
-    public function createCollectionFromPeople(array $data = array())
+    public function createCollectionFromPeople(array $data = [])
     {
         return $this->createImageCollection($data);
     }

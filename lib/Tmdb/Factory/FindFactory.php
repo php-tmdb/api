@@ -48,7 +48,7 @@ class FindFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $find = new Find();
 
@@ -70,7 +70,7 @@ class FindFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         throw new \RuntimeException(sprintf(
             'Class "%s" does not support method "%s".',

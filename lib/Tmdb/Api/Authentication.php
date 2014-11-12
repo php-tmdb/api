@@ -69,7 +69,7 @@ class Authentication extends AbstractApi
         }
 
         try {
-            return $this->get('authentication/session/new', array('request_token' => $requestToken));
+            return $this->get('authentication/session/new', ['request_token' => $requestToken]);
 
             //@codeCoverageIgnoreStart
         } catch (\Exception $e) {
@@ -121,11 +121,11 @@ class Authentication extends AbstractApi
         }
 
         try {
-            return $this->get('authentication/token/validate_with_login', array(
+            return $this->get('authentication/token/validate_with_login', [
                 'username'      => $username,
                 'password'      => $password,
                 'request_token' => $requestToken
-            ));
+            ]);
             //@codeCoverageIgnoreStart
         } catch (\Exception $e) {
             if ($e->getCode() == 401) {

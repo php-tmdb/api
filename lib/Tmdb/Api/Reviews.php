@@ -27,7 +27,7 @@ class Reviews extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getReview($review_id, array $parameters = array(), array $headers = array())
+    public function getReview($review_id, array $parameters = [], array $headers = [])
     {
         return $this->get('review/' . $review_id, $parameters, $headers);
     }

@@ -32,7 +32,7 @@ class CompanyRepository extends AbstractRepository
      * @param  array   $headers
      * @return Company
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
         $data = $this->getApi()->getCompany($id, $this->parseQueryParameters($parameters), $headers);
 
@@ -47,7 +47,7 @@ class CompanyRepository extends AbstractRepository
      * @param  array            $headers
      * @return ResultCollection
      */
-    public function getMovies($id, array $parameters = array(), array $headers = array())
+    public function getMovies($id, array $parameters = [], array $headers = [])
     {
         return $this->createMovieCollection(
             $this->getApi()->getMovies($id, $this->parseQueryParameters($parameters), $headers)

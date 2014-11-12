@@ -207,7 +207,7 @@ class Tv extends AbstractModel
      *
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'backdrop_path',
         'episode_run_time',
         'first_air_date',
@@ -225,7 +225,7 @@ class Tv extends AbstractModel
         'status',
         'vote_average',
         'vote_count',
-    );
+    ];
 
     /**
      * Constructor

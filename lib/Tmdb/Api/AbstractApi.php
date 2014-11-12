@@ -46,7 +46,7 @@ abstract class AbstractApi implements ApiInterface
      * @param  array  $headers
      * @return mixed
      */
-    public function get($path, array $parameters = array(), $headers = array())
+    public function get($path, array $parameters = [], $headers = [])
     {
         /**
          * @var Response $response
@@ -64,7 +64,7 @@ abstract class AbstractApi implements ApiInterface
      * @param  array $headers
      * @return mixed
      */
-    public function head($path, array $parameters = array(), $headers = array())
+    public function head($path, array $parameters = [], $headers = [])
     {
         /**
          * @var Response $response
@@ -83,7 +83,7 @@ abstract class AbstractApi implements ApiInterface
      * @param  array  $headers
      * @return mixed
      */
-    public function post($path, $postBody = null, array $parameters = array(), $headers = array())
+    public function post($path, $postBody = null, array $parameters = [], $headers = [])
     {
         /**
          * @var Response $response
@@ -102,7 +102,7 @@ abstract class AbstractApi implements ApiInterface
      * @param  array      $headers
      * @return mixed
      */
-    public function postJson($path, $postBody = null, array $parameters = array(), $headers = array())
+    public function postJson($path, $postBody = null, array $parameters = [], $headers = [])
     {
         /**
          * @var Response $response
@@ -125,7 +125,7 @@ abstract class AbstractApi implements ApiInterface
      * @param  array $headers
      * @return mixed
      */
-    public function put($path, $body = null, array $parameters = array(), $headers = array())
+    public function put($path, $body = null, array $parameters = [], $headers = [])
     {
         /**
          * @var Response $response
@@ -144,7 +144,7 @@ abstract class AbstractApi implements ApiInterface
      * @param  array  $headers
      * @return mixed
      */
-    public function delete($path, $body = null, array $parameters = array(), $headers = array())
+    public function delete($path, $body = null, array $parameters = [], $headers = [])
     {
         /**
          * @var Response $response
@@ -163,7 +163,7 @@ abstract class AbstractApi implements ApiInterface
      * @param  array $headers
      * @return mixed
      */
-    public function patch($path, $body = null, array $parameters = array(), $headers = array())
+    public function patch($path, $body = null, array $parameters = [], $headers = [])
     {
         /**
          * @var Response $response

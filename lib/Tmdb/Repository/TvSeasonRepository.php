@@ -39,7 +39,7 @@ class TvSeasonRepository extends AbstractRepository
      * @throws RuntimeException
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function load($tvShow, $season, array $parameters = array(), array $headers = array())
+    public function load($tvShow, $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -54,14 +54,14 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if (empty($parameters)) {
-            $parameters = array(
-                new AppendToResponse(array(
+            $parameters = [
+                new AppendToResponse([
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
                     AppendToResponse::CHANGES
-                ))
-            );
+                ])
+            ];
         }
 
         $data = $this->getApi()->getSeason($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
@@ -80,7 +80,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getCredits($tvShow, $season, array $parameters = array(), array $headers = array())
+    public function getCredits($tvShow, $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -91,7 +91,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         $data   = $this->getApi()->getCredits($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
-        $season = $this->getFactory()->create(array('credits' => $data));
+        $season = $this->getFactory()->create(['credits' => $data]);
 
         return $season->getCredits();
     }
@@ -105,7 +105,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getExternalIds($tvShow, $season, array $parameters = array(), array $headers = array())
+    public function getExternalIds($tvShow, $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -116,7 +116,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         $data   = $this->getApi()->getExternalIds($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
-        $season = $this->getFactory()->create(array('external_ids' => $data));
+        $season = $this->getFactory()->create(['external_ids' => $data]);
 
         return $season->getExternalIds();
     }
@@ -130,7 +130,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getImages($tvShow, $season, array $parameters = array(), array $headers = array())
+    public function getImages($tvShow, $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -141,7 +141,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         $data   = $this->getApi()->getImages($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
-        $season = $this->getFactory()->create(array('images' => $data));
+        $season = $this->getFactory()->create(['images' => $data]);
 
         return $season->getImages();
     }
@@ -155,7 +155,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param $headers
      * @return Videos|Video[]
      */
-    public function getVideos($tvShow, $season, array $parameters = array(), array $headers = array())
+    public function getVideos($tvShow, $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -166,7 +166,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         $data   = $this->getApi()->getVideos($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
-        $season = $this->getFactory()->create(array('videos' => $data));
+        $season = $this->getFactory()->create(['videos' => $data]);
 
         return $season->getVideos();
     }

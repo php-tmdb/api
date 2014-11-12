@@ -45,14 +45,14 @@ class CollectionRepository extends AbstractRepository
      * @param $headers
      * @return ApiCollection
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
         if (empty($parameters)) {
-            $parameters = array(
-                new AppendToResponse(array(
+            $parameters = [
+                new AppendToResponse([
                     AppendToResponse::IMAGES,
-                ))
-            );
+                ])
+            ];
         }
 
         $data = $this->getApi()->getCollection($id, $this->parseQueryParameters($parameters), $headers);
@@ -68,10 +68,10 @@ class CollectionRepository extends AbstractRepository
      * @param $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getImages($id, array $parameters = array(), array $headers = array())
+    public function getImages($id, array $parameters = [], array $headers = [])
     {
         $data  = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
-        $movie = $this->getFactory()->create(array('images' => $data));
+        $movie = $this->getFactory()->create(['images' => $data]);
 
         return $movie->getImages();
     }

@@ -33,10 +33,10 @@ class ItemStatus extends AbstractModel
     /**
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'id',
         'item_present'
-    );
+    ];
 
     /**
      * @param  string $id

@@ -23,10 +23,10 @@ class KeywordsTest extends TestCase
      */
     private $collection;
 
-    private $keywords = array(
-        array('id' => 1, 'name' => 'dark'),
-        array('id' => 2, 'name' => 'light')
-    );
+    private $keywords = [
+        ['id' => 1, 'name' => 'dark'],
+        ['id' => 2, 'name' => 'light']
+    ];
 
     public function setUp()
     {

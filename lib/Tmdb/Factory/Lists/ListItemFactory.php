@@ -38,7 +38,7 @@ class ListItemFactory extends AbstractFactory
      *
      * @return ListItem
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $listItem = new ListItem();
 
@@ -61,7 +61,7 @@ class ListItemFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new GenericCollection();
 

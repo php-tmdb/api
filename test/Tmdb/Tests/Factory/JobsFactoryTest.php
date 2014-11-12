@@ -41,13 +41,13 @@ class JobsFactoryTest extends TestCase
     {
         $filteredJobs = $this->jobs->filterByDepartment('Actors');
 
-        $expectedJobs = array(
+        $expectedJobs = [
             'Actor',
             'Stunt Double',
             'Voice',
             'Cameo',
             'Special Guest'
-        );
+        ];
 
         foreach ($filteredJobs->getJobList() as $filteredJob) {
             $this->assertEquals(true, in_array($filteredJob, $expectedJobs));
@@ -71,13 +71,13 @@ class JobsFactoryTest extends TestCase
     {
         $filteredJobs = $this->jobs->filterByDepartmentAndReturnJobsList('Actors');
 
-        $expectedJobs = array(
+        $expectedJobs = [
             'Actor',
             'Stunt Double',
             'Voice',
             'Cameo',
             'Special Guest'
-        );
+        ];
 
         foreach ($filteredJobs as $filteredJob) {
             $this->assertEquals(true, in_array($filteredJob, $expectedJobs));

@@ -44,7 +44,7 @@ class ListFactory extends AbstractFactory
      *
      * @return Genre
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $lists = new Lists();
 
@@ -67,7 +67,7 @@ class ListFactory extends AbstractFactory
      *
      * @return Lists\ItemStatus
      */
-    public function createItemStatus(array $data = array())
+    public function createItemStatus(array $data = [])
     {
         return $this->hydrate(new Lists\ItemStatus(), $data);
     }
@@ -77,7 +77,7 @@ class ListFactory extends AbstractFactory
      *
      * @return Lists\Result
      */
-    public function createResult(array $data = array())
+    public function createResult(array $data = [])
     {
         return $this->hydrate(new Lists\Result(), $data);
     }
@@ -87,7 +87,7 @@ class ListFactory extends AbstractFactory
      *
      * @return Lists\ResultWithListId
      */
-    public function createResultWithListId(array $data = array())
+    public function createResultWithListId(array $data = [])
     {
         return $this->hydrate(new Lists\ResultWithListId(), $data);
     }
@@ -95,7 +95,7 @@ class ListFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new GenericCollection();
 

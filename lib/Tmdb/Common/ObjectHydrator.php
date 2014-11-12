@@ -31,7 +31,7 @@ class ObjectHydrator
      * @return AbstractModel
      * @throws RuntimeException
      */
-    public function hydrate(AbstractModel $object, $data = array())
+    public function hydrate(AbstractModel $object, $data = [])
     {
         if (!empty($data)) {
             foreach ($data as $k => $v) {
@@ -42,7 +42,7 @@ class ObjectHydrator
                         sprintf('set_%s', $k)
                     );
 
-                    if (!is_callable(array($object, $method))) {
+                    if (!is_callable([$object, $method])) {
                         throw new RuntimeException(sprintf(
                             'Trying to call method "%s" on "%s" but it does not exist or is private.',
                             $method,

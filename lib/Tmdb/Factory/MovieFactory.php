@@ -95,7 +95,7 @@ class MovieFactory extends AbstractFactory
      * @param  array $data
      * @return Movie
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         if (!$data) {
             return null;
@@ -199,7 +199,7 @@ class MovieFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new GenericCollection();
 

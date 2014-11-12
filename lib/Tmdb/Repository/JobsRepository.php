@@ -28,7 +28,7 @@ class JobsRepository extends AbstractRepository
      * @param  array $headers
      * @return Job
      */
-    public function load(array $parameters = array(), array $headers = array())
+    public function load(array $parameters = [], array $headers = [])
     {
         return $this->loadCollection($parameters, $headers);
     }
@@ -40,7 +40,7 @@ class JobsRepository extends AbstractRepository
      * @param  array      $headers
      * @return Jobs|Job[]
      */
-    public function loadCollection(array $parameters = array(), array $headers = array())
+    public function loadCollection(array $parameters = [], array $headers = [])
     {
         return $this->createCollection(
             $this->getApi()->getJobs($parameters, $headers)

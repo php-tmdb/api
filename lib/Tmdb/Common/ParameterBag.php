@@ -18,7 +18,7 @@ class ParameterBag extends \ArrayObject
 {
     public function __construct($array, $flags = 0, $iterator_class = "ArrayIterator")
     {
-        $objects = array();
+        $objects = [];
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 $objects[$key] = new self($value, $flags, $iterator_class);

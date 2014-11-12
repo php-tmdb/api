@@ -25,11 +25,11 @@ class Release extends AbstractModel implements CountryFilter
     private $certification;
     private $releaseDate;
 
-    public static $properties = array(
+    public static $properties = [
         'iso_3166_1',
         'certification',
         'release_date'
-    );
+    ];
 
     /**
      * @param  mixed $certification

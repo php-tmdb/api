@@ -37,7 +37,7 @@ class Find extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function find($id, array $parameters = array(), array $headers = array())
+    public function find($id, array $parameters = [], array $headers = [])
     {
         return $this->get(
             sprintf('find/%s', $id),

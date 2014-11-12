@@ -16,9 +16,9 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$response = $client->getDiscoverApi()->discoverTv(array(
+$response = $client->getDiscoverApi()->discoverTv([
     'page' => 1,
     'language' => 'en'
-));
+]);
 
 var_dump($response);

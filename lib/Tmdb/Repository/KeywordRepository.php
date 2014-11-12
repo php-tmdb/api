@@ -31,7 +31,7 @@ class KeywordRepository extends AbstractRepository
      * @param  array   $headers
      * @return Keyword
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
         return $this->getFactory()->create(
             $this->getApi()->getKeyword($id, $parameters, $headers)
@@ -47,7 +47,7 @@ class KeywordRepository extends AbstractRepository
      * @param  array                      $headers
      * @return ResultCollection|Keyword[]
      */
-    public function getMovies($id, array $parameters = array(), array $headers = array())
+    public function getMovies($id, array $parameters = [], array $headers = [])
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getMovies($id, $parameters, $headers),

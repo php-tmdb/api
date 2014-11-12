@@ -42,7 +42,7 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function post($path, $postBody, array $parameters = array(), array $headers = array())
+    public function post($path, $postBody, array $parameters = [], array $headers = [])
     {
         return $this->client->post($path, $this->getConfiguration($parameters));
     }

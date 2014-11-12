@@ -75,7 +75,7 @@ class ListItem extends AbstractModel
     /**
      * @var array
      */
-    public static $properties = array(
+    public static $properties = [
         'backdrop_path',
         'id',
         'original_title',
@@ -84,7 +84,7 @@ class ListItem extends AbstractModel
         'title',
         'vote_average',
         'vote_count'
-    );
+    ];
 
     /**
      * @param  \Tmdb\Model\Image\BackdropImage $backdropImage

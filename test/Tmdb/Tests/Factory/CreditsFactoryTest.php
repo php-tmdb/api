@@ -68,7 +68,7 @@ class CreditsFactoryTest extends TestCase
     {
         $factory = $this->getFactory();
 
-        $factory->createCollection(array());
+        $factory->createCollection([]);
     }
 
     /**

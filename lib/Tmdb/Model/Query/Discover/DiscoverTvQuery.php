@@ -135,7 +135,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * @param  array $genres
      * @return $this
      */
-    public function withGenresOr(array $genres = array())
+    public function withGenresOr(array $genres = [])
     {
         return $this->withGenres(
             implode('|', $genres)
@@ -148,7 +148,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * @param  array $genres
      * @return $this
      */
-    public function withGenresAnd(array $genres = array())
+    public function withGenresAnd(array $genres = [])
     {
         return $this->withGenres(
             implode(',', $genres)
@@ -218,7 +218,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * @param  array $networks
      * @return $this
      */
-    public function withNetworksAnd(array $networks = array())
+    public function withNetworksAnd(array $networks = [])
     {
         return $this->withNetworks(
             implode(',', $networks)

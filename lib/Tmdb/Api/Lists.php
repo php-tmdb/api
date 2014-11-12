@@ -27,7 +27,7 @@ class Lists extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function getList($list_id, array $parameters = array(), array $headers = array())
+    public function getList($list_id, array $parameters = [], array $headers = [])
     {
         return $this->get('list/' . $list_id, $parameters, $headers);
     }
@@ -41,9 +41,9 @@ class Lists extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function createList($name, $description, array $parameters = array(), array $headers = array())
+    public function createList($name, $description, array $parameters = [], array $headers = [])
     {
-        return $this->postJson('list', array('name' => $name, 'description' => $description), $parameters, $headers);
+        return $this->postJson('list', ['name' => $name, 'description' => $description], $parameters, $headers);
     }
 
     /**
@@ -55,11 +55,11 @@ class Lists extends AbstractApi
      * @param  array  $headers
      * @return mixed
      */
-    public function getItemStatus($id, $movieId, array $parameters = array(), array $headers = array())
+    public function getItemStatus($id, $movieId, array $parameters = [], array $headers = [])
     {
         return $this->get(
             'list/' . $id . '/item_status',
-            array_merge($parameters, array('movie_id' => $movieId)),
+            array_merge($parameters, ['movie_id' => $movieId]),
             $headers
         );
     }
@@ -73,7 +73,7 @@ class Lists extends AbstractApi
      */
     public function addMediaToList($id, $mediaId)
     {
-        return $this->postJson('list/' . $id . '/add_item', array('media_id' => $mediaId));
+        return $this->postJson('list/' . $id . '/add_item', ['media_id' => $mediaId]);
     }
 
     /**
@@ -85,7 +85,7 @@ class Lists extends AbstractApi
      */
     public function removeMediaFromList($id, $mediaId)
     {
-        return $this->postJson('list/' . $id . '/remove_item', array('media_id' => $mediaId));
+        return $this->postJson('list/' . $id . '/remove_item', ['media_id' => $mediaId]);
     }
 
     /**

@@ -33,7 +33,7 @@ class NetworkRepository extends AbstractRepository
      * @param  array   $headers
      * @return Network
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
         return $this->getFactory()->create(
             $this->getApi()->getNetwork($id, $parameters, $headers)

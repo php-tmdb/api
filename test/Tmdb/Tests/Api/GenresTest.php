@@ -25,7 +25,7 @@ class GenresTest extends TestCase
         $api->expects($this->once())
             ->method('get')
             ->with('genre/list')
-            ->will($this->returnValue(array('genres')))
+            ->will($this->returnValue(['genres']))
         ; // there is no "selective" call, we always lean on the full list
 
         $api->getGenre(self::GENRE_ID);
@@ -62,12 +62,12 @@ class GenresTest extends TestCase
      */
     public function shouldGetGenreAndReturnOne()
     {
-        $api = $this->getApiMock(array('getGenres'));
+        $api = $this->getApiMock(['getGenres']);
 
         $api->expects($this->once())
             ->method('getGenres')
             ->will($this->returnCallback(function () {
-                return array('genres' => array(array('id' => 28, 'name' => 'Action')));
+                return ['genres' => [['id' => 28, 'name' => 'Action']]];
             }))
         ;
 
@@ -82,12 +82,12 @@ class GenresTest extends TestCase
      */
     public function shouldReturnNullWithNoData()
     {
-        $api = $this->getApiMock(array('getGenres'));
+        $api = $this->getApiMock(['getGenres']);
 
         $api->expects($this->once())
             ->method('getGenres')
             ->will($this->returnCallback(function () {
-                return array('genres' => array());
+                return ['genres' => []];
             }))
         ;
 

@@ -23,11 +23,11 @@ class TranslationTest extends TestCase
      */
     public function shouldBeFunctional()
     {
-        $data = array(
+        $data = [
             'iso_639_1'    => 'en',
             'name'         => 'English',
             'english_name' => 'English'
-        );
+        ];
 
         $hydrator = new ObjectHydrator();
 

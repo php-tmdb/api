@@ -89,10 +89,10 @@ class GenreFactoryTest extends TestCase
     {
         $factory = $this->getFactory();
 
-        $data = array('genres' => array(
-            array('id' => 1),
-            array('id' => 2),
-        ));
+        $data = ['genres' => [
+            ['id' => 1],
+            ['id' => 2],
+        ]];
 
         $collection = $factory->createCollection($data);
 

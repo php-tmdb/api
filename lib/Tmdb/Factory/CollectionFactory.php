@@ -44,7 +44,7 @@ class CollectionFactory extends AbstractFactory
      * {@inheritdoc}
      * @return \Tmdb\Model\Collection
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $collection = new Collection();
 
@@ -78,7 +78,7 @@ class CollectionFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         $collection = new GenericCollection();
 

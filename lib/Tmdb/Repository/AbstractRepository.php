@@ -55,7 +55,7 @@ abstract class AbstractRepository
      * @param  array $parameters
      * @return array
      */
-    protected function parseQueryParameters(array $parameters = array())
+    protected function parseQueryParameters(array $parameters = [])
     {
         foreach ($parameters as $key => $candidate) {
             if (is_a($candidate, 'Tmdb\Model\Common\QueryParameter\QueryParameterInterface')) {

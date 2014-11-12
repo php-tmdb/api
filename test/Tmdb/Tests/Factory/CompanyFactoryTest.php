@@ -83,9 +83,9 @@ class CompanyFactoryTest extends TestCase
     public function callingCollectionReturnsEmptyArray()
     {
         $factory    = $this->getFactory();
-        $collection = $factory->createCollection(array());
+        $collection = $factory->createCollection([]);
 
-        $this->assertEquals(array(), $collection);
+        $this->assertEquals([], $collection);
     }
 
     /**

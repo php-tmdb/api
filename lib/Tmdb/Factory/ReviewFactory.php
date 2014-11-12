@@ -23,7 +23,7 @@ class ReviewFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = array())
+    public function create(array $data = [])
     {
         $review = new Review();
 
@@ -33,7 +33,7 @@ class ReviewFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = array())
+    public function createCollection(array $data = [])
     {
         return $this->createResultCollection($data);
     }

@@ -31,7 +31,7 @@ class ListRepository extends AbstractRepository
      * @param  array  $headers
      * @return Lists
      */
-    public function load($id, array $parameters = array(), array $headers = array())
+    public function load($id, array $parameters = [], array $headers = [])
     {
         return $this->getFactory()->create(
             $this->getApi()->getList($id, $parameters, $headers)
@@ -47,7 +47,7 @@ class ListRepository extends AbstractRepository
      * @param  array      $headers
      * @return ItemStatus
      */
-    public function getItemStatus($id, $mediaId, array $parameters = array(), array $headers = array())
+    public function getItemStatus($id, $mediaId, array $parameters = [], array $headers = [])
     {
         return $this->getFactory()->createItemStatus(
             $this->getApi()->getItemStatus($id, $mediaId, $parameters, $headers)
@@ -63,7 +63,7 @@ class ListRepository extends AbstractRepository
      * @param  array  $headers
      * @return string The list id
      */
-    public function createList($name, $description = null, array $parameters = array(), array $headers = array())
+    public function createList($name, $description = null, array $parameters = [], array $headers = [])
     {
         return $this->getFactory()->createResultWithListId(
             $this->getApi()->createList($name, $description, $parameters, $headers)

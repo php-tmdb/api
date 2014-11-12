@@ -115,7 +115,7 @@ class Client
         ApiToken $token,
         ClientInterface $httpClient = null,
         $secure = false,
-        $options = array()
+        $options = []
     )
     {
         $this->eventDispatcher = new EventDispatcher();
@@ -125,10 +125,10 @@ class Client
         $this->constructHttpClient(
             $httpClient,
             array_merge(
-                array(
+                [
                     'token'  => $this->getToken(),
                     'secure' => $this->getSecure()
-                ),
+                ],
                 $options
             )
         );
@@ -467,10 +467,10 @@ class Client
             $path
         ;
 
-        $this->getHttpClient()->setCaching(array(
+        $this->getHttpClient()->setCaching([
             'enabled'    => $enabled,
             'cache_path' => $path
-        ));
+        ]);
 
         return $this;
     }
@@ -527,10 +527,10 @@ class Client
             $path
         ;
 
-        $this->getHttpClient()->setLogging(array(
+        $this->getHttpClient()->setLogging([
             'enabled'  => $enabled,
             'log_path' => $path
-        ));
+        ]);
 
         return $this;
     }

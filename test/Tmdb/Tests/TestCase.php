@@ -26,7 +26,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param  array      $instances
      * @throws \Exception
      */
-    protected function assertInstancesOf($subject, array $instances = array())
+    protected function assertInstancesOf($subject, array $instances = [])
     {
         foreach ($instances as $method => $instance) {
             try {
@@ -77,8 +77,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $mock = $this->getMock(
             'Tmdb\HttpClient\HttpClientInterface',
-            array(),
-            array(array(), $httpClient)
+            [],
+            [[], $httpClient]
         );
 
         $client = new \Tmdb\Client($token, $httpClient);
@@ -97,7 +97,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $token    = new ApiToken('abcdef');
         $response = new Response('200');
 
-        $httpClient = $this->getMock('Guzzle\Http\Client', array('send'));
+        $httpClient = $this->getMock('Guzzle\Http\Client', ['send']);
         $httpClient
             ->expects($this->any())
             ->method('send')
@@ -113,11 +113,11 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      * @param  array                                    $methods
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    protected function getMockedHttpClient(array $methods = array())
+    protected function getMockedHttpClient(array $methods = [])
     {
         return $this->getMock('Guzzle\Http\Client', array_merge(
             $methods,
-            array('send')
+            ['send']
         ));
     }
 
