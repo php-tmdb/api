@@ -12,6 +12,9 @@
  */
 namespace Tmdb\HttpClient;
 
+use GuzzleHttp\Message\RequestInterface;
+use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Event\BeforeSendRequestEvent;
@@ -19,6 +22,7 @@ use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
+use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 use Tmdb\SessionToken;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -38,7 +42,7 @@ class HttpClient implements HttpClientInterface
     protected $base_url = null;
 
     /**
-     * @var Response
+     * @var ResponseInterface
      */
     private $lastResponse;
 
@@ -92,11 +96,11 @@ class HttpClient implements HttpClientInterface
     {
         $this->options = new ParameterBag(array_merge(
             $this->options,
-            array(
+            [
                 'base_url' => $this->base_url,
                 'query'    => $queryParameters,
                 'headers'  => !empty($headers) ? $headers : null
-            )
+            ]
         ));
 
         return $this->options;
@@ -156,7 +160,7 @@ class HttpClient implements HttpClientInterface
      * Set the base url secure / insecure
      *
      * @param $url
-     * @return ClientInterface
+     * @return HttpClientInterface
      */
     public function setBaseUrl($url)
     {
@@ -166,14 +170,14 @@ class HttpClient implements HttpClientInterface
     /**
      * Add an subscriber to enable caching.
      *
-     * @param  array                                     $parameters
-     * @throws \Guzzle\Common\Exception\RuntimeException
+     * @param  array             $parameters
+     * @throws \RuntimeException
      */
     public function setCaching(array $parameters = array())
     {
         if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
             //@codeCoverageIgnoreStart
-            throw new RuntimeException(
+            throw new \RuntimeException(
                 'Could not find the doctrine cache library,
                 have you added doctrine-cache to your composer.json?'
             );
@@ -186,14 +190,14 @@ class HttpClient implements HttpClientInterface
     /**
      * Add an subscriber to enable logging.
      *
-     * @param  array                                     $parameters
-     * @throws \Guzzle\Common\Exception\RuntimeException
+     * @param  array             $parameters
+     * @throws \RuntimeException
      */
     public function setLogging(array $parameters = array())
     {
         if (!array_key_exists('logger', $parameters) && !class_exists('\Monolog\Logger')) {
             //@codeCoverageIgnoreStart
-            throw new RuntimeException(
+            throw new \RuntimeException(
                 'Could not find any logger set and the monolog logger library was not found
                 to provide a default, you have to  set a custom logger on the client or
                 have you forgot adding monolog to your composer.json?'
@@ -215,16 +219,16 @@ class HttpClient implements HttpClientInterface
 
         $logPlugin = null;
 
-        if ($logger instanceof \Psr\Log\LoggerInterface) {
-            $logPlugin = new LogPlugin(
-                new PsrLogAdapter($logger),
-                MessageFormatter::SHORT_FORMAT
-            );
-        }
-
-        if (null !== $logPlugin) {
-            $this->addSubscriber($logPlugin);
-        }
+//        if ($logger instanceof \Psr\Log\LoggerInterface) {
+//            $logPlugin = new LogPlugin(
+//                new PsrLogAdapter($logger),
+//                MessageFormatter::SHORT_FORMAT
+//            );
+//        }
+//
+//        if (null !== $logPlugin) {
+//            $this->addSubscriber($logPlugin);
+//        }
     }
 
     /**
@@ -236,6 +240,25 @@ class HttpClient implements HttpClientInterface
     {
         $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
         $this->addSubscriber($sessionTokenPlugin);
+    }
+
+    /**
+     * @return AdapterInterface
+     */
+    public function getAdapter()
+    {
+        return $this->adapter;
+    }
+
+    /**
+     * @param  AdapterInterface $adapter
+     * @return $this
+     */
+    public function setAdapter(AdapterInterface $adapter)
+    {
+        $this->adapter = $adapter;
+
+        return $this;
     }
 
     private function registerDefaultPlugins()

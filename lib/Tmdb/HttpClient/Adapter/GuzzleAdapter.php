@@ -50,6 +50,7 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * Register the default subscribers for Guzzle
      *
+     * @todo fix
      * @param array $options
      */
     public function registerGuzzleSubscribers(array $options)
