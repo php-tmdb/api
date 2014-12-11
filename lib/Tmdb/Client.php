@@ -14,6 +14,7 @@ namespace Tmdb;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
@@ -544,5 +545,15 @@ class Client
     public function getLogPath()
     {
         return $this->logPath;
+    }
+
+    /**
+     * Get the adapter
+     *
+     * @return AdapterInterface
+     */
+    public function getAdapter()
+    {
+        return $this->getHttpClient()->getAdapter();
     }
 }

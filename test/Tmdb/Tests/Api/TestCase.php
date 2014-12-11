@@ -12,11 +12,17 @@
  */
 namespace Tmdb\Tests\Api;
 
+use Tmdb\Client;
 use Tmdb\Tests\TestCase as Base;
 
 abstract class TestCase extends Base
 {
-    private $_api = null;
+    private $_api;
+
+    /**
+     * @var Client
+     */
+    private $_client;
 
     abstract protected function getApiClass();
 
@@ -26,20 +32,25 @@ abstract class TestCase extends Base
             return $this->_api;
         }
 
-        $client = $this->getClientWithMockedHttpClient($clientMethods);
+        $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
 
         if ($sessionToken) {
-            $client->setSessionToken($sessionToken);
+            $this->_client->setSessionToken($sessionToken);
         }
 
-        return $this->getMockBuilder($this->getApiClass())
+        return $this->_api = $this->getMockBuilder($this->getApiClass())
             ->setMethods(
                 array_merge(
-                    ['get', 'post', 'postJson', 'postRaw', 'head', 'patch', 'delete', 'put'],
+                    [],
                     $methods
                 )
             )
-            ->setConstructorArgs([$client])
+            ->setConstructorArgs([$this->_client])
             ->getMock();
+    }
+
+    protected function getAdapter()
+    {
+        return $this->_client->getHttpClient()->getAdapter();
     }
 }

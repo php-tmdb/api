@@ -20,9 +20,11 @@ class CertificationsTest extends TestCase
     public function shouldGetCertificationsListForMovies()
     {
         $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api
+            ->expects($this->once())
             ->method('get')
-            ->with('certification/movie/list');
+            ->with($this->equalTo('certification/movie/list'))
+        ;
 
         $api->getMovieList();
     }

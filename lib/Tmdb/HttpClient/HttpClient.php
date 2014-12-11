@@ -119,7 +119,10 @@ class HttpClient
      */
     public function get($path, array $parameters = [], array $headers = [])
     {
+        var_dump(get_class($this->adapter));exit;
+        var_dump(__FILE__ . '::' . __LINE__);
         $this->beforeRequest($path, $parameters, $headers);
+        var_dump(__FILE__ . '::' . __LINE__);
 
         return $this->adapter->get($path, $this->options);
     }

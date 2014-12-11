@@ -47,7 +47,10 @@ abstract class AbstractApi implements ApiInterface
      */
     public function get($path, array $parameters = [], $headers = [])
     {
+        var_dump(__FILE__ . '::' . __LINE__);
         $response = $this->client->getHttpClient()->get($path, $parameters, $headers);
+
+        var_dump(__FILE__ . '::' . __LINE__);
 
         return is_string($response) ? json_decode($response, true) : $response;
     }
@@ -149,5 +152,15 @@ abstract class AbstractApi implements ApiInterface
         $response = $this->client->getHttpClient()->patch($path, $body, $parameters, $headers);
 
         return is_string($response) ? json_decode($response, true) : $response;
+    }
+
+    /**
+     * Retrieve the client
+     *
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 }

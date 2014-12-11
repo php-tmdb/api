@@ -20,6 +20,13 @@ class AccountTest extends TestCase
     public function shouldGetAccount()
     {
         $api = $this->getApiMock();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo('account'))
+        ;
+
         $api->getAccount();
     }
 
