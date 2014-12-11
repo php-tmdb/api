@@ -83,8 +83,8 @@ class TvSeasonFactory extends AbstractFactory
 
         $tvSeason = new Season();
 
-        if (array_key_exists('credits', $data) && $data['credits']['cast'] !== null) {
-            if (array_key_exists('cast', $data['credits'])) {
+        if (array_key_exists('credits', $data)) {
+            if (array_key_exists('cast', $data['credits']) && $data['credits']['cast'] !== null) {
                 $tvSeason->getCredits()->setCast(
                     $this->getCastFactory()->createCollection(
                         $data['credits']['cast'],

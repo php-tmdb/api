@@ -29,7 +29,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function post($path, $body = null, ParameterBag $parameterBag)
     {
-        return null;
+        return [];
     }
 
     /**
@@ -37,7 +37,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function put($path, $body = null, ParameterBag $parameterBag)
     {
-        return null;
+        return [];
     }
 
     /**
@@ -45,7 +45,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function patch($path, $body = null, ParameterBag $parameterBag)
     {
-        return null;
+        return [];
     }
 
     /**
@@ -53,7 +53,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function delete($path, $body = null, ParameterBag $parameterBag)
     {
-        return null;
+        return [];
     }
 
     /**
@@ -61,6 +61,6 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function head($path, ParameterBag $parameterBag)
     {
-        return null;
+        return [];
     }
 }

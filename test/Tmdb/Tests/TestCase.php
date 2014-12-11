@@ -105,17 +105,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             ->getMock()
         ;
 
-        $adapter
-            ->expects($this->any())
-            ->method('get')
-            ->will($this->returnValue([]))
-        ;
-
-        $adapter
-            ->expects($this->any())
-            ->method('post')
-            ->will($this->returnValue([]))
-        ;
+        foreach (['get','post','delete'] as $method) {
+            $adapter
+                ->expects($this->any())
+                ->method($method)
+                ->will($this->returnValue([]))
+            ;
+        }
 
         return new Client($token, $adapter);
     }

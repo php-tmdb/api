@@ -105,8 +105,8 @@ class TvFactory extends AbstractFactory
 
         $tvShow = new Tv();
 
-        if (array_key_exists('credits', $data) && $data['credits']['cast'] !== null) {
-            if (array_key_exists('cast', $data['credits'])) {
+        if (array_key_exists('credits', $data)) {
+            if (array_key_exists('cast', $data['credits']) && $data['credits']['cast'] !== null) {
                 $tvShow->getCredits()->setCast(
                     $this->getCastFactory()->createCollection(
                         $data['credits']['cast'],
