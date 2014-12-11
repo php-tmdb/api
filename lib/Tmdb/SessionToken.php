@@ -103,4 +103,9 @@ class SessionToken
     {
         return $this->success;
     }
+
+    public function __toString()
+    {
+        return (string) $this->sessionToken;
+    }
 }

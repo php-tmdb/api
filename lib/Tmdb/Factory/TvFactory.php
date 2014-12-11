@@ -105,7 +105,7 @@ class TvFactory extends AbstractFactory
 
         $tvShow = new Tv();
 
-        if (array_key_exists('credits', $data)) {
+        if (array_key_exists('credits', $data) && $data['credits']['cast'] !== null) {
             if (array_key_exists('cast', $data['credits'])) {
                 $tvShow->getCredits()->setCast(
                     $this->getCastFactory()->createCollection(
@@ -115,7 +115,7 @@ class TvFactory extends AbstractFactory
                 );
             }
 
-            if (array_key_exists('crew', $data['credits'])) {
+            if (array_key_exists('crew', $data['credits']) && $data['credits']['crew'] !== null) {
                 $tvShow->getCredits()->setCrew(
                     $this->getCrewFactory()->createCollection(
                         $data['credits']['crew'],
@@ -126,19 +126,19 @@ class TvFactory extends AbstractFactory
         }
 
         /** External ids */
-        if (array_key_exists('external_ids', $data)) {
+        if (array_key_exists('external_ids', $data) && $data['external_ids'] !== null) {
             $tvShow->setExternalIds(
                 $this->hydrate(new ExternalIds(), $data['external_ids'])
             );
         }
 
         /** Genres */
-        if (array_key_exists('genres', $data)) {
+        if (array_key_exists('genres', $data) && $data['genres'] !== null) {
             $tvShow->setGenres($this->getGenreFactory()->createCollection($data['genres']));
         }
 
         /** Images */
-        if (array_key_exists('images', $data)) {
+        if (array_key_exists('images', $data) && $data['images'] !== null) {
             $tvShow->setImages(
                 $this->getImageFactory()->createCollectionFromTv($data['images'])
             );
@@ -171,16 +171,16 @@ class TvFactory extends AbstractFactory
         }
 
         /** Seasons */
-        if (array_key_exists('seasons', $data)) {
+        if (array_key_exists('seasons', $data) && $data['seasons'] !== null) {
             $tvShow->setSeasons($this->getTvSeasonFactory()->createCollection($data['seasons']));
         }
 
         /** Networks */
-        if (array_key_exists('networks', $data)) {
+        if (array_key_exists('networks', $data) && $data['networks'] !== null) {
             $tvShow->setNetworks($this->getNetworkFactory()->createCollection($data['networks']));
         }
 
-        if (array_key_exists('videos', $data)) {
+        if (array_key_exists('videos', $data) && $data['videos'] !== null) {
             $tvShow->setVideos($this->getVideoFactory()->createCollection($data['videos']));
         }
 
@@ -188,15 +188,15 @@ class TvFactory extends AbstractFactory
             $tvShow->setKeywords($this->getKeywordFactory()->createCollection($data['keywords']['results']));
         }
 
-        if (array_key_exists('changes', $data)) {
+        if (array_key_exists('changes', $data)  && $data['changes'] !== null) {
             $tvShow->setChanges($this->getChangesFactory()->createCollection($data['changes']));
         }
 
-        if (array_key_exists('similar', $data)) {
+        if (array_key_exists('similar', $data)  && $data['similar'] !== null) {
             $tvShow->setSimilar($this->createResultCollection($data['similar']));
         }
 
-        if (array_key_exists('languages', $data)) {
+        if (array_key_exists('languages', $data) && $data['languages'] !== null) {
             $collection = new GenericCollection();
 
             foreach ($data['languages'] as $iso6391) {
@@ -209,7 +209,7 @@ class TvFactory extends AbstractFactory
             $tvShow->setLanguages($collection);
         }
 
-        if (array_key_exists('origin_country', $data)) {
+        if (array_key_exists('origin_country', $data) && $data['origin_country'] !== null) {
             $collection = new GenericCollection();
 
             foreach ($data['origin_country'] as $iso31661) {
@@ -222,7 +222,7 @@ class TvFactory extends AbstractFactory
             $tvShow->setOriginCountry($collection);
         }
 
-        if (array_key_exists('created_by', $data)) {
+        if (array_key_exists('created_by', $data) && $data['created_by'] !== null) {
             $collection = new GenericCollection();
             $factory = new PeopleFactory();
 

@@ -12,22 +12,26 @@
  */
 namespace Tmdb\Tests;
 
+use Tmdb\ApiToken;
+use Tmdb\Client;
+use Tmdb\SessionToken;
+
 class ClientTest extends \Tmdb\Tests\TestCase
 {
     const API_TOKEN = 'abcdef';
     const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
 
     /**
-     * @var Tmdb\Client
+     * @var Client
      */
     private $client = null;
 
     public function setUp()
     {
-        $token        = new \Tmdb\ApiToken(self::API_TOKEN);
-        $sessionToken = new \Tmdb\SessionToken(self::SESSION_TOKEN);
+        $token        = new ApiToken(self::API_TOKEN);
+        $sessionToken = new SessionToken(self::SESSION_TOKEN);
 
-        $client = new \Tmdb\Client($token);
+        $client = new Client($token);
         $client->setSessionToken($sessionToken);
 
         $this->client = $client;
@@ -81,12 +85,12 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @test
+     * @todo review later what the best approach is to test
      */
     public function shouldAddCachePluginWhenEnabled()
     {
-        $token  = new \Tmdb\ApiToken(self::API_TOKEN);
-        $client = new \Tmdb\Client($token);
+        $token  = new ApiToken(self::API_TOKEN);
+        $client = new Client($token);
         $client->setCaching(true, '/tmp/php-tmdb-api');
 
         $listeners = $client->getHttpClient()
@@ -101,16 +105,15 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @test
+     * @todo review later what the best approach is to test
      */
     public function shouldAddLoggingPluginWhenEnabled()
     {
-        $token  = new \Tmdb\ApiToken(self::API_TOKEN);
-        $client = new \Tmdb\Client($token);
+        $token  = new ApiToken(self::API_TOKEN);
+        $client = new Client($token);
         $client->setLogging(true, '/tmp/php-tmdb-api.log');
 
         $listeners = $client->getHttpClient()
-            ->getClient()
             ->getEventDispatcher()
             ->getListeners();
 

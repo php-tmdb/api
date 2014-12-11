@@ -10,8 +10,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-namespace Tmdb\Event;
+namespace Tmdb\Exception;
 
-class BeforeSendRequestEvent extends RequestEvent
+/**
+ * Class ApiTokenException
+ * @package Tmdb\Exception
+ */
+class ApiTokenMissingException extends \RuntimeException
 {
 }

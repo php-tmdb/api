@@ -12,9 +12,10 @@
  */
 namespace Tmdb\Tests\HttpClient\Plugin;
 
-use Guzzle\Common\Event;
-use Guzzle\Http\Message\Request;
+use GuzzleHttp\Message\Request;
 use Tmdb\ApiToken;
+use Tmdb\Common\ParameterBag;
+use Tmdb\Event\BeforeSendRequestEvent;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
 use Tmdb\Tests\TestCase;
 
@@ -28,13 +29,15 @@ class ApiTokenPluginTest extends TestCase
         $token   = new ApiToken('abcdef');
         $request = new Request('GET', '/');
 
-        $event   = new Event();
-        $event['request'] = $request;
+        $parameterBag = new ParameterBag(['request' => $request]);
+        $event        = new BeforeSendRequestEvent($parameterBag);
 
         $plugin = new ApiTokenPlugin($token);
 
         $plugin->onBeforeSend($event);
 
-        $this->assertEquals('/?api_key=abcdef', $event['request']->getUrl());
+        $options = $event->getOptions();
+
+        $this->assertEquals((string) $token, $options['query']['api_key']);
     }
 }

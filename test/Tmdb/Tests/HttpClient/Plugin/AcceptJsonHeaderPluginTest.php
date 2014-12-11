@@ -12,8 +12,9 @@
  */
 namespace Tmdb\Tests\HttpClient\Plugin;
 
-use Guzzle\Common\Event;
-use Guzzle\Http\Message\Request;
+use GuzzleHttp\Message\Request;
+use Tmdb\Common\ParameterBag;
+use Tmdb\Event\BeforeSendRequestEvent;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\Tests\TestCase;
 
@@ -29,15 +30,15 @@ class AcceptJsonHeaderPluginTest extends TestCase
          */
         $request = new Request('GET', '/');
 
-        $event   = new Event();
-        $event['request'] = $request;
+        $parameterBag = new ParameterBag(['request' => $request]);
+        $event        = new BeforeSendRequestEvent($parameterBag);
 
         $plugin = new AcceptJsonHeaderPlugin();
 
         $plugin->onBeforeSend($event);
 
-        $header = $event['request']->getHeaders()->get('accept');
+        $options = $event->getOptions();
 
-        $this->assertEquals('application/json', (string) $header);
+        $this->assertEquals('application/json', (string) $options['headers']['accept']);
     }
 }

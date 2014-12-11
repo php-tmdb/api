@@ -22,36 +22,60 @@ interface AdapterInterface
     /**
      * Compose a GET request
      *
-     * @param string $path       Request path
-     * @param array  $parameters GET Parameters
-     * @param array  $headers    Reconfigure the request headers for this call only
+     * @param string       $path       Request path
+     * @param ParameterBag $parameters Parameters for the request
      *
-     * @return Response Data
+     * @return mixed Data
      */
     public function get($path, ParameterBag $parameters);
 
     /**
-     * Compose a POST request
+     * Send a HEAD request
      *
-     * @param string $path       Request path
-     * @param string $postBody   The post BODY
-     * @param array  $parameters POST Parameters
-     * @param array  $headers    Reconfigure the request headers for this call only
-     *
-     * @return Response Data
+     * @param $path
+     * @param  ParameterBag $parameters
+     * @return mixed
      */
-    public function post($path, $postBody, array $parameters = [], array $headers = []);
+    public function head($path, ParameterBag $parameters);
 
     /**
-     * Compose a POST request but json_encode the body
+     * Compose a POST request
      *
-     * @param string      $path       Request path
-     * @param string|null $postBody   The post BODY
-     * @param array       $parameters POST Parameters
-     * @param array       $headers    Reconfigure the request headers for this call only
+     * @param string       $path       Request path
+     * @param string       $body       The post BODY
+     * @param ParameterBag $parameters POST Parameters
      *
-     * @return Response Data
+     * @return mixed Data
      */
-    public function postJson($path, $postBody, array $parameters = [], array $headers = []);
+    public function post($path, $body = null, ParameterBag $parameters);
 
+    /**
+     * Send a PUT request
+     *
+     * @param $path
+     * @param  null         $body
+     * @param  ParameterBag $parameters
+     * @return mixed
+     */
+    public function put($path, $body = null, ParameterBag $parameters);
+
+    /**
+     * Send a DELETE request
+     *
+     * @param  string       $path
+     * @param  null         $body
+     * @param  ParameterBag $parameters
+     * @return mixed
+     */
+    public function delete($path, $body = null, ParameterBag $parameters);
+
+    /**
+     * Send a PATCH request
+     *
+     * @param $path
+     * @param  null         $body
+     * @param  ParameterBag $parameters
+     * @return mixed
+     */
+    public function patch($path, $body = null, ParameterBag $parameters);
 }

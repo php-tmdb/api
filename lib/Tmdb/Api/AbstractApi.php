@@ -12,7 +12,6 @@
  */
 namespace Tmdb\Api;
 
-use Guzzle\Http\Message\Response;
 use Tmdb\Client;
 
 /**
@@ -48,12 +47,9 @@ abstract class AbstractApi implements ApiInterface
      */
     public function get($path, array $parameters = [], $headers = [])
     {
-        /**
-         * @var Response $response
-         */
         $response = $this->client->getHttpClient()->get($path, $parameters, $headers);
 
-        return $response->json();
+        return is_string($response) ? json_decode($response, true) : $response;
     }
 
     /**
@@ -66,12 +62,9 @@ abstract class AbstractApi implements ApiInterface
      */
     public function head($path, array $parameters = [], $headers = [])
     {
-        /**
-         * @var Response $response
-         */
         $response = $this->client->getHttpClient()->head($path, $parameters, $headers);
 
-        return $response->json();
+        return is_string($response) ? json_decode($response, true) : $response;
     }
 
     /**
@@ -85,12 +78,9 @@ abstract class AbstractApi implements ApiInterface
      */
     public function post($path, $postBody = null, array $parameters = [], $headers = [])
     {
-        /**
-         * @var Response $response
-         */
-        $response = $this->client->getHttpClient()->post($path, $postBody, $parameters, $headers);
+        $response = $this->client->getHttpClient()->getAdapter()->post($path, $postBody, $parameters, $headers);
 
-        return $response->json();
+        return is_string($response) ? json_decode($response, true) : $response;
     }
 
     /**
@@ -104,16 +94,13 @@ abstract class AbstractApi implements ApiInterface
      */
     public function postJson($path, $postBody = null, array $parameters = [], $headers = [])
     {
-        /**
-         * @var Response $response
-         */
         if (is_array($postBody)) {
             $postBody = json_encode($postBody);
         }
 
         $response = $this->client->getHttpClient()->postJson($path, $postBody, $parameters, $headers);
 
-        return $response->json();
+        return is_string($response) ? json_decode($response, true) : $response;
     }
 
     /**
@@ -127,12 +114,9 @@ abstract class AbstractApi implements ApiInterface
      */
     public function put($path, $body = null, array $parameters = [], $headers = [])
     {
-        /**
-         * @var Response $response
-         */
         $response = $this->client->getHttpClient()->put($path, $body, $parameters, $headers);
 
-        return $response->json();
+        return is_string($response) ? json_decode($response, true) : $response;
     }
 
     /**
@@ -146,12 +130,9 @@ abstract class AbstractApi implements ApiInterface
      */
     public function delete($path, $body = null, array $parameters = [], $headers = [])
     {
-        /**
-         * @var Response $response
-         */
         $response = $this->client->getHttpClient()->delete($path, $body, $parameters, $headers);
 
-        return $response->json();
+        return is_string($response) ? json_decode($response, true) : $response;
     }
 
     /**
@@ -165,11 +146,8 @@ abstract class AbstractApi implements ApiInterface
      */
     public function patch($path, $body = null, array $parameters = [], $headers = [])
     {
-        /**
-         * @var Response $response
-         */
         $response = $this->client->getHttpClient()->patch($path, $body, $parameters, $headers);
 
-        return $response->json();
+        return is_string($response) ? json_decode($response, true) : $response;
     }
 }

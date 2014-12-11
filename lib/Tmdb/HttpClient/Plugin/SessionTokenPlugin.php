@@ -12,7 +12,6 @@
  */
 namespace Tmdb\HttpClient\Plugin;
 
-use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\Event\BeforeSendRequestEvent;
 use Tmdb\Event\TmdbEvents;

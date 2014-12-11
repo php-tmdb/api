@@ -12,6 +12,6 @@
  */
 namespace Tmdb\Event;
 
-class BeforeSendRequestEvent extends RequestEvent
+class AfterSendRequestEvent extends RequestEvent
 {
 }

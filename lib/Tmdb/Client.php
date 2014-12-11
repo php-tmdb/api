@@ -12,8 +12,8 @@
  */
 namespace Tmdb;
 
-use GuzzleHttp\ClientInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientInterface;
@@ -97,7 +97,7 @@ class Client
     private $cachePath;
 
     /**
-     * Stores wether the cache is enabled or not
+     * Stores whether the cache is enabled or not
      *
      * @var boolean
      */
@@ -106,24 +106,27 @@ class Client
     /**
      * Construct our client
      *
-     * @param ClientInterface|null $httpClient
-     * @param ApiToken             $token
-     * @param boolean              $secure
-     * @param array                $options
+     * @param object   $adapter
+     * @param ApiToken $token
+     * @param boolean  $secure
+     * @param array    $options
      */
     public function __construct(
         ApiToken $token,
-        ClientInterface $httpClient = null,
+        $adapter = null,
         $secure = false,
         $options = []
     )
     {
-        $this->eventDispatcher = new EventDispatcher();
+        $this->eventDispatcher = array_key_exists('event_dispatcher', $options) && $options['event_dispatcher'] instanceof EventDispatcherInterface ?
+            $options['event_dispatcher']:
+            new EventDispatcher()
+        ;
 
         $this->setToken($token);
         $this->setSecure($secure);
         $this->constructHttpClient(
-            $httpClient,
+            $adapter,
             array_merge(
                 [
                     'token'  => $this->getToken(),
@@ -137,16 +140,16 @@ class Client
     /**
      * Construct the http client
      *
-     * @param  ClientInterface $httpClient
-     * @param  array           $options
+     * @param  object|null $adapter
+     * @param  array       $options
      * @return void
      */
-    private function constructHttpClient(ClientInterface $httpClient = null, array $options)
+    private function constructHttpClient($adapter = null, array $options)
     {
         $this->httpClient  = new HttpClient(
             $this->getBaseUrl(),
             $options,
-            $httpClient ?: new GuzzleAdapter(['base_url' => $this->getBaseUrl()]),
+            $adapter ?: new GuzzleAdapter(['base_url' => $this->getBaseUrl()]),
             $this->eventDispatcher
         );
     }

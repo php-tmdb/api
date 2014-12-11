@@ -19,19 +19,6 @@ namespace Tmdb\HttpClient\Adapter;
 abstract class AbstractAdapter implements AdapterInterface
 {
     /**
-     * @{@inheritdoc}
-     */
-    public function postJson($path, $postBody, array $parameters = [], array $headers = [])
-    {
-        return $this->post(
-            $path,
-            is_array($postBody) ? json_encode($postBody) : $postBody,
-            $parameters,
-            $headers
-        );
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function setQueryParameters(array $queryParameters = [])

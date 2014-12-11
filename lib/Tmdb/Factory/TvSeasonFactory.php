@@ -83,7 +83,7 @@ class TvSeasonFactory extends AbstractFactory
 
         $tvSeason = new Season();
 
-        if (array_key_exists('credits', $data)) {
+        if (array_key_exists('credits', $data) && $data['credits']['cast'] !== null) {
             if (array_key_exists('cast', $data['credits'])) {
                 $tvSeason->getCredits()->setCast(
                     $this->getCastFactory()->createCollection(
@@ -93,7 +93,7 @@ class TvSeasonFactory extends AbstractFactory
                 );
             }
 
-            if (array_key_exists('crew', $data['credits'])) {
+            if (array_key_exists('crew', $data['credits']) && $data['credits']['crew'] !== null) {
                 $tvSeason->getCredits()->setCrew(
                     $this->getCrewFactory()->createCollection(
                         $data['credits']['crew'],
@@ -104,14 +104,14 @@ class TvSeasonFactory extends AbstractFactory
         }
 
         /** External ids */
-        if (array_key_exists('external_ids', $data)) {
+        if (array_key_exists('external_ids', $data) && $data['external_ids'] !== null) {
             $tvSeason->setExternalIds(
                 $this->hydrate(new ExternalIds(), $data['external_ids'])
             );
         }
 
         /** Images */
-        if (array_key_exists('images', $data)) {
+        if (array_key_exists('images', $data) && $data['images'] !== null) {
             $tvSeason->setImages($this->getImageFactory()->createCollectionFromTvSeason($data['images']));
         }
 
@@ -120,15 +120,15 @@ class TvSeasonFactory extends AbstractFactory
         }
 
         /** Episodes */
-        if (array_key_exists('episodes', $data)) {
+        if (array_key_exists('episodes', $data) && $data['episodes'] !== null) {
             $tvSeason->setEpisodes($this->getTvEpisodeFactory()->createCollection($data['episodes']));
         }
 
-        if (array_key_exists('videos', $data)) {
+        if (array_key_exists('videos', $data) && $data['videos'] !== null) {
             $tvSeason->setVideos($this->getVideoFactory()->createCollection($data['videos']));
         }
 
-        if (array_key_exists('changes', $data)) {
+        if (array_key_exists('changes', $data) && $data['changes'] !== null) {
             $tvSeason->setChanges($this->getChangesFactory()->createCollection($data['changes']));
         }
 

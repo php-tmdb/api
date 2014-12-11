@@ -54,4 +54,9 @@ class ApiToken
     {
         return $this->apiToken;
     }
+
+    public function __toString()
+    {
+        return (string) $this->apiToken;
+    }
 }

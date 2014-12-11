@@ -12,15 +12,20 @@
  */
 namespace Tmdb\HttpClient\Adapter;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Message\Response;
 use Tmdb\Common\ParameterBag;
 
 class GuzzleAdapter extends AbstractAdapter
 {
+    /**
+     * @var Client
+     */
     private $client;
 
     public function __construct($options)
     {
-        $this->client = new \GuzzleHttp\Client($options);
+        $this->client = new Client($options);
     }
 
     public function getConfiguration(ParameterBag $parameters)
@@ -31,20 +36,69 @@ class GuzzleAdapter extends AbstractAdapter
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function get($path, ParameterBag $parameters)
+    private function getBody(Response $response)
     {
-        return $this->client->get($path, $this->getConfiguration($parameters));
+        return (string) $response->getBody();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function post($path, $postBody, array $parameters = [], array $headers = [])
+    public function get($path, ParameterBag $parameterBag)
     {
-        return $this->client->post($path, $this->getConfiguration($parameters));
+        $response = $this->client->get($path, $this->getConfiguration($parameterBag));
+
+        return $this->getBody($response);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function post($path, $body = null, ParameterBag $parameterBag)
+    {
+        $response = $this->client->post($path, $body, $this->getConfiguration($parameterBag));
+
+        return $this->getBody($response);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function put($path, $body = null, ParameterBag $parameterBag)
+    {
+        $response =  $this->client->put($path, $body, $this->getConfiguration($parameterBag));
+
+        return $this->getBody($response);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function patch($path, $body = null, ParameterBag $parameterBag)
+    {
+        $response = $this->client->patch($path, $body, $this->getConfiguration($parameterBag));
+
+        return $this->getBody($response);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete($path, $body = null, ParameterBag $parameterBag)
+    {
+        $response = $this->client->delete($path, $body, $this->getConfiguration($parameterBag));
+
+        return $this->getBody($response);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function head($path, ParameterBag $parameterBag)
+    {
+        $response = $this->client->head($path, $this->getConfiguration($parameterBag));
+
+        return $this->getBody($response);
     }
 
     /**

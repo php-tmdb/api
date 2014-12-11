@@ -12,8 +12,9 @@
  */
 namespace Tmdb\Tests\HttpClient\Plugin;
 
-use Guzzle\Common\Event;
-use Guzzle\Http\Message\Request;
+use GuzzleHttp\Message\Request;
+use Tmdb\Common\ParameterBag;
+use Tmdb\Event\BeforeSendRequestEvent;
 use Tmdb\HttpClient\Plugin\AdultFilterPlugin;
 use Tmdb\Tests\TestCase;
 
@@ -26,13 +27,15 @@ class AdultFilterPluginTest extends TestCase
     {
         $request = new Request('GET', '/');
 
-        $event   = new Event();
-        $event['request'] = $request;
+        $parameterBag = new ParameterBag(['request' => $request]);
+        $event        = new BeforeSendRequestEvent($parameterBag);
 
         $plugin = new AdultFilterPlugin(false);
 
         $plugin->onBeforeSend($event);
 
-        $this->assertEquals('/?include_adult=false', $event['request']->getUrl());
+        $options = $event->getOptions();
+
+        $this->assertEquals('false', $options['query']['include_adult']);
     }
 }

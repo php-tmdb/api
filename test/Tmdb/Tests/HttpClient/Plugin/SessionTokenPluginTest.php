@@ -12,8 +12,9 @@
  */
 namespace Tmdb\Tests\HttpClient\Plugin;
 
-use Guzzle\Common\Event;
-use Guzzle\Http\Message\Request;
+use GuzzleHttp\Message\Request;
+use Tmdb\Common\ParameterBag;
+use Tmdb\Event\BeforeSendRequestEvent;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 use Tmdb\SessionToken;
 use Tmdb\Tests\TestCase;
@@ -28,13 +29,15 @@ class SessionTokenPluginTest extends TestCase
         $token   = new SessionToken('abcdef');
         $request = new Request('GET', '/');
 
-        $event   = new Event();
-        $event['request'] = $request;
+        $parameterBag = new ParameterBag(['request' => $request]);
+        $event        = new BeforeSendRequestEvent($parameterBag);
 
         $plugin = new SessionTokenPlugin($token);
 
         $plugin->onBeforeSend($event);
 
-        $this->assertEquals('/?session_id=abcdef', $event['request']->getUrl());
+        $options = $event->getOptions();
+
+        $this->assertEquals((string) $token, $options['query']['session_id']);
     }
 }

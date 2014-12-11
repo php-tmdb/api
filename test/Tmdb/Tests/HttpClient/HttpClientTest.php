@@ -12,23 +12,31 @@
  */
 namespace Tmdb\Tests\HttpClient;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Api\AbstractApi;
 use Tmdb\ApiToken;
 use Tmdb\Client;
+use Tmdb\HttpClient\Adapter\NullAdapter;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Tests\TestCase;
 
 class HttpClientTest extends TestCase
 {
     /**
-     * @var \Guzzle\Http\Client
+     * @var NullAdapter
      */
-    private $guzzleMock;
+    private $adapter;
 
     /**
      * @var TestApi
      */
     private $testApi;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
 
     /**
      * @var Client
@@ -37,12 +45,10 @@ class HttpClientTest extends TestCase
 
     public function setUp()
     {
-        $this->guzzleMock = $this->getMockBuilder('Guzzle\Http\Client')
-            ->setConstructorArgs(['http://www.google.com/', []])
-            ->setMethods([])
-            ->getMock();
+        $this->adapter         = $this->getMock('Tmdb\HttpClient\Adapter\NullAdapter');
+        $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcher');
 
-        $this->client  = new Client(new ApiToken('abcdef'), $this->guzzleMock);
+        $this->client  = new Client(new ApiToken('abcdef'), $this->adapter, false, ['event_dispatcher' => $this->eventDispatcher]);
         $this->testApi = new TestApi($this->client);
     }
 
@@ -53,10 +59,10 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
-        $this->guzzleMock
+        $this->adapter
             ->expects($this->once())
             ->method('get')
-            ->will($this->returnValue($this->getMock('Guzzle\Http\Message\RequestInterface')))
+            ->will($this->returnValue([]))
         ;
 
         $this->testApi->get('/');
@@ -69,10 +75,10 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
-        $this->guzzleMock
+        $this->adapter
             ->expects($this->once())
             ->method('head')
-            ->will($this->returnValue($this->getMock('Guzzle\Http\Message\RequestInterface')))
+            ->will($this->returnValue([]))
         ;
 
         $this->testApi->head('/');
@@ -85,10 +91,10 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
-        $this->guzzleMock
+        $this->adapter
             ->expects($this->once())
             ->method('post')
-            ->will($this->returnValue($this->getMock('Guzzle\Http\Message\RequestInterface')))
+            ->will($this->returnValue([]))
         ;
 
         $this->testApi->post('/', ['name' => 'Henk']);
@@ -101,10 +107,10 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
-        $this->guzzleMock
+        $this->adapter
             ->expects($this->once())
             ->method('patch')
-            ->will($this->returnValue($this->getMock('Guzzle\Http\Message\RequestInterface')))
+            ->will($this->returnValue([]))
         ;
 
         $this->testApi->patch('/');
@@ -117,10 +123,10 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
-        $this->guzzleMock
+        $this->adapter
             ->expects($this->once())
             ->method('delete')
-            ->will($this->returnValue($this->getMock('Guzzle\Http\Message\RequestInterface')))
+            ->will($this->returnValue([]))
         ;
 
         $this->testApi->delete('/');
@@ -133,10 +139,10 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
-        $this->guzzleMock
+        $this->adapter
             ->expects($this->once())
             ->method('put')
-            ->will($this->returnValue($this->getMock('Guzzle\Http\Message\RequestInterface')))
+            ->will($this->returnValue([]))
         ;
 
         $this->testApi->put('/');
@@ -149,7 +155,7 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
-        $this->guzzleMock
+        $this->eventDispatcher
             ->expects($this->once())
             ->method('addSubscriber')
         ;
@@ -161,13 +167,11 @@ class HttpClientTest extends TestCase
     /**
      * @test
      */
-    public function shouldBeAbleToOverrideClient()
+    public function shouldBeAbleToOverrideAdapter()
     {
-        $httpClient = new HttpClient('http://google.nl', [], new \Guzzle\Http\Client());
+        $httpClient = new HttpClient('http://google.nl', ['token' => 'abcdef'], new NullAdapter(), new EventDispatcher());
 
-        $httpClient->setClient(new \stdClass());
-
-        $this->assertInstanceOf('stdClass', $httpClient->getClient());
+        $this->assertInstanceOf('Tmdb\HttpClient\Adapter\NullAdapter', $httpClient->getAdapter());
     }
 }
 

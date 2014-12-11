@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Tests;
 
-use Guzzle\Http\Message\Response;
+use GuzzleHttp\Message\Response;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
@@ -70,20 +70,23 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     {
         $token      = new ApiToken('abcdef');
 
-        $httpClient = $this->getMockedHttpClient();
-        $httpClient
+        $adapter = $this->getMockedHttpClient();
+        $adapter
             ->expects($this->any())
             ->method('send');
 
         $mock = $this->getMock(
-            'Tmdb\HttpClient\HttpClientInterface',
-            [],
-            [[], $httpClient]
+            'Tmdb\HttpClient\Adapter\AdapterInterface'
         );
 
-        $client = new \Tmdb\Client($token, $httpClient);
-        $client->setHttpClient($mock);
+//        $mock = $this->getMock(
+//            'Tmdb\HttpClient\Adapter\AdapterInterface',
+//            [],
+//            [[], $httpClient]
+//        );
 
+        $client = new \Tmdb\Client($token, $mock);
+//        $client->setHttpClient($mock);
         return $client;
     }
 
@@ -95,16 +98,26 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function getMockedTmdbClient()
     {
         $token    = new ApiToken('abcdef');
-        $response = new Response('200');
+        $response = new FakeResponse('200');
 
-        $httpClient = $this->getMock('Guzzle\Http\Client', ['send']);
-        $httpClient
-            ->expects($this->any())
-            ->method('send')
-            ->will($this->returnValue($response))
+        $adapter = $this->getMockBuilder('Tmdb\HttpClient\Adapter\NullAdapter')
+            ->disableOriginalConstructor()
+            ->getMock()
         ;
 
-        return new Client($token, $httpClient);
+        $adapter
+            ->expects($this->any())
+            ->method('get')
+            ->will($this->returnValue([]))
+        ;
+
+        $adapter
+            ->expects($this->any())
+            ->method('post')
+            ->will($this->returnValue([]))
+        ;
+
+        return new Client($token, $adapter);
     }
 
     /**
@@ -133,5 +146,39 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $objectHydrator = new ObjectHydrator();
 
         return $objectHydrator->hydrate($object, $data);
+    }
+}
+
+class FakeResponse
+{
+    private $statusCode;
+
+    public function __construct($statusCode = 200)
+    {
+        $this->statusCode = $statusCode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * @param  int   $statusCode
+     * @return $this
+     */
+    public function setStatusCode($statusCode)
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return '';
     }
 }
