@@ -78,4 +78,11 @@ interface AdapterInterface
      * @return mixed
      */
     public function patch($path, $body = null, ParameterBag $parameters);
+
+    /**
+     * Return the used client
+     *
+     * @return mixed
+     */
+    public function getClient();
 }

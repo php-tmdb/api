@@ -16,7 +16,6 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\HttpClient;
-use Tmdb\HttpClient\HttpClientInterface;
 use Tmdb\ApiToken as Token;
 
 /**
@@ -66,7 +65,7 @@ class Client
     /**
      * Stores the HTTP Client
      *
-     * @var HttpClientInterface
+     * @var HttpClient
      */
     private $httpClient;
 
@@ -139,6 +138,9 @@ class Client
 
     /**
      * Construct the http client
+     *
+     * In case you are implementing your own adapter, the base url will be passed on through the $parameters array
+     * at every call in the respective get / post methods etc. of the adapter.
      *
      * @param  object|null $adapter
      * @param  array       $options
@@ -407,10 +409,7 @@ class Client
     {
         $this->secure = $secure;
 
-        if ($this->httpClient instanceof HttpClientInterface) {
-            $this->getHttpClient()->setBaseUrl($this->getBaseUrl());
-        }
-
+//        $this->getHttpClient()->setBaseUrl($this->getBaseUrl());
         return $this;
     }
 
@@ -428,11 +427,7 @@ class Client
      */
     public function setSessionToken($sessionToken)
     {
-        $this->sessionToken = $sessionToken;
-
-        if ($this->httpClient instanceof HttpClientInterface) {
-            $this->getHttpClient()->setSessionToken($sessionToken);
-        }
+        $this->getHttpClient()->setSessionToken($sessionToken);
 
         return $this;
     }
@@ -522,7 +517,7 @@ class Client
      * @param  string  $path
      * @return $this
      */
-    public function setLogging($enabled = true, $path = null)
+    public function setLogging($enabled = true, $path = null, $logger = null)
     {
         $this->logEnabled = $enabled;
         $this->logPath    = (null === $path) ?
@@ -532,7 +527,7 @@ class Client
 
         $this->getHttpClient()->setLogging([
             'enabled'  => $enabled,
-            'log_path' => $path
+            'log_path' => $path,
         ]);
 
         return $this;

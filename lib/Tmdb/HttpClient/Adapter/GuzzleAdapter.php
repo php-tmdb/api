@@ -112,4 +112,14 @@ class GuzzleAdapter extends AbstractAdapter
         $backoffPlugin = BackoffPlugin::getExponentialBackoff(5);
         $this->addSubscriber($backoffPlugin);
     }
+
+    /**
+     * Retrieve the Guzzle Client
+     *
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
 }
