@@ -22,6 +22,7 @@ class ListsTest extends TestCase
     public function shouldGetList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('list/' . self::LIST_ID);
@@ -35,6 +36,13 @@ class ListsTest extends TestCase
     public function shouldCreateList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('post')
+            ->with($this->equalTo('list'))
+        ;
+
         $api->createList('name', 'description');
     }
 
@@ -44,6 +52,7 @@ class ListsTest extends TestCase
     public function shouldGetItemStatus()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('list/' . self::LIST_ID . '/item_status');
@@ -57,6 +66,13 @@ class ListsTest extends TestCase
     public function shouldAddMediaToList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('post')
+            ->with($this->equalTo('list/'.self::LIST_ID.'/add_item'))
+        ;
+
         $api->addMediaToList(self::LIST_ID, 150);
     }
 
@@ -66,6 +82,13 @@ class ListsTest extends TestCase
     public function shouldRemoveMediaFromList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('post')
+            ->with($this->equalTo('list/'.self::LIST_ID.'/remove_item'))
+        ;
+
         $api->removeMediaFromList(self::LIST_ID, 150);
     }
 
@@ -75,6 +98,13 @@ class ListsTest extends TestCase
     public function shouldDeleteList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('delete')
+            ->with($this->equalTo('list/' . self::LIST_ID))
+        ;
+
         $api->deleteList(self::LIST_ID);
     }
 
@@ -84,6 +114,13 @@ class ListsTest extends TestCase
     public function shouldClearList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('post')
+            ->with($this->equalTo('list/' . self::LIST_ID . '/clear?confirm=true'))
+        ;
+
         $api->clearList(self::LIST_ID, true);
     }
 

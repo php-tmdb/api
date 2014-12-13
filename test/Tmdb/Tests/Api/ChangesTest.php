@@ -34,6 +34,7 @@ class ChangesTest extends TestCase
     public function shouldGetPersonChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/changes');
@@ -47,6 +48,7 @@ class ChangesTest extends TestCase
     public function shouldGetTvChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/changes');

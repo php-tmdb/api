@@ -20,6 +20,7 @@ class TimezonesTest extends TestCase
     public function shouldGetTimezones()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('timezones/list');

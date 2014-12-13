@@ -22,6 +22,7 @@ class GenresTest extends TestCase
     public function shouldGetGenre()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('genre/list')
@@ -37,6 +38,7 @@ class GenresTest extends TestCase
     public function shouldGetGenres()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('genre/list');
@@ -50,6 +52,7 @@ class GenresTest extends TestCase
     public function shouldGetMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('genre/' . self::GENRE_ID. '/movies');

@@ -22,6 +22,7 @@ class MoviesTest extends TestCase
     public function shouldGetMovie()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID);
@@ -35,6 +36,7 @@ class MoviesTest extends TestCase
     public function shouldGetAlternativeTitles()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/alternative_titles');
@@ -48,6 +50,7 @@ class MoviesTest extends TestCase
     public function shouldGetCast()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/credits');
@@ -61,6 +64,7 @@ class MoviesTest extends TestCase
     public function shouldGetImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/images');
@@ -74,6 +78,7 @@ class MoviesTest extends TestCase
     public function shouldGetKeywords()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/keywords');
@@ -87,6 +92,7 @@ class MoviesTest extends TestCase
     public function getReleases()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/releases');
@@ -100,6 +106,7 @@ class MoviesTest extends TestCase
     public function shouldGetTrailers()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/trailers');
@@ -113,6 +120,7 @@ class MoviesTest extends TestCase
     public function shouldGetTranslations()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/translations');
@@ -126,6 +134,7 @@ class MoviesTest extends TestCase
     public function shouldGetSimilarMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/similar');
@@ -139,6 +148,7 @@ class MoviesTest extends TestCase
     public function shouldGetReviews()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/reviews');
@@ -152,6 +162,7 @@ class MoviesTest extends TestCase
     public function shouldGetLists()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/lists');
@@ -165,6 +176,7 @@ class MoviesTest extends TestCase
     public function shouldGetChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/changes');
@@ -178,6 +190,7 @@ class MoviesTest extends TestCase
     public function shouldGetLatest()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/latest');
@@ -191,6 +204,7 @@ class MoviesTest extends TestCase
     public function shouldGetUpcoming()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/upcoming');
@@ -204,6 +218,7 @@ class MoviesTest extends TestCase
     public function shouldGetNowPlaying()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/now_playing');
@@ -217,6 +232,7 @@ class MoviesTest extends TestCase
     public function shouldGetPopular()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/popular');
@@ -230,6 +246,7 @@ class MoviesTest extends TestCase
     public function shouldGetTopRated()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/top_rated');
@@ -243,6 +260,13 @@ class MoviesTest extends TestCase
     public function shouldGetAccountStates()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo('movie/'.self::MOVIE_ID.'/account_states'))
+        ;
+
         $api->getAccountStates(self::MOVIE_ID);
     }
 
@@ -252,6 +276,13 @@ class MoviesTest extends TestCase
     public function shouldRateMovie()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('post')
+            ->with($this->equalTo('movie/'.self::MOVIE_ID.'/rating'))
+        ;
+
         $api->rateMovie(self::MOVIE_ID, 7.5);
     }
 
@@ -261,6 +292,7 @@ class MoviesTest extends TestCase
     public function shouldGetVideos()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/' . self::MOVIE_ID . '/videos');

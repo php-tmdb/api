@@ -23,6 +23,7 @@ class TvSeasonTest extends TestCase
     public function shouldGetSeason()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID);
@@ -36,6 +37,7 @@ class TvSeasonTest extends TestCase
     public function shouldGetSeasonCredits()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/credits');
@@ -49,6 +51,7 @@ class TvSeasonTest extends TestCase
     public function shouldGetSeasonExternalIds()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids');
@@ -62,6 +65,7 @@ class TvSeasonTest extends TestCase
     public function shouldGetSeasonImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/images');
@@ -75,6 +79,7 @@ class TvSeasonTest extends TestCase
     public function shouldGetSeasonVideos()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/videos');

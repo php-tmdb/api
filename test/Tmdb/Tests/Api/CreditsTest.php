@@ -20,6 +20,7 @@ class CreditsTest extends TestCase
     public function shouldGetCredit()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('credit/5240760b5dbf5b0c2c0139db');

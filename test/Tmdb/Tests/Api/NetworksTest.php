@@ -20,6 +20,7 @@ class NetworksTest extends TestCase
     public function shouldGetCredit()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('network/49');

@@ -22,6 +22,7 @@ class CompaniesTest extends TestCase
     public function shouldGetCompany()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('company/' . self::COMPANY_ID);
@@ -35,6 +36,7 @@ class CompaniesTest extends TestCase
     public function shouldGetMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('company/' . self::COMPANY_ID. '/movies');

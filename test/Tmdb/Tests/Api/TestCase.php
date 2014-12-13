@@ -28,6 +28,14 @@ abstract class TestCase extends Base
 
     abstract protected function getApiClass();
 
+    /**
+     * Return regular objects but replace the http adapter to not actually send requests
+     *
+     * @param  array $methods
+     * @param  array $clientMethods
+     * @param  null  $sessionToken
+     * @return mixed
+     */
     protected function getApiWithMockedHttpAdapter(array $methods = [], array $clientMethods = [], $sessionToken = null)
     {
         $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
@@ -41,6 +49,14 @@ abstract class TestCase extends Base
         return new $apiClass($this->_client);
     }
 
+    /**
+     * Mock the API methods themselfs
+     *
+     * @param  array                                    $methods
+     * @param  array                                    $clientMethods
+     * @param  null                                     $sessionToken
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     protected function getMockedApi(array $methods = [], array $clientMethods = [], $sessionToken = null)
     {
         $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
@@ -76,6 +92,11 @@ abstract class TestCase extends Base
         ];
     }
 
+    /**
+     * Shortcut to obtain the http client adapter
+     *
+     * @return \Tmdb\HttpClient\Adapter\AdapterInterface
+     */
     protected function getAdapter()
     {
         return $this->_client->getHttpClient()->getAdapter();

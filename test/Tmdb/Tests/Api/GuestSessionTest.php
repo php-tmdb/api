@@ -23,6 +23,7 @@ class GuestSessionTest extends TestCase
     public function shouldThrowExceptionGettingRatedMoviesWithNoSessionToken()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $api->getRatedMovies();
     }
 

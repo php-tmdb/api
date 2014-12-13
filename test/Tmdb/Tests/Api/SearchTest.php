@@ -30,6 +30,7 @@ class SearchTest extends TestCase
     public function shouldSearchMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('search/movie',  new ParameterBag(array_merge(
@@ -51,6 +52,7 @@ class SearchTest extends TestCase
     public function shouldSearchCollection()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('search/collection',  new ParameterBag(array_merge(
@@ -72,6 +74,7 @@ class SearchTest extends TestCase
     public function shouldSearchTv()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('search/tv',  new ParameterBag(array_merge(
@@ -93,6 +96,7 @@ class SearchTest extends TestCase
     public function shouldPersonCollection()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('search/person',  new ParameterBag(array_merge(
@@ -114,6 +118,7 @@ class SearchTest extends TestCase
     public function shouldSearchList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('search/list',  new ParameterBag(array_merge(
@@ -135,6 +140,7 @@ class SearchTest extends TestCase
     public function shouldSearchCompany()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('search/company',  new ParameterBag(array_merge(
@@ -156,6 +162,7 @@ class SearchTest extends TestCase
     public function shouldSearchKeyword()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('search/keyword',  new ParameterBag(array_merge(
@@ -177,6 +184,7 @@ class SearchTest extends TestCase
     public function shouldSearchMulti()
     {
         $api = $this->getApiWithMockedHttpAdapter();
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('search/multi',  new ParameterBag(array_merge(
