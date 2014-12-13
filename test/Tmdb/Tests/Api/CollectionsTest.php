@@ -21,8 +21,9 @@ class CollectionsTest extends TestCase
      */
     public function shouldGetCollection()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('collection/' . self::COLLECTION_ID);
 
@@ -34,8 +35,9 @@ class CollectionsTest extends TestCase
      */
     public function shouldGetImages()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('collection/' . self::COLLECTION_ID . '/images');
 

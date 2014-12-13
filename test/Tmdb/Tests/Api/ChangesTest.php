@@ -19,8 +19,9 @@ class ChangesTest extends TestCase
      */
     public function shouldGetMovieChanges()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('movie/changes');
 
@@ -32,8 +33,9 @@ class ChangesTest extends TestCase
      */
     public function shouldGetPersonChanges()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/changes');
 
@@ -45,8 +47,9 @@ class ChangesTest extends TestCase
      */
     public function shouldGetTvChanges()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/changes');
 

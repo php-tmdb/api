@@ -19,8 +19,9 @@ class ConfigurationTest extends TestCase
      */
     public function shouldGetConfiguration()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('configuration');
 

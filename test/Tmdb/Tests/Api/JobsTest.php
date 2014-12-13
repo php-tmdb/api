@@ -19,8 +19,9 @@ class JobsTest extends TestCase
      */
     public function shouldGetList()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('job/list');
 

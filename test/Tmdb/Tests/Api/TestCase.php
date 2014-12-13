@@ -12,34 +12,93 @@
  */
 namespace Tmdb\Tests\Api;
 
+use Tmdb\ApiToken;
+use Tmdb\Client;
+use Tmdb\Common\ParameterBag;
 use Tmdb\Tests\TestCase as Base;
 
 abstract class TestCase extends Base
 {
-    private $_api = null;
+    private $_api;
+
+    /**
+     * @var Client
+     */
+    private $_client;
 
     abstract protected function getApiClass();
 
-    protected function getApiMock(array $methods = [], array $clientMethods = [], $sessionToken = null)
+    /**
+     * Return regular objects but replace the http adapter to not actually send requests
+     *
+     * @param  array $methods
+     * @param  array $clientMethods
+     * @param  null  $sessionToken
+     * @return mixed
+     */
+    protected function getApiWithMockedHttpAdapter(array $methods = [], array $clientMethods = [], $sessionToken = null)
     {
-        if ($this->_api) {
-            return $this->_api;
-        }
-
-        $client = $this->getClientWithMockedHttpClient($clientMethods);
+        $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
 
         if ($sessionToken) {
-            $client->setSessionToken($sessionToken);
+            $this->_client->setSessionToken($sessionToken);
         }
 
-        return $this->getMockBuilder($this->getApiClass())
+        $apiClass = $this->getApiClass();
+
+        return new $apiClass($this->_client);
+    }
+
+    /**
+     * Mock the API methods themselfs
+     *
+     * @param  array                                    $methods
+     * @param  array                                    $clientMethods
+     * @param  null                                     $sessionToken
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getMockedApi(array $methods = [], array $clientMethods = [], $sessionToken = null)
+    {
+        $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
+
+        if ($sessionToken) {
+            $this->_client->setSessionToken($sessionToken);
+        }
+
+        return $this->_api = $this->getMockBuilder($this->getApiClass())
             ->setMethods(
                 array_merge(
-                    ['get', 'post', 'postJson', 'postRaw', 'head', 'patch', 'delete', 'put'],
+                    [],
                     $methods
                 )
             )
-            ->setConstructorArgs([$client])
-            ->getMock();
+            ->setConstructorArgs([$this->_client])
+            ->getMock()
+        ;
+    }
+
+    /**
+     * Provide the default query parameters to merge in
+     *
+     * @return array
+     */
+    protected function getDefaultQueryParameters()
+    {
+        return [
+            'secure'   => false,
+            'base_url' => 'http://api.themoviedb.org/3/',
+            'headers'  => new ParameterBag(['accept' => 'application/json']),
+            'token'    => new ApiToken('abcdef')
+        ];
+    }
+
+    /**
+     * Shortcut to obtain the http client adapter
+     *
+     * @return \Tmdb\HttpClient\Adapter\AdapterInterface
+     */
+    protected function getAdapter()
+    {
+        return $this->_client->getHttpClient()->getAdapter();
     }
 }

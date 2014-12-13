@@ -31,7 +31,7 @@ class Genres extends AbstractApi
     {
         $response = $this->getGenres($parameters, $headers);
 
-        if (array_key_exists('genres', $response)) {
+        if (null !== $response && array_key_exists('genres', $response)) {
             return $this->extractGenreByIdFromResponse($id, $response['genres']);
         }
 

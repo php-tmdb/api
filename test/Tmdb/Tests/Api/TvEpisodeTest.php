@@ -23,8 +23,9 @@ class TvEpisodeTest extends TestCase
      */
     public function shouldGetEpisode()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID);
 
@@ -36,8 +37,9 @@ class TvEpisodeTest extends TestCase
      */
     public function shouldGetEpisodeCredits()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/credits');
 
@@ -49,8 +51,9 @@ class TvEpisodeTest extends TestCase
      */
     public function shouldGetEpisodeExternalIds()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/external_ids');
 
@@ -62,8 +65,9 @@ class TvEpisodeTest extends TestCase
      */
     public function shouldGetEpisodeImages()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/images');
 
@@ -75,8 +79,9 @@ class TvEpisodeTest extends TestCase
      */
     public function shouldGetEpisodeVideos()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/videos');
 

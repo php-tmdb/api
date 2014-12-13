@@ -21,8 +21,9 @@ class ReviewsTest extends TestCase
      */
     public function shouldGetPerson()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('review/' . self::REVIEW_ID);
 

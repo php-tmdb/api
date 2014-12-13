@@ -22,7 +22,8 @@ class GuestSessionTest extends TestCase
      */
     public function shouldThrowExceptionGettingRatedMoviesWithNoSessionToken()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
+
         $api->getRatedMovies();
     }
 
@@ -32,9 +33,9 @@ class GuestSessionTest extends TestCase
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');
-        $api          = $this->getApiMock([], [], $sessionToken);
+        $api          = $this->getApiWithMockedHttpAdapter([], [], $sessionToken);
 
-        $api->expects($this->once())
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('guest_session/xyz/rated_movies');
 

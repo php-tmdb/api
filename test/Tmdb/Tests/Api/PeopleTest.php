@@ -21,8 +21,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetPerson()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/' . self::PERSON_ID);
 
@@ -34,8 +35,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetCredits()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/' . self::PERSON_ID . '/combined_credits');
 
@@ -47,8 +49,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetMovieCredits()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/' . self::PERSON_ID . '/movie_credits');
 
@@ -60,8 +63,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetTvCredits()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/' . self::PERSON_ID . '/tv_credits');
 
@@ -73,8 +77,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetImages()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/' . self::PERSON_ID . '/images');
 
@@ -86,8 +91,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetChanges()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/' . self::PERSON_ID . '/changes');
 
@@ -99,8 +105,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetExternalIds()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/' . self::PERSON_ID . '/external_ids');
 
@@ -112,8 +119,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetPopular()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/popular');
 
@@ -125,8 +133,9 @@ class PeopleTest extends TestCase
      */
     public function shouldGetLatest()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('person/latest');
 

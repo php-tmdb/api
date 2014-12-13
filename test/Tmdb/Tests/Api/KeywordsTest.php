@@ -21,8 +21,9 @@ class KeywordsTest extends TestCase
      */
     public function shouldGetKeyword()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('keyword/' . self::KEYWORD_ID);
 
@@ -34,8 +35,9 @@ class KeywordsTest extends TestCase
      */
     public function shouldGetMovies()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('keyword/' . self::KEYWORD_ID . '/movies');
 

@@ -19,8 +19,9 @@ class DiscoverTest extends TestCase
      */
     public function shouldDiscoverMovies()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('discover/movie');
 
@@ -32,8 +33,9 @@ class DiscoverTest extends TestCase
      */
     public function shouldDiscoverTv()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('discover/tv');
 

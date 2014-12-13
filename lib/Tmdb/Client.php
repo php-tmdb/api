@@ -14,6 +14,7 @@ namespace Tmdb;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\ApiToken as Token;
@@ -151,7 +152,7 @@ class Client
         $this->httpClient  = new HttpClient(
             $this->getBaseUrl(),
             $options,
-            $adapter ?: new GuzzleAdapter(['base_url' => $this->getBaseUrl()]),
+            null !== $adapter ? $adapter : new GuzzleAdapter(['base_url' => $this->getBaseUrl()]),
             $this->eventDispatcher
         );
     }
@@ -372,7 +373,7 @@ class Client
     }
 
     /**
-     * @return HttpClient|HttpClientInterface
+     * @return HttpClient
      */
     public function getHttpClient()
     {
@@ -380,9 +381,9 @@ class Client
     }
 
     /**
-     * @param HttpClientInterface $httpClient
+     * @param HttpClient $httpClient
      */
-    public function setHttpClient(HttpClientInterface $httpClient)
+    public function setHttpClient(HttpClient $httpClient)
     {
         $this->httpClient = $httpClient;
     }
@@ -539,5 +540,15 @@ class Client
     public function getLogPath()
     {
         return $this->logPath;
+    }
+
+    /**
+     * Get the adapter
+     *
+     * @return AdapterInterface
+     */
+    public function getAdapter()
+    {
+        return $this->getHttpClient()->getAdapter();
     }
 }

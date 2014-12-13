@@ -14,12 +14,22 @@ namespace Tmdb\Tests\Api;
 
 class AccountTest extends TestCase
 {
+    const ACCOUNT_ID = 1;
+    const MEDIA_ID   = 123;
+
     /**
      * @test
      */
     public function shouldGetAccount()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo('account'))
+        ;
+
         $api->getAccount();
     }
 
@@ -28,8 +38,15 @@ class AccountTest extends TestCase
      */
     public function shouldGetLists()
     {
-        $api = $this->getApiMock();
-        $api->getLists('account_id');
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/lists'))
+        ;
+
+        $api->getLists(self::ACCOUNT_ID);
     }
 
     /**
@@ -37,8 +54,15 @@ class AccountTest extends TestCase
      */
     public function shouldGetFavoriteMovies()
     {
-        $api = $this->getApiMock();
-        $api->getFavoriteMovies('account_id');
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/favorite/movies'))
+        ;
+
+        $api->getFavoriteMovies(self::ACCOUNT_ID);
     }
 
     /**
@@ -46,8 +70,15 @@ class AccountTest extends TestCase
      */
     public function shouldFavorite()
     {
-        $api = $this->getApiMock();
-        $api->favorite('account_id', true);
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('post')
+            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/favorite'))
+        ;
+
+        $api->favorite(self::ACCOUNT_ID, self::MEDIA_ID, true, 'movie');
     }
 
     /**
@@ -55,8 +86,15 @@ class AccountTest extends TestCase
      */
     public function shouldGetRatedMovies()
     {
-        $api = $this->getApiMock();
-        $api->getRatedMovies('account_id');
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/rated/movies'))
+        ;
+
+        $api->getRatedMovies(self::ACCOUNT_ID);
     }
 
     /**
@@ -64,8 +102,15 @@ class AccountTest extends TestCase
      */
     public function shouldGetMovieWatchlist()
     {
-        $api = $this->getApiMock();
-        $api->getMovieWatchlist('account_id');
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/watchlist/movies'))
+        ;
+
+        $api->getMovieWatchlist(self::ACCOUNT_ID);
     }
 
     /**
@@ -73,8 +118,15 @@ class AccountTest extends TestCase
      */
     public function shouldWatchlist()
     {
-        $api = $this->getApiMock();
-        $api->watchlist('account_id', true);
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('post')
+            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/movie_watchlist'))
+        ;
+
+        $api->watchlist(self::ACCOUNT_ID, self::MEDIA_ID, true, 'movie');
     }
 
     protected function getApiClass()

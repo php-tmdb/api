@@ -21,8 +21,9 @@ class GenresTest extends TestCase
      */
     public function shouldGetGenre()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('genre/list')
             ->will($this->returnValue(['genres']))
@@ -36,8 +37,9 @@ class GenresTest extends TestCase
      */
     public function shouldGetGenres()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('genre/list');
 
@@ -49,8 +51,9 @@ class GenresTest extends TestCase
      */
     public function shouldGetMovies()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('genre/' . self::GENRE_ID. '/movies');
 
@@ -62,7 +65,7 @@ class GenresTest extends TestCase
      */
     public function shouldGetGenreAndReturnOne()
     {
-        $api = $this->getApiMock(['getGenres']);
+        $api = $this->getMockedApi(['getGenres']);
 
         $api->expects($this->once())
             ->method('getGenres')
@@ -82,7 +85,7 @@ class GenresTest extends TestCase
      */
     public function shouldReturnNullWithNoData()
     {
-        $api = $this->getApiMock(['getGenres']);
+        $api = $this->getMockedApi(['getGenres']);
 
         $api->expects($this->once())
             ->method('getGenres')
