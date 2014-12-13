@@ -21,8 +21,8 @@ class ListsTest extends TestCase
      */
     public function shouldGetList()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('list/' . self::LIST_ID);
 
@@ -34,7 +34,7 @@ class ListsTest extends TestCase
      */
     public function shouldCreateList()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->createList('name', 'description');
     }
 
@@ -43,8 +43,8 @@ class ListsTest extends TestCase
      */
     public function shouldGetItemStatus()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('list/' . self::LIST_ID . '/item_status');
 
@@ -56,7 +56,7 @@ class ListsTest extends TestCase
      */
     public function shouldAddMediaToList()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->addMediaToList(self::LIST_ID, 150);
     }
 
@@ -65,7 +65,7 @@ class ListsTest extends TestCase
      */
     public function shouldRemoveMediaFromList()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->removeMediaFromList(self::LIST_ID, 150);
     }
 
@@ -74,7 +74,7 @@ class ListsTest extends TestCase
      */
     public function shouldDeleteList()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->deleteList(self::LIST_ID);
     }
 
@@ -83,7 +83,7 @@ class ListsTest extends TestCase
      */
     public function shouldClearList()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->clearList(self::LIST_ID, true);
     }
 

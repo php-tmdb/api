@@ -19,7 +19,7 @@ class AuthenticationTest extends TestCase
      */
     public function shouldGetNewToken()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->getNewToken();
     }
 
@@ -28,7 +28,7 @@ class AuthenticationTest extends TestCase
      */
     public function shouldGetNewSession()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->getNewSession('request_token');
     }
 
@@ -37,7 +37,7 @@ class AuthenticationTest extends TestCase
      */
     public function shouldGetNewGuestSession()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->getNewGuestSession();
     }
 

@@ -15,6 +15,7 @@ namespace Tmdb\Tests;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
+use Tmdb\HttpClient\HttpClient;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -69,23 +70,12 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     {
         $token      = new ApiToken('abcdef');
 
-        $adapter = $this->getMockedHttpClient();
-//        $adapter
-//            ->expects($this->any())
-//            ->method('send');
-
         $mock = $this->getMock(
-            'Tmdb\HttpClient\Adapter\AdapterInterface', ['get', 'post', 'put', 'delete', 'head', 'patch']
+            'Tmdb\HttpClient\Adapter\AdapterInterface', []
         );
 
-//        $mock = $this->getMock(
-//            'Tmdb\HttpClient\Adapter\AdapterInterface',
-//            [],
-//            [[], $httpClient]
-//        );
-
         $client = new \Tmdb\Client($token, $mock);
-//        $client->setHttpClient($mock);
+
         return $client;
     }
 
@@ -113,6 +103,22 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         }
 
         return new Client($token, $adapter);
+    }
+
+    /**
+     * Get mocked http client
+     *
+     * @param  array                                    $methods
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getHttpClientWithMockedAdapter($baseUrl, array $options = [])
+    {
+        return new HttpClient(
+            $baseUrl,
+            $options,
+            $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
+            $this->getMock('Symfony\Component\EventDispatcher\EventDispatcher')
+        );
     }
 
     /**

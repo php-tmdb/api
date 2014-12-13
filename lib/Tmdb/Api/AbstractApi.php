@@ -47,12 +47,9 @@ abstract class AbstractApi implements ApiInterface
      */
     public function get($path, array $parameters = [], $headers = [])
     {
-        var_dump(__FILE__ . '::' . __LINE__);
         $response = $this->client->getHttpClient()->get($path, $parameters, $headers);
 
-        var_dump(__FILE__ . '::' . __LINE__);
-
-        return is_string($response) ? json_decode($response, true) : $response;
+        return $this->decodeResponse($response);
     }
 
     /**
@@ -67,7 +64,7 @@ abstract class AbstractApi implements ApiInterface
     {
         $response = $this->client->getHttpClient()->head($path, $parameters, $headers);
 
-        return is_string($response) ? json_decode($response, true) : $response;
+        return $this->decodeResponse($response);
     }
 
     /**
@@ -81,29 +78,9 @@ abstract class AbstractApi implements ApiInterface
      */
     public function post($path, $postBody = null, array $parameters = [], $headers = [])
     {
-        $response = $this->client->getHttpClient()->getAdapter()->post($path, $postBody, $parameters, $headers);
+        $response = $this->client->getHttpClient()->post($path, $postBody, $parameters, $headers);
 
-        return is_string($response) ? json_decode($response, true) : $response;
-    }
-
-    /**
-     * Send a POST request but json_encode the post body in the request
-     *
-     * @param  string     $path
-     * @param  array|null $postBody
-     * @param  array      $parameters
-     * @param  array      $headers
-     * @return mixed
-     */
-    public function postJson($path, $postBody = null, array $parameters = [], $headers = [])
-    {
-        if (is_array($postBody)) {
-            $postBody = json_encode($postBody);
-        }
-
-        $response = $this->client->getHttpClient()->postJson($path, $postBody, $parameters, $headers);
-
-        return is_string($response) ? json_decode($response, true) : $response;
+        return $this->decodeResponse($response);
     }
 
     /**
@@ -119,7 +96,7 @@ abstract class AbstractApi implements ApiInterface
     {
         $response = $this->client->getHttpClient()->put($path, $body, $parameters, $headers);
 
-        return is_string($response) ? json_decode($response, true) : $response;
+        return $this->decodeResponse($response);
     }
 
     /**
@@ -135,7 +112,7 @@ abstract class AbstractApi implements ApiInterface
     {
         $response = $this->client->getHttpClient()->delete($path, $body, $parameters, $headers);
 
-        return is_string($response) ? json_decode($response, true) : $response;
+        return $this->decodeResponse($response);
     }
 
     /**
@@ -151,7 +128,25 @@ abstract class AbstractApi implements ApiInterface
     {
         $response = $this->client->getHttpClient()->patch($path, $body, $parameters, $headers);
 
-        return is_string($response) ? json_decode($response, true) : $response;
+        return $this->decodeResponse($response);
+    }
+
+    /**
+     * Send a POST request but json_encode the post body in the request
+     *
+     * @param  string $path
+     * @param  mixed  $postBody
+     * @param  array  $parameters
+     * @param  array  $headers
+     * @return mixed
+     */
+    public function postJson($path, $postBody = null, array $parameters = [], $headers = [])
+    {
+        if (is_array($postBody)) {
+            $postBody = json_encode($postBody);
+        }
+
+        return $this->post($path, $postBody, $parameters, $headers);
     }
 
     /**
@@ -162,5 +157,16 @@ abstract class AbstractApi implements ApiInterface
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Decode the response
+     *
+     * @param $response
+     * @return mixed
+     */
+    private function decodeResponse($response)
+    {
+        return is_string($response) ? json_decode($response, true) : $response;
     }
 }

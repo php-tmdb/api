@@ -12,7 +12,9 @@
  */
 namespace Tmdb\Tests\Api;
 
+use Tmdb\ApiToken;
 use Tmdb\Client;
+use Tmdb\Common\ParameterBag;
 use Tmdb\Tests\TestCase as Base;
 
 abstract class TestCase extends Base
@@ -26,12 +28,21 @@ abstract class TestCase extends Base
 
     abstract protected function getApiClass();
 
-    protected function getApiMock(array $methods = [], array $clientMethods = [], $sessionToken = null)
+    protected function getApiWithMockedHttpAdapter(array $methods = [], array $clientMethods = [], $sessionToken = null)
     {
-        if ($this->_api) {
-            return $this->_api;
+        $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
+
+        if ($sessionToken) {
+            $this->_client->setSessionToken($sessionToken);
         }
 
+        $apiClass = $this->getApiClass();
+
+        return new $apiClass($this->_client);
+    }
+
+    protected function getMockedApi(array $methods = [], array $clientMethods = [], $sessionToken = null)
+    {
         $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
 
         if ($sessionToken) {
@@ -46,7 +57,23 @@ abstract class TestCase extends Base
                 )
             )
             ->setConstructorArgs([$this->_client])
-            ->getMock();
+            ->getMock()
+        ;
+    }
+
+    /**
+     * Provide the default query parameters to merge in
+     *
+     * @return array
+     */
+    protected function getDefaultQueryParameters()
+    {
+        return [
+            'secure'   => false,
+            'base_url' => 'http://api.themoviedb.org/3/',
+            'headers'  => new ParameterBag(['accept' => 'application/json']),
+            'token'    => new ApiToken('abcdef')
+        ];
     }
 
     protected function getAdapter()

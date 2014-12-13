@@ -150,7 +150,7 @@ class Client
         $this->httpClient  = new HttpClient(
             $this->getBaseUrl(),
             $options,
-            $adapter ?: new GuzzleAdapter(['base_url' => $this->getBaseUrl()]),
+            null !== $adapter ? $adapter : new GuzzleAdapter(['base_url' => $this->getBaseUrl()]),
             $this->eventDispatcher
         );
     }
@@ -371,7 +371,7 @@ class Client
     }
 
     /**
-     * @return HttpClient|HttpClientInterface
+     * @return HttpClient
      */
     public function getHttpClient()
     {
@@ -379,9 +379,9 @@ class Client
     }
 
     /**
-     * @param HttpClientInterface $httpClient
+     * @param HttpClient $httpClient
      */
-    public function setHttpClient(HttpClientInterface $httpClient)
+    public function setHttpClient(HttpClient $httpClient)
     {
         $this->httpClient = $httpClient;
     }

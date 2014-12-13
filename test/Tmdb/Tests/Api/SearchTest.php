@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Api;
 
+use Tmdb\Common\ParameterBag;
+
 class SearchTest extends TestCase
 {
     const QUERY_MOVIE      = 'resident evil';
@@ -27,10 +29,18 @@ class SearchTest extends TestCase
      */
     public function shouldSearchMovies()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/movie', ['query' => urlencode(self::QUERY_MOVIE)]);
+            ->with('search/movie',  new ParameterBag(array_merge(
+                $this->getDefaultQueryParameters(),
+                [
+                    'query' => new ParameterBag([
+                        'query'   => urlencode(self::QUERY_MOVIE),
+                        'api_key' => 'abcdef'
+                    ])
+                ]
+        )));
 
         $api->searchMovies(self::QUERY_MOVIE);
     }
@@ -40,10 +50,18 @@ class SearchTest extends TestCase
      */
     public function shouldSearchCollection()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/collection', ['query' => urlencode(self::QUERY_COLLECTION)]);
+            ->with('search/collection',  new ParameterBag(array_merge(
+                $this->getDefaultQueryParameters(),
+                [
+                    'query' => new ParameterBag([
+                        'query'   => urlencode(self::QUERY_COLLECTION),
+                        'api_key' => 'abcdef'
+                    ])
+                ]
+        )));
 
         $api->searchCollection(self::QUERY_COLLECTION);
     }
@@ -53,10 +71,18 @@ class SearchTest extends TestCase
      */
     public function shouldSearchTv()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/tv', ['query' => urlencode(self::QUERY_TV)]);
+            ->with('search/tv',  new ParameterBag(array_merge(
+                $this->getDefaultQueryParameters(),
+                [
+                    'query' => new ParameterBag([
+                        'query'   => urlencode(self::QUERY_TV),
+                        'api_key' => 'abcdef'
+                    ])
+                ]
+        )));
 
         $api->searchTv(self::QUERY_TV);
     }
@@ -66,10 +92,18 @@ class SearchTest extends TestCase
      */
     public function shouldPersonCollection()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/person', ['query' => urlencode(self::QUERY_PERSON)]);
+            ->with('search/person',  new ParameterBag(array_merge(
+                $this->getDefaultQueryParameters(),
+                [
+                    'query' => new ParameterBag([
+                        'query'   => urlencode(self::QUERY_PERSON),
+                        'api_key' => 'abcdef'
+                    ])
+                ]
+        )));
 
         $api->searchPersons(self::QUERY_PERSON);
     }
@@ -79,10 +113,18 @@ class SearchTest extends TestCase
      */
     public function shouldSearchList()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/list', ['query' => urlencode(self::QUERY_LIST)]);
+            ->with('search/list',  new ParameterBag(array_merge(
+                $this->getDefaultQueryParameters(),
+                [
+                    'query' => new ParameterBag([
+                        'query'   => urlencode(self::QUERY_LIST),
+                        'api_key' => 'abcdef'
+                    ])
+                ]
+        )));
 
         $api->searchList(self::QUERY_LIST);
     }
@@ -92,10 +134,18 @@ class SearchTest extends TestCase
      */
     public function shouldSearchCompany()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/company', ['query' => urlencode(self::QUERY_COMPANY)]);
+            ->with('search/company',  new ParameterBag(array_merge(
+                $this->getDefaultQueryParameters(),
+                [
+                    'query' => new ParameterBag([
+                        'query'   => urlencode(self::QUERY_COMPANY),
+                        'api_key' => 'abcdef'
+                    ])
+                ]
+        )));
 
         $api->searchCompany(self::QUERY_COMPANY);
     }
@@ -105,10 +155,18 @@ class SearchTest extends TestCase
      */
     public function shouldSearchKeyword()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/keyword', ['query' => urlencode(self::QUERY_KEYWORD)]);
+            ->with('search/keyword',  new ParameterBag(array_merge(
+                $this->getDefaultQueryParameters(),
+                [
+                    'query' => new ParameterBag([
+                        'query'   => urlencode(self::QUERY_KEYWORD),
+                        'api_key' => 'abcdef'
+                    ])
+                ]
+        )));
 
         $api->searchKeyword(self::QUERY_KEYWORD);
     }
@@ -118,10 +176,18 @@ class SearchTest extends TestCase
      */
     public function shouldSearchMulti()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/multi', ['query' => urlencode(self::QUERY_KEYWORD)]);
+            ->with('search/multi',  new ParameterBag(array_merge(
+                $this->getDefaultQueryParameters(),
+                [
+                    'query' => new ParameterBag([
+                        'query'   => urlencode(self::QUERY_KEYWORD),
+                        'api_key' => 'abcdef'
+                    ])
+                ]
+        )));
 
         $api->searchMulti(self::QUERY_KEYWORD);
     }

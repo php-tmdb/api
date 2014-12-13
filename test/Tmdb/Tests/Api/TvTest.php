@@ -21,8 +21,8 @@ class TvTest extends TestCase
      */
     public function shouldGetTvshow()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID);
 
@@ -34,8 +34,8 @@ class TvTest extends TestCase
      */
     public function shouldGetCredits()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/credits');
 
@@ -47,8 +47,8 @@ class TvTest extends TestCase
      */
     public function getExternalIds()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/external_ids');
 
@@ -60,8 +60,8 @@ class TvTest extends TestCase
      */
     public function shouldGetImages()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/images');
 
@@ -73,8 +73,8 @@ class TvTest extends TestCase
      */
     public function shouldGetTranslations()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/translations');
 
@@ -86,8 +86,8 @@ class TvTest extends TestCase
      */
     public function shouldGetPopular()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/popular');
 
@@ -99,8 +99,8 @@ class TvTest extends TestCase
      */
     public function shouldGetTopRated()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/top_rated');
 
@@ -112,8 +112,8 @@ class TvTest extends TestCase
      */
     public function shouldGetOnTheAir()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/on_the_air');
 
@@ -125,8 +125,8 @@ class TvTest extends TestCase
      */
     public function shouldGetAiringToday()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/airing_today');
 
@@ -138,8 +138,8 @@ class TvTest extends TestCase
      */
     public function shouldGetVideos()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/' . self::TV_ID . '/videos');
 
@@ -151,8 +151,8 @@ class TvTest extends TestCase
      */
     public function shouldGetLatest()
     {
-        $api = $this->getApiMock();
-        $api->expects($this->once())
+        $api = $this->getApiWithMockedHttpAdapter();
+        $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with('tv/latest');
 

@@ -28,8 +28,6 @@ class Account extends AbstractApi
      */
     public function getAccount(array $parameters = [], array $headers = [])
     {
-        var_dump(__FILE__ . '::' . __LINE__);
-
         return $this->get('account', $parameters, $headers);
     }
 

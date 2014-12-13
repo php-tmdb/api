@@ -19,7 +19,7 @@ class AccountTest extends TestCase
      */
     public function shouldGetAccount()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
 
         $this->getAdapter()
             ->expects($this->once())
@@ -35,7 +35,7 @@ class AccountTest extends TestCase
      */
     public function shouldGetLists()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->getLists('account_id');
     }
 
@@ -44,7 +44,7 @@ class AccountTest extends TestCase
      */
     public function shouldGetFavoriteMovies()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->getFavoriteMovies('account_id');
     }
 
@@ -53,7 +53,7 @@ class AccountTest extends TestCase
      */
     public function shouldFavorite()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->favorite('account_id', true);
     }
 
@@ -62,7 +62,7 @@ class AccountTest extends TestCase
      */
     public function shouldGetRatedMovies()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->getRatedMovies('account_id');
     }
 
@@ -71,7 +71,7 @@ class AccountTest extends TestCase
      */
     public function shouldGetMovieWatchlist()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->getMovieWatchlist('account_id');
     }
 
@@ -80,7 +80,7 @@ class AccountTest extends TestCase
      */
     public function shouldWatchlist()
     {
-        $api = $this->getApiMock();
+        $api = $this->getApiWithMockedHttpAdapter();
         $api->watchlist('account_id', true);
     }
 

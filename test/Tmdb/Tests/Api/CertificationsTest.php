@@ -19,8 +19,9 @@ class CertificationsTest extends TestCase
      */
     public function shouldGetCertificationsListForMovies()
     {
-        $api = $this->getApiMock();
-        $api
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
             ->expects($this->once())
             ->method('get')
             ->with($this->equalTo('certification/movie/list'))
