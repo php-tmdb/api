@@ -12,8 +12,10 @@
  */
 namespace Tmdb\HttpClient;
 
+use Doctrine\Common\Cache\FilesystemCache;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Subscriber\Cache\CacheStorage;
 use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
 use GuzzleHttp\Subscriber\Log\LogSubscriber;
 use Monolog\Handler\StreamHandler;
@@ -239,7 +241,13 @@ class HttpClient
             //@codeCoverageIgnoreEnd
         }
 
-//        CacheSubscriber::attach($this->client);
+        if ($this->getAdapter() instanceof GuzzleAdapter) {
+            CacheSubscriber::attach(
+                $this->getAdapter()->getClient(),
+                ['storage' => new CacheStorage(new FilesystemCache($parameters['path']))]
+            );
+        }
+
         return $this;
     }
 
@@ -266,7 +274,7 @@ class HttpClient
             $logger = new Logger('php-tmdb-api');
             $logger->pushHandler(
                 new StreamHandler(
-                    $parameters['log_path'],
+                    $parameters['path'],
                     $level
                 )
             );
@@ -320,6 +328,11 @@ class HttpClient
         return $this;
     }
 
+    /**
+     * Register the default plugins
+     *
+     * @return $this
+     */
     private function registerDefaultPlugins()
     {
         if (!array_key_exists('token', $this->options)) {

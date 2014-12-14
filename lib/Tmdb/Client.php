@@ -410,7 +410,6 @@ class Client
     {
         $this->secure = $secure;
 
-//        $this->getHttpClient()->setBaseUrl($this->getBaseUrl());
         return $this;
     }
 
@@ -462,13 +461,13 @@ class Client
     {
         $this->cacheEnabled = $enabled;
         $this->cachePath    = (null === $path) ?
-            sys_get_temp_dir() . '/php-tmdb-api' :
+            sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api' :
             $path
         ;
 
         $this->getHttpClient()->setCaching([
-            'enabled'    => $enabled,
-            'cache_path' => $path
+            'enabled' => $enabled,
+            'path'    => $this->cachePath
         ]);
 
         return $this;
@@ -514,6 +513,8 @@ class Client
      *
      * Leaving the second argument out will use sys_get_temp_dir()
      *
+     * @todo
+     *
      * @param  boolean $enabled
      * @param  string  $path
      * @return $this
@@ -527,8 +528,8 @@ class Client
         ;
 
         $this->getHttpClient()->setLogging([
-            'enabled'  => $enabled,
-            'log_path' => $path,
+            'enabled' => $enabled,
+            'path'    => $path,
         ]);
 
         return $this;

@@ -17,20 +17,18 @@
         "ext-curl": "*",
         "symfony/event-dispatcher": "~2.5",
         "guzzlehttp/guzzle": "~5.0",
-        "guzzlehttp/cache-subscriber": "dev-master",
+        "guzzlehttp/cache-subscriber": "0.1.*@dev",
         "guzzlehttp/log-subscriber": "~1.0",
         "psr/log": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
-        "doctrine/cache": ">=1.3.0",
-        "monolog/monolog": ">=1.10.0"
+        "monolog/monolog": ">=1.11.0"
     },
     "suggest": {
-        "doctrine/cache": "Required if you want to make use of caching features.",
         "monolog/monolog": "Required if you want to make use of logging features."
     },
     "autoload": {
-        "psr-0": { "Tmdb\\": "lib/" }
+        "psr-4": { "Tmdb\\": "lib/" }
     }
 }
