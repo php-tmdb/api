@@ -21,11 +21,6 @@ use Tmdb\HttpClient\Response;
 class RequestEvent extends Event
 {
     /**
-     * @var HttpClient
-     */
-    private $httpClient;
-
-    /**
      * @var Request
      */
     private $request;
@@ -38,15 +33,11 @@ class RequestEvent extends Event
     /**
      * Construct the request event
      *
-     * @param HttpClient $httpClient
-     * @param Request    $request
+     * @param Request $request
      */
-    public function __construct(
-        HttpClient $httpClient,
-        Request $request
-    ) {
-        $this->httpClient = $httpClient;
-        $this->request    = $request;
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
     }
 
     /**
@@ -87,25 +78,6 @@ class RequestEvent extends Event
     public function getBody()
     {
         return $this->request->getBody();
-    }
-
-    /**
-     * @return HttpClient
-     */
-    public function getHttpClient()
-    {
-        return $this->httpClient;
-    }
-
-    /**
-     * @param  HttpClient $httpClient
-     * @return $this
-     */
-    public function setHttpClient($httpClient)
-    {
-        $this->httpClient = $httpClient;
-
-        return $this;
     }
 
     /**

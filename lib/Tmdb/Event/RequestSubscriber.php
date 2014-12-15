@@ -12,19 +12,19 @@
  */
 namespace Tmdb\Event;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\Exception\RuntimeException;
+use Tmdb\HttpClient\HttpClientEventSubscriber;
 
 /**
  * Class RequestSubscriber
  * @package Tmdb\Event
  */
-class RequestSubscriber implements EventSubscriberInterface
+class RequestSubscriber extends HttpClientEventSubscriber
 {
     public static function getSubscribedEvents()
     {
         return [
-            TmdbEvents::REQUEST        => 'send',
+            TmdbEvents::REQUEST => 'send',
         ];
     }
 
@@ -57,17 +57,17 @@ class RequestSubscriber implements EventSubscriberInterface
         try {
             switch ($event->getMethod()) {
                 case 'GET':
-                    return $event->getHttpClient()->getAdapter()->get($event->getRequest());
+                    return $this->getHttpClient()->getAdapter()->get($event->getRequest());
                 case 'HEAD':
-                    return $event->getHttpClient()->getAdapter()->head($event->getRequest());
+                    return $this->getHttpClient()->getAdapter()->head($event->getRequest());
                 case 'POST':
-                    return $event->getHttpClient()->getAdapter()->post($event->getRequest());
+                    return $this->getHttpClient()->getAdapter()->post($event->getRequest());
                 case 'PUT':
-                    return $event->getHttpClient()->getAdapter()->put($event->getRequest());
+                    return $this->getHttpClient()->getAdapter()->put($event->getRequest());
                 case 'PATCH':
-                    return $event->getHttpClient()->getAdapter()->patch($event->getRequest());
+                    return $this->getHttpClient()->getAdapter()->patch($event->getRequest());
                 case 'DELETE':
-                    return $event->getHttpClient()->getAdapter()->delete($event->getRequest());
+                    return $this->getHttpClient()->getAdapter()->delete($event->getRequest());
                 default:
                     throw new RuntimeException(sprintf('Unkown request method "%s".', $event->getMethod()));
             }

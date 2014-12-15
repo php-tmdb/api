@@ -79,7 +79,7 @@ class HttpClient
      */
     public function __construct(
         $baseUrl,
-        array $options,
+        array $options = [],
         AdapterInterface $adapter,
         EventDispatcher $eventDispatcher
     )
@@ -96,7 +96,7 @@ class HttpClient
     {
         $request = $this->createRequest($path, $method, $parameters, $headers, $body);
 
-        $event = new RequestEvent($this, $request);
+        $event = new RequestEvent($request);
         $this->eventDispatcher->dispatch(TmdbEvents::REQUEST, $event);
 
         return $this->lastResponse = $event->getResponse();
@@ -183,6 +183,10 @@ class HttpClient
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
+        if ($subscriber instanceof HttpClientEventSubscriber) {
+            $subscriber->attachHttpClient($this);
+        }
+
         $this->eventDispatcher->addSubscriber($subscriber);
     }
 
