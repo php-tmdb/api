@@ -25,7 +25,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID);
+            ->with($this->getRequest('movie/' . self::MOVIE_ID));
 
         $api->getMovie(self::MOVIE_ID);
     }
@@ -39,7 +39,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/alternative_titles');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/alternative_titles'));
 
         $api->getAlternativeTitles(self::MOVIE_ID);
     }
@@ -53,7 +53,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/credits');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/credits'));
 
         $api->getCredits(self::MOVIE_ID);
     }
@@ -67,7 +67,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/images');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/images'));
 
         $api->getImages(self::MOVIE_ID);
     }
@@ -81,7 +81,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/keywords');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/keywords'));
 
         $api->getKeywords(self::MOVIE_ID);
     }
@@ -95,7 +95,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/releases');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/releases'));
 
         $api->getReleases(self::MOVIE_ID);
     }
@@ -109,7 +109,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/trailers');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/trailers'));
 
         $api->getTrailers(self::MOVIE_ID);
     }
@@ -123,7 +123,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/translations');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/translations'));
 
         $api->getTranslations(self::MOVIE_ID);
     }
@@ -137,7 +137,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/similar');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/similar'));
 
         $api->getSimilar(self::MOVIE_ID);
     }
@@ -151,7 +151,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/reviews');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/reviews'));
 
         $api->getReviews(self::MOVIE_ID);
     }
@@ -165,7 +165,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/lists');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/lists'));
 
         $api->getLists(self::MOVIE_ID);
     }
@@ -179,7 +179,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/changes');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/changes'));
 
         $api->getChanges(self::MOVIE_ID);
     }
@@ -193,7 +193,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/latest');
+            ->with($this->getRequest('movie/latest'));
 
         $api->getLatest();
     }
@@ -207,7 +207,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/upcoming');
+            ->with($this->getRequest('movie/upcoming'));
 
         $api->getUpcoming();
     }
@@ -221,7 +221,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/now_playing');
+            ->with($this->getRequest('movie/now_playing'));
 
         $api->getNowPlaying();
     }
@@ -235,7 +235,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/popular');
+            ->with($this->getRequest('movie/popular'));
 
         $api->getPopular();
     }
@@ -249,7 +249,8 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/top_rated');
+            ->with($this->getRequest('movie/top_rated'))
+        ;
 
         $api->getTopRated();
     }
@@ -264,7 +265,7 @@ class MoviesTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('movie/'.self::MOVIE_ID.'/account_states'))
+            ->with($this->getRequest('movie/'.self::MOVIE_ID.'/account_states'))
         ;
 
         $api->getAccountStates(self::MOVIE_ID);
@@ -280,7 +281,7 @@ class MoviesTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->equalTo('movie/'.self::MOVIE_ID.'/rating'))
+            ->with($this->getRequest('movie/'.self::MOVIE_ID.'/rating', [], 'POST', [], ['value' => 7.5]))
         ;
 
         $api->rateMovie(self::MOVIE_ID, 7.5);
@@ -295,7 +296,7 @@ class MoviesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/' . self::MOVIE_ID . '/videos');
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/videos'));
 
         $api->getVideos(self::MOVIE_ID);
     }

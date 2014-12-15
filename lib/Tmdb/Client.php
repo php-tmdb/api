@@ -427,7 +427,7 @@ class Client
      */
     public function setSessionToken($sessionToken)
     {
-        $this->getHttpClient()->setSessionToken($sessionToken);
+        $this->sessionToken = $sessionToken;
 
         return $this;
     }

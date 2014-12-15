@@ -68,9 +68,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function getClientWithMockedHttpClient()
     {
-        $token      = new ApiToken('abcdef');
-
-        $mock = $this->getMock(
+        $token = new ApiToken('abcdef');
+        $mock  = $this->getMock(
             'Tmdb\HttpClient\Adapter\AdapterInterface', []
         );
 

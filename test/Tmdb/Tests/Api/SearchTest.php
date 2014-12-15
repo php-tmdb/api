@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Tests\Api;
 
-use Tmdb\Common\ParameterBag;
-
 class SearchTest extends TestCase
 {
     const QUERY_MOVIE      = 'resident evil';
@@ -33,15 +31,8 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/movie',  new ParameterBag(array_merge(
-                $this->getDefaultQueryParameters(),
-                [
-                    'query' => new ParameterBag([
-                        'query'   => urlencode(self::QUERY_MOVIE),
-                        'api_key' => 'abcdef'
-                    ])
-                ]
-        )));
+            ->with($this->getRequest('search/movie', ['query' => urlencode(self::QUERY_MOVIE)]))
+        ;
 
         $api->searchMovies(self::QUERY_MOVIE);
     }
@@ -55,15 +46,8 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/collection',  new ParameterBag(array_merge(
-                $this->getDefaultQueryParameters(),
-                [
-                    'query' => new ParameterBag([
-                        'query'   => urlencode(self::QUERY_COLLECTION),
-                        'api_key' => 'abcdef'
-                    ])
-                ]
-        )));
+            ->with($this->getRequest('search/collection', ['query' => urlencode(self::QUERY_COLLECTION)]))
+        ;
 
         $api->searchCollection(self::QUERY_COLLECTION);
     }
@@ -77,15 +61,8 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/tv',  new ParameterBag(array_merge(
-                $this->getDefaultQueryParameters(),
-                [
-                    'query' => new ParameterBag([
-                        'query'   => urlencode(self::QUERY_TV),
-                        'api_key' => 'abcdef'
-                    ])
-                ]
-        )));
+            ->with($this->getRequest('search/tv', ['query' => urlencode(self::QUERY_TV)]))
+        ;
 
         $api->searchTv(self::QUERY_TV);
     }
@@ -99,15 +76,8 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/person',  new ParameterBag(array_merge(
-                $this->getDefaultQueryParameters(),
-                [
-                    'query' => new ParameterBag([
-                        'query'   => urlencode(self::QUERY_PERSON),
-                        'api_key' => 'abcdef'
-                    ])
-                ]
-        )));
+            ->with($this->getRequest('search/person', ['query' => urlencode(self::QUERY_PERSON)]))
+        ;
 
         $api->searchPersons(self::QUERY_PERSON);
     }
@@ -121,15 +91,8 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/list',  new ParameterBag(array_merge(
-                $this->getDefaultQueryParameters(),
-                [
-                    'query' => new ParameterBag([
-                        'query'   => urlencode(self::QUERY_LIST),
-                        'api_key' => 'abcdef'
-                    ])
-                ]
-        )));
+            ->with($this->getRequest('search/list', ['query' => urlencode(self::QUERY_LIST)]))
+        ;
 
         $api->searchList(self::QUERY_LIST);
     }
@@ -143,15 +106,8 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/company',  new ParameterBag(array_merge(
-                $this->getDefaultQueryParameters(),
-                [
-                    'query' => new ParameterBag([
-                        'query'   => urlencode(self::QUERY_COMPANY),
-                        'api_key' => 'abcdef'
-                    ])
-                ]
-        )));
+            ->with($this->getRequest('search/company', ['query' => urlencode(self::QUERY_COMPANY)]))
+        ;
 
         $api->searchCompany(self::QUERY_COMPANY);
     }
@@ -165,15 +121,8 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/keyword',  new ParameterBag(array_merge(
-                $this->getDefaultQueryParameters(),
-                [
-                    'query' => new ParameterBag([
-                        'query'   => urlencode(self::QUERY_KEYWORD),
-                        'api_key' => 'abcdef'
-                    ])
-                ]
-        )));
+            ->with($this->getRequest('search/keyword', ['query' => urlencode(self::QUERY_KEYWORD)]))
+        ;
 
         $api->searchKeyword(self::QUERY_KEYWORD);
     }
@@ -187,15 +136,8 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('search/multi',  new ParameterBag(array_merge(
-                $this->getDefaultQueryParameters(),
-                [
-                    'query' => new ParameterBag([
-                        'query'   => urlencode(self::QUERY_KEYWORD),
-                        'api_key' => 'abcdef'
-                    ])
-                ]
-        )));
+            ->with($this->getRequest('search/multi', ['query' => urlencode(self::QUERY_KEYWORD)]))
+        ;
 
         $api->searchMulti(self::QUERY_KEYWORD);
     }

@@ -24,7 +24,7 @@ class CertificationsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('certification/movie/list'))
+            ->with($this->getRequest('certification/movie/list'))
         ;
 
         $api->getMovieList();

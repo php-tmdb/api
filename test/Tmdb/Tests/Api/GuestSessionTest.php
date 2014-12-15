@@ -18,7 +18,7 @@ class GuestSessionTest extends TestCase
 {
     /**
      * @test
-     * @expectedException Tmdb\Exception\MissingSessionTokenException
+     * @expectedException \Tmdb\Exception\MissingSessionTokenException
      */
     public function shouldThrowExceptionGettingRatedMoviesWithNoSessionToken()
     {
@@ -37,7 +37,7 @@ class GuestSessionTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('guest_session/xyz/rated_movies');
+            ->with($this->getRequest('guest_session/xyz/rated_movies'));
 
         $api->getRatedMovies();
     }

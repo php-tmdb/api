@@ -23,7 +23,7 @@ class ConfigurationTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('configuration');
+            ->with($this->getRequest('configuration'));
 
         $api->getConfiguration();
     }

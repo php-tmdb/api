@@ -23,7 +23,7 @@ class DiscoverTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('discover/movie');
+            ->with($this->getRequest('discover/movie'));
 
         $api->discoverMovies();
     }
@@ -37,7 +37,7 @@ class DiscoverTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('discover/tv');
+            ->with($this->getRequest('discover/tv'));
 
         $api->discoverTv();
     }

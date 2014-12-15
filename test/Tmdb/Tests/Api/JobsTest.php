@@ -23,7 +23,7 @@ class JobsTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('job/list');
+            ->with($this->getRequest('job/list'));
 
         $api->getJobs();
     }

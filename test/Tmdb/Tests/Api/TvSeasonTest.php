@@ -26,7 +26,7 @@ class TvSeasonTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID);
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID));
 
         $api->getSeason(self::TV_ID, self::SEASON_ID);
     }
@@ -40,7 +40,7 @@ class TvSeasonTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/credits');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/credits'));
 
         $api->getCredits(self::TV_ID, self::SEASON_ID);
     }
@@ -54,7 +54,7 @@ class TvSeasonTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids'));
 
         $api->getExternalIds(self::TV_ID, self::SEASON_ID);
     }
@@ -68,7 +68,7 @@ class TvSeasonTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/images');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/images'));
 
         $api->getImages(self::TV_ID, self::SEASON_ID);
     }
@@ -82,7 +82,7 @@ class TvSeasonTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/videos');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/videos'));
 
         $api->getVideos(self::TV_ID, self::SEASON_ID);
     }

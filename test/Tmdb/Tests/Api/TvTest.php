@@ -25,7 +25,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID);
+            ->with($this->getRequest('tv/' . self::TV_ID));
 
         $api->getTvshow(self::TV_ID);
     }
@@ -39,7 +39,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/credits');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/credits'));
 
         $api->getCredits(self::TV_ID);
     }
@@ -53,7 +53,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/external_ids');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/external_ids'));
 
         $api->getExternalIds(self::TV_ID);
     }
@@ -67,7 +67,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/images');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/images'));
 
         $api->getImages(self::TV_ID);
     }
@@ -81,7 +81,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/translations');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/translations'));
 
         $api->getTranslations(self::TV_ID);
     }
@@ -95,7 +95,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/popular');
+            ->with($this->getRequest('tv/popular'));
 
         $api->getPopular();
     }
@@ -109,7 +109,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/top_rated');
+            ->with($this->getRequest('tv/top_rated'));
 
         $api->getTopRated();
     }
@@ -123,7 +123,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/on_the_air');
+            ->with($this->getRequest('tv/on_the_air'));
 
         $api->getOnTheAir();
     }
@@ -137,7 +137,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/airing_today');
+            ->with($this->getRequest('tv/airing_today'));
 
         $api->getAiringToday();
     }
@@ -151,7 +151,8 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/' . self::TV_ID . '/videos');
+            ->with($this->getRequest('tv/' . self::TV_ID . '/videos'))
+        ;
 
         $api->getVideos(self::TV_ID);
     }
@@ -165,7 +166,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/latest');
+            ->with($this->getRequest('tv/latest'));
 
         $api->getLatest();
     }

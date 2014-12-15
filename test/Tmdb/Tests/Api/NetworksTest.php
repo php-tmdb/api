@@ -23,7 +23,7 @@ class NetworksTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('network/49');
+            ->with($this->getRequest('network/49'));
 
         $api->getNetwork(49);
     }

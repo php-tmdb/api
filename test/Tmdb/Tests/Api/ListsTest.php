@@ -25,7 +25,7 @@ class ListsTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('list/' . self::LIST_ID);
+            ->with($this->getRequest('list/' . self::LIST_ID));
 
         $api->getList(self::LIST_ID);
     }
@@ -40,7 +40,10 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->equalTo('list'))
+            ->with($this->getRequest('list', [], 'POST', [], [
+                'name' => 'name',
+                'description' => 'description'
+            ]))
         ;
 
         $api->createList('name', 'description');
@@ -53,9 +56,10 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
+        $this->getAdapter()
+            ->expects($this->once())
             ->method('get')
-            ->with('list/' . self::LIST_ID . '/item_status');
+            ->with($this->getRequest('list/' . self::LIST_ID . '/item_status', ['movie_id' => 150]));
 
         $api->getItemStatus(self::LIST_ID, 150);
     }
@@ -70,7 +74,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->equalTo('list/'.self::LIST_ID.'/add_item'))
+            ->with($this->getRequest('list/'.self::LIST_ID.'/add_item', [], 'POST', [], ['media_id' => 150]))
         ;
 
         $api->addMediaToList(self::LIST_ID, 150);
@@ -86,7 +90,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->equalTo('list/'.self::LIST_ID.'/remove_item'))
+            ->with($this->getRequest('list/'.self::LIST_ID.'/remove_item', [], 'POST', [], ['media_id' => 150]))
         ;
 
         $api->removeMediaFromList(self::LIST_ID, 150);
@@ -102,7 +106,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('delete')
-            ->with($this->equalTo('list/' . self::LIST_ID))
+            ->with($this->getRequest('list/' . self::LIST_ID, [], 'DELETE'))
         ;
 
         $api->deleteList(self::LIST_ID);
@@ -118,7 +122,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->equalTo('list/' . self::LIST_ID . '/clear?confirm=true'))
+            ->with($this->getRequest('list/' . self::LIST_ID . '/clear?confirm=true', [], 'POST'))
         ;
 
         $api->clearList(self::LIST_ID, true);

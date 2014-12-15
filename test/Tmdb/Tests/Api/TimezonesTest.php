@@ -23,7 +23,7 @@ class TimezonesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('timezones/list');
+            ->with($this->getRequest('timezones/list'));
 
         $api->getTimezones();
     }

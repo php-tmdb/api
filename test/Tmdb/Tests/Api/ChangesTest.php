@@ -23,7 +23,7 @@ class ChangesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('movie/changes');
+            ->with($this->getRequest('movie/changes'));
 
         $api->getMovieChanges();
     }
@@ -37,7 +37,7 @@ class ChangesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('person/changes');
+            ->with($this->getRequest('person/changes'));
 
         $api->getPersonChanges();
     }
@@ -51,7 +51,7 @@ class ChangesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('tv/changes');
+            ->with($this->getRequest('tv/changes'));
 
         $api->getTvChanges();
     }

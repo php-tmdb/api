@@ -25,7 +25,7 @@ class CompaniesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('company/' . self::COMPANY_ID);
+            ->with($this->getRequest('company/' . self::COMPANY_ID));
 
         $api->getCompany(self::COMPANY_ID);
     }
@@ -39,7 +39,7 @@ class CompaniesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('company/' . self::COMPANY_ID. '/movies');
+            ->with($this->getRequest('company/' . self::COMPANY_ID. '/movies'));
 
         $api->getMovies(self::COMPANY_ID);
     }

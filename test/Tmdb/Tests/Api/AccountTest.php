@@ -27,7 +27,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('account'))
+            ->with($this->getRequest('account'))
         ;
 
         $api->getAccount();
@@ -43,7 +43,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/lists'))
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/lists'))
         ;
 
         $api->getLists(self::ACCOUNT_ID);
@@ -59,7 +59,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/favorite/movies'))
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite/movies'))
         ;
 
         $api->getFavoriteMovies(self::ACCOUNT_ID);
@@ -75,7 +75,11 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/favorite'))
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite', [], 'POST', [], [
+                'media_id'   => self::MEDIA_ID,
+                'media_type' => 'movie',
+                'favorite'   => true
+            ]))
         ;
 
         $api->favorite(self::ACCOUNT_ID, self::MEDIA_ID, true, 'movie');
@@ -91,7 +95,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/rated/movies'))
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/rated/movies'))
         ;
 
         $api->getRatedMovies(self::ACCOUNT_ID);
@@ -107,7 +111,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/watchlist/movies'))
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist/movies'))
         ;
 
         $api->getMovieWatchlist(self::ACCOUNT_ID);
@@ -123,7 +127,11 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->equalTo('account/'.self::ACCOUNT_ID.'/movie_watchlist'))
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/movie_watchlist', [], 'POST', [], [
+                'media_id'   => self::MEDIA_ID,
+                'media_type' => 'movie',
+                'watchlist'  => true
+            ]))
         ;
 
         $api->watchlist(self::ACCOUNT_ID, self::MEDIA_ID, true, 'movie');

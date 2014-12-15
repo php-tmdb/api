@@ -25,7 +25,7 @@ class ReviewsTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with('review/' . self::REVIEW_ID);
+            ->with($this->getRequest('review/' . self::REVIEW_ID));
 
         $api->getReview(self::REVIEW_ID);
     }

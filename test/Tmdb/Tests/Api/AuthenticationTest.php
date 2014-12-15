@@ -24,7 +24,7 @@ class AuthenticationTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('authentication/token/new'))
+            ->with($this->getRequest('authentication/token/new'))
         ;
 
         $api->getNewToken();
@@ -40,7 +40,7 @@ class AuthenticationTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('authentication/session/new'))
+            ->with($this->getRequest('authentication/session/new', ['request_token' => 'request_token']))
         ;
 
         $api->getNewSession('request_token');
@@ -56,7 +56,7 @@ class AuthenticationTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->equalTo('authentication/guest_session/new'))
+            ->with($this->getRequest('authentication/guest_session/new'))
         ;
 
         $api->getNewGuestSession();
