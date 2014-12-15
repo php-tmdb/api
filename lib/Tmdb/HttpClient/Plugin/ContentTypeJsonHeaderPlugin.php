@@ -17,18 +17,11 @@ use Tmdb\Event\RequestEvent;
 use Tmdb\Event\TmdbEvents;
 
 /**
- * Class LanguageFilterPlugin
+ * Class ContentTypeJsonHeaderPlugin
  * @package Tmdb\HttpClient\Plugin
  */
-class LanguageFilterPlugin implements EventSubscriberInterface
+class ContentTypeJsonHeaderPlugin implements EventSubscriberInterface
 {
-    private $language;
-
-    public function __construct($language = 'en')
-    {
-        $this->language = $language;
-    }
-
     public static function getSubscribedEvents()
     {
         return [
@@ -38,6 +31,15 @@ class LanguageFilterPlugin implements EventSubscriberInterface
 
     public function onBeforeSend(RequestEvent $event)
     {
-        $event->getRequest()->getParameters()->set('language', $this->language);
+        $method = $event->getRequest()->getMethod();
+
+        if (
+            $method == 'POST'  ||
+            $method == 'PUT'   ||
+            $method == 'PATCH' ||
+            $method == 'DELETE'
+        ) {
+            $event->getRequest()->getHeaders()->set('Content-Type', 'application/json');
+        }
     }
 }

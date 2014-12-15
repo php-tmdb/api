@@ -11,7 +11,7 @@
  * @version 0.0.1
  */
 namespace Tmdb\HttpClient\Adapter;
-use Tmdb\Common\ParameterBag;
+use Tmdb\HttpClient\Request;
 
 /**
  * Interface AdapterInterface
@@ -22,62 +22,51 @@ interface AdapterInterface
     /**
      * Compose a GET request
      *
-     * @param string       $path       Request path
-     * @param ParameterBag $parameters Parameters for the request
+     * @param Request $request
      *
      * @return mixed Data
      */
-    public function get($path, ParameterBag $parameters);
+    public function get(Request $request);
 
     /**
      * Send a HEAD request
      *
-     * @param $path
-     * @param  ParameterBag $parameters
+     * @param  Request $request
      * @return mixed
      */
-    public function head($path, ParameterBag $parameters);
+    public function head(Request $request);
 
     /**
      * Compose a POST request
      *
-     * @param string       $path       Request path
-     * @param string       $body       The post BODY
-     * @param ParameterBag $parameters POST Parameters
-     *
-     * @return mixed Data
+     * @param  Request $request
+     * @return mixed   Data
      */
-    public function post($path, $body = null, ParameterBag $parameters);
+    public function post(Request $request);
 
     /**
      * Send a PUT request
      *
-     * @param $path
-     * @param  null         $body
-     * @param  ParameterBag $parameters
+     * @param  Request $request
      * @return mixed
      */
-    public function put($path, $body = null, ParameterBag $parameters);
+    public function put(Request $request);
 
     /**
      * Send a DELETE request
      *
-     * @param  string       $path
-     * @param  null         $body
-     * @param  ParameterBag $parameters
+     * @param  Request $request
      * @return mixed
      */
-    public function delete($path, $body = null, ParameterBag $parameters);
+    public function delete(Request $request);
 
     /**
      * Send a PATCH request
      *
-     * @param $path
-     * @param  null         $body
-     * @param  ParameterBag $parameters
+     * @param  Request $request
      * @return mixed
      */
-    public function patch($path, $body = null, ParameterBag $parameters);
+    public function patch(Request $request);
 
     /**
      * Return the used client

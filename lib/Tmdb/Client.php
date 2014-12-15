@@ -529,7 +529,7 @@ class Client
 
         $this->getHttpClient()->setLogging([
             'enabled' => $enabled,
-            'path'    => $path,
+            'path'     => $path,
         ]);
 
         return $this;

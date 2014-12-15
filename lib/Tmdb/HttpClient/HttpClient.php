@@ -24,7 +24,8 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Common\ParameterBag;
-use Tmdb\Event\BeforeSendRequestEvent;
+use Tmdb\Event\RequestEvent;
+use Tmdb\Event\RequestSubscriber;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\Exception\ApiTokenMissingException;
 use Tmdb\Exception\RuntimeException;
@@ -32,6 +33,7 @@ use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
+use Tmdb\HttpClient\Plugin\ContentTypeJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 use Tmdb\SessionToken;
 
@@ -87,7 +89,17 @@ class HttpClient
         $this->adapter         = $adapter;
         $this->eventDispatcher = $eventDispatcher;
 
-        $this->registerDefaultPlugins();
+        $this->registerDefaults();
+    }
+
+    private function send($path, $method, array $parameters = [], array $headers = [], $body = null)
+    {
+        $request = $this->createRequest($path, $method, $parameters, $headers, $body);
+
+        $event = new RequestEvent($this, $request);
+        $this->eventDispatcher->dispatch(TmdbEvents::REQUEST, $event);
+
+        return $this->lastResponse = $event->getResponse();
     }
 
     /**
@@ -95,9 +107,7 @@ class HttpClient
      */
     public function get($path, array $parameters = [], array $headers = [])
     {
-        $this->beforeRequest($path, 'GET', $parameters, $headers);
-
-        return $this->adapter->get($path, $this->options);
+        return $this->send($path, 'GET', $parameters, $headers);
     }
 
     /**
@@ -105,9 +115,7 @@ class HttpClient
      */
     public function post($path, $body, array $parameters = [], array $headers = [])
     {
-        $this->beforeRequest($path, 'POST', $parameters, $headers);
-
-        return $this->adapter->post($path, $body, $this->options);
+        return $this->send($path, 'POST', $parameters, $headers, $body);
     }
 
     /**
@@ -115,9 +123,7 @@ class HttpClient
      */
     public function head($path, array $parameters = [], array $headers = [])
     {
-        $this->beforeRequest($path, 'HEAD', $parameters, $headers);
-
-        return $this->adapter->head($path, $this->options);
+        return $this->send($path, 'HEAD', $parameters, $headers);
     }
 
     /**
@@ -125,9 +131,7 @@ class HttpClient
      */
     public function put($path, $body = null, array $parameters = [], array $headers = [])
     {
-        $this->beforeRequest($path, 'PUT', $parameters, $headers);
-
-        return $this->adapter->put($path, $body, $this->options);
+        return $this->send($path, 'PUT', $parameters, $headers, $body);
     }
 
     /**
@@ -135,9 +139,7 @@ class HttpClient
      */
     public function patch($path, $body = null, array $parameters = [], array $headers = [])
     {
-        $this->beforeRequest($path, 'PATCH', $parameters, $headers);
-
-        return $this->adapter->patch($path, $body, $this->options);
+        return $this->send($path, 'PATCH', $parameters, $headers, $body);
     }
 
     /**
@@ -145,29 +147,33 @@ class HttpClient
      */
     public function delete($path, $body = null, array $parameters = [], array $headers = [])
     {
-        $this->beforeRequest($path, 'DELETE', $parameters, $headers);
-
-        return $this->adapter->delete($path, $body, $this->options);
+        return $this->send($path, 'DELETE', $parameters, $headers, $body);
     }
 
     /**
-     * Prepare the request and provides an event hook to add query parameters
+     * Create the request object
      *
      * @param $path
-     * @param $type
-     * @param array $parameters
-     * @param array $headers
+     * @param $method
+     * @param  array   $parameters
+     * @param  array   $headers
+     * @param $body
+     * @return Request
      */
-    private function beforeRequest($path, $type, array $parameters = [], array $headers = [])
+    private function createRequest($path, $method, $parameters = [], $headers = [], $body)
     {
-        $this->prepareOptions($parameters, $headers);
+        $request =  new Request();
 
-        $event = new BeforeSendRequestEvent($this->options);
+        $request
+            ->setPath($path)
+            ->setMethod($method)
+            ->setParameters(new ParameterBag((array) $parameters))
+            ->setHeaders(new ParameterBag((array) $headers))
+            ->setBody($body)
+            ->setOptions(new ParameterBag((array) $this->options))
+        ;
 
-        $event->setPath($path);
-        $event->setType($type);
-
-        $this->eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
+        return $this->lastRequest = $request;
     }
 
     /**
@@ -178,26 +184,6 @@ class HttpClient
     public function addSubscriber(EventSubscriberInterface $subscriber)
     {
         $this->eventDispatcher->addSubscriber($subscriber);
-    }
-
-    /**
-     * Set the query parameters
-     *
-     * @param $parameters
-     * @param $headers
-     *
-     * @return array
-     */
-    protected function prepareOptions(array $parameters, array $headers)
-    {
-        return $this->options = new ParameterBag(array_merge(
-            (array) $this->options,
-            [
-                'base_url' => $this->base_url,
-                'query'    => (array) $parameters,
-                'headers'  => (array) $headers
-            ]
-        ));
     }
 
     /**
@@ -333,11 +319,14 @@ class HttpClient
      *
      * @return $this
      */
-    private function registerDefaultPlugins()
+    private function registerDefaults()
     {
         if (!array_key_exists('token', $this->options)) {
             throw new ApiTokenMissingException('An API token was not configured, please configure the `token` option with an correct ApiToken() object.');
         }
+
+        $requestSubscriber = new RequestSubscriber();
+        $this->addSubscriber($requestSubscriber);
 
         $apiTokenPlugin = new ApiTokenPlugin(
             is_string($this->options['token']) ?
@@ -348,6 +337,9 @@ class HttpClient
 
         $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
         $this->addSubscriber($acceptJsonHeaderPlugin);
+
+        $contentType = new ContentTypeJsonHeaderPlugin();
+        $this->addSubscriber($contentType);
 
         return $this;
     }

@@ -14,43 +14,47 @@ namespace Tmdb\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Tmdb\Common\ParameterBag;
+use Tmdb\HttpClient\HttpClient;
+use Tmdb\HttpClient\Request;
+use Tmdb\HttpClient\Response;
 
 class RequestEvent extends Event
 {
     /**
-     * @var ParameterBag
+     * @var HttpClient
      */
-    private $options;
+    private $httpClient;
 
     /**
-     * @var string
+     * @var Request
      */
-    private $path;
+    private $request;
 
     /**
-     * @var string
+     * @var Response
      */
-    private $type;
+    private $response;
 
-    public function __construct(ParameterBag $options)
-    {
-        $this->options = $options;
+    /**
+     * Construct the request event
+     *
+     * @param HttpClient $httpClient
+     * @param Request    $request
+     */
+    public function __construct(
+        HttpClient $httpClient,
+        Request $request
+    ) {
+        $this->httpClient = $httpClient;
+        $this->request    = $request;
     }
 
     /**
      * @return ParameterBag
      */
-    public function getOptions()
+    public function getParameters()
     {
-        return $this->options;
-    }
-
-    /**
-     * @return ParameterBag
-     */
-    public function setOptions(ParameterBag $options)
-    {
-        return $this->options;
+        return $this->request->getParameters();
     }
 
     /**
@@ -58,16 +62,67 @@ class RequestEvent extends Event
      */
     public function getPath()
     {
-        return $this->path;
+        return $this->request->getPath();
     }
 
     /**
-     * @param  string $path
+     * @return string
+     */
+    public function getMethod()
+    {
+        return $this->request->getMethod();
+    }
+
+    /**
+     * @return ParameterBag
+     */
+    public function getHeaders()
+    {
+        return $this->request->getHeaders();
+    }
+
+    /**
+     * @return null
+     */
+    public function getBody()
+    {
+        return $this->request->getBody();
+    }
+
+    /**
+     * @return HttpClient
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
+    }
+
+    /**
+     * @param  HttpClient $httpClient
      * @return $this
      */
-    public function setPath($path)
+    public function setHttpClient($httpClient)
     {
-        $this->path = $path;
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
+
+    /**
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @param  Request $request
+     * @return $this
+     */
+    public function setRequest($request)
+    {
+        $this->request = $request;
 
         return $this;
     }
@@ -75,19 +130,27 @@ class RequestEvent extends Event
     /**
      * @return string
      */
-    public function getType()
+    public function getResponse()
     {
-        return $this->type;
+        return $this->response;
     }
 
     /**
-     * @param  string $type
+     * @param  string $response
      * @return $this
      */
-    public function setType($type)
+    public function setResponse($response)
     {
-        $this->type = $type;
+        $this->response = $response;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasResponse()
+    {
+        return null !== $this->response;
     }
 }

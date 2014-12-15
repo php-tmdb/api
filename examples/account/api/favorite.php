@@ -19,6 +19,6 @@ $client = new \Tmdb\Client($token);
 $sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 
-$favorite = $client->getAccountApi()->favorite(TMDB_ACCOUNT_ID, 97020, true);
+$favorite = $client->getAccountApi()->favorite(TMDB_ACCOUNT_ID, 550, true);
 
 var_dump($favorite);

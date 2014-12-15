@@ -12,14 +12,14 @@
  */
 namespace Tmdb\HttpClient\Adapter;
 
-use Tmdb\Common\ParameterBag;
+use Tmdb\HttpClient\Request;
 
 class NullAdapter extends AbstractAdapter implements AdapterInterface
 {
     /**
      * {@inheritDoc}
      */
-    public function get($path, ParameterBag $parameterBag)
+    public function get(Request $request)
     {
         return [];
     }
@@ -27,7 +27,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
     /**
      * {@inheritDoc}
      */
-    public function post($path, $body = null, ParameterBag $parameterBag)
+    public function post(Request $request)
     {
         return [];
     }
@@ -35,7 +35,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
     /**
      * {@inheritDoc}
      */
-    public function put($path, $body = null, ParameterBag $parameterBag)
+    public function put(Request $request)
     {
         return [];
     }
@@ -43,7 +43,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
     /**
      * {@inheritDoc}
      */
-    public function patch($path, $body = null, ParameterBag $parameterBag)
+    public function patch(Request $request)
     {
         return [];
     }
@@ -51,7 +51,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
     /**
      * {@inheritDoc}
      */
-    public function delete($path, $body = null, ParameterBag $parameterBag)
+    public function delete(Request $request)
     {
         return [];
     }
@@ -59,8 +59,13 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
     /**
      * {@inheritDoc}
      */
-    public function head($path, ParameterBag $parameterBag)
+    public function head(Request $request)
     {
         return [];
+    }
+
+    public function getClient()
+    {
+        return null;
     }
 }

@@ -18,13 +18,4 @@ namespace Tmdb\HttpClient\Adapter;
  */
 abstract class AbstractAdapter implements AdapterInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function setQueryParameters(array $queryParameters = [])
-    {
-        foreach ($queryParameters as $key => $value) {
-            $this->setQueryParameter($key, $value);
-        }
-    }
 }

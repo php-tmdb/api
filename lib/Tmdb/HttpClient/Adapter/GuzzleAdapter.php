@@ -14,7 +14,7 @@ namespace Tmdb\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
-use Tmdb\Common\ParameterBag;
+use Tmdb\HttpClient\Request;
 
 class GuzzleAdapter extends AbstractAdapter
 {
@@ -28,11 +28,11 @@ class GuzzleAdapter extends AbstractAdapter
         $this->client = new Client($options);
     }
 
-    public function getConfiguration(ParameterBag $parameters)
+    public function getConfiguration(Request $request)
     {
         return [
-            'headers'  => (array) $parameters['headers'],
-            'query'    => (array) $parameters['query']
+            'headers'  => (array) $request->getHeaders(),
+            'query'    => (array) $request->getParameters()
         ];
     }
 
@@ -44,9 +44,12 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function get($path, ParameterBag $parameterBag)
+    public function get(Request $request)
     {
-        $response = $this->client->get($path, $this->getConfiguration($parameterBag));
+        $response = $this->client->get(
+            $request->getPath(),
+            $this->getConfiguration($request)
+        );
 
         return $this->getBody($response);
     }
@@ -54,9 +57,15 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function post($path, $body = null, ParameterBag $parameterBag)
+    public function post(Request $request)
     {
-        $response = $this->client->post($path, $body, $this->getConfiguration($parameterBag));
+        $response = $this->client->post(
+            $request->getPath(),
+            array_merge(
+                ['body' => $request->getBody()],
+                $this->getConfiguration($request)
+            )
+        );
 
         return $this->getBody($response);
     }
@@ -64,9 +73,15 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function put($path, $body = null, ParameterBag $parameterBag)
+    public function put(Request $request)
     {
-        $response =  $this->client->put($path, $body, $this->getConfiguration($parameterBag));
+        $response = $this->client->put(
+            $request->getPath(),
+            array_merge(
+                ['body' => $request->getBody()],
+                $this->getConfiguration($request)
+            )
+        );
 
         return $this->getBody($response);
     }
@@ -74,9 +89,15 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function patch($path, $body = null, ParameterBag $parameterBag)
+    public function patch(Request $request)
     {
-        $response = $this->client->patch($path, $body, $this->getConfiguration($parameterBag));
+        $response = $this->client->patch(
+            $request->getPath(),
+            array_merge(
+                ['body' => $request->getBody()],
+                $this->getConfiguration($request)
+            )
+        );
 
         return $this->getBody($response);
     }
@@ -84,9 +105,15 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function delete($path, $body = null, ParameterBag $parameterBag)
+    public function delete(Request $request)
     {
-        $response = $this->client->delete($path, $body, $this->getConfiguration($parameterBag));
+        $response = $this->client->delete(
+            $request->getPath(),
+            array_merge(
+                ['body' => $request->getBody()],
+                $this->getConfiguration($request)
+            )
+        );
 
         return $this->getBody($response);
     }
@@ -94,23 +121,14 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function head($path, ParameterBag $parameterBag)
+    public function head(Request $request)
     {
-        $response = $this->client->head($path, $this->getConfiguration($parameterBag));
+        $response = $this->client->head(
+            $request->getPath(),
+            $this->getConfiguration($request)
+        );
 
         return $this->getBody($response);
-    }
-
-    /**
-     * Register the default subscribers for Guzzle
-     *
-     * @todo fix
-     * @param array $options
-     */
-    public function registerGuzzleSubscribers(array $options)
-    {
-        $backoffPlugin = BackoffPlugin::getExponentialBackoff(5);
-        $this->addSubscriber($backoffPlugin);
     }
 
     /**

@@ -15,5 +15,6 @@ namespace Tmdb\Event;
 final class TmdbEvents
 {
     const BEFORE_REQUEST = 'tmdb.before_request';
+    const REQUEST        = 'tmdb.request';
     const AFTER_REQUEST  = 'tmdb.after_request';
 }

@@ -13,7 +13,7 @@
 namespace Tmdb\HttpClient\Plugin;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Tmdb\Event\BeforeSendRequestEvent;
+use Tmdb\Event\RequestEvent;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\GuestSessionToken;
 use Tmdb\SessionToken;
@@ -39,14 +39,12 @@ class SessionTokenPlugin implements EventSubscriberInterface
         return [TmdbEvents::BEFORE_REQUEST => 'onBeforeSend'];
     }
 
-    public function onBeforeSend(BeforeSendRequestEvent $event)
+    public function onBeforeSend(RequestEvent $event)
     {
-        $options = $event->getOptions();
-
         if ($this->token instanceof GuestSessionToken) {
-            $options['query']['guest_session_id'] = $this->token->getToken();
+            $event->getRequest()->getParameters()->set('guest_session_id', $this->token->getToken());
         } else {
-            $options['query']['session_id'] = $this->token->getToken();
+            $event->getRequest()->getParameters()->set('session_id', $this->token->getToken());
         }
     }
 }

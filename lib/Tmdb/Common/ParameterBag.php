@@ -30,6 +30,12 @@ class ParameterBag extends \ArrayObject
         parent::__construct($objects, $flags, $iterator_class);
     }
 
+    /**
+     * Override the parent to transform submitted arrays into a ParameterBag
+     *
+     * @param mixed $name
+     * @param mixed $value
+     */
     public function offsetSet($name, $value)
     {
         if (is_array($value)) {
@@ -37,5 +43,30 @@ class ParameterBag extends \ArrayObject
         }
 
         return parent::offsetSet($name, $value);
+    }
+
+    /**
+     * Setter
+     *
+     * @param $name
+     * @param $value
+     * @return $this
+     */
+    public function set($name, $value)
+    {
+        $this->offsetSet($name, $value);
+
+        return $this;
+    }
+
+    /**
+     * Getter
+     *
+     * @param $name
+     * @return mixed
+     */
+    public function get($name)
+    {
+        return parent::offsetGet($name);
     }
 }

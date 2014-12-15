@@ -14,7 +14,7 @@ namespace Tmdb\HttpClient\Plugin;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\ApiToken;
-use Tmdb\Event\BeforeSendRequestEvent;
+use Tmdb\Event\RequestEvent;
 use Tmdb\Event\TmdbEvents;
 
 /**
@@ -40,9 +40,8 @@ class ApiTokenPlugin implements EventSubscriberInterface
         ];
     }
 
-    public function onBeforeSend(BeforeSendRequestEvent $event)
+    public function onBeforeSend(RequestEvent $event)
     {
-        $options = $event->getOptions();
-        $options['query']['api_key'] = $this->token->getToken();
+        $event->getRequest()->getParameters()->set('api_key', $this->token->getToken());
     }
 }
