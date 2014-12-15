@@ -45,10 +45,9 @@ class HttpClientTest extends TestCase
 
     public function setUp()
     {
-        $this->adapter         = $this->getMock('Tmdb\HttpClient\Adapter\NullAdapter');
-        $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcher');
+        $this->adapter = $this->getMock('Tmdb\HttpClient\Adapter\NullAdapter');
 
-        $this->client  = new Client(new ApiToken('abcdef'), $this->adapter, false, ['event_dispatcher' => $this->eventDispatcher]);
+        $this->client  = new Client(new ApiToken('abcdef'), $this->adapter, false);
         $this->testApi = new TestApi($this->client);
     }
 
@@ -153,15 +152,17 @@ class HttpClientTest extends TestCase
      */
     public function shouldRegisterSubscribers()
     {
-        $this->setUp();
+        $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $this->client  = new Client(new ApiToken('abcdef'), $this->adapter, false, ['event_dispatcher' => $this->eventDispatcher]);
+        $this->testApi = new TestApi($this->client);
 
         $this->eventDispatcher
             ->expects($this->once())
             ->method('addSubscriber')
         ;
 
-        $event = $this->getMock('Symfony\Component\EventDispatcher\EventSubscriberInterface');
-        $this->testApi->addSubscriber($event);
+        $subscriber = $this->getMock('Symfony\Component\EventDispatcher\EventSubscriberInterface');
+        $this->testApi->addSubscriber($subscriber);
     }
 
     /**

@@ -64,9 +64,9 @@ class Request
         $body = null
     ) {
         $this->path       = $path;
-        $this->parameters = $parameters;
         $this->method     = $method;
-        $this->headers    = $headers;
+        $this->parameters = null === $headers ? new ParameterBag() : $parameters;
+        $this->headers    = null === $headers ? new ParameterBag() : $headers;
         $this->body       = $body;
     }
 

@@ -22,6 +22,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\ApiToken;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Event\RequestEvent;
@@ -50,6 +51,9 @@ class HttpClient
      */
     private $adapter;
 
+    /**
+     * @var EventDispatcher
+     */
     private $eventDispatcher;
 
     /**
@@ -57,6 +61,11 @@ class HttpClient
      */
     protected $options;
 
+    /**
+     * The base url to built requests on top of
+     *
+     * @var null
+     */
     protected $base_url = null;
 
     /**
@@ -73,15 +82,15 @@ class HttpClient
      * Constructor
      *
      * @param $baseUrl
-     * @param array            $options
-     * @param AdapterInterface $adapter
-     * @param EventDispatcher  $eventDispatcher
+     * @param array                    $options
+     * @param AdapterInterface         $adapter
+     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         $baseUrl,
         array $options = [],
         AdapterInterface $adapter,
-        EventDispatcher $eventDispatcher
+        EventDispatcherInterface $eventDispatcher
     )
     {
         $this->base_url        = $baseUrl;
@@ -92,6 +101,16 @@ class HttpClient
         $this->registerDefaults();
     }
 
+    /**
+     * Create the request object and send it out to listening events.
+     *
+     * @param $path
+     * @param $method
+     * @param  array  $parameters
+     * @param  array  $headers
+     * @param  null   $body
+     * @return string
+     */
     private function send($path, $method, array $parameters = [], array $headers = [], $body = null)
     {
         $request = $this->createRequest($path, $method, $parameters, $headers, $body);

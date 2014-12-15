@@ -12,10 +12,11 @@
  */
 namespace Tmdb\Tests\HttpClient\Plugin;
 
-use GuzzleHttp\Message\Request;
-use Tmdb\Common\ParameterBag;
-use Tmdb\Event\BeforeSendRequestEvent;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\RequestEvent;
+use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\Plugin\AdultFilterPlugin;
+use Tmdb\HttpClient\Request;
 use Tmdb\Tests\TestCase;
 
 class AdultFilterPluginTest extends TestCase
@@ -23,19 +24,15 @@ class AdultFilterPluginTest extends TestCase
     /**
      * @test
      */
-    public function shouldAddToken()
+    public function shouldFilter()
     {
-        $request = new Request('GET', '/');
+        $request = new Request('/', 'GET');
+        $event   = new RequestEvent($request);
 
-        $parameterBag = new ParameterBag(['request' => $request]);
-        $event        = new BeforeSendRequestEvent($parameterBag);
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber(new AdultFilterPlugin(false));
+        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
 
-        $plugin = new AdultFilterPlugin(false);
-
-        $plugin->onBeforeSend($event);
-
-        $options = $event->getOptions();
-
-        $this->assertEquals('false', $options['query']['include_adult']);
+        $this->assertEquals('false', (string) $event->getRequest()->getParameters()->get('include_adult'));
     }
 }

@@ -13,29 +13,26 @@
 namespace Tmdb\Tests\HttpClient\Plugin;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\TmdbEvents;
-use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
+use Tmdb\HttpClient\Plugin\ContentTypeJsonHeaderPlugin;
 use Tmdb\HttpClient\Request;
 use Tmdb\Tests\TestCase;
 
-class ApiTokenPluginTest extends TestCase
+class ContentTypeJsonHeaderPluginTest extends TestCase
 {
     /**
      * @test
      */
-    public function shouldAddToken()
+    public function shouldAddContentTypeOnPost()
     {
-        $token   = new ApiToken('abcdef');
-
-        $request = new Request('/', 'GET');
+        $request = new Request('/', 'POST');
         $event   = new RequestEvent($request);
 
         $eventDispatcher = new EventDispatcher();
-        $eventDispatcher->addSubscriber(new ApiTokenPlugin($token));
+        $eventDispatcher->addSubscriber(new ContentTypeJsonHeaderPlugin());
         $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
 
-        $this->assertEquals('abcdef', (string) $event->getRequest()->getParameters()->get('api_key'));
+        $this->assertEquals('application/json', (string) $event->getRequest()->getHeaders()->get('Content-Type'));
     }
 }

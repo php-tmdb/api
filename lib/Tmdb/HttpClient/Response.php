@@ -34,13 +34,20 @@ class Response
      */
     private $headers;
 
+    /**
+     * Construct an response object
+     *
+     * @param int          $code
+     * @param null         $content
+     * @param ParameterBag $headers
+     */
     public function __construct(
-        $content,
-        $code,
-        ParameterBag $headers
+        $code = 200,
+        $content = null,
+        ParameterBag $headers = null
     ) {
-        $this->content = $content;
         $this->code    = $code;
+        $this->content = $content;
         $this->headers = $headers;
     }
 

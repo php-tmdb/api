@@ -13,6 +13,7 @@
 namespace Tmdb\HttpClient\Adapter;
 
 use Tmdb\HttpClient\Request;
+use Tmdb\HttpClient\Response;
 
 class NullAdapter extends AbstractAdapter implements AdapterInterface
 {
@@ -21,7 +22,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function get(Request $request)
     {
-        return [];
+        return new Response();
     }
 
     /**
@@ -29,7 +30,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function post(Request $request)
     {
-        return [];
+        return new Response();
     }
 
     /**
@@ -37,7 +38,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function put(Request $request)
     {
-        return [];
+        return new Response();
     }
 
     /**
@@ -45,7 +46,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function patch(Request $request)
     {
-        return [];
+        return new Response();
     }
 
     /**
@@ -53,7 +54,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function delete(Request $request)
     {
-        return [];
+        return new Response();
     }
 
     /**
@@ -61,7 +62,7 @@ class NullAdapter extends AbstractAdapter implements AdapterInterface
      */
     public function head(Request $request)
     {
-        return [];
+        return new Response();
     }
 
     public function getClient()

@@ -12,10 +12,11 @@
  */
 namespace Tmdb\Tests\HttpClient\Plugin;
 
-use GuzzleHttp\Message\Request;
-use Tmdb\Common\ParameterBag;
-use Tmdb\Event\BeforeSendRequestEvent;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\RequestEvent;
+use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
+use Tmdb\HttpClient\Request;
 use Tmdb\SessionToken;
 use Tmdb\Tests\TestCase;
 
@@ -26,18 +27,15 @@ class SessionTokenPluginTest extends TestCase
      */
     public function shouldAddToken()
     {
-        $token   = new SessionToken('abcdef');
-        $request = new Request('GET', '/');
+        $token   = new SessionToken('123456');
 
-        $parameterBag = new ParameterBag(['request' => $request]);
-        $event        = new BeforeSendRequestEvent($parameterBag);
+        $request = new Request('/', 'GET');
+        $event   = new RequestEvent($request);
 
-        $plugin = new SessionTokenPlugin($token);
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber(new SessionTokenPlugin($token));
+        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
 
-        $plugin->onBeforeSend($event);
-
-        $options = $event->getOptions();
-
-        $this->assertEquals((string) $token, $options['query']['session_id']);
+        $this->assertEquals('123456', (string) $event->getRequest()->getParameters()->get('session_id'));
     }
 }

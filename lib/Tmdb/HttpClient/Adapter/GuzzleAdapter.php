@@ -28,6 +28,12 @@ class GuzzleAdapter extends AbstractAdapter
         $this->client = new Client($options);
     }
 
+    /**
+     * Format the request for Guzzle
+     *
+     * @param  Request $request
+     * @return array
+     */
     public function getConfiguration(Request $request)
     {
         return [

@@ -12,10 +12,11 @@
  */
 namespace Tmdb\Tests\HttpClient\Plugin;
 
-use GuzzleHttp\Message\Request;
-use Tmdb\Common\ParameterBag;
-use Tmdb\Event\BeforeSendRequestEvent;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\RequestEvent;
+use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\Plugin\LanguageFilterPlugin;
+use Tmdb\HttpClient\Request;
 use Tmdb\Tests\TestCase;
 
 class LanguageFilterPluginTest extends TestCase
@@ -25,17 +26,13 @@ class LanguageFilterPluginTest extends TestCase
      */
     public function shouldAddToken()
     {
-        $request = new Request('GET', '/');
+        $request = new Request('/', 'GET');
+        $event   = new RequestEvent($request);
 
-        $parameterBag = new ParameterBag(['request' => $request]);
-        $event        = new BeforeSendRequestEvent($parameterBag);
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber(new LanguageFilterPlugin('nl'));
+        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
 
-        $plugin = new LanguageFilterPlugin();
-
-        $plugin->onBeforeSend($event);
-
-        $options = $event->getOptions();
-
-        $this->assertEquals('en', $options['query']['language']);
+        $this->assertEquals('nl', (string) $event->getRequest()->getParameters()->get('language'));
     }
 }

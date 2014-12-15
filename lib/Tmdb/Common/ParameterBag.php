@@ -16,7 +16,7 @@ namespace Tmdb\Common;
 
 class ParameterBag extends \ArrayObject
 {
-    public function __construct($array, $flags = 0, $iterator_class = "ArrayIterator")
+    public function __construct($array = [], $flags = 0, $iterator_class = "ArrayIterator")
     {
         $objects = [];
         foreach ($array as $key => $value) {

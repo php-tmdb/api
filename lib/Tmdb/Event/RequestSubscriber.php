@@ -14,6 +14,7 @@ namespace Tmdb\Event;
 
 use Tmdb\Exception\RuntimeException;
 use Tmdb\HttpClient\HttpClientEventSubscriber;
+use Tmdb\HttpClient\Response;
 
 /**
  * Class RequestSubscriber
@@ -37,7 +38,7 @@ class RequestSubscriber extends HttpClientEventSubscriber
             return $event->getResponse();
         }
 
-        $response = $this->createResponse($event);
+        $response = $this->sendRequest($event);
         $event->setResponse($response);
 
         // Possibility to cache the request
@@ -51,23 +52,32 @@ class RequestSubscriber extends HttpClientEventSubscriber
      *
      * @param  RequestEvent $event
      * @throws \Exception
+     * @return Response
      */
-    public function createResponse(RequestEvent $event)
+    public function sendRequest(RequestEvent $event)
     {
+        $response = null;
+
         try {
             switch ($event->getMethod()) {
                 case 'GET':
-                    return $this->getHttpClient()->getAdapter()->get($event->getRequest());
+                    $response = $this->getHttpClient()->getAdapter()->get($event->getRequest());
+                    break;
                 case 'HEAD':
-                    return $this->getHttpClient()->getAdapter()->head($event->getRequest());
+                    $response = $this->getHttpClient()->getAdapter()->head($event->getRequest());
+                    break;
                 case 'POST':
-                    return $this->getHttpClient()->getAdapter()->post($event->getRequest());
+                    $response = $this->getHttpClient()->getAdapter()->post($event->getRequest());
+                    break;
                 case 'PUT':
-                    return $this->getHttpClient()->getAdapter()->put($event->getRequest());
+                    $response = $this->getHttpClient()->getAdapter()->put($event->getRequest());
+                    break;
                 case 'PATCH':
-                    return $this->getHttpClient()->getAdapter()->patch($event->getRequest());
+                    $response = $this->getHttpClient()->getAdapter()->patch($event->getRequest());
+                    break;
                 case 'DELETE':
-                    return $this->getHttpClient()->getAdapter()->delete($event->getRequest());
+                    $response = $this->getHttpClient()->getAdapter()->delete($event->getRequest());
+                    break;
                 default:
                     throw new RuntimeException(sprintf('Unkown request method "%s".', $event->getMethod()));
             }
@@ -75,5 +85,7 @@ class RequestSubscriber extends HttpClientEventSubscriber
             // @todo create an exception that extracts the error and reports it in a generic clear way
             throw $e;
         }
+
+        return $response;
     }
 }

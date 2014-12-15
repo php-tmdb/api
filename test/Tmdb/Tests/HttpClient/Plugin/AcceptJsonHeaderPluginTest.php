@@ -12,10 +12,11 @@
  */
 namespace Tmdb\Tests\HttpClient\Plugin;
 
-use GuzzleHttp\Message\Request;
-use Tmdb\Common\ParameterBag;
-use Tmdb\Event\BeforeSendRequestEvent;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\RequestEvent;
+use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
+use Tmdb\HttpClient\Request;
 use Tmdb\Tests\TestCase;
 
 class AcceptJsonHeaderPluginTest extends TestCase
@@ -25,20 +26,13 @@ class AcceptJsonHeaderPluginTest extends TestCase
      */
     public function shouldAddToken()
     {
-        /**
-         * @var Request $request
-         */
-        $request = new Request('GET', '/');
+        $request = new Request('/', 'GET');
+        $event   = new RequestEvent($request);
 
-        $parameterBag = new ParameterBag(['request' => $request]);
-        $event        = new BeforeSendRequestEvent($parameterBag);
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber(new AcceptJsonHeaderPlugin());
+        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
 
-        $plugin = new AcceptJsonHeaderPlugin();
-
-        $plugin->onBeforeSend($event);
-
-        $options = $event->getOptions();
-
-        $this->assertEquals('application/json', (string) $options['headers']['accept']);
+        $this->assertEquals('application/json', (string) $event->getRequest()->getHeaders()->get('Accept'));
     }
 }
