@@ -29,6 +29,6 @@
         "monolog/monolog": "Required if you want to make use of logging features."
     },
     "autoload": {
-        "psr-4": { "Tmdb\\": "lib/" }
+        "psr-0": { "Tmdb\\": "lib/" }
     }
 }
