@@ -30,6 +30,7 @@ use Tmdb\Event\RequestSubscriber;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\Exception\ApiTokenMissingException;
 use Tmdb\Exception\RuntimeException;
+use Tmdb\GuestSessionToken;
 use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
@@ -79,6 +80,11 @@ class HttpClient
     private $lastRequest;
 
     /**
+     * @var SessionToken|GuestSessionToken
+     */
+    private $sessionToken;
+
+    /**
      * Constructor
      *
      * @param $baseUrl
@@ -118,7 +124,13 @@ class HttpClient
         $event = new RequestEvent($request);
         $this->eventDispatcher->dispatch(TmdbEvents::REQUEST, $event);
 
-        return $this->lastResponse = $event->getResponse();
+        $this->lastResponse = $event->getResponse();
+
+        if ($this->lastResponse instanceof Response) {
+            return (string) $this->lastResponse->getBody();
+        }
+
+        return [];
     }
 
     /**
@@ -308,13 +320,22 @@ class HttpClient
     }
 
     /**
+     * @return GuestSessionToken|SessionToken
+     */
+    public function getSessionToken()
+    {
+        return $this->sessionToken;
+    }
+
+    /**
      * Add an subscriber to append the session_token to the query parameters.
      *
      * @param SessionToken $sessionToken
      */
     public function setSessionToken(SessionToken $sessionToken)
     {
-        $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
+        $this->sessionToken = $sessionToken;
+        $sessionTokenPlugin = new SessionTokenPlugin($this->sessionToken);
         $this->addSubscriber($sessionTokenPlugin);
     }
 

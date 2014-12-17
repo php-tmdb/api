@@ -50,13 +50,6 @@ class Client
     private $token;
 
     /**
-     * Stores API user session token
-     *
-     * @var SessionToken
-     */
-    private $sessionToken;
-
-    /**
      * Whether the request is supposed to use a secure schema
      *
      * @var bool
@@ -427,7 +420,7 @@ class Client
      */
     public function setSessionToken($sessionToken)
     {
-        $this->sessionToken = $sessionToken;
+        $this->getHttpClient()->setSessionToken($sessionToken);
 
         return $this;
     }
@@ -437,7 +430,7 @@ class Client
      */
     public function getSessionToken()
     {
-        return $this->sessionToken;
+        return $this->getHttpClient()->getSessionToken();
     }
 
     /**

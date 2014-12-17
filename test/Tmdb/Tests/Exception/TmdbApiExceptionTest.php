@@ -21,9 +21,9 @@ class TmdbApiExceptionTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $exception = new TmdbApiException('abc', 1);
+        $exception = new TmdbApiException(1, 'code');
 
-        $this->assertEquals('abc', $exception->getMessage());
         $this->assertEquals(1, $exception->getCode());
+        $this->assertEquals('code', $exception->getMessage());
     }
 }

@@ -163,7 +163,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             new ParameterBag(array_merge(
                     $parameters,
                     [
-                        'api_key' => new ApiToken('abcdef')
+                        'api_key' => 'abcdef'
                     ]
                 )
             ),

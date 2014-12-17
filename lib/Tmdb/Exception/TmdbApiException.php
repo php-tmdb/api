@@ -11,6 +11,8 @@
  * @version 0.0.1
  */
 namespace Tmdb\Exception;
+use Tmdb\HttpClient\Request;
+use Tmdb\HttpClient\Response;
 
 /**
  * Class TmdbApiException
@@ -18,9 +20,77 @@ namespace Tmdb\Exception;
  */
 class TmdbApiException extends \Exception
 {
-    public function __construct($message, $code)
+    /**
+     * @var int
+     */
+    protected $code;
+
+    /**
+     * @var string
+     */
+    protected $message;
+
+    /**
+     * @var Request
+     */
+    protected $request;
+
+    /**
+     * @var Response
+     */
+    protected $response;
+
+    /**
+     * Create the exception
+     *
+     * @param string $message
+     * @param int    $code
+     * @param null   $request
+     * @param null   $response
+     */
+    public function __construct($code, $message, $request = null, $response = null)
     {
-        $this->message = $message;
-        $this->code    = $code;
+        $this->code     = $code;
+        $this->message  = $message;
+        $this->request  = $request;
+        $this->response = $response;
+    }
+
+    /**
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @param  Request $request
+     * @return $this
+     */
+    public function setRequest($request)
+    {
+        $this->request = $request;
+
+        return $this;
+    }
+
+    /**
+     * @return Response
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param  Response $response
+     * @return $this
+     */
+    public function setResponse($response)
+    {
+        $this->response = $response;
+
+        return $this;
     }
 }

@@ -32,13 +32,12 @@ abstract class TestCase extends Base
      * Return regular objects but replace the http adapter to not actually send requests
      *
      * @param  array $methods
-     * @param  array $clientMethods
      * @param  null  $sessionToken
      * @return mixed
      */
-    protected function getApiWithMockedHttpAdapter(array $methods = [], array $clientMethods = [], $sessionToken = null)
+    protected function getApiWithMockedHttpAdapter(array $methods = [], $sessionToken = null)
     {
-        $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
+        $this->_client = $this->getClientWithMockedHttpClient($methods);
 
         if ($sessionToken) {
             $this->_client->setSessionToken($sessionToken);

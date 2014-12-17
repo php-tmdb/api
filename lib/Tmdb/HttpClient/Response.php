@@ -22,7 +22,7 @@ class Response
     /**
      * @var string
      */
-    private $content;
+    private $body;
 
     /**
      * @var integer
@@ -38,16 +38,16 @@ class Response
      * Construct an response object
      *
      * @param int          $code
-     * @param null         $content
+     * @param null         $body
      * @param ParameterBag $headers
      */
     public function __construct(
         $code = 200,
-        $content = null,
+        $body = null,
         ParameterBag $headers = null
     ) {
         $this->code    = $code;
-        $this->content = $content;
+        $this->body = $body;
         $this->headers = $headers;
     }
 
@@ -73,18 +73,18 @@ class Response
     /**
      * @return string
      */
-    public function getContent()
+    public function getBody()
     {
-        return $this->content;
+        return $this->body;
     }
 
     /**
-     * @param  string $content
+     * @param  string $body
      * @return $this
      */
-    public function setContent($content)
+    public function setBody($body)
     {
-        $this->content = $content;
+        $this->body = $body;
 
         return $this;
     }

@@ -13,7 +13,10 @@
 namespace Tmdb\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Message\Response;
+use Tmdb\Common\ParameterBag;
+use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
 
 class GuzzleAdapter extends AbstractAdapter
@@ -42,9 +45,40 @@ class GuzzleAdapter extends AbstractAdapter
         ];
     }
 
-    private function getBody(Response $response)
+    /**
+     * Create the response object
+     *
+     * @param  Response                  $adapterResponse
+     * @return \Tmdb\HttpClient\Response
+     */
+    private function createResponse(Response $adapterResponse)
     {
-        return (string) $response->getBody();
+        $response = new \Tmdb\HttpClient\Response();
+
+        $response->setCode($adapterResponse->getStatusCode());
+        $response->setHeaders(new ParameterBag($adapterResponse->getHeaders()));
+        $response->setBody((string) $adapterResponse->getBody());
+
+        return $response;
+    }
+
+    /**
+     * Create the unified exception to throw
+     *
+     * @param  Request                   $request
+     * @param  \Tmdb\HttpClient\Response $response
+     * @return TmdbApiException
+     */
+    private function createApiException(Request $request, \Tmdb\HttpClient\Response $response)
+    {
+        $errors = json_decode((string) $response->getBody());
+
+        return new TmdbApiException(
+            $errors->status_code,
+            $errors->status_message,
+            $request,
+            $response
+        );
     }
 
     /**
@@ -52,12 +86,16 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function get(Request $request)
     {
-        $response = $this->client->get(
-            $request->getPath(),
-            $this->getConfiguration($request)
-        );
+        try {
+            $response = $this->client->get(
+                $request->getPath(),
+                $this->getConfiguration($request)
+            );
+        } catch (RequestException $e) {
+            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+        }
 
-        return $this->getBody($response);
+        return $this->createResponse($response);
     }
 
     /**
@@ -65,15 +103,19 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function post(Request $request)
     {
-        $response = $this->client->post(
-            $request->getPath(),
-            array_merge(
-                ['body' => $request->getBody()],
-                $this->getConfiguration($request)
-            )
-        );
+        try {
+            $response = $this->client->post(
+                $request->getPath(),
+                array_merge(
+                    ['body' => $request->getBody()],
+                    $this->getConfiguration($request)
+                )
+            );
+        } catch (RequestException $e) {
+            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+        }
 
-        return $this->getBody($response);
+        return $this->createResponse($response);
     }
 
     /**
@@ -81,15 +123,19 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function put(Request $request)
     {
-        $response = $this->client->put(
-            $request->getPath(),
-            array_merge(
-                ['body' => $request->getBody()],
-                $this->getConfiguration($request)
-            )
-        );
+        try {
+            $response = $this->client->put(
+                $request->getPath(),
+                array_merge(
+                    ['body' => $request->getBody()],
+                    $this->getConfiguration($request)
+                )
+            );
+        } catch (RequestException $e) {
+            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+        }
 
-        return $this->getBody($response);
+        return $this->createResponse($response);
     }
 
     /**
@@ -97,15 +143,19 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function patch(Request $request)
     {
-        $response = $this->client->patch(
-            $request->getPath(),
-            array_merge(
-                ['body' => $request->getBody()],
-                $this->getConfiguration($request)
-            )
-        );
+        try {
+            $response = $this->client->patch(
+                $request->getPath(),
+                array_merge(
+                    ['body' => $request->getBody()],
+                    $this->getConfiguration($request)
+                )
+            );
+        } catch (RequestException $e) {
+            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+        }
 
-        return $this->getBody($response);
+        return $this->createResponse($response);
     }
 
     /**
@@ -113,15 +163,19 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function delete(Request $request)
     {
-        $response = $this->client->delete(
-            $request->getPath(),
-            array_merge(
-                ['body' => $request->getBody()],
-                $this->getConfiguration($request)
-            )
-        );
+        try {
+            $response = $this->client->delete(
+                $request->getPath(),
+                array_merge(
+                    ['body' => $request->getBody()],
+                    $this->getConfiguration($request)
+                )
+            );
+        } catch (RequestException $e) {
+            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+        }
 
-        return $this->getBody($response);
+        return $this->createResponse($response);
     }
 
     /**
@@ -129,12 +183,16 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function head(Request $request)
     {
-        $response = $this->client->head(
-            $request->getPath(),
-            $this->getConfiguration($request)
-        );
+        try {
+            $response = $this->client->head(
+                $request->getPath(),
+                $this->getConfiguration($request)
+            );
+        } catch (RequestException $e) {
+            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+        }
 
-        return $this->getBody($response);
+        return $this->createResponse($response);
     }
 
     /**
