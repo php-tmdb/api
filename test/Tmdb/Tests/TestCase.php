@@ -15,7 +15,9 @@ namespace Tmdb\Tests;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
+use Tmdb\Common\ParameterBag;
 use Tmdb\HttpClient\HttpClient;
+use Tmdb\HttpClient\Request;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -86,13 +88,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function getMockedTmdbClient()
     {
         $token    = new ApiToken('abcdef');
-        $response = new FakeResponse('200');
 
         $adapter = $this->getMockBuilder('Tmdb\HttpClient\Adapter\NullAdapter')
             ->disableOriginalConstructor()
             ->getMock()
         ;
 
+        /** @todo remove */
         foreach (['get','post','delete'] as $method) {
             $adapter
                 ->expects($this->any())
@@ -101,7 +103,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             ;
         }
 
-        return new Client($token, $adapter);
+        return $this->_client = new Client($token, $adapter);
     }
 
     /**
@@ -112,7 +114,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function getHttpClientWithMockedAdapter($baseUrl, array $options = [])
     {
-        return new HttpClient(
+        return $this->_client = new HttpClient(
             $baseUrl,
             $options,
             $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
@@ -135,50 +137,68 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Get the expected request that will deliver a response
+     *
+     * @param $path
+     * @param  array   $parameters
+     * @param  string  $method
+     * @param  array   $headers
+     * @param  null    $body
+     * @return Request
+     */
+    protected function getRequest($path, $parameters = [], $method = 'GET', $headers = [], $body = null)
+    {
+        if (
+            $method == 'POST'  ||
+            $method == 'PUT'   ||
+            $method == 'PATCH' ||
+            $method == 'DELETE'
+        ) {
+            $headers = array_merge($headers, ['Content-Type' => 'application/json']);
+        }
+
+        $request = new Request(
+            $path,
+            $method,
+            new ParameterBag(array_merge(
+                    $parameters,
+                    [
+                        'api_key' => new ApiToken('abcdef')
+                    ]
+                )
+            ),
+            new ParameterBag(array_merge(
+                    $headers,
+                    [
+                        'Accept' => 'application/json'
+                    ]
+                )
+            )
+        );
+
+        $request->setOptions(new ParameterBag([
+            'token'  => new ApiToken('abcdef'),
+            'secure' => false
+        ]));
+
+        if ($body !== null) {
+            $request->setBody(is_array($body) ? json_encode($body) : $body);
+        }
+
+        return $request;
+    }
+
+    /**
      * Hydrate object
      *
      * @param $object
      * @param $data
      * @return \Tmdb\Model\AbstractModel
      */
-    protected function hydrate($object, $data)
+    protected function hydrate($object, array $data = [])
     {
         $objectHydrator = new ObjectHydrator();
 
         return $objectHydrator->hydrate($object, $data);
-    }
-}
-
-class FakeResponse
-{
-    private $statusCode;
-
-    public function __construct($statusCode = 200)
-    {
-        $this->statusCode = $statusCode;
-    }
-
-    /**
-     * @return int
-     */
-    public function getStatusCode()
-    {
-        return $this->statusCode;
-    }
-
-    /**
-     * @param  int   $statusCode
-     * @return $this
-     */
-    public function setStatusCode($statusCode)
-    {
-        $this->statusCode = $statusCode;
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        return '';
     }
 }

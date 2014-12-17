@@ -15,7 +15,6 @@ namespace Tmdb\Tests\Api;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ParameterBag;
-use Tmdb\HttpClient\Request;
 use Tmdb\Tests\TestCase as Base;
 
 abstract class TestCase extends Base
@@ -101,47 +100,5 @@ abstract class TestCase extends Base
     protected function getAdapter()
     {
         return $this->_client->getHttpClient()->getAdapter();
-    }
-
-    protected function getRequest($path, $parameters = [], $method = 'GET', $headers = [], $body = null)
-    {
-        if (
-            $method == 'POST'  ||
-            $method == 'PUT'   ||
-            $method == 'PATCH' ||
-            $method == 'DELETE'
-        ) {
-            $headers = array_merge($headers, ['Content-Type' => 'application/json']);
-        }
-
-        $request = new Request(
-            $path,
-            $method,
-            new ParameterBag(array_merge(
-                    $parameters,
-                    [
-                        'api_key' => new ApiToken('abcdef')
-                    ]
-                )
-            ),
-            new ParameterBag(array_merge(
-                    $headers,
-                    [
-                        'Accept' => 'application/json'
-                    ]
-                )
-            )
-        );
-
-        $request->setOptions(new ParameterBag([
-            'token'  => new ApiToken('abcdef'),
-            'secure' => false
-        ]));
-
-        if ($body !== null) {
-            $request->setBody(is_array($body) ? json_encode($body) : $body);
-        }
-
-        return $request;
     }
 }

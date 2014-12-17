@@ -20,7 +20,33 @@ abstract class TestCase extends Base
 {
     protected $repository;
 
+    /**
+     * @var Client
+     */
+    private $_client;
+
     abstract protected function getRepositoryClass();
+
+    /**
+     * Return regular objects but replace the http adapter to not actually send requests
+     *
+     * @param  array $methods
+     * @param  array $clientMethods
+     * @param  null  $sessionToken
+     * @return mixed
+     */
+    protected function getRepositoryWithMockedHttpAdapter(array $methods = [], array $clientMethods = [], $sessionToken = null)
+    {
+        $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
+
+        if ($sessionToken) {
+            $this->_client->setSessionToken($sessionToken);
+        }
+
+        $repositoryClass = $this->getRepositoryClass();
+
+        return new $repositoryClass($this->_client);
+    }
 
     protected function getRepositoryWithMockedHttpClient()
     {
@@ -36,5 +62,15 @@ abstract class TestCase extends Base
         }
 
         return $this->getMock($this->getRepositoryClass(), array_merge(['getApi'], $methods), [$client]);
+    }
+
+    /**
+     * Shortcut to obtain the http client adapter
+     *
+     * @return \Tmdb\HttpClient\Adapter\AdapterInterface
+     */
+    protected function getAdapter()
+    {
+        return $this->_client->getHttpClient()->getAdapter();
     }
 }

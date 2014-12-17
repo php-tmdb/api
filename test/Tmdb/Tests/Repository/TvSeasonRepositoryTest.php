@@ -24,9 +24,13 @@ class TvSeasonRepositoryTest extends TestCase
      */
     public function shouldLoadTvSeason()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->load(self::TV_ID, self::SEASON_ID);
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID));
+
+        $tvSeason = $repository->load(self::TV_ID, self::SEASON_ID);
     }
 
     /**
