@@ -21,17 +21,12 @@ class NetworkRepositoryTest extends TestCase
      */
     public function shouldLoadNetwork()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->load(self::NETWORK_ID);
-    }
-
-    /**
-     * @test
-     */
-    public function shouldGetNetworks()
-    {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('network/' . self::NETWORK_ID))
+        ;
 
         $repository->load(self::NETWORK_ID);
     }

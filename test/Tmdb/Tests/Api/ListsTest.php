@@ -122,7 +122,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list/' . self::LIST_ID . '/clear?confirm=true', [], 'POST'))
+            ->with($this->getRequest('list/' . self::LIST_ID . '/clear', ['confirm' => 'true'], 'POST'))
         ;
 
         $api->clearList(self::LIST_ID, true);

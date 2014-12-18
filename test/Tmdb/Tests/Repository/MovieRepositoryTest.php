@@ -23,7 +23,15 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldLoadMovie()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'movie/' . self::MOVIE_ID,
+                ['append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,releases,reviews,similar,translations,videos']
+            ))
+        ;
 
         $repository->load(self::MOVIE_ID);
     }
@@ -33,7 +41,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetAlternativeTitles()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/alternative_titles'))
+        ;
 
         $repository->getAlternativeTitles(self::MOVIE_ID);
     }
@@ -43,7 +56,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetCredits()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/credits'))
+        ;
 
         $repository->getCredits(self::MOVIE_ID);
     }
@@ -53,8 +71,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetImages()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/images'))
+        ;
         $repository->getImages(self::MOVIE_ID);
     }
 
@@ -63,7 +85,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetKeywords()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/keywords'))
+        ;
 
         $repository->getKeywords(self::MOVIE_ID);
     }
@@ -73,7 +100,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetReleases()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/releases'))
+        ;
 
         $repository->getReleases(self::MOVIE_ID);
     }
@@ -83,7 +115,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetTranslations()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/translations'))
+        ;
 
         $repository->getTranslations(self::MOVIE_ID);
     }
@@ -93,7 +130,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetSimilar()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/similar'))
+        ;
 
         $repository->getSimilar(self::MOVIE_ID);
     }
@@ -103,7 +145,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetReviews()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/reviews'))
+        ;
 
         $repository->getReviews(self::MOVIE_ID);
     }
@@ -113,7 +160,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetLists()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/lists'))
+        ;
 
         $repository->getLists(self::MOVIE_ID);
     }
@@ -123,7 +175,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetChanges()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/changes'))
+        ;
 
         $repository->getChanges(self::MOVIE_ID);
     }
@@ -133,7 +190,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetLatestMovie()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/latest'))
+        ;
 
         $repository->getLatest();
     }
@@ -143,7 +205,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetUpcoming()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/upcoming'))
+        ;
 
         $repository->getUpcoming();
     }
@@ -153,7 +220,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetNowPlaying()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/now_playing'))
+        ;
 
         $repository->getNowPlaying();
     }
@@ -163,7 +235,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetPopular()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/popular'))
+        ;
 
         $repository->getPopular();
     }
@@ -173,7 +250,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetTopRated()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/top_rated'))
+        ;
 
         $repository->getTopRated();
     }
@@ -183,7 +265,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetAccountStates()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/id/account_states'))
+        ;
 
         $repository->getAccountStates('id');
     }
@@ -193,7 +280,18 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldRate()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'movie/id/rating',
+                [],
+                'POST',
+                [],
+                ['value' => 5.2]
+            ))
+        ;
 
         $repository->rate('id', 5.2);
     }
@@ -203,7 +301,12 @@ class MovieRepositoryTest extends TestCase
      */
     public function shouldGetVideos()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/videos'))
+        ;
 
         $repository->getVideos(self::MOVIE_ID);
     }

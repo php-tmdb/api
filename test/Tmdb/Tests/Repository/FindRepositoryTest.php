@@ -14,14 +14,21 @@ namespace Tmdb\Tests\Repository;
 
 class FindRepositoryTest extends TestCase
 {
+    const FIND_QUERY = 'tt2345737';
+
     /**
      * @test
      */
     public function shouldGetMovieChanges()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->find('tt2345737');
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('find/' . self::FIND_QUERY, []))
+        ;
+
+        $repository->find(self::FIND_QUERY);
     }
 
     protected function getApiClass()

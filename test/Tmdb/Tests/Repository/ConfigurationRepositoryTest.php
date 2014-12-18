@@ -19,7 +19,12 @@ class ConfigurationRepositoryTest extends TestCase
      */
     public function shouldLoadConfiguration()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('configuration'))
+        ;
 
         $repository->load();
     }

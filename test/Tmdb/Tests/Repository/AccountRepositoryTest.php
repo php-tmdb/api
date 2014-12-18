@@ -27,7 +27,12 @@ class AccountRepositoryTest extends TestCase
      */
     public function shouldGetAccount()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account'))
+        ;
 
         $repository->getAccount();
     }
@@ -37,7 +42,12 @@ class AccountRepositoryTest extends TestCase
      */
     public function shouldGetLists()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/lists'))
+        ;
 
         $repository->getLists(self::ACCOUNT_ID);
     }
@@ -47,7 +57,12 @@ class AccountRepositoryTest extends TestCase
      */
     public function shouldGetFavoriteMovies()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite/movies'))
+        ;
 
         $repository->getFavoriteMovies(self::ACCOUNT_ID);
     }
@@ -57,7 +72,18 @@ class AccountRepositoryTest extends TestCase
      */
     public function shouldFavorite()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'account/'.self::ACCOUNT_ID.'/favorite',
+                [],
+                'POST',
+                [],
+                ['media_id' => self::MOVIE_ID, 'media_type' => 'movie', 'favorite' => true]
+            ))
+        ;
 
         $repository->favorite(self::ACCOUNT_ID, self::MOVIE_ID, true);
     }
@@ -67,7 +93,18 @@ class AccountRepositoryTest extends TestCase
      */
     public function shouldFavoriteMovieObject()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'account/'.self::ACCOUNT_ID.'/favorite',
+                [],
+                'POST',
+                [],
+                ['media_id' => self::MOVIE_ID, 'media_type' => 'movie', 'favorite' => true]
+            ))
+        ;
 
         $movie = new Movie();
         $movie->setId(self::MOVIE_ID);
@@ -80,7 +117,12 @@ class AccountRepositoryTest extends TestCase
      */
     public function shouldGetRatedMovies()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/rated/movies'))
+        ;
 
         $repository->getRatedMovies(self::ACCOUNT_ID);
     }
@@ -90,7 +132,18 @@ class AccountRepositoryTest extends TestCase
      */
     public function shouldWatchlist()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'account/'.self::ACCOUNT_ID.'/movie_watchlist',
+                [],
+                'POST',
+                [],
+                ['media_id' => self::MOVIE_ID, 'media_type' => 'movie', 'watchlist' => true]
+            ))
+        ;
 
         $repository->watchlist(self::ACCOUNT_ID, self::MOVIE_ID, true);
     }
@@ -100,7 +153,18 @@ class AccountRepositoryTest extends TestCase
      */
     public function shouldWatchlistMovieObject()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'account/'.self::ACCOUNT_ID.'/movie_watchlist',
+                [],
+                'POST',
+                [],
+                ['media_id' => self::MOVIE_ID, 'media_type' => 'movie', 'watchlist' => true]
+            ))
+        ;
 
         $movie = new Movie();
         $movie->setId(self::MOVIE_ID);

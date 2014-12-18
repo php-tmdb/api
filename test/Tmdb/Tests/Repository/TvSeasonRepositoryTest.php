@@ -28,9 +28,13 @@ class TvSeasonRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID));
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID,
+                ['append_to_response' => 'credits,external_ids,images,changes']
+            ))
+        ;
 
-        $tvSeason = $repository->load(self::TV_ID, self::SEASON_ID);
+        $repository->load(self::TV_ID, self::SEASON_ID);
     }
 
     /**
@@ -38,7 +42,15 @@ class TvSeasonRepositoryTest extends TestCase
      */
     public function shouldBeAbleToLoadTvSeasonWithTvAndSeason()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID,
+                ['append_to_response' => 'credits,external_ids,images,changes']
+            ))
+        ;
 
         $tv = new Tv();
         $tv->setId(self::TV_ID);
@@ -54,7 +66,14 @@ class TvSeasonRepositoryTest extends TestCase
      */
     public function shouldGetCredits()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/credits'
+            ))
+        ;
 
         $tv = new Tv();
         $tv->setId(self::TV_ID);
@@ -70,7 +89,14 @@ class TvSeasonRepositoryTest extends TestCase
      */
     public function shouldGetExternalIds()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids'
+            ))
+        ;
 
         $tv = new Tv();
         $tv->setId(self::TV_ID);
@@ -86,7 +112,14 @@ class TvSeasonRepositoryTest extends TestCase
      */
     public function shouldGetImages()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/images'
+            ))
+        ;
 
         $tv = new Tv();
         $tv->setId(self::TV_ID);
@@ -102,7 +135,14 @@ class TvSeasonRepositoryTest extends TestCase
      */
     public function shouldGetVideos()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/videos'
+            ))
+        ;
 
         $tv = new Tv();
         $tv->setId(self::TV_ID);

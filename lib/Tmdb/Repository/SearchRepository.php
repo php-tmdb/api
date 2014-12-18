@@ -170,7 +170,7 @@ class SearchRepository extends AbstractRepository
      */
     public function searchCompany($query, CompanySearchQuery $parameters, array $headers = [])
     {
-        $data = $this->getApi()->searchTv($query, $this->getParameters($parameters), $headers);
+        $data = $this->getApi()->searchCompany($query, $this->getParameters($parameters), $headers);
 
         return $this->getCompanyFactory()->createResultCollection($data);
     }

@@ -21,7 +21,12 @@ class ChangesRepositoryTest extends TestCase
      */
     public function shouldGetMovieChanges()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('movie/changes'))
+        ;
 
         $query = new ChangesQuery();
 
@@ -33,7 +38,12 @@ class ChangesRepositoryTest extends TestCase
      */
     public function shouldGetPeopleChanges()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/changes'))
+        ;
 
         $query = new ChangesQuery();
 
@@ -45,7 +55,12 @@ class ChangesRepositoryTest extends TestCase
      */
     public function shouldGetTvChanges()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/changes'))
+        ;
 
         $query = new ChangesQuery();
 

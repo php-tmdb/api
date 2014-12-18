@@ -21,7 +21,15 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldLoadTv()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID,
+                ['append_to_response' => 'credits,external_ids,images,translations,similar,keywords,changes']
+            ))
+        ;
 
         $repository->load(self::TV_ID);
     }
@@ -31,7 +39,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetPopular()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/popular'))
+        ;
 
         $repository->getPopular();
     }
@@ -41,7 +54,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetCredits()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/credits'))
+        ;
 
         $repository->getCredits(self::TV_ID);
     }
@@ -51,7 +69,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetExternalIds()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/external_ids'))
+        ;
 
         $repository->getExternalIds(self::TV_ID);
     }
@@ -61,7 +84,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetImages()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/images'))
+        ;
 
         $repository->getImages(self::TV_ID);
     }
@@ -71,7 +99,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetTranslations()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/translations'))
+        ;
 
         $repository->getTranslations(self::TV_ID);
     }
@@ -81,7 +114,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetOnTheAir()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/on_the_air'))
+        ;
 
         $repository->getOnTheAir();
     }
@@ -91,7 +129,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetAiringToday()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/airing_today'))
+        ;
 
         $repository->getAiringToday();
     }
@@ -101,7 +144,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetTopRated()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/top_rated'))
+        ;
 
         $repository->getTopRated();
     }
@@ -111,7 +159,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetVideos()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/videos'))
+        ;
 
         $repository->getVideos(self::TV_ID);
     }
@@ -121,7 +174,12 @@ class TvRepositoryTest extends TestCase
      */
     public function shouldGetLatestTvShow()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/latest'))
+        ;
 
         $repository->getLatest();
     }

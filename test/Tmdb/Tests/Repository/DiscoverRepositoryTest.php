@@ -23,7 +23,12 @@ class DiscoverRepositoryTest extends TestCase
      */
     public function shouldDiscoverMovies()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('discover/movie', []))
+        ;
 
         $query = new DiscoverMoviesQuery();
 
@@ -60,7 +65,12 @@ class DiscoverRepositoryTest extends TestCase
      */
     public function shouldDiscoverTv()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('discover/tv', []))
+        ;
 
         $query = new DiscoverTvQuery();
 

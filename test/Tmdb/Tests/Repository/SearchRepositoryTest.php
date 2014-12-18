@@ -23,6 +23,15 @@ use Tmdb\Repository\SearchRepository;
 
 class SearchRepositoryTest extends TestCase
 {
+    const MOVIE_QUERY      = 'rush hour';
+    const COLLECTION_QUERY = 'the matrix';
+    const TV_QUERY         = 'breaking bad';
+    const PERSON_QUERY     = 'johnny knoxville';
+    const LIST_QUERY       = 'golden';
+    const COMPANY_QUERY    = 'disney';
+    const KEYWORD_QUERY    = 'alien';
+    const MULTI_QUERY      = 'jack';
+
     /**
      * @test
      */
@@ -31,9 +40,17 @@ class SearchRepositoryTest extends TestCase
         /**
          * @var SearchRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->searchMovie('rush hour', new MovieSearchQuery());
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/movie',
+                ['page' => 1, 'query' => urlencode(self::MOVIE_QUERY)]
+            ))
+        ;
+
+        $repository->searchMovie(self::MOVIE_QUERY, new MovieSearchQuery());
     }
 
     /**
@@ -44,9 +61,17 @@ class SearchRepositoryTest extends TestCase
         /**
          * @var SearchRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->searchCollection('the matrix', new CollectionSearchQuery());
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/collection',
+                ['page' => 1, 'query' => urlencode(self::COLLECTION_QUERY)]
+            ))
+        ;
+
+        $repository->searchCollection(self::COLLECTION_QUERY, new CollectionSearchQuery());
     }
 
     /**
@@ -57,9 +82,17 @@ class SearchRepositoryTest extends TestCase
         /**
          * @var SearchRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->searchTv('breaking bad', new TvSearchQuery());
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/tv',
+                ['page' => 1, 'query' => urlencode(self::TV_QUERY)]
+            ))
+        ;
+
+        $repository->searchTv(self::TV_QUERY, new TvSearchQuery());
     }
 
     /**
@@ -70,9 +103,17 @@ class SearchRepositoryTest extends TestCase
         /**
          * @var SearchRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->searchPerson('johnny knoxville', new PersonSearchQuery());
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/person',
+                ['page' => 1, 'query' => urlencode(self::PERSON_QUERY)]
+            ))
+        ;
+
+        $repository->searchPerson(self::PERSON_QUERY, new PersonSearchQuery());
     }
 
     /**
@@ -83,9 +124,17 @@ class SearchRepositoryTest extends TestCase
         /**
          * @var SearchRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->searchList('golden', new ListSearchQuery());
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/list',
+                ['page' => 1, 'query' => urlencode(self::LIST_QUERY)]
+            ))
+        ;
+
+        $repository->searchList(self::LIST_QUERY, new ListSearchQuery());
     }
 
     /**
@@ -96,9 +145,17 @@ class SearchRepositoryTest extends TestCase
         /**
          * @var SearchRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->searchCompany('disney', new CompanySearchQuery());
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/company',
+                ['page' => 1, 'query' => urlencode(self::COMPANY_QUERY)]
+            ))
+        ;
+
+        $repository->searchCompany(self::COMPANY_QUERY, new CompanySearchQuery());
     }
 
     /**
@@ -109,9 +166,17 @@ class SearchRepositoryTest extends TestCase
         /**
          * @var SearchRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->searchKeyword('alien', new KeywordSearchQuery());
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/keyword',
+                ['page' => 1, 'query' => urlencode(self::KEYWORD_QUERY)]
+            ))
+        ;
+
+        $repository->searchKeyword(self::KEYWORD_QUERY, new KeywordSearchQuery());
     }
 
     /**
@@ -122,9 +187,17 @@ class SearchRepositoryTest extends TestCase
         /**
          * @var SearchRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->searchKeyword('jack', new KeywordSearchQuery());
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/multi',
+                ['page' => 1, 'query' => urlencode(self::MULTI_QUERY)]
+            ))
+        ;
+
+        $repository->searchMulti(self::MULTI_QUERY, new KeywordSearchQuery());
     }
 
     /**

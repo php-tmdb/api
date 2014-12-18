@@ -14,7 +14,7 @@ namespace Tmdb\Tests\Repository;
 
 class ListRepositoryTest extends TestCase
 {
-    const LIST_ID  = '509ec17b19c2950a0600050d';
+    const LIST_ID  = '509fb10819c29510bb000675';
     const MOVIE_ID = 150;
 
     /**
@@ -22,7 +22,12 @@ class ListRepositoryTest extends TestCase
      */
     public function shouldLoadList()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('list/' . self::LIST_ID))
+        ;
 
         $repository->load(self::LIST_ID);
     }
@@ -32,7 +37,12 @@ class ListRepositoryTest extends TestCase
      */
     public function shouldGetItemStatus()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('list/' . self::LIST_ID . '/item_status', ['movie_id' => self::MOVIE_ID]))
+        ;
 
         $repository->getItemStatus(self::LIST_ID, self::MOVIE_ID);
     }
@@ -42,7 +52,12 @@ class ListRepositoryTest extends TestCase
      */
     public function shouldCreateList()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest('list', [], 'POST', [], ['name' => 'list-name', 'description' => 'list-description']))
+        ;
 
         $repository->createList('list-name', 'list-description');
     }
@@ -52,9 +67,14 @@ class ListRepositoryTest extends TestCase
      */
     public function shouldAdd()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->add('list-id', 'movie-id');
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest('list/'.self::LIST_ID.'/add_item', [], 'POST', [], ['media_id' => self::MOVIE_ID]))
+        ;
+
+        $repository->add(self::LIST_ID, self::MOVIE_ID);
     }
 
     /**
@@ -62,9 +82,14 @@ class ListRepositoryTest extends TestCase
      */
     public function shouldRemove()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->remove('list-id', 'movie-id');
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest('list/'.self::LIST_ID.'/remove_item', [], 'POST', [], ['media_id' => self::MOVIE_ID]))
+        ;
+
+        $repository->remove(self::LIST_ID, self::MOVIE_ID);
     }
 
     /**
@@ -72,9 +97,14 @@ class ListRepositoryTest extends TestCase
      */
     public function shouldDeleteList()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->deleteList('list-id');
+        $this->getAdapter()->expects($this->once())
+            ->method('delete')
+            ->with($this->getRequest('list/' . self::LIST_ID, [], 'DELETE'))
+        ;
+
+        $repository->deleteList(self::LIST_ID);
     }
 
     /**
@@ -82,9 +112,14 @@ class ListRepositoryTest extends TestCase
      */
     public function shouldClearList()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->clearList('list-id', true);
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest('list/'.self::LIST_ID.'/clear', ['confirm'=>'true'], 'POST'))
+        ;
+
+        $repository->clearList(self::LIST_ID, true);
     }
 
     protected function getApiClass()

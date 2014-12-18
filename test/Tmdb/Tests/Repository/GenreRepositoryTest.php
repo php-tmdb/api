@@ -21,7 +21,12 @@ class GenreRepositoryTest extends TestCase
      */
     public function shouldLoadGenre()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('genre/list', []))
+        ;
 
         $repository->load(self::GENRE_ID);
     }
@@ -31,7 +36,12 @@ class GenreRepositoryTest extends TestCase
      */
     public function shouldLoadCollection()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('genre/list', []))
+        ;
 
         $repository->loadCollection();
     }
@@ -41,7 +51,12 @@ class GenreRepositoryTest extends TestCase
      */
     public function shouldGetMovies()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('genre/' . self::GENRE_ID . '/movies', []))
+        ;
 
         $repository->getMovies(self::GENRE_ID);
     }

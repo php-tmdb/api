@@ -19,7 +19,12 @@ class JobsRepositoryTest extends TestCase
      */
     public function shouldForwardLoad()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('job/list', []))
+        ;
 
         $repository->load();
     }
@@ -29,7 +34,12 @@ class JobsRepositoryTest extends TestCase
      */
     public function shouldLoadCollection()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('job/list', []))
+        ;
 
         $repository->loadCollection();
     }

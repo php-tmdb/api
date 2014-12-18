@@ -21,7 +21,12 @@ class CompanyRepositoryTest extends TestCase
      */
     public function shouldLoadCompany()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('company/' . self::COMPANY_ID, []))
+        ;
 
         $repository->load(self::COMPANY_ID);
     }
@@ -31,7 +36,12 @@ class CompanyRepositoryTest extends TestCase
      */
     public function shouldGetMovies()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('company/'.self::COMPANY_ID.'/movies'))
+        ;
 
         $repository->getMovies(self::COMPANY_ID);
     }

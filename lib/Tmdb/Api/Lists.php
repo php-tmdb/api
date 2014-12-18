@@ -111,10 +111,10 @@ class Lists extends AbstractApi
      */
     public function clearList($id, $confirm)
     {
-        return $this->post(sprintf(
-                'list/%s/clear?confirm=%s',
-                $id,
-                (bool) $confirm === true ? 'true':'false'
-            ));
+        return $this->post(
+            'list/'.$id.'/clear',
+            null,
+            ['confirm' => (bool) $confirm === true ? 'true':'false']
+        );
     }
 }

@@ -19,7 +19,12 @@ class CertificationRepositoryTest extends TestCase
      */
     public function shouldLoadCertifications()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('certification/movie/list'))
+        ;
 
         $repository->getMovieList();
     }

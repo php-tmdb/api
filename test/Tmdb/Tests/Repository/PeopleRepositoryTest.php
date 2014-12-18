@@ -12,6 +12,9 @@
  */
 namespace Tmdb\Tests\Repository;
 
+/**
+ * @todo review if the rest of the methods need to be added
+ */
 class PeopleRepositoryTest extends TestCase
 {
     const PERSON_ID = 287;
@@ -21,7 +24,15 @@ class PeopleRepositoryTest extends TestCase
      */
     public function shouldLoadPerson()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'person/' . self::PERSON_ID,
+                ['append_to_response' => 'images,changes,combined_credits,movie_credits,tv_credits,external_ids,tagged_images']
+            ))
+        ;
 
         $repository->load(self::PERSON_ID);
     }
@@ -31,7 +42,12 @@ class PeopleRepositoryTest extends TestCase
      */
     public function souldGetMovieCredits()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/' . self::PERSON_ID . '/movie_credits'))
+        ;
 
         $repository->getMovieCredits(self::PERSON_ID);
     }
@@ -41,7 +57,12 @@ class PeopleRepositoryTest extends TestCase
      */
     public function souldGetTvCredits()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/' . self::PERSON_ID . '/tv_credits'))
+        ;
 
         $repository->getTvCredits(self::PERSON_ID);
     }
@@ -51,7 +72,12 @@ class PeopleRepositoryTest extends TestCase
      */
     public function souldGetCombinedCredits()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/' . self::PERSON_ID . '/combined_credits'))
+        ;
 
         $repository->getCombinedCredits(self::PERSON_ID);
     }

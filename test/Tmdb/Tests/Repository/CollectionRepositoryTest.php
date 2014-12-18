@@ -23,7 +23,12 @@ class CollectionRepositoryTest extends TestCase
      */
     public function shouldLoadCollection()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('collection/'.self::COLLECTION_ID,['append_to_response'=>'images']))
+        ;
 
         $repository->load(self::COLLECTION_ID);
     }
@@ -33,7 +38,12 @@ class CollectionRepositoryTest extends TestCase
      */
     public function shouldGetImages()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('collection/'.self::COLLECTION_ID.'/images'))
+        ;
 
         $repository->getImages(self::COLLECTION_ID);
     }

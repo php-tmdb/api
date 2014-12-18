@@ -23,17 +23,12 @@ class KeywordRepositoryTest extends TestCase
      */
     public function shouldLoadKeyword()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->load(self::KEYWORD_ID);
-    }
-
-    /**
-     * @test
-     */
-    public function shouldGetKeywords()
-    {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('keyword/'.self::KEYWORD_ID, []))
+        ;
 
         $repository->load(self::KEYWORD_ID);
     }
@@ -46,7 +41,12 @@ class KeywordRepositoryTest extends TestCase
         /**
          * @var KeywordRepository $repository
          */
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('keyword/1/movies', []))
+        ;
 
         $repository->getMovies(1);
     }

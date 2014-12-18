@@ -21,17 +21,12 @@ class ReviewRepositoryTest extends TestCase
      */
     public function shouldLoadReview()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $repository->load(self::REVIEW_ID);
-    }
-
-    /**
-     * @test
-     */
-    public function shouldGetReviews()
-    {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('review/' . self::REVIEW_ID))
+        ;
 
         $repository->load(self::REVIEW_ID);
     }

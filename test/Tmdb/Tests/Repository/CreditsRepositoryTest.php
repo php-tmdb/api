@@ -12,8 +12,6 @@
  */
 namespace Tmdb\Tests\Repository;
 
-use Tmdb\Repository\CreditsRepository;
-
 class CreditsRepositoryTest extends TestCase
 {
     const CREDITS_ID = '5240760b5dbf5b0c2c0139db';
@@ -23,7 +21,12 @@ class CreditsRepositoryTest extends TestCase
      */
     public function shouldLoadCredits()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('credit/' . self::CREDITS_ID, []))
+        ;
 
         $repository->load(self::CREDITS_ID);
     }

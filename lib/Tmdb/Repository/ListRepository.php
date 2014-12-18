@@ -127,7 +127,7 @@ class ListRepository extends AbstractRepository
     public function clearList($id, $confirm)
     {
         return $this->getFactory()->createResult(
-            $this->getApi()->deleteList($id, (bool) $confirm)
+            $this->getApi()->clearList($id, (bool) $confirm)
         );
     }
 
