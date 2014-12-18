@@ -178,7 +178,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $request->setOptions(new ParameterBag([
             'token'  => new ApiToken('abcdef'),
-            'secure' => false
+            'secure' => true
         ]));
 
         if ($body !== null) {
