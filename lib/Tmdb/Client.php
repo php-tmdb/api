@@ -54,7 +54,7 @@ class Client
      *
      * @var bool
      */
-    private $secure = false;
+    private $secure = true;
 
     /**
      * Stores the HTTP Client
@@ -107,7 +107,7 @@ class Client
     public function __construct(
         ApiToken $token,
         $adapter = null,
-        $secure = false,
+        $secure = true,
         $options = []
     )
     {
