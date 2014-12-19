@@ -17,14 +17,14 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Api\AbstractApi;
 use Tmdb\ApiToken;
 use Tmdb\Client;
-use Tmdb\HttpClient\Adapter\NullAdapter;
+use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Tests\TestCase;
 
 class HttpClientTest extends TestCase
 {
     /**
-     * @var NullAdapter
+     * @var AdapterInterface
      */
     private $adapter;
 
@@ -45,7 +45,7 @@ class HttpClientTest extends TestCase
 
     public function setUp()
     {
-        $this->adapter = $this->getMock('Tmdb\HttpClient\Adapter\NullAdapter');
+        $this->adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
         $this->client  = new Client(new ApiToken('abcdef'), $this->adapter, false);
         $this->testApi = new TestApi($this->client);
@@ -170,9 +170,9 @@ class HttpClientTest extends TestCase
      */
     public function shouldBeAbleToOverrideAdapter()
     {
-        $httpClient = new HttpClient('http://google.nl', ['token' => 'abcdef'], new NullAdapter(), new EventDispatcher());
+        $httpClient = new HttpClient('http://google.nl', ['token' => 'abcdef'], $this->getMock('\Tmdb\HttpClient\Adapter\AdapterInterface'), new EventDispatcher());
 
-        $this->assertInstanceOf('Tmdb\HttpClient\Adapter\NullAdapter', $httpClient->getAdapter());
+        $this->assertInstanceOf('Tmdb\HttpClient\Adapter\AdapterInterface', $httpClient->getAdapter());
     }
 }
 

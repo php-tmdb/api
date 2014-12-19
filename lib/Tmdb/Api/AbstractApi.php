@@ -47,7 +47,7 @@ abstract class AbstractApi implements ApiInterface
      */
     public function get($path, array $parameters = [], $headers = [])
     {
-        $response = $this->client->getHttpClient()->get($path, $parameters, $headers);
+        $response = $this->getClient()->getHttpClient()->get($path, $parameters, $headers);
 
         return $this->decodeResponse($response);
     }
@@ -62,7 +62,7 @@ abstract class AbstractApi implements ApiInterface
      */
     public function head($path, array $parameters = [], $headers = [])
     {
-        $response = $this->client->getHttpClient()->head($path, $parameters, $headers);
+        $response = $this->getClient()->getHttpClient()->head($path, $parameters, $headers);
 
         return $this->decodeResponse($response);
     }
@@ -78,7 +78,7 @@ abstract class AbstractApi implements ApiInterface
      */
     public function post($path, $postBody = null, array $parameters = [], $headers = [])
     {
-        $response = $this->client->getHttpClient()->post($path, $postBody, $parameters, $headers);
+        $response = $this->getClient()->getHttpClient()->post($path, $postBody, $parameters, $headers);
 
         return $this->decodeResponse($response);
     }
@@ -94,7 +94,7 @@ abstract class AbstractApi implements ApiInterface
      */
     public function put($path, $body = null, array $parameters = [], $headers = [])
     {
-        $response = $this->client->getHttpClient()->put($path, $body, $parameters, $headers);
+        $response = $this->getClient()->getHttpClient()->put($path, $body, $parameters, $headers);
 
         return $this->decodeResponse($response);
     }
@@ -110,7 +110,7 @@ abstract class AbstractApi implements ApiInterface
      */
     public function delete($path, $body = null, array $parameters = [], $headers = [])
     {
-        $response = $this->client->getHttpClient()->delete($path, $body, $parameters, $headers);
+        $response = $this->getClient()->getHttpClient()->delete($path, $body, $parameters, $headers);
 
         return $this->decodeResponse($response);
     }
@@ -126,7 +126,7 @@ abstract class AbstractApi implements ApiInterface
      */
     public function patch($path, $body = null, array $parameters = [], $headers = [])
     {
-        $response = $this->client->getHttpClient()->patch($path, $body, $parameters, $headers);
+        $response = $this->getClient()->getHttpClient()->patch($path, $body, $parameters, $headers);
 
         return $this->decodeResponse($response);
     }

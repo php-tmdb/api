@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Tests\Repository;
 
+use Tmdb\HttpClient\Response;
 use Tmdb\Model\Search\SearchQuery\CollectionSearchQuery;
 use Tmdb\Model\Search\SearchQuery\CompanySearchQuery;
 use Tmdb\Model\Search\SearchQuery\KeywordSearchQuery;
@@ -195,9 +196,40 @@ class SearchRepositoryTest extends TestCase
                 'search/multi',
                 ['page' => 1, 'query' => urlencode(self::MULTI_QUERY)]
             ))
+            ->will($this->returnValue(new Response(200, json_encode([
+                'page' => 1,
+                'total_pages' => 1,
+                'total_results' => 3,
+                'results' => json_decode('[{"backdrop_path":null,"id":9766,"original_name":"Jackpot","first_air_date":null,"origin_country":["US","CA"],"poster_path":null,"popularity":5.1137023644823e-40,"name":"Jackpot","vote_average":0,"vote_count":0,"media_type":"tv"},{"backdrop_path":null,"id":9766,"original_name":"Jackpot","first_air_date":null,"origin_country":["US","CA"],"poster_path":null,"popularity":5.1137023644823e-40,"name":"Jackpot","vote_average":0,"vote_count":0,"media_type":"tv"},{"backdrop_path":null,"id":9766,"original_name":"Jackpot","first_air_date":null,"origin_country":["US","CA"],"poster_path":null,"popularity":5.1137023644823e-40,"name":"Jackpot","vote_average":0,"vote_count":0,"media_type":"tv"}]', true)
+            ]))))
         ;
 
-        $repository->searchMulti(self::MULTI_QUERY, new KeywordSearchQuery());
+        $collection = $repository->searchMulti(self::MULTI_QUERY, new KeywordSearchQuery());
+        $this->assertEquals(3, $collection->count());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReturnResultCollectionWhenResultIsNull()
+    {
+        /**
+         * @var SearchRepository $repository
+         */
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'search/multi',
+                ['page' => 1, 'query' => urlencode(self::MULTI_QUERY)]
+            ))
+            ->will($this->returnValue(null))
+        ;
+
+        $collection = $repository->searchMulti(self::MULTI_QUERY, new KeywordSearchQuery());
+        $this->assertInstanceOf('\Tmdb\Model\Collection\ResultCollection', $collection);
+        $this->assertEquals(0, $collection->count());
     }
 
     /**

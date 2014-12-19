@@ -12,6 +12,9 @@
  */
 namespace Tmdb\Tests\Api;
 
+use Tmdb\HttpClient\Response;
+use Tmdb\RequestToken;
+
 class AuthenticationTest extends TestCase
 {
     /**
@@ -43,7 +46,88 @@ class AuthenticationTest extends TestCase
             ->with($this->getRequest('authentication/session/new', ['request_token' => 'request_token']))
         ;
 
-        $api->getNewSession('request_token');
+        $api->getNewSession(new RequestToken('request_token'));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldValidateRequestTokenWithLogin()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $response = new Response(200);
+        $response->setBody(json_encode([
+            'success' => true,
+            'request_token' => 'abcdefghijklmnopqrstuvwxyz'
+        ]));
+
+        $this->getAdapter()
+            ->expects($this->any())
+            ->method('get')
+            ->with($this->getRequest('authentication/token/validate_with_login', [
+                'request_token' => 'request_token',
+                'username' => 'piet',
+                'password' => 'henk'
+            ]))
+            ->will($this->returnValue($response))
+        ;
+
+        $api->validateRequestTokenWithLogin(new RequestToken('request_token'), 'piet', 'henk');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetSessionTokenWithLogin()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $response = new Response(200);
+        $response->setBody(json_encode([
+            'success' => true,
+            'request_token' => 'abcdefghijklmnopqrstuvwxyz'
+        ]));
+
+        $this->getAdapter()
+            ->expects($this->any())
+            ->method('get')
+            ->with($this->getRequest('authentication/token/validate_with_login', [
+                'request_token' => 'request_token',
+                'username' => 'piet',
+                'password' => 'henk'
+            ]))
+            ->will($this->returnValue($response))
+        ;
+
+        $api->getSessionTokenWithLogin(new RequestToken('request_token'), 'piet', 'henk');
+    }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function shouldThrowExceptionWhenNotValidated()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $response = new Response(200);
+        $response->setBody(json_encode([
+            'success' => false
+        ]));
+
+        $this->getAdapter()
+            ->expects($this->any())
+            ->method('get')
+            ->with($this->getRequest('authentication/token/validate_with_login', [
+                'request_token' => 'request_token',
+                'username' => 'piet',
+                'password' => 'henk'
+            ]))
+            ->will($this->returnValue($response))
+        ;
+
+        $api->getSessionTokenWithLogin(new RequestToken('request_token'), 'piet', 'henk');
     }
 
     /**

@@ -142,6 +142,20 @@ class PeopleTest extends TestCase
         $api->getLatest();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetTaggedImages()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/' . self::PERSON_ID . '/tagged_images'));
+
+        $api->getTaggedImages(self::PERSON_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\People';

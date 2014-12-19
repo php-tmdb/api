@@ -131,21 +131,6 @@ class Movies extends AbstractApi
      * @param  array $parameters
      * @param  array $headers
      * @return mixed
-     *
-     * @deprecated Will be removed in one of the upcoming versions, has been updated to getSimilar ( following TMDB ).
-     */
-    public function getSimilarMovies($movie_id, array $parameters = [], array $headers = [])
-    {
-        return $this->getSimilar($movie_id, $parameters, $headers);
-    }
-
-    /**
-     * Get the similar movies for a specific movie id.
-     *
-     * @param $movie_id
-     * @param  array $parameters
-     * @param  array $headers
-     * @return mixed
      */
     public function getSimilar($movie_id, array $parameters = [], array $headers = [])
     {

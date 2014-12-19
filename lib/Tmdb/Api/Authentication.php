@@ -43,16 +43,16 @@ class Authentication extends AbstractApi
      *
      * @param string $token
      */
+    //@codeCoverageIgnoreStart
     public function authenticateRequestToken($token)
     {
-        //@codeCoverageIgnoreStart
         header(sprintf(
             'Location: %s/%s',
             self::REQUEST_TOKEN_URI,
             $token
         ));
-        //@codeCoverageIgnoreEnd
     }
+    //@codeCoverageIgnoreEnd
 
     /**
      * This method is used to generate a session id for user based authentication.
@@ -64,12 +64,8 @@ class Authentication extends AbstractApi
      */
     public function getNewSession($requestToken)
     {
-        if ($requestToken instanceof RequestToken) {
-            $requestToken = $requestToken->getToken();
-        }
-
         try {
-            return $this->get('authentication/session/new', ['request_token' => $requestToken]);
+            return $this->get('authentication/session/new', ['request_token' => (string) $requestToken]);
 
             //@codeCoverageIgnoreStart
         } catch (\Exception $e) {
@@ -91,10 +87,6 @@ class Authentication extends AbstractApi
      */
     public function getSessionTokenWithLogin($requestToken, $username, $password)
     {
-        if ($requestToken instanceof RequestToken) {
-            $requestToken = $requestToken->getToken();
-        }
-
         $validatedRequestToken = $this->validateRequestTokenWithLogin($requestToken, $username, $password);
 
         if (!$validatedRequestToken['success']) {
@@ -116,23 +108,19 @@ class Authentication extends AbstractApi
      */
     public function validateRequestTokenWithLogin($requestToken, $username, $password)
     {
-        if ($requestToken instanceof RequestToken) {
-            $requestToken = $requestToken->getToken();
-        }
-
         try {
             return $this->get('authentication/token/validate_with_login', [
                 'username'      => $username,
                 'password'      => $password,
-                'request_token' => $requestToken
+                'request_token' => (string) $requestToken
             ]);
-            //@codeCoverageIgnoreStart
+        //@codeCoverageIgnoreStart
         } catch (\Exception $e) {
             if ($e->getCode() == 401) {
                 throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
             }
-            //@codeCoverageIgnoreEnd
         }
+        //@codeCoverageIgnoreEnd
     }
 
     /**

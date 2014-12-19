@@ -14,6 +14,7 @@ namespace Tmdb\Tests\Repository;
 
 use Tmdb\Api\Account;
 use Tmdb\Model\Movie;
+use Tmdb\Model\Tv;
 use Tmdb\Repository\AccountRepository;
 
 class AccountRepositoryTest extends TestCase
@@ -70,6 +71,66 @@ class AccountRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetFavoriteTvShows()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite/tv'))
+        ;
+
+        $repository->getFavoriteTvShows(self::ACCOUNT_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetWatchlistMovies()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist/movies'))
+        ;
+
+        $repository->getMovieWatchlist(self::ACCOUNT_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetWatchlistTvShows()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist/tv'))
+        ;
+
+        $repository->getTvWatchlist(self::ACCOUNT_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetRatedTvShows()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/rated/tv'))
+        ;
+
+        $repository->getRatedTvShows(self::ACCOUNT_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldFavorite()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -115,6 +176,30 @@ class AccountRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldFavoriteTvObject()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'account/'.self::ACCOUNT_ID.'/favorite',
+                [],
+                'POST',
+                [],
+                ['media_id' => self::MOVIE_ID, 'media_type' => 'tv', 'favorite' => true]
+            ))
+        ;
+
+        $tv = new Tv();
+        $tv->setId(self::MOVIE_ID);
+
+        $repository->favorite(self::ACCOUNT_ID, $tv, true);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetRatedMovies()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -137,7 +222,7 @@ class AccountRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'account/'.self::ACCOUNT_ID.'/movie_watchlist',
+                'account/'.self::ACCOUNT_ID.'/watchlist',
                 [],
                 'POST',
                 [],
@@ -158,7 +243,7 @@ class AccountRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'account/'.self::ACCOUNT_ID.'/movie_watchlist',
+                'account/'.self::ACCOUNT_ID.'/watchlist',
                 [],
                 'POST',
                 [],
@@ -170,6 +255,30 @@ class AccountRepositoryTest extends TestCase
         $movie->setId(self::MOVIE_ID);
 
         $repository->watchlist(self::ACCOUNT_ID, $movie, true);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldWatchlistTvObject()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'account/'.self::ACCOUNT_ID.'/watchlist',
+                [],
+                'POST',
+                [],
+                ['media_id' => self::MOVIE_ID, 'media_type' => 'tv', 'watchlist' => true]
+            ))
+        ;
+
+        $tv = new Tv();
+        $tv->setId(self::MOVIE_ID);
+
+        $repository->watchlist(self::ACCOUNT_ID, $tv, true);
     }
 
     /**

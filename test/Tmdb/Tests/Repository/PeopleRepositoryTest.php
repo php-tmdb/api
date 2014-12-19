@@ -55,6 +55,96 @@ class PeopleRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetExternalIds()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/' . self::PERSON_ID . '/external_ids'))
+        ;
+
+        $repository->getExternalIds(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetImages()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/' . self::PERSON_ID . '/images'))
+        ;
+
+        $repository->getImages(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetChanges()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/' . self::PERSON_ID . '/changes'))
+        ;
+
+        $repository->getChanges(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTaggedImages()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/' . self::PERSON_ID . '/tagged_images'))
+        ;
+
+        $repository->getTaggedImages(self::PERSON_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetPopular()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/popular'))
+        ;
+
+        $repository->getPopular();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetLatest()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('person/latest'))
+        ;
+
+        $repository->getLatest();
+    }
+
+    /**
+     * @test
+     */
     public function souldGetTvCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

@@ -88,6 +88,55 @@ class TvEpisodeTest extends TestCase
         $api->getVideos(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetEpisodeChanges()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/changes'));
+
+        $api->getChanges(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetEpisodeAccountStates()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/account_states'));
+
+        $api->getAccountStates(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRateTvEpisode()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/rating',
+                [],
+                'POST',
+                [],
+                ['value' => 8.5]
+            ))
+        ;
+
+        $api->rateTvEpisode(self::TV_ID, self::SEASON_ID, self::EPISODE_ID, 8.5);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\TvEpisode';

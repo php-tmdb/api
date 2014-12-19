@@ -29,5 +29,6 @@ class RequestTokenTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(self::REQUEST_TOKEN, $token->getToken());
         $this->assertInstanceOf('DateTime', $token->getExpiresAt());
         $this->assertEquals(true, $token->getSuccess());
+        $this->assertEquals(self::REQUEST_TOKEN, (string) $token);
     }
 }

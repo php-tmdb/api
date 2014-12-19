@@ -25,6 +25,7 @@ class ApiTokenTest extends \PHPUnit_Framework_TestCase
         $token->setToken(self::API_TOKEN);
 
         $this->assertEquals(self::API_TOKEN, $token->getToken());
+        $this->assertEquals(self::API_TOKEN, (string) $token);
     }
 
     /**

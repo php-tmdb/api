@@ -87,6 +87,20 @@ class TvSeasonTest extends TestCase
         $api->getVideos(self::TV_ID, self::SEASON_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetSeasonChanges()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/changes'));
+
+        $api->getChanges(self::TV_ID, self::SEASON_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\TvSeason';

@@ -14,7 +14,6 @@ namespace Tmdb\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Tmdb\Common\ParameterBag;
-use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\Request;
 use Tmdb\HttpClient\Response;
 

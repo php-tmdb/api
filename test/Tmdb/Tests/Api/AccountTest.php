@@ -68,6 +68,22 @@ class AccountTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetFavoriteTv()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite/tv'))
+        ;
+
+        $api->getFavoriteTvShows(self::ACCOUNT_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldFavorite()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -104,6 +120,22 @@ class AccountTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetRatedTvShows()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/rated/tv'))
+        ;
+
+        $api->getRatedTvShows(self::ACCOUNT_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetMovieWatchlist()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -120,6 +152,22 @@ class AccountTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetTvShowWatchlist()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist/tv'))
+        ;
+
+        $api->getTvWatchlist(self::ACCOUNT_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldWatchlist()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -127,7 +175,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/movie_watchlist', [], 'POST', [], [
+            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist', [], 'POST', [], [
                 'media_id'   => self::MEDIA_ID,
                 'media_type' => 'movie',
                 'watchlist'  => true

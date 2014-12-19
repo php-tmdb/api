@@ -160,6 +160,72 @@ class TvTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetChanges()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/changes'))
+        ;
+
+        $api->getChanges(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetKeywords()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/keywords'))
+        ;
+
+        $api->getKeywords(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetSimilar()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/similar'))
+        ;
+
+        $api->getSimilar(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRateTvEpisode()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('post')
+            ->with($this->getRequest(
+                'tv/' . self::TV_ID . '/rating',
+                [],
+                'POST',
+                [],
+                ['value' => 8.5]
+            ))
+        ;
+
+        $api->rateTvShow(self::TV_ID, 8.5);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetLatest()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -169,6 +235,20 @@ class TvTest extends TestCase
             ->with($this->getRequest('tv/latest'));
 
         $api->getLatest();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetAccountStates()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/account_states'));
+
+        $api->getAccountStates(self::TV_ID);
     }
 
     protected function getApiClass()

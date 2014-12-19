@@ -123,10 +123,12 @@ class AuthenticationRepository extends AbstractRepository
      * @param  RequestToken $requestToken
      * @return void
      */
+    //@codeCoverageIgnoreStart
     public function authenticateRequestToken(RequestToken $requestToken)
     {
         $this->getApi()->authenticateRequestToken($requestToken->getToken());
     }
+    //@codeCoverageIgnoreEnd
 
     /**
      * Return the Collection API Class

@@ -70,6 +70,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
                 'getTvSeasonApi'       => 'Tmdb\Api\TvSeason',
                 'getTvEpisodeApi'      => 'Tmdb\Api\TvEpisode',
                 'getPeopleApi'         => 'Tmdb\Api\People',
+                'getGuestSessionApi'   => 'Tmdb\Api\GuestSession',
                 'getListsApi'          => 'Tmdb\Api\Lists',
                 'getCompaniesApi'      => 'Tmdb\Api\Companies',
                 'getGenresApi'         => 'Tmdb\Api\Genres',

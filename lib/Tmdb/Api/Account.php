@@ -151,7 +151,7 @@ class Account extends AbstractApi
      */
     public function watchlist($accountId, $mediaId, $isOnWatchlist = true, $mediaType = 'movie')
     {
-        return $this->postJson('account/' . $accountId . '/movie_watchlist', [
+        return $this->postJson('account/' . $accountId . '/watchlist', [
             'media_id'   => $mediaId,
             'media_type' => $mediaType,
             'watchlist'  => $isOnWatchlist

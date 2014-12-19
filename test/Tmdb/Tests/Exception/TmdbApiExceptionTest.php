@@ -13,6 +13,8 @@
 namespace Tmdb\Tests\Exception;
 
 use Tmdb\Exception\TmdbApiException;
+use Tmdb\HttpClient\Request;
+use Tmdb\HttpClient\Response;
 
 class TmdbApiExceptionTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,9 +23,17 @@ class TmdbApiExceptionTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $exception = new TmdbApiException(1, 'code');
+        $exception = new TmdbApiException(1, 'code', new Request(), new Response());
 
         $this->assertEquals(1, $exception->getCode());
         $this->assertEquals('code', $exception->getMessage());
+        $this->assertEquals(new Request(), $exception->getRequest());
+        $this->assertEquals(new Response(), $exception->getResponse());
+
+        $exception->setRequest(new Request('/bla'));
+        $exception->setResponse(new Response(404));
+
+        $this->assertEquals('/bla', $exception->getRequest()->getPath());
+        $this->assertEquals(404, $exception->getResponse()->getCode());
     }
 }

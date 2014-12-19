@@ -136,7 +136,7 @@ class PeopleRepository extends AbstractRepository
      */
     public function getImages($id)
     {
-        $data   = $this->getApi()->getCombinedCredits($id);
+        $data   = $this->getApi()->getImages($id);
         $person = $this->getFactory()->create(['images' => $data]);
 
         return $person->getImages();

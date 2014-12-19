@@ -88,19 +88,20 @@ class AccountRepository extends AbstractRepository
      * @param  string                   $accountId
      * @param  int|Movie|Tv             $media
      * @param  boolean                  $isFavorite
+     * @param  string                   $mediaType
      * @return \Tmdb\Model\Lists\Result
      */
-    public function favorite($accountId, $media, $isFavorite = true)
+    public function favorite($accountId, $media, $isFavorite = true, $mediaType = 'movie')
     {
-        if ($media instanceof Movie) {
-            $media = $media->getId();
-        }
-
         if ($media instanceof Tv) {
+            $mediaType = 'tv';
+        }
+
+        if ($media instanceof Movie || $media instanceof Tv) {
             $media = $media->getId();
         }
 
-        $data  = $this->getApi()->favorite($accountId, $media, $isFavorite);
+        $data  = $this->getApi()->favorite($accountId, $media, $isFavorite, $mediaType);
 
         return $this->getFactory()->createStatusResult($data);
     }
@@ -180,15 +181,15 @@ class AccountRepository extends AbstractRepository
      */
     public function watchlist($accountId, $media, $isOnWatchlist = true, $mediaType = 'movie')
     {
-        if ($media instanceof Movie || $media instanceof Tv) {
-            $media = $media->getId();
-        }
-
         if ($media instanceof Tv) {
             $mediaType = 'tv';
         }
 
-        $data  = $this->getApi()->watchlist($accountId, $media, $isOnWatchlist, $mediaType);
+        if ($media instanceof Movie || $media instanceof Tv) {
+            $media = $media->getId();
+        }
+
+        $data = $this->getApi()->watchlist($accountId, $media, $isOnWatchlist, $mediaType);
 
         return $this->getFactory()->createStatusResult($data);
     }
