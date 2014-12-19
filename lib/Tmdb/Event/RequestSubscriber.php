@@ -58,32 +58,27 @@ class RequestSubscriber extends HttpClientEventSubscriber
     {
         $response = null;
 
-        try {
-            switch ($event->getMethod()) {
-                case 'GET':
-                    $response = $this->getHttpClient()->getAdapter()->get($event->getRequest());
-                    break;
-                case 'HEAD':
-                    $response = $this->getHttpClient()->getAdapter()->head($event->getRequest());
-                    break;
-                case 'POST':
-                    $response = $this->getHttpClient()->getAdapter()->post($event->getRequest());
-                    break;
-                case 'PUT':
-                    $response = $this->getHttpClient()->getAdapter()->put($event->getRequest());
-                    break;
-                case 'PATCH':
-                    $response = $this->getHttpClient()->getAdapter()->patch($event->getRequest());
-                    break;
-                case 'DELETE':
-                    $response = $this->getHttpClient()->getAdapter()->delete($event->getRequest());
-                    break;
-                default:
-                    throw new RuntimeException(sprintf('Unkown request method "%s".', $event->getMethod()));
-            }
-        } catch (\Exception $e) {
-            // @todo create an exception that extracts the error and reports it in a generic clear way
-            throw $e;
+        switch ($event->getMethod()) {
+            case 'GET':
+                $response = $this->getHttpClient()->getAdapter()->get($event->getRequest());
+                break;
+            case 'HEAD':
+                $response = $this->getHttpClient()->getAdapter()->head($event->getRequest());
+                break;
+            case 'POST':
+                $response = $this->getHttpClient()->getAdapter()->post($event->getRequest());
+                break;
+            case 'PUT':
+                $response = $this->getHttpClient()->getAdapter()->put($event->getRequest());
+                break;
+            case 'PATCH':
+                $response = $this->getHttpClient()->getAdapter()->patch($event->getRequest());
+                break;
+            case 'DELETE':
+                $response = $this->getHttpClient()->getAdapter()->delete($event->getRequest());
+                break;
+            default:
+                throw new RuntimeException(sprintf('Unkown request method "%s".', $event->getMethod()));
         }
 
         return $response;
