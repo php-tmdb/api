@@ -406,4 +406,28 @@ class HttpClient
 
         return $this;
     }
+
+    /**
+     * @return EventDispatcher
+     */
+    public function getEventDispatcher()
+    {
+        return $this->eventDispatcher;
+    }
+
+    /**
+     * @return RequestInterface
+     */
+    public function getLastRequest()
+    {
+        return $this->lastRequest;
+    }
+
+    /**
+     * @return ResponseInterface
+     */
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
+    }
 }

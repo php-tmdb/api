@@ -32,7 +32,6 @@ class GenreFactoryTest extends TestCase
 
         $filteredGenres = $collection->filterId(self::GENRE_ID);
 
-        // @todo actually get the first
         foreach ($filteredGenres as $filteredGenre) {
             $this->assertInstanceOf('Tmdb\Model\Genre', $filteredGenre);
 

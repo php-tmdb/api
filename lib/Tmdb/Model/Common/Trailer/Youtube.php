@@ -37,8 +37,6 @@ class Youtube extends AbstractTrailer
     /**
      * Retrieve the url to the source
      *
-     * @todo add bonus hd=1 query parameters, but we'd need some easy way of configuring this behaviour
-     *
      * @return string
      */
     public function getUrl()

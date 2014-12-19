@@ -29,9 +29,6 @@ abstract class AbstractRepository
     /**
      * Constructor
      *
-     *
-     * @todo create an interface for the client
-     *
      * @param Client $client
      */
     public function __construct(Client $client)

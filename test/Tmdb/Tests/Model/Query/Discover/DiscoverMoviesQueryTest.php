@@ -18,7 +18,6 @@ use Tmdb\Tests\TestCase;
 class DiscoverMoviesQueryTest extends TestCase
 {
     /**
-     * @todo expand
      * @test
      */
     public function shouldCreateValidQuery()

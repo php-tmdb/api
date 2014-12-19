@@ -14,7 +14,6 @@ namespace Tmdb\Model\Query;
 
 use Tmdb\Model\Collection\QueryParametersCollection;
 
-// @todo
 /**
  * Class FindQuery
  * @package Tmdb\Model\Query

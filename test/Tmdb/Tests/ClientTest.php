@@ -85,7 +85,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @todo review later what the best approach is to test
+     * @test
      */
     public function shouldAddCachePluginWhenEnabled()
     {
@@ -93,19 +93,18 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $client = new Client($token);
         $client->setCaching(true, '/tmp/php-tmdb-api');
 
-        $listeners = $client->getHttpClient()
-            ->getClient()
-            ->getEventDispatcher()
-            ->getListeners();
+        $listeners = $client->getHttpClient()->getAdapter()->getClient()
+            ->getEmitter()
+            ->listeners();
 
         $this->assertEquals(true, $this->isListenerRegistered(
             $listeners,
-            'Guzzle\Plugin\Cache\CachePlugin'
+            'GuzzleHttp\Subscriber\Cache\CacheSubscriber'
         ));
     }
 
     /**
-     * @todo review later what the best approach is to test
+     * @test
      */
     public function shouldAddLoggingPluginWhenEnabled()
     {
@@ -113,13 +112,13 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $client = new Client($token);
         $client->setLogging(true, '/tmp/php-tmdb-api.log');
 
-        $listeners = $client->getHttpClient()
-            ->getEventDispatcher()
-            ->getListeners();
+        $listeners = $client->getHttpClient()->getAdapter()->getClient()
+            ->getEmitter()
+            ->listeners();
 
         $this->assertEquals(true, $this->isListenerRegistered(
             $listeners,
-            'Guzzle\Plugin\Log\LogPlugin'
+            'GuzzleHttp\Subscriber\Log\LogSubscriber'
         ));
     }
 
@@ -130,20 +129,24 @@ class ClientTest extends \Tmdb\Tests\TestCase
      * @param $class
      * @return bool
      */
-    private function isListenerRegistered($listeners, $class)
+    private function isListenerRegistered($events, $class)
     {
         if (is_object($class)) {
             $class = get_class($class);
         }
 
-        if (is_array($listeners)) {
-            foreach ($listeners as $subject) {
-                if (is_object($subject) && get_class($subject) === $class) {
-                    return true;
-                }
+        if (is_array($events)) {
+            foreach ($events as $listeners) {
+                foreach ($listeners as $subject) {
+                    $subject = array_shift($subject);
 
-                if (is_array($subject)) {
-                    return $this->isListenerRegistered($subject, $class);
+                    if (is_object($subject) && get_class($subject) === $class) {
+                        return true;
+                    }
+
+                    if (is_array($subject)) {
+                        return $this->isListenerRegistered($subject, $class);
+                    }
                 }
             }
         }
