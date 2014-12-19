@@ -51,13 +51,10 @@ class GenreFactoryTest extends TestCase
         /**
          * @var Genres $genres
          */
-        $genres = $factory->createCollection($data['genres']);
+        $genres = $factory->createCollection($data);
+        $filteredGenre = $genres->filterId(self::GENRE_ID);
 
-        $filteredGenres = $genres->filterId(self::GENRE_ID);
-
-        foreach ($filteredGenres as $filteredGenre) {
-            $this->assertEquals('Action', $filteredGenre->getName());
-        }
+        $this->assertEquals('Action', $filteredGenre->getName());
     }
 
     /**

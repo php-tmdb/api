@@ -14,7 +14,6 @@ namespace Tmdb\Tests\Repository;
 
 use Tmdb\Api\Authentication;
 use Tmdb\Repository\AuthenticationRepository;
-use Tmdb\RequestToken;
 
 class AuthenticationRepositoryTest extends TestCase
 {
@@ -23,7 +22,12 @@ class AuthenticationRepositoryTest extends TestCase
      */
     public function shouldGetRequestToken()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('authentication/token/new', []))
+        ;
 
         $repository->getRequestToken();
     }
@@ -31,33 +35,14 @@ class AuthenticationRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function shouldGetSessionToken()
-    {
-        $repository = $this->getRepositoryWithMockedHttpClient();
-
-        $token = new RequestToken('test');
-
-        $repository->getSessionToken($token);
-    }
-
-    /**
-     * @test
-     */
-    public function shouldAuthenticateRequestToken()
-    {
-        $repository = $this->getRepositoryWithMockedHttpClient();
-
-        $token = new RequestToken('test');
-
-        $repository->getSessionToken($token);
-    }
-
-    /**
-     * @test
-     */
     public function shouldGetGuestSession()
     {
-        $repository = $this->getRepositoryWithMockedHttpClient();
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('authentication/guest_session/new', []))
+        ;
 
         $repository->getGuestSessionToken();
     }

@@ -34,7 +34,7 @@ class ImageFactoryTest extends TestCase
 
         $data = array_merge([], [$movieData, $tvData, $tvSeasonData, $tvEpisodeData, $personData]);
 
-        $this->images = $factory->createCollection($data);
+        $this->images = $factory->createImageCollection($data);
     }
 
     /**
@@ -59,9 +59,9 @@ class ImageFactoryTest extends TestCase
      */
     public function shouldFilterPosters()
     {
-        $this->setUp();
+        $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/movie.json'));
 
-        $posters = $this->images->filterPosters();
+        $posters = $collection->filterPosters();
 
         foreach ($posters as $poster) {
             $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $poster);
@@ -73,9 +73,9 @@ class ImageFactoryTest extends TestCase
      */
     public function shouldFilterBackdrops()
     {
-        $this->setUp();
+        $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/movie.json'));
 
-        $backdrops = $this->images->filterBackdrops();
+        $backdrops = $collection->filterBackdrops();
 
         foreach ($backdrops as $backdrop) {
             $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $backdrop);
@@ -87,9 +87,9 @@ class ImageFactoryTest extends TestCase
      */
     public function shouldFilterProfiles()
     {
-        $this->setUp();
+        $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/person.json'));
 
-        $profiles = $this->images->filterProfile();
+        $profiles = $collection->filterProfile();
 
         foreach ($profiles as $profile) {
             $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $profile);
@@ -101,9 +101,9 @@ class ImageFactoryTest extends TestCase
      */
     public function shouldFilterStills()
     {
-        $this->setUp();
+        $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/tv_episode.json'));
 
-        $stills = $this->images->filterStills();
+        $stills = $collection->filterStills();
 
         foreach ($stills as $still) {
             $this->assertInstanceOf('Tmdb\Model\Image\StillImage', $still);
