@@ -145,7 +145,7 @@ class Client
         $this->httpClient  = new HttpClient(
             $this->getBaseUrl(),
             $options,
-            null !== $adapter ? $adapter : new GuzzleAdapter(['base_url' => $this->getBaseUrl()]),
+            null !== $adapter ? $adapter : new GuzzleAdapter(new \GuzzleHttp\Client(['base_url' => $this->getBaseUrl()])),
             $this->eventDispatcher
         );
     }

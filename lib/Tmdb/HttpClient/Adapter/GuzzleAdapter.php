@@ -13,6 +13,7 @@
 namespace Tmdb\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Message\Response;
 use Tmdb\Common\ParameterBag;
@@ -26,9 +27,13 @@ class GuzzleAdapter extends AbstractAdapter
      */
     private $client;
 
-    public function __construct($options)
+    public function __construct(ClientInterface $client = null, array $options = [])
     {
-        $this->client = new Client($options);
+        if (null === $client) {
+            $client = new Client($options);
+        }
+
+        $this->client = $client;
     }
 
     /**
@@ -203,5 +208,16 @@ class GuzzleAdapter extends AbstractAdapter
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * @param  ClientInterface $client
+     * @return $this
+     */
+    public function setClient(ClientInterface $client)
+    {
+        $this->client = $client;
+
+        return $this;
     }
 }
