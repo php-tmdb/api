@@ -16,8 +16,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Message\Response;
+use GuzzleHttp\Subscriber\Retry\RetrySubscriber;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ParameterBag;
-use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
 
 class GuzzleAdapter extends AbstractAdapter
@@ -34,6 +35,24 @@ class GuzzleAdapter extends AbstractAdapter
         }
 
         $this->client = $client;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function registerSubscribers(EventDispatcherInterface $eventDispatcher)
+    {
+        // Retry 500 and 503 responses that were sent as GET and HEAD requests.
+        $filter = RetrySubscriber::createChainFilter([
+            // Does early filter to force non-idempotent methods to NOT be retried.
+            RetrySubscriber::createIdempotentFilter(),
+            // Performs the last check, returning ``true`` or ``false`` based on
+            // if the response received a 500 or 503 status code.
+            RetrySubscriber::createStatusFilter([500, 503])
+        ]);
+
+        $retry = new RetrySubscriber(['filter' => $filter]);
+        $this->client->getEmitter()->attach($retry);
     }
 
     /**
@@ -65,25 +84,6 @@ class GuzzleAdapter extends AbstractAdapter
         $response->setBody((string) $adapterResponse->getBody());
 
         return $response;
-    }
-
-    /**
-     * Create the unified exception to throw
-     *
-     * @param  Request                   $request
-     * @param  \Tmdb\HttpClient\Response $response
-     * @return TmdbApiException
-     */
-    private function createApiException(Request $request, \Tmdb\HttpClient\Response $response)
-    {
-        $errors = json_decode((string) $response->getBody());
-
-        return new TmdbApiException(
-            $errors->status_code,
-            $errors->status_message,
-            $request,
-            $response
-        );
     }
 
     /**

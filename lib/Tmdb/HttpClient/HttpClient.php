@@ -101,9 +101,9 @@ class HttpClient
     {
         $this->base_url        = $baseUrl;
         $this->options         = $options;
-        $this->adapter         = $adapter;
         $this->eventDispatcher = $eventDispatcher;
 
+        $this->setAdapter($adapter);
         $this->registerDefaults();
     }
 
@@ -353,6 +353,7 @@ class HttpClient
      */
     public function setAdapter(AdapterInterface $adapter)
     {
+        $adapter->registerSubscribers($this->getEventDispatcher());
         $this->adapter = $adapter;
 
         return $this;

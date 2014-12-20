@@ -11,7 +11,10 @@
  * @version 0.0.1
  */
 namespace Tmdb\HttpClient\Adapter;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
+use Tmdb\HttpClient\Response;
 
 /**
  * Interface AdapterInterface
@@ -22,49 +25,54 @@ interface AdapterInterface
     /**
      * Compose a GET request
      *
-     * @param Request $request
-     *
-     * @return mixed Data
+     * @throws TmdbApiException
+     * @param  Request          $request
+     * @return Response
      */
     public function get(Request $request);
 
     /**
      * Send a HEAD request
      *
-     * @param  Request $request
-     * @return mixed
+     * @throws TmdbApiException
+     * @param  Request          $request
+     * @return Response
      */
     public function head(Request $request);
 
     /**
      * Compose a POST request
      *
-     * @param  Request $request
-     * @return mixed   Data
+     * @throws TmdbApiException
+     * @param  Request          $request
+     * @return Response
      */
     public function post(Request $request);
 
     /**
      * Send a PUT request
      *
-     * @param  Request $request
-     * @return mixed
+     * @throws TmdbApiException
+     * @param  Request          $request
+     * @return Response
      */
     public function put(Request $request);
 
     /**
      * Send a DELETE request
      *
-     * @param  Request $request
-     * @return mixed
+     * @throws TmdbApiException
+     * @param  Request          $request
+     * @return Response
      */
     public function delete(Request $request);
 
     /**
      * Send a PATCH request
      *
-     * @param  Request $request
-     * @return mixed
+     * @throws TmdbApiException
+     * @param  Request          $request
+     * @return Response
      */
     public function patch(Request $request);
 
@@ -74,4 +82,12 @@ interface AdapterInterface
      * @return mixed
      */
     public function getClient();
+
+    /**
+     * Register any specific subscribers
+     *
+     * @param  EventDispatcherInterface $eventDispatcher
+     * @return void
+     */
+    public function registerSubscribers(EventDispatcherInterface $eventDispatcher);
 }
