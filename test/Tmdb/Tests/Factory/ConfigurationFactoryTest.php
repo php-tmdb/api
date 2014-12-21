@@ -13,6 +13,7 @@
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\ConfigurationFactory;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Configuration;
 
 class ConfigurationFactoryTest extends TestCase
@@ -52,7 +53,7 @@ class ConfigurationFactoryTest extends TestCase
          */
         $factory = $this->getFactory();
 
-        $this->assertEquals([], $factory->createCollection([]));
+        $this->assertEquals(new GenericCollection(), $factory->createCollection([]));
     }
 
     protected function getFactoryClass()

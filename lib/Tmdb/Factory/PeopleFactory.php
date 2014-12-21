@@ -73,28 +73,28 @@ class PeopleFactory extends AbstractFactory
                 $person->setImages($this->getImageFactory()->createCollectionFromPeople($data['images']));
             }
 
+            if (array_key_exists('changes', $data)) {
+                $person->setChanges($this->getChangeFactory()->createCollection($data['changes']));
+            }
+
+            /** External ids */
+            if (array_key_exists('external_ids', $data)) {
+                $person->setExternalIds(
+                    $this->hydrate(new ExternalIds(), $data['external_ids'])
+                );
+            }
+
+            if (array_key_exists('tagged_images', $data)) {
+                $person->setTaggedImages(
+                    $this->getImageFactory()->createResultCollection(
+                        $data['tagged_images'],
+                        'createMediaImage'
+                    )
+                );
+            }
+
             /** Credits */
             $this->applyCredits($data, $person);
-        }
-
-        if (array_key_exists('changes', $data)) {
-            $person->setChanges($this->getChangeFactory()->createCollection($data['changes']));
-        }
-
-        /** External ids */
-        if (array_key_exists('external_ids', $data)) {
-            $person->setExternalIds(
-                $this->hydrate(new ExternalIds(), $data['external_ids'])
-            );
-        }
-
-        if (array_key_exists('tagged_images', $data)) {
-            $person->setTaggedImages(
-                $this->getImageFactory()->createResultCollection(
-                    $data['tagged_images'],
-                    'createMediaImage'
-                )
-            );
         }
 
         return $this->hydrate($person, $data);

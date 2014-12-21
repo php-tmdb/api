@@ -13,6 +13,7 @@
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\CompanyFactory;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
 
 class CompanyFactoryTest extends TestCase
@@ -80,12 +81,12 @@ class CompanyFactoryTest extends TestCase
     /**
      * @test
      */
-    public function callingCollectionReturnsEmptyArray()
+    public function callingCollectionReturnsEmptyCollection()
     {
         $factory    = $this->getFactory();
         $collection = $factory->createCollection([]);
 
-        $this->assertEquals([], $collection);
+        $this->assertEquals(new GenericCollection(), $collection);
     }
 
     /**

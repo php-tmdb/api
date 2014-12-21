@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Configuration;
 
 /**
@@ -35,6 +36,6 @@ class ConfigurationFactory extends AbstractFactory
      */
     public function createCollection(array $data = [])
     {
-        return [];
+        return new GenericCollection();
     }
 }

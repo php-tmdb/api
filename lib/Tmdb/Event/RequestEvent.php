@@ -107,7 +107,7 @@ class RequestEvent extends Event
     }
 
     /**
-     * @param  string $response
+     * @param  Response $response
      * @return $this
      */
     public function setResponse($response)

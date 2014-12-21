@@ -526,11 +526,12 @@ class Client
         ;
         $this->logger = $logger;
 
-        $this->getHttpClient()->setLogging([
+        $this->getHttpClient()->setLogging(array_merge([
             'enabled' => $enabled,
-            'path'    => $path,
-            'logger'  => $logger
-        ]);
+            'path'    => $path
+            ],
+            null === $logger ? [] : ['logger' => $logger]
+        ));
 
         return $this;
     }

@@ -16,7 +16,7 @@ use Tmdb\Model\AbstractModel;
 
 /**
  * Class Rating
- * @package Tmdb\Model\Movie
+ * @package Tmdb\Model\Common
  */
 class Rating extends AbstractModel
 {

@@ -33,7 +33,7 @@ class Tv extends AbstractModel
     private $backdropPath;
 
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection
      */
     private $createdBy = null;
 
@@ -105,7 +105,7 @@ class Tv extends AbstractModel
     private $originalName;
 
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection
      */
     private $originCountry;
 
@@ -125,7 +125,7 @@ class Tv extends AbstractModel
     private $posterPath;
 
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection
      */
     private $seasons;
 
@@ -166,7 +166,7 @@ class Tv extends AbstractModel
     protected $images;
 
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection
      */
     protected $translations;
 
@@ -186,17 +186,17 @@ class Tv extends AbstractModel
     protected $videos;
 
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection
      */
     protected $changes;
 
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection
      */
     protected $keywords;
 
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection
      */
     protected $similar;
 
@@ -828,7 +828,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $changes
+     * @param  \Tmdb\Model\GenericCollection $changes
      * @return $this
      */
     public function setChanges($changes)
@@ -839,7 +839,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return \Tmdb\Model\GenericCollection
      */
     public function getChanges()
     {
@@ -847,7 +847,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $keywords
+     * @param  \Tmdb\Model\GenericCollection $keywords
      * @return $this
      */
     public function setKeywords($keywords)
@@ -858,7 +858,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return \Tmdb\Model\GenericCollection
      */
     public function getKeywords()
     {
@@ -866,7 +866,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $similar
+     * @param  \Tmdb\Model\GenericCollection $similar
      * @return $this
      */
     public function setSimilar($similar)
@@ -877,7 +877,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return \Tmdb\Model\GenericCollection
      */
     public function getSimilar()
     {

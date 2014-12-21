@@ -158,7 +158,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Tv\Episode[]
+     * @return GenericCollection|Episode[]
      */
     public function getEpisodes()
     {
@@ -261,7 +261,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  Credits $credits
+     * @param  CreditsCollection $credits
      * @return $this
      */
     public function setCredits($credits)
@@ -272,7 +272,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Collection\CreditsCollection
+     * @return CreditsCollection
      */
     public function getCredits()
     {
@@ -280,7 +280,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\ExternalIds $externalIds
+     * @param  ExternalIds $externalIds
      * @return $this
      */
     public function setExternalIds($externalIds)
@@ -291,7 +291,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\ExternalIds
+     * @return ExternalIds
      */
     public function getExternalIds()
     {
@@ -299,7 +299,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Images $images
+     * @param  Images $images
      * @return $this
      */
     public function setImages($images)
@@ -310,7 +310,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Collection\Images
+     * @return Images
      */
     public function getImages()
     {
@@ -318,7 +318,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image\PosterImage $poster
+     * @param  PosterImage $poster
      * @return $this
      */
     public function setPosterImage($poster)
@@ -329,7 +329,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Image\PosterImage
+     * @return PosterImage
      */
     public function getPosterImage()
     {
@@ -337,7 +337,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Videos $videos
+     * @param  Videos $videos
      * @return $this
      */
     public function setVideos($videos)
@@ -356,7 +356,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Changes $changes
+     * @param  Changes $changes
      * @return $this
      */
     public function setChanges($changes)
@@ -367,7 +367,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Collection\Changes
+     * @return Changes
      */
     public function getChanges()
     {

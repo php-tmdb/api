@@ -336,7 +336,7 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  Credits $credits
+     * @param  CreditsCollection $credits
      * @return $this
      */
     public function setCredits($credits)
@@ -347,7 +347,7 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @return Credits
+     * @return CreditsCollection
      */
     public function getCredits()
     {

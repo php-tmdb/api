@@ -70,12 +70,12 @@ class HttpClient
     protected $base_url = null;
 
     /**
-     * @var ResponseInterface
+     * @var Response
      */
     private $lastResponse;
 
     /**
-     * @var RequestInterface
+     * @var Request
      */
     private $lastRequest;
 
@@ -100,7 +100,7 @@ class HttpClient
     )
     {
         $this->base_url        = $baseUrl;
-        $this->options         = $options;
+        $this->options         = new ParameterBag($options);
         $this->eventDispatcher = $eventDispatcher;
 
         $this->setAdapter($adapter);

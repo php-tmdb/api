@@ -14,7 +14,7 @@ namespace Tmdb\Repository;
 
 use Tmdb\Api\ApiInterface;
 use Tmdb\Client;
-use Tmdb\Factory\FactoryInterface;
+use Tmdb\Factory\AbstractFactory;
 use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 
 /**
@@ -79,7 +79,7 @@ abstract class AbstractRepository
     /**
      * Return the Factory Class
      *
-     * @return FactoryInterface
+     * @return AbstractFactory
      */
     abstract public function getFactory();
 }
