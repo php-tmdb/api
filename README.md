@@ -226,7 +226,7 @@ __Event Dispatching system.__
 Since 2.0 requests are handled by the `EventDispatcher`, which gives you before and after hooks, the before hook allows an event to stop propagation for the
 request event, meaning you are able to stop the main request from happening, you will have to set a `Response` object in that event though.
 
-See the files for [TmdbEvents](blob/2.0-WIP/lib/Tmdb/Event/TmdbEvents.php) and [RequestSubscriber](blob/2.0-WIP/lib/Tmdb/Event/RequestSubscriber.php#L32) respectively.
+See the files for [TmdbEvents](lib/Tmdb/Event/TmdbEvents.php) and [RequestSubscriber](lib/Tmdb/Event/RequestSubscriber.php#L32) respectively.
 
 __There are 2 types of "main" collections, the `GenericCollection` and the `ResultCollection`.__
 
