@@ -40,6 +40,11 @@ class Client
      */
     const SCHEME_SECURE = 'https';
 
+    /**
+     * The event dispatcher
+     *
+     * @var EventDispatcher
+     */
     private $eventDispatcher;
 
     /**
@@ -94,7 +99,7 @@ class Client
      *
      * @var boolean
      */
-    private $cacheEnabled = false;
+    private $cacheEnabled = true;
 
     /**
      * Construct our client
@@ -151,17 +156,17 @@ class Client
     }
 
     /**
-     * Add the token subscriber
+     * Get the API token
      *
      * @return Token
      */
     public function getToken()
     {
-        return $this->token !== null ? $this->token : null;
+        return $this->token;
     }
 
     /**
-     * Add the token subscriber
+     * Set the API token
      *
      * @param  Token $token
      * @return $this
@@ -519,10 +524,12 @@ class Client
             sys_get_temp_dir() . '/php-tmdb-api.log' :
             $path
         ;
+        $this->logger = $logger;
 
         $this->getHttpClient()->setLogging([
             'enabled' => $enabled,
-            'path'     => $path,
+            'path'    => $path,
+            'logger'  => $logger
         ]);
 
         return $this;
