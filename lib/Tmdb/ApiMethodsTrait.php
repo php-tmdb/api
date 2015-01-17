@@ -15,11 +15,11 @@ namespace Tmdb;
 trait ApiMethodsTrait
 {
     /**
-     * @return Api\Configuration
+     * @return Api\Account
      */
-    public function getConfigurationApi()
+    public function getAccountApi()
     {
-        return new Api\Configuration($this);
+        return new Api\Account($this);
     }
 
     /**
@@ -31,11 +31,19 @@ trait ApiMethodsTrait
     }
 
     /**
-     * @return Api\Account
+     * @return Api\Certifications
      */
-    public function getAccountApi()
+    public function getCertificationsApi()
     {
-        return new Api\Account($this);
+        return new Api\Certifications($this);
+    }
+
+    /**
+     * @return Api\Changes
+     */
+    public function getChangesApi()
+    {
+        return new Api\Changes($this);
     }
 
     /**
@@ -47,6 +55,38 @@ trait ApiMethodsTrait
     }
 
     /**
+     * @return Api\Companies
+     */
+    public function getCompaniesApi()
+    {
+        return new Api\Companies($this);
+    }
+
+    /**
+     * @return Api\Configuration
+     */
+    public function getConfigurationApi()
+    {
+        return new Api\Configuration($this);
+    }
+
+    /**
+     * @return Api\Credits
+     */
+    public function getCreditsApi()
+    {
+        return new Api\Credits($this);
+    }
+
+    /**
+     * @return Api\Discover
+     */
+    public function getDiscoverApi()
+    {
+        return new Api\Discover($this);
+    }
+
+    /**
      * @return Api\Find
      */
     public function getFindApi()
@@ -55,11 +95,91 @@ trait ApiMethodsTrait
     }
 
     /**
+     * @return Api\Genres
+     */
+    public function getGenresApi()
+    {
+        return new Api\Genres($this);
+    }
+
+    /**
+     * @return Api\GuestSession
+     */
+    public function getGuestSessionApi()
+    {
+        return new Api\GuestSession($this);
+    }
+
+    /**
+     * @return Api\Jobs
+     */
+    public function getJobsApi()
+    {
+        return new Api\Jobs($this);
+    }
+
+    /**
+     * @return Api\Keywords
+     */
+    public function getKeywordsApi()
+    {
+        return new Api\Keywords($this);
+    }
+
+    /**
+     * @return Api\Lists
+     */
+    public function getListsApi()
+    {
+        return new Api\Lists($this);
+    }
+
+    /**
      * @return Api\Movies
      */
     public function getMoviesApi()
     {
         return new Api\Movies($this);
+    }
+
+    /**
+     * @return Api\Networks
+     */
+    public function getNetworksApi()
+    {
+        return new Api\Networks($this);
+    }
+
+    /**
+     * @return Api\People
+     */
+    public function getPeopleApi()
+    {
+        return new Api\People($this);
+    }
+
+    /**
+     * @return Api\Reviews
+     */
+    public function getReviewsApi()
+    {
+        return new Api\Reviews($this);
+    }
+
+    /**
+     * @return Api\Search
+     */
+    public function getSearchApi()
+    {
+        return new Api\Search($this);
+    }
+
+    /**
+     * @return Api\Timezones
+     */
+    public function getTimezonesApi()
+    {
+        return new Api\Timezones($this);
     }
 
     /**
@@ -84,125 +204,5 @@ trait ApiMethodsTrait
     public function getTvEpisodeApi()
     {
         return new Api\TvEpisode($this);
-    }
-
-    /**
-     * @return Api\People
-     */
-    public function getPeopleApi()
-    {
-        return new Api\People($this);
-    }
-
-    /**
-     * @return Api\Lists
-     */
-    public function getListsApi()
-    {
-        return new Api\Lists($this);
-    }
-
-    /**
-     * @return Api\Companies
-     */
-    public function getCompaniesApi()
-    {
-        return new Api\Companies($this);
-    }
-
-    /**
-     * @return Api\Genres
-     */
-    public function getGenresApi()
-    {
-        return new Api\Genres($this);
-    }
-
-    /**
-     * @return Api\Keywords
-     */
-    public function getKeywordsApi()
-    {
-        return new Api\Keywords($this);
-    }
-
-    /**
-     * @return Api\Discover
-     */
-    public function getDiscoverApi()
-    {
-        return new Api\Discover($this);
-    }
-
-    /**
-     * @return Api\Search
-     */
-    public function getSearchApi()
-    {
-        return new Api\Search($this);
-    }
-
-    /**
-     * @return Api\Reviews
-     */
-    public function getReviewsApi()
-    {
-        return new Api\Reviews($this);
-    }
-
-    /**
-     * @return Api\Changes
-     */
-    public function getChangesApi()
-    {
-        return new Api\Changes($this);
-    }
-
-    /**
-     * @return Api\Jobs
-     */
-    public function getJobsApi()
-    {
-        return new Api\Jobs($this);
-    }
-
-    /**
-     * @return Api\Networks
-     */
-    public function getNetworksApi()
-    {
-        return new Api\Networks($this);
-    }
-
-    /**
-     * @return Api\Credits
-     */
-    public function getCreditsApi()
-    {
-        return new Api\Credits($this);
-    }
-
-    /**
-     * @return Api\Certifications
-     */
-    public function getCertificationsApi()
-    {
-        return new Api\Certifications($this);
-    }
-
-    /**
-     * @return Api\Timezones
-     */
-    public function getTimezonesApi()
-    {
-        return new Api\Timezones($this);
-    }
-
-    /**
-     * @return Api\GuestSession
-     */
-    public function getGuestSessionApi()
-    {
-        return new Api\GuestSession($this);
     }
 }
