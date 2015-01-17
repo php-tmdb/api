@@ -18,7 +18,7 @@ use Tmdb\SessionToken;
 
 class ClientTest extends \Tmdb\Tests\TestCase
 {
-    const API_TOKEN = 'abcdef';
+    const API_TOKEN     = 'abcdef';
     const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
 
     /**
@@ -85,8 +85,20 @@ class ClientTest extends \Tmdb\Tests\TestCase
         );
     }
 
+    public function testShouldSwitchHttpScheme()
+    {
+        $token  = new ApiToken(self::API_TOKEN);
+        $client = new Client($token);
+
+        $this->assertEquals('https://api.themoviedb.org/3/', $client->getBaseUrl());
+
+        $client->setSecure(false);
+
+        $this->assertEquals('http://api.themoviedb.org/3/', $client->getBaseUrl());
+    }
+
     /**
-     * @test
+     * @todo
      */
     public function shouldAddCachePluginWhenEnabled()
     {
@@ -105,7 +117,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldAddLoggingPluginWhenEnabled()
     {
@@ -156,7 +168,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldBeAbleSetCache()
     {
@@ -169,7 +181,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldBeAbleSetLogging()
     {
