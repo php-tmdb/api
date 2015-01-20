@@ -12,6 +12,10 @@
  */
 namespace Tmdb;
 
+use Doctrine\Common\Cache\FilesystemCache;
+use GuzzleHttp\Subscriber\Cache\CacheStorage;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\HttpClient\Adapter\AdapterInterface;
@@ -26,6 +30,9 @@ use Tmdb\ApiToken as Token;
 class Client
 {
     use ApiMethodsTrait;
+
+    /** Client Version */
+    const VERSION  = '2.0';
 
     /** Base API URI */
     const TMDB_URI = '//api.themoviedb.org/3/';
@@ -93,6 +100,7 @@ class Client
 
         $this->setToken($token);
         $this->setSecure($secure);
+
         $this->constructHttpClient($adapter, $options);
     }
 
@@ -104,13 +112,7 @@ class Client
     {
         $this->secure = $secure;
 
-        // Reconstruct the HTTP Client
-        if (null !== $this->getHttpClient()) {
-            $this->constructHttpClient(
-                $this->getHttpClient()->getAdapter(),
-                $this->getOptions()
-            );
-        }
+        $this->reconstructHttpClient();
 
         return $this;
     }
@@ -128,7 +130,8 @@ class Client
      */
     public function setSessionToken($sessionToken)
     {
-        $this->getHttpClient()->setSessionToken($sessionToken);
+        $this->setMergedOptions(['session_token' => $sessionToken]);
+        $this->reconstructHttpClient();
 
         return $this;
     }
@@ -224,14 +227,41 @@ class Client
      */
     protected function constructHttpClient(AdapterInterface $adapter = null, array $options = [])
     {
+        $adapter = (null !== $adapter) ?
+            $adapter:
+            new GuzzleAdapter(new \GuzzleHttp\Client(['base_url' => $this->getBaseUrl()]));
+
+        $hasHttpClient = (null !== $this->httpClient);
+
         $this->setMergedOptions($options);
+
+        if ($adapter instanceof GuzzleAdapter) {
+            $this->mergeDefaultOptions();
+        }
 
         $this->httpClient = new HttpClient(
             $this->getBaseUrl(),
             $this->getOptions(),
-            null !== $adapter ? $adapter : new GuzzleAdapter(new \GuzzleHttp\Client(['base_url' => $this->getBaseUrl()])),
+            $adapter,
             $this->eventDispatcher
         );
+
+        if (!$hasHttpClient) {
+            $this->httpClient->registerDefaults();
+        }
+    }
+
+    /**
+     * Reconstruct the HTTP Client
+     */
+    protected function reconstructHttpClient()
+    {
+        if (null !== $this->getHttpClient()) {
+            $this->constructHttpClient(
+                $this->getHttpClient()->getAdapter(),
+                (array) $this->getOptions()
+            );
+        }
     }
 
     /**
@@ -242,12 +272,37 @@ class Client
      */
     protected function setMergedOptions(array $options = null)
     {
-        $this->options = array_merge(
+        $this->options = array_replace_recursive(
             [
                 'token'  => $this->getToken(),
-                'secure' => $this->getSecure()
+                'secure' => $this->getSecure(),
+                'log'    => ['enabled' => false],
+                'cache'  => ['enabled' => true],
             ],
             $options
         );
+    }
+
+    protected function mergeDefaultOptions()
+    {
+        $handler = null;
+
+        if ($this->options['cache']['enabled'] && !array_key_exists('storage', $this->options['cache'])) {
+            $this->options['cache']['storage'] =
+                new CacheStorage(new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'));
+        }
+
+        if ($this->options['log']['enabled']) {
+            if (!array_key_exists('handler', $this->options['log'])) {
+                $this->options['log']['handler'] = new StreamHandler(
+                    array_key_exists('path', $this->options['log']) ?
+                        $this->options['log']['path'] :
+                        sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log',
+                    array_key_exists('level', $this->options['log']) ?
+                        $this->options['log']['level'] :
+                        Logger::DEBUG
+                );
+            }
+        }
     }
 }

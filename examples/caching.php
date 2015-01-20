@@ -14,9 +14,22 @@ require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
 
-$client->setCaching(true);
+// Caching is enabled by default, and makes use of your sys_get_temp_dir()
+// If you'd like to disable it or change the path:
+
+//$client = new \Tmdb\Client($token, null, true, [
+//    'cache' => ['enabled' => false]
+//]);
+
+$client = new \Tmdb\Client($token, null, true, [
+    'cache' => [
+        'enabled' => true,
+        'storage' => new \GuzzleHttp\Subscriber\Cache\CacheStorage(
+            new Doctrine\Common\Cache\FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'my-cache-path')
+        )
+    ]
+]);
 
 $repository = new \Tmdb\Repository\MovieRepository($client);
 $movie      = $repository->load(19995);

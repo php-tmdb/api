@@ -35,9 +35,12 @@ class GuestSessionTest extends TestCase
         $sessionToken = new GuestSessionToken('xyz');
         $api          = $this->getApiWithMockedHttpAdapter([], $sessionToken);
 
+        $request = $this->getRequest(sprintf('guest_session/%s/rated_movies', (string) $sessionToken));
+        $request->getOptions()->set('session_token', $sessionToken);
+
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('guest_session/xyz/rated_movies', ['guest_session_id' => 'xyz']));
+            ->with($request);
 
         $api->getRatedMovies();
     }

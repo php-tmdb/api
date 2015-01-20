@@ -67,6 +67,10 @@ class ParameterBag extends \ArrayObject
      */
     public function get($name)
     {
-        return parent::offsetGet($name);
+        if (parent::offsetExists($name)) {
+            return parent::offsetGet($name);
+        }
+
+        return null;
     }
 }

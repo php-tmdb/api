@@ -68,16 +68,12 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      *
      * @return \Tmdb\Client
      */
-    protected function getClientWithMockedHttpClient()
+    protected function getClientWithMockedHttpClient(array $options = array())
     {
         $token = new ApiToken('abcdef');
-        $mock  = $this->getMock(
-            'Tmdb\HttpClient\Adapter\AdapterInterface', []
-        );
+        $mock  = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
-        $client = new \Tmdb\Client($token, $mock);
-
-        return $client;
+        return new Client($token, $mock);
     }
 
     /**
@@ -160,7 +156,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             new ParameterBag(array_merge(
                     $headers,
                     [
-                        'Accept' => 'application/json'
+                        'Accept'     => 'application/json',
+                        'User-Agent' => sprintf('wtfzdotnet/php-tmdb-api (v%s)', Client::VERSION)
                     ]
                 )
             )
@@ -168,7 +165,9 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $request->setOptions(new ParameterBag([
             'token'  => new ApiToken('abcdef'),
-            'secure' => true
+            'secure' => true,
+            'cache'  => ['enabled' => true],
+            'log'    => ['enabled' => false, 'path' => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log']
         ]));
 
         if ($body !== null) {

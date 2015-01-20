@@ -12,15 +12,11 @@
  */
 namespace Tmdb\HttpClient;
 
-use Doctrine\Common\Cache\FilesystemCache;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Subscriber\Cache\CacheStorage;
 use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
 use GuzzleHttp\Subscriber\Log\LogSubscriber;
-use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\ApiToken;
@@ -37,6 +33,7 @@ use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
 use Tmdb\HttpClient\Plugin\ContentTypeJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
+use Tmdb\HttpClient\Plugin\UserAgentHeaderPlugin;
 use Tmdb\SessionToken;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -104,7 +101,7 @@ class HttpClient
         $this->eventDispatcher = $eventDispatcher;
 
         $this->setAdapter($adapter);
-        $this->registerDefaults();
+        $this->processOptions();
     }
 
     /**
@@ -245,81 +242,6 @@ class HttpClient
     }
 
     /**
-     * Add an subscriber to enable caching.
-     *
-     * @param  array             $parameters
-     * @throws \RuntimeException
-     * @return $this
-     */
-    public function setCaching(array $parameters = [])
-    {
-        if (!class_exists('Doctrine\Common\Cache\FilesystemCache')) {
-            //@codeCoverageIgnoreStart
-            throw new \RuntimeException(
-                'Could not find the doctrine cache library,
-                have you added doctrine-cache to your composer.json?'
-            );
-            //@codeCoverageIgnoreEnd
-        }
-
-        if ($this->getAdapter() instanceof GuzzleAdapter) {
-            CacheSubscriber::attach(
-                $this->getAdapter()->getClient(),
-                ['storage' => new CacheStorage(new FilesystemCache($parameters['path']))]
-            );
-        }
-
-        return $this;
-    }
-
-    /**
-     * Enable logging
-     *
-     * @param  array $parameters
-     * @param  int   $level
-     * @return $this
-     */
-    public function setLogging(array $parameters = [], $level = Logger::DEBUG)
-    {
-        $logger = null;
-
-        if (!array_key_exists('logger', $parameters) && !class_exists('\Monolog\Logger')) {
-            //@codeCoverageIgnoreStart
-            throw new \RuntimeException(
-                'Could not find any logger set and the monolog logger library was not found
-                to provide a default, you have to  set a custom logger on the client or
-                have you forgot adding monolog to your composer.json?'
-            );
-            //@codeCoverageIgnoreEnd
-        } else {
-            $logger = new Logger('php-tmdb-api');
-            $logger->pushHandler(
-                new StreamHandler(
-                    $parameters['path'],
-                    $level
-                )
-            );
-        }
-
-        if (array_key_exists('logger', $parameters)) {
-            $logger = $parameters['logger'];
-        }
-
-        if (!$logger instanceof LoggerInterface) {
-            throw new RuntimeException('The logger must be an instance of \Psr\Log\LoggerInterface');
-        }
-
-        if ($this->getAdapter() instanceof GuzzleAdapter) {
-            $subscriber = new LogSubscriber($logger);
-            $this->getAdapter()->getClient()->getEmitter()->attach($subscriber);
-        } else {
-            // @todo provide a sane default logger for other types
-        }
-
-        return $this;
-    }
-
-    /**
      * @return GuestSessionToken|SessionToken
      */
     public function getSessionToken()
@@ -334,9 +256,14 @@ class HttpClient
      */
     public function setSessionToken(SessionToken $sessionToken)
     {
+        // for some reason the TMDB API is inconsistent with it's usage of the session_id query parameter
+        // guest session id's are used in the URL itself, while regular sessions use the session_id query parameter
+        if (!($sessionToken instanceof GuestSessionToken)) {
+            $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
+            $this->addSubscriber($sessionTokenPlugin);
+        }
+
         $this->sessionToken = $sessionToken;
-        $sessionTokenPlugin = new SessionTokenPlugin($this->sessionToken);
-        $this->addSubscriber($sessionTokenPlugin);
     }
 
     /**
@@ -364,7 +291,7 @@ class HttpClient
      *
      * @return $this
      */
-    private function registerDefaults()
+    public function registerDefaults()
     {
         if (!array_key_exists('token', $this->options)) {
             throw new ApiTokenMissingException('An API token was not configured, please configure the `token` option with an correct ApiToken() object.');
@@ -374,17 +301,21 @@ class HttpClient
         $this->addSubscriber($requestSubscriber);
 
         $apiTokenPlugin = new ApiTokenPlugin(
-            is_string($this->options['token']) ?
-                new ApiToken($this->options['token']):
-                $this->options['token'])
-        ;
+            is_string($this->getOptions()->get('token')) ?
+                new ApiToken($this->getOptions()->get('token')):
+                $this->getOptions()->get('token')
+        );
+
         $this->addSubscriber($apiTokenPlugin);
 
         $acceptJsonHeaderPlugin = new AcceptJsonHeaderPlugin();
         $this->addSubscriber($acceptJsonHeaderPlugin);
 
-        $contentType = new ContentTypeJsonHeaderPlugin();
-        $this->addSubscriber($contentType);
+        $contentTypeHeaderPlugin = new ContentTypeJsonHeaderPlugin();
+        $this->addSubscriber($contentTypeHeaderPlugin);
+
+        $userAgentHeaderPlugin = new UserAgentHeaderPlugin();
+        $this->addSubscriber($userAgentHeaderPlugin);
 
         return $this;
     }
@@ -430,5 +361,108 @@ class HttpClient
     public function getLastResponse()
     {
         return $this->lastResponse;
+    }
+
+    public function isDefaultAdapter()
+    {
+        if (!class_exists('GuzzleHttp\Client')) {
+            return false;
+        }
+
+        return ($this->getAdapter() instanceof GuzzleAdapter);
+    }
+
+    protected function processOptions()
+    {
+        if ($sessionToken = $this->getOptions()->get('session_token')) {
+            $this->setSessionToken($sessionToken);
+        }
+
+        $cache = $this->getOptions()->get('cache');
+
+        if ($cache && $cache->get('enabled')) {
+            $this->setupCache($cache);
+        }
+
+        $log = $this->getOptions()->get('log');
+
+        if ($log && $log->get('enabled')) {
+            $this->setupLog($log);
+        }
+    }
+
+    protected function setupCache(ParameterBag $cache)
+    {
+        if ($this->isDefaultAdapter()) {
+            $this->setDefaultCaching($cache);
+        } elseif (null !== $subscriber = $cache->get('subscriber')) {
+            $subscriber->setOptions($cache);
+            $this->addSubscriber($subscriber);
+        }
+    }
+
+    protected function setupLog(ParameterBag $log)
+    {
+        if ($this->isDefaultAdapter()) {
+            $this->setDefaultLogging($log);
+        } elseif (null !== $subscriber = $log->get('subscriber')) {
+            $subscriber->setOptions($log);
+            $this->addSubscriber($subscriber);
+        }
+    }
+
+    /**
+     * Add an subscriber to enable caching.
+     *
+     * @param  ParameterBag      $parameters
+     * @throws \RuntimeException
+     * @return $this
+     */
+    public function setDefaultCaching(ParameterBag $parameters)
+    {
+        if (!class_exists('Doctrine\Common\Cache\CacheProvider')) {
+            //@codeCoverageIgnoreStart
+            throw new \RuntimeException(
+                'Could not find the doctrine cache library,
+                have you added doctrine-cache to your composer.json?'
+            );
+            //@codeCoverageIgnoreEnd
+        }
+
+        CacheSubscriber::attach(
+            $this->getAdapter()->getClient(),
+            ['storage' => $parameters->get('storage')]
+        );
+
+        return $this;
+    }
+
+    /**
+     * Enable logging
+     *
+     * @param  ParameterBag $parameters
+     * @return $this
+     */
+    public function setDefaultLogging(ParameterBag $parameters)
+    {
+        if (!class_exists('\Monolog\Logger')) {
+            //@codeCoverageIgnoreStart
+            throw new \RuntimeException(
+                'Could not find any logger set and the monolog logger library was not found
+                to provide a default, you have to  set a custom logger on the client or
+                have you forgot adding monolog to your composer.json?'
+            );
+            //@codeCoverageIgnoreEnd
+        } else {
+            $logger = new Logger('php-tmdb-api');
+            $logger->pushHandler($parameters->get('handler'));
+        }
+
+        if ($this->getAdapter() instanceof GuzzleAdapter) {
+            $subscriber = new LogSubscriber($logger);
+            $this->getAdapter()->getClient()->getEmitter()->attach($subscriber);
+        }
+
+        return $this;
     }
 }
