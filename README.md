@@ -1,8 +1,8 @@
 A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
 ---------------
 [![License](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/license.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-[![Build Status](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/build.png?b=2.0-WIP)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/build-status/2.0-WIP)
-[![Code Coverage](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/coverage.png?b=2.0-WIP)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/?branch=2.0-WIP)
+[![Build Status](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/build.png?b=2.0-BETA)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/build-status/2.0-BETA)
+[![Code Coverage](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/coverage.png?b=2.0-BETA)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/?branch=2.0-BETA)
 [![HHVM Status](http://hhvm.h4cc.de/badge/wtfzdotnet/php-tmdb-api.svg)](http://hhvm.h4cc.de/package/wtfzdotnet/php-tmdb-api)
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
@@ -57,11 +57,12 @@ Install Composer
 $ curl -sS https://getcomposer.org/installer | php
 $ sudo mv composer.phar /usr/local/bin/composer
 ```
+_You are not obliged to move the composer.phar file to your /usr/local/bin, it is however considered easy to have an global installation._
 
 Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/php-tmdb-api": "~2.0"
+"wtfzdotnet/php-tmdb-api": "dev-2.0-BETA"
 ```
 
 __If your new to composer and have no clue what I'm talking about__
@@ -71,7 +72,7 @@ Just create a file named `composer.json` in your document root:
 ```
 {
     "require": {
-        "wtfzdotnet/php-tmdb-api": "~2.0"
+        "wtfzdotnet/php-tmdb-api": "dev-2.0-BETA"
     }
 }
 ```
@@ -90,10 +91,8 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 To use the examples provided, copy the apikey.php.dist to apikey.php and change the settings. 
 
-General API Usage
------------------
-
-If your looking for a simple array entry point the API namespace is the place to be.
+Constructing the Client
+-----------------------
 
 First we always have to construct the client:
 
@@ -102,27 +101,61 @@ $token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
 $client = new \Tmdb\Client($token);
 ```
 
-Or if you prefer requests to happen securely:
+If you'd like to make unsecure requests ( by __default__ we use secure requests ).
 
 ```php
-$client = new \Tmdb\Client($token, null, true);
+$client = new \Tmdb\Client($token, null, false);
 ```
 
-If you want to add some caching capabilities ( currently an implementation of the `GuzzleCachePlugin` );
+Caching is enabled by default, and uses a slow filesystem handler, which you can either:
+    - Replace the `path` of the storage of, by supplying the option in the client:
+```php
+$client = new \Tmdb\Client($token, null, true, [
+    'cache' => [
+        'enabled' => false,
+    ]
+]);
+```
+    - Or replace the whole implementation with another CacheStorage of Doctrine:
+```php
+$client = new \Tmdb\Client($token, null, true, [
+    'cache' => [
+        'enabled' => false,
+        'storage' => new \Doctrine\Common\Cache\ArrayCache()
+        )
+    ]
+]);
+```
+_This will only keep cache in memory during the length of the request,  see the [documentation of Doctrine Cache](http://doctrine-common.readthedocs.org/en/latest/reference/caching.html) for the available adapters._
+
+If you want to add some logging capabilities ( requires `monolog/monolog` ), defaulting to the filesystem;
 
 ```php
-$client->setCaching(true, '/tmp/php-tmdb-api');
+$client = new \Tmdb\Client($token, null, true, [
+    'log' => [
+        'enabled' => true,
+        'path'    => '/var/www/php-tmdb-api.log'
+        )
+    ]
+]);
 ```
 
-_This relies on max-age headers being sent back from TMDB, see the [documentation of the CacheSubscriber](https://github.com/guzzle/cache-subscriber)._
-
-If you want to add some logging capabilities ( requires `monolog/monolog` if you make use of the default http adapter );
+However during development you might like some console magic like `ChromePHP` or `FirePHP`;
 
 ```php
-$client->setLogging(true, '/tmp/php-tmdb-api.log');
+$client = new \Tmdb\Client($token, null, true, [
+    'log' => [
+        'enabled' => true,
+        'handler' => new \Monolog\Handler\ChromePHPHandler()
+        )
+    ]
+]);
 ```
 
-Then we do some work on it:
+General API Usage
+-----------------
+
+If your looking for a simple array entry point the API namespace is the place to be.
 
 ```php
 $movie = $client->getMoviesApi()->getMovie(550);
@@ -137,36 +170,9 @@ $movie = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
 Model Usage
 -----------
 
-However the library can also be used in an object oriented manner.
+However the library can also be used in an object oriented manner, which I reckon is the __preferred__ way of doing things.
 
-First we always have to construct the client:
-
-```php
-$token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
-$client = new \Tmdb\Client($token);
-```
-
-Or if you prefer requests to happen securely:
-
-```php
-$client = new \Tmdb\Client($token, null, true);
-```
-
-If you want to add some caching capabilities ( currently an implementation of the `GuzzleCachePlugin` );
-
-```php
-$client->setCaching(true, '/tmp/php-tmdb-api');
-```
-
-_This relies on max-age headers being sent back from TMDB, see the [documentation of the CacheSubscriber](https://github.com/guzzle/cache-subscriber)._
-
-If you want to add some logging capabilities ( requires `monolog/monolog` if you make use of the default http adapter );
-
-```php
-$client->setLogging(true, '/tmp/php-tmdb-api.log');
-```
-
-Then you pass this client onto one of the many repositories and do some work on it.
+Instead of calling upon the client, you pass the client onto one of the many repositories and do then some work on it.
 
 ```php
 $repository = new \Tmdb\Repository\MovieRepository($client);
@@ -184,6 +190,18 @@ $topRated = $repository->getTopRated(array('page' => 3));
 $popular = $repository->getPopular();
 ```
 
+Some other useful hints
+-----------------------
+
+### Event Dispatching
+
+Since 2.0 requests are handled by the `EventDispatcher`, which gives you before and after hooks, the before hook allows an event to stop propagation for the
+request event, meaning you are able to stop the main request from happening, you will have to set a `Response` object in that event though.
+
+See the files for [TmdbEvents](lib/Tmdb/Event/TmdbEvents.php) and [RequestSubscriber](lib/Tmdb/Event/RequestSubscriber.php) respectively.
+
+### Image Helper
+
 An `ImageHelper` class is provided to take care of the images, which does require the configuration to be loaded:
 
 ```php
@@ -194,6 +212,22 @@ $imageHelper = new \Tmdb\Helper\ImageHelper($config);
 
 echo $imageHelper->getHtml($image, 'w154', 154, 80);
 ```
+
+### Plug-ins
+
+At the moment there are only two useful plug-ins that are not enabled by default, and you might want to use these:
+
+```php
+$plugin = new \Tmdb\HttpClient\Plugin\LanguageFilterPlugin('nl');
+```
+_Tries to fetch everything it can in Dutch._
+
+```php
+$plugin = new \Tmdb\HttpClient\Plugin\AdultFilterPlugin(true);
+```
+_We like naughty results, if configured this way, provide `false` to filter these out._
+
+### Collection Filtering
 
 We also provide some easy methods to filter any collection, you should note however you can always implement your own filter easily by using Closures:
 
@@ -218,21 +252,11 @@ $backdrop = $movie
 ```
 _And there are more Collections which provide filters, but you will find those out along the way._
 
-Some other useful hints
------------------------
+### The `GenericCollection` and the `ResultCollection`
 
-__Event Dispatching system.__
+The `GenericCollection` holds any collection of objects ( e.g. an collection of movies ).
 
-Since 2.0 requests are handled by the `EventDispatcher`, which gives you before and after hooks, the before hook allows an event to stop propagation for the
-request event, meaning you are able to stop the main request from happening, you will have to set a `Response` object in that event though.
-
-See the files for [TmdbEvents](lib/Tmdb/Event/TmdbEvents.php) and [RequestSubscriber](lib/Tmdb/Event/RequestSubscriber.php#L32) respectively.
-
-__There are 2 types of "main" collections, the `GenericCollection` and the `ResultCollection`.__
-
-The `GenericCollection holds any collection of objects ( e.g. an collection of movies ).
-
-The `ResultCollection` is an extension of the `GenericCollection`, and inherits response parameters _( page, total_pages, total_results )_ from an result set,
+The `ResultCollection` is an extension of the `GenericCollection`, and inherits the response parameters _( page, total_pages, total_results )_ from an result set,
 this can be used to create paginators.
 
 Help & Donate

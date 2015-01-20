@@ -13,7 +13,6 @@
 namespace Tmdb;
 
 use Doctrine\Common\Cache\FilesystemCache;
-use GuzzleHttp\Subscriber\Cache\CacheStorage;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -32,7 +31,7 @@ class Client
     use ApiMethodsTrait;
 
     /** Client Version */
-    const VERSION  = '2.0';
+    const VERSION  = '2.0-BETA';
 
     /** Base API URI */
     const TMDB_URI = '//api.themoviedb.org/3/';
@@ -288,8 +287,9 @@ class Client
         $handler = null;
 
         if ($this->options['cache']['enabled'] && !array_key_exists('storage', $this->options['cache'])) {
-            $this->options['cache']['storage'] =
-                new CacheStorage(new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'));
+            $this->options['cache']['storage'] = new FilesystemCache(
+                sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'
+            );
         }
 
         if ($this->options['log']['enabled']) {

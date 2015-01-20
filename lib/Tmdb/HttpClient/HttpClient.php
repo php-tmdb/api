@@ -14,6 +14,7 @@ namespace Tmdb\HttpClient;
 
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Subscriber\Cache\CacheStorage;
 use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
 use GuzzleHttp\Subscriber\Log\LogSubscriber;
 use Monolog\Logger;
@@ -431,7 +432,7 @@ class HttpClient
 
         CacheSubscriber::attach(
             $this->getAdapter()->getClient(),
-            ['storage' => $parameters->get('storage')]
+            ['storage' => new CacheStorage($parameters->get('storage'))]
         );
 
         return $this;
