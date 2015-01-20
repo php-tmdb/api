@@ -12,7 +12,7 @@ If you have any questions or feature requests, please visit the [google+ communi
 BETA
 ----------------
 
-__You are looking at the 2.0-BETA version, if you need an older stable version: [v1.4.2](tree/v1.4.2)__
+__You are looking at the 2.0-BETA version, if you need an older stable version: [v1.4.2](https://github.com/wtfzdotnet/php-tmdb-api/tree/v1.4.2)__
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.svg)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.svg)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
