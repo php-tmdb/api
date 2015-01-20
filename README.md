@@ -108,7 +108,9 @@ $client = new \Tmdb\Client($token, null, false);
 ```
 
 Caching is enabled by default, and uses a slow filesystem handler, which you can either:
-    - Replace the `path` of the storage of, by supplying the option in the client:
+
+    Replace the `path` of the storage of, by supplying the option in the client:
+    
 ```php
 $client = new \Tmdb\Client($token, null, true, [
     'cache' => [
@@ -116,7 +118,8 @@ $client = new \Tmdb\Client($token, null, true, [
     ]
 ]);
 ```
-    - Or replace the whole implementation with another CacheStorage of Doctrine:
+    Or replace the whole implementation with another CacheStorage of Doctrine:
+    
 ```php
 $client = new \Tmdb\Client($token, null, true, [
     'cache' => [
