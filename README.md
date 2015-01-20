@@ -115,6 +115,7 @@ Caching is enabled by default, and uses a slow filesystem handler, which you can
 $client = new \Tmdb\Client($token, null, true, [
     'cache' => [
         'enabled' => false,
+        'path'    => '/tmp/php-tmdb-api.log'
     ]
 ]);
 ```
