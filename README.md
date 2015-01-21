@@ -106,7 +106,7 @@ $client = new \Tmdb\Client($token);
 If you'd like to make unsecure requests ( by __default__ we use secure requests ).
 
 ```php
-$client = new \Tmdb\Client($token, null, false);
+$client = new \Tmdb\Client($token, ['secure' => false]);
 ```
 
 Caching is enabled by default, and uses a slow filesystem handler, which you can either:
@@ -114,7 +114,7 @@ Caching is enabled by default, and uses a slow filesystem handler, which you can
     Replace the `path` of the storage of, by supplying the option in the client:
     
 ```php
-$client = new \Tmdb\Client($token, null, true, [
+$client = new \Tmdb\Client($token, [
     'cache' => [
         'enabled' => false,
         'path'    => '/tmp/php-tmdb-api.log'
@@ -124,7 +124,7 @@ $client = new \Tmdb\Client($token, null, true, [
     Or replace the whole implementation with another CacheStorage of Doctrine:
     
 ```php
-$client = new \Tmdb\Client($token, null, true, [
+$client = new \Tmdb\Client($token, [
     'cache' => [
         'enabled' => false,
         'storage' => new \Doctrine\Common\Cache\ArrayCache()
@@ -137,7 +137,7 @@ _This will only keep cache in memory during the length of the request,  see the 
 If you want to add some logging capabilities ( requires `monolog/monolog` ), defaulting to the filesystem;
 
 ```php
-$client = new \Tmdb\Client($token, null, true, [
+$client = new \Tmdb\Client($token, [
     'log' => [
         'enabled' => true,
         'path'    => '/var/www/php-tmdb-api.log'
@@ -149,7 +149,7 @@ $client = new \Tmdb\Client($token, null, true, [
 However during development you might like some console magic like `ChromePHP` or `FirePHP`;
 
 ```php
-$client = new \Tmdb\Client($token, null, true, [
+$client = new \Tmdb\Client($token, [
     'log' => [
         'enabled' => true,
         'handler' => new \Monolog\Handler\ChromePHPHandler()

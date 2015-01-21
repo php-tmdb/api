@@ -14,10 +14,7 @@ require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
 $token = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
-$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
-$client->setSessionToken($sessionToken);
+$client = new \Tmdb\Client($token, ['session_token' => new \Tmdb\SessionToken(TMDB_SESSION_TOKEN)]);
 
 $favorite_movies = $client->getAccountApi()->getFavoriteMovies(TMDB_ACCOUNT_ID);
 

@@ -22,7 +22,7 @@ class GuestSessionRepositoryTest extends TestCase
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');
-        $repository   = $this->getRepositoryWithMockedHttpAdapter([], $sessionToken);
+        $repository   = $this->getRepositoryWithMockedHttpAdapter(['session_token' => $sessionToken]);
 
         $request = $this->getRequest(sprintf('guest_session/%s/rated_movies', (string) $sessionToken));
         $request->getOptions()->set('session_token', $sessionToken);

@@ -14,10 +14,7 @@ require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
-$guestSessionToken = new \Tmdb\GuestSessionToken(TMDB_GUEST_SESSION_TOKEN);
-$client->setSessionToken($guestSessionToken);
+$client = new \Tmdb\Client($token, ['session_token' => new \Tmdb\SessionToken(TMDB_SESSION_TOKEN)]);
 
 /**
  * @var \Tmdb\Repository\GuestSessionRepository $guestSessionRepository

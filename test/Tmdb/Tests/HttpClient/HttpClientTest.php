@@ -47,7 +47,7 @@ class HttpClientTest extends TestCase
     {
         $this->adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
-        $this->client  = new Client(new ApiToken('abcdef'), $this->adapter, false);
+        $this->client  = new Client(new ApiToken('abcdef'), ['adapter' => $this->adapter]);
         $this->testApi = new TestApi($this->client);
     }
 
@@ -153,7 +153,10 @@ class HttpClientTest extends TestCase
     public function shouldRegisterSubscribers()
     {
         $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
-        $this->client  = new Client(new ApiToken('abcdef'), $this->adapter, false, ['event_dispatcher' => $this->eventDispatcher]);
+        $this->client  = new Client(new ApiToken('abcdef'), [
+            'adapter'          => $this->adapter,
+            'event_dispatcher' => $this->eventDispatcher
+        ]);
         $this->testApi = new TestApi($this->client);
 
         $this->eventDispatcher

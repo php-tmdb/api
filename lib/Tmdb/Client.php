@@ -80,27 +80,26 @@ class Client
     /**
      * Construct our client
      *
-     * @param AdapterInterface $adapter
-     * @param ApiToken         $token
-     * @param boolean          $secure
-     * @param array            $options
+     * @param ApiToken $token
+     * @param array    $options
      */
     public function __construct(
         ApiToken $token,
-        AdapterInterface $adapter = null,
-        $secure = true,
         $options = []
     )
     {
+        $this->setToken($token);
+
+        $this->secure          = array_key_exists('secure', $options) ? $options['secure'] : true;
         $this->eventDispatcher = array_key_exists('event_dispatcher', $options) && $options['event_dispatcher'] instanceof EventDispatcherInterface ?
             $options['event_dispatcher']:
             new EventDispatcher()
         ;
 
-        $this->setToken($token);
-        $this->setSecure($secure);
-
-        $this->constructHttpClient($adapter, $options);
+        $this->constructHttpClient(
+            array_key_exists('adapter', $options) ? $options['adapter'] : null,
+            (array) $options
+        );
     }
 
     /**

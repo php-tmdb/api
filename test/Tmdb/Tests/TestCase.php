@@ -21,6 +21,8 @@ use Tmdb\HttpClient\Request;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
+    private $adapter = null;
+
     /**
      * Assert that an array of methods and corresponding classes match
      *
@@ -66,14 +68,24 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Get a TMDB Client with an mocked HTTP dependency
      *
+     * @param  array        $options
      * @return \Tmdb\Client
      */
     protected function getClientWithMockedHttpClient(array $options = array())
     {
         $token = new ApiToken('abcdef');
-        $mock  = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
+        $options['adapter'] = $this->getAdapterMock();
 
-        return new Client($token, $mock);
+        return new Client($token, $options);
+    }
+
+    public function getAdapterMock()
+    {
+        if (!$this->adapter) {
+            $this->adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
+        }
+
+        return $this->adapter;
     }
 
     /**
@@ -84,18 +96,16 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function getMockedTmdbClient()
     {
         $token   = new ApiToken('abcdef');
-        $adapter = $this->getMockBuilder('Tmdb\HttpClient\Adapter\AdapterInterface')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
+        $adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
-        return $this->_client = new Client($token, $adapter);
+        return $this->_client = new Client($token, ['adapter' => $adapter]);
     }
 
     /**
      * Get mocked http client
      *
-     * @param  array                                    $methods
+     * @param  string                                   $baseUrl
+     * @param  array                                    $options
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     protected function getHttpClientWithMockedAdapter($baseUrl, array $options = [])
@@ -164,10 +174,11 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         );
 
         $request->setOptions(new ParameterBag([
-            'token'  => new ApiToken('abcdef'),
-            'secure' => true,
-            'cache'  => ['enabled' => true],
-            'log'    => ['enabled' => false]
+            'token'   => new ApiToken('abcdef'),
+            'secure'  => true,
+            'cache'   => ['enabled' => true],
+            'log'     => ['enabled' => false],
+            'adapter' => $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface')
         ]));
 
         if ($body !== null) {
