@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests;
 
+use Doctrine\Common\Cache\FilesystemCache;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
@@ -21,7 +23,9 @@ use Tmdb\HttpClient\Request;
 
 abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
-    private $adapter = null;
+    protected $adapter = null;
+
+    protected $eventDispatcher = null;
 
     /**
      * Assert that an array of methods and corresponding classes match
@@ -73,6 +77,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function getClientWithMockedHttpClient(array $options = array())
     {
+        $options['event_dispatcher'] = $this->eventDispatcher = new EventDispatcher();
+
         $token = new ApiToken('abcdef');
         $options['adapter'] = $this->getAdapterMock();
 
@@ -126,10 +132,11 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      */
     protected function getMockedHttpClient(array $methods = [])
     {
-        return $this->getMock('Guzzle\Http\Client', array_merge(
-            $methods,
-            ['send']
-        ));
+        if (!in_array('send', $methods)) {
+            $methods[] = 'send';
+        }
+
+        return $this->getMock('Guzzle\Http\Client', $methods);
     }
 
     /**
@@ -150,35 +157,42 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             $method == 'PATCH' ||
             $method == 'DELETE'
         ) {
-            $headers = array_merge($headers, ['Content-Type' => 'application/json']);
+            $headers['Content-Type'] = 'application/json';
         }
+
+        $parameters['api_key'] = 'abcdef';
+
+        $headers['Accept']     = 'application/json';
+        $headers['User-Agent'] = sprintf('wtfzdotnet/php-tmdb-api (v%s)', Client::VERSION);
 
         $request = new Request(
             $path,
             $method,
-            new ParameterBag(array_merge(
-                    $parameters,
-                    [
-                        'api_key' => 'abcdef'
-                    ]
-                )
-            ),
-            new ParameterBag(array_merge(
-                    $headers,
-                    [
-                        'Accept'     => 'application/json',
-                        'User-Agent' => sprintf('wtfzdotnet/php-tmdb-api (v%s)', Client::VERSION)
-                    ]
-                )
-            )
+            new ParameterBag($parameters),
+            new ParameterBag($headers)
         );
 
         $request->setOptions(new ParameterBag([
             'token'   => new ApiToken('abcdef'),
             'secure'  => true,
-            'cache'   => ['enabled' => true],
-            'log'     => ['enabled' => false],
-            'adapter' => $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface')
+            'cache'   => [
+                'enabled' => true,
+                'handler' => new FilesystemCache('/tmp/php-tmdb-api'),
+                'path'    => '/tmp/php-tmdb-api',
+                'subscriber' => null
+            ],
+            'log'     => [
+                'enabled' => false,
+                'level'   => 100,
+                'handler' => null,
+                'path'    => '/tmp/php-tmdb-api.log',
+                'subscriber' => null
+            ],
+            'adapter' => $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
+            'host'    => 'api.themoviedb.org/3/',
+            'base_url' => 'https://api.themoviedb.org/3/',
+            'session_token' => null,
+            'event_dispatcher' => $this->eventDispatcher
         ]));
 
         if ($body !== null) {

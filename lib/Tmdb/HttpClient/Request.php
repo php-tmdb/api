@@ -50,24 +50,39 @@ class Request
     private $body;
 
     /**
-     * @param $path
-     * @param ParameterBag $parameters
+     * @param string       $path
      * @param string       $method
+     * @param ParameterBag $parameters
      * @param ParameterBag $headers
      * @param string       $body
+     * @param ParameterBag $options
      */
     public function __construct(
         $path = '/',
         $method = 'GET',
         ParameterBag $parameters = null,
         ParameterBag $headers = null,
-        $body = null
+        $body = null,
+        ParameterBag $options = null
     ) {
+        if (!$parameters) {
+            $parameters = new ParameterBag();
+        }
+
+        if (!$headers) {
+            $headers = new ParameterBag();
+        }
+
+        if (!$options) {
+            $options = new ParameterBag();
+        }
+
         $this->path       = $path;
         $this->method     = $method;
-        $this->parameters = null === $headers ? new ParameterBag() : $parameters;
-        $this->headers    = null === $headers ? new ParameterBag() : $headers;
+        $this->parameters = is_array($parameters) ? new ParameterBag($parameters) : $parameters;
+        $this->headers    = is_array($headers) ? new ParameterBag($headers) : $headers;
         $this->body       = $body;
+        $this->options    = is_array($options) ? new ParameterBag($options) : $options;
     }
 
     /**
@@ -117,7 +132,7 @@ class Request
     }
 
     /**
-     * @param  ParameterBag $parameters
+     * @param  array|ParameterBag $parameters
      * @return $this
      */
     public function setParameters(ParameterBag $parameters)
@@ -160,6 +175,10 @@ class Request
      */
     public function setOptions($options)
     {
+        if (is_array($options)) {
+            $options = new ParameterBag($options);
+        }
+
         $this->options = $options;
 
         return $this;

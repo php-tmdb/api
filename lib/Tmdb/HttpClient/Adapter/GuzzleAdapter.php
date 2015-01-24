@@ -64,8 +64,8 @@ class GuzzleAdapter extends AbstractAdapter
     public function getConfiguration(Request $request)
     {
         return [
-            'headers'  => (array) $request->getHeaders(),
-            'query'    => (array) $request->getParameters()
+            'headers'  => $request->getHeaders()->all(),
+            'query'    => $request->getParameters()->all()
         ];
     }
 

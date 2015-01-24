@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Tests\Api;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ParameterBag;
@@ -36,6 +37,8 @@ abstract class TestCase extends Base
      */
     protected function getApiWithMockedHttpAdapter(array $options = [])
     {
+        $options['event_dispatcher'] = $this->eventDispatcher = new EventDispatcher();
+
         $this->_client = $this->getClientWithMockedHttpClient($options);
         $apiClass = $this->getApiClass();
 
@@ -59,12 +62,7 @@ abstract class TestCase extends Base
         }
 
         return $this->_api = $this->getMockBuilder($this->getApiClass())
-            ->setMethods(
-                array_merge(
-                    [],
-                    $methods
-                )
-            )
+            ->setMethods($methods)
             ->setConstructorArgs([$this->_client])
             ->getMock()
         ;
