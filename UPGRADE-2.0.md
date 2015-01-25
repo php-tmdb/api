@@ -13,7 +13,6 @@ If you used the old constructor, this is how you define the same options from 2.
 $client = new \Tmdb\Client($apiToken, [
     'adapter' => new FooBarAdapter(),
     'secure'  => false,
-    '
 ]);
 ```
 

@@ -1,8 +1,8 @@
 A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
 ---------------
 [![License](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/license.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-[![Build Status](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/build.png?b=2.0-BETA)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/build-status/2.0-BETA)
-[![Code Coverage](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/coverage.png?b=2.0-BETA)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/?branch=2.0-BETA)
+[![Build Status](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/build.png?b=2.0)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/build-status/2.0)
+[![Code Coverage](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/coverage.png?b=2.0)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/?branch=2.0)
 [![HHVM Status](http://hhvm.h4cc.de/badge/wtfzdotnet/php-tmdb-api.svg)](http://hhvm.h4cc.de/package/wtfzdotnet/php-tmdb-api)
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
@@ -11,8 +11,6 @@ If you have any questions or feature requests, please visit the [google+ communi
 
 BETA
 ----------------
-
-__You are looking at the 2.0-BETA version, if you need an older stable version: [v1.4.2](https://github.com/wtfzdotnet/php-tmdb-api/tree/v1.4.2)__
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.svg)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
 [![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.svg)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
@@ -64,7 +62,7 @@ _You are not obliged to move the composer.phar file to your /usr/local/bin, it i
 Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/php-tmdb-api": "dev-2.0-BETA"
+"wtfzdotnet/php-tmdb-api": "~2.0"
 ```
 
 __If your new to composer and have no clue what I'm talking about__
@@ -74,7 +72,7 @@ Just create a file named `composer.json` in your document root:
 ```
 {
     "require": {
-        "wtfzdotnet/php-tmdb-api": "dev-2.0-BETA"
+        "wtfzdotnet/php-tmdb-api": "~2.0"
     }
 }
 ```
