@@ -17,7 +17,7 @@ class CertificationRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function shouldLoadCertifications()
+    public function shouldLoadMovieCertifications()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
@@ -27,6 +27,21 @@ class CertificationRepositoryTest extends TestCase
         ;
 
         $repository->getMovieList();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldLoadTvCertifications()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('certification/tv/list'))
+        ;
+
+        $repository->getTvList();
     }
 
     protected function getApiClass()

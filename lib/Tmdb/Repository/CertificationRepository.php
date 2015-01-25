@@ -39,6 +39,23 @@ class CertificationRepository extends AbstractRepository
     }
 
     /**
+     * Get the list of supported certifications for tv shows.
+     *
+     * These can be used in conjunction with the certification_country
+     * and certification.lte parameters when using discover.
+     *
+     * @param $parameters
+     * @param $headers
+     * @return \Tmdb\Model\Common\GenericCollection
+     */
+    public function getTvList(array $parameters = [], array $headers = [])
+    {
+        $data  = $this->getApi()->getTvList($this->parseQueryParameters($parameters), $headers);
+
+        return $this->getFactory()->createCollection($data);
+    }
+
+    /**
      * Return the Collection API Class
      *
      * @return \Tmdb\Api\Certifications

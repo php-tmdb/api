@@ -33,4 +33,19 @@ class Certifications extends AbstractApi
     {
         return $this->get('certification/movie/list', $parameters, $headers);
     }
+
+    /**
+     * Get the list of supported certifications for tv shows.
+     *
+     * These can be used in conjunction with the certification_country and
+     * certification.lte parameters when using discover.
+     *
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getTvList(array $parameters = [], array $headers = [])
+    {
+        return $this->get('certification/tv/list', $parameters, $headers);
+    }
 }
