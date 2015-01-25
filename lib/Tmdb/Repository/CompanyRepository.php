@@ -69,7 +69,7 @@ class CompanyRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new CompanyFactory();
+        return new MovieFactory($this->getClient()->getHttpClient());
     }
 
     /**
@@ -77,7 +77,7 @@ class CompanyRepository extends AbstractRepository
      */
     public function getMovieFactory()
     {
-        return new MovieFactory();
+        return new MovieFactory($this->getClient()->getHttpClient());
     }
 
     /**

@@ -16,6 +16,7 @@ use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\SpokenLanguage;
@@ -78,18 +79,22 @@ class TvFactory extends AbstractFactory
 
     /**
      * Constructor
+     *
+     * @param HttpClient $httpClient
      */
-    public function __construct()
+    public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory     = new CastFactory();
-        $this->crewFactory     = new CrewFactory();
-        $this->genreFactory    = new GenreFactory();
-        $this->imageFactory    = new ImageFactory();
-        $this->tvSeasonFactory = new TvSeasonFactory();
-        $this->networkFactory  = new NetworkFactory();
-        $this->videoFactory    = new VideoFactory();
-        $this->changesFactory  = new ChangeFactory();
-        $this->keywordFactory  = new KeywordFactory();
+        $this->castFactory     = new CastFactory($httpClient);
+        $this->crewFactory     = new CrewFactory($httpClient);
+        $this->genreFactory    = new GenreFactory($httpClient);
+        $this->imageFactory    = new ImageFactory($httpClient);
+        $this->tvSeasonFactory = new TvSeasonFactory($httpClient);
+        $this->networkFactory  = new NetworkFactory($httpClient);
+        $this->videoFactory    = new VideoFactory($httpClient);
+        $this->changesFactory  = new ChangeFactory($httpClient);
+        $this->keywordFactory  = new KeywordFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**
@@ -224,7 +229,7 @@ class TvFactory extends AbstractFactory
 
         if (array_key_exists('created_by', $data) && $data['created_by'] !== null) {
             $collection = new GenericCollection();
-            $factory = new PeopleFactory();
+            $factory =  new PeopleFactory($this->getHttpClient());
 
             foreach ($data['created_by'] as $castMember) {
                 $object = $factory->create($castMember, new CastMember());

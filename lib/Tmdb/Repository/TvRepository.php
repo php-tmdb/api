@@ -159,7 +159,7 @@ class TvRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new TvFactory();
+        return new TvFactory($this->getClient()->getHttpClient());
     }
 
     /**

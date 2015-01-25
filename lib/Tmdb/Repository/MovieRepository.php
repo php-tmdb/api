@@ -394,7 +394,7 @@ class MovieRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new MovieFactory();
+        return new MovieFactory($this->getClient()->getHttpClient());
     }
 
     /**

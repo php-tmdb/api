@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Model;
 
+use Tmdb\ApiToken;
+use Tmdb\Client;
 use Tmdb\Factory\ImageFactory;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image;
@@ -37,10 +39,12 @@ class ImageTest extends TestCase
 
     public function setUp()
     {
+        $client = new Client(new ApiToken('abcdef'));
         $this->collection = new Images();
 
         foreach ($this->images as $image) {
-            $factory = new ImageFactory();
+
+            $factory = new ImageFactory($client->getHttpClient());
             $object  = $factory->create($image);
 
             $this->collection->addImage($object);

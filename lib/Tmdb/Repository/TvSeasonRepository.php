@@ -59,7 +59,8 @@ class TvSeasonRepository extends AbstractRepository
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
-                    AppendToResponse::CHANGES
+                    AppendToResponse::CHANGES,
+                    AppendToResponse::VIDEOS
                 ])
             ];
         }
@@ -186,6 +187,6 @@ class TvSeasonRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new TvSeasonFactory();
+        return new TvSeasonFactory($this->getClient()->getHttpClient());
     }
 }

@@ -104,6 +104,6 @@ class ChangesRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new ChangesFactory();
+        return new ChangesFactory($this->getClient()->getHttpClient());
     }
 }

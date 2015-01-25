@@ -70,6 +70,6 @@ class KeywordRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new KeywordFactory();
+        return new KeywordFactory($this->getClient()->getHttpClient());
     }
 }

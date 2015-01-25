@@ -13,6 +13,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Exception\NotImplementedException;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Credits as Credits;
 use Tmdb\Model\Person;
@@ -38,11 +39,18 @@ class CreditsFactory extends AbstractFactory
      */
     private $peopleFactory;
 
-    public function __construct()
+    /**
+     * Constructor
+     *
+     * @param HttpClient $httpClient
+     */
+    public function __construct(HttpClient $httpClient)
     {
-        $this->tvSeasonFactory  = new TvSeasonFactory();
-        $this->tvEpisodeFactory = new TvEpisodeFactory();
-        $this->peopleFactory    = new PeopleFactory();
+        $this->tvSeasonFactory  = new TvSeasonFactory($httpClient);
+        $this->tvEpisodeFactory = new TvEpisodeFactory($httpClient);
+        $this->peopleFactory    = new PeopleFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**

@@ -51,6 +51,6 @@ class TimezoneRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new TimezoneFactory();
+        return new TimezoneFactory($this->getClient()->getHttpClient());
     }
 }

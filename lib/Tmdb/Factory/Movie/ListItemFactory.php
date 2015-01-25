@@ -14,6 +14,7 @@ namespace Tmdb\Factory\Movie;
 
 use Tmdb\Factory\AbstractFactory;
 use Tmdb\Factory\ImageFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Movie\ListItem;
 
 /**
@@ -22,11 +23,21 @@ use Tmdb\Model\Movie\ListItem;
  */
 class ListItemFactory extends AbstractFactory
 {
+    /**
+     * @var ImageFactory
+     */
     private $imageFactory;
 
-    public function __construct()
+    /**
+     * Constructor
+     *
+     * @param HttpClient $httpClient
+     */
+    public function __construct(HttpClient $httpClient)
     {
-        $this->imageFactory = new ImageFactory();
+        $this->imageFactory = new ImageFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**

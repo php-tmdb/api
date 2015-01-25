@@ -16,6 +16,7 @@ use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
@@ -55,14 +56,18 @@ class TvEpisodeFactory extends AbstractFactory
 
     /**
      * Constructor
+     *
+     * @param HttpClient $httpClient
      */
-    public function __construct()
+    public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory    = new CastFactory();
-        $this->crewFactory    = new CrewFactory();
-        $this->imageFactory   = new ImageFactory();
-        $this->videoFactory   = new VideoFactory();
-        $this->changesFactory = new ChangeFactory();
+        $this->castFactory    = new CastFactory($httpClient);
+        $this->crewFactory    = new CrewFactory($httpClient);
+        $this->imageFactory   = new ImageFactory($httpClient);
+        $this->videoFactory   = new VideoFactory($httpClient);
+        $this->changesFactory = new ChangeFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**
@@ -116,7 +121,7 @@ class TvEpisodeFactory extends AbstractFactory
         }
 
         if (array_key_exists('videos', $data)) {
-            $tvEpisode->setVideos($this->getVideoFactory()->createCollection($data['videos']));
+            $tvEpisode->setVideos($this->getVideoFactory()->createResultCollection($data['videos']));
         }
 
         if (array_key_exists('changes', $data)) {

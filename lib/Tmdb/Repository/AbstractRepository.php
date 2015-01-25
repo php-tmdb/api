@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Repository;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Api\ApiInterface;
 use Tmdb\Client;
 use Tmdb\Factory\AbstractFactory;
@@ -23,8 +24,8 @@ use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
  */
 abstract class AbstractRepository
 {
-    protected $client  = null;
-    protected $api     = null;
+    protected $client = null;
+    protected $api    = null;
 
     /**
      * Constructor
@@ -33,7 +34,7 @@ abstract class AbstractRepository
      */
     public function __construct(Client $client)
     {
-        $this->client  = $client;
+        $this->client = $client;
     }
 
     /**
@@ -44,6 +45,14 @@ abstract class AbstractRepository
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * @return EventDispatcher
+     */
+    public function getEventDispatcher()
+    {
+        return $this->client->getEventDispatcher();
     }
 
     /**

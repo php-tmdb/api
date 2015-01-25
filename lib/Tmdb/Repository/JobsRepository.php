@@ -73,6 +73,6 @@ class JobsRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new JobsFactory();
+        return new JobsFactory($this->getClient()->getHttpClient());
     }
 }

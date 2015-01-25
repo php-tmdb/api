@@ -17,6 +17,7 @@ use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\Movie\ListItemFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\SpokenLanguage;
@@ -77,18 +78,22 @@ class MovieFactory extends AbstractFactory
 
     /**
      * Constructor
+     *
+     * @param HttpClient $httpClient
      */
-    public function __construct()
+    public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory     = new CastFactory();
-        $this->crewFactory     = new CrewFactory();
-        $this->genreFactory    = new GenreFactory();
-        $this->imageFactory    = new ImageFactory();
-        $this->changeFactory   = new ChangeFactory();
-        $this->reviewFactory   = new ReviewFactory();
-        $this->listItemFactory = new ListItemFactory();
-        $this->keywordFactory  = new KeywordFactory();
-        $this->videoFactory    = new VideoFactory();
+        $this->castFactory     = new CastFactory($httpClient);
+        $this->crewFactory     = new CrewFactory($httpClient);
+        $this->genreFactory    = new GenreFactory($httpClient);
+        $this->imageFactory    = new ImageFactory($httpClient);
+        $this->changeFactory   = new ChangeFactory($httpClient);
+        $this->reviewFactory   = new ReviewFactory($httpClient);
+        $this->listItemFactory = new ListItemFactory($httpClient);
+        $this->keywordFactory  = new KeywordFactory($httpClient);
+        $this->videoFactory    = new VideoFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**

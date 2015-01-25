@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Helper;
 
+use Tmdb\ApiToken;
+use Tmdb\Client;
 use Tmdb\Tests\TestCase as Base;
 
 class ImageHelperTest extends Base
@@ -23,7 +25,9 @@ class ImageHelperTest extends Base
 
     public function setUp()
     {
-        $factory = new \Tmdb\Factory\ConfigurationFactory();
+        $client = new Client(new ApiToken('abcdef'));
+
+        $factory = new \Tmdb\Factory\ConfigurationFactory($client->getHttpClient());
 
         $data          = $this->loadByFile('configuration/get.json');
         $configuration = $factory->create($data);

@@ -12,7 +12,9 @@
  */
 namespace Tmdb\Factory;
 
-use Tmdb\Common\ObjectHydrator;
+use Tmdb\Event\HydrationEvent;
+use Tmdb\Event\TmdbEvents;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\AccountStates;
@@ -26,6 +28,21 @@ use Tmdb\Model\Lists\Result;
  */
 abstract class AbstractFactory
 {
+    /**
+     * @var HttpClient
+     */
+    protected $httpClient;
+
+    /**
+     * Constructor
+     *
+     * @param HttpClient $httpClient
+     */
+    public function __construct(HttpClient $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
     /**
      * Convert an array to an hydrated object
      *
@@ -41,6 +58,16 @@ abstract class AbstractFactory
      * @return GenericCollection
      */
     abstract public function createCollection(array $data = []);
+
+    /**
+     * Get the http client
+     *
+     * @return HttpClient
+     */
+    protected function getHttpClient()
+    {
+        return $this->httpClient;
+    }
 
     /**
      * Create a generic collection of data and map it on the class by it's static parameter $properties
@@ -179,14 +206,20 @@ abstract class AbstractFactory
     /**
      * Hydrate the object with data
      *
-     * @param  AbstractModel $object
+     * @param  AbstractModel $subject
      * @param  array         $data
      * @return AbstractModel
      */
-    protected function hydrate(AbstractModel $object, $data = [])
+    protected function hydrate(AbstractModel $subject, $data = [])
     {
-        $objectHydrator = new ObjectHydrator();
+        $httpClient = $this->getHttpClient();
 
-        return $objectHydrator->hydrate($object, $data);
+        $event = new HydrationEvent($subject, $data);
+        $event->setLastRequest($httpClient->getLastRequest());
+        $event->setLastResponse($httpClient->getLastResponse());
+
+        $this->getHttpClient()->getEventDispatcher()->dispatch(TmdbEvents::HYDRATE, $event);
+
+        return $event->getSubject();
     }
 }

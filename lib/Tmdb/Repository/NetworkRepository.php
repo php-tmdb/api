@@ -55,6 +55,6 @@ class NetworkRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new NetworkFactory();
+        return new NetworkFactory($this->getClient()->getHttpClient());
     }
 }

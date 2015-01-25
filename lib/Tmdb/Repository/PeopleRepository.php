@@ -182,7 +182,7 @@ class PeopleRepository extends AbstractRepository
     {
         $data = $this->getApi()->getTaggedImages($id, $this->parseQueryParameters($parameters), $headers);
 
-        $factory = new ImageFactory();
+        $factory = new ImageFactory($this->getClient()->getHttpClient());
 
         return $factory->createResultCollection($data, 'createMediaImage');
     }
@@ -230,6 +230,6 @@ class PeopleRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new PeopleFactory();
+        return new PeopleFactory($this->getClient()->getHttpClient());
     }
 }

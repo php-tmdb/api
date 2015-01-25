@@ -51,6 +51,6 @@ class CreditsRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new CreditsFactory();
+        return new CreditsFactory($this->getClient()->getHttpClient());
     }
 }

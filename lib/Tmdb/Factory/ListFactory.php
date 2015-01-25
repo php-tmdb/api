@@ -13,6 +13,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Factory\Lists\ListItemFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Lists;
@@ -33,10 +34,17 @@ class ListFactory extends AbstractFactory
      */
     private $listItemFactory;
 
-    public function __construct()
+    /**
+     * Constructor
+     *
+     * @param HttpClient $httpClient
+     */
+    public function __construct(HttpClient $httpClient)
     {
-        $this->imageFactory = new ImageFactory();
-        $this->listItemFactory = new ListItemFactory();
+        $this->imageFactory    = new ImageFactory($httpClient);
+        $this->listItemFactory = new ListItemFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**

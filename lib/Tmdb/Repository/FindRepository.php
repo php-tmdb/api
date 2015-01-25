@@ -52,6 +52,6 @@ class FindRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new FindFactory();
+        return new FindFactory($this->getClient()->getHttpClient());
     }
 }

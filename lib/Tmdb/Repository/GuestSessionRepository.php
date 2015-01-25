@@ -57,7 +57,7 @@ class GuestSessionRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new GuestSessionFactory();
+        return new GuestSessionFactory($this->getClient()->getHttpClient());
     }
 
     /**
@@ -65,6 +65,6 @@ class GuestSessionRepository extends AbstractRepository
      */
     public function getMovieFactory()
     {
-        return new MovieFactory();
+        return new MovieFactory($this->getClient()->getHttpClient());
     }
 }

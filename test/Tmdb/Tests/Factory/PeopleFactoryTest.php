@@ -60,7 +60,7 @@ class PeopleFactoryTest extends TestCase
         /**
          * @var MovieFactory $movieFactory
          */
-        $movieFactory = new MovieFactory();
+        $movieFactory = new MovieFactory($this->getHttpClient());
 
         /**
          * @var Movie $movie
