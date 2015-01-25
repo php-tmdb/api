@@ -31,8 +31,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $token        = new ApiToken(self::API_TOKEN);
         $sessionToken = new SessionToken(self::SESSION_TOKEN);
 
-        $client = new Client($token);
-        $client->setSessionToken($sessionToken);
+        $client = new Client($token, ['session_token' => $sessionToken]);
 
         $this->client = $client;
     }
@@ -95,11 +94,16 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $token  = new ApiToken(self::API_TOKEN);
         $client = new Client($token);
 
-        $this->assertEquals('https://api.themoviedb.org/3/', $client->getBaseUrl());
+        $options = $client->getOptions();
 
-        $client->setSecure(false);
+        $this->assertEquals('https://api.themoviedb.org/3/', $options['base_url']);
 
-        $this->assertEquals('http://api.themoviedb.org/3/', $client->getBaseUrl());
+        $options['secure'] = false;
+        $client->setOptions($options);
+
+        $options = $client->getOptions();
+
+        $this->assertEquals('http://api.themoviedb.org/3/', $options['base_url']);
     }
 
     /**

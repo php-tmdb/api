@@ -22,7 +22,7 @@ $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 //    'cache' => ['enabled' => false]
 //]);
 
-$client = new \Tmdb\Client($token, null, true, [
+$client = new \Tmdb\Client($token, [
     'cache' => [
         'enabled' => true,
         'storage' => new \GuzzleHttp\Subscriber\Cache\CacheStorage(

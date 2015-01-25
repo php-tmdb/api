@@ -22,10 +22,6 @@ class ParameterBagTest extends \PHPUnit_Framework_TestCase
             'test' => $array
         ]);
 
-        $this->assertEquals(new \Tmdb\Common\ParameterBag($array), $bag->get('test'));
-
-        $bag->get('test')->set(5, [1,2]);
-
-        $this->assertEquals($bag->get('test')->get(5), new \Tmdb\Common\ParameterBag([1,2]));
+        $this->assertEquals($bag->get('test'), $array);
     }
 }

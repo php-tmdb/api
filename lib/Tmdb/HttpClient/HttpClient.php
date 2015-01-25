@@ -19,7 +19,6 @@ use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
 use GuzzleHttp\Subscriber\Log\LogSubscriber;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\ApiToken;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Event\RequestEvent;
@@ -85,50 +84,18 @@ class HttpClient
     /**
      * Constructor
      *
-     * @param $baseUrl
-     * @param array                    $options
-     * @param AdapterInterface         $adapter
-     * @param EventDispatcherInterface $eventDispatcher
+     * @param array $options
      */
     public function __construct(
-        $baseUrl,
-        array $options = [],
-        AdapterInterface $adapter,
-        EventDispatcherInterface $eventDispatcher
+        array $options = []
     )
     {
-        $this->base_url        = $baseUrl;
-        $this->options         = new ParameterBag($options);
-        $this->eventDispatcher = $eventDispatcher;
+        $this->options         = $options;
+        $this->base_url        = $this->options['host'];
+        $this->eventDispatcher = $this->options['event_dispatcher'];
 
-        $this->setAdapter($adapter);
+        $this->setAdapter($this->options['adapter']);
         $this->processOptions();
-    }
-
-    /**
-     * Create the request object and send it out to listening events.
-     *
-     * @param $path
-     * @param $method
-     * @param  array  $parameters
-     * @param  array  $headers
-     * @param  null   $body
-     * @return string
-     */
-    private function send($path, $method, array $parameters = [], array $headers = [], $body = null)
-    {
-        $request = $this->createRequest($path, $method, $parameters, $headers, $body);
-
-        $event = new RequestEvent($request);
-        $this->eventDispatcher->dispatch(TmdbEvents::REQUEST, $event);
-
-        $this->lastResponse = $event->getResponse();
-
-        if ($this->lastResponse instanceof Response) {
-            return (string) $this->lastResponse->getBody();
-        }
-
-        return [];
     }
 
     /**
@@ -180,6 +147,98 @@ class HttpClient
     }
 
     /**
+     * @return ParameterBag
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param  ParameterBag $options
+     * @return $this
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * @return EventDispatcher
+     */
+    public function getEventDispatcher()
+    {
+        return $this->eventDispatcher;
+    }
+
+    /**
+     * @return RequestInterface
+     */
+    public function getLastRequest()
+    {
+        return $this->lastRequest;
+    }
+
+    /**
+     * @return ResponseInterface
+     */
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
+    }
+
+    /**
+     * Get the current base url
+     *
+     * @return null|string
+     */
+    public function getBaseUrl()
+    {
+        return $this->base_url;
+    }
+
+    /**
+     * Set the base url secure / insecure
+     *
+     * @param $url
+     * @return HttpClient
+     */
+    public function setBaseUrl($url)
+    {
+        $this->base_url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Create the request object and send it out to listening events.
+     *
+     * @param $path
+     * @param $method
+     * @param  array  $parameters
+     * @param  array  $headers
+     * @param  null   $body
+     * @return string
+     */
+    private function send($path, $method, array $parameters = [], array $headers = [], $body = null)
+    {
+        $request = $this->createRequest($path, $method, $parameters, $headers, $body);
+
+        $event = new RequestEvent($request);
+        $this->eventDispatcher->dispatch(TmdbEvents::REQUEST, $event);
+
+        $this->lastResponse = $event->getResponse();
+
+        if ($this->lastResponse instanceof Response) {
+            return (string) $this->lastResponse->getBody();
+        }
+
+        return [];
+    }
+
+    /**
      * Create the request object
      *
      * @param $path
@@ -217,29 +276,6 @@ class HttpClient
         }
 
         $this->eventDispatcher->addSubscriber($subscriber);
-    }
-
-    /**
-     * Get the current base url
-     *
-     * @return null|string
-     */
-    public function getBaseUrl()
-    {
-        return $this->base_url;
-    }
-
-    /**
-     * Set the base url secure / insecure
-     *
-     * @param $url
-     * @return HttpClient
-     */
-    public function setBaseUrl($url)
-    {
-        $this->base_url = $url;
-
-        return $this;
     }
 
     /**
@@ -302,9 +338,9 @@ class HttpClient
         $this->addSubscriber($requestSubscriber);
 
         $apiTokenPlugin = new ApiTokenPlugin(
-            is_string($this->getOptions()->get('token')) ?
-                new ApiToken($this->getOptions()->get('token')):
-                $this->getOptions()->get('token')
+            is_string($this->options['token']) ?
+                new ApiToken($this->options['token']):
+                $this->options['token']
         );
 
         $this->addSubscriber($apiTokenPlugin);
@@ -321,49 +357,6 @@ class HttpClient
         return $this;
     }
 
-    /**
-     * @return ParameterBag
-     */
-    public function getOptions()
-    {
-        return $this->options;
-    }
-
-    /**
-     * @param  ParameterBag $options
-     * @return $this
-     */
-    public function setOptions($options)
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    /**
-     * @return EventDispatcher
-     */
-    public function getEventDispatcher()
-    {
-        return $this->eventDispatcher;
-    }
-
-    /**
-     * @return RequestInterface
-     */
-    public function getLastRequest()
-    {
-        return $this->lastRequest;
-    }
-
-    /**
-     * @return ResponseInterface
-     */
-    public function getLastResponse()
-    {
-        return $this->lastResponse;
-    }
-
     public function isDefaultAdapter()
     {
         if (!class_exists('GuzzleHttp\Client')) {
@@ -375,38 +368,38 @@ class HttpClient
 
     protected function processOptions()
     {
-        if ($sessionToken = $this->getOptions()->get('session_token')) {
+        if ($sessionToken = $this->options['session_token']) {
             $this->setSessionToken($sessionToken);
         }
 
-        $cache = $this->getOptions()->get('cache');
+        $cache = $this->options['cache'];
 
-        if ($cache && $cache->get('enabled')) {
+        if ($cache['enabled']) {
             $this->setupCache($cache);
         }
 
-        $log = $this->getOptions()->get('log');
+        $log = $this->options['log'];
 
-        if ($log && $log->get('enabled')) {
+        if ($log['enabled']) {
             $this->setupLog($log);
         }
     }
 
-    protected function setupCache(ParameterBag $cache)
+    protected function setupCache(array $cache)
     {
         if ($this->isDefaultAdapter()) {
             $this->setDefaultCaching($cache);
-        } elseif (null !== $subscriber = $cache->get('subscriber')) {
+        } elseif (null !== $subscriber = $cache['subscriber']) {
             $subscriber->setOptions($cache);
             $this->addSubscriber($subscriber);
         }
     }
 
-    protected function setupLog(ParameterBag $log)
+    protected function setupLog(array $log)
     {
         if ($this->isDefaultAdapter()) {
             $this->setDefaultLogging($log);
-        } elseif (null !== $subscriber = $log->get('subscriber')) {
+        } elseif (null !== $subscriber = $log['subscriber']) {
             $subscriber->setOptions($log);
             $this->addSubscriber($subscriber);
         }
@@ -415,11 +408,11 @@ class HttpClient
     /**
      * Add an subscriber to enable caching.
      *
-     * @param  ParameterBag      $parameters
+     * @param  array             $parameters
      * @throws \RuntimeException
      * @return $this
      */
-    public function setDefaultCaching(ParameterBag $parameters)
+    public function setDefaultCaching(array $parameters)
     {
         if (!class_exists('Doctrine\Common\Cache\CacheProvider')) {
             //@codeCoverageIgnoreStart
@@ -432,7 +425,7 @@ class HttpClient
 
         CacheSubscriber::attach(
             $this->getAdapter()->getClient(),
-            ['storage' => new CacheStorage($parameters->get('storage'))]
+            ['storage' => new CacheStorage($parameters['handler'])]
         );
 
         return $this;
@@ -441,10 +434,11 @@ class HttpClient
     /**
      * Enable logging
      *
-     * @param  ParameterBag $parameters
+     * @param  array             $parameters
+     * @throws \RuntimeException
      * @return $this
      */
-    public function setDefaultLogging(ParameterBag $parameters)
+    public function setDefaultLogging(array $parameters)
     {
         if (!class_exists('\Monolog\Logger')) {
             //@codeCoverageIgnoreStart
@@ -456,7 +450,7 @@ class HttpClient
             //@codeCoverageIgnoreEnd
         } else {
             $logger = new Logger('php-tmdb-api');
-            $logger->pushHandler($parameters->get('handler'));
+            $logger->pushHandler($parameters['handler']);
         }
 
         if ($this->getAdapter() instanceof GuzzleAdapter) {

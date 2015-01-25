@@ -26,7 +26,7 @@ $client = new \Tmdb\Client($token, null, true, [
 */
 
 // If you'd like to know what's going on during development, something like this could prove handy.
-$client = new \Tmdb\Client($token, null, true, [
+$client = new \Tmdb\Client($token, [
     'log' => [
         'enabled' => true,
         'handler' => new \Monolog\Handler\ChromePHPHandler() // chrome php extension

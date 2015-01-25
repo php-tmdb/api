@@ -16,6 +16,7 @@
         "php": ">=5.4.0",
         "ext-curl": "*",
         "symfony/event-dispatcher": "~2.5",
+        "symfony/options-resolver": "~2.6",
         "guzzlehttp/guzzle": "~5.0",
         "guzzlehttp/cache-subscriber": "0.1.*@dev",
         "guzzlehttp/log-subscriber": "~1.0",
