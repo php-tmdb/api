@@ -91,7 +91,7 @@ class DiscoverRepository extends AbstractRepository
      */
     public function getMovieFactory()
     {
-        return new MovieFactory();
+        return new MovieFactory($this->getClient()->getHttpClient());
     }
 
     /**
@@ -99,6 +99,6 @@ class DiscoverRepository extends AbstractRepository
      */
     public function getTvFactory()
     {
-        return new TvFactory();
+        return new TvFactory($this->getClient()->getHttpClient());
     }
 }

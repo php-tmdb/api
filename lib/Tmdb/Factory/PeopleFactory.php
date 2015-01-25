@@ -14,6 +14,7 @@ namespace Tmdb\Factory;
 
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Factory\Common\ChangeFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Person\CastMember;
@@ -34,11 +35,15 @@ class PeopleFactory extends AbstractFactory
 
     /**
      * Constructor
+     *
+     * @param HttpClient $httpClient
      */
-    public function __construct()
+    public function __construct(HttpClient $httpClient)
     {
-        $this->imageFactory  = new ImageFactory();
-        $this->changeFactory = new ChangeFactory();
+        $this->imageFactory  = new ImageFactory($httpClient);
+        $this->changeFactory = new ChangeFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**

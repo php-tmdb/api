@@ -31,7 +31,7 @@ class CollectionRepository extends AbstractRepository
     {
         parent::__construct($client);
 
-        $this->imageFactory = new ImageFactory();
+        $this->imageFactory = new ImageFactory($this->getClient()->getHttpClient());
     }
 
     /**
@@ -91,7 +91,7 @@ class CollectionRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new CollectionFactory();
+        return new CollectionFactory($this->getClient()->getHttpClient());
     }
 
     /**

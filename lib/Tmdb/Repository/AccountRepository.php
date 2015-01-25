@@ -209,6 +209,6 @@ class AccountRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new AccountFactory();
+        return new AccountFactory($this->getClient()->getHttpClient());
     }
 }

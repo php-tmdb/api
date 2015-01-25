@@ -125,6 +125,16 @@ class Client
     }
 
     /**
+     * Get the event dispatcher
+     *
+     * @return AdapterInterface
+     */
+    public function getEventDispatcher()
+    {
+        return $this->options['event_dispatcher'];
+    }
+
+    /**
      * @return array
      */
     public function getOptions()

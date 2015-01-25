@@ -145,6 +145,6 @@ class AuthenticationRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new AuthenticationFactory();
+        return new AuthenticationFactory($this->getClient()->getHttpClient());
     }
 }

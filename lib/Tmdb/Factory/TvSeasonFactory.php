@@ -16,6 +16,7 @@ use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
@@ -60,16 +61,19 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * Constructor
+     *
+     * @param HttpClient $httpClient
      */
-    public function __construct()
+    public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory      = new CastFactory();
-        $this->crewFactory      = new CrewFactory();
-        $this->imageFactory     = new ImageFactory();
-        $this->tvEpisodeFactory = new TvEpisodeFactory();
-        $this->videoFactory     = new VideoFactory();
-        $this->changesFactory   = new ChangeFactory();
+        $this->castFactory      = new CastFactory($httpClient);
+        $this->crewFactory      = new CrewFactory($httpClient);
+        $this->imageFactory     = new ImageFactory($httpClient);
+        $this->tvEpisodeFactory = new TvEpisodeFactory($httpClient);
+        $this->videoFactory     = new VideoFactory($httpClient);
+        $this->changesFactory   = new ChangeFactory($httpClient);
 
+        parent::__construct($httpClient);
     }
 
     /**

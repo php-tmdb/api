@@ -68,7 +68,8 @@ class TvEpisodeRepository extends AbstractRepository
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
-                    AppendToResponse::CHANGES
+                    AppendToResponse::CHANGES,
+                    AppendToResponse::VIDEOS
                 ])
             ];
         }
@@ -309,6 +310,6 @@ class TvEpisodeRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new TvEpisodeFactory();
+        return new TvEpisodeFactory($this->getClient()->getHttpClient());
     }
 }

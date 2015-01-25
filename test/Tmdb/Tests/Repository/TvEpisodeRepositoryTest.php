@@ -33,7 +33,7 @@ class TvEpisodeRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID,
-                ['append_to_response' => 'credits,external_ids,images,changes']
+                ['append_to_response' => 'credits,external_ids,images,changes,videos']
             ))
         ;
 
@@ -51,7 +51,7 @@ class TvEpisodeRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID,
-                ['append_to_response' => 'credits,external_ids,images,changes']
+                ['append_to_response' => 'credits,external_ids,images,changes,videos']
             ))
         ;
 

@@ -21,6 +21,7 @@ use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Common\ParameterBag;
+use Tmdb\Event\HydrationSubscriber;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\RequestSubscriber;
 use Tmdb\Event\TmdbEvents;
@@ -293,12 +294,8 @@ class HttpClient
      */
     public function setSessionToken(SessionToken $sessionToken)
     {
-        // for some reason the TMDB API is inconsistent with it's usage of the session_id query parameter
-        // guest session id's are used in the URL itself, while regular sessions use the session_id query parameter
-        if (!($sessionToken instanceof GuestSessionToken)) {
-            $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
-            $this->addSubscriber($sessionTokenPlugin);
-        }
+        $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
+        $this->addSubscriber($sessionTokenPlugin);
 
         $this->sessionToken = $sessionToken;
     }
@@ -336,6 +333,9 @@ class HttpClient
 
         $requestSubscriber = new RequestSubscriber();
         $this->addSubscriber($requestSubscriber);
+
+        $hydrationSubscriber = new HydrationSubscriber();
+        $this->addSubscriber($hydrationSubscriber);
 
         $apiTokenPlugin = new ApiTokenPlugin(
             is_string($this->options['token']) ?

@@ -93,6 +93,6 @@ class GenreRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new GenreFactory();
+        return new GenreFactory($this->getClient()->getHttpClient());
     }
 }

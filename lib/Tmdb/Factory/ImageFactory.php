@@ -74,16 +74,16 @@ class ImageFactory extends AbstractFactory
         if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
             switch ($data['media_type']) {
                 case "movie":
-                    $factory = new MovieFactory();
+                    $factory = new MovieFactory($this->getHttpClient());
                     break;
 
                 case "tv":
-                    $factory = new TvFactory();
+                    $factory = new TvFactory($this->getHttpClient());
                     break;
 
                 // I don't think this ever occurs, but just in case..
                 case "person":
-                    $factory = new PeopleFactory();
+                    $factory = new PeopleFactory($this->getHttpClient());
                     break;
 
                 default:

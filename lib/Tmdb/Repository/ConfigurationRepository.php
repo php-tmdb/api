@@ -50,6 +50,6 @@ class ConfigurationRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new ConfigurationFactory();
+        return new ConfigurationFactory($this->getClient()->getHttpClient());
     }
 }

@@ -52,6 +52,6 @@ class ReviewRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new ReviewFactory();
+        return new ReviewFactory($this->getClient()->getHttpClient());
     }
 }

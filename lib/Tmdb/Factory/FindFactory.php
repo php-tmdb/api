@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Find;
 
 /**
@@ -37,12 +38,16 @@ class FindFactory extends AbstractFactory
 
     /**
      * Constructor
+     *
+     * @param HttpClient $httpClient
      */
-    public function __construct()
+    public function __construct(HttpClient $httpClient)
     {
-        $this->movieFactory  = new MovieFactory();
-        $this->peopleFactory = new PeopleFactory();
-        $this->tvFactory     = new TvFactory();
+        $this->movieFactory  = new MovieFactory($httpClient);
+        $this->peopleFactory = new PeopleFactory($httpClient);
+        $this->tvFactory     = new TvFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**

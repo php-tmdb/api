@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Account;
 use Tmdb\Model\Lists\Result;
 
@@ -36,11 +37,18 @@ class AccountFactory extends AbstractFactory
      */
     private $tvFactory;
 
-    public function __construct()
+    /**
+     * Constructor
+     *
+     * @param HttpClient $httpClient
+     */
+    public function __construct(HttpClient $httpClient)
     {
-        $this->movieFactory = new MovieFactory();
-        $this->imageFactory = new ImageFactory();
-        $this->tvFactory    = new TvFactory();
+        $this->movieFactory = new MovieFactory($httpClient);
+        $this->imageFactory = new ImageFactory($httpClient);
+        $this->tvFactory    = new TvFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**

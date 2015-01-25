@@ -13,6 +13,7 @@
 namespace Tmdb\Factory\People;
 
 use Tmdb\Factory\PeopleFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Collection\People\Crew;
 
 /**
@@ -21,6 +22,16 @@ use Tmdb\Model\Collection\People\Crew;
  */
 class CrewFactory extends PeopleFactory
 {
+    /**
+     * Constructor
+     *
+     * @param HttpClient $httpClient
+     */
+    public function __construct(HttpClient $httpClient)
+    {
+        parent::__construct($httpClient);
+    }
+
     /**
      * {@inheritdoc}
      */

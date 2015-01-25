@@ -146,6 +146,6 @@ class ListRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new ListFactory();
+        return new ListFactory($this->getClient()->getHttpClient());
     }
 }

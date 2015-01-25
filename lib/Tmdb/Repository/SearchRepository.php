@@ -82,13 +82,13 @@ class SearchRepository extends AbstractRepository
     {
         parent::__construct($client);
 
-        $this->movieFactory      = new MovieFactory();
-        $this->collectionFactory = new CollectionFactory();
-        $this->tvFactory         = new TvFactory();
-        $this->peopleFactory     = new PeopleFactory();
-        $this->listItemFactory   = new ListItemFactory();
-        $this->companyFactory    = new CompanyFactory();
-        $this->keywordFactory    = new KeywordFactory();
+        $this->movieFactory      = new MovieFactory($this->getClient()->getHttpClient());
+        $this->collectionFactory = new CollectionFactory($this->getClient()->getHttpClient());
+        $this->tvFactory         = new TvFactory($this->getClient()->getHttpClient());
+        $this->peopleFactory     = new PeopleFactory($this->getClient()->getHttpClient());
+        $this->listItemFactory   = new ListItemFactory($this->getClient()->getHttpClient());
+        $this->companyFactory    = new CompanyFactory($this->getClient()->getHttpClient());
+        $this->keywordFactory    = new KeywordFactory($this->getClient()->getHttpClient());
     }
 
     /**

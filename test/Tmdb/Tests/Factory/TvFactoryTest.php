@@ -60,7 +60,7 @@ class TvFactoryTest extends TestCase
     {
         $this->setUp();
 
-        $factory = new TvFactory();
+        $factory = new TvFactory($this->getHttpClient());
         $class  = new \stdClass();
 
         $factory->setCastFactory($class);

@@ -12,17 +12,34 @@
  */
 namespace Tmdb\Tests\Factory;
 
+use Tmdb\ApiToken;
+use Tmdb\Client;
 use Tmdb\Tests\TestCase as Base;
 
 abstract class TestCase extends Base
 {
+    /**
+     * @var Client
+     */
+    private $client;
+
+    public function __construct()
+    {
+        $this->client = new Client(new ApiToken('abcdef'));
+    }
+
     protected $factory;
 
     protected function getFactory()
     {
         $class = $this->getFactoryClass();
 
-        return new $class();
+        return new $class($this->client->getHttpClient());
+    }
+
+    protected function getHttpClient()
+    {
+        return $this->client->getHttpClient();
     }
 
     abstract protected function getFactoryClass();

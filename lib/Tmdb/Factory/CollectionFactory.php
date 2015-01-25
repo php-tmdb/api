@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Collection;
 use Tmdb\Model\Common\GenericCollection;
 
@@ -33,11 +34,15 @@ class CollectionFactory extends AbstractFactory
 
     /**
      * Constructor
+     *
+     * @param HttpClient $httpClient
      */
-    public function __construct()
+    public function __construct(HttpClient $httpClient)
     {
-        $this->movieFactory = new MovieFactory();
-        $this->imageFactory = new ImageFactory();
+        $this->movieFactory = new MovieFactory($httpClient);
+        $this->imageFactory = new ImageFactory($httpClient);
+
+        parent::__construct($httpClient);
     }
 
     /**

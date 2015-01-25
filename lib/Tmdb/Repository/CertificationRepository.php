@@ -53,6 +53,6 @@ class CertificationRepository extends AbstractRepository
      */
     public function getFactory()
     {
-        return new CertificationFactory();
+        return new CertificationFactory($this->getClient()->getHttpClient());
     }
 }
