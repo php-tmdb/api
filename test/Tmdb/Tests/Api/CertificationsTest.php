@@ -30,6 +30,22 @@ class CertificationsTest extends TestCase
         $api->getMovieList();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetCertificationsListForTv()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()
+            ->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('certification/tv/list'))
+        ;
+
+        $api->getTvList();
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Certifications';
