@@ -37,6 +37,16 @@ class Find extends AbstractModel
     private $tvResults;
 
     /**
+     * @var GenericCollection
+     */
+    private $tvSeasonResults;
+
+    /**
+     * @var GenericCollection
+     */
+    private $tvEpisodeResults;
+
+    /**
      * @param  \Tmdb\Model\Common\GenericCollection $movieResults
      * @return $this
      */
@@ -91,5 +101,43 @@ class Find extends AbstractModel
     public function getTvResults()
     {
         return $this->tvResults;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getTvSeasonResults()
+    {
+        return $this->tvSeasonResults;
+    }
+
+    /**
+     * @param  GenericCollection $tvSeasonResults
+     * @return $this
+     */
+    public function setTvSeasonResults($tvSeasonResults)
+    {
+        $this->tvSeasonResults = $tvSeasonResults;
+
+        return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getTvEpisodeResults()
+    {
+        return $this->tvEpisodeResults;
+    }
+
+    /**
+     * @param  GenericCollection $tvEpisodeResults
+     * @return $this
+     */
+    public function setTvEpisodeResults($tvEpisodeResults)
+    {
+        $this->tvEpisodeResults = $tvEpisodeResults;
+
+        return $this;
     }
 }

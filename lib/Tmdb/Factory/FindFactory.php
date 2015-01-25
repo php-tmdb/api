@@ -43,9 +43,11 @@ class FindFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->movieFactory  = new MovieFactory($httpClient);
-        $this->peopleFactory = new PeopleFactory($httpClient);
-        $this->tvFactory     = new TvFactory($httpClient);
+        $this->movieFactory     = new MovieFactory($httpClient);
+        $this->peopleFactory    = new PeopleFactory($httpClient);
+        $this->tvFactory        = new TvFactory($httpClient);
+        $this->tvSeasonFactory  = new TvFactory($httpClient);
+        $this->tvEpisodeFactory = new TvEpisodeFactory($httpClient);
 
         parent::__construct($httpClient);
     }
@@ -67,6 +69,14 @@ class FindFactory extends AbstractFactory
 
         if (array_key_exists('tv_results', $data)) {
             $find->setTvResults($this->getTvFactory()->createCollection($data['tv_results']));
+        }
+
+        if (array_key_exists('tv_season_results', $data)) {
+            $find->setTvSeasonResults($this->getTvSeasonFactory()->createCollection($data['tv_season_results']));
+        }
+
+        if (array_key_exists('tv_episode_results', $data)) {
+            $find->setTvEpisodeResults($this->getTvSeasonFactory()->createCollection($data['tv_episode_results']));
         }
 
         return $find;
@@ -139,5 +149,43 @@ class FindFactory extends AbstractFactory
     public function getTvFactory()
     {
         return $this->tvFactory;
+    }
+
+    /**
+     * @return TvEpisodeFactory
+     */
+    public function getTvEpisodeFactory()
+    {
+        return $this->tvEpisodeFactory;
+    }
+
+    /**
+     * @param  TvEpisodeFactory $tvEpisodeFactory
+     * @return $this
+     */
+    public function setTvEpisodeFactory($tvEpisodeFactory)
+    {
+        $this->tvEpisodeFactory = $tvEpisodeFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return TvFactory
+     */
+    public function getTvSeasonFactory()
+    {
+        return $this->tvSeasonFactory;
+    }
+
+    /**
+     * @param  TvFactory $tvSeasonFactory
+     * @return $this
+     */
+    public function setTvSeasonFactory($tvSeasonFactory)
+    {
+        $this->tvSeasonFactory = $tvSeasonFactory;
+
+        return $this;
     }
 }
