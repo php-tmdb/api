@@ -98,6 +98,13 @@ class PeopleFactory extends AbstractFactory
                 );
             }
 
+            /** External ids */
+            if (array_key_exists('known_for', $data)) {
+                $person->setKnownFor(
+                    $this->createGenericCollectionFromMediaTypes($data['known_for'])
+                );
+            }
+
             /** Credits */
             $this->applyCredits($data, $person);
         }
