@@ -201,6 +201,11 @@ class Tv extends AbstractModel
     protected $similar;
 
     /**
+     * @var GenericCollection
+     */
+    protected $productionCompanies;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -882,5 +887,24 @@ class Tv extends AbstractModel
     public function getSimilar()
     {
         return $this->similar;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getProductionCompanies()
+    {
+        return $this->productionCompanies;
+    }
+
+    /**
+     * @param  GenericCollection $productionCompanies
+     * @return $this
+     */
+    public function setProductionCompanies($productionCompanies)
+    {
+        $this->productionCompanies = $productionCompanies;
+
+        return $this;
     }
 }
