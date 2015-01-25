@@ -209,8 +209,8 @@ class Client
             'token'            => null,
             'session_token'    => null,
             'event_dispatcher' => array_key_exists('event_dispatcher', $this->options) ? $this->options['event_dispatcher'] : new EventDispatcher(),
-            'cache'            => $this->configureCacheOptions($options),
-            'log'              => $this->configureLogOptions($options),
+            'cache'            => [],
+            'log'              => [],
         ]);
 
         $resolver->setNormalizer('base_url', function ($options, $value) {
@@ -237,8 +237,6 @@ class Client
         $resolver->setAllowedTypes('token', 'object');
         $resolver->setAllowedTypes('session_token', ['object', 'null']);
         $resolver->setAllowedTypes('event_dispatcher', 'object');
-        $resolver->setAllowedTypes('cache', 'array');
-        $resolver->setAllowedTypes('log', 'array');
 
         $this->options = $resolver->resolve($options);
 
@@ -247,6 +245,9 @@ class Client
                 new \GuzzleHttp\Client(['base_url' => $this->options['base_url']])
             );
         }
+
+        $this->options['cache'] = $this->configureCacheOptions($options);
+        $this->options['log']   = $this->configureLogOptions($options);
 
         return $this->options;
     }

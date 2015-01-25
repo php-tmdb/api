@@ -113,8 +113,6 @@ class AccountRepository extends AbstractRepository
      * @param  array            $parameters
      * @param  array            $headers
      * @return ResultCollection
-     *
-     * @todo   Include the user rating
      */
     public function getRatedMovies($accountId, array $parameters = [], array $headers = [])
     {
@@ -130,8 +128,6 @@ class AccountRepository extends AbstractRepository
      * @param  array            $parameters
      * @param  array            $headers
      * @return ResultCollection
-     *
-     * @todo   Include the user rating
      */
     public function getRatedTvShows($accountId, array $parameters = [], array $headers = [])
     {

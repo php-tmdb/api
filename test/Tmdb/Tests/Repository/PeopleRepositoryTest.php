@@ -12,9 +12,6 @@
  */
 namespace Tmdb\Tests\Repository;
 
-/**
- * @todo review if the rest of the methods need to be added
- */
 class PeopleRepositoryTest extends TestCase
 {
     const PERSON_ID = 287;
