@@ -107,13 +107,12 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @todo
+     * @test
      */
     public function shouldAddCachePluginWhenEnabled()
     {
         $token  = new ApiToken(self::API_TOKEN);
         $client = new Client($token);
-        $client->setCaching(true, '/tmp/php-tmdb-api');
 
         $listeners = $client->getHttpClient()->getAdapter()->getClient()
             ->getEmitter()
@@ -126,13 +125,12 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @todo
+     * @test
      */
     public function shouldAddLoggingPluginWhenEnabled()
     {
         $token  = new ApiToken(self::API_TOKEN);
-        $client = new Client($token);
-        $client->setLogging(true, '/tmp/php-tmdb-api.log');
+        $client = new Client($token, ['log' => ['enabled' => true]]);
 
         $listeners = $client->getHttpClient()->getAdapter()->getClient()
             ->getEmitter()

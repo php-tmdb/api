@@ -22,7 +22,6 @@ use Tmdb\Model\Person\QueryParameter\AppendToResponse;
  * @package Tmdb\Repository
  * @see http://docs.themoviedb.apiary.io/#people
  *
- * @todo implement the new methods
  */
 class PeopleRepository extends AbstractRepository
 {
