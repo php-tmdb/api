@@ -51,10 +51,13 @@ class Genres extends GenericCollection
     /**
      * Add a genre to the collection
      *
-     * @param Genre $genre
+     * @param  Genre $genre
+     * @return $this
      */
     public function addGenre(Genre $genre)
     {
         $this->data[] = $genre;
+
+        return $this;
     }
 }

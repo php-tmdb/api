@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Model\Query\Discover;
 
+use Tmdb\Model\Collection\Genres;
+use Tmdb\Model\Genre;
 use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Tests\TestCase;
 
@@ -35,16 +37,65 @@ class DiscoverMoviesQueryTest extends TestCase
             ->voteCountGte(5)
             ->voteAverageGte(3)
             ->withGenres([15,18])
-            ->withGenresAnd([18])
-            ->withGenresOr([1,2])
             ->releaseDateGte($now)
             ->releaseDateLte($now)
             ->certificationCountry('NL')
             ->certificationLte(1)
             ->withCompanies([1])
-            ->withCompaniesAnd([2,5])
         ;
 
-        $this->assertEquals(13, count($query));
+        $this->assertEquals(14, count($query));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldNormalize()
+    {
+        $query = new DiscoverMoviesQuery();
+
+        $genre = new Genre();
+        $genre->setId(1);
+
+        $genreTwo = new Genre();
+        $genreTwo->setId(5);
+
+        $query
+            ->withGenres([$genre, $genreTwo])
+        ;
+
+        $this->assertEquals("1|5", $query->get('with_genres'));
+
+        $query      = new DiscoverMoviesQuery();
+        $collection = new Genres();
+
+        $collection
+            ->addGenre($genre)
+            ->addGenre($genreTwo)
+        ;
+
+        $query->withGenres($collection);
+
+        $this->assertEquals("1|5", $query->get('with_genres'));
+    }
+
+    /**
+     * @test
+     */
+    public function verifyOr()
+    {
+        $query = new DiscoverMoviesQuery();
+
+        $genre = new Genre();
+        $genre->setId(1);
+
+        $genreTwo = new Genre();
+        $genreTwo->setId(5);
+
+        $query
+            ->withGenres([$genre, $genreTwo], DiscoverMoviesQuery::MODE_AND)
+        ;
+
+        $this->assertEquals("1,5", $query->get('with_genres'));
     }
 }
