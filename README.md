@@ -9,7 +9,7 @@ Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gi
 
 If you have any questions or feature requests, please visit the [google+ community](https://plus.google.com/communities/113544625011244846907).
 
-BETA
+Stable
 ----------------
 
 [![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.svg)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
@@ -44,9 +44,9 @@ Plug-ins
 --------
 
 - Symfony2
-  - [wtfzdotnet/WtfzTmdbBundle](https://github.com/wtfzdotnet/WtfzTmdbBundle)
+  - [wtfzdotnet/WtfzTmdbBundle](https://github.com/wtfzdotnet/WtfzTmdbBundle), _yet to updated to 2.0_.
 - Laravel
-  - [wtfzdotnet/tmdb-package](https://github.com/wtfzdotnet/tmdb-package)
+  - [wtfzdotnet/tmdb-package](https://github.com/wtfzdotnet/tmdb-package), _yet to updated to 2.0_.
 
 Installation
 ------------
