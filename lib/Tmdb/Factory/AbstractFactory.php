@@ -159,6 +159,36 @@ abstract class AbstractFactory
     }
 
     /**
+     * Create an generic collection of an array that consists out of a mix of movies and tv shows
+     *
+     * @param  array             $data
+     * @return GenericCollection
+     */
+    protected function createGenericCollectionFromMediaTypes($data = [])
+    {
+        $movieFactory = new MovieFactory($this->getHttpClient());
+        $tvFactory    = new TvFactory($this->getHttpClient());
+        $collection   = new GenericCollection();
+
+        foreach ($data as $item) {
+            switch ($item['media_type']) {
+                case "movie":
+                    $collection->add(null, $movieFactory->create($item));
+                    break;
+
+                case "tv":
+                    $collection->add(null, $tvFactory->create($item));
+                    break;
+
+                default:
+                    throw new \RuntimeException('Unknown media type "%s"', $item['media_type']);
+            }
+        }
+
+        return $collection;
+    }
+
+    /**
      * Create rating
      *
      * @param  array                     $data

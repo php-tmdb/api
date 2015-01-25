@@ -80,6 +80,11 @@ class Person extends AbstractModel implements PersonInterface
     private $profileImage;
 
     /**
+     * @var Common\GenericCollection
+     */
+    protected $knownFor;
+
+    /**
      * @var CreditsCollection\MovieCredits
      */
     protected $movieCredits;
@@ -142,6 +147,7 @@ class Person extends AbstractModel implements PersonInterface
         $this->images          = new Images();
         $this->changes         = new GenericCollection();
         $this->externalIds     = new ExternalIds();
+        $this->knownFor        = new GenericCollection();
     }
 
     /**
@@ -496,5 +502,24 @@ class Person extends AbstractModel implements PersonInterface
     public function getTaggedImages()
     {
         return $this->taggedImages;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getKnownFor()
+    {
+        return $this->knownFor;
+    }
+
+    /**
+     * @param  GenericCollection $knownFor
+     * @return $this
+     */
+    public function setKnownFor($knownFor)
+    {
+        $this->knownFor = $knownFor;
+
+        return $this;
     }
 }
