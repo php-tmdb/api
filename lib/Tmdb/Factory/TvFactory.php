@@ -21,6 +21,7 @@ use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
+use Tmdb\Model\Company;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Common\ExternalIds;
@@ -225,6 +226,12 @@ class TvFactory extends AbstractFactory
             }
 
             $tvShow->setOriginCountry($collection);
+        }
+
+        if (array_key_exists('production_companies', $data)) {
+            $tvShow->setProductionCompanies(
+                $this->createGenericCollection($data['production_companies'], new Company())
+            );
         }
 
         if (array_key_exists('created_by', $data) && $data['created_by'] !== null) {
