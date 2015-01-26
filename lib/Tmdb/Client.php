@@ -213,14 +213,6 @@ class Client
             'log'              => [],
         ]);
 
-        $resolver->setNormalizer('base_url', function ($options, $value) {
-            return sprintf(
-                '%s://%s',
-                $options['secure'] ? self::SCHEME_SECURE : self::SCHEME_INSECURE,
-                $options['host']
-            );
-        });
-
         $resolver->setRequired([
             'adapter',
             'host',
@@ -231,23 +223,16 @@ class Client
             'log'
         ]);
 
-        $resolver->setAllowedTypes('adapter', ['object', 'null']);
-        $resolver->setAllowedTypes('host', 'string');
-        $resolver->setAllowedTypes('secure', 'bool');
-        $resolver->setAllowedTypes('token', 'object');
-        $resolver->setAllowedTypes('session_token', ['object', 'null']);
-        $resolver->setAllowedTypes('event_dispatcher', 'object');
+        $resolver->setAllowedTypes(['adapter' => ['object', 'null']]);
+        $resolver->setAllowedTypes(['host' => 'string']);
+        $resolver->setAllowedTypes(['secure' => 'bool']);
+        $resolver->setAllowedTypes(['token' => 'object']);
+        $resolver->setAllowedTypes(['session_token' => ['object', 'null']]);
+        $resolver->setAllowedTypes(['event_dispatcher' => 'object']);
 
         $this->options = $resolver->resolve($options);
 
-        if (!$this->options['adapter']) {
-            $this->options['adapter'] = new GuzzleAdapter(
-                new \GuzzleHttp\Client(['base_url' => $this->options['base_url']])
-            );
-        }
-
-        $this->options['cache'] = $this->configureCacheOptions($options);
-        $this->options['log']   = $this->configureLogOptions($options);
+        $this->postResolve($options);
 
         return $this->options;
     }
@@ -274,10 +259,10 @@ class Client
             'handler',
         ]);
 
-        $resolver->setAllowedTypes('enabled',    'bool');
-        $resolver->setAllowedTypes('handler',    ['object', 'null']);
-        $resolver->setAllowedTypes('subscriber', ['object', 'null']);
-        $resolver->setAllowedTypes('path',       ['string', 'null']);
+        $resolver->setAllowedTypes(['enabled'    => ['bool']]);
+        $resolver->setAllowedTypes(['handler'    => ['object', 'null']]);
+        $resolver->setAllowedTypes(['subscriber' => ['object', 'null']]);
+        $resolver->setAllowedTypes(['path'       => ['string', 'null']]);
 
         $options = $resolver->resolve(array_key_exists('cache', $options) ? $options['cache'] : []);
 
@@ -314,11 +299,11 @@ class Client
             'handler',
         ]);
 
-        $resolver->setAllowedTypes('enabled',    'bool');
-        $resolver->setAllowedTypes('level',      'int');
-        $resolver->setAllowedTypes('handler',    ['object', 'null']);
-        $resolver->setAllowedTypes('path',       ['string', 'null']);
-        $resolver->setAllowedTypes('subscriber', ['object', 'null']);
+        $resolver->setAllowedTypes(['enabled'    => 'bool']);
+        $resolver->setAllowedTypes(['level'      =>'int']);
+        $resolver->setAllowedTypes(['handler'    => ['object', 'null']]);
+        $resolver->setAllowedTypes(['path'       => ['string', 'null']]);
+        $resolver->setAllowedTypes(['subscriber' => ['object', 'null']]);
 
         $options = $resolver->resolve(array_key_exists('log', $options) ? $options['log'] : []);
 
@@ -330,5 +315,28 @@ class Client
         }
 
         return $options;
+    }
+
+    /**
+     * Post resolve
+     *
+     * @param array $options
+     */
+    protected function postResolve(array $options = [])
+    {
+        $this->options['base_url'] = sprintf(
+            '%s://%s',
+            $this->options['secure'] ? self::SCHEME_SECURE : self::SCHEME_INSECURE,
+            $this->options['host']
+        );
+
+        if (!$this->options['adapter']) {
+            $this->options['adapter'] = new GuzzleAdapter(
+                new \GuzzleHttp\Client(['base_url' => $this->options['base_url']])
+            );
+        }
+
+        $this->options['cache'] = $this->configureCacheOptions($options);
+        $this->options['log']   = $this->configureLogOptions($options);
     }
 }
