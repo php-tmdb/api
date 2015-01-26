@@ -64,7 +64,11 @@ class Client
      */
     public function __construct(ApiToken $token, $options = [])
     {
-        $this->configureOptions(array_replace(['token' => $token], $options));
+        if ($options instanceof ConfigurationInterface) {
+            $options = $options->all();
+        }
+
+        $this->configureOptions(array_replace(['token' => $token], (array) $options));
         $this->constructHttpClient();
     }
 
