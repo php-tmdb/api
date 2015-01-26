@@ -18,7 +18,7 @@
         "symfony/event-dispatcher": "~2.1",
         "symfony/options-resolver": "~2.1",
         "guzzlehttp/guzzle": "~5.0",
-        "guzzlehttp/cache-subscriber": "~0.2@dev",
+        "guzzlehttp/cache-subscriber": "~0.1@dev",
         "guzzlehttp/log-subscriber": "~1.0",
         "guzzlehttp/retry-subscriber": "~2.0",
         "psr/log": "~1.0"
