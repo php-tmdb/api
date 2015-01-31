@@ -16,6 +16,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Message\Response;
 use GuzzleHttp\Stream\Stream;
+use Tmdb\Exception\NullResponseException;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\Request;
 use Tmdb\Tests\TestCase;
@@ -272,6 +273,56 @@ class GuzzleAdapterTest extends TestCase
 
         $adapter = new GuzzleAdapter($client);
         $adapter->delete(new Request());
+    }
+
+    /**
+     * @expectedException \Tmdb\Exception\NullResponseException
+     * @test
+     */
+    public function shouldThrowNullResponseException()
+    {
+        $client = $this->getMock('GuzzleHttp\ClientInterface');
+
+        $client->expects($this->once())
+            ->method('get')
+            ->will($this->throwException(
+                new RequestException(
+                    '404',
+                    new \GuzzleHttp\Message\Request('get', '/'),
+                    null
+                )
+            ))
+        ;
+
+        $adapter = new GuzzleAdapter($client);
+        $adapter->get(new Request());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldFormatMessageForAnGuzzleHttpRequestException()
+    {
+        $client = $this->getMock('GuzzleHttp\ClientInterface');
+
+        $client->expects($this->once())
+            ->method('get')
+            ->will($this->throwException(
+                new RequestException(
+                    '404',
+                    new \GuzzleHttp\Message\Request('get', '/'),
+                    null
+                )
+            ))
+        ;
+
+        $adapter = new GuzzleAdapter($client);
+
+        try {
+            $adapter->get(new Request());
+        } catch (NullResponseException $e) {
+            $this->assertEquals(true, false !== strpos($e->getMessage(), 'previous exception'));
+        }
     }
 
     /**

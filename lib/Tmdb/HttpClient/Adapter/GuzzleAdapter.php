@@ -15,11 +15,13 @@ namespace Tmdb\HttpClient\Adapter;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Subscriber\Retry\RetrySubscriber;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ParameterBag;
+use Tmdb\Exception\NullResponseException;
 use Tmdb\HttpClient\Request;
+use Tmdb\HttpClient\Response;
 
 class GuzzleAdapter extends AbstractAdapter
 {
@@ -27,6 +29,11 @@ class GuzzleAdapter extends AbstractAdapter
      * @var Client
      */
     private $client;
+
+    /**
+     * @var Request
+     */
+    protected $request;
 
     public function __construct(ClientInterface $client = null, array $options = [])
     {
@@ -63,6 +70,8 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function getConfiguration(Request $request)
     {
+        $this->request = $request;
+
         return [
             'headers'  => $request->getHeaders()->all(),
             'query'    => $request->getParameters()->all()
@@ -72,12 +81,12 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * Create the response object
      *
-     * @param  Response                  $adapterResponse
+     * @param  ResponseInterface         $adapterResponse
      * @return \Tmdb\HttpClient\Response
      */
-    private function createResponse(Response $adapterResponse)
+    private function createResponse(ResponseInterface $adapterResponse = null)
     {
-        $response = new \Tmdb\HttpClient\Response();
+        $response = new Response();
 
         $response->setCode($adapterResponse->getStatusCode());
         $response->setHeaders(new ParameterBag($adapterResponse->getHeaders()));
@@ -87,17 +96,39 @@ class GuzzleAdapter extends AbstractAdapter
     }
 
     /**
+     * Create the request exception
+     *
+     * @param  Request                          $request
+     * @param  RequestException|null            $previousException
+     * @throws \Tmdb\Exception\TmdbApiException
+     */
+    protected function handleRequestException(Request $request, RequestException $previousException = null)
+    {
+        if (null !== $previousException && null == $response = $previousException->getResponse()) {
+            throw new NullResponseException($this->request, $previousException);
+        }
+
+        throw $this->createApiException(
+            $request,
+            $this->createResponse($previousException->getResponse()),
+            $previousException
+        );
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function get(Request $request)
     {
+        $response = null;
+
         try {
             $response = $this->client->get(
                 $request->getPath(),
                 $this->getConfiguration($request)
             );
         } catch (RequestException $e) {
-            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+            $this->handleRequestException($request, $e);
         }
 
         return $this->createResponse($response);
@@ -108,6 +139,8 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function post(Request $request)
     {
+        $response = null;
+
         try {
             $response = $this->client->post(
                 $request->getPath(),
@@ -117,7 +150,7 @@ class GuzzleAdapter extends AbstractAdapter
                 )
             );
         } catch (RequestException $e) {
-            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+            $this->handleRequestException($request, $e);
         }
 
         return $this->createResponse($response);
@@ -128,6 +161,8 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function put(Request $request)
     {
+        $response = null;
+
         try {
             $response = $this->client->put(
                 $request->getPath(),
@@ -137,7 +172,7 @@ class GuzzleAdapter extends AbstractAdapter
                 )
             );
         } catch (RequestException $e) {
-            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+            $this->handleRequestException($request, $e);
         }
 
         return $this->createResponse($response);
@@ -148,6 +183,8 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function patch(Request $request)
     {
+        $response = null;
+
         try {
             $response = $this->client->patch(
                 $request->getPath(),
@@ -157,7 +194,7 @@ class GuzzleAdapter extends AbstractAdapter
                 )
             );
         } catch (RequestException $e) {
-            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+            $this->handleRequestException($request, $e);
         }
 
         return $this->createResponse($response);
@@ -168,6 +205,8 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function delete(Request $request)
     {
+        $response = null;
+
         try {
             $response = $this->client->delete(
                 $request->getPath(),
@@ -177,7 +216,7 @@ class GuzzleAdapter extends AbstractAdapter
                 )
             );
         } catch (RequestException $e) {
-            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+            $this->handleRequestException($request, $e);
         }
 
         return $this->createResponse($response);
@@ -188,13 +227,15 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function head(Request $request)
     {
+        $response = null;
+
         try {
             $response = $this->client->head(
                 $request->getPath(),
                 $this->getConfiguration($request)
             );
         } catch (RequestException $e) {
-            throw $this->createApiException($request, $this->createResponse($e->getResponse()));
+            $this->handleRequestException($request, $e);
         }
 
         return $this->createResponse($response);
