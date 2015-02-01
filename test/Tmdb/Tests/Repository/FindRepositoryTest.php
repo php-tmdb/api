@@ -28,7 +28,7 @@ class FindRepositoryTest extends TestCase
             ->with($this->getRequest('find/' . self::FIND_QUERY, []))
         ;
 
-        $repository->find(self::FIND_QUERY);
+        $repository->findBy(self::FIND_QUERY);
     }
 
     protected function getApiClass()
