@@ -4,7 +4,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
+ *
  * @package Shop2Market
  * @author Michael Roterman <michael@b-found.nl>
  * @copyright (c) 2014, B-Found Internet Marketing & Services
@@ -13,6 +13,7 @@
 
 namespace Tmdb;
 
-interface ConfigurationInterface {
-    function all();
+interface ConfigurationInterface
+{
+    public function all();
 }

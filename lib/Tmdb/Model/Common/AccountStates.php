@@ -31,7 +31,7 @@ class AccountStates extends AbstractModel
     private $favorite;
 
     /**
-     * @var Rating
+     * @var Rating|boolean
      */
     private $rated;
 
@@ -93,7 +93,7 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @param  Rating $rated
+     * @param  Rating|bool $rated
      * @return $this
      */
     public function setRated($rated)
@@ -104,7 +104,7 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @return Rating
+     * @return Rating|bool
      */
     public function getRated()
     {

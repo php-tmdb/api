@@ -421,9 +421,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Format the with compatible parameters.
      *
-     * @param  null                     $with
-     * @param  int                      $mode
-     * @return null|DiscoverMoviesQuery
+     * @param  array|string $with
+     * @param  int          $mode
+     * @return string
      */
     protected function with($with = null, $mode = self::MODE_OR)
     {

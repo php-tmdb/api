@@ -411,7 +411,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  array $languages
+     * @param  GenericCollection $languages
      * @return $this
      */
     public function setLanguages($languages)
@@ -422,7 +422,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return array
+     * @return GenericCollection
      */
     public function getLanguages()
     {

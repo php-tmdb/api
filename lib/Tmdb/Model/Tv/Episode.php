@@ -16,6 +16,7 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Changes;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Images;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Image\StillImage;
@@ -412,7 +413,7 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Videos $videos
+     * @param  \Tmdb\Model\Collection\Videos|ResultCollection $videos
      * @return $this
      */
     public function setVideos($videos)

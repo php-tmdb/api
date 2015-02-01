@@ -25,13 +25,11 @@ class TimezoneRepository extends AbstractRepository
     /**
      * Get the list of supported timezones for the API methods that support them.
      *
-     * @param $parameters
-     * @param $headers
      * @return Timezones
      */
-    public function getTimezones(array $parameters = [], array $headers = [])
+    public function getTimezones()
     {
-        $data  = $this->getApi()->getTimezones($this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getTimezones();
 
         return $this->getFactory()->createCollection($data);
     }

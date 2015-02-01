@@ -56,7 +56,7 @@ class FindFactory extends AbstractFactory
         $this->movieFactory     = new MovieFactory($httpClient);
         $this->peopleFactory    = new PeopleFactory($httpClient);
         $this->tvFactory        = new TvFactory($httpClient);
-        $this->tvSeasonFactory  = new TvFactory($httpClient);
+        $this->tvSeasonFactory  = new TvSeasonFactory($httpClient);
         $this->tvEpisodeFactory = new TvEpisodeFactory($httpClient);
 
         parent::__construct($httpClient);
@@ -181,7 +181,7 @@ class FindFactory extends AbstractFactory
     }
 
     /**
-     * @return TvFactory
+     * @return TvSeasonFactory
      */
     public function getTvSeasonFactory()
     {
@@ -189,7 +189,7 @@ class FindFactory extends AbstractFactory
     }
 
     /**
-     * @param  TvFactory $tvSeasonFactory
+     * @param  TvSeasonFactory $tvSeasonFactory
      * @return $this
      */
     public function setTvSeasonFactory($tvSeasonFactory)

@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Event;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\HttpClient\HttpClientEventSubscriber;
 
@@ -36,13 +37,16 @@ class HydrationSubscriber extends HttpClientEventSubscriber
     /**
      * Hydrate the subject with data
      *
-     * @param  HydrationEvent            $event
+     * @param HydrationEvent           $event
+     * @param string                   $eventName
+     * @param EventDispatcherInterface $eventDispatcher
+     *
      * @return \Tmdb\Model\AbstractModel
      */
-    public function hydrate(HydrationEvent $event)
+    public function hydrate(HydrationEvent $event, $eventName, $eventDispatcher)
     {
         // Possibility to load serialized cache
-        $event->getDispatcher()->dispatch(TmdbEvents::BEFORE_HYDRATION, $event);
+        $eventDispatcher->dispatch(TmdbEvents::BEFORE_HYDRATION, $event);
 
         if ($event->isPropagationStopped()) {
             return $event->getSubject();
@@ -52,7 +56,7 @@ class HydrationSubscriber extends HttpClientEventSubscriber
         $event->setSubject($subject);
 
         // Possibility to cache the data
-        $event->getDispatcher()->dispatch(TmdbEvents::AFTER_HYDRATION, $event);
+        $eventDispatcher->dispatch(TmdbEvents::AFTER_HYDRATION, $event);
 
         return $event->getSubject();
     }
