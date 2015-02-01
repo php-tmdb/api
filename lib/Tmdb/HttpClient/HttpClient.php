@@ -56,7 +56,7 @@ class HttpClient
     private $eventDispatcher;
 
     /**
-     * @var ParameterBag
+     * @var array
      */
     protected $options;
 

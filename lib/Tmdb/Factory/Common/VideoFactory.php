@@ -62,10 +62,8 @@ class VideoFactory extends AbstractFactory
             switch ($site) {
                 case 'youtube':
                     return new Video\Youtube();
-                    break;
                 default:
                     return new Video();
-                    break;
             }
         }
     }

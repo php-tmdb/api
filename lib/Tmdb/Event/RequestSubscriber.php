@@ -56,8 +56,6 @@ class RequestSubscriber extends HttpClientEventSubscriber
      */
     public function sendRequest(RequestEvent $event)
     {
-        $response = null;
-
         switch ($event->getMethod()) {
             case 'GET':
                 $response = $this->getHttpClient()->getAdapter()->get($event->getRequest());

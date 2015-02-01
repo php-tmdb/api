@@ -37,6 +37,16 @@ class FindFactory extends AbstractFactory
     private $tvFactory;
 
     /**
+     * @var TvSeasonFactory
+     */
+    private $tvSeasonFactory;
+
+    /**
+     * @var TvEpisodeFactory
+     */
+    private $tvEpisodeFactory;
+
+    /**
      * Constructor
      *
      * @param HttpClient $httpClient

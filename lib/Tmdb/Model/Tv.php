@@ -239,19 +239,19 @@ class Tv extends AbstractModel
      */
     public function __construct()
     {
-        $this->genres         = new Genres();
-        $this->networks       = new GenericCollection();
-        $this->originCountry  = new GenericCollection();
-        $this->seasons        = new GenericCollection();
+        $this->genres        = new Genres();
+        $this->networks      = new GenericCollection();
+        $this->originCountry = new GenericCollection();
+        $this->seasons       = new GenericCollection();
 
-        $this->credits        = new CreditsCollection();
-        $this->externalIds    = new ExternalIds();
-        $this->images         = new Images();
-        $this->translations   = new GenericCollection();
-        $this->videos         = new Videos();
-        $this->changes        = new GenericCollection();
-        $this->keywords       = new GenericCollection();
-        $this->similar        = new GenericCollection();
+        $this->credits       = new CreditsCollection();
+        $this->externalIds   = new ExternalIds();
+        $this->images        = new Images();
+        $this->translations  = new GenericCollection();
+        $this->videos        = new Videos();
+        $this->changes       = new GenericCollection();
+        $this->keywords      = new GenericCollection();
+        $this->similar       = new GenericCollection();
     }
 
     /**
@@ -274,7 +274,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\Collection $createdBy
+     * @param  GenericCollection $createdBy
      * @return $this
      */
     public function setCreatedBy($createdBy)
@@ -529,7 +529,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\Collection $originCountry
+     * @param  GenericCollection $originCountry
      * @return $this
      */
     public function setOriginCountry($originCountry)
@@ -833,7 +833,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\GenericCollection $changes
+     * @param  GenericCollection $changes
      * @return $this
      */
     public function setChanges($changes)
@@ -844,7 +844,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\GenericCollection
+     * @return GenericCollection
      */
     public function getChanges()
     {
@@ -852,7 +852,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\GenericCollection $keywords
+     * @param  GenericCollection $keywords
      * @return $this
      */
     public function setKeywords($keywords)
@@ -863,7 +863,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\GenericCollection
+     * @return GenericCollection
      */
     public function getKeywords()
     {
@@ -871,7 +871,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\GenericCollection $similar
+     * @param  GenericCollection $similar
      * @return $this
      */
     public function setSimilar($similar)
@@ -882,7 +882,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\GenericCollection
+     * @return GenericCollection
      */
     public function getSimilar()
     {
