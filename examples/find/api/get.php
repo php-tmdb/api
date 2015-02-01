@@ -16,7 +16,7 @@ require_once '../../../apikey.php';
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
-$find = $client->getFindApi()->find('tt0120737', [
+$find = $client->getFindApi()->findBy('tt0120737', [
     'external_source' => 'imdb_id'
 ]);
 

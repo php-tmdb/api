@@ -259,7 +259,7 @@ class SearchRepository extends AbstractRepository
     /**
      * Convert parameters back to an array
      *
-     * @param  array $parameters
+     * @param  SearchQuery|array $parameters
      * @return array
      */
     private function getParameters($parameters = [])

@@ -83,7 +83,7 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image\BackdropImage $backdrop
+     * @param  BackdropImage $backdrop
      * @return $this
      */
     public function setBackdropImage(BackdropImage $backdrop)
@@ -94,7 +94,7 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Image\BackdropImage
+     * @return BackdropImage
      */
     public function getBackdropImage()
     {
@@ -216,7 +216,7 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image\PosterImage $poster
+     * @param  PosterImage $poster
      * @return $this
      */
     public function setPosterImage(PosterImage $poster)

@@ -421,9 +421,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Format the with compatible parameters.
      *
-     * @param  null                     $with
-     * @param  int                      $mode
-     * @return null|DiscoverMoviesQuery
+     * @param  array|string $with
+     * @param  int          $mode
+     * @return string
      */
     protected function with($with = null, $mode = self::MODE_OR)
     {
@@ -441,9 +441,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Creates an and query to combine an AND or an OR expression.
      *
-     * @param  array $with
-     * @param  int   $mode
-     * @return $this
+     * @param  array  $with
+     * @param  int    $mode
+     * @return string
      */
     protected function andWith(array $with, $mode)
     {
@@ -471,12 +471,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * @param  \DateTime|string $year
-     * @param  string           $format
+     * @param  \DateTime|string|integer $year
+     * @param  string                   $format
      * @return int
      */
     protected function getDate($year, $format = 'Y-m-d')
     {
-        return ($year instanceof \DateTime) ? $year->format($format) : $year;
+        return ($year instanceof \DateTime) ? $year->format($format) : (string) $year;
     }
 }

@@ -26,7 +26,7 @@ use Tmdb\HttpClient\Response;
 class GuzzleAdapter extends AbstractAdapter
 {
     /**
-     * @var Client
+     * @var ClientInterface
      */
     private $client;
 
@@ -88,9 +88,11 @@ class GuzzleAdapter extends AbstractAdapter
     {
         $response = new Response();
 
-        $response->setCode($adapterResponse->getStatusCode());
-        $response->setHeaders(new ParameterBag($adapterResponse->getHeaders()));
-        $response->setBody((string) $adapterResponse->getBody());
+        if ($adapterResponse !== null) {
+            $response->setCode($adapterResponse->getStatusCode());
+            $response->setHeaders(new ParameterBag($adapterResponse->getHeaders()));
+            $response->setBody((string) $adapterResponse->getBody());
+        }
 
         return $response;
     }
@@ -102,9 +104,9 @@ class GuzzleAdapter extends AbstractAdapter
      * @param  RequestException|null            $previousException
      * @throws \Tmdb\Exception\TmdbApiException
      */
-    protected function handleRequestException(Request $request, RequestException $previousException = null)
+    protected function handleRequestException(Request $request, RequestException $previousException)
     {
-        if (null !== $previousException && null == $response = $previousException->getResponse()) {
+        if (null !== $previousException && null == $previousException->getResponse()) {
             throw new NullResponseException($this->request, $previousException);
         }
 

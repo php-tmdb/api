@@ -13,6 +13,7 @@
 namespace Tmdb\Model\Account;
 
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Image;
 use Tmdb\Model\Image\PosterImage;
 
 /**
@@ -214,7 +215,7 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image\PosterImage $posterImage
+     * @param  PosterImage|Image $posterImage
      * @return $this
      */
     public function setPosterImage($posterImage)
@@ -225,7 +226,7 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Image\PosterImage
+     * @return PosterImage|Image
      */
     public function getPosterImage()
     {

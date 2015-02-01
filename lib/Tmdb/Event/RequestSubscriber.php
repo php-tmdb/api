@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Event;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\HttpClient\HttpClientEventSubscriber;
 use Tmdb\HttpClient\Response;
@@ -29,10 +30,17 @@ class RequestSubscriber extends HttpClientEventSubscriber
         ];
     }
 
-    public function send(RequestEvent $event)
+    /**
+     * @param RequestEvent             $event
+     * @param string                   $eventName
+     * @param EventDispatcherInterface $eventDispatcher
+     *
+     * @return string|Response
+     */
+    public function send(RequestEvent $event, $eventName, EventDispatcherInterface $eventDispatcher)
     {
         // Preparation of request parameters / Possibility to use for logging and caching etc.
-        $event->getDispatcher()->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
+        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
 
         if ($event->isPropagationStopped() && $event->hasResponse()) {
             return $event->getResponse();
@@ -42,7 +50,7 @@ class RequestSubscriber extends HttpClientEventSubscriber
         $event->setResponse($response);
 
         // Possibility to cache the request
-        $event->getDispatcher()->dispatch(TmdbEvents::AFTER_REQUEST, $event);
+        $eventDispatcher->dispatch(TmdbEvents::AFTER_REQUEST, $event);
 
         return $response;
     }
@@ -56,8 +64,6 @@ class RequestSubscriber extends HttpClientEventSubscriber
      */
     public function sendRequest(RequestEvent $event)
     {
-        $response = null;
-
         switch ($event->getMethod()) {
             case 'GET':
                 $response = $this->getHttpClient()->getAdapter()->get($event->getRequest());

@@ -56,7 +56,7 @@ class HttpClient
     private $eventDispatcher;
 
     /**
-     * @var ParameterBag
+     * @var array
      */
     protected $options;
 
@@ -148,7 +148,7 @@ class HttpClient
     }
 
     /**
-     * @return ParameterBag
+     * @return array
      */
     public function getOptions()
     {
@@ -156,7 +156,7 @@ class HttpClient
     }
 
     /**
-     * @param  ParameterBag $options
+     * @param  array $options
      * @return $this
      */
     public function setOptions($options)

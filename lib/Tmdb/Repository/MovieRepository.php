@@ -398,17 +398,6 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
-     * Create an collection of an array
-     *
-     * @param $data
-     * @return Movie[]
-     */
-    private function createCollection($data)
-    {
-        return $this->getFactory()->createCollection($data);
-    }
-
-    /**
      * @param  AlternativeTitleFactory $alternativeTitleFactory
      * @return $this
      */

@@ -30,10 +30,10 @@ class FindRepository extends AbstractRepository
      * @param  array $headers
      * @return Find
      */
-    public function find($id, array $parameters = [], array $headers = [])
+    public function findBy($id, array $parameters = [], array $headers = [])
     {
         return $this->getFactory()->create(
-            $this->getApi()->find($id, $parameters, $headers)
+            $this->getApi()->findBy($id, $parameters, $headers)
         );
     }
 
