@@ -14,7 +14,7 @@ namespace Tmdb;
 
 use Doctrine\Common\Cache\FilesystemCache;
 use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
+use Psr\Log\LogLevel
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tmdb\HttpClient\Adapter\AdapterInterface;
@@ -291,7 +291,7 @@ class Client
 
         $resolver->setDefaults([
             'enabled'    => false,
-            'level'      => Logger::DEBUG,
+            'level'      => LogLevel::DEBUG,
             'handler'    => null,
             'subscriber' => null,
             'path'       => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log',
@@ -304,7 +304,7 @@ class Client
         ]);
 
         $resolver->setAllowedTypes(['enabled'    => 'bool']);
-        $resolver->setAllowedTypes(['level'      =>'int']);
+        $resolver->setAllowedTypes(['level'      =>'string']);
         $resolver->setAllowedTypes(['handler'    => ['object', 'null']]);
         $resolver->setAllowedTypes(['path'       => ['string', 'null']]);
         $resolver->setAllowedTypes(['subscriber' => ['object', 'null']]);
