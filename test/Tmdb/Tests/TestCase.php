@@ -183,7 +183,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             ],
             'log'     => [
                 'enabled' => false,
-                'level'   => 100,
+                'level'   => 'debug',
                 'handler' => null,
                 'path'    => '/tmp/php-tmdb-api.log',
                 'subscriber' => null
