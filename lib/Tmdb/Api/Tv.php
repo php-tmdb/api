@@ -46,6 +46,19 @@ class Tv extends AbstractApi
         return $this->get('tv/' . $tvshow_id . '/credits', $parameters, $headers);
     }
 
+   /**
+     * Returns the content_rating of the show 
+     * @param $tvshow_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed 
+   */
+
+    public function getContentRatings($tvshow_id, array $parameters = array(), array $headers = array())
+    {
+        return $this->get('tv/' . $tvshow_id . '/content_ratings', $parameters, $headers);
+    }
+
     /**
      * Get the external ids that we have stored for a TV series.
      *
