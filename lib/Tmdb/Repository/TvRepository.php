@@ -86,7 +86,7 @@ class TvRepository extends AbstractRepository
      * @param  $headers
      * @return null|\Tmdb\Model\AbstractModel
      */
-    public function getContentRatings($tvshow_id, array $parameters = array(), array $headers = array())
+    public function getContentRatings($id, array $parameters = array(), array $headers = array())
     {
         $data = $this->getApi()->getContentRatings($id, $this->parseQueryParameters($parameters), $headers);
         $tv   = $this->getFactory()->create(['content_ratings' => $data]);
