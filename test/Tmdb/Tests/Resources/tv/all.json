@@ -177,6 +177,20 @@
         "tvdb_id":81189,
         "tvrage_id":18164
     },
+    "contentRatings":{
+        "id":1396,
+        "results":[
+        {
+            "iso_3166_1":"US",
+            "rating":"TV-MA"
+        },
+        {
+            "iso_3166_1":"DE",
+            "rating":"16"
+        }
+        ]
+    },
+    
     "images":{
         "backdrops":[
             {
@@ -1135,4 +1149,5 @@
             }
         ]
     }
+    
 }
