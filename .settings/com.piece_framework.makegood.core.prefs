@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+phpunit_config_file=/php-tmdb-api/phpunit.xml
+preload_script=/php-tmdb-api/test/bootstrap.php
+test_file_pattern=
+test_folders=/php-tmdb-api/test
+testing_framework=PHPUnit
