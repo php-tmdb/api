@@ -79,6 +79,23 @@ class TvRepository extends AbstractRepository
     }
 
     /**
+     * Get the content ratings for a specific TV show id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param  $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getContentRatings($id, array $parameters = array(), array $headers = array())
+    {
+        $data = $this->getApi()->getContentRatings($id, $this->parseQueryParameters($parameters), $headers);
+        $tv   = $this->getFactory()->create(['content_ratings' => $data]);
+
+        return $tv->getContentRatings();
+    }
+
+
+    /**
      * Get the external ids that we have stored for a TV series.
      *
      * @param $id

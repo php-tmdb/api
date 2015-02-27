@@ -1,0 +1,11 @@
+bootstrap=
+debug_print_output=true
+eclipse.preferences.version=1
+generate_code_coverage=true
+no_namespace_check=true
+pear_library=<Internal>
+php_executable=php5.5
+source_file_pattern_folder=
+test_file_pattern_file=%fTest.%e
+test_file_pattern_folder=/%p/tests/%d
+test_file_super_class=PHPUnit_Framework_TestCase
