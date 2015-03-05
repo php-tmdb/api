@@ -116,6 +116,13 @@ class TvFactoryTest extends TestCase
         // external_ids
         // images
         // translations
+        $this->assertEquals(2, count($this->tv->getContentRatings()));
+
+        $contentRatings = $this->tv->getContentRatings()->getAll();
+        $usContentRating = array_shift($contentRatings);
+
+        $this->assertEquals('US', $usContentRating->getIso31661());
+        $this->assertEquals('TV-MA', $usContentRating->getRating());
     }
 
     /**

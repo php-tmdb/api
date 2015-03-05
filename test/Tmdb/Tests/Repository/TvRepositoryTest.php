@@ -184,6 +184,21 @@ class TvRepositoryTest extends TestCase
         $repository->getLatest();
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetContentRatings()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/content_ratings'))
+        ;
+
+        $repository->getContentRatings(self::TV_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Tv';

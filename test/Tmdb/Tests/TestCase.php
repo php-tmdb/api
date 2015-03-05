@@ -177,15 +177,15 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             'secure'  => true,
             'cache'   => [
                 'enabled' => true,
-                'handler' => new FilesystemCache('/tmp/php-tmdb-api'),
-                'path'    => '/tmp/php-tmdb-api',
+                'handler' => new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'),
+                'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api',
                 'subscriber' => null
             ],
             'log'     => [
                 'enabled' => false,
                 'level'   => 100,
                 'handler' => null,
-                'path'    => '/tmp/php-tmdb-api.log',
+                'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log',
                 'subscriber' => null
             ],
             'adapter' => $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
