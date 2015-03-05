@@ -251,6 +251,20 @@ class TvTest extends TestCase
         $api->getAccountStates(self::TV_ID);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetContentRatings()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('tv/' . self::TV_ID . '/content_ratings'));
+
+        $api->getContentRatings(self::TV_ID);
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Tv';

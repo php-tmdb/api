@@ -177,7 +177,7 @@
         "tvdb_id":81189,
         "tvrage_id":18164
     },
-    "contentRatings":{
+    "content_ratings":{
         "id":1396,
         "results":[
         {
@@ -190,7 +190,6 @@
         }
         ]
     },
-    
     "images":{
         "backdrops":[
             {
