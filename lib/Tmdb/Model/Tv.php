@@ -20,6 +20,7 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 use Tmdb\Model\Common\ExternalIds;
+use Tmdb\Model\Collection\ContentRatings;
 
 /**
  * Class Tv
@@ -36,6 +37,11 @@ class Tv extends AbstractModel
      * @var GenericCollection
      */
     private $createdBy = null;
+
+    /**
+     * @var ContentRatings
+     */
+    private $contentRatings;
 
     /**
      * @var array
@@ -245,19 +251,19 @@ class Tv extends AbstractModel
      */
     public function __construct()
     {
-        $this->genres        = new Genres();
-        $this->networks      = new GenericCollection();
-        $this->originCountry = new GenericCollection();
-        $this->seasons       = new GenericCollection();
-
-        $this->credits       = new CreditsCollection();
-        $this->externalIds   = new ExternalIds();
-        $this->images        = new Images();
-        $this->translations  = new GenericCollection();
-        $this->videos        = new Videos();
-        $this->changes       = new GenericCollection();
-        $this->keywords      = new GenericCollection();
-        $this->similar       = new GenericCollection();
+        $this->genres           = new Genres();
+        $this->networks         = new GenericCollection();
+        $this->originCountry    = new GenericCollection();
+        $this->seasons          = new GenericCollection();
+        $this->contentRatings   = new ContentRatings();
+        $this->credits          = new CreditsCollection();
+        $this->externalIds      = new ExternalIds();
+        $this->images           = new Images();
+        $this->translations     = new GenericCollection();
+        $this->videos           = new Videos();
+        $this->changes          = new GenericCollection();
+        $this->keywords         = new GenericCollection();
+        $this->similar          = new GenericCollection();
     }
 
     /**
@@ -277,6 +283,25 @@ class Tv extends AbstractModel
     public function getBackdropPath()
     {
         return $this->backdropPath;
+    }
+
+    /**
+     * @return \Tmdb\Model\Collection\ContentRatings
+     */
+    public function getContentRatings()
+    {
+        return $this->contentRatings;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Collection\ContentRatings $contentRatings
+     * @return $this
+     */
+    public function setContentRatings($contentRatings)
+    {
+        $this->contentRatings = $contentRatings;
+
+        return $this;
     }
 
     /**

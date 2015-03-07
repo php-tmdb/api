@@ -39,6 +39,11 @@ class TvFactory extends AbstractFactory
     private $castFactory;
 
     /**
+     * @var ContentRatingsFactory
+     */
+    private $contentRatingsFactory;
+
+    /**
      * @var People\CrewFactory
      */
     private $crewFactory;
@@ -85,15 +90,16 @@ class TvFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory     = new CastFactory($httpClient);
-        $this->crewFactory     = new CrewFactory($httpClient);
-        $this->genreFactory    = new GenreFactory($httpClient);
-        $this->imageFactory    = new ImageFactory($httpClient);
-        $this->tvSeasonFactory = new TvSeasonFactory($httpClient);
-        $this->networkFactory  = new NetworkFactory($httpClient);
-        $this->videoFactory    = new VideoFactory($httpClient);
-        $this->changesFactory  = new ChangeFactory($httpClient);
-        $this->keywordFactory  = new KeywordFactory($httpClient);
+        $this->castFactory              = new CastFactory($httpClient);
+        $this->contentRatingsFactory    = new ContentRatingsFactory($httpClient);
+        $this->crewFactory              = new CrewFactory($httpClient);
+        $this->genreFactory             = new GenreFactory($httpClient);
+        $this->imageFactory             = new ImageFactory($httpClient);
+        $this->tvSeasonFactory          = new TvSeasonFactory($httpClient);
+        $this->networkFactory           = new NetworkFactory($httpClient);
+        $this->videoFactory             = new VideoFactory($httpClient);
+        $this->changesFactory           = new ChangeFactory($httpClient);
+        $this->keywordFactory           = new KeywordFactory($httpClient);
 
         parent::__construct($httpClient);
     }
@@ -110,6 +116,11 @@ class TvFactory extends AbstractFactory
         }
 
         $tvShow = new Tv();
+
+        /** Content Ratings */
+        if (array_key_exists('content_ratings', $data) && $data['content_ratings'] != null) {
+            $tvShow->setContentRatings($this->getContentRatingsFactory()->createCollection($data['content_ratings']));
+        }
 
         if (array_key_exists('credits', $data)) {
             if (array_key_exists('cast', $data['credits']) && $data['credits']['cast'] !== null) {
@@ -285,6 +296,23 @@ class TvFactory extends AbstractFactory
     public function getCastFactory()
     {
         return $this->castFactory;
+    }
+
+    /**
+     * @return \Tmdb\Factory\ContentRatingsFactory
+     */
+    public function getContentRatingsFactory()
+    {
+        return $this->contentRatingsFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\ContentRatingFactory $contentRatingFactory
+     * @return $this
+     */
+    public function setContentRatingsFactory($contentRatingsFactory)
+    {
+        $this->contentRatingsFactory = $contentRatingsFactory;
     }
 
     /**
