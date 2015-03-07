@@ -50,7 +50,8 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::TRANSLATIONS,
                     AppendToResponse::SIMILAR,
                     AppendToResponse::KEYWORDS,
-                    AppendToResponse::CHANGES
+                    AppendToResponse::CHANGES,
+                    AppendToResponse::CONTENT_RATINGS
                 ])
             ];
         }
@@ -93,7 +94,6 @@ class TvRepository extends AbstractRepository
 
         return $tv->getContentRatings();
     }
-
 
     /**
      * Get the external ids that we have stored for a TV series.

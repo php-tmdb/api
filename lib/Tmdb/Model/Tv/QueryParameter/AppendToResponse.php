@@ -28,5 +28,5 @@ class AppendToResponse extends BaseAppendToResponse
     const CHANGES         = 'changes';
     const KEYWORDS        = 'keywords';
     const SIMILAR         = 'similar';
-    const CONTENT_RATINGS = 'credit_ratings';
+    const CONTENT_RATINGS = 'content_ratings';
 }
