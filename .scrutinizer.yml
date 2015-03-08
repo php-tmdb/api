@@ -8,7 +8,7 @@ tools:
     php_pdepend: true
     external_code_coverage:
         timeout: 600
-            runs: 4
+        runs: 4
     php_code_sniffer:
         config:
             standard: PSR4
