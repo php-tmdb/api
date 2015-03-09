@@ -6,56 +6,48 @@
  * file that was distributed with this source code.
  *
  * @package Tmdb
- * @author Michael Roterman <michael@wtfz.net>
+ * @author Ernest Wagner <wagnered@comcast.net>
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
 namespace Tmdb\Model\Tv;
 
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Filter\CountryFilter;
 
 /**
  * Class ContentRating
- * @package Tmdb\Model\tv
+ * @package Tmdb\Model\Tv
  */
-class ContentRating extends AbstractModel
+class ContentRating extends AbstractModel implements CountryFilter
 {
-    private $id;
     private $iso_3166_1;
     private $rating;
 
     public static $properties = [
-    'id',
     'iso_3166_1',
     'rating',
     ];
-
-    public function __construct($item = null)
-    {
-        $this->iso_3166_1 = $item['iso_3166_1'];
-        $this->id = $item['id'];
-        $this->rating = $item['rating'];
-    }
 
     /**
      * @param  mixed $id
      * @return $this
      */
-    public function setId($id)
+  /*  public function setId($id)
     {
         $this->id = (int) $id;
 
         return $this;
     }
-
+*/
     /**
      * @return integer
      */
-    public function getId()
+ /*   public function getId()
     {
         return $this->id;
     }
-
+*/
     /**
      * @param  string $country
      * @return $this

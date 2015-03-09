@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *
  * @package Tmdb
- * @author Michael Roterman <michael@wtfz.net>
+ * @author Ernest Wagner <wagnered@comcast.net>
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
