@@ -90,16 +90,15 @@ class TvFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory              = new CastFactory($httpClient);
-        $this->contentRatingsFactory    = new ContentRatingsFactory($httpClient);
-        $this->crewFactory              = new CrewFactory($httpClient);
-        $this->genreFactory             = new GenreFactory($httpClient);
-        $this->imageFactory             = new ImageFactory($httpClient);
-        $this->tvSeasonFactory          = new TvSeasonFactory($httpClient);
-        $this->networkFactory           = new NetworkFactory($httpClient);
-        $this->videoFactory             = new VideoFactory($httpClient);
-        $this->changesFactory           = new ChangeFactory($httpClient);
-        $this->keywordFactory           = new KeywordFactory($httpClient);
+        $this->castFactory     = new CastFactory($httpClient);
+        $this->crewFactory     = new CrewFactory($httpClient);
+        $this->genreFactory    = new GenreFactory($httpClient);
+        $this->imageFactory    = new ImageFactory($httpClient);
+        $this->tvSeasonFactory = new TvSeasonFactory($httpClient);
+        $this->networkFactory  = new NetworkFactory($httpClient);
+        $this->videoFactory    = new VideoFactory($httpClient);
+        $this->changesFactory  = new ChangeFactory($httpClient);
+        $this->keywordFactory  = new KeywordFactory($httpClient);
 
         parent::__construct($httpClient);
     }
@@ -117,9 +116,10 @@ class TvFactory extends AbstractFactory
 
         $tvShow = new Tv();
 
-        /** Content Ratings */
-        if (array_key_exists('content_ratings', $data) && $data['content_ratings'] != null) {
-            $tvShow->setContentRatings($this->getContentRatingsFactory()->createCollection($data['content_ratings']));
+        if (array_key_exists('content_ratings', $data) && array_key_exists('results', $data['content_ratings'])) {
+            $tvShow->setContentRatings(
+                $this->createGenericCollection($data['content_ratings']['results'], new Tv\ContentRating())
+            );
         }
 
         if (array_key_exists('credits', $data)) {

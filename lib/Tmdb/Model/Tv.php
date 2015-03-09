@@ -251,19 +251,18 @@ class Tv extends AbstractModel
      */
     public function __construct()
     {
-        $this->genres           = new Genres();
-        $this->networks         = new GenericCollection();
-        $this->originCountry    = new GenericCollection();
-        $this->seasons          = new GenericCollection();
-        $this->contentRatings   = new ContentRatings();
-        $this->credits          = new CreditsCollection();
-        $this->externalIds      = new ExternalIds();
-        $this->images           = new Images();
-        $this->translations     = new GenericCollection();
-        $this->videos           = new Videos();
-        $this->changes          = new GenericCollection();
-        $this->keywords         = new GenericCollection();
-        $this->similar          = new GenericCollection();
+        $this->genres         = new Genres();
+        $this->networks       = new GenericCollection();
+        $this->originCountry  = new GenericCollection();
+        $this->seasons        = new GenericCollection();
+        $this->credits        = new CreditsCollection();
+        $this->externalIds    = new ExternalIds();
+        $this->images         = new Images();
+        $this->translations   = new GenericCollection();
+        $this->videos         = new Videos();
+        $this->changes        = new GenericCollection();
+        $this->keywords       = new GenericCollection();
+        $this->similar        = new GenericCollection();
     }
 
     /**
