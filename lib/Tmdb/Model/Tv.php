@@ -20,7 +20,6 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 use Tmdb\Model\Common\ExternalIds;
-use Tmdb\Model\Collection\ContentRatings;
 
 /**
  * Class Tv
@@ -39,7 +38,7 @@ class Tv extends AbstractModel
     private $createdBy = null;
 
     /**
-     * @var ContentRatings
+     * @var GenericCollection
      */
     private $contentRatings;
 
@@ -263,6 +262,7 @@ class Tv extends AbstractModel
         $this->changes        = new GenericCollection();
         $this->keywords       = new GenericCollection();
         $this->similar        = new GenericCollection();
+        $this->contentRatings = new GenericCollection();
     }
 
     /**
@@ -285,7 +285,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Collection\ContentRatings
+     * @return GenericCollection
      */
     public function getContentRatings()
     {
@@ -293,7 +293,7 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\ContentRatings $contentRatings
+     * @param  GenericCollection $contentRatings
      * @return $this
      */
     public function setContentRatings($contentRatings)

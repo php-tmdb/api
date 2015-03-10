@@ -21,33 +21,28 @@ use Tmdb\Model\Filter\CountryFilter;
  */
 class ContentRating extends AbstractModel implements CountryFilter
 {
+    /**
+     * @var string
+     */
     private $iso_3166_1;
+
+    /**
+     * @var string
+     */
     private $rating;
 
+    /**
+     * Properties that are available in the API
+     *
+     * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
+     *
+     * @var array
+     */
     public static $properties = [
-    'iso_3166_1',
-    'rating',
+        'iso_3166_1',
+        'rating',
     ];
 
-    /**
-     * @param  mixed $id
-     * @return $this
-     */
-  /*  public function setId($id)
-    {
-        $this->id = (int) $id;
-
-        return $this;
-    }
-*/
-    /**
-     * @return integer
-     */
- /*   public function getId()
-    {
-        return $this->id;
-    }
-*/
     /**
      * @param  string $country
      * @return $this
@@ -85,5 +80,4 @@ class ContentRating extends AbstractModel implements CountryFilter
     {
         return $this->rating;
     }
-
 }
