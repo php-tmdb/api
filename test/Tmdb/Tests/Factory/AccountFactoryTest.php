@@ -39,7 +39,7 @@ class AccountFactoryTest extends TestCase
         $this->assertEquals('en', $account->getIso6391());
         $this->assertEquals('John Doe', $account->getName());
         $this->assertEquals('johndoe', $account->getUsername());
-        $this->assertInstanceOf(get_class($this), $account->getAvatar());
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $account->getAvatar());
     }
 
     /**
