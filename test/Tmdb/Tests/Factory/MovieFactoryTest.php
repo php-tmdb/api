@@ -80,6 +80,7 @@ class MovieFactoryTest extends TestCase
         $this->assertEquals(87421, $this->movie->getId());
         $this->assertEquals('tt1411250', $this->movie->getImdbId());
         $this->assertEquals('Riddick', $this->movie->getTitle());
+        $this->assertEquals('en', $this->movie->getOriginalLanguage());
         $this->assertEquals('Riddick', $this->movie->getOriginalTitle());
         $this->assertEquals('Betrayed by his own kind and left for dead on a desolate planet, Riddick fights for survival against alien predators and becomes more powerful and dangerous than ever before. Soon bounty hunters from throughout the galaxy descend on Riddick only to find themselves pawns in his greater scheme for revenge. With his enemies right where he wants them, Riddick unleashes a vicious attack of vengeance before returning to his home planet of Furya to save it from destruction.', $this->movie->getOverview());
         $this->assertEquals(93.491722439366, $this->movie->getPopularity());

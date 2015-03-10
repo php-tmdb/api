@@ -104,6 +104,7 @@ class TvFactoryTest extends TestCase
         $this->assertEquals(62, $this->tv->getNumberOfEpisodes());
         $this->assertEquals(5, $this->tv->getNumberOfSeasons());
         $this->assertEquals('Breaking Bad', $this->tv->getOriginalName());
+        $this->assertEquals('en', $this->tv->getOriginalLanguage());
         // origin_country
         $this->assertEquals('external', $this->tv->getOverview());
         $this->assertEquals(8.14745667435, $this->tv->getPopularity());
