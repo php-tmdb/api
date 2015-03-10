@@ -11,6 +11,7 @@
  * @version 0.0.1
  */
 namespace Tmdb\Model;
+use Tmdb\Model\Common\GenericCollection;
 
 /**
  * Class Account
@@ -47,6 +48,11 @@ class Account extends AbstractModel
      * @var string
      */
     private $username;
+
+    /**
+     * @var GenericCollection
+     */
+    private $avatar;
 
     /**
      * @var array
@@ -172,5 +178,24 @@ class Account extends AbstractModel
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Common\GenericCollection $avatar
+     * @return $this
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\GenericCollection
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
     }
 }

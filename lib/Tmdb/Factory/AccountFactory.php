@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Factory;
 
+use Tmdb\Factory\Account\AvatarFactory;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Account;
 use Tmdb\Model\Lists\Result;
@@ -44,9 +45,10 @@ class AccountFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->movieFactory = new MovieFactory($httpClient);
-        $this->imageFactory = new ImageFactory($httpClient);
-        $this->tvFactory    = new TvFactory($httpClient);
+        $this->movieFactory  = new MovieFactory($httpClient);
+        $this->imageFactory  = new ImageFactory($httpClient);
+        $this->tvFactory     = new TvFactory($httpClient);
+        $this->avatarFactory = new AvatarFactory($httpClient);
 
         parent::__construct($httpClient);
     }
@@ -58,7 +60,15 @@ class AccountFactory extends AbstractFactory
      */
     public function create(array $data = [])
     {
-        return $this->hydrate(new Account(), $data);
+        $account = new Account();
+
+        if (array_key_exists('avatar', $data)) {
+            $account->setAvatar(
+                $this->getAvatarFactory()->createCollection($data['avatar'])
+            );
+        }
+
+        return $this->hydrate($account, $data);
     }
 
     /**
@@ -177,5 +187,24 @@ class AccountFactory extends AbstractFactory
     public function getTvFactory()
     {
         return $this->tvFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\Account\AvatarFactory $avatarFactory
+     * @return $this
+     */
+    public function setAvatarFactory($avatarFactory)
+    {
+        $this->avatarFactory = $avatarFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\Account\AvatarFactory
+     */
+    public function getAvatarFactory()
+    {
+        return $this->avatarFactory;
     }
 }
