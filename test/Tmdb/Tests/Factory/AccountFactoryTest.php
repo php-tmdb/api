@@ -15,7 +15,6 @@ namespace Tmdb\Tests\Factory;
 use Tmdb\Factory\AccountFactory;
 use Tmdb\Model\Account;
 use Tmdb\Model\Collection\ResultCollection;
-use Tmdb\Model\Common\GenericCollection;
 
 class AccountFactoryTest extends TestCase
 {
@@ -40,7 +39,7 @@ class AccountFactoryTest extends TestCase
         $this->assertEquals('en', $account->getIso6391());
         $this->assertEquals('John Doe', $account->getName());
         $this->assertEquals('johndoe', $account->getUsername());
-        $this->assertInstanceOf(GenericCollection::class, $account->getAvatar());
+        $this->assertInstanceOf(get_class($this), $account->getAvatar());
     }
 
     /**
