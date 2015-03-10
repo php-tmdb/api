@@ -27,6 +27,7 @@ class ReleaseTest extends TestCase
             'iso_3166_1'    => 'US',
             'certification' => 'R',
             'release_date'  => '1999-10-15',
+            'primary'       => true
         ];
 
         $hydrator = new ObjectHydrator();
@@ -39,5 +40,6 @@ class ReleaseTest extends TestCase
         $this->assertEquals('US', $object->getIso31661());
         $this->assertEquals('R', $object->getCertification());
         $this->assertEquals(new \DateTime('1999-10-15'), $object->getReleaseDate());
+        $this->assertEquals(true, $object->getPrimary());
     }
 }

@@ -858,7 +858,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Release[]
+     * @return GenericCollection|Release[]
      */
     public function getReleases()
     {

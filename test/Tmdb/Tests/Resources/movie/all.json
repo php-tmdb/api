@@ -1024,231 +1024,277 @@
             {
                 "iso_3166_1":"US",
                 "certification":"R",
+                "primary": true,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"DE",
                 "certification":"16",
+                "primary": false,
                 "release_date":"2013-09-19"
             },
             {
                 "iso_3166_1":"BR",
                 "certification":"16 anos",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"DK",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"AR",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-12"
             },
             {
                 "iso_3166_1":"AU",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-12"
             },
             {
                 "iso_3166_1":"RU",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-12"
             },
             {
                 "iso_3166_1":"IT",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-10-17"
             },
             {
                 "iso_3166_1":"BE",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-11-20"
             },
             {
                 "iso_3166_1":"NL",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"AT",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"KZ",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-11"
             },
             {
                 "iso_3166_1":"BG",
                 "certification":"D",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"GB",
                 "certification":"15",
+                "primary": false,
                 "release_date":"2013-09-03"
             },
             {
                 "iso_3166_1":"IE",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-04"
             },
             {
                 "iso_3166_1":"FR",
                 "certification":"12",
+                "primary": false,
                 "release_date":"2013-09-18"
             },
             {
                 "iso_3166_1":"SK",
                 "certification":"15",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"ES",
                 "certification":"16",
+                "primary": false,
                 "release_date":"2013-09-02"
             },
             {
                 "iso_3166_1":"HK",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"HR",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"HU",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"ID",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"IL",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"KW",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-05"
             },
             {
                 "iso_3166_1":"CA",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"EE",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"FI",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"IN",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"LT",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"NO",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"PL",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"TW",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-06"
             },
             {
                 "iso_3166_1":"KH",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-12"
             },
             {
                 "iso_3166_1":"SG",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-12"
             },
             {
                 "iso_3166_1":"PK",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-13"
             },
             {
                 "iso_3166_1":"PH",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-18"
             },
             {
                 "iso_3166_1":"PT",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-19"
             },
             {
                 "iso_3166_1":"IS",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-20"
             },
             {
                 "iso_3166_1":"SE",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-09-20"
             },
             {
                 "iso_3166_1":"TR",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-10-04"
             },
             {
                 "iso_3166_1":"GR",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-10-17"
             },
             {
                 "iso_3166_1":"PE",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-10-24"
             },
             {
                 "iso_3166_1":"MX",
                 "certification":"",
+                "primary": false,
                 "release_date":"2013-10-25"
             },
             {
                 "iso_3166_1":"CL",
                 "certification":"",
+                "primary": false,
                 "release_date":"2014-01-30"
             },
             {
                 "iso_3166_1":"JP",
                 "certification":"",
+                "primary": false,
                 "release_date":"2014-03-08"
             },
             {
                 "iso_3166_1":"KR",
                 "certification":"15\uc138 \uad00\ub78c\uac00",
+                "primary": false,
                 "release_date":"2013-11-26"
             }
         ]

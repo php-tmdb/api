@@ -23,11 +23,13 @@ class Release extends AbstractModel implements CountryFilter
 {
     private $iso31661;
     private $certification;
+    private $primary;
     private $releaseDate;
 
     public static $properties = [
         'iso_3166_1',
         'certification',
+        'primary',
         'release_date'
     ];
 
@@ -90,5 +92,24 @@ class Release extends AbstractModel implements CountryFilter
     public function getReleaseDate()
     {
         return $this->releaseDate;
+    }
+
+    /**
+     * @param  mixed $primary
+     * @return $this
+     */
+    public function setPrimary($primary)
+    {
+        $this->primary = $primary;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrimary()
+    {
+        return $this->primary;
     }
 }
