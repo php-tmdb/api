@@ -82,6 +82,11 @@ class Movie extends AbstractModel
     /**
      * @var string
      */
+    private $originalLanguage;
+
+    /**
+     * @var string
+     */
     private $overview;
 
     /**
@@ -229,6 +234,7 @@ class Movie extends AbstractModel
         'id',
         'imdb_id',
         'original_title',
+        'original_language',
         'overview',
         'popularity',
         'poster_path',
@@ -454,6 +460,25 @@ class Movie extends AbstractModel
     public function getOriginalTitle()
     {
         return $this->originalTitle;
+    }
+
+    /**
+     * @param  string $originalLanguage
+     * @return $this
+     */
+    public function setOriginalLanguage($originalLanguage)
+    {
+        $this->originalLanguage = $originalLanguage;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalLanguage()
+    {
+        return $this->originalLanguage;
     }
 
     /**
