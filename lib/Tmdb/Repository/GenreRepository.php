@@ -13,6 +13,7 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\GenreFactory;
+use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Genre;
 
@@ -61,10 +62,7 @@ class GenreRepository extends AbstractRepository
      */
     public function getMovies($id, array $parameters = [], array $headers = [])
     {
-        return $this->getFactory()->createResultCollection(
-            $this->getApi()->getMovies($id, $parameters, $headers),
-            'createMovie'
-        );
+        return $this->getMovieFactory()->createResultCollection($this->getApi()->getMovies($id, $parameters, $headers));
     }
 
     /**
@@ -94,5 +92,13 @@ class GenreRepository extends AbstractRepository
     public function getFactory()
     {
         return new GenreFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
+     * @return GenreFactory
+     */
+    public function getMovieFactory()
+    {
+        return new MovieFactory($this->getClient()->getHttpClient());
     }
 }
