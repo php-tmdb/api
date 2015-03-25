@@ -31,7 +31,7 @@ class Client
     use ApiMethodsTrait;
 
     /** Client Version */
-    const VERSION  = '2.0.3';
+    const VERSION  = '2.0.4';
 
     /** Base API URI */
     const TMDB_URI = 'api.themoviedb.org/3/';
