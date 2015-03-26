@@ -333,7 +333,9 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
             return null;
         }
 
-        return array_shift($result->getAll());
+        $collection = $result->getAll();
+
+        return array_shift($collection);
     }
 
     /**
