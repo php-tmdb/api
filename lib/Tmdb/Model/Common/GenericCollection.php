@@ -317,6 +317,10 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
      */
     public function filterId($id)
     {
+        if (1 === count($this->data)) {
+            return array_shift($this->data);
+        }
+
         $result = $this->filter(
             function ($key, $value) use ($id) {
                 if ($value->getId() == $id) {
@@ -325,11 +329,11 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
             }
         );
 
-        if ($result && 1 === count($result)) {
-            return array_shift($this->data);
+        if (!count($result)) {
+            return null;
         }
 
-        return null;
+        return array_shift($result->getAll());
     }
 
     /**
