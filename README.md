@@ -1,7 +1,7 @@
 A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
 ---------------
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
-[![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=v2.0.6)](https://travis-ci.org/php-tmdb/api)
+[![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=2.0)](https://travis-ci.org/php-tmdb/api)
 [![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/api/badges/coverage.png?b=2.0)](https://scrutinizer-ci.com/g/php-tmdb/api/?branch=2.0)
 [![HHVM Status](http://hhvm.h4cc.de/badge/php-tmdb/api.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
 
@@ -14,7 +14,7 @@ Stable
 
 [![Latest Stable Version](https://poser.pugx.org/php-tmdb/api/v/stable.svg)](https://packagist.org/packages/php-tmdb/api)
 [![Latest Unstable Version](https://poser.pugx.org/php-tmdb/api/v/unstable.svg)](https://packagist.org/packages/php-tmdb/api)
-[![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
+[![Dependency Status](https://www.versioneye.com/user/projects/551fe134971f7847ca000451/badge.svg?style=flat)](https://www.versioneye.com/user/projects/551fe134971f7847ca000451)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/api/downloads.svg)](https://packagist.org/packages/php-tmdb/api)
 
 Currently unit tests are run on travis, with the following versions:
