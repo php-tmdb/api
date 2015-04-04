@@ -161,6 +161,33 @@ class HttpClientTest extends TestCase
     /**
      * @test
      */
+    public function shouldDeregisterSubscribers()
+    {
+        $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $this->client  = new Client(new ApiToken('abcdef'), [
+            'adapter'          => $this->adapter,
+            'event_dispatcher' => $this->eventDispatcher
+        ]);
+        $this->testApi = new TestApi($this->client);
+
+        $this->eventDispatcher
+            ->expects($this->once())
+            ->method('addSubscriber')
+        ;
+
+        $this->eventDispatcher
+            ->expects($this->once())
+            ->method('removeSubscriber')
+        ;
+
+        $subscriber = $this->getMock('Symfony\Component\EventDispatcher\EventSubscriberInterface');
+        $this->testApi->addSubscriber($subscriber);
+        $this->testApi->removeSubscriber($subscriber);
+    }
+
+    /**
+     * @test
+     */
     public function shouldBeAbleToOverrideAdapter()
     {
         $httpClient = new HttpClient([
@@ -221,5 +248,10 @@ class TestApi extends AbstractApi
     public function addSubscriber($event)
     {
         $this->client->getHttpClient()->addSubscriber($event);
+    }
+
+    public function removeSubscriber($event)
+    {
+        $this->client->getHttpClient()->removeSubscriber($event);
     }
 }
