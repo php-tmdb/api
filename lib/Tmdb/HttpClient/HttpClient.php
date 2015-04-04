@@ -280,6 +280,20 @@ class HttpClient
     }
 
     /**
+     * Remove a subscriber
+     *
+     * @param EventSubscriberInterface $subscriber
+     */
+    public function removeSubscriber(EventSubscriberInterface $subscriber)
+    {
+        if ($subscriber instanceof HttpClientEventSubscriber) {
+            $subscriber->attachHttpClient($this);
+        }
+
+        $this->eventDispatcher->removeSubscriber($subscriber);
+    }
+
+    /**
      * @return GuestSessionToken|SessionToken
      */
     public function getSessionToken()
