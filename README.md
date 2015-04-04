@@ -1,9 +1,9 @@
 A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
 ---------------
-[![License](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/license.png)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-[![Build Status](https://travis-ci.org/wtfzdotnet/php-tmdb-api.svg?branch=v2.0.6)](https://travis-ci.org/wtfzdotnet/php-tmdb-api)
-[![Code Coverage](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/badges/coverage.png?b=2.0)](https://scrutinizer-ci.com/g/wtfzdotnet/php-tmdb-api/?branch=2.0)
-[![HHVM Status](http://hhvm.h4cc.de/badge/wtfzdotnet/php-tmdb-api.svg)](http://hhvm.h4cc.de/package/wtfzdotnet/php-tmdb-api)
+[![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
+[![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=v2.0.6)](https://travis-ci.org/php-tmdb/api)
+[![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/api/badges/coverage.png?b=2.0)](https://scrutinizer-ci.com/g/php-tmdb/api/?branch=2.0)
+[![HHVM Status](http://hhvm.h4cc.de/badge/php-tmdb/api.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
 
@@ -12,10 +12,10 @@ If you have any questions or feature requests, please visit the [google+ communi
 Stable
 ----------------
 
-[![Latest Stable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/stable.svg)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
-[![Latest Unstable Version](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/v/unstable.svg)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
+[![Latest Stable Version](https://poser.pugx.org/php-tmdb/api/v/stable.svg)](https://packagist.org/packages/php-tmdb/api)
+[![Latest Unstable Version](https://poser.pugx.org/php-tmdb/api/v/unstable.svg)](https://packagist.org/packages/php-tmdb/api)
 [![Dependency Status](https://www.versioneye.com/user/projects/530a7514ec137594df000010/badge.png)](https://www.versioneye.com/user/projects/530a7514ec137594df000010)
-[![Total Downloads](https://poser.pugx.org/wtfzdotnet/php-tmdb-api/downloads.svg)](https://packagist.org/packages/wtfzdotnet/php-tmdb-api)
+[![Total Downloads](https://poser.pugx.org/php-tmdb/api/downloads.svg)](https://packagist.org/packages/php-tmdb/api)
 
 Currently unit tests are run on travis, with the following versions:
 
@@ -44,9 +44,9 @@ Plug-ins
 --------
 
 - Symfony2
-  - [wtfzdotnet/WtfzTmdbBundle](https://github.com/wtfzdotnet/WtfzTmdbBundle), _yet to updated to 2.0_.
+  - [php-tmdb/symfony](https://github.com/php-tmdb/symfony), _yet to updated to 2.0_.
 - Laravel
-  - [wtfzdotnet/tmdb-package](https://github.com/wtfzdotnet/tmdb-package), _yet to updated to 2.0_.
+  - [php-tmdb/laravel](https://github.com/php-tmdb/laravel).
 
 Installation
 ------------
@@ -62,7 +62,7 @@ _You are not obliged to move the composer.phar file to your /usr/local/bin, it i
 Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/php-tmdb-api": "~2.0"
+"php-tmdb/api": "~2.0"
 ```
 
 __If your new to composer and have no clue what I'm talking about__
@@ -72,7 +72,7 @@ Just create a file named `composer.json` in your document root:
 ```
 {
     "require": {
-        "wtfzdotnet/php-tmdb-api": "~2.0"
+        "php-tmdb/api": "~2.0"
     }
 }
 ```
