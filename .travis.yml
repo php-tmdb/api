@@ -7,7 +7,7 @@ php:
   - hhvm
   
 before_script:
-  - composer --prefer-source install
+  - composer self-update
 
 script: phpunit --coverage-text --coverage-clover=coverage.clover --verbose
 
