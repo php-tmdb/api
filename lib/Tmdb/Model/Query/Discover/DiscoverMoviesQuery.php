@@ -152,11 +152,19 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * @param  \DateTime|integer $year
      * @return $this
      */
-    public function primaryReleaseYearGte($year)
+    public function primaryReleaseDateGte($year)
     {
-        $this->set('primary_release_year.gte', $this->getDate($year));
+        $this->set('primary_release_date.gte', $this->getDate($year));
 
         return $this;
+    }
+
+    /**
+     * @deprecated
+     */
+    public function primaryReleaseYearGte($year)
+    {
+        return $this->primaryReleaseDateGte($year);
     }
 
     /**
@@ -167,11 +175,19 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * @param  \DateTime|integer $year
      * @return $this
      */
-    public function primaryReleaseYearLte($year)
+    public function primaryReleaseDateLte($year)
     {
-        $this->set('primary_release_year.lte', $this->getDate($year));
+        $this->set('primary_release_date.lte', $this->getDate($year));
 
         return $this;
+    }
+
+    /**
+     * @deprecated
+     */
+    public function primaryReleaseYearLte($year)
+    {
+        return $this->primaryReleaseDateLte($year);
     }
 
     /**
