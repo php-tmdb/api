@@ -227,12 +227,12 @@ class Client
             'log'
         ]);
 
-        $resolver->setAllowedTypes(['adapter' => ['object', 'null']]);
-        $resolver->setAllowedTypes(['host' => 'string']);
-        $resolver->setAllowedTypes(['secure' => 'bool']);
-        $resolver->setAllowedTypes(['token' => 'object']);
-        $resolver->setAllowedTypes(['session_token' => ['object', 'null']]);
-        $resolver->setAllowedTypes(['event_dispatcher' => 'object']);
+        $resolver->setAllowedTypes('adapter', ['object', 'null']);
+        $resolver->setAllowedTypes('host', ['string']);
+        $resolver->setAllowedTypes('secure', ['bool']);
+        $resolver->setAllowedTypes('token', ['object']);
+        $resolver->setAllowedTypes('session_token', ['object', 'null']);
+        $resolver->setAllowedTypes('event_dispatcher', ['object']);
 
         $this->options = $resolver->resolve($options);
 
@@ -263,10 +263,10 @@ class Client
             'handler',
         ]);
 
-        $resolver->setAllowedTypes(['enabled'    => ['bool']]);
-        $resolver->setAllowedTypes(['handler'    => ['object', 'null']]);
-        $resolver->setAllowedTypes(['subscriber' => ['object', 'null']]);
-        $resolver->setAllowedTypes(['path'       => ['string', 'null']]);
+        $resolver->setAllowedTypes('enabled', ['bool']);
+        $resolver->setAllowedTypes('handler', ['object', 'null']);
+        $resolver->setAllowedTypes('subscriber', ['object', 'null']);
+        $resolver->setAllowedTypes('path', ['string', 'null']);
 
         $options = $resolver->resolve(array_key_exists('cache', $options) ? $options['cache'] : []);
 
@@ -303,11 +303,11 @@ class Client
             'handler',
         ]);
 
-        $resolver->setAllowedTypes(['enabled'    => 'bool']);
-        $resolver->setAllowedTypes(['level'      =>'string']);
-        $resolver->setAllowedTypes(['handler'    => ['object', 'null']]);
-        $resolver->setAllowedTypes(['path'       => ['string', 'null']]);
-        $resolver->setAllowedTypes(['subscriber' => ['object', 'null']]);
+        $resolver->setAllowedTypes('enabled', ['bool']);
+        $resolver->setAllowedTypes('level', ['string']);
+        $resolver->setAllowedTypes('handler', ['object', 'null']);
+        $resolver->setAllowedTypes('path', ['string', 'null']);
+        $resolver->setAllowedTypes('subscriber', ['object', 'null']);
 
         $options = $resolver->resolve(array_key_exists('log', $options) ? $options['log'] : []);
 
