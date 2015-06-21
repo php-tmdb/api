@@ -15,6 +15,7 @@ namespace Tmdb\Repository;
 use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\AccountStates;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Video;
 use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Tv;
@@ -51,7 +52,8 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::SIMILAR,
                     AppendToResponse::KEYWORDS,
                     AppendToResponse::CHANGES,
-                    AppendToResponse::CONTENT_RATINGS
+                    AppendToResponse::CONTENT_RATINGS,
+                    AppendToResponse::ALTERNATIVE_TITLES
                 ])
             ];
         }
@@ -159,6 +161,22 @@ class TvRepository extends AbstractRepository
         $tv   = $this->getFactory()->create(['videos' => $data]);
 
         return $tv->getVideos();
+    }
+
+    /**
+     * Get the alternative titles for a specific show ID.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return GenericCollection|Tv\AlternativeTitle[]
+     */
+    public function getAlternativeTitles($id, array $parameters = [], array $headers = [])
+    {
+        $data = $this->getApi()->getAlternativeTitles($id, $this->parseQueryParameters($parameters), $headers);
+        $tv   = $this->getFactory()->create(['alternative_titles' => $data]);
+
+        return $tv->getAlternativeTitles();
     }
 
     /**

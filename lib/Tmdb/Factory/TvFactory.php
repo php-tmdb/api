@@ -258,6 +258,12 @@ class TvFactory extends AbstractFactory
             $tvShow->setCreatedBy($collection);
         }
 
+        if (array_key_exists('alternative_titles', $data) && array_key_exists('results', $data['alternative_titles'])) {
+            $tvShow->setAlternativeTitles(
+                $this->createGenericCollection($data['alternative_titles']['results'], new Tv\AlternativeTitle())
+            );
+        }
+
         return $this->hydrate($tvShow, $data);
     }
 
