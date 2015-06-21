@@ -216,6 +216,13 @@ class Tv extends AbstractModel
     protected $productionCompanies;
 
     /**
+     * Alternative titles
+     *
+     * @var GenericCollection
+     */
+    protected $alternativeTitles;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -250,19 +257,20 @@ class Tv extends AbstractModel
      */
     public function __construct()
     {
-        $this->genres         = new Genres();
-        $this->networks       = new GenericCollection();
-        $this->originCountry  = new GenericCollection();
-        $this->seasons        = new GenericCollection();
-        $this->credits        = new CreditsCollection();
-        $this->externalIds    = new ExternalIds();
-        $this->images         = new Images();
-        $this->translations   = new GenericCollection();
-        $this->videos         = new Videos();
-        $this->changes        = new GenericCollection();
-        $this->keywords       = new GenericCollection();
-        $this->similar        = new GenericCollection();
-        $this->contentRatings = new GenericCollection();
+        $this->genres            = new Genres();
+        $this->networks          = new GenericCollection();
+        $this->originCountry     = new GenericCollection();
+        $this->seasons           = new GenericCollection();
+        $this->credits           = new CreditsCollection();
+        $this->externalIds       = new ExternalIds();
+        $this->images            = new Images();
+        $this->translations      = new GenericCollection();
+        $this->videos            = new Videos();
+        $this->changes           = new GenericCollection();
+        $this->keywords          = new GenericCollection();
+        $this->similar           = new GenericCollection();
+        $this->contentRatings    = new GenericCollection();
+        $this->alternativeTitles = new GenericCollection();
     }
 
     /**
@@ -955,5 +963,24 @@ class Tv extends AbstractModel
         $this->productionCompanies = $productionCompanies;
 
         return $this;
+    }
+
+    /**
+     * @param  \Tmdb\Model\Common\GenericCollection $alternativeTitles
+     * @return $this
+     */
+    public function setAlternativeTitles($alternativeTitles)
+    {
+        $this->alternativeTitles = $alternativeTitles;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Model\Common\GenericCollection
+     */
+    public function getAlternativeTitles()
+    {
+        return $this->alternativeTitles;
     }
 }

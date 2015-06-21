@@ -257,4 +257,15 @@ class Tv extends AbstractApi
     {
         return $this->postJson('tv/' . $id . '/rating', ['value' => (float) $rating]);
     }
+
+    /**
+     * Get the alternative titles for a specific show ID.
+     *
+     * @param  integer $id
+     * @return mixed
+     */
+    public function getAlternativeTitles($id)
+    {
+        return $this->get('tv/' . $id . '/alternative_titles');
+    }
 }
