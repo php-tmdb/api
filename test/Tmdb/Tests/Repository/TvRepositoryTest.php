@@ -27,7 +27,7 @@ class TvRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'tv/' . self::TV_ID,
-                ['append_to_response' => 'credits,external_ids,images,translations,similar,keywords,changes,content_ratings']
+                ['append_to_response' => 'credits,external_ids,images,translations,similar,keywords,changes,content_ratings,alternative_titles']
             ))
         ;
 
