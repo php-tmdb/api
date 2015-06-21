@@ -49,16 +49,31 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function registerSubscribers(EventDispatcherInterface $eventDispatcher)
     {
-        // Retry 500 and 503 responses that were sent as GET and HEAD requests.
         $filter = RetrySubscriber::createChainFilter([
-            // Does early filter to force non-idempotent methods to NOT be retried.
             RetrySubscriber::createIdempotentFilter(),
-            // Performs the last check, returning ``true`` or ``false`` based on
-            // if the response received a 500 or 503 status code.
-            RetrySubscriber::createStatusFilter([500, 503])
+            RetrySubscriber::createStatusFilter([427, 500, 503])
         ]);
 
-        $retry = new RetrySubscriber(['filter' => $filter]);
+        $retry = new RetrySubscriber([
+            'filter' => $filter,
+            'delay'  => function ($number, $event) {
+                /** @var \GuzzleHttp\Message\Response $response */
+                if (null !== $response = $event->getResponse() && $event->getResponse()->getStatusCode() === 427) {
+                    $time    = microtime(true);
+                    $resetAt = (int) $response->getHeader('X-RateLimit-Reset');
+
+                    $sleep = $resetAt - $time;
+
+                    if ($sleep >= 0) {
+                        return $sleep * 1000;
+                    }
+                }
+
+                return 0;
+            },
+            'max' => 3
+        ]);
+
         $this->client->getEmitter()->attach($retry);
     }
 
