@@ -66,6 +66,16 @@ class MovieCredit extends AbstractModel
      */
     private $posterImage;
 
+    /**
+     * @var string
+     */
+    private $job;
+
+    /**
+     * @var string
+     */
+    private $department;
+
     public static $properties = [
         'adult',
         'character',
@@ -74,7 +84,9 @@ class MovieCredit extends AbstractModel
         'original_title',
         'poster_path',
         'release_date',
-        'title'
+        'title',
+        'job',
+        'department'
     ];
 
     /**
@@ -250,5 +262,43 @@ class MovieCredit extends AbstractModel
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param  string $job
+     * @return $this
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * @param  string $department
+     * @return $this
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartment()
+    {
+        return $this->department;
     }
 }
