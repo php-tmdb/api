@@ -80,7 +80,11 @@ class ImageFactory extends AbstractFactory
                 case "tv":
                     $factory = new TvFactory($this->getHttpClient());
                     break;
-
+                    
+                case "season":
+                    $factory = new TvSeasonFactory($this->getHttpClient());
+                    break;
+                    
                 // I don't think this ever occurs, but just in case..
                 case "episode":
                     $factory = new TvEpisodeFactory($this->getHttpClient());
