@@ -428,19 +428,21 @@ class HttpClient
      */
     public function setDefaultCaching(array $parameters)
     {
-        if (!class_exists('Doctrine\Common\Cache\CacheProvider')) {
-            //@codeCoverageIgnoreStart
-            throw new \RuntimeException(
-                'Could not find the doctrine cache library,
-                have you added doctrine-cache to your composer.json?'
-            );
-            //@codeCoverageIgnoreEnd
-        }
+        if ($parameters['enabled']) {
+            if (!class_exists('Doctrine\Common\Cache\CacheProvider')) {
+                //@codeCoverageIgnoreStart
+                throw new \RuntimeException(
+                    'Could not find the doctrine cache library,
+                    have you added doctrine-cache to your composer.json?'
+                );
+                //@codeCoverageIgnoreEnd
+            }
 
-        CacheSubscriber::attach(
-            $this->getAdapter()->getClient(),
-            ['storage' => new CacheStorage($parameters['handler'])]
-        );
+            CacheSubscriber::attach(
+                $this->getAdapter()->getClient(),
+                ['storage' => new CacheStorage($parameters['handler'])]
+            );
+        }
 
         return $this;
     }
@@ -454,22 +456,24 @@ class HttpClient
      */
     public function setDefaultLogging(array $parameters)
     {
-        if (!class_exists('\Monolog\Logger')) {
-            //@codeCoverageIgnoreStart
-            throw new \RuntimeException(
-                'Could not find any logger set and the monolog logger library was not found
-                to provide a default, you have to  set a custom logger on the client or
-                have you forgot adding monolog to your composer.json?'
-            );
-            //@codeCoverageIgnoreEnd
-        } else {
-            $logger = new Logger('php-tmdb-api');
-            $logger->pushHandler($parameters['handler']);
-        }
+        if ($parameters['enabled']) {
+            if (!class_exists('\Monolog\Logger')) {
+                //@codeCoverageIgnoreStart
+                throw new \RuntimeException(
+                    'Could not find any logger set and the monolog logger library was not found
+                    to provide a default, you have to  set a custom logger on the client or
+                    have you forgot adding monolog to your composer.json?'
+                );
+                //@codeCoverageIgnoreEnd
+            } else {
+                $logger = new Logger('php-tmdb-api');
+                $logger->pushHandler($parameters['handler']);
+            }
 
-        if ($this->getAdapter() instanceof GuzzleAdapter) {
-            $subscriber = new LogSubscriber($logger);
-            $this->getAdapter()->getClient()->getEmitter()->attach($subscriber);
+            if ($this->getAdapter() instanceof GuzzleAdapter) {
+                $subscriber = new LogSubscriber($logger);
+                $this->getAdapter()->getClient()->getEmitter()->attach($subscriber);
+            }
         }
 
         return $this;

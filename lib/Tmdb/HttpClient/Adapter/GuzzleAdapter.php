@@ -51,18 +51,16 @@ class GuzzleAdapter extends AbstractAdapter
     {
         $filter = RetrySubscriber::createChainFilter([
             RetrySubscriber::createIdempotentFilter(),
-            RetrySubscriber::createStatusFilter([427, 500, 503])
+            RetrySubscriber::createStatusFilter([429, 500, 503])
         ]);
 
         $retry = new RetrySubscriber([
             'filter' => $filter,
             'delay'  => function ($number, $event) {
                 /** @var \GuzzleHttp\Message\Response $response */
-                if (null !== $response = $event->getResponse() && $event->getResponse()->getStatusCode() === 427) {
-                    $time    = microtime(true);
-                    $resetAt = (int) $response->getHeader('X-RateLimit-Reset');
-
-                    $sleep = $resetAt - $time;
+                if (null !== $event->getResponse() && $event->getResponse()->getStatusCode() === 429) {
+                    // Adding 20% of the waiting time as it seems to be the best result without getting two blocking reqs.
+                    $sleep = (int) $event->getResponse()->getHeader('retry-after') * 1.2;
 
                     if ($sleep >= 0) {
                         return $sleep * 1000;
