@@ -116,8 +116,7 @@ Caching is enabled by default, and uses a slow filesystem handler, which you can
 ```php
 $client = new \Tmdb\Client($token, [
     'cache' => [
-        'enabled' => false,
-        'path'    => '/tmp/php-tmdb-api.log'
+        'path' => '/tmp/php-tmdb'
     ]
 ]);
 ```
@@ -125,14 +124,23 @@ $client = new \Tmdb\Client($token, [
     
 ```php
 $client = new \Tmdb\Client($token, [
+        'cache' => [
+            'handler' => new \Doctrine\Common\Cache\ArrayCache()
+        ]
+    ]
+);
+```
+_This will only keep cache in memory during the length of the request,  see the [documentation of Doctrine Cache](http://doctrine-common.readthedocs.org/en/latest/reference/caching.html) for the available adapters._
+
+Strongly against this, disabling cache:
+
+```php
+$client = new \Tmdb\Client($token, [
     'cache' => [
-        'enabled' => false,
-        'storage' => new \Doctrine\Common\Cache\ArrayCache()
-        )
+        'enabled' => false
     ]
 ]);
 ```
-_This will only keep cache in memory during the length of the request,  see the [documentation of Doctrine Cache](http://doctrine-common.readthedocs.org/en/latest/reference/caching.html) for the available adapters._
 
 If you want to add some logging capabilities ( requires `monolog/monolog` ), defaulting to the filesystem;
 
