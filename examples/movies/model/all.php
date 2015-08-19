@@ -99,7 +99,7 @@ foreach ($movie->getTranslations()->filterLanguage('en') as $translation) {
 
 echo "Trailers<br/>";
 
-foreach ($movie->getTrailers() as $trailer) {
+foreach ($movie->getVideos() as $trailer) {
     printf(" - %s<br/>", $trailer->getUrl());
 }
 
