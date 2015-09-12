@@ -289,6 +289,30 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
         return $collection;
     }
 
+    /**
+     * Allows sorting the current collection.
+     *
+     * For example:
+     *
+     * $person->sort(function ($a, $b) {
+     *   if ($a->getReleaseDate() == $b->getReleaseDate()) {
+     *     return 0;
+     *   }
+     *
+     *   return $a->getReleaseDate() < $b->getReleaseDate() ? 1 : -1;
+     * });
+     *
+     *
+     * @param  callable $closure
+     * @return $this
+     */
+    public function sort(\Closure $closure)
+    {
+        uasort($this->data, $closure);
+
+        return $this;
+    }
+
     public function offsetExists($offset)
     {
         return isset($this->data[$offset]);
