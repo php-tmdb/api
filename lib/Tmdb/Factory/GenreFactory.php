@@ -34,12 +34,12 @@ class GenreFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = [], $key = 'genres')
     {
         $collection = new Genres();
 
-        if (array_key_exists('genres', $data)) {
-            $data = $data['genres'];
+        if (array_key_exists($key, $data)) {
+            $data = $data[$key];
         }
 
         foreach ($data as $item) {

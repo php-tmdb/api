@@ -129,6 +129,19 @@ class MovieFactory extends AbstractFactory
             $movie->setGenres($this->getGenreFactory()->createCollection($data['genres']));
         }
 
+        /** Genres */
+        if (array_key_exists('genre_ids', $data)) {
+            $formattedData = [];
+
+            foreach ($data['genre_ids'] as $genreId) {
+                $formattedData[] = [
+                    'id' => $genreId
+                ];
+            }
+
+            $movie->setGenres($this->getGenreFactory()->createCollection($formattedData));
+        }
+
         /** Images */
         if (array_key_exists('backdrop_path', $data)) {
             $movie->setBackdropImage($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
