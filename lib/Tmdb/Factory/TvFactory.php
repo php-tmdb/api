@@ -154,6 +154,19 @@ class TvFactory extends AbstractFactory
             $tvShow->setGenres($this->getGenreFactory()->createCollection($data['genres']));
         }
 
+        /** Genres */
+        if (array_key_exists('genre_ids', $data)) {
+            $formattedData = [];
+
+            foreach ($data['genre_ids'] as $genreId) {
+                $formattedData[] = [
+                    'id' => $genreId
+                ];
+            }
+
+            $tvShow->setGenres($this->getGenreFactory()->createCollection($formattedData));
+        }
+
         /** Images */
         if (array_key_exists('images', $data) && $data['images'] !== null) {
             $tvShow->setImages(
