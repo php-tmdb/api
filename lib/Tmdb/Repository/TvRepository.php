@@ -53,7 +53,8 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::KEYWORDS,
                     AppendToResponse::CHANGES,
                     AppendToResponse::CONTENT_RATINGS,
-                    AppendToResponse::ALTERNATIVE_TITLES
+                    AppendToResponse::ALTERNATIVE_TITLES,
+                    AppendToResponse::VIDEOS,
                 ])
             ];
         }
