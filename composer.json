@@ -31,7 +31,7 @@
         "monolog/monolog": "Required if you want to make use of logging features."
     },
     "autoload": {
-        "psr-4": { "": "lib/" }
+        "psr-4": { "Tmdb\\": "lib/Tmdb" }
     },
     "extra": {
         "branch-alias": {
