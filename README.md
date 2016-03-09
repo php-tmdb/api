@@ -22,7 +22,7 @@ Currently unit tests are run on travis, with the following versions:
 - 5.4
 - 5.5
 - 5.6
-- 7 ( failures allowed )
+- 7
 - nightly ( failures allowed )
 - HHVM ( failures allowed )
 
