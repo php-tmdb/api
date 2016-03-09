@@ -33,7 +33,6 @@ matrix:
     - php: 7.0
       env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
   allow_failures:
-    - php: 7.0
     - php: nightly
     - php: hhvm
   fast_finish: true
