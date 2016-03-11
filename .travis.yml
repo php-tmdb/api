@@ -9,7 +9,8 @@ php:
 
 before_script:
   - composer self-update
-  - if [ "$SYMFONY_VERSION" != "" ]; then composer require --no-update symfony/event-dispatcher:${SF_EVT_DISPATCHER_VERSION} symfony/options-resolver:${SF_OPT_RESOLVER_VERSION}; fi;
+  - if [ "$SF_EVT_DISPATCHER_VERSION" != "" ]; then composer require --no-update symfony/event-dispatcher:${SF_EVT_DISPATCHER_VERSION}; fi;
+  - if [ "$SF_OPT_RESOLVER_VERSION" != "" ];   then composer require --no-update symfony/options-resolver:${SF_OPT_RESOLVER_VERSION};   fi;
   - composer install --no-interaction --prefer-source --dev
 
 script: phpunit --coverage-text --coverage-clover=coverage.clover --verbose
