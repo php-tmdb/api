@@ -17,10 +17,7 @@
         "ext-curl": "*",
         "symfony/event-dispatcher": ">=2.4,<4",
         "symfony/options-resolver": ">=2.6,<4",
-        "guzzlehttp/guzzle": "~5.0",
-        "guzzlehttp/cache-subscriber": "~0.1@dev",
-        "guzzlehttp/log-subscriber": "~1.0",
-        "guzzlehttp/retry-subscriber": "~2.0",
+        "guzzlehttp/guzzle": "~6.0",
         "psr/log": "~1.0"
     },
     "require-dev": {

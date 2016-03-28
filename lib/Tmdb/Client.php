@@ -270,11 +270,11 @@ class Client
 
         $options = $resolver->resolve(array_key_exists('cache', $options) ? $options['cache'] : []);
 
-        if ($options['enabled'] && !$options['handler']) {
-            $options['handler'] = new FilesystemCache(
-                $options['path']
-            );
-        }
+//        if ($options['enabled'] && !$options['handler']) {
+//            $options['handler'] = new FilesystemCache(
+//                $options['path']
+//            );
+//        }
 
         return $options;
     }

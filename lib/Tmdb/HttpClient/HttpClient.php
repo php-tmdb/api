@@ -12,11 +12,6 @@
  */
 namespace Tmdb\HttpClient;
 
-use GuzzleHttp\Message\RequestInterface;
-use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Subscriber\Cache\CacheStorage;
-use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
-use GuzzleHttp\Subscriber\Log\LogSubscriber;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
@@ -26,7 +21,6 @@ use Tmdb\Event\RequestEvent;
 use Tmdb\Event\RequestSubscriber;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\Exception\ApiTokenMissingException;
-use Tmdb\Exception\RuntimeException;
 use Tmdb\GuestSessionToken;
 use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
@@ -97,6 +91,11 @@ class HttpClient
 
         $this->setAdapter($this->options['adapter']);
         $this->processOptions();
+    }
+
+    private function constructSecureUrl($path)
+    {
+        return 'https://' . $this->base_url . $path;
     }
 
     /**
@@ -175,7 +174,7 @@ class HttpClient
     }
 
     /**
-     * @return RequestInterface
+     * @return \Psr\Http\Message\RequestInterface
      */
     public function getLastRequest()
     {
@@ -183,7 +182,7 @@ class HttpClient
     }
 
     /**
-     * @return ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function getLastResponse()
     {
@@ -225,7 +224,13 @@ class HttpClient
      */
     private function send($path, $method, array $parameters = [], array $headers = [], $body = null)
     {
-        $request = $this->createRequest($path, $method, $parameters, $headers, $body);
+        $request = $this->createRequest(
+            $this->constructSecureUrl($path),
+            $method,
+            $parameters,
+            $headers,
+            $body
+        );
 
         $event = new RequestEvent($request);
         $this->eventDispatcher->dispatch(TmdbEvents::REQUEST, $event);
@@ -401,22 +406,22 @@ class HttpClient
 
     protected function setupCache(array $cache)
     {
-        if ($this->isDefaultAdapter()) {
-            $this->setDefaultCaching($cache);
-        } elseif (null !== $subscriber = $cache['subscriber']) {
-            $subscriber->setOptions($cache);
-            $this->addSubscriber($subscriber);
-        }
+//        if ($this->isDefaultAdapter()) {
+//            $this->setDefaultCaching($cache);
+//        } elseif (null !== $subscriber = $cache['subscriber']) {
+//            $subscriber->setOptions($cache);
+//            $this->addSubscriber($subscriber);
+//        }
     }
 
     protected function setupLog(array $log)
     {
-        if ($this->isDefaultAdapter()) {
-            $this->setDefaultLogging($log);
-        } elseif (null !== $subscriber = $log['subscriber']) {
-            $subscriber->setOptions($log);
-            $this->addSubscriber($subscriber);
-        }
+//        if ($this->isDefaultAdapter()) {
+//            $this->setDefaultLogging($log);
+//        } elseif (null !== $subscriber = $log['subscriber']) {
+//            $subscriber->setOptions($log);
+//            $this->addSubscriber($subscriber);
+//        }
     }
 
     /**
