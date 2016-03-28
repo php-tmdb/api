@@ -12,6 +12,9 @@
  */
 namespace Tmdb\HttpClient;
 
+use Kevinrob\GuzzleCache\CacheMiddleware;
+use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
+use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
@@ -406,12 +409,12 @@ class HttpClient
 
     protected function setupCache(array $cache)
     {
-//        if ($this->isDefaultAdapter()) {
-//            $this->setDefaultCaching($cache);
-//        } elseif (null !== $subscriber = $cache['subscriber']) {
-//            $subscriber->setOptions($cache);
-//            $this->addSubscriber($subscriber);
-//        }
+        if ($this->isDefaultAdapter()) {
+            $this->setDefaultCaching($cache);
+        } elseif (null !== $subscriber = $cache['subscriber']) {
+            $subscriber->setOptions($cache);
+            $this->addSubscriber($subscriber);
+        }
     }
 
     protected function setupLog(array $log)
@@ -443,9 +446,13 @@ class HttpClient
                 //@codeCoverageIgnoreEnd
             }
 
-            CacheSubscriber::attach(
-                $this->getAdapter()->getClient(),
-                ['storage' => new CacheStorage($parameters['handler'])]
+            $this->adapter->getClient()->getConfig('handler')->push(
+                new CacheMiddleware(
+                    new PrivateCacheStrategy(
+                        new DoctrineCacheStorage($parameters['handler'])
+                    )
+                ),
+                'shared-cache'
             );
         }
 
