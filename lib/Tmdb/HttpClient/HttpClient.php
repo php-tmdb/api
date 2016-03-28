@@ -16,6 +16,7 @@ use Kevinrob\GuzzleCache\CacheMiddleware;
 use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
 use Monolog\Logger;
+use Psr\Log\LogLevel;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Common\ParameterBag;
@@ -419,12 +420,12 @@ class HttpClient
 
     protected function setupLog(array $log)
     {
-//        if ($this->isDefaultAdapter()) {
-//            $this->setDefaultLogging($log);
-//        } elseif (null !== $subscriber = $log['subscriber']) {
-//            $subscriber->setOptions($log);
-//            $this->addSubscriber($subscriber);
-//        }
+        if ($this->isDefaultAdapter()) {
+            $this->setDefaultLogging($log);
+        } elseif (null !== $subscriber = $log['subscriber']) {
+            $subscriber->setOptions($log);
+            $this->addSubscriber($subscriber);
+        }
     }
 
     /**
@@ -477,14 +478,19 @@ class HttpClient
                     have you forgot adding monolog to your composer.json?'
                 );
                 //@codeCoverageIgnoreEnd
-            } else {
-                $logger = new Logger('php-tmdb-api');
-                $logger->pushHandler($parameters['handler']);
             }
 
+            $logger = new Logger('php-tmdb-api');
+            $logger->pushHandler($parameters['handler']);
+
             if ($this->getAdapter() instanceof GuzzleAdapter) {
-                $subscriber = new LogSubscriber($logger);
-                $this->getAdapter()->getClient()->getEmitter()->attach($subscriber);
+                $middleware = new \Concat\Http\Middleware\Logger($logger);
+                $middleware->setRequestLoggingEnabled(true);
+                $middleware->setLogLevel(LogLevel::DEBUG);
+
+                $this->getAdapter()->getClient()->getConfig('handler')->push(
+                    $middleware
+                );
             }
         }
 
