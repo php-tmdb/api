@@ -51,6 +51,30 @@ class Genres extends AbstractApi
     }
 
     /**
+     * Get the list of movie genres.
+     *
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getMovieGenres(array $parameters = [], array $headers = [])
+    {
+        return $this->get('genre/movie/list', $parameters, $headers);
+    }
+
+    /**
+     * Get the list of TV genres.
+     *
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getTvGenres(array $parameters = [], array $headers = [])
+    {
+        return $this->get('genre/tv/list', $parameters, $headers);
+    }
+
+    /**
      * Get the list of movies for a particular genre by id. By default, only movies with 10 or more votes are included.
      *
      * @param $genre_id
