@@ -23,9 +23,14 @@ class GenreRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
+        $this->getAdapter()->expects($this->at(0))
             ->method('get')
-            ->with($this->getRequest('genre/list', []))
+            ->with($this->getRequest('genre/movie/list', []))
+        ;
+
+        $this->getAdapter()->expects($this->at(1))
+            ->method('get')
+            ->with($this->getRequest('genre/tv/list', []))
         ;
 
         $repository->load(self::GENRE_ID);
@@ -38,12 +43,47 @@ class GenreRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
+        $this->getAdapter()->expects($this->at(0))
             ->method('get')
-            ->with($this->getRequest('genre/list', []))
+            ->with($this->getRequest('genre/movie/list', []))
+        ;
+
+        $this->getAdapter()->expects($this->at(1))
+            ->method('get')
+            ->with($this->getRequest('genre/tv/list', []))
         ;
 
         $repository->loadCollection();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldLoadMovieCollection()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('genre/movie/list', []))
+        ;
+
+        $repository->loadMovieCollection();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldLoadTvCollection()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('genre/tv/list', []))
+        ;
+
+        $repository->loadTvCollection();
     }
 
     /**
