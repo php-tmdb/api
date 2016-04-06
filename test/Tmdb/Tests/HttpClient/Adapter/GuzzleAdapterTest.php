@@ -30,7 +30,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -46,7 +46,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('post')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -62,7 +62,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('put')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -78,7 +78,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('delete')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -94,7 +94,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('patch')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -110,7 +110,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('head')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -127,7 +127,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('send')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
@@ -153,7 +153,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('send')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
@@ -179,7 +179,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('send')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
@@ -205,7 +205,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('send')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
@@ -231,7 +231,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('send')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
@@ -257,7 +257,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('send')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
@@ -283,7 +283,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('send')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
@@ -305,7 +305,7 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('send')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',

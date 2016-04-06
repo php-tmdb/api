@@ -27,7 +27,7 @@ class KeywordRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('keyword/'.self::KEYWORD_ID, []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/'.self::KEYWORD_ID, []))
         ;
 
         $repository->load(self::KEYWORD_ID);
@@ -45,7 +45,7 @@ class KeywordRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('keyword/1/movies', []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/1/movies', []))
         ;
 
         $repository->getMovies(1);

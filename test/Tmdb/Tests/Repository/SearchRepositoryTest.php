@@ -46,7 +46,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/movie',
+                'https://api.themoviedb.org/3/search/movie',
                 ['page' => 1, 'query' => urlencode(self::MOVIE_QUERY)]
             ))
         ;
@@ -67,7 +67,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/collection',
+                'https://api.themoviedb.org/3/search/collection',
                 ['page' => 1, 'query' => urlencode(self::COLLECTION_QUERY)]
             ))
         ;
@@ -88,7 +88,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/tv',
+                'https://api.themoviedb.org/3/search/tv',
                 ['page' => 1, 'query' => urlencode(self::TV_QUERY)]
             ))
         ;
@@ -109,7 +109,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/person',
+                'https://api.themoviedb.org/3/search/person',
                 ['page' => 1, 'query' => urlencode(self::PERSON_QUERY)]
             ))
         ;
@@ -130,7 +130,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/list',
+                'https://api.themoviedb.org/3/search/list',
                 ['page' => 1, 'query' => urlencode(self::LIST_QUERY)]
             ))
         ;
@@ -151,7 +151,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/company',
+                'https://api.themoviedb.org/3/search/company',
                 ['page' => 1, 'query' => urlencode(self::COMPANY_QUERY)]
             ))
         ;
@@ -172,7 +172,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/keyword',
+                'https://api.themoviedb.org/3/search/keyword',
                 ['page' => 1, 'query' => urlencode(self::KEYWORD_QUERY)]
             ))
         ;
@@ -193,7 +193,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/multi',
+                'https://api.themoviedb.org/3/search/multi',
                 ['page' => 1, 'query' => urlencode(self::MULTI_QUERY)]
             ))
             ->will($this->returnValue(new Response(200, json_encode([
@@ -221,7 +221,7 @@ class SearchRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'search/multi',
+                'https://api.themoviedb.org/3/search/multi',
                 ['page' => 1, 'query' => urlencode(self::MULTI_QUERY)]
             ))
             ->will($this->returnValue(null))

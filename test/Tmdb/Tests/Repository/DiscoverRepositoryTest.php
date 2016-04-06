@@ -27,7 +27,7 @@ class DiscoverRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('discover/movie', []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/discover/movie', []))
         ;
 
         $query = new DiscoverMoviesQuery();
@@ -69,7 +69,7 @@ class DiscoverRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('discover/tv', []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/discover/tv', []))
         ;
 
         $query = new DiscoverTvQuery();

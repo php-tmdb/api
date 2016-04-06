@@ -28,7 +28,7 @@ class AuthenticationRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('authentication/token/new', []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/new', []))
         ;
 
         $repository->getRequestToken();
@@ -44,7 +44,7 @@ class AuthenticationRepositoryTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('authentication/session/new', ['request_token' => 'request_token']))
+            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/session/new', ['request_token' => 'request_token']))
         ;
 
         $repository->getSessionToken(new RequestToken('request_token'));
@@ -66,7 +66,7 @@ class AuthenticationRepositoryTest extends TestCase
         $this->getAdapter()
             ->expects($this->any())
             ->method('get')
-            ->with($this->getRequest('authentication/token/validate_with_login', [
+            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/validate_with_login', [
                 'request_token' => 'request_token',
                 'username' => 'piet',
                 'password' => 'henk'
@@ -86,7 +86,7 @@ class AuthenticationRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('authentication/guest_session/new', []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/guest_session/new', []))
         ;
 
         $repository->getGuestSessionToken();

@@ -25,7 +25,7 @@ class ChangesRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/changes'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/changes'))
         ;
 
         $query = new ChangesQuery();
@@ -42,7 +42,7 @@ class ChangesRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/changes'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/changes'))
         ;
 
         $query = new ChangesQuery();
@@ -59,7 +59,7 @@ class ChangesRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/changes'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/changes'))
         ;
 
         $query = new ChangesQuery();

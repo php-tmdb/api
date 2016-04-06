@@ -32,7 +32,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account'))
         ;
 
         $repository->getAccount();
@@ -47,7 +47,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/lists'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/lists'))
         ;
 
         $repository->getLists(self::ACCOUNT_ID);
@@ -62,7 +62,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite/movies'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite/movies'))
         ;
 
         $repository->getFavoriteMovies(self::ACCOUNT_ID);
@@ -77,7 +77,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite/tv'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite/tv'))
         ;
 
         $repository->getFavoriteTvShows(self::ACCOUNT_ID);
@@ -92,7 +92,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist/movies'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist/movies'))
         ;
 
         $repository->getMovieWatchlist(self::ACCOUNT_ID);
@@ -107,7 +107,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist/tv'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist/tv'))
         ;
 
         $repository->getTvWatchlist(self::ACCOUNT_ID);
@@ -122,7 +122,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/rated/tv'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/rated/tv'))
         ;
 
         $repository->getRatedTvShows(self::ACCOUNT_ID);
@@ -138,7 +138,7 @@ class AccountRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'account/'.self::ACCOUNT_ID.'/favorite',
+                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite',
                 [],
                 'POST',
                 [],
@@ -159,7 +159,7 @@ class AccountRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'account/'.self::ACCOUNT_ID.'/favorite',
+                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite',
                 [],
                 'POST',
                 [],
@@ -183,7 +183,7 @@ class AccountRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'account/'.self::ACCOUNT_ID.'/favorite',
+                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite',
                 [],
                 'POST',
                 [],
@@ -206,7 +206,7 @@ class AccountRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/rated/movies'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/rated/movies'))
         ;
 
         $repository->getRatedMovies(self::ACCOUNT_ID);
@@ -222,7 +222,7 @@ class AccountRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'account/'.self::ACCOUNT_ID.'/watchlist',
+                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist',
                 [],
                 'POST',
                 [],
@@ -243,7 +243,7 @@ class AccountRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'account/'.self::ACCOUNT_ID.'/watchlist',
+                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist',
                 [],
                 'POST',
                 [],
@@ -267,7 +267,7 @@ class AccountRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'account/'.self::ACCOUNT_ID.'/watchlist',
+                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist',
                 [],
                 'POST',
                 [],
