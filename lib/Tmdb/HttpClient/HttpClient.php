@@ -453,7 +453,7 @@ class HttpClient
                         new DoctrineCacheStorage($parameters['handler'])
                     )
                 ),
-                'shared-cache'
+                'tmdb-cache'
             );
         }
 
@@ -489,7 +489,8 @@ class HttpClient
                 $middleware->setLogLevel(LogLevel::DEBUG);
 
                 $this->getAdapter()->getClient()->getConfig('handler')->push(
-                    $middleware
+                    $middleware,
+                    'tmdb-log'
                 );
             }
         }
