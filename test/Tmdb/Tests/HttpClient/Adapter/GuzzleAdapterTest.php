@@ -14,8 +14,7 @@ namespace Tmdb\Tests\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7\Response;
 use Tmdb\Exception\NullResponseException;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\Request;
@@ -128,15 +127,15 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('send')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('get', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('get', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -154,15 +153,15 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('post')
+            ->method('send')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('post', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('post', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -180,15 +179,15 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('head')
+            ->method('send')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('head', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('head', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -206,15 +205,15 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('patch')
+            ->method('send')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('patch', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('patch', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -232,15 +231,15 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('put')
+            ->method('send')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('put', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('put', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -258,15 +257,15 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('delete')
+            ->method('send')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('delete', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('delete', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -284,11 +283,11 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('send')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('get', '/'),
+                    new \GuzzleHttp\Psr7\Request('get', '/'),
                     null
                 )
             ))
@@ -306,11 +305,11 @@ class GuzzleAdapterTest extends TestCase
         $client = $this->getMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('send')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('get', '/'),
+                    new \GuzzleHttp\Psr7\Request('get', '/'),
                     null
                 )
             ))

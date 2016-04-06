@@ -137,7 +137,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->get(
+            $response = $this->client->request(
+                'GET',
                 $request->getPath(),
                 $this->getConfiguration($request)
             );
@@ -156,7 +157,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->post(
+            $response = $this->client->request(
+                'POST',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -178,7 +180,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->put(
+            $response = $this->client->request(
+                'PUT',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -200,7 +203,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->patch(
+            $response = $this->client->request(
+                'PATCH',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -222,7 +226,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->delete(
+            $response = $this->client->request(
+                'DELETE',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -244,7 +249,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->head(
+            $response = $this->client->request(
+                'HEAD',
                 $request->getPath(),
                 $this->getConfiguration($request)
             );
