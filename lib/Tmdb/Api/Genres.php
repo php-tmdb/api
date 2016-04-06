@@ -47,7 +47,7 @@ class Genres extends AbstractApi
      */
     public function getGenres(array $parameters = [], array $headers = [])
     {
-        $data = array_merge(
+        $data = array_merge_recursive(
             $this->getMovieGenres($parameters, $headers),
             $this->getTvGenres($parameters, $headers)
         );
