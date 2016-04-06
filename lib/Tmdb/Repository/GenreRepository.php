@@ -52,6 +52,34 @@ class GenreRepository extends AbstractRepository
     }
 
     /**
+     * Get the list of movie genres.
+     *
+     * @param  array             $parameters
+     * @param  array             $headers
+     * @return GenericCollection
+     */
+    public function loadMovieCollection(array $parameters = [], array $headers = [])
+    {
+        return $this->createCollection(
+            $this->getApi()->getMovieGenres($parameters, $headers)
+        );
+    }
+
+    /**
+     * Get the list of tv genres.
+     *
+     * @param  array             $parameters
+     * @param  array             $headers
+     * @return GenericCollection
+     */
+    public function loadTvCollection(array $parameters = [], array $headers = [])
+    {
+        return $this->createCollection(
+            $this->getApi()->getTvGenres($parameters, $headers)
+        );
+    }
+
+    /**
      * Get the list of movies for a particular genre by id.
      * By default, only movies with 10 or more votes are included.
      *

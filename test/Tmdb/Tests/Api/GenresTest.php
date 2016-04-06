@@ -23,11 +23,17 @@ class GenresTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
+        $this->getAdapter()->expects($this->at(0))
             ->method('get')
-            ->with($this->getRequest('genre/list'))
+            ->with($this->getRequest('genre/movie/list'))
             ->will($this->returnValue(['genres']))
-        ; // there is no "selective" call, we always lean on the full list
+        ;
+
+        $this->getAdapter()->expects($this->at(1))
+            ->method('get')
+            ->with($this->getRequest('genre/tv/list'))
+            ->will($this->returnValue(['genres']))
+        ; // there is no "selective" call, we always lean on both lists
 
         $api->getGenre(self::GENRE_ID);
     }
@@ -39,11 +45,43 @@ class GenresTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
+        $this->getAdapter()->expects($this->at(0))
             ->method('get')
-            ->with($this->getRequest('genre/list'));
+            ->with($this->getRequest('genre/movie/list'));
+
+        $this->getAdapter()->expects($this->at(1))
+            ->method('get')
+            ->with($this->getRequest('genre/tv/list'));
 
         $api->getGenres();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetMovieGenres()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('genre/movie/list'));
+
+        $api->getMovieGenres();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTvGenres()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('genre/tv/list'));
+
+        $api->getTvGenres();
     }
 
     /**

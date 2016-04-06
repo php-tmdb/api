@@ -47,7 +47,36 @@ class Genres extends AbstractApi
      */
     public function getGenres(array $parameters = [], array $headers = [])
     {
-        return $this->get('genre/list', $parameters, $headers);
+        $data = array_merge(
+            $this->getMovieGenres($parameters, $headers),
+            $this->getTvGenres($parameters, $headers)
+        );
+        
+        return $data;
+    }
+
+    /**
+     * Get the list of movie genres.
+     *
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getMovieGenres(array $parameters = [], array $headers = [])
+    {
+        return $this->get('genre/movie/list', $parameters, $headers);
+    }
+
+    /**
+     * Get the list of TV genres.
+     *
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getTvGenres(array $parameters = [], array $headers = [])
+    {
+        return $this->get('genre/tv/list', $parameters, $headers);
     }
 
     /**
