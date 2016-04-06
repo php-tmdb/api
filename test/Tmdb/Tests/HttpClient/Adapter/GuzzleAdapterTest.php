@@ -14,7 +14,9 @@ namespace Tmdb\Tests\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use Tmdb\ApiToken;
 use Tmdb\Exception\NullResponseException;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\Request;
@@ -323,6 +325,46 @@ class GuzzleAdapterTest extends TestCase
             $this->assertEquals(true, false !== strpos($e->getMessage(), 'previous exception'));
         }
     }
+
+    /**
+     * @test
+     */
+    public function shouldAddCachePluginWhenEnabled()
+    {
+        $token  = new ApiToken('abc');
+        $client = new \Tmdb\Client($token);
+
+        /** @var Client $client */
+        $client = $client->getHttpClient()->getAdapter()->getClient();
+
+        /** @var HandlerStack $handler */
+        $handler = $client->getConfig('handler');
+
+        $this->assertTrue(false !== strpos((string) $handler, 'tmdb-cache'));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAddLoggingPluginWhenEnabled()
+    {
+        $token  = new ApiToken('abc');
+        $client = new \Tmdb\Client($token, [
+            'log' => [
+                'enabled' => true,
+                'path'    => '/tmp/php-tmdb-api.log'
+            ]
+        ]);
+
+        /** @var Client $client */
+        $client = $client->getHttpClient()->getAdapter()->getClient();
+
+        /** @var HandlerStack $handler */
+        $handler = $client->getConfig('handler');
+
+        $this->assertTrue(false !== strpos((string) $handler, 'tmdb-log'));
+    }
+
 
     /**
      * @test
