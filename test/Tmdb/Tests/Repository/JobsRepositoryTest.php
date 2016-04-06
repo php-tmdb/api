@@ -23,7 +23,7 @@ class JobsRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('job/list', []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/job/list', []))
         ;
 
         $repository->load();
@@ -38,7 +38,7 @@ class JobsRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('job/list', []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/job/list', []))
         ;
 
         $repository->loadCollection();

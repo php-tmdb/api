@@ -36,7 +36,7 @@ class GuestSessionTest extends TestCase
         $api          = $this->getApiWithMockedHttpAdapter(['session_token' => $sessionToken]);
 
         $request = $this->getRequest(
-            sprintf('guest_session/%s/rated_movies', (string) $sessionToken),
+            sprintf('https://api.themoviedb.org/3/guest_session/%s/rated_movies', (string) $sessionToken),
             ['guest_session_id' => (string) $sessionToken]
         );
         $request->getOptions()->set('session_token', $sessionToken);

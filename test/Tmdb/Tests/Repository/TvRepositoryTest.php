@@ -26,7 +26,7 @@ class TvRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID,
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID,
                 ['append_to_response' => 'credits,external_ids,images,translations,similar,keywords,changes,content_ratings,alternative_titles,videos']
             ))
         ;
@@ -43,7 +43,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/popular'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/popular'))
         ;
 
         $repository->getPopular();
@@ -58,7 +58,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/credits'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/credits'))
         ;
 
         $repository->getCredits(self::TV_ID);
@@ -73,7 +73,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/external_ids'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/external_ids'))
         ;
 
         $repository->getExternalIds(self::TV_ID);
@@ -88,7 +88,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/images'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/images'))
         ;
 
         $repository->getImages(self::TV_ID);
@@ -103,7 +103,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/translations'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/translations'))
         ;
 
         $repository->getTranslations(self::TV_ID);
@@ -118,7 +118,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/on_the_air'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/on_the_air'))
         ;
 
         $repository->getOnTheAir();
@@ -133,7 +133,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/airing_today'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/airing_today'))
         ;
 
         $repository->getAiringToday();
@@ -148,7 +148,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/top_rated'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/top_rated'))
         ;
 
         $repository->getTopRated();
@@ -163,7 +163,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/videos'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/videos'))
         ;
 
         $repository->getVideos(self::TV_ID);
@@ -178,7 +178,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/latest'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/latest'))
         ;
 
         $repository->getLatest();
@@ -193,7 +193,7 @@ class TvRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/content_ratings'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/content_ratings'))
         ;
 
         $repository->getContentRatings(self::TV_ID);

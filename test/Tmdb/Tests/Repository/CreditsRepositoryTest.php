@@ -25,7 +25,7 @@ class CreditsRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('credit/' . self::CREDITS_ID, []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/credit/' . self::CREDITS_ID, []))
         ;
 
         $repository->load(self::CREDITS_ID);

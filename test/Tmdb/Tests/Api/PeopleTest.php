@@ -25,7 +25,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID));
 
         $api->getPerson(self::PERSON_ID);
     }
@@ -39,7 +39,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/combined_credits'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/combined_credits'));
 
         $api->getCredits(self::PERSON_ID);
     }
@@ -53,7 +53,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/movie_credits'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/movie_credits'));
 
         $api->getMovieCredits(self::PERSON_ID);
     }
@@ -67,7 +67,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/tv_credits'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/tv_credits'));
 
         $api->getTvCredits(self::PERSON_ID);
     }
@@ -81,7 +81,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/images'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/images'));
 
         $api->getImages(self::PERSON_ID);
     }
@@ -95,7 +95,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/changes'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/changes'));
 
         $api->getChanges(self::PERSON_ID);
     }
@@ -109,7 +109,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/external_ids'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/external_ids'));
 
         $api->getExternalIds(self::PERSON_ID);
     }
@@ -123,7 +123,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/popular'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/popular'));
 
         $api->getPopular();
     }
@@ -137,7 +137,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/latest'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/latest'));
 
         $api->getLatest();
     }
@@ -151,7 +151,7 @@ class PeopleTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/tagged_images'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/tagged_images'));
 
         $api->getTaggedImages(self::PERSON_ID);
     }

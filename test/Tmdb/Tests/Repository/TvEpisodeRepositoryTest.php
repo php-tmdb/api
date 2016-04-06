@@ -32,7 +32,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID,
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID,
                 ['append_to_response' => 'credits,external_ids,images,changes,videos']
             ))
         ;
@@ -50,7 +50,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID,
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID,
                 ['append_to_response' => 'credits,external_ids,images,changes,videos']
             ))
         ;
@@ -77,7 +77,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/credits'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/credits'
             ))
         ;
 
@@ -103,7 +103,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/external_ids'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/external_ids'
             ))
         ;
 
@@ -129,7 +129,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/images'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/images'
             ))
         ;
 
@@ -155,7 +155,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/videos'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/videos'
             ))
         ;
 

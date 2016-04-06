@@ -23,7 +23,7 @@ class NetworksTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('network/49'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/network/49'));
 
         $api->getNetwork(49);
     }

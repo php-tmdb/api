@@ -15,8 +15,7 @@ namespace Tmdb\HttpClient\Adapter;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Subscriber\Retry\RetrySubscriber;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Exception\NullResponseException;
@@ -49,30 +48,30 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function registerSubscribers(EventDispatcherInterface $eventDispatcher)
     {
-        $filter = RetrySubscriber::createChainFilter([
-            RetrySubscriber::createIdempotentFilter(),
-            RetrySubscriber::createStatusFilter([429, 500, 503])
-        ]);
-
-        $retry = new RetrySubscriber([
-            'filter' => $filter,
-            'delay'  => function ($number, $event) {
-                /** @var \GuzzleHttp\Message\Response $response */
-                if (null !== $event->getResponse() && $event->getResponse()->getStatusCode() === 429) {
-                    // Adding 20% of the waiting time as it seems to be the best result without getting two blocking reqs.
-                    $sleep = (int) $event->getResponse()->getHeader('retry-after') * 1.2;
-
-                    if ($sleep >= 0) {
-                        return $sleep * 1000;
-                    }
-                }
-
-                return 0;
-            },
-            'max' => 3
-        ]);
-
-        $this->client->getEmitter()->attach($retry);
+//        $filter = RetrySubscriber::createChainFilter([
+//            RetrySubscriber::createIdempotentFilter(),
+//            RetrySubscriber::createStatusFilter([429, 500, 503])
+//        ]);
+//
+//        $retry = new RetrySubscriber([
+//            'filter' => $filter,
+//            'delay'  => function ($number, $event) {
+//                /** @var \GuzzleHttp\Message\Response $response */
+//                if (null !== $event->getResponse() && $event->getResponse()->getStatusCode() === 429) {
+//                    // Adding 20% of the waiting time as it seems to be the best result without getting two blocking reqs.
+//                    $sleep = (int) $event->getResponse()->getHeader('retry-after') * 1.2;
+//
+//                    if ($sleep >= 0) {
+//                        return $sleep * 1000;
+//                    }
+//                }
+//
+//                return 0;
+//            },
+//            'max' => 3
+//        ]);
+//
+//        $this->client->getEmitter()->attach($retry);
     }
 
     /**
@@ -138,7 +137,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->get(
+            $response = $this->client->request(
+                'GET',
                 $request->getPath(),
                 $this->getConfiguration($request)
             );
@@ -157,7 +157,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->post(
+            $response = $this->client->request(
+                'POST',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -179,7 +180,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->put(
+            $response = $this->client->request(
+                'PUT',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -201,7 +203,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->patch(
+            $response = $this->client->request(
+                'PATCH',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -223,7 +226,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->delete(
+            $response = $this->client->request(
+                'DELETE',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -245,7 +249,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->head(
+            $response = $this->client->request(
+                'HEAD',
                 $request->getPath(),
                 $this->getConfiguration($request)
             );

@@ -23,7 +23,7 @@ class CertificationRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('certification/movie/list'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/certification/movie/list'))
         ;
 
         $repository->getMovieList();
@@ -38,7 +38,7 @@ class CertificationRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('certification/tv/list'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/certification/tv/list'))
         ;
 
         $repository->getTvList();

@@ -27,7 +27,7 @@ class TvEpisodeTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID));
 
         $api->getEpisode(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
@@ -41,7 +41,7 @@ class TvEpisodeTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/credits'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/credits'));
 
         $api->getCredits(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
@@ -55,7 +55,7 @@ class TvEpisodeTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/external_ids'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/external_ids'));
 
         $api->getExternalIds(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
@@ -69,7 +69,7 @@ class TvEpisodeTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/images'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/images'));
 
         $api->getImages(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
@@ -83,7 +83,7 @@ class TvEpisodeTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/videos'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/videos'));
 
         $api->getVideos(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
@@ -97,7 +97,7 @@ class TvEpisodeTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/changes'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/changes'));
 
         $api->getChanges(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
@@ -111,7 +111,7 @@ class TvEpisodeTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/account_states'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/account_states'));
 
         $api->getAccountStates(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
     }
@@ -126,7 +126,7 @@ class TvEpisodeTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/rating',
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/rating',
                 [],
                 'POST',
                 [],

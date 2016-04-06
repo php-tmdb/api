@@ -26,7 +26,7 @@ class ListRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('list/' . self::LIST_ID))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID))
         ;
 
         $repository->load(self::LIST_ID);
@@ -41,7 +41,7 @@ class ListRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('list/' . self::LIST_ID . '/item_status', ['movie_id' => self::MOVIE_ID]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID . '/item_status', ['movie_id' => self::MOVIE_ID]))
         ;
 
         $repository->getItemStatus(self::LIST_ID, self::MOVIE_ID);
@@ -56,7 +56,7 @@ class ListRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list', [], 'POST', [], ['name' => 'list-name', 'description' => 'list-description']))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list', [], 'POST', [], ['name' => 'list-name', 'description' => 'list-description']))
         ;
 
         $repository->createList('list-name', 'list-description');
@@ -71,7 +71,7 @@ class ListRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list/'.self::LIST_ID.'/add_item', [], 'POST', [], ['media_id' => self::MOVIE_ID]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/add_item', [], 'POST', [], ['media_id' => self::MOVIE_ID]))
         ;
 
         $repository->add(self::LIST_ID, self::MOVIE_ID);
@@ -86,7 +86,7 @@ class ListRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list/'.self::LIST_ID.'/remove_item', [], 'POST', [], ['media_id' => self::MOVIE_ID]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/remove_item', [], 'POST', [], ['media_id' => self::MOVIE_ID]))
         ;
 
         $repository->remove(self::LIST_ID, self::MOVIE_ID);
@@ -101,7 +101,7 @@ class ListRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('delete')
-            ->with($this->getRequest('list/' . self::LIST_ID, [], 'DELETE'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID, [], 'DELETE'))
         ;
 
         $repository->deleteList(self::LIST_ID);
@@ -116,7 +116,7 @@ class ListRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list/'.self::LIST_ID.'/clear', ['confirm'=>'true'], 'POST'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/clear', ['confirm'=>'true'], 'POST'))
         ;
 
         $repository->clearList(self::LIST_ID, true);

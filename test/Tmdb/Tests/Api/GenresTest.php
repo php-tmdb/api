@@ -25,13 +25,13 @@ class GenresTest extends TestCase
 
         $this->getAdapter()->expects($this->at(0))
             ->method('get')
-            ->with($this->getRequest('genre/movie/list'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'))
             ->will($this->returnValue(['genres']))
         ;
 
         $this->getAdapter()->expects($this->at(1))
             ->method('get')
-            ->with($this->getRequest('genre/tv/list'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'))
             ->will($this->returnValue(['genres']))
         ; // there is no "selective" call, we always lean on both lists
 
@@ -47,11 +47,11 @@ class GenresTest extends TestCase
 
         $this->getAdapter()->expects($this->at(0))
             ->method('get')
-            ->with($this->getRequest('genre/movie/list'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/genre/list'));
 
         $this->getAdapter()->expects($this->at(1))
             ->method('get')
-            ->with($this->getRequest('genre/tv/list'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'));
 
         $api->getGenres();
     }
@@ -65,7 +65,7 @@ class GenresTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('genre/movie/list'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'));
 
         $api->getMovieGenres();
     }
@@ -79,7 +79,7 @@ class GenresTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('genre/tv/list'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'));
 
         $api->getTvGenres();
     }
@@ -93,7 +93,7 @@ class GenresTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('genre/' . self::GENRE_ID. '/movies'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/genre/' . self::GENRE_ID. '/movies'));
 
         $api->getMovies(self::GENRE_ID);
     }
