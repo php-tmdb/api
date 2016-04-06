@@ -23,7 +23,7 @@ class CreditsTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('credit/5240760b5dbf5b0c2c0139db'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/credit/5240760b5dbf5b0c2c0139db'));
 
         $api->getCredit('5240760b5dbf5b0c2c0139db');
     }

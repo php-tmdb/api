@@ -25,7 +25,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID));
 
         $api->getTvshow(self::TV_ID);
     }
@@ -39,7 +39,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/credits'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/credits'));
 
         $api->getCredits(self::TV_ID);
     }
@@ -53,7 +53,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/external_ids'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/external_ids'));
 
         $api->getExternalIds(self::TV_ID);
     }
@@ -67,7 +67,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/images'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/images'));
 
         $api->getImages(self::TV_ID);
     }
@@ -81,7 +81,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/translations'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/translations'));
 
         $api->getTranslations(self::TV_ID);
     }
@@ -95,7 +95,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/popular'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/popular'));
 
         $api->getPopular();
     }
@@ -109,7 +109,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/top_rated'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/top_rated'));
 
         $api->getTopRated();
     }
@@ -123,7 +123,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/on_the_air'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/on_the_air'));
 
         $api->getOnTheAir();
     }
@@ -137,7 +137,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/airing_today'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/airing_today'));
 
         $api->getAiringToday();
     }
@@ -151,7 +151,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/videos'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/videos'))
         ;
 
         $api->getVideos(self::TV_ID);
@@ -166,7 +166,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/changes'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/changes'))
         ;
 
         $api->getChanges(self::TV_ID);
@@ -181,7 +181,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/keywords'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/keywords'))
         ;
 
         $api->getKeywords(self::TV_ID);
@@ -196,7 +196,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/similar'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/similar'))
         ;
 
         $api->getSimilar(self::TV_ID);
@@ -212,7 +212,7 @@ class TvTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/rating',
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/rating',
                 [],
                 'POST',
                 [],
@@ -232,7 +232,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/latest'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/latest'));
 
         $api->getLatest();
     }
@@ -246,7 +246,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/account_states'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/account_states'));
 
         $api->getAccountStates(self::TV_ID);
     }
@@ -260,7 +260,7 @@ class TvTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('tv/' . self::TV_ID . '/content_ratings'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/content_ratings'));
 
         $api->getContentRatings(self::TV_ID);
     }

@@ -31,7 +31,7 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('search/movie', ['query' => urlencode(self::QUERY_MOVIE)]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/search/movie', ['query' => urlencode(self::QUERY_MOVIE)]))
         ;
 
         $api->searchMovies(self::QUERY_MOVIE);
@@ -46,7 +46,7 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('search/collection', ['query' => urlencode(self::QUERY_COLLECTION)]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/search/collection', ['query' => urlencode(self::QUERY_COLLECTION)]))
         ;
 
         $api->searchCollection(self::QUERY_COLLECTION);
@@ -61,7 +61,7 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('search/tv', ['query' => urlencode(self::QUERY_TV)]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/search/tv', ['query' => urlencode(self::QUERY_TV)]))
         ;
 
         $api->searchTv(self::QUERY_TV);
@@ -76,7 +76,7 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('search/person', ['query' => urlencode(self::QUERY_PERSON)]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/search/person', ['query' => urlencode(self::QUERY_PERSON)]))
         ;
 
         $api->searchPersons(self::QUERY_PERSON);
@@ -91,7 +91,7 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('search/list', ['query' => urlencode(self::QUERY_LIST)]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/search/list', ['query' => urlencode(self::QUERY_LIST)]))
         ;
 
         $api->searchList(self::QUERY_LIST);
@@ -106,7 +106,7 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('search/company', ['query' => urlencode(self::QUERY_COMPANY)]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/search/company', ['query' => urlencode(self::QUERY_COMPANY)]))
         ;
 
         $api->searchCompany(self::QUERY_COMPANY);
@@ -121,7 +121,7 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('search/keyword', ['query' => urlencode(self::QUERY_KEYWORD)]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/search/keyword', ['query' => urlencode(self::QUERY_KEYWORD)]))
         ;
 
         $api->searchKeyword(self::QUERY_KEYWORD);
@@ -136,7 +136,7 @@ class SearchTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('search/multi', ['query' => urlencode(self::QUERY_KEYWORD)]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/search/multi', ['query' => urlencode(self::QUERY_KEYWORD)]))
         ;
 
         $api->searchMulti(self::QUERY_KEYWORD);

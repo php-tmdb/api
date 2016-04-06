@@ -25,7 +25,7 @@ class NetworkRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('network/' . self::NETWORK_ID))
+            ->with($this->getRequest('https://api.themoviedb.org/3/network/' . self::NETWORK_ID))
         ;
 
         $repository->load(self::NETWORK_ID);

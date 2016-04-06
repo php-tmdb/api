@@ -26,7 +26,7 @@ class PeopleRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'person/' . self::PERSON_ID,
+                'https://api.themoviedb.org/3/person/' . self::PERSON_ID,
                 ['append_to_response' => 'images,changes,combined_credits,movie_credits,tv_credits,external_ids,tagged_images']
             ))
         ;
@@ -43,7 +43,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/movie_credits'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/movie_credits'))
         ;
 
         $repository->getMovieCredits(self::PERSON_ID);
@@ -58,7 +58,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/external_ids'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/external_ids'))
         ;
 
         $repository->getExternalIds(self::PERSON_ID);
@@ -73,7 +73,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/images'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/images'))
         ;
 
         $repository->getImages(self::PERSON_ID);
@@ -88,7 +88,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/changes'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/changes'))
         ;
 
         $repository->getChanges(self::PERSON_ID);
@@ -103,7 +103,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/tagged_images'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/tagged_images'))
         ;
 
         $repository->getTaggedImages(self::PERSON_ID);
@@ -118,7 +118,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/popular'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/popular'))
         ;
 
         $repository->getPopular();
@@ -133,7 +133,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/latest'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/latest'))
         ;
 
         $repository->getLatest();
@@ -148,7 +148,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/tv_credits'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/tv_credits'))
         ;
 
         $repository->getTvCredits(self::PERSON_ID);
@@ -163,7 +163,7 @@ class PeopleRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('person/' . self::PERSON_ID . '/combined_credits'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/combined_credits'))
         ;
 
         $repository->getCombinedCredits(self::PERSON_ID);

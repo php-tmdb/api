@@ -25,7 +25,7 @@ class ListsTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('list/' . self::LIST_ID));
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID));
 
         $api->getList(self::LIST_ID);
     }
@@ -40,7 +40,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list', [], 'POST', [], [
+            ->with($this->getRequest('https://api.themoviedb.org/3/list', [], 'POST', [], [
                 'name' => 'name',
                 'description' => 'description'
             ]))
@@ -59,7 +59,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('list/' . self::LIST_ID . '/item_status', ['movie_id' => 150]));
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID . '/item_status', ['movie_id' => 150]));
 
         $api->getItemStatus(self::LIST_ID, 150);
     }
@@ -74,7 +74,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list/'.self::LIST_ID.'/add_item', [], 'POST', [], ['media_id' => 150]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/add_item', [], 'POST', [], ['media_id' => 150]))
         ;
 
         $api->addMediaToList(self::LIST_ID, 150);
@@ -90,7 +90,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list/'.self::LIST_ID.'/remove_item', [], 'POST', [], ['media_id' => 150]))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/remove_item', [], 'POST', [], ['media_id' => 150]))
         ;
 
         $api->removeMediaFromList(self::LIST_ID, 150);
@@ -106,7 +106,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('delete')
-            ->with($this->getRequest('list/' . self::LIST_ID, [], 'DELETE'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID, [], 'DELETE'))
         ;
 
         $api->deleteList(self::LIST_ID);
@@ -122,7 +122,7 @@ class ListsTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('list/' . self::LIST_ID . '/clear', ['confirm' => 'true'], 'POST'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID . '/clear', ['confirm' => 'true'], 'POST'))
         ;
 
         $api->clearList(self::LIST_ID, true);
