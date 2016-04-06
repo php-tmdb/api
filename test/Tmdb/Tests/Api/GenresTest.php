@@ -47,7 +47,7 @@ class GenresTest extends TestCase
 
         $this->getAdapter()->expects($this->at(0))
             ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/list'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'));
 
         $this->getAdapter()->expects($this->at(1))
             ->method('get')
