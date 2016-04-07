@@ -14,7 +14,11 @@ namespace Tmdb\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\RetryMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ParameterBag;
@@ -48,30 +52,45 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function registerSubscribers(EventDispatcherInterface $eventDispatcher)
     {
-//        $filter = RetrySubscriber::createChainFilter([
-//            RetrySubscriber::createIdempotentFilter(),
-//            RetrySubscriber::createStatusFilter([429, 500, 503])
-//        ]);
-//
-//        $retry = new RetrySubscriber([
-//            'filter' => $filter,
-//            'delay'  => function ($number, $event) {
-//                /** @var \GuzzleHttp\Message\Response $response */
-//                if (null !== $event->getResponse() && $event->getResponse()->getStatusCode() === 429) {
-//                    // Adding 20% of the waiting time as it seems to be the best result without getting two blocking reqs.
-//                    $sleep = (int) $event->getResponse()->getHeader('retry-after') * 1.2;
-//
-//                    if ($sleep >= 0) {
-//                        return $sleep * 1000;
-//                    }
-//                }
-//
-//                return 0;
-//            },
-//            'max' => 3
-//        ]);
-//
-//        $this->client->getEmitter()->attach($retry);
+        /** @var HandlerStack $handler */
+        $handler = $this->client->getConfig('handler');
+
+        $handler->push(Middleware::retry(function(
+            $retries,
+            \GuzzleHttp\Psr7\Request $request,
+            \GuzzleHttp\Psr7\Response $response = null,
+            RequestException $exception = null
+        ){
+            if ($retries >= 5) {
+                return false;
+            }
+
+            // Retry connection exception
+            if ($exception instanceof ConnectException) {
+                return true;
+            }
+
+            if ($response) {
+                if($response->getStatusCode() >= 500) {
+                    return true;
+                }
+
+                if($response->getStatusCode() === 429) {
+                    $sleep = (int) $response->getHeader('retry-after');
+
+                    // TMDB allows 40 requests per 10 seconds, anything higher should be faulty.
+                    if ($sleep > 10) {
+                        return false;
+                    }
+
+                    sleep($sleep);
+
+                    return true;
+                }
+            }
+
+            return false;
+        }));
     }
 
     /**
