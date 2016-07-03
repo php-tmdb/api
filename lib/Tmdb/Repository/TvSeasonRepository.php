@@ -32,10 +32,10 @@ class TvSeasonRepository extends AbstractRepository
      *
      * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
      *
-     * @param $tvShow
-     * @param $season
-     * @param $parameters
-     * @param $headers
+     * @param int|Tv $tvShow
+     * @param int|Season $season
+     * @param array $parameters
+     * @param array $headers
      * @throws RuntimeException
      * @return null|\Tmdb\Model\AbstractModel
      */
@@ -46,10 +46,10 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
-        if (null == $tvShow || null == $season) {
+        if (null === $tvShow || null === $season) {
             throw new RuntimeException('Not all required parameters to load an tv season are present.');
         }
 
