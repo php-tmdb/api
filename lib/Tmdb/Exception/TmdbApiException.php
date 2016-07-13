@@ -68,10 +68,10 @@ class TmdbApiException extends \Exception
     /**
      * Create the exception
      *
-     * @param int $code
-     * @param string $message
-     * @param Request|null $request
-     * @param Response|null $response
+     * @param int             $code
+     * @param string          $message
+     * @param Request|null    $request
+     * @param Response|null   $response
      * @param \Exception|null $previous
      */
     public function __construct($code, $message, $request = null, $response = null, \Exception $previous = null)

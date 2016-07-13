@@ -24,9 +24,9 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Create the unified exception to throw
      *
-     * @param  Request $request
-     * @param  Response $response
-     * @param \Exception $previous
+     * @param  Request          $request
+     * @param  Response         $response
+     * @param \Exception        $previous
      * @return TmdbApiException
      */
     protected function createApiException(Request $request, Response $response, \Exception $previous= null)
