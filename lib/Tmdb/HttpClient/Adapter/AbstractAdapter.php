@@ -34,7 +34,7 @@ abstract class AbstractAdapter implements AdapterInterface
         $errors = json_decode((string) $response->getBody());
 
         return new TmdbApiException(
-            isset($errors->status_code) ? $errors->status_code : -1,
+            isset($errors->status_code) ? $errors->status_code : $response->getCode(),
             isset($errors->status_message) ? $errors->status_message : null,
             $request,
             $response,

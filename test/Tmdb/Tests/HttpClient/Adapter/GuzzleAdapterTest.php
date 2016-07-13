@@ -299,6 +299,29 @@ class GuzzleAdapterTest extends TestCase
     }
 
     /**
+     * @expectedException \Tmdb\Exception\NullResponseException
+     * @test
+     */
+    public function shouldThrowExceptionForServerError()
+    {
+        $client = $this->getMock('GuzzleHttp\ClientInterface');
+
+        $client->expects($this->once())
+            ->method('get')
+            ->will($this->throwException(
+                new RequestException(
+                    '500',
+                    new \GuzzleHttp\Message\Request('get', '/'),
+                    new \GuzzleHttp\Message\Response(500, [], Stream::factory('<html><body>Internal Server Error</body></html>'))
+                )
+            ))
+        ;
+
+        $adapter = new GuzzleAdapter($client);
+        $adapter->get(new Request());
+    }
+
+    /**
      * @test
      */
     public function shouldFormatMessageForAnGuzzleHttpRequestException()
