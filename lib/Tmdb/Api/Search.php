@@ -30,7 +30,7 @@ class Search extends AbstractApi
     public function searchMovies($query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/movie', array_merge($parameters, [
-            'query' => urlencode($query)
+            'query' => $query
         ], $headers));
     }
 
@@ -45,7 +45,7 @@ class Search extends AbstractApi
     public function searchCollection($query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/collection', array_merge($parameters, [
-            'query' => urlencode($query)
+            'query' => $query
         ], $headers));
     }
 
@@ -60,7 +60,7 @@ class Search extends AbstractApi
     public function searchTv($query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/tv', array_merge($parameters, [
-            'query' => urlencode($query)
+            'query' => $query
         ], $headers));
     }
 
@@ -75,7 +75,7 @@ class Search extends AbstractApi
     public function searchPersons($query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/person', array_merge($parameters, [
-            'query' => urlencode($query)
+            'query' => $query
         ], $headers));
     }
 
@@ -90,7 +90,7 @@ class Search extends AbstractApi
     public function searchList($query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/list', array_merge($parameters, [
-            'query' => urlencode($query)
+            'query' => $query
         ], $headers));
     }
 
@@ -105,7 +105,7 @@ class Search extends AbstractApi
     public function searchCompany($query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/company', array_merge($parameters, [
-            'query' => urlencode($query)
+            'query' => $query
         ], $headers));
     }
 
@@ -120,7 +120,7 @@ class Search extends AbstractApi
     public function searchKeyword($query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/keyword', array_merge($parameters, [
-            'query' => urlencode($query)
+            'query' => $query
         ], $headers));
     }
 
@@ -138,7 +138,7 @@ class Search extends AbstractApi
     public function searchMulti($query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/multi', array_merge($parameters, [
-            'query' => urlencode($query)
+            'query' => $query
         ], $headers));
     }
 }
