@@ -47,7 +47,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/movie',
-                ['page' => 1, 'query' => urlencode(self::MOVIE_QUERY)]
+                ['page' => 1, 'query' => self::MOVIE_QUERY]
             ))
         ;
 
@@ -68,7 +68,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/collection',
-                ['page' => 1, 'query' => urlencode(self::COLLECTION_QUERY)]
+                ['page' => 1, 'query' => self::COLLECTION_QUERY]
             ))
         ;
 
@@ -89,7 +89,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/tv',
-                ['page' => 1, 'query' => urlencode(self::TV_QUERY)]
+                ['page' => 1, 'query' => self::TV_QUERY]
             ))
         ;
 
@@ -110,7 +110,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/person',
-                ['page' => 1, 'query' => urlencode(self::PERSON_QUERY)]
+                ['page' => 1, 'query' => self::PERSON_QUERY]
             ))
         ;
 
@@ -131,7 +131,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/list',
-                ['page' => 1, 'query' => urlencode(self::LIST_QUERY)]
+                ['page' => 1, 'query' => self::LIST_QUERY]
             ))
         ;
 
@@ -152,7 +152,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/company',
-                ['page' => 1, 'query' => urlencode(self::COMPANY_QUERY)]
+                ['page' => 1, 'query' => self::COMPANY_QUERY]
             ))
         ;
 
@@ -173,7 +173,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/keyword',
-                ['page' => 1, 'query' => urlencode(self::KEYWORD_QUERY)]
+                ['page' => 1, 'query' => self::KEYWORD_QUERY]
             ))
         ;
 
@@ -194,7 +194,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/multi',
-                ['page' => 1, 'query' => urlencode(self::MULTI_QUERY)]
+                ['page' => 1, 'query' => self::MULTI_QUERY]
             ))
             ->will($this->returnValue(new Response(200, json_encode([
                 'page' => 1,
@@ -222,7 +222,7 @@ class SearchRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'search/multi',
-                ['page' => 1, 'query' => urlencode(self::MULTI_QUERY)]
+                ['page' => 1, 'query' => self::MULTI_QUERY]
             ))
             ->will($this->returnValue(null))
         ;
