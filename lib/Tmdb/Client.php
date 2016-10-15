@@ -13,6 +13,7 @@
 namespace Tmdb;
 
 use Doctrine\Common\Cache\FilesystemCache;
+use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LogLevel;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -271,8 +272,8 @@ class Client
         $options = $resolver->resolve(array_key_exists('cache', $options) ? $options['cache'] : []);
 
         if ($options['enabled'] && !$options['handler']) {
-            $options['handler'] = new FilesystemCache(
-                $options['path']
+            $options['handler'] = new DoctrineCacheStorage(
+                new FilesystemCache($options['path'])
             );
         }
 

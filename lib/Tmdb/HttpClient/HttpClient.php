@@ -450,7 +450,7 @@ class HttpClient
             $this->adapter->getClient()->getConfig('handler')->push(
                 new CacheMiddleware(
                     new PrivateCacheStrategy(
-                        new DoctrineCacheStorage($parameters['handler'])
+                        $parameters['handler']
                     )
                 ),
                 'tmdb-cache'
