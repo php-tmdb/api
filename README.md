@@ -20,9 +20,10 @@ Stable
 Currently unit tests are run on travis, with the following versions:
 
 - 5.6
-- 7
+- 7.0
+- 7.1
+- HHVM
 - nightly ( failures allowed )
-- HHVM ( failures allowed )
 
 Features
 --------
