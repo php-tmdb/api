@@ -1,8 +1,8 @@
 A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
 ---------------
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
-[![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=2.0)](https://travis-ci.org/php-tmdb/api)
-[![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/api/badges/coverage.png?b=2.0)](https://scrutinizer-ci.com/g/php-tmdb/api/?branch=2.0)
+[![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=2.1)](https://travis-ci.org/php-tmdb/api)
+[![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/api/badges/coverage.png?b=2.1)](https://scrutinizer-ci.com/g/php-tmdb/api/?branch=2.1)
 [![HHVM Status](http://hhvm.h4cc.de/badge/php-tmdb/api.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
@@ -44,7 +44,7 @@ Plug-ins
 --------
 
 - Symfony2
-  - [php-tmdb/symfony](https://github.com/php-tmdb/symfony), _yet to updated to 2.0_.
+  - [php-tmdb/symfony](https://github.com/php-tmdb/symfony), _yet to be updated to 2.1_.
 - Laravel
   - [php-tmdb/laravel](https://github.com/php-tmdb/laravel).
 
@@ -62,7 +62,7 @@ _You are not obliged to move the composer.phar file to your /usr/local/bin, it i
 Add the following to your require block in composer.json config
 
 ```
-"php-tmdb/api": "~2.0"
+"php-tmdb/api": "~2.1"
 ```
 
 __If your new to composer and have no clue what I'm talking about__
@@ -72,7 +72,7 @@ Just create a file named `composer.json` in your document root:
 ```
 {
     "require": {
-        "php-tmdb/api": "~2.0"
+        "php-tmdb/api": "~2.1"
     }
 }
 ```
