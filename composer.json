@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.6.0",
         "ext-curl": "*",
         "symfony/event-dispatcher": ">=2.4,<4",
         "symfony/options-resolver": ">=2.6,<4",
