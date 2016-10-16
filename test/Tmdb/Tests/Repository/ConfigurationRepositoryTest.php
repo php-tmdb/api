@@ -23,7 +23,7 @@ class ConfigurationRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('configuration'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/configuration'))
         ;
 
         $repository->load();

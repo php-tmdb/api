@@ -23,7 +23,7 @@ class TimezonesTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('timezones/list'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/timezones/list'));
 
         $api->getTimezones();
     }

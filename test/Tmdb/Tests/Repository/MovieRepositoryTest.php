@@ -28,7 +28,7 @@ class MovieRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'movie/' . self::MOVIE_ID,
+                'https://api.themoviedb.org/3/movie/' . self::MOVIE_ID,
                 ['append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,releases,reviews,similar,translations,videos']
             ))
         ;
@@ -45,7 +45,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/alternative_titles'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/alternative_titles'))
         ;
 
         $repository->getAlternativeTitles(self::MOVIE_ID);
@@ -60,7 +60,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/credits'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/credits'))
         ;
 
         $repository->getCredits(self::MOVIE_ID);
@@ -75,7 +75,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/images'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/images'))
         ;
         $repository->getImages(self::MOVIE_ID);
     }
@@ -89,7 +89,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/keywords'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/keywords'))
         ;
 
         $repository->getKeywords(self::MOVIE_ID);
@@ -104,7 +104,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/releases'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/releases'))
         ;
 
         $repository->getReleases(self::MOVIE_ID);
@@ -119,7 +119,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/translations'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/translations'))
         ;
 
         $repository->getTranslations(self::MOVIE_ID);
@@ -134,7 +134,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/similar'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/similar'))
         ;
 
         $repository->getSimilar(self::MOVIE_ID);
@@ -149,7 +149,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/reviews'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/reviews'))
         ;
 
         $repository->getReviews(self::MOVIE_ID);
@@ -164,7 +164,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/lists'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/lists'))
         ;
 
         $repository->getLists(self::MOVIE_ID);
@@ -179,7 +179,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/changes'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/changes'))
         ;
 
         $repository->getChanges(self::MOVIE_ID);
@@ -194,7 +194,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/latest'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/latest'))
         ;
 
         $repository->getLatest();
@@ -209,7 +209,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/upcoming'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/upcoming'))
         ;
 
         $repository->getUpcoming();
@@ -224,7 +224,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/now_playing'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/now_playing'))
         ;
 
         $repository->getNowPlaying();
@@ -239,7 +239,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/popular'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/popular'))
         ;
 
         $repository->getPopular();
@@ -254,7 +254,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/top_rated'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/top_rated'))
         ;
 
         $repository->getTopRated();
@@ -269,7 +269,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/id/account_states'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/id/account_states'))
         ;
 
         $repository->getAccountStates('id');
@@ -285,7 +285,7 @@ class MovieRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('post')
             ->with($this->getRequest(
-                'movie/id/rating',
+                'https://api.themoviedb.org/3/movie/id/rating',
                 [],
                 'POST',
                 [],
@@ -305,7 +305,7 @@ class MovieRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('movie/' . self::MOVIE_ID . '/videos'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/videos'))
         ;
 
         $repository->getVideos(self::MOVIE_ID);

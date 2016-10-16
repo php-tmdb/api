@@ -17,7 +17,7 @@ use Tmdb\Model\Tv;
 class TvSeasonRepositoryTest extends TestCase
 {
     const TV_ID     = 3572;
-    const SEASON_ID = 1;
+    const SEASON_NUMBER = 1;
 
     /**
      * @test
@@ -29,12 +29,12 @@ class TvSeasonRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID,
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER,
                 ['append_to_response' => 'credits,external_ids,images,changes,videos']
             ))
         ;
 
-        $repository->load(self::TV_ID, self::SEASON_ID);
+        $repository->load(self::TV_ID, self::SEASON_NUMBER);
     }
 
     /**
@@ -47,7 +47,7 @@ class TvSeasonRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID,
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER,
                 ['append_to_response' => 'credits,external_ids,images,changes,videos']
             ))
         ;
@@ -56,7 +56,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->load($tv, $season);
     }
@@ -71,7 +71,7 @@ class TvSeasonRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/credits'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/credits'
             ))
         ;
 
@@ -79,7 +79,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_ID);
+        $season->setId(self::SEASON_NUMBER);
 
         $repository->getCredits($tv, $season);
     }
@@ -94,7 +94,7 @@ class TvSeasonRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/external_ids'
             ))
         ;
 
@@ -102,7 +102,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_ID);
+        $season->setId(self::SEASON_NUMBER);
 
         $repository->getExternalIds($tv, $season);
     }
@@ -117,7 +117,7 @@ class TvSeasonRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/images'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/images'
             ))
         ;
 
@@ -125,7 +125,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_ID);
+        $season->setId(self::SEASON_NUMBER);
 
         $repository->getImages($tv, $season);
     }
@@ -140,7 +140,7 @@ class TvSeasonRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/videos'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/videos'
             ))
         ;
 
@@ -148,7 +148,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_ID);
+        $season->setId(self::SEASON_NUMBER);
 
         $repository->getVideos($tv, $season);
     }

@@ -25,7 +25,7 @@ class ReviewRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('review/' . self::REVIEW_ID))
+            ->with($this->getRequest('https://api.themoviedb.org/3/review/' . self::REVIEW_ID))
         ;
 
         $repository->load(self::REVIEW_ID);

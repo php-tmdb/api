@@ -27,6 +27,8 @@ abstract class TestCase extends Base
      */
     private $_client;
 
+    protected $clonedInitialAdapter;
+
     abstract protected function getApiClass();
 
     /**
@@ -90,6 +92,6 @@ abstract class TestCase extends Base
      */
     protected function getAdapter()
     {
-        return $this->_client->getHttpClient()->getAdapter();
+        return clone $this->_client->getHttpClient()->getAdapter();
     }
 }

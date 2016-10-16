@@ -17,7 +17,7 @@ $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 
 // A simple change the path of the log
 /*
-$client = new \Tmdb\Client($token, null, true, [
+$client = new \Tmdb\Client($token, [
     'log' => [
         'enabled' => true,
         'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'application-api.log'

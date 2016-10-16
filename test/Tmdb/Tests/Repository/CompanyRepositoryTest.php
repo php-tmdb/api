@@ -25,7 +25,7 @@ class CompanyRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('company/' . self::COMPANY_ID, []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/company/' . self::COMPANY_ID, []))
         ;
 
         $repository->load(self::COMPANY_ID);
@@ -40,7 +40,7 @@ class CompanyRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('company/'.self::COMPANY_ID.'/movies'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/company/'.self::COMPANY_ID.'/movies'))
         ;
 
         $repository->getMovies(self::COMPANY_ID);

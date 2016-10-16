@@ -26,10 +26,10 @@ class AbstractApiTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('/', [], 'GET'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'GET'))
         ;
 
-        $api->get('/');
+        $api->get('');
     }
 
     /**
@@ -42,10 +42,10 @@ class AbstractApiTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('head')
-            ->with($this->getRequest('/', [], 'HEAD'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'HEAD'))
         ;
 
-        $api->head('/');
+        $api->head('');
     }
 
     /**
@@ -58,10 +58,10 @@ class AbstractApiTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('/', [], 'POST'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'POST'))
         ;
 
-        $api->post('/');
+        $api->post('');
     }
 
     /**
@@ -74,10 +74,10 @@ class AbstractApiTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('put')
-            ->with($this->getRequest('/', [], 'PUT'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'PUT'))
         ;
 
-        $api->put('/');
+        $api->put('');
     }
 
     /**
@@ -90,10 +90,10 @@ class AbstractApiTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('delete')
-            ->with($this->getRequest('/', [], 'DELETE'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'DELETE'))
         ;
 
-        $api->delete('/');
+        $api->delete('');
     }
 
     /**
@@ -106,10 +106,10 @@ class AbstractApiTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('patch')
-            ->with($this->getRequest('/', [], 'PATCH'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'PATCH'))
         ;
 
-        $api->patch('/');
+        $api->patch('');
     }
 
     protected function getApiClass()

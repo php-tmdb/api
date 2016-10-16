@@ -25,7 +25,7 @@ class FindRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('find/' . self::FIND_QUERY, []))
+            ->with($this->getRequest('https://api.themoviedb.org/3/find/' . self::FIND_QUERY, []))
         ;
 
         $repository->findBy(self::FIND_QUERY);
