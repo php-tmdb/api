@@ -56,16 +56,6 @@ class TmdbApiException extends \Exception
     const STATUS_RESOURCE_NOT_FOUND = 34;
 
     /**
-     * @var int
-     */
-    protected $code;
-
-    /**
-     * @var string
-     */
-    protected $message;
-
-    /**
      * @var Request
      */
     protected $request;
@@ -78,15 +68,16 @@ class TmdbApiException extends \Exception
     /**
      * Create the exception
      *
-     * @param string        $message
-     * @param int           $code
-     * @param Request|null  $request
-     * @param Response|null $response
+     * @param int             $code
+     * @param string          $message
+     * @param Request|null    $request
+     * @param Response|null   $response
+     * @param \Exception|null $previous
      */
-    public function __construct($code, $message, $request = null, $response = null)
+    public function __construct($code, $message, $request = null, $response = null, \Exception $previous = null)
     {
-        $this->code     = $code;
-        $this->message  = $message;
+        parent::__construct($message, $code, $previous);
+
         $this->request  = $request;
         $this->response = $response;
     }

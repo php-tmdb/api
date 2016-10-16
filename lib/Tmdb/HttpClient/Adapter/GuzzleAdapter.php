@@ -119,8 +119,14 @@ class GuzzleAdapter extends AbstractAdapter
      */
     protected function handleRequestException(Request $request, RequestException $previousException)
     {
-        if (null !== $previousException && null == $previousException->getResponse()) {
-            throw new NullResponseException($this->request, $previousException);
+        if (null !== $previousException) {
+            $response = $previousException->getResponse();
+            if(null == $response) {
+                throw new NullResponseException($this->request, $previousException);
+            }
+            if($response->getStatusCode() >= 500 && $response->getStatusCode() <= 599) {
+                throw new NullResponseException($this->request, $previousException);
+            }
         }
 
         throw $this->createApiException(

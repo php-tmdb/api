@@ -26,17 +26,19 @@ abstract class AbstractAdapter implements AdapterInterface
      *
      * @param  Request          $request
      * @param  Response         $response
+     * @param \Exception        $previous
      * @return TmdbApiException
      */
-    protected function createApiException(Request $request, Response $response)
+    protected function createApiException(Request $request, Response $response, \Exception $previous= null)
     {
         $errors = json_decode((string) $response->getBody());
 
         return new TmdbApiException(
-            $errors->status_code,
-            $errors->status_message,
+            isset($errors->status_code) ? $errors->status_code : $response->getCode(),
+            isset($errors->status_message) ? $errors->status_message : null,
             $request,
-            $response
+            $response,
+            $previous
         );
     }
 }
