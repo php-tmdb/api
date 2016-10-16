@@ -29,7 +29,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldGet()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -45,7 +45,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldPost()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -61,7 +61,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldPut()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -77,7 +77,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldDelete()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -93,7 +93,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldPatch()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -109,7 +109,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldHead()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -126,7 +126,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForGet()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -152,7 +152,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForPost()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -178,7 +178,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForHead()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -204,7 +204,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForPatch()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -230,7 +230,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForPut()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -256,7 +256,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForDelete()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -282,7 +282,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowNullResponseException()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')
@@ -304,7 +304,7 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldFormatMessageForAnGuzzleHttpRequestException()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
             ->method('request')

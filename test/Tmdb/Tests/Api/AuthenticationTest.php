@@ -70,7 +70,7 @@ class AuthenticationTest extends TestCase
                 'username' => 'piet',
                 'password' => 'henk'
             ]))
-            ->will($this->returnValue($response))
+            ->willReturn($response)
         ;
 
         $api->validateRequestTokenWithLogin(new RequestToken('request_token'), 'piet', 'henk');
@@ -89,7 +89,7 @@ class AuthenticationTest extends TestCase
             'request_token' => 'abcdefghijklmnopqrstuvwxyz'
         ]));
 
-        $this->getAdapter()
+        $api->getClient()->getAdapter()
             ->expects($this->any())
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/validate_with_login', [
@@ -97,7 +97,7 @@ class AuthenticationTest extends TestCase
                 'username' => 'piet',
                 'password' => 'henk'
             ]))
-            ->will($this->returnValue($response))
+            ->willReturn($response)
         ;
 
         $api->getSessionTokenWithLogin(new RequestToken('request_token'), 'piet', 'henk');
@@ -116,7 +116,7 @@ class AuthenticationTest extends TestCase
             'success' => false
         ]));
 
-        $this->getAdapter()
+        $api->getClient()->getAdapter()
             ->expects($this->any())
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/validate_with_login', [
