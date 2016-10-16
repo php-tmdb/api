@@ -25,7 +25,7 @@ class KeywordsTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('keyword/' . self::KEYWORD_ID));
+            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/' . self::KEYWORD_ID));
 
         $api->getKeyword(self::KEYWORD_ID);
     }
@@ -39,7 +39,7 @@ class KeywordsTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('keyword/' . self::KEYWORD_ID . '/movies'));
+            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/' . self::KEYWORD_ID . '/movies'));
 
         $api->getMovies(self::KEYWORD_ID);
     }

@@ -35,7 +35,7 @@ class HttpClientTest extends TestCase
 
     public function setUp()
     {
-        $this->adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
+        $this->adapter = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
         $this->client  = new Client(new ApiToken('abcdef'), ['adapter' => $this->adapter]);
         $this->testApi = new TestApi($this->client);
@@ -142,7 +142,7 @@ class HttpClientTest extends TestCase
      */
     public function shouldRegisterSubscribers()
     {
-        $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $this->eventDispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->client  = new Client(new ApiToken('abcdef'), [
             'adapter'          => $this->adapter,
             'event_dispatcher' => $this->eventDispatcher
@@ -154,7 +154,7 @@ class HttpClientTest extends TestCase
             ->method('addSubscriber')
         ;
 
-        $subscriber = $this->getMock('Symfony\Component\EventDispatcher\EventSubscriberInterface');
+        $subscriber = $this->createMock('Symfony\Component\EventDispatcher\EventSubscriberInterface');
         $this->testApi->addSubscriber($subscriber);
     }
 
@@ -163,7 +163,7 @@ class HttpClientTest extends TestCase
      */
     public function shouldDeregisterSubscribers()
     {
-        $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+        $this->eventDispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->client  = new Client(new ApiToken('abcdef'), [
             'adapter'          => $this->adapter,
             'event_dispatcher' => $this->eventDispatcher
@@ -180,7 +180,7 @@ class HttpClientTest extends TestCase
             ->method('removeSubscriber')
         ;
 
-        $subscriber = $this->getMock('Symfony\Component\EventDispatcher\EventSubscriberInterface');
+        $subscriber = $this->createMock('Symfony\Component\EventDispatcher\EventSubscriberInterface');
         $this->testApi->addSubscriber($subscriber);
         $this->testApi->removeSubscriber($subscriber);
     }
@@ -192,7 +192,7 @@ class HttpClientTest extends TestCase
     {
         $httpClient = new HttpClient([
             'host'             => 'wtfz.net',
-            'adapter'          => $this->getMock('\Tmdb\HttpClient\Adapter\AdapterInterface'),
+            'adapter'          => $this->createMock('\Tmdb\HttpClient\Adapter\AdapterInterface'),
             'event_dispatcher' => new EventDispatcher(),
             'session_token'    => null,
             'cache'            => null,

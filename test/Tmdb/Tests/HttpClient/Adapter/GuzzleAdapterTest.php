@@ -14,8 +14,9 @@ namespace Tmdb\Tests\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
+use Tmdb\ApiToken;
 use Tmdb\Exception\NullResponseException;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\Request;
@@ -28,10 +29,10 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldGet()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -44,10 +45,10 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldPost()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('post')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -60,10 +61,10 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldPut()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('put')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -76,10 +77,10 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldDelete()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('delete')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -92,10 +93,10 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldPatch()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('patch')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -108,10 +109,10 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldHead()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('head')
+            ->method('request')
             ->will($this->returnValue(new Response(200)))
         ;
 
@@ -125,18 +126,18 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForGet()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('get', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('get', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -151,18 +152,18 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForPost()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('post')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('post', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('post', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -177,18 +178,18 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForHead()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('head')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('head', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('head', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -203,18 +204,18 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForPatch()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('patch')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('patch', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('patch', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -229,18 +230,18 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForPut()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('put')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('put', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('put', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -255,18 +256,18 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForDelete()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('delete')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('delete', '/'),
-                    new \GuzzleHttp\Message\Response(404, [], Stream::factory(json_encode([
+                    new \GuzzleHttp\Psr7\Request('delete', '/'),
+                    new Response(404, [], json_encode([
                         'status_code' => 15,
                         'status_message' => 'Something went wrong'
-                    ])))
+                    ]))
                 )
             ))
         ;
@@ -281,14 +282,14 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowNullResponseException()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('get', '/'),
+                    new \GuzzleHttp\Psr7\Request('get', '/'),
                     null
                 )
             ))
@@ -303,14 +304,14 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldFormatMessageForAnGuzzleHttpRequestException()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '404',
-                    new \GuzzleHttp\Message\Request('get', '/'),
+                    new \GuzzleHttp\Psr7\Request('get', '/'),
                     null
                 )
             ))
@@ -324,6 +325,46 @@ class GuzzleAdapterTest extends TestCase
             $this->assertEquals(true, false !== strpos($e->getMessage(), 'previous exception'));
         }
     }
+
+    /**
+     * @test
+     */
+    public function shouldAddCachePluginWhenEnabled()
+    {
+        $token  = new ApiToken('abc');
+        $client = new \Tmdb\Client($token);
+
+        /** @var Client $client */
+        $client = $client->getHttpClient()->getAdapter()->getClient();
+
+        /** @var HandlerStack $handler */
+        $handler = $client->getConfig('handler');
+
+        $this->assertTrue(false !== strpos((string) $handler, 'tmdb-cache'));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldAddLoggingPluginWhenEnabled()
+    {
+        $token  = new ApiToken('abc');
+        $client = new \Tmdb\Client($token, [
+            'log' => [
+                'enabled' => true,
+                'path'    => '/tmp/php-tmdb-api.log'
+            ]
+        ]);
+
+        /** @var Client $client */
+        $client = $client->getHttpClient()->getAdapter()->getClient();
+
+        /** @var HandlerStack $handler */
+        $handler = $client->getConfig('handler');
+
+        $this->assertTrue(false !== strpos((string) $handler, 'tmdb-log'));
+    }
+
 
     /**
      * @test

@@ -27,7 +27,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account'))
         ;
 
         $api->getAccount();
@@ -43,7 +43,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/lists'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/lists'))
         ;
 
         $api->getLists(self::ACCOUNT_ID);
@@ -59,7 +59,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite/movies'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite/movies'))
         ;
 
         $api->getFavoriteMovies(self::ACCOUNT_ID);
@@ -75,7 +75,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite/tv'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite/tv'))
         ;
 
         $api->getFavoriteTvShows(self::ACCOUNT_ID);
@@ -91,7 +91,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/favorite', [], 'POST', [], [
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite', [], 'POST', [], [
                 'media_id'   => self::MEDIA_ID,
                 'media_type' => 'movie',
                 'favorite'   => true
@@ -111,7 +111,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/rated/movies'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/rated/movies'))
         ;
 
         $api->getRatedMovies(self::ACCOUNT_ID);
@@ -127,7 +127,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/rated/tv'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/rated/tv'))
         ;
 
         $api->getRatedTvShows(self::ACCOUNT_ID);
@@ -143,7 +143,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist/movies'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist/movies'))
         ;
 
         $api->getMovieWatchlist(self::ACCOUNT_ID);
@@ -159,7 +159,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist/tv'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist/tv'))
         ;
 
         $api->getTvWatchlist(self::ACCOUNT_ID);
@@ -175,7 +175,7 @@ class AccountTest extends TestCase
         $this->getAdapter()
             ->expects($this->once())
             ->method('post')
-            ->with($this->getRequest('account/'.self::ACCOUNT_ID.'/watchlist', [], 'POST', [], [
+            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist', [], 'POST', [], [
                 'media_id'   => self::MEDIA_ID,
                 'media_type' => 'movie',
                 'watchlist'  => true

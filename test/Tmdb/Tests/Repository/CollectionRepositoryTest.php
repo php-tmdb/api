@@ -27,7 +27,7 @@ class CollectionRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('collection/'.self::COLLECTION_ID,['append_to_response'=>'images']))
+            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID,['append_to_response'=>'images']))
         ;
 
         $repository->load(self::COLLECTION_ID);
@@ -42,7 +42,7 @@ class CollectionRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('collection/'.self::COLLECTION_ID.'/images'))
+            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID.'/images'))
         ;
 
         $repository->getImages(self::COLLECTION_ID);

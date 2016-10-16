@@ -14,9 +14,12 @@ namespace Tmdb\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Subscriber\Retry\RetrySubscriber;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\RetryMiddleware;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Exception\NullResponseException;
@@ -49,30 +52,45 @@ class GuzzleAdapter extends AbstractAdapter
      */
     public function registerSubscribers(EventDispatcherInterface $eventDispatcher)
     {
-        $filter = RetrySubscriber::createChainFilter([
-            RetrySubscriber::createIdempotentFilter(),
-            RetrySubscriber::createStatusFilter([429, 500, 503])
-        ]);
+        /** @var HandlerStack $handler */
+        $handler = $this->client->getConfig('handler');
 
-        $retry = new RetrySubscriber([
-            'filter' => $filter,
-            'delay'  => function ($number, $event) {
-                /** @var \GuzzleHttp\Message\Response $response */
-                if (null !== $event->getResponse() && $event->getResponse()->getStatusCode() === 429) {
-                    // Adding 20% of the waiting time as it seems to be the best result without getting two blocking reqs.
-                    $sleep = (int) $event->getResponse()->getHeader('retry-after') * 1.2;
+        $handler->push(Middleware::retry(function(
+            $retries,
+            \GuzzleHttp\Psr7\Request $request,
+            \GuzzleHttp\Psr7\Response $response = null,
+            RequestException $exception = null
+        ){
+            if ($retries >= 5) {
+                return false;
+            }
 
-                    if ($sleep >= 0) {
-                        return $sleep * 1000;
-                    }
+            // Retry connection exception
+            if ($exception instanceof ConnectException) {
+                return true;
+            }
+
+            if ($response) {
+                if($response->getStatusCode() >= 500) {
+                    return true;
                 }
 
-                return 0;
-            },
-            'max' => 3
-        ]);
+                if($response->getStatusCode() === 429) {
+                    $sleep = (int) $response->getHeader('retry-after');
 
-        $this->client->getEmitter()->attach($retry);
+                    // TMDB allows 40 requests per 10 seconds, anything higher should be faulty.
+                    if ($sleep > 10) {
+                        return false;
+                    }
+
+                    sleep($sleep);
+
+                    return true;
+                }
+            }
+
+            return false;
+        }));
     }
 
     /**
@@ -138,7 +156,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->get(
+            $response = $this->client->request(
+                'GET',
                 $request->getPath(),
                 $this->getConfiguration($request)
             );
@@ -157,7 +176,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->post(
+            $response = $this->client->request(
+                'POST',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -179,7 +199,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->put(
+            $response = $this->client->request(
+                'PUT',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -201,7 +222,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->patch(
+            $response = $this->client->request(
+                'PATCH',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -223,7 +245,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->delete(
+            $response = $this->client->request(
+                'DELETE',
                 $request->getPath(),
                 array_merge(
                     ['body' => $request->getBody()],
@@ -245,7 +268,8 @@ class GuzzleAdapter extends AbstractAdapter
         $response = null;
 
         try {
-            $response = $this->client->head(
+            $response = $this->client->request(
+                'HEAD',
                 $request->getPath(),
                 $this->getConfiguration($request)
             );

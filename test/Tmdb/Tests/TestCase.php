@@ -13,6 +13,7 @@
 namespace Tmdb\Tests;
 
 use Doctrine\Common\Cache\FilesystemCache;
+use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
@@ -87,11 +88,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     public function getAdapterMock()
     {
-        if (!$this->adapter) {
-            $this->adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
-        }
-
-        return $this->adapter;
+        return $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
     }
 
     /**
@@ -102,7 +99,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function getMockedTmdbClient()
     {
         $token   = new ApiToken('abcdef');
-        $adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
+        $adapter = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
         return $this->_client = new Client($token, ['adapter' => $adapter]);
     }
@@ -119,8 +116,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         return $this->_client = new HttpClient(
             $baseUrl,
             $options,
-            $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
-            $this->getMock('Symfony\Component\EventDispatcher\EventDispatcher')
+            $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
+            $this->createMock('Symfony\Component\EventDispatcher\EventDispatcher')
         );
     }
 
@@ -136,7 +133,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             $methods[] = 'send';
         }
 
-        return $this->getMock('Guzzle\Http\Client', $methods);
+        return $this->getMockBuilder('Guzzle\Http\Client')->setMethods($methods)->getMock();
     }
 
     /**
@@ -177,7 +174,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             'secure'  => true,
             'cache'   => [
                 'enabled' => true,
-                'handler' => new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'),
+                'handler' => new DoctrineCacheStorage(new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api')),
                 'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api',
                 'subscriber' => null
             ],
@@ -188,7 +185,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
                 'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log',
                 'subscriber' => null
             ],
-            'adapter' => $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
+            'adapter' => $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
             'host'    => 'api.themoviedb.org/3/',
             'base_url' => 'https://api.themoviedb.org/3/',
             'session_token' => null,
