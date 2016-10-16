@@ -139,10 +139,8 @@ class GuzzleAdapter extends AbstractAdapter
     {
         if (null !== $previousException) {
             $response = $previousException->getResponse();
-            if(null == $response) {
-                throw new NullResponseException($this->request, $previousException);
-            }
-            if($response->getStatusCode() >= 500 && $response->getStatusCode() <= 599) {
+
+            if (null == $response || ($response->getStatusCode() >= 500 && $response->getStatusCode() <= 599)) {
                 throw new NullResponseException($this->request, $previousException);
             }
         }

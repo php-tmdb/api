@@ -16,6 +16,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Stream;
 use Tmdb\ApiToken;
 use Tmdb\Exception\NullResponseException;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
@@ -305,21 +306,21 @@ class GuzzleAdapterTest extends TestCase
      */
     public function shouldThrowExceptionForServerError()
     {
-        $client = $this->getMock('GuzzleHttp\ClientInterface');
+        $client = $this->createMock('GuzzleHttp\ClientInterface');
 
         $client->expects($this->once())
-            ->method('get')
+            ->method('request')
             ->will($this->throwException(
                 new RequestException(
                     '500',
-                    new \GuzzleHttp\Message\Request('get', '/'),
-                    new \GuzzleHttp\Message\Response(500, [], Stream::factory('<html><body>Internal Server Error</body></html>'))
+                    new \GuzzleHttp\Psr7\Request('GET', '/'),
+                    new Response(500, [], '<html><body>Internal Server Error</body></html>')
                 )
             ))
         ;
 
         $adapter = new GuzzleAdapter($client);
-        $adapter->get(new Request());
+        $adapter->get(new Request('/'));
     }
 
     /**
