@@ -58,13 +58,13 @@ class TvSearchQuery extends SearchQuery
      *
      * For those wanting more of an "autocomplete" type search, set this option to 'ngram'.
      *
+     * @deprecated
+     *
      * @param string
      * @return $this
      */
     public function searchType($search_type = 'phrase')
     {
-        $this->set('search_type', $search_type);
-
         return $this;
     }
 }
