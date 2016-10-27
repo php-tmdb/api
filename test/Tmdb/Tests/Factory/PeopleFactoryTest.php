@@ -121,6 +121,9 @@ class PeopleFactoryTest extends TestCase
         $this->assertEquals(false, $this->person->getDeathday());
         $this->assertEquals('', $this->person->getHomepage());
         $this->assertEquals(33, $this->person->getId());
+        $this->assertEquals(true, $this->person->isMale());
+        $this->assertEquals(false, $this->person->isFemale());
+        $this->assertEquals(false, $this->person->isUnknownGender());
         //@todo
         //$this->assertEquals('nm0000641', $this->person->getImdbId());
         $this->assertEquals('Gary Sinise', $this->person->getName());

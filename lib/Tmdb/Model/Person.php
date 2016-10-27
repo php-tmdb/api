@@ -121,6 +121,8 @@ class Person extends AbstractModel implements PersonInterface
      */
     protected $taggedImages;
 
+    protected $gender = 0;
+
     public static $properties = [
         'adult',
         'also_known_as',
@@ -132,6 +134,7 @@ class Person extends AbstractModel implements PersonInterface
         'name',
         'place_of_birth',
         'profile_path',
+        'gender'
     ];
 
     /**
@@ -521,5 +524,37 @@ class Person extends AbstractModel implements PersonInterface
         $this->knownFor = $knownFor;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMale()
+    {
+        return $this->gender === 2;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFemale()
+    {
+        return $this->gender === 1;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUnknownGender()
+    {
+        return $this->gender === 0;
+    }
+
+    /**
+     * @param int $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = (int) $gender;
     }
 }
