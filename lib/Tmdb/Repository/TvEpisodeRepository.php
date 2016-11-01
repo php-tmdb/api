@@ -58,7 +58,7 @@ class TvEpisodeRepository extends AbstractRepository
             $episode = $episode->getEpisodeNumber();
         }
 
-        if (null == $tvShow || null == $season || null == $episode) {
+        if (is_null($tvShow) || is_null($season) || is_null($episode) ) {
             throw new RuntimeException('Not all required parameters to load an tv episode are present.');
         }
 
