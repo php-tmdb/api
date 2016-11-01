@@ -51,11 +51,11 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         if ($episode instanceof Tv\Episode) {
-            $episode = $episode->getId();
+            $episode = $episode->getEpisodeNumber();
         }
 
         if (null == $tvShow || null == $season || null == $episode) {
