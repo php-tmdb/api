@@ -88,7 +88,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         $data   = $this->getApi()->getCredits($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
@@ -113,7 +113,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         $data   = $this->getApi()->getExternalIds($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
@@ -138,7 +138,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         $data   = $this->getApi()->getImages($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
@@ -163,7 +163,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         $data   = $this->getApi()->getVideos($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
