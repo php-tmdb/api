@@ -16,11 +16,13 @@ use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
+use Tmdb\Factory\People\GuestStarFactory;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Common\ExternalIds;
+use Tmdb\Model\Person\GuestStar;
 use Tmdb\Model\Tv\Episode;
 
 /**
@@ -55,6 +57,11 @@ class TvEpisodeFactory extends AbstractFactory
     private $changesFactory;
 
     /**
+     * @var GuestStarFactory
+     */
+    private $guestStarFactory;
+
+    /**
      * Constructor
      *
      * @param HttpClient $httpClient
@@ -66,6 +73,7 @@ class TvEpisodeFactory extends AbstractFactory
         $this->imageFactory   = new ImageFactory($httpClient);
         $this->videoFactory   = new VideoFactory($httpClient);
         $this->changesFactory = new ChangeFactory($httpClient);
+        $this->guestStarFactory = new GuestStarFactory($httpClient);
 
         parent::__construct($httpClient);
     }
@@ -101,6 +109,18 @@ class TvEpisodeFactory extends AbstractFactory
                         new CrewMember()
                     )
                 );
+            }
+
+            if (array_key_exists('guest_stars', $data['credits'])) {
+                $tvEpisode
+                    ->getCredits()
+                    ->setGuestStars(
+                        $this->getGuestStarFactory()
+                            ->createCollection(
+                                $data['credits']['guest_stars'],
+                                new GuestStar()
+                            )
+                    );
             }
         }
 
@@ -181,6 +201,25 @@ class TvEpisodeFactory extends AbstractFactory
     public function getCrewFactory()
     {
         return $this->crewFactory;
+    }
+
+    /**
+     * @return GuestStarFactory
+     */
+    public function getGuestStarFactory()
+    {
+        return $this->guestStarFactory;
+    }
+
+    /**
+     * @param GuestStarFactory $guestStarFactory
+     * @return $this
+     */
+    public function setGuestStarFactory($guestStarFactory)
+    {
+        $this->guestStarFactory = $guestStarFactory;
+
+        return $this;
     }
 
     /**
