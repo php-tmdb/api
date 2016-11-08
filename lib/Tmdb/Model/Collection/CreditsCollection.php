@@ -14,7 +14,6 @@ namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Collection\People\Crew;
-use Tmdb\Model\Collection\People\GuestStars;
 
 /**
  * Class CreditsCollection
@@ -32,17 +31,13 @@ class CreditsCollection
      */
     private $crew;
 
-
-    private $guestStars;
-
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->cast       = new Cast();
-        $this->crew       = new Crew();
-        $this->guestStars = new GuestStars();
+        $this->cast = new Cast();
+        $this->crew = new Crew();
     }
 
     /**
@@ -81,21 +76,5 @@ class CreditsCollection
     public function getCrew()
     {
         return $this->crew;
-    }
-
-    /**
-     * @return GuestStars
-     */
-    public function getGuestStars()
-    {
-        return $this->guestStars;
-    }
-
-    /**
-     * @param GuestStars $guestStars
-     */
-    public function setGuestStars($guestStars)
-    {
-        $this->guestStars = $guestStars;
     }
 }
