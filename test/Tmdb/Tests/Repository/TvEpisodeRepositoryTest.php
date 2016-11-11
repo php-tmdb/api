@@ -60,9 +60,11 @@ class TvEpisodeRepositoryTest extends TestCase
 
         $season = new Season();
         $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_ID);
 
         $episode = new Episode();
         $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_ID);
 
         $repository->load($tv, $season, $episode);
     }
@@ -86,9 +88,11 @@ class TvEpisodeRepositoryTest extends TestCase
 
         $season = new Season();
         $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_ID);
 
         $episode = new Episode();
         $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_ID);
 
         $repository->getCredits($tv, $season, $episode);
     }
@@ -112,9 +116,11 @@ class TvEpisodeRepositoryTest extends TestCase
 
         $season = new Season();
         $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_ID);
 
         $episode = new Episode();
         $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_ID);
 
         $repository->getExternalIds($tv, $season, $episode);
     }
@@ -138,9 +144,11 @@ class TvEpisodeRepositoryTest extends TestCase
 
         $season = new Season();
         $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_ID);
 
         $episode = new Episode();
         $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_ID);
 
         $repository->getImages($tv, $season, $episode);
     }
@@ -164,9 +172,11 @@ class TvEpisodeRepositoryTest extends TestCase
 
         $season = new Season();
         $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_ID);
 
         $episode = new Episode();
         $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_ID);
 
         $repository->getVideos($tv, $season, $episode);
     }
@@ -179,11 +189,13 @@ class TvEpisodeRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
-        $tv = new Tv();
-        $tv->setId(self::TV_ID);
-
         $season = new Season();
         $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_ID);
+
+        $episode = new Episode();
+        $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_ID);
 
         $repository->load($tv, $season, null);
     }
