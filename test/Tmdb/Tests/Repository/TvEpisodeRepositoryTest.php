@@ -179,11 +179,11 @@ class TvEpisodeRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpClient();
 
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
         $season = new Season();
         $season->setSeasonNumber(self::SEASON_NUMBER);
-
-        $episode = new Episode();
-        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->load($tv, $season, null);
     }
