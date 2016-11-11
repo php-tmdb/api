@@ -19,8 +19,8 @@ use Tmdb\Model\Tv;
 class TvEpisodeRepositoryTest extends TestCase
 {
     const TV_ID      = 3572;
-    const SEASON_ID  = 1;
-    const EPISODE_ID = 1;
+    const SEASON_NUMBER  = 1;
+    const EPISODE_NUMBER = 1;
 
     /**
      * @test
@@ -59,12 +59,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
-        $season->setSeasonNumber(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
-        $episode->setEpisodeNumber(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->load($tv, $season, $episode);
     }
@@ -87,12 +85,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
-        $season->setSeasonNumber(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
-        $episode->setEpisodeNumber(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getCredits($tv, $season, $episode);
     }
@@ -115,12 +111,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
-        $season->setSeasonNumber(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
-        $episode->setEpisodeNumber(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getExternalIds($tv, $season, $episode);
     }
@@ -143,12 +137,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
-        $season->setSeasonNumber(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
-        $episode->setEpisodeNumber(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getImages($tv, $season, $episode);
     }
@@ -171,12 +163,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
-        $season->setSeasonNumber(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
-        $episode->setEpisodeNumber(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getVideos($tv, $season, $episode);
     }
@@ -190,12 +180,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
-        $season->setSeasonNumber(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
-        $episode->setEpisodeNumber(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->load($tv, $season, null);
     }
