@@ -19,8 +19,8 @@ use Tmdb\Model\Tv;
 class TvEpisodeRepositoryTest extends TestCase
 {
     const TV_ID      = 3572;
-    const SEASON_ID  = 1;
-    const EPISODE_ID = 1;
+    const SEASON_NUMBER  = 1;
+    const EPISODE_NUMBER = 1;
 
     /**
      * @test
@@ -32,12 +32,12 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID,
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER,
                 ['append_to_response' => 'credits,external_ids,images,changes,videos']
             ))
         ;
 
-        $repository->load(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
+        $repository->load(self::TV_ID, self::SEASON_NUMBER, self::EPISODE_NUMBER);
     }
 
     /**
@@ -50,7 +50,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID,
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER,
                 ['append_to_response' => 'credits,external_ids,images,changes,videos']
             ))
         ;
@@ -59,10 +59,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->load($tv, $season, $episode);
     }
@@ -77,7 +77,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/credits'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/credits'
             ))
         ;
 
@@ -85,10 +85,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getCredits($tv, $season, $episode);
     }
@@ -103,7 +103,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/external_ids'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/external_ids'
             ))
         ;
 
@@ -111,10 +111,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getExternalIds($tv, $season, $episode);
     }
@@ -129,7 +129,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/images'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/images'
             ))
         ;
 
@@ -137,10 +137,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getImages($tv, $season, $episode);
     }
@@ -155,7 +155,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->getAdapter()->expects($this->once())
             ->method('get')
             ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/videos'
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/videos'
             ))
         ;
 
@@ -163,10 +163,10 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $episode = new Episode();
-        $episode->setId(self::EPISODE_ID);
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getVideos($tv, $season, $episode);
     }
@@ -183,7 +183,7 @@ class TvEpisodeRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Season();
-        $season->setId(self::SEASON_ID);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->load($tv, $season, null);
     }

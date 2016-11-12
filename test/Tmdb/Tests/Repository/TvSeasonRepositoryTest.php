@@ -79,7 +79,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_NUMBER);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->getCredits($tv, $season);
     }
@@ -102,7 +102,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_NUMBER);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->getExternalIds($tv, $season);
     }
@@ -125,7 +125,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_NUMBER);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->getImages($tv, $season);
     }
@@ -148,7 +148,7 @@ class TvSeasonRepositoryTest extends TestCase
         $tv->setId(self::TV_ID);
 
         $season = new Tv\Season();
-        $season->setId(self::SEASON_NUMBER);
+        $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->getVideos($tv, $season);
     }
