@@ -148,7 +148,6 @@ $client = new \Tmdb\Client($token, [
     'log' => [
         'enabled' => true,
         'path'    => '/var/www/php-tmdb-api.log'
-        )
     ]
 ]);
 ```
@@ -160,7 +159,6 @@ $client = new \Tmdb\Client($token, [
     'log' => [
         'enabled' => true,
         'handler' => new \Monolog\Handler\ChromePHPHandler()
-        )
     ]
 ]);
 ```
