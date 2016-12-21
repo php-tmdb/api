@@ -154,7 +154,7 @@ class Client
      */
     public function getOption($key)
     {
-        return array_key_exists($key, $this->options) ? $this->options : null;
+        return array_key_exists($key, $this->options) ? $this->options[$key] : null;
     }
 
     /**
