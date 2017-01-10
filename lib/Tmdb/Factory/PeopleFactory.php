@@ -118,7 +118,7 @@ class PeopleFactory extends AbstractFactory
                 if (array_key_exists('cast', $data[$type])) {
                     $cast = $this->createCustomCollection(
                         $data[$type]['cast'],
-                        new Person\MovieCredit(),
+                        new Person\Credit(),
                         new People\Cast()
                     );
 
@@ -132,7 +132,7 @@ class PeopleFactory extends AbstractFactory
                 if (array_key_exists('crew', $data[$type])) {
                     $crew = $this->createCustomCollection(
                         $data[$type]['crew'],
-                        new Person\MovieCredit(),
+                        new Person\Credit(),
                         new People\Crew()
                     );
 
