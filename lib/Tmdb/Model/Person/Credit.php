@@ -19,7 +19,7 @@ use Tmdb\Model\Image\PosterImage;
  * Class MovieCredit
  * @package Tmdb\Model\Person
  */
-class MovieCredit extends AbstractModel
+class Credit extends AbstractModel
 {
     /**
      * @var bool
@@ -66,6 +66,41 @@ class MovieCredit extends AbstractModel
      */
     private $posterImage;
 
+    /**
+     * @var string
+     */
+    private $job;
+
+    /**
+     * @var string
+     */
+    private $department;
+
+    /**
+     * @var string
+     */
+    private $mediaType;
+
+    /**
+     * @var string
+     */
+    private $originalName;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var int
+     */
+    private $episodeCount;
+
+    /**
+     * @var mixed
+     */
+    private $firstAirDate;
+
     public static $properties = array(
         'adult',
         'character',
@@ -74,7 +109,14 @@ class MovieCredit extends AbstractModel
         'original_title',
         'poster_path',
         'release_date',
-        'title'
+        'title',
+        'job',
+        'department',
+        'original_name',
+        'name',
+        'media_type',
+        'episode_count',
+        'first_air_date'
     );
 
     /**
@@ -250,5 +292,138 @@ class MovieCredit extends AbstractModel
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param  string $job
+     * @return $this
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * @param  string $department
+     * @return $this
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalName()
+    {
+        return $this->originalName;
+    }
+
+    /**
+     * @param string $originalName
+     * @return $this
+     */
+    public function setOriginalName($originalName)
+    {
+        $this->originalName = $originalName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMediaType()
+    {
+        return $this->mediaType;
+    }
+
+    /**
+     * @param string $mediaType
+     * @return $this
+     */
+    public function setMediaType($mediaType)
+    {
+        $this->mediaType = $mediaType;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEpisodeCount()
+    {
+        return $this->episodeCount;
+    }
+
+    /**
+     * @param int $episodeCount
+     * @return $this
+     */
+    public function setEpisodeCount($episodeCount)
+    {
+        $this->episodeCount = $episodeCount;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstAirDate()
+    {
+        return $this->firstAirDate;
+    }
+
+    /**
+     * @param mixed $firstAirDate
+     * @return $this
+     */
+    public function setFirstAirDate($firstAirDate)
+    {
+        $this->firstAirDate = $firstAirDate;
+
+        return $this;
     }
 }
