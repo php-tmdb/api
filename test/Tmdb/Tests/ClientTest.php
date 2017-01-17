@@ -131,4 +131,36 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $this->assertEquals(true, $this->client->getLogEnabled());
         $this->assertEquals($path, $this->client->getLogPath());
     }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleSetOptions()
+    {
+        $expectedToken = 'xyz';
+        $expectedSessionToken = 'qwertyuiop';
+        $this->client->setOptions(array(
+            'token' => new ApiToken($expectedToken),
+            'session_token' =>  new SessionToken($expectedSessionToken),
+        ));
+
+        $token = $this->client->getOption('token');
+        $sessionToken = $this->client->getOption('session_token');
+
+        $this->assertEquals($expectedToken, $token);
+        $this->assertEquals($expectedSessionToken, $sessionToken);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAbleGetOption()
+    {
+        $token = $this->client->getOption('token');
+        $invalidOption = $this->client->getOption('invalid_key');
+
+        $this->assertEquals(self::API_TOKEN, $token);
+        $this->assertEquals(null, $invalidOption);
+    }
+
 }
