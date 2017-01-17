@@ -223,6 +223,11 @@ class Tv extends AbstractModel
     protected $alternativeTitles;
 
     /**
+     * @var string
+     */
+    protected $type;
+
+    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -248,6 +253,7 @@ class Tv extends AbstractModel
         'status',
         'vote_average',
         'vote_count',
+        'type',
     ];
 
     /**
@@ -982,5 +988,21 @@ class Tv extends AbstractModel
     public function getAlternativeTitles()
     {
         return $this->alternativeTitles;
+    }
+
+    /**
+     * @param $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 }
