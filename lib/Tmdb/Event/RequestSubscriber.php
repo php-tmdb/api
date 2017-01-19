@@ -84,7 +84,7 @@ class RequestSubscriber extends HttpClientEventSubscriber
                 $response = $this->getHttpClient()->getAdapter()->delete($event->getRequest());
                 break;
             default:
-                throw new RuntimeException(sprintf('Unkown request method "%s".', $event->getMethod()));
+                throw new RuntimeException(sprintf('Unknown request method "%s".', $event->getMethod()));
         }
 
         return $response;
