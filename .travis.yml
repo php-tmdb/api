@@ -7,7 +7,7 @@ before_script:
   - if [ "$SF_OPT_RESOLVER_VERSION" != "" ];   then composer require --no-update symfony/options-resolver:${SF_OPT_RESOLVER_VERSION};   fi;
   - composer install --no-interaction --prefer-source --dev
 
-script: phpunit --coverage-text --coverage-clover=coverage.clover --verbose
+script: vendor/phpunit/phpunit/phpunit --coverage-text --coverage-clover=coverage.clover --verbose
 
 matrix:
   include:
