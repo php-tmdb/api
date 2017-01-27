@@ -23,15 +23,26 @@ class ImageHelper
 {
     private $config;
 
+    protected $protocolLessBaseUrl;
+
     public function __construct(Configuration $config)
     {
         $this->config = $config;
+        $imagesConfig = $this->config->getImages();
+
+        $this->protocolLessBaseUrl = strpos($imagesConfig['base_url'], 'http:') !== false ?
+            substr(
+                $imagesConfig['base_url'],
+                5,
+                strlen($imagesConfig['base_url']) - 5
+            ):
+            $imagesConfig['base_url'];
     }
 
     /**
      * Load the image configuration collection
      *
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return array
      */
     public function getImageConfiguration()
     {
@@ -47,9 +58,7 @@ class ImageHelper
      */
     public function getUrl($image, $size = 'original')
     {
-        $config = $this->getImageConfiguration();
-
-        return $config['base_url'] . $size . $image;
+        return $this->protocolLessBaseUrl . $size . $image;
     }
 
     /**
