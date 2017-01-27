@@ -53,8 +53,8 @@ class TvSeasonRepository extends AbstractRepository
             throw new RuntimeException('Not all required parameters to load an tv season are present.');
         }
 
-        if (empty($parameters)) {
-            $parameters = [
+        if (!isset($parameters['append_to_response'])) {
+            $parameters = array_merge($parameters, [
                 new AppendToResponse([
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
@@ -62,7 +62,7 @@ class TvSeasonRepository extends AbstractRepository
                     AppendToResponse::CHANGES,
                     AppendToResponse::VIDEOS
                 ])
-            ];
+            ]);
         }
 
         $data = $this->getApi()->getSeason($tvShow, $season, $this->parseQueryParameters($parameters), $headers);

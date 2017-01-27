@@ -41,9 +41,9 @@ class TvRepository extends AbstractRepository
      */
     public function load($id, array $parameters = [], array $headers = [])
     {
+        if (!isset($parameters['append_to_response'])) {
 
-        if (empty($parameters)) {
-            $parameters = [
+            $parameters = array_merge($parameters, [
                 new AppendToResponse([
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
@@ -56,7 +56,7 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::ALTERNATIVE_TITLES,
                     AppendToResponse::VIDEOS,
                 ])
-            ];
+            ]);
         }
 
         $data = $this->getApi()->getTvshow($id, $this->parseQueryParameters($parameters), $headers);

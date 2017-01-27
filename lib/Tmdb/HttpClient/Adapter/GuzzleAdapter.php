@@ -158,7 +158,6 @@ class GuzzleAdapter extends AbstractAdapter
     public function get(Request $request)
     {
         $response = null;
-
         try {
             $response = $this->client->request(
                 'GET',

@@ -35,9 +35,9 @@ class PeopleRepository extends AbstractRepository
      */
     public function load($id, array $parameters = [], array $headers = [])
     {
-        if (empty($parameters) && $parameters !== false) {
+        if (!isset($parameters['append_to_response'])) {
             // Load a no-nonsense default set
-            $parameters = [
+            $parameters = array_merge($parameters, [
                 new AppendToResponse([
                     AppendToResponse::IMAGES,
                     AppendToResponse::CHANGES,
@@ -47,7 +47,7 @@ class PeopleRepository extends AbstractRepository
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::TAGGED_IMAGES
                 ])
-            ];
+            ]);
         }
 
         $data = $this->getApi()->getPerson($id, $this->parseQueryParameters($parameters), $headers);

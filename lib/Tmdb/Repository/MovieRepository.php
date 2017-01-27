@@ -57,9 +57,8 @@ class MovieRepository extends AbstractRepository
      */
     public function load($id, array $parameters = [], array $headers = [])
     {
-
-        if (empty($parameters)) {
-            $parameters = [
+        if (!isset($parameters['append_to_response'])) {
+            $parameters = array_merge($parameters, [
                 new AppendToResponse([
                     AppendToResponse::ALTERNATIVE_TITLES,
                     AppendToResponse::CHANGES,
@@ -73,7 +72,7 @@ class MovieRepository extends AbstractRepository
                     AppendToResponse::TRANSLATIONS,
                     AppendToResponse::VIDEOS,
                 ])
-            ];
+            ]);
         }
 
         $data = $this->getApi()->getMovie($id, $this->parseQueryParameters($parameters), $headers);
