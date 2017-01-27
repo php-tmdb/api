@@ -55,12 +55,12 @@ class ImageHelperTest extends Base
         $image->setFilePath('/test-image.jpg');
 
         $this->assertEquals(
-            'http://image.tmdb.org/t/p/original/test-image.jpg',
+            '//image.tmdb.org/t/p/original/test-image.jpg',
             $this->helper->getUrl($image)
         );
 
         $this->assertEquals(
-            'http://image.tmdb.org/t/p/w45/test-image.jpg',
+            '//image.tmdb.org/t/p/w45/test-image.jpg',
             $this->helper->getUrl($image, 'w45')
         );
     }
@@ -77,7 +77,7 @@ class ImageHelperTest extends Base
         $image->setHeight(75);
 
         $this->assertEquals(
-            '<img src="http://image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="90" height="70" />',
+            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="90" height="70" />',
             $this->helper->getHtml($image, 'w45', 90, 70)
         );
     }
@@ -85,6 +85,7 @@ class ImageHelperTest extends Base
     /**
      * @test
      */
+    
     public function shouldReadImageDimensions()
     {
         $image = new \Tmdb\Model\Image();
@@ -94,7 +95,7 @@ class ImageHelperTest extends Base
         $image->setHeight(75);
 
         $this->assertEquals(
-            '<img src="http://image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="100" height="75" />',
+            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="100" height="75" />',
             $this->helper->getHtml($image, 'w45')
         );
     }
@@ -112,12 +113,12 @@ class ImageHelperTest extends Base
         $image->setAspectRatio(1.25);
 
         $this->assertEquals(
-            '<img src="http://image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="63" height="50" />',
+            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="63" height="50" />',
             $this->helper->getHtml($image, 'w45', null, 50)
         );
 
         $this->assertEquals(
-            '<img src="http://image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="63" height="50" />',
+            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="63" height="50" />',
             $this->helper->getHtml($image, 'w45', 63)
         );
     }
@@ -139,7 +140,7 @@ class ImageHelperTest extends Base
     {
         $imageUrl = $this->helper->getUrl('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg');
 
-        $this->assertEquals('http://image.tmdb.org/t/p/original/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg', $imageUrl);
+        $this->assertEquals('//image.tmdb.org/t/p/original/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg', $imageUrl);
     }
 
     /**
@@ -150,7 +151,7 @@ class ImageHelperTest extends Base
         $imageUrl = $this->helper->getHtml('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg');
 
         $this->assertEquals(
-            '<img src="http://image.tmdb.org/t/p/original/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="" height="" />',
+            '<img src="//image.tmdb.org/t/p/original/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="" height="" />',
             $imageUrl
         );
     }
