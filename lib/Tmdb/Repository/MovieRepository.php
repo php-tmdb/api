@@ -66,7 +66,7 @@ class MovieRepository extends AbstractRepository
                     AppendToResponse::IMAGES,
                     AppendToResponse::KEYWORDS,
                     AppendToResponse::LISTS,
-                    AppendToResponse::RELEASES,
+                    AppendToResponse::RELEASE_DATES,
                     AppendToResponse::REVIEWS,
                     AppendToResponse::SIMILAR,
                     AppendToResponse::TRANSLATIONS,
