@@ -24,7 +24,12 @@ final class AppendToResponse extends BaseAppendToResponse
     const CREDITS            = 'credits';
     const IMAGES             = 'images';
     const KEYWORDS           = 'keywords';
+    /**
+     * @see https://developers.themoviedb.org/3/movies/get-movie-release-dates
+     * @deprecated Use RELEASE_DATES instead, but format has changed.
+     */
     const RELEASES           = 'releases';
+    const RELEASE_DATES      = 'release_dates';
     const TRANSLATIONS       = 'translations';
     const SIMILAR            = 'similar';
     const REVIEWS            = 'reviews';
