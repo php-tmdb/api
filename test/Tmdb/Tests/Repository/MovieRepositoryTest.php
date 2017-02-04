@@ -29,7 +29,7 @@ class MovieRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'https://api.themoviedb.org/3/movie/' . self::MOVIE_ID,
-                ['append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,releases,reviews,similar,translations,videos']
+                ['append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,release_dates,reviews,similar,translations,videos']
             ))
         ;
 
