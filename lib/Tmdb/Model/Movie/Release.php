@@ -18,6 +18,7 @@ use Tmdb\Model\Filter\CountryFilter;
 /**
  * Class Release
  * @package Tmdb\Model\Movie
+ * @deprecated Use ReleaseDate instead
  */
 class Release extends AbstractModel implements CountryFilter
 {
