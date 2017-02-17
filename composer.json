@@ -24,7 +24,7 @@
         "rtheunissen/guzzle-log-middleware": "^0.4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=5.7",
+        "phpunit/phpunit": ">=5.7,<6",
         "monolog/monolog": ">=1.11.0"
     },
     "suggest": {
