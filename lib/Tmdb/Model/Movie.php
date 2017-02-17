@@ -889,7 +889,6 @@ class Movie extends AbstractModel
 
     /**
      * @return GenericCollection|ReleaseDate[]
-     * @deprecated Use the getReleaseDates instead
      */
     public function getReleaseDates()
     {
