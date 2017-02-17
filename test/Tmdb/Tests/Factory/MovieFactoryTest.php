@@ -14,6 +14,8 @@ namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Movie;
+use Tmdb\Model\Movie\Release;
+use Tmdb\Model\Movie\ReleaseDate;
 use Tmdb\Model\Person\CastMember;
 
 class MovieFactoryTest extends TestCase
@@ -103,12 +105,23 @@ class MovieFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getKeywords());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getLists());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getReleases());
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getReleaseDates());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getSimilar());
         $this->assertInstanceOf('Tmdb\Model\Collection\Videos', $this->movie->getVideos());
 
+        /** @var Release[] $releases */
         $releases = $this->movie->getReleases()->getAll();
         $primaryRelease = array_shift($releases);
         $this->assertEquals(true, $primaryRelease->getPrimary());
+
+        /** @var ReleaseDate[] $release_dates */
+        $release_dates = $this->movie->getReleaseDates()->getAll();
+        $this->assertEquals(46, count($release_dates));
+        foreach($release_dates as $release_date) {
+            $this->assertNotEmpty($release_date->getIso31661());
+            $this->assertInstanceOf(\DateTime::class, $release_date->getReleaseDate());
+            $this->assertTrue(is_int($release_date->getType()));
+        }
     }
 
     /**
