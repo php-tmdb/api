@@ -31,7 +31,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     public static $properties = [
         'iso_3166_1',
-        'ise_639_1',
+        'iso_639_1',
         'certification',
         'note',
         'release_date',
@@ -116,6 +116,16 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
     public function getReleaseDate()
     {
         return $this->releaseDate;
+    }
+
+    /**
+     * @param string $iso6391
+     * @return $this
+     */
+    public function setIso6391($iso6391)
+    {
+        $this->iso6391 = $iso6391;
+        return $this;
     }
 
     /**
