@@ -1300,6 +1300,562 @@
             }
         ]
     },
+    "release_dates": {
+        "results": [
+            {
+                "iso_3166_1": "KR",
+                "release_dates": [
+                    {
+                        "certification": "15세 이상 관람가",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-11-28T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "JP",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2014-03-08T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "MX",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-10-25T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "TR",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-10-04T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "SE",
+                "release_dates": [
+                    {
+                        "certification": "15",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-20T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "IS",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-20T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "PT",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-19T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "PH",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-18T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "PK",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-13T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "SG",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-12T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "KH",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-12T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "IN",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "CL",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2014-01-30T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "FI",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "HU",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "HR",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "EE",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "AR",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-12T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "IL",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "LT",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "ID",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "HK",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "GR",
+                "release_dates": [
+                    {
+                        "certification": "15",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-10-17T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "CA",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "ES",
+                "release_dates": [
+                    {
+                        "certification": "16",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-02T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "NO",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "RU",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-12T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "SK",
+                "release_dates": [
+                    {
+                        "certification": "15",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "BG",
+                "release_dates": [
+                    {
+                        "certification": "D",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "IT",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "FR",
+                "release_dates": [
+                    {
+                        "certification": "12",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-18T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "IE",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-04T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "GB",
+                "release_dates": [
+                    {
+                        "certification": "15",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-03T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "BE",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-11-20T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "KZ",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-11T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "DK",
+                "release_dates": [
+                    {
+                        "certification": "15",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "AT",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "TW",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "PL",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "NL",
+                "release_dates": [
+                    {
+                        "certification": "16",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "DE",
+                "release_dates": [
+                    {
+                        "certification": "16",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-19T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "PE",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-10-24T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "BR",
+                "release_dates": [
+                    {
+                        "certification": "16 anos",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "AU",
+                "release_dates": [
+                    {
+                        "certification": "MA15+",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-12T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "KW",
+                "release_dates": [
+                    {
+                        "certification": "",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-05T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            },
+            {
+                "iso_3166_1": "US",
+                "release_dates": [
+                    {
+                        "certification": "R",
+                        "iso_639_1": "",
+                        "note": "",
+                        "release_date": "2013-09-06T00:00:00.000Z",
+                        "type": 3
+                    }
+                ]
+            }
+        ]
+    },
     "similar_movies":{
         "page":1,
         "results":[

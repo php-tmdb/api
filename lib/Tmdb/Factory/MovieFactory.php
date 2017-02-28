@@ -164,6 +164,18 @@ class MovieFactory extends AbstractFactory
             $movie->setReleases($this->createGenericCollection($data['releases']['countries'], new Movie\Release()));
         }
 
+        if (array_key_exists('release_dates', $data) && array_key_exists('results', $data['release_dates'])) {
+            $release_dates = new GenericCollection();
+            foreach ($data['release_dates']['results'] as $country_releases) {
+                $iso_31661 = $country_releases['iso_3166_1'];
+                foreach($country_releases['release_dates'] as $release_date) {
+                    $release_date['iso_3166_1'] = $iso_31661;
+                    $release_dates->add(null, $this->hydrate(new Movie\ReleaseDate(), $release_date));
+                }
+            }
+            $movie->setReleaseDates($release_dates);
+        }
+
         if (array_key_exists('videos', $data)) {
             $movie->setVideos($this->getVideoFactory()->createCollection($data['videos']));
         }

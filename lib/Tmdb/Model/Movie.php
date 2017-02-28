@@ -14,6 +14,7 @@ namespace Tmdb\Model;
 
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Collection\Videos;
+use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Genres;
@@ -22,6 +23,7 @@ use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Movie\AlternativeTitle;
 use Tmdb\Model\Movie\Release;
+use Tmdb\Model\Movie\ReleaseDate;
 
 /**
  * Class Movie
@@ -195,8 +197,14 @@ class Movie extends AbstractModel
 
     /**
      * @var GenericCollection
+     * @deprecated Use $release_dates instead
      */
     protected $releases;
+
+    /**
+     * @var GenericCollection
+     */
+    protected $release_dates;
 
     /**
      * @var GenericCollection
@@ -266,6 +274,7 @@ class Movie extends AbstractModel
         $this->keywords            = new GenericCollection();
         $this->lists               = new GenericCollection();
         $this->releases            = new GenericCollection();
+        $this->release_dates       = new GenericCollection();
         $this->similar             = new GenericCollection();
         $this->translations        = new GenericCollection();
         $this->videos              = new Videos();
@@ -849,6 +858,7 @@ class Movie extends AbstractModel
     /**
      * @param  GenericCollection $releases
      * @return $this
+     * @deprecated Use the setReleaseDates instead.
      */
     public function setReleases(GenericCollection $releases)
     {
@@ -859,10 +869,30 @@ class Movie extends AbstractModel
 
     /**
      * @return GenericCollection|Release[]
+     * @deprecated Use the getReleaseDates instead
      */
     public function getReleases()
     {
         return $this->releases;
+    }
+
+    /**
+     * @param  GenericCollection $release_dates
+     * @return $this
+     */
+    public function setReleaseDates(GenericCollection $release_dates)
+    {
+        $this->release_dates = $release_dates;
+
+        return $this;
+    }
+
+    /**
+     * @return GenericCollection|ReleaseDate[]
+     */
+    public function getReleaseDates()
+    {
+        return $this->release_dates;
     }
 
     /**
@@ -877,7 +907,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Movie[]
+     * @return GenericCollection|Movie[]
      */
     public function getSimilar()
     {
@@ -885,8 +915,8 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Movie[]
-     * @deprecated
+     * @return GenericCollection|Movie[]
+     * @deprecated Use getSimilar instead
      */
     public function getSimilarMovies()
     {
