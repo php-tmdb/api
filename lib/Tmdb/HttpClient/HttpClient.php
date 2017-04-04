@@ -486,7 +486,9 @@ class HttpClient
             if ($this->getAdapter() instanceof GuzzleAdapter) {
                 $middleware = new \Concat\Http\Middleware\Logger($logger);
                 $middleware->setRequestLoggingEnabled(true);
-                $middleware->setLogLevel(LogLevel::DEBUG);
+                $middleware->setLogLevel(function($response) {
+                    return LogLevel::DEBUG;
+                });
 
                 $this->getAdapter()->getClient()->getConfig('handler')->push(
                     $middleware,
