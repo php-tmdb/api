@@ -123,11 +123,10 @@ $client = new \Tmdb\Client($token, [
     
 ```php
 use Doctrine\Common\Cache\ArrayCache;
-use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 
 $client = new \Tmdb\Client($token, [
         'cache' => [
-            'handler' => new DoctrineCacheStorage(new ArrayCache())
+            'handler' => new ArrayCache()
         ]
     ]
 );
