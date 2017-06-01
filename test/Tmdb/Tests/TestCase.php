@@ -13,7 +13,6 @@
 namespace Tmdb\Tests;
 
 use Doctrine\Common\Cache\FilesystemCache;
-use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
@@ -174,7 +173,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             'secure'  => true,
             'cache'   => [
                 'enabled' => true,
-                'handler' => new DoctrineCacheStorage(new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api')),
+                'handler' => new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'),
                 'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api',
                 'subscriber' => null
             ],

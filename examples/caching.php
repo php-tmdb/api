@@ -25,9 +25,7 @@ $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token, [
     'cache' => [
         'enabled' => true,
-        'handler' => new \Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage(
-            new Doctrine\Common\Cache\FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'my-cache-path')
-        )
+        'handler' => new Doctrine\Common\Cache\FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'my-cache-path')
     ]
 ]);
 
