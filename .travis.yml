@@ -13,7 +13,7 @@ before_script:
   - if [ "$SF_OPT_RESOLVER_VERSION" != "" ];   then composer require --no-update symfony/options-resolver:${SF_OPT_RESOLVER_VERSION};   fi;
   - composer install --no-interaction --prefer-source --dev
 
-script: phpunit --coverage-text --coverage-clover=coverage.clover --verbose
+script: vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --verbose
 
 matrix:
   include:
@@ -25,6 +25,13 @@ matrix:
       env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
     - php: 5.6
       env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
+    - php: 5.6
+      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
+    - php: 5.6
+      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
+    - php: 5.6
+      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
+
     - php: 7.0
       env: [SF_EVT_DISPATCHER_VERSION="2.4.*", SF_OPT_RESOLVER_VERSION="2.6.*"]
     - php: 7.0
@@ -33,6 +40,28 @@ matrix:
       env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
     - php: 7.0
       env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
+    - php: 7.0
+      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
+    - php: 7.0
+      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
+    - php: 7.0
+      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
+
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="2.4.*", SF_OPT_RESOLVER_VERSION="2.6.*"]
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
+
   allow_failures:
     - php: nightly
     - php: hhvm
