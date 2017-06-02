@@ -1,16 +1,15 @@
-A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
----------------
+# A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
+
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
 [![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=2.1)](https://travis-ci.org/php-tmdb/api)
 [![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/api/badges/coverage.png?b=2.1)](https://scrutinizer-ci.com/g/php-tmdb/api/?branch=2.1)
 [![HHVM Status](http://hhvm.h4cc.de/badge/php-tmdb/api.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
 
-Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony2 Community.
+Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony Community.
 
 If you have any questions or feature requests, please visit the [google+ community](https://plus.google.com/communities/113544625011244846907).
 
-Stable
-----------------
+## Stable
 
 [![Latest Stable Version](https://poser.pugx.org/php-tmdb/api/v/stable.svg)](https://packagist.org/packages/php-tmdb/api)
 [![Latest Unstable Version](https://poser.pugx.org/php-tmdb/api/v/unstable.svg)](https://packagist.org/packages/php-tmdb/api)
@@ -22,35 +21,32 @@ Currently unit tests are run on travis, with the following versions:
 - 5.6
 - 7.0
 - 7.1
-- HHVM
-- nightly ( failures allowed )
+- HHVM (failures allowed)
+- nightly (failures allowed)
 
-Features
---------
+## Features
 
-**Main features**
+### Main features
 
-- An complete integration of all the TMDB API has to offer ( accounts, movies, tv etc. _if something is missing I haven't added the updates yet!_ ).
-- Array implementation of the movie database ( RAW )
-- Model implementation of the movie database ( By making use of the repositories )
+- An complete integration of all the TMDB API has to offer (accounts, movies, tv etc. _if something is missing I haven't added the updates yet!_).
+- Array implementation of the movie database (RAW)
+- Model implementation of the movie database (By making use of the repositories)
 - An `ImageHelper` class to help build image urls or html <img> elements.
 
-**Other things worth mentioning**
+### Other things worth mentioning
 
 - Retry subscriber enabled by default to handle any rate limit errors.
 - Caching subscriber enabled by default, based on `max-age` headers returned by TMDB, requires `doctrine-cache`.
 - Logging subscriber and is optional, requires `monolog`. Could prove useful during development.
 
-Plug-ins
---------
+## Plug-ins
 
-- Symfony2
-  - [php-tmdb/symfony](https://github.com/php-tmdb/symfony), _yet to be updated to 2.1_.
+- Symfony
+  - [php-tmdb/symfony](https://github.com/php-tmdb/symfony).
 - Laravel
   - [php-tmdb/laravel](https://github.com/php-tmdb/laravel).
 
-Installation
-------------
+## Installation
 
 Install Composer
 
@@ -58,11 +54,11 @@ Install Composer
 $ curl -sS https://getcomposer.org/installer | php
 $ sudo mv composer.phar /usr/local/bin/composer
 ```
-_You are not obliged to move the composer.phar file to your /usr/local/bin, it is however considered easy to have an global installation._
+_You are not obliged to move the `composer.phar` file to your `/usr/local/bin`, it is however considered easy to have an global installation._
 
-Add the following to your require block in composer.json config
+Add the following to your require block in `composer.json` config
 
-```
+```json
 "php-tmdb/api": "~2.1"
 ```
 
@@ -70,7 +66,7 @@ __If your new to composer and have no clue what I'm talking about__
 
 Just create a file named `composer.json` in your document root:
 
-```
+```json
 {
     "require": {
         "php-tmdb/api": "~2.1"
@@ -90,10 +86,9 @@ Include Composer's autoloader:
 require_once dirname(__DIR__).'/vendor/autoload.php';
 ```
 
-To use the examples provided, copy the apikey.php.dist to apikey.php and change the settings. 
+To use the examples provided, copy the `apikey.php.dist` to `apikey.php` and change the settings. 
 
-Constructing the Client
------------------------
+## Constructing the Client
 
 First we always have to construct the client:
 
@@ -102,7 +97,7 @@ $token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
 $client = new \Tmdb\Client($token);
 ```
 
-If you'd like to make unsecure requests ( by __default__ we use secure requests ).
+If you'd like to make unsecure requests (by __default__ we use secure requests).
 
 ```php
 $client = new \Tmdb\Client($token, ['secure' => false]);
@@ -110,7 +105,7 @@ $client = new \Tmdb\Client($token, ['secure' => false]);
 
 Caching is enabled by default, and uses a slow filesystem handler, which you can either:
 
-    Replace the `path` of the storage of, by supplying the option in the client:
+  - Replace the `path` of the storage of, by supplying the option in the client:
     
 ```php
 $client = new \Tmdb\Client($token, [
@@ -119,7 +114,7 @@ $client = new \Tmdb\Client($token, [
     ]
 ]);
 ```
-    Or replace the whole implementation with another CacheStorage of Doctrine:
+  - Or replace the whole implementation with another CacheStorage of Doctrine:
     
 ```php
 use Doctrine\Common\Cache\ArrayCache;
@@ -143,7 +138,7 @@ $client = new \Tmdb\Client($token, [
 ]);
 ```
 
-If you want to add some logging capabilities ( requires `monolog/monolog` ), defaulting to the filesystem;
+If you want to add some logging capabilities (requires `monolog/monolog`), defaulting to the filesystem;
 
 ```php
 $client = new \Tmdb\Client($token, [
@@ -165,8 +160,7 @@ $client = new \Tmdb\Client($token, [
 ]);
 ```
 
-General API Usage
------------------
+## General API Usage
 
 If your looking for a simple array entry point the API namespace is the place to be.
 
@@ -180,8 +174,7 @@ If you want to provide any other query arguments.
 $movie = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
 ```
 
-Model Usage
------------
+## Model Usage
 
 However the library can also be used in an object oriented manner, which I reckon is the __preferred__ way of doing things.
 
@@ -203,8 +196,7 @@ $topRated = $repository->getTopRated(array('page' => 3));
 $popular = $repository->getPopular();
 ```
 
-Some other useful hints
------------------------
+## Some other useful hints
 
 ### Event Dispatching
 
@@ -267,16 +259,15 @@ _And there are more Collections which provide filters, but you will find those o
 
 ### The `GenericCollection` and the `ResultCollection`
 
-The `GenericCollection` holds any collection of objects ( e.g. an collection of movies ).
+The `GenericCollection` holds any collection of objects (e.g. an collection of movies).
 
-The `ResultCollection` is an extension of the `GenericCollection`, and inherits the response parameters _( page, total_pages, total_results )_ from an result set,
+The `ResultCollection` is an extension of the `GenericCollection`, and inherits the response parameters _(page, total_pages, total_results)_ from an result set,
 this can be used to create paginators.
 
-Help & Donate
---------------
+## Help & Donate
 
-If you use this in a project whether personal or business, I'd like to know where it is being used, __so please drop me an e-mail :-)__!
+If you use this in a project whether personal or business, I'd like to know where it is being used, __so please drop me an e-mail!__ :-)
 
-If this project saved you a bunch of work, or you just simply appreciate my efforts, please consider donating a beer ( or two ;) )!
+If this project saved you a bunch of work, or you just simply appreciate my efforts, please consider donating a beer (or two ;))!
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMLZ362KQ8K8W"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
