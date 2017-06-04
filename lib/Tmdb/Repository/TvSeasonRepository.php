@@ -49,7 +49,7 @@ class TvSeasonRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if (null === $tvShow || null === $season) {
+        if (is_null($tvShow) || is_null($season)) {
             throw new RuntimeException('Not all required parameters to load an tv season are present.');
         }
 
