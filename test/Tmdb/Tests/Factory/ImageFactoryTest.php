@@ -186,6 +186,16 @@ class ImageFactoryTest extends TestCase
         }
     }
 
+    /**
+     * @test
+     */
+    public function shouldSetMedia()
+    {
+        $image = $this->getFactory()->createMediaImage($this->loadByFile('images/tagged_image.json'));
+
+        $this->assertInstanceOf('Tmdb\Model\Movie', $image->getMedia());
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\ImageFactory';
