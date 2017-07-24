@@ -142,14 +142,14 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Get the expected request that will deliver a response
      *
-     * @param $path
+     * @param  string  $url
      * @param  array   $parameters
      * @param  string  $method
      * @param  array   $headers
      * @param  null    $body
      * @return Request
      */
-    protected function getRequest($path, $parameters = [], $method = 'GET', $headers = [], $body = null)
+    protected function getRequest($url, $parameters = [], $method = 'GET', $headers = [], $body = null)
     {
         if (
             $method == 'POST'  ||
@@ -164,6 +164,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $headers['Accept']     = 'application/json';
         $headers['User-Agent'] = sprintf('wtfzdotnet/php-tmdb-api (v%s)', Client::VERSION);
+
+        $baseUrl = 'https://api.themoviedb.org/3/';
+        if (strpos($url, $baseUrl) === 0) {
+            $path = substr($url, strlen($baseUrl));
+        } else {
+            $path = $url;
+        }
 
         $request = new Request(
             $path,
@@ -190,7 +197,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             ],
             'adapter' => $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
             'host'    => 'api.themoviedb.org/3/',
-            'base_url' => 'https://api.themoviedb.org/3/',
+            'base_url' => $baseUrl,
             'session_token' => null,
             'event_dispatcher' => $this->eventDispatcher
         ]));

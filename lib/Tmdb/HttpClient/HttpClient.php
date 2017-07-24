@@ -64,6 +64,8 @@ class HttpClient
      * The base url to built requests on top of
      *
      * @var null
+     *
+     * @deprecated since 2.0.19, to be removed in 3.0. Use `base_url` of the request options instead.
      */
     protected $base_url = null;
 
