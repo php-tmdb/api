@@ -109,7 +109,7 @@ class ImageFactory extends AbstractFactory
             $image->setMedia($media);
         }
 
-        return $this->hydrate($type, $data);
+        return $image;
     }
 
     /**
