@@ -64,11 +64,7 @@ class ImageFactory extends AbstractFactory
      */
     public function createMediaImage(array $data = [])
     {
-        if (!array_key_exists('image_type', $data)) {
-            throw new \RuntimeException('Unable to detect the image type.');
-        }
-
-        $type  = $this->resolveImageType($data['image_type']);
+        $type  = $this->resolveImageType(array_key_exists('image_type', $data) ? $data['image_type'] : null);
         $image = $this->hydrate($type, $data);
 
         if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
@@ -109,7 +105,7 @@ class ImageFactory extends AbstractFactory
             $image->setMedia($media);
         }
 
-        return $this->hydrate($type, $data);
+        return $image;
     }
 
     /**

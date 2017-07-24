@@ -1,0 +1,29 @@
+{
+    "iso_639_1": null,
+    "vote_count": 72,
+    "media_type": "movie",
+    "file_path": "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
+    "aspect_ratio": 0.66666666666667,
+    "media": {
+        "release_date": "2014-10-10",
+        "vote_count": 3749,
+        "video": false,
+        "adult": false,
+        "vote_average": 8.3,
+        "title": "Whiplash",
+        "genre_ids": [
+            18,
+            10402
+        ],
+        "original_language": "en",
+        "original_title": "Whiplash",
+        "popularity": 11.036484,
+        "id": 244786,
+        "backdrop_path": "/6bbZ6XyvgfjhQwbplnUh1LSj1ky.jpg",
+        "overview": "A talented young drummer begins to pursue perfection.",
+        "poster_path": "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg"
+    },
+    "height": 2100,
+    "vote_average": 6.424,
+    "width": 1400
+}
