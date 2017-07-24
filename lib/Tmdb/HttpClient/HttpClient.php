@@ -62,6 +62,8 @@ class HttpClient
      * The base url to built requests on top of
      *
      * @var null
+     *
+     * @deprecated since 2.1.10, to be removed in 3.0. Use `base_url` of the request options instead.
      */
     protected $base_url = null;
 
@@ -95,11 +97,6 @@ class HttpClient
 
         $this->setAdapter($this->options['adapter']);
         $this->processOptions();
-    }
-
-    private function constructSecureUrl($path)
-    {
-        return 'https://' . $this->base_url . $path;
     }
 
     /**
@@ -229,7 +226,7 @@ class HttpClient
     private function send($path, $method, array $parameters = [], array $headers = [], $body = null)
     {
         $request = $this->createRequest(
-            $this->constructSecureUrl($path),
+            $path,
             $method,
             $parameters,
             $headers,
