@@ -43,7 +43,7 @@ class ReleaseDateTest  extends TestCase
         $this->assertEquals('en', $object->getIso6391());
         $this->assertEquals('R', $object->getCertification());
         $this->assertEquals('Released only to IMAX screens', $object->getNote());
-        $this->assertEquals(new \DateTime('2013-09-06'), $object->getReleaseDate());
+        $this->assertEquals(new \DateTime('2013-09-06', new \DateTimeZone('UTC')), $object->getReleaseDate());
         $this->assertEquals(3, $object->getType());
     }
 }
