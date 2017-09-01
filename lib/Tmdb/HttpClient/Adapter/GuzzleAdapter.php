@@ -76,7 +76,7 @@ class GuzzleAdapter extends AbstractAdapter
                 }
 
                 if($response->getStatusCode() === 429) {
-                    $sleep = (int) $response->getHeader('retry-after');
+                    $sleep = (int) $response->getHeaderLine('retry-after');
 
                     // TMDB allows 40 requests per 10 seconds, anything higher should be faulty.
                     if ($sleep > 10) {
