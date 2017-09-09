@@ -62,6 +62,12 @@ class GuzzleAdapter extends AbstractAdapter
                     // Adding 20% of the waiting time as it seems to be the best result without getting two blocking reqs.
                     $sleep = (int) $event->getResponse()->getHeader('retry-after') * 1.2;
 
+                    /**
+                     * @see https://github.com/php-tmdb/api/issues/154
+                     * Maybe it's even better to set it to $number value
+                     */
+                    if (0 === $sleep && $number) $sleep = 1;
+
                     if ($sleep >= 0) {
                         return $sleep * 1000;
                     }
