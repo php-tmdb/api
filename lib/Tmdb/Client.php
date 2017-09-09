@@ -8,7 +8,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 2.0.19
  */
 namespace Tmdb;
 
@@ -31,7 +31,7 @@ class Client
     use ApiMethodsTrait;
 
     /** Client Version */
-    const VERSION  = '2.0.18';
+    const VERSION  = '2.0.19';
 
     /** Base API URI */
     const TMDB_URI = 'api.themoviedb.org/3/';
