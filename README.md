@@ -3,7 +3,7 @@
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
 [![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=2.0)](https://travis-ci.org/php-tmdb/api)
 [![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/api/badges/coverage.png?b=2.0)](https://scrutinizer-ci.com/g/php-tmdb/api/?branch=2.0)
-[![PHP & HHVM](https://img.shields.io/badge/php->=5.6,%20HHVM-8892BF.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
+[![PHP & HHVM](https://img.shields.io/badge/php->=5.4,%20HHVM-8892BF.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony Community.
 
