@@ -86,7 +86,6 @@ class GuzzleAdapter extends AbstractAdapter
         $this->request = $request;
 
         return [
-            'base_uri' => $request->getOptions()->get('base_url'),
             'headers'  => $request->getHeaders()->all(),
             'query'    => $request->getParameters()->all()
         ];
