@@ -3,7 +3,7 @@
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
 [![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=2.1)](https://travis-ci.org/php-tmdb/api)
 [![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/api/badges/coverage.png?b=2.1)](https://scrutinizer-ci.com/g/php-tmdb/api/?branch=2.1)
-[![HHVM Status](http://hhvm.h4cc.de/badge/php-tmdb/api.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
+[![PHP & HHVM](https://img.shields.io/badge/php->=5.6,%20HHVM-8892BF.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
 
 Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony Community.
 
@@ -86,7 +86,7 @@ Include Composer's autoloader:
 require_once dirname(__DIR__).'/vendor/autoload.php';
 ```
 
-To use the examples provided, copy the `apikey.php.dist` to `apikey.php` and change the settings. 
+To use the examples provided, copy the `apikey.php.dist` to `apikey.php` and change the settings.
 
 ## Constructing the Client
 
@@ -106,7 +106,7 @@ $client = new \Tmdb\Client($token, ['secure' => false]);
 Caching is enabled by default, and uses a slow filesystem handler, which you can either:
 
   - Replace the `path` of the storage of, by supplying the option in the client:
-    
+
 ```php
 $client = new \Tmdb\Client($token, [
     'cache' => [
@@ -115,7 +115,7 @@ $client = new \Tmdb\Client($token, [
 ]);
 ```
   - Or replace the whole implementation with another CacheStorage of Doctrine:
-    
+
 ```php
 use Doctrine\Common\Cache\ArrayCache;
 
