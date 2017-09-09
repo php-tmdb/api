@@ -17,6 +17,7 @@ use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\ExternalIds;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Person;
@@ -165,6 +166,8 @@ class PeopleFactory extends AbstractFactory
 
     /**
      * {@inheritdoc}
+     * @param Person\AbstractMember|null $person
+     * @param GenericCollection|null $collection
      */
     public function createCollection(array $data = [], $person = null, $collection = null)
     {
