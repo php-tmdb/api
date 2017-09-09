@@ -169,7 +169,7 @@ class Client
     /**
      * Construct the http client
      *
-     * In case you are implementing your own adapter, the base url will be passed on through the $parameters array
+     * In case you are implementing your own adapter, the base url will be passed on through the options bag
      * at every call in the respective get / post methods etc. of the adapter.
      *
      * @return void
@@ -334,7 +334,7 @@ class Client
 
         if (!$this->options['adapter']) {
             $this->options['adapter'] = new GuzzleAdapter(
-                new \GuzzleHttp\Client(['base_url' => $this->options['base_url']])
+                new \GuzzleHttp\Client()
             );
         }
 
