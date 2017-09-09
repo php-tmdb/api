@@ -23,9 +23,9 @@ class GuestStarFactory extends PeopleFactory
 {
     /**
      * {@inheritdoc}
-     * @param \Tmdb\Model\Person\CastMember $person
+     * @param \Tmdb\Model\Person\CastMember|null $person
      */
-    public function createCollection(array $data = [], $person = null)
+    public function createCollection(array $data = [], $person = null, $collection = null)
     {
         $collection = new GuestStars();
 
