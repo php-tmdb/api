@@ -89,6 +89,29 @@ class ClientTest extends \Tmdb\Tests\TestCase
         );
     }
 
+    /**
+     * @test
+     */
+    public function shouldRespectSecureClientOption()
+    {
+        $token  = new ApiToken(self::API_TOKEN);
+
+        $client = new \Tmdb\Client($token);
+        $options = $client->getOptions();
+        $this->assertTrue(true === $options['secure']);
+        $this->assertTrue(false !== strpos($options['base_url'], 'https://'));
+
+        $client = new \Tmdb\Client($token, ['secure' => true]);
+        $options = $client->getOptions();
+        $this->assertTrue(true === $options['secure']);
+        $this->assertTrue(false !== strpos($options['base_url'], 'https://'));
+
+        $client = new \Tmdb\Client($token, ['secure' => false]);
+        $options = $client->getOptions();
+        $this->assertTrue(false === $options['secure']);
+        $this->assertTrue(false !== strpos($options['base_url'], 'http://'));
+    }
+
     public function testShouldSwitchHttpScheme()
     {
         $token  = new ApiToken(self::API_TOKEN);
