@@ -80,6 +80,11 @@ class Person extends AbstractModel implements PersonInterface
     private $profileImage;
 
     /**
+     * @var float
+     */
+    private $popularity;
+
+    /**
      * @var Common\GenericCollection
      */
     protected $knownFor;
@@ -134,7 +139,8 @@ class Person extends AbstractModel implements PersonInterface
         'name',
         'place_of_birth',
         'profile_path',
-        'gender'
+        'gender',
+        'popularity'
     ];
 
     /**
@@ -556,5 +562,21 @@ class Person extends AbstractModel implements PersonInterface
     public function setGender($gender)
     {
         $this->gender = (int) $gender;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPopularity()
+    {
+        return $this->popularity;
+    }
+
+    /**
+     * @param float $popularity
+     */
+    public function setPopularity($popularity)
+    {
+        $this->popularity = $popularity;
     }
 }
