@@ -3,7 +3,28 @@
     "episodes":[
         {
             "air_date":"2009-03-08",
+            "crew": [
+                {
+                    "credit_id": "5254227b760ee31328000d85",
+                    "department": "Directing",
+                    "gender": null,
+                    "id": 17419,
+                    "job": "Director",
+                    "name": "Bryan Cranston",
+                    "profile_path": "/fnglrIFnI5cK4OAh66AZN86mkFq.jpg"
+                },
+                {
+                    "credit_id": "52750452760ee345a913253e",
+                    "department": "Writing",
+                    "gender": null,
+                    "id": 212407,
+                    "job": "Writer",
+                    "name": "J. Roberts",
+                    "profile_path": null
+                }
+            ],
             "episode_number":1,
+            "id": 972873,
             "name":"Seven Thirty-Seven",
             "overview":"Walt and Jesse try to figure a way out of their partnership with Tuco. Hank tries to mend the fences between Marie and Skyler.",
             "still_path":"\/bwgioLAgihPCUK21rLWocDaDM3g.jpg",
