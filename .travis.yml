@@ -54,6 +54,8 @@ matrix:
       env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
     - php: 7.1
       env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.0"]
 
     - php: hhvm
       env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
@@ -67,6 +69,8 @@ matrix:
       env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
     - php: hhvm
       env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
+    - php: hhvm
+      env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.0"]
 
   allow_failures:
     - php: nightly
