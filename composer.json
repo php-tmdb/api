@@ -15,12 +15,12 @@
     "require": {
         "php": ">=5.6.0",
         "ext-curl": "*",
-        "symfony/event-dispatcher": ">=2.4,<4",
-        "symfony/options-resolver": ">=2.6,<4",
+        "symfony/event-dispatcher": ">=2.4,<5",
+        "symfony/options-resolver": ">=2.6,<5",
         "guzzlehttp/guzzle": "~6.0",
         "psr/log": "~1.0",
         "doctrine/cache": "^1.6",
-        "kevinrob/guzzle-cache-middleware": "^1.2",
+        "kevinrob/guzzle-cache-middleware": "^1.2 || ^2.0",
         "rtheunissen/guzzle-log-middleware": "^0.4.0"
     },
     "require-dev": {
