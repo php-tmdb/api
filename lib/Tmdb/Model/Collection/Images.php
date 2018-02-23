@@ -197,7 +197,7 @@ class Images extends GenericCollection
     public function filterBestVotedImage()
     {
         $currentImage = null;
-        $voteAverage  = 0;
+        $voteAverage  = -1;
 
         /**
          * @var $image Image

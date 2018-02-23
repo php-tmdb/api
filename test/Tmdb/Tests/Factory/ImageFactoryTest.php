@@ -196,6 +196,18 @@ class ImageFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Movie', $image->getMedia());
     }
 
+    /**
+     * @test
+     */
+
+    public function shouldFilterBestVotedImage() {
+        $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/movie_novotes.json'));
+
+        $poster = $collection->filterPosters()->filterBestVotedImage();
+
+        $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $poster);
+    }
+
     protected function getFactoryClass()
     {
         return 'Tmdb\Factory\ImageFactory';
