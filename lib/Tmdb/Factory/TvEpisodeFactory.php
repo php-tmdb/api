@@ -90,38 +90,42 @@ class TvEpisodeFactory extends AbstractFactory
         $tvEpisode = new Episode();
 
         if (array_key_exists('credits', $data)) {
-            if (array_key_exists('cast', $data['credits'])) {
-                $tvEpisode
-                    ->getCredits()
-                    ->setCast(
-                        $this->getCastFactory()
-                            ->createCollection(
-                                $data['credits']['cast'],
-                                new CastMember()
-                            )
-                    );
-            }
+            $credits = $data['credits'];
+        } else {
+            $credits = $data;
+        }
 
-            if (array_key_exists('crew', $data['credits'])) {
-                $tvEpisode->getCredits()->setCrew(
-                    $this->getCrewFactory()->createCollection(
-                        $data['credits']['crew'],
-                        new CrewMember()
-                    )
+        if (array_key_exists('cast', $credits)) {
+            $tvEpisode
+                ->getCredits()
+                ->setCast(
+                    $this->getCastFactory()
+                        ->createCollection(
+                            $credits['cast'],
+                            new CastMember()
+                        )
                 );
-            }
+        }
 
-            if (array_key_exists('guest_stars', $data['credits'])) {
-                $tvEpisode
-                    ->getCredits()
-                    ->setGuestStars(
-                        $this->getGuestStarFactory()
-                            ->createCollection(
-                                $data['credits']['guest_stars'],
-                                new GuestStar()
-                            )
-                    );
-            }
+        if (array_key_exists('crew', $credits)) {
+            $tvEpisode->getCredits()->setCrew(
+                $this->getCrewFactory()->createCollection(
+                    $credits['crew'],
+                    new CrewMember()
+                )
+            );
+        }
+
+        if (array_key_exists('guest_stars', $credits)) {
+            $tvEpisode
+                ->getCredits()
+                ->setGuestStars(
+                    $this->getGuestStarFactory()
+                        ->createCollection(
+                            $credits['guest_stars'],
+                            new GuestStar()
+                        )
+                );
         }
 
         /** External ids */

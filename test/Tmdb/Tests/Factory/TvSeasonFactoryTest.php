@@ -86,6 +86,7 @@ class TvSeasonFactoryTest extends TestCase
         $this->assertEquals(3573, $this->season->getId());
         $this->assertEquals('/rCdISteF1GPvPsy0a5L0LDffjtP.jpg', $this->season->getPosterPath());
         $this->assertEquals(2, $this->season->getSeasonNumber());
+        $this->assertCount(2, $this->season->getEpisodes()->filterId(972873)->getCredits()->getCrew());
     }
 
     protected function getFactoryClass()
