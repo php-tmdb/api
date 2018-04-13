@@ -107,6 +107,7 @@ class MovieFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getReleases());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getReleaseDates());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getSimilar());
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getRecommendations());
         $this->assertInstanceOf('Tmdb\Model\Collection\Videos', $this->movie->getVideos());
 
         /** @var Release[] $releases */

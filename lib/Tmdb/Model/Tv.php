@@ -213,6 +213,11 @@ class Tv extends AbstractModel
     /**
      * @var GenericCollection
      */
+    protected $recommendations;
+
+    /**
+     * @var GenericCollection
+     */
     protected $productionCompanies;
 
     /**
@@ -275,6 +280,7 @@ class Tv extends AbstractModel
         $this->changes           = new GenericCollection();
         $this->keywords          = new GenericCollection();
         $this->similar           = new GenericCollection();
+        $this->recommendations   = new GenericCollection();
         $this->contentRatings    = new GenericCollection();
         $this->alternativeTitles = new GenericCollection();
     }
@@ -945,11 +951,30 @@ class Tv extends AbstractModel
     }
 
     /**
+     * @param  GenericCollection $recommendations
+     * @return $this
+     */
+    public function setRecommendations($recommendations)
+    {
+        $this->recommendations = $recommendations;
+
+        return $this;
+    }
+
+    /**
      * @return GenericCollection
      */
     public function getSimilar()
     {
         return $this->similar;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getRecommendations()
+    {
+        return $this->recommendations;
     }
 
     /**

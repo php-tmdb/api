@@ -42,6 +42,7 @@ class MovieTest extends TestCase
                 'getReleases'            => 'Tmdb\Model\Common\GenericCollection',
                 'getReleaseDates'        => 'Tmdb\Model\Common\GenericCollection',
                 'getSimilar'             => 'Tmdb\Model\Common\GenericCollection',
+                'getRecommendations'     => 'Tmdb\Model\Common\GenericCollection',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
                 'getVideos'              => 'Tmdb\Model\Collection\Videos',
             ]

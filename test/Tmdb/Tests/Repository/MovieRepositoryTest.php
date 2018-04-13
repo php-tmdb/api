@@ -29,7 +29,7 @@ class MovieRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'https://api.themoviedb.org/3/movie/' . self::MOVIE_ID,
-                ['append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,release_dates,reviews,similar,translations,videos']
+                ['append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,release_dates,reviews,similar,recommendations,translations,videos']
             ))
         ;
 
@@ -138,6 +138,21 @@ class MovieRepositoryTest extends TestCase
         ;
 
         $repository->getSimilar(self::MOVIE_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetRecommended()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/recommendations'))
+        ;
+
+        $repository->getRecommendations(self::MOVIE_ID);
     }
 
     /**

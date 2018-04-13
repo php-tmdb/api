@@ -28,6 +28,7 @@ class AppendToResponse extends BaseAppendToResponse
     const CHANGES            = 'changes';
     const KEYWORDS           = 'keywords';
     const SIMILAR            = 'similar';
+    const RECOMMENDATIONS    = 'recommendations';
     const CONTENT_RATINGS    = 'content_ratings';
     const ALTERNATIVE_TITLES = 'alternative_titles';
 }

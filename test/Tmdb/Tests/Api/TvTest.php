@@ -205,6 +205,21 @@ class TvTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetRecommended()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/recommendations'))
+        ;
+
+        $api->getRecommendations(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldRateTvEpisode()
     {
         $api = $this->getApiWithMockedHttpAdapter();
