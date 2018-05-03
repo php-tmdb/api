@@ -6,8 +6,8 @@
  * file that was distributed with this source code.
  *
  * @package Tmdb
- * @author Michael Roterman <michael@wtfz.net>
- * @copyright (c) 2013, Michael Roterman
+ * @author Eugenia Schneider <eugenia@werstreamt.es>
+ * @copyright (c) 2018, Eugenia Schneider
  * @version 0.0.1
  */
 require_once '../../../vendor/autoload.php';
