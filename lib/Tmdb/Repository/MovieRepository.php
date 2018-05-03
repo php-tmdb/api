@@ -69,6 +69,7 @@ class MovieRepository extends AbstractRepository
                     AppendToResponse::RELEASE_DATES,
                     AppendToResponse::REVIEWS,
                     AppendToResponse::SIMILAR,
+                    AppendToResponse::RECOMMENDATIONS,
                     AppendToResponse::TRANSLATIONS,
                     AppendToResponse::VIDEOS,
                 ])
@@ -205,6 +206,22 @@ class MovieRepository extends AbstractRepository
         $movie = $this->getFactory()->create(['similar' => $data]);
 
         return $movie->getSimilar();
+    }
+
+    /**
+     * Get the recommended movies for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getRecommendations($id, array $parameters = [], array $headers = [])
+    {
+        $data  = $this->getApi()->getRecommendations($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(['recommendations' => $data]);
+
+        return $movie->getRecommendations();
     }
 
     /**

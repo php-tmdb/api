@@ -145,6 +145,20 @@ class MoviesTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetRecommendedMovies()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/recommendations'));
+
+        $api->getRecommendations(self::MOVIE_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetReviews()
     {
         $api = $this->getApiWithMockedHttpAdapter();

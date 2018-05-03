@@ -226,6 +226,10 @@ class TvFactory extends AbstractFactory
             $tvShow->setSimilar($this->createResultCollection($data['similar']));
         }
 
+        if (array_key_exists('recommendations', $data)  && $data['recommendations'] !== null) {
+            $tvShow->setRecommendations($this->createResultCollection($data['recommendations']));
+        }
+
         if (array_key_exists('languages', $data) && $data['languages'] !== null) {
             $collection = new GenericCollection();
 

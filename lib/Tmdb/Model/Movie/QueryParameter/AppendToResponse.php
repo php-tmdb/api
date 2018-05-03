@@ -32,6 +32,7 @@ final class AppendToResponse extends BaseAppendToResponse
     const RELEASE_DATES      = 'release_dates';
     const TRANSLATIONS       = 'translations';
     const SIMILAR            = 'similar';
+    const RECOMMENDATIONS    = 'recommendations';
     const REVIEWS            = 'reviews';
     const LISTS              = 'lists';
     const CHANGES            = 'changes';

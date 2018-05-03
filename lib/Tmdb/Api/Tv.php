@@ -231,6 +231,19 @@ class Tv extends AbstractApi
     }
 
     /**
+     * Get the recommended TV shows for a specific tv id.
+     *
+     * @param $tvshow_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getRecommendations($tvshow_id, array $parameters = [], array $headers = [])
+    {
+        return $this->get('tv/' . $tvshow_id . '/recommendations', $parameters, $headers);
+    }
+
+    /**
      * This method lets users get the status of whether or not the TV show has been rated
      * or added to their favourite or watch lists.
      *

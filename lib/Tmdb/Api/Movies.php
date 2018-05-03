@@ -138,6 +138,19 @@ class Movies extends AbstractApi
     }
 
     /**
+     * Get the recommended movies for a specific movie id.
+     *
+     * @param $movie_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getRecommendations($movie_id, array $parameters = [], array $headers = [])
+    {
+        return $this->get('movie/' . $movie_id . '/recommendations', $parameters, $headers);
+    }
+
+    /**
      * Get the reviews for a particular movie id.
      *
      * @param $movie_id

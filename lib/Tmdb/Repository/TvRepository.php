@@ -50,6 +50,7 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::IMAGES,
                     AppendToResponse::TRANSLATIONS,
                     AppendToResponse::SIMILAR,
+                    AppendToResponse::RECOMMENDATIONS,
                     AppendToResponse::KEYWORDS,
                     AppendToResponse::CHANGES,
                     AppendToResponse::CONTENT_RATINGS,
