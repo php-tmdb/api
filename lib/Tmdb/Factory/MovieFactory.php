@@ -193,6 +193,10 @@ class MovieFactory extends AbstractFactory
             $movie->setSimilar($this->createResultCollection($data['similar']));
         }
 
+        if (array_key_exists('recommendations', $data)) {
+            $movie->setRecommendations($this->createResultCollection($data['recommendations']));
+        }
+
         if (array_key_exists('reviews', $data)) {
             $movie->setReviews($this->getReviewFactory()->createResultCollection($data['reviews']));
         }
