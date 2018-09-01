@@ -265,7 +265,12 @@ class Person extends AbstractModel implements PersonInterface
     public function setDeathday($deathday)
     {
         if (!$deathday instanceof \DateTime && !empty($deathday)) {
-            $deathday = new \DateTime($deathday);
+        	// Is the format Y-m-d ?
+        	if(strtotime($deathday) === false) {
+        		$deathday = \DateTime::createFromFormat('Y-d-m', $deathday);
+        	} else {
+        		$deathday = new \DateTime($deathday);
+        	}
         }
 
         if (empty($deathday)) {
