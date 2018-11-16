@@ -20,7 +20,7 @@ class Job extends AbstractModel
 {
     public static $properties = [
         'department',
-        'job_list'
+        'jobs'
     ];
 
     /**
@@ -31,7 +31,7 @@ class Job extends AbstractModel
     /**
      * @var array
      */
-    private $jobList;
+    private $jobs;
 
     /**
      * @param  string $department
@@ -54,16 +54,16 @@ class Job extends AbstractModel
      * @param  array $jobList
      * @return $this
      */
-    public function setJobList(array $jobList)
+    public function setJobs(array $jobs)
     {
-        $this->jobList = $jobList;
+        $this->jobs = $jobs;
     }
 
     /**
      * @return array
      */
-    public function getJobList()
+    public function getJobs()
     {
-        return $this->jobList;
+        return $this->jobs;
     }
 }
