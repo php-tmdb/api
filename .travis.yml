@@ -57,6 +57,21 @@ matrix:
     - php: 7.1
       env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.0"]
 
+    - php: 7.2
+      env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
+    - php: 7.2
+      env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
+    - php: 7.2
+      env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
+    - php: 7.2
+      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
+    - php: 7.2
+      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
+    - php: 7.2
+      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
+    - php: 7.2
+      env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.0"]
+
     - php: hhvm
       env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
     - php: hhvm
