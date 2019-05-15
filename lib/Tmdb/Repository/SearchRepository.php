@@ -110,7 +110,7 @@ class SearchRepository extends AbstractRepository
      * @param CollectionSearchQuery $parameters
      * @param array                 $headers
      *
-     * @return ResultCollection[]
+     * @return ResultCollection
      */
     public function searchCollection($query, CollectionSearchQuery $parameters, array $headers = [])
     {
