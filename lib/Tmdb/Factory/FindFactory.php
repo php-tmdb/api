@@ -86,7 +86,7 @@ class FindFactory extends AbstractFactory
         }
 
         if (array_key_exists('tv_episode_results', $data)) {
-            $find->setTvEpisodeResults($this->getTvSeasonFactory()->createCollection($data['tv_episode_results']));
+            $find->setTvEpisodeResults($this->getTvEpisodeFactory()->createCollection($data['tv_episode_results']));
         }
 
         return $find;
