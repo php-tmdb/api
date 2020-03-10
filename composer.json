@@ -15,8 +15,8 @@
     "require": {
         "php": ">=5.6.0",
         "ext-curl": "*",
-        "symfony/event-dispatcher": ">=2.4,<5",
-        "symfony/options-resolver": ">=2.6,<5",
+        "symfony/event-dispatcher": ">=2.4,<6",
+        "symfony/options-resolver": ">=2.6,<6",
         "guzzlehttp/guzzle": "~6.0",
         "psr/log": "~1.0",
         "doctrine/cache": "^1.6",
