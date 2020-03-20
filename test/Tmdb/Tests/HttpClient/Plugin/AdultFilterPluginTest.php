@@ -31,7 +31,7 @@ class AdultFilterPluginTest extends TestCase
 
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber(new AdultFilterPlugin(false));
-        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
+        $eventDispatcher->dispatch($event, TmdbEvents::BEFORE_REQUEST);
 
         $this->assertEquals('false', (string) $event->getRequest()->getParameters()->get('include_adult'));
     }

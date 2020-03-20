@@ -234,7 +234,7 @@ class HttpClient
         );
 
         $event = new RequestEvent($request);
-        $this->eventDispatcher->dispatch(TmdbEvents::REQUEST, $event);
+        $this->eventDispatcher->dispatch($event, TmdbEvents::REQUEST);
 
         $this->lastResponse = $event->getResponse();
 

@@ -49,7 +49,7 @@ class HttpClientTest extends TestCase
         $this->setUp();
 
         $this->adapter
-            ->expects($this->once())
+            ->expect($this->once())
             ->method('get')
             ->will($this->returnValue([]))
         ;

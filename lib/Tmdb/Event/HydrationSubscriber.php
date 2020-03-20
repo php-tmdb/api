@@ -46,7 +46,7 @@ class HydrationSubscriber extends HttpClientEventSubscriber
     public function hydrate(HydrationEvent $event, $eventName, $eventDispatcher)
     {
         // Possibility to load serialized cache
-        $eventDispatcher->dispatch(TmdbEvents::BEFORE_HYDRATION, $event);
+        $eventDispatcher->dispatch( $event,TmdbEvents::BEFORE_HYDRATION);
 
         if ($event->isPropagationStopped()) {
             return $event->getSubject();
@@ -56,7 +56,7 @@ class HydrationSubscriber extends HttpClientEventSubscriber
         $event->setSubject($subject);
 
         // Possibility to cache the data
-        $eventDispatcher->dispatch(TmdbEvents::AFTER_HYDRATION, $event);
+        $eventDispatcher->dispatch( $event, TmdbEvents::AFTER_HYDRATION);
 
         return $event->getSubject();
     }

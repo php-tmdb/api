@@ -43,7 +43,7 @@ class RequestSubscriberTest extends \PHPUnit_Framework_TestCase
         $eventDispatcher->addSubscriber(new RequestSubscriber());
 
         $requestEvent = new RequestEvent(new Request('/', '1337'));
-        $eventDispatcher->dispatch(TmdbEvents::REQUEST, $requestEvent);
+        $eventDispatcher->dispatch($requestEvent, TmdbEvents::REQUEST);
 
         $response = $requestEvent->getResponse();
 

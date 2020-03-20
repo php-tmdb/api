@@ -40,7 +40,7 @@ class RequestSubscriber extends HttpClientEventSubscriber
     public function send(RequestEvent $event, $eventName, EventDispatcherInterface $eventDispatcher)
     {
         // Preparation of request parameters / Possibility to use for logging and caching etc.
-        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
+        $eventDispatcher->dispatch($event,TmdbEvents::BEFORE_REQUEST);
 
         if ($event->isPropagationStopped() && $event->hasResponse()) {
             return $event->getResponse();
@@ -50,7 +50,7 @@ class RequestSubscriber extends HttpClientEventSubscriber
         $event->setResponse($response);
 
         // Possibility to cache the request
-        $eventDispatcher->dispatch(TmdbEvents::AFTER_REQUEST, $event);
+        $eventDispatcher->dispatch($event, TmdbEvents::AFTER_REQUEST);
 
         return $response;
     }
