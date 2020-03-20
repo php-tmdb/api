@@ -71,6 +71,8 @@ matrix:
       env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
     - php: 7.2
       env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.0"]
+    - php: 7.2
+      env: [SF_EVT_DISPATCHER_VERSION="^5.0", SF_OPT_RESOLVER_VERSION="^5.0"]
       
     - php: 7.3
       env: [SF_EVT_DISPATCHER_VERSION="^5.0", SF_OPT_RESOLVER_VERSION="^5.0"]
