@@ -18,7 +18,7 @@ class JobsFactoryTest extends TestCase
 {
     private $jobs;
 
-    public function setUp()
+    public function setUp() :void
     {
         $factory = $this->getFactory();
         $data    = $this->loadByFile('jobs/list.json');

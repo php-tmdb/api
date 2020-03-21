@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Tests;
 
-class GuestSessionTokenTest extends \PHPUnit_Framework_TestCase
+class GuestSessionTokenTest extends \PHPUnit\Framework\TestCase
 {
     const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8d';
 

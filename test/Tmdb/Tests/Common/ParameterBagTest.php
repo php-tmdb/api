@@ -10,7 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-class ParameterBagTest extends \PHPUnit_Framework_TestCase
+class ParameterBagTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

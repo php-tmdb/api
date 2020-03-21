@@ -22,7 +22,7 @@ class YoutubeTest extends TestCase
      */
     private $subject;
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->subject = $this->hydrate(new Youtube(), [
             'name'   => 'Trailer 1',

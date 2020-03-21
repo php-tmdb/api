@@ -22,7 +22,7 @@ class TvSeasonFactoryTest extends TestCase
      */
     private $season;
 
-    public function setUp()
+    public function setUp() :void
     {
         /**
          * @var TvSeasonFactory $factory

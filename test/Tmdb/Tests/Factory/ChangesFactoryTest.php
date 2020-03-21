@@ -24,7 +24,7 @@ class ChangesFactoryTest extends TestCase
      */
     private $changes;
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->data = $this->loadByFile('changes/movies.json');
 

@@ -24,7 +24,7 @@ class PeopleFactoryTest extends TestCase
      */
     private $person;
 
-    public function setUp()
+    public function setUp() :void
     {
         /**
          * @var PeopleFactory $factory

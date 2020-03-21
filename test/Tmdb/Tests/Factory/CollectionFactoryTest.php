@@ -22,7 +22,7 @@ class CollectionFactoryTest extends TestCase
      */
     private $collection;
 
-    public function setUp()
+    public function setUp() :void
     {
         /**
          * @var CollectionFactory $factory

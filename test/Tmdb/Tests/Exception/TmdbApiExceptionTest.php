@@ -16,7 +16,7 @@ use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
 use Tmdb\HttpClient\Response;
 
-class TmdbApiExceptionTest extends \PHPUnit_Framework_TestCase
+class TmdbApiExceptionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

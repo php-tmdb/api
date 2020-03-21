@@ -19,7 +19,7 @@ use Tmdb\HttpClient\Response;
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-class RequestSubscriberTest extends \PHPUnit_Framework_TestCase
+class RequestSubscriberTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @expectedException \Tmdb\Exception\RuntimeException

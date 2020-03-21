@@ -10,7 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-class ObjectHydratorTest extends \PHPUnit_Framework_TestCase
+class ObjectHydratorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

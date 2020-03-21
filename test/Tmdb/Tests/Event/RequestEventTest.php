@@ -15,7 +15,7 @@ use Tmdb\HttpClient\Request;
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-class RequestEventTest extends \PHPUnit_Framework_TestCase
+class RequestEventTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

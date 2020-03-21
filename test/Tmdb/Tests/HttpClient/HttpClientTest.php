@@ -33,7 +33,7 @@ class HttpClientTest extends TestCase
      */
     private $client;
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->adapter = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
@@ -47,9 +47,8 @@ class HttpClientTest extends TestCase
     public function shouldCallGet()
     {
         $this->setUp();
-
         $this->adapter
-            ->expect($this->once())
+            ->expects($this->once())
             ->method('get')
             ->will($this->returnValue([]))
         ;
@@ -62,8 +61,8 @@ class HttpClientTest extends TestCase
      */
     public function shouldCallHead()
     {
-        $this->setUp();
 
+        $this->setUp();
         $this->adapter
             ->expects($this->once())
             ->method('head')
@@ -96,6 +95,7 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
+
         $this->adapter
             ->expects($this->once())
             ->method('patch')
@@ -110,7 +110,7 @@ class HttpClientTest extends TestCase
      */
     public function shouldCallDelete()
     {
-        $this->setUp();
+
 
         $this->adapter
             ->expects($this->once())
@@ -126,8 +126,8 @@ class HttpClientTest extends TestCase
      */
     public function shouldCallPut()
     {
-        $this->setUp();
 
+        $this->setUp();
         $this->adapter
             ->expects($this->once())
             ->method('put')
@@ -191,7 +191,7 @@ class HttpClientTest extends TestCase
     public function shouldBeAbleToOverrideAdapter()
     {
         $httpClient = new HttpClient([
-            'host'             => 'wtfz.net',
+            'host'             => 'google.com',
             'adapter'          => $this->createMock('\Tmdb\HttpClient\Adapter\AdapterInterface'),
             'event_dispatcher' => new EventDispatcher(),
             'session_token'    => null,
@@ -212,6 +212,7 @@ class TestApi extends AbstractApi
 
     public function __construct($client)
     {
+        parent::__construct($client);
         $this->client = $client;
     }
 

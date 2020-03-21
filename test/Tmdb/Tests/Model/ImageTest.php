@@ -37,7 +37,7 @@ class ImageTest extends TestCase
         ],
     ];
 
-    public function setUp()
+    public function setUp() :void
     {
         $client = new Client(new ApiToken('abcdef'));
         $this->collection = new Images();

@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Tests;
 
-class RequestTokenTest extends \PHPUnit_Framework_TestCase
+class RequestTokenTest extends \PHPUnit\Framework\TestCase
 {
     const REQUEST_TOKEN = '641bf16c663db167c6cffcdff41126039d4445bf';
 

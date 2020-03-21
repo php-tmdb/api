@@ -28,7 +28,7 @@ class PeopleTest extends TestCase
         ['id' => 2, 'name' => 'afrojack']
     ];
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->collection = new People();
 

@@ -28,7 +28,7 @@ class KeywordsTest extends TestCase
         ['id' => 2, 'name' => 'light']
     ];
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->collection = new Keywords();
 

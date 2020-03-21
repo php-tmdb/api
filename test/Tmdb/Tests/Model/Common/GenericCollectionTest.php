@@ -22,7 +22,7 @@ class GenericCollectionTest extends TestCase
      */
     private $collection;
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->collection = new GenericCollection([
             'id' => 1,
@@ -52,6 +52,7 @@ class GenericCollectionTest extends TestCase
      */
     public function shouldBeArrayAccess()
     {
+        $this->setUp();
         $this->assertEquals(true, isset($this->collection['id']));
         $this->assertEquals(1, $this->collection['id']);
 
@@ -71,6 +72,7 @@ class GenericCollectionTest extends TestCase
      */
     public function shouldBeIteratorAggregate()
     {
+        $this->setUp();
         $this->assertInstanceOf('\ArrayIterator', $this->collection->getIterator());
     }
 
@@ -79,6 +81,7 @@ class GenericCollectionTest extends TestCase
      */
     public function shouldBeCountable()
     {
+        $this->setUp();
         $this->assertEquals(2, count($this->collection));
     }
 
@@ -138,7 +141,9 @@ class GenericCollectionTest extends TestCase
         $this->collection->merge(['id' => 1]);
         $this->assertEquals([2, 1], $this->collection->get('id'));
 
-        $this->setUp();
+        $this->collection->set('id', 1);
+        $this->collection->set('name', 'Dave');
+
         $this->assertEquals(['id' => 1, 'name' => 'Dave'], $this->collection->getAll());
         $this->assertEquals(['name' => 'Dave'], $this->collection->getAll(['name']));
 
