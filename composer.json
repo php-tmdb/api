@@ -13,10 +13,10 @@
         }
     ],
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.1.3",
         "ext-curl": "*",
-        "symfony/event-dispatcher": ">=2.4,<5",
-        "symfony/options-resolver": ">=2.6,<5",
+        "symfony/event-dispatcher": ">=4.4,<6",
+        "symfony/options-resolver": ">=4.4,<6",
         "guzzlehttp/guzzle": "~6.0",
         "psr/log": "~1.0",
         "doctrine/cache": "^1.6",
@@ -24,7 +24,7 @@
         "rtheunissen/guzzle-log-middleware": "^0.4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=5.7,<6",
+        "phpunit/phpunit": "^5.0",
         "monolog/monolog": ">=1.11.0"
     },
     "suggest": {

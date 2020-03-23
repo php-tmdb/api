@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Tests;
 
-class ApiTokenTest extends \PHPUnit_Framework_TestCase
+class ApiTokenTest extends \PHPUnit\Framework\TestCase
 {
     const API_TOKEN = 'abcdefg';
 

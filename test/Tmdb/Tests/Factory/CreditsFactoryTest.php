@@ -24,7 +24,7 @@ class CreditsFactoryTest extends TestCase
      */
     private $credits;
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->data = $this->loadByFile('credits/get.json');
 

@@ -23,7 +23,7 @@ class ImageHelperTest extends Base
      */
     private $helper;
 
-    public function setUp()
+    public function setUp() :void
     {
         $client = new Client(new ApiToken('abcdef'));
 

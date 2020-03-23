@@ -27,7 +27,7 @@ class MovieFactoryTest extends TestCase
      */
     private $movie;
 
-    public function setUp()
+    public function setUp() :void
     {
         /**
          * @var MovieFactory $factory

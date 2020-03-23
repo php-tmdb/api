@@ -34,7 +34,7 @@ class SessionTokenPluginTest extends TestCase
 
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber(new SessionTokenPlugin($token));
-        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
+        $eventDispatcher->dispatch($event, TmdbEvents::BEFORE_REQUEST);
 
         $this->assertEquals('123456', (string) $event->getRequest()->getParameters()->get('session_id'));
     }

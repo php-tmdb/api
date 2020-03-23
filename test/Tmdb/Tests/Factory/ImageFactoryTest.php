@@ -22,7 +22,7 @@ class ImageFactoryTest extends TestCase
      */
     private $images;
 
-    public function setUp()
+    public function setUp() :void
     {
         $factory   = $this->getFactory();
 
@@ -115,7 +115,7 @@ class ImageFactoryTest extends TestCase
      */
     public function shouldFilterMinHeight()
     {
-        $this->setUp();
+
 
         $images = $this->images->filterMinHeight(1000);
 
@@ -134,7 +134,7 @@ class ImageFactoryTest extends TestCase
      */
     public function shouldFilterMinWidth()
     {
-        $this->setUp();
+
 
         $images = $this->images->filterMinWidth(1000);
 
@@ -153,7 +153,7 @@ class ImageFactoryTest extends TestCase
      */
     public function shouldFilterMaxHeight()
     {
-        $this->setUp();
+
 
         $images = $this->images->filterMaxHeight(1000);
 
@@ -172,7 +172,7 @@ class ImageFactoryTest extends TestCase
      */
     public function shouldFilterMaxWidth()
     {
-        $this->setUp();
+
 
         $images = $this->images->filterMaxWidth(1000);
 

@@ -2,9 +2,8 @@ sudo: false
 language: php
 
 php:
-  - 5.6
+  - 7.1
   - nightly
-  - hhvm
 
 before_script:
   - composer self-update
@@ -16,80 +15,21 @@ script: vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover --v
 
 matrix:
   include:
-    - php: 5.6
-      env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
-    - php: 5.6
-      env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
-    - php: 5.6
-      env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
-    - php: 5.6
-      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
-    - php: 5.6
-      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
-    - php: 5.6
-      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
+    - php: 7.1
+      env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.4"]
 
-    - php: 7.0
-      env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
-    - php: 7.0
-      env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
-    - php: 7.0
-      env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
-    - php: 7.0
-      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
-    - php: 7.0
-      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
-    - php: 7.0
-      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
-
-    - php: 7.1
-      env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
-    - php: 7.1
-      env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
-    - php: 7.1
-      env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
-    - php: 7.1
-      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
-    - php: 7.1
-      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
-    - php: 7.1
-      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
-    - php: 7.1
-      env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.0"]
 
     - php: 7.2
-      env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
+      env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.4"]
     - php: 7.2
-      env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
-    - php: 7.2
-      env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
-    - php: 7.2
-      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
-    - php: 7.2
-      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
-    - php: 7.2
-      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
-    - php: 7.2
-      env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.0"]
+      env: [SF_EVT_DISPATCHER_VERSION="^5.0", SF_OPT_RESOLVER_VERSION="^5.0"]
+      
+    - php: 7.3
+      env: [SF_EVT_DISPATCHER_VERSION="^5.0", SF_OPT_RESOLVER_VERSION="^5.0"]
 
-    - php: hhvm
-      env: [SF_EVT_DISPATCHER_VERSION="2.7.*", SF_OPT_RESOLVER_VERSION="2.7.*"]
-    - php: hhvm
-      env: [SF_EVT_DISPATCHER_VERSION="2.8.*", SF_OPT_RESOLVER_VERSION="2.8.*"]
-    - php: hhvm
-      env: [SF_EVT_DISPATCHER_VERSION="3.0.*", SF_OPT_RESOLVER_VERSION="3.0.*"]
-    - php: hhvm
-      env: [SF_EVT_DISPATCHER_VERSION="3.1.*", SF_OPT_RESOLVER_VERSION="3.1.*"]
-    - php: hhvm
-      env: [SF_EVT_DISPATCHER_VERSION="3.2.*", SF_OPT_RESOLVER_VERSION="3.2.*"]
-    - php: hhvm
-      env: [SF_EVT_DISPATCHER_VERSION="^3.3", SF_OPT_RESOLVER_VERSION="^3.3"]
-    - php: hhvm
-      env: [SF_EVT_DISPATCHER_VERSION="^4.0", SF_OPT_RESOLVER_VERSION="^4.0"]
 
   allow_failures:
     - php: nightly
-    - php: hhvm
   fast_finish: true
 
 after_script:

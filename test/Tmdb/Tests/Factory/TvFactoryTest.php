@@ -22,7 +22,7 @@ class TvFactoryTest extends TestCase
      */
     private $tv;
 
-    public function setUp()
+    public function setUp() :void
     {
         /**
          * @var TvFactory $factory
@@ -43,7 +43,7 @@ class TvFactoryTest extends TestCase
      */
     public function shouldConstructTv()
     {
-        $this->setUp();
+
 
         $this->assertInstanceOf('Tmdb\Model\Tv', $this->tv);
 
@@ -58,7 +58,7 @@ class TvFactoryTest extends TestCase
      */
     public function shouldBeAbleToSetFactories()
     {
-        $this->setUp();
+
 
         $factory = new TvFactory($this->getHttpClient());
         $class  = new \stdClass();
@@ -87,7 +87,7 @@ class TvFactoryTest extends TestCase
      */
     public function shouldBeFunctional()
     {
-        $this->setUp();
+
 
         $this->assertEquals('/sIJyCJedGlZf1TId41gCtkblBGo.jpg', $this->tv->getBackdropPath());
         // created by

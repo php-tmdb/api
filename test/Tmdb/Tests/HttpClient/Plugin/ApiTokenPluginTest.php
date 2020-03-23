@@ -34,7 +34,7 @@ class ApiTokenPluginTest extends TestCase
 
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber(new ApiTokenPlugin($token));
-        $eventDispatcher->dispatch(TmdbEvents::BEFORE_REQUEST, $event);
+        $eventDispatcher->dispatch($event, TmdbEvents::BEFORE_REQUEST);
 
         $this->assertEquals('abcdef', (string) $event->getRequest()->getParameters()->get('api_key'));
     }

@@ -26,7 +26,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
      */
     private $client = null;
 
-    public function setUp()
+    public function setUp() :void
     {
         $token        = new ApiToken(self::API_TOKEN);
         $sessionToken = new SessionToken(self::SESSION_TOKEN);

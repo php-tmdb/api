@@ -19,7 +19,7 @@ use Tmdb\HttpClient\Response;
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-class RequestSubscriberTest extends \PHPUnit_Framework_TestCase
+class RequestSubscriberTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @expectedException \Tmdb\Exception\RuntimeException
@@ -43,7 +43,7 @@ class RequestSubscriberTest extends \PHPUnit_Framework_TestCase
         $eventDispatcher->addSubscriber(new RequestSubscriber());
 
         $requestEvent = new RequestEvent(new Request('/', '1337'));
-        $eventDispatcher->dispatch(TmdbEvents::REQUEST, $requestEvent);
+        $eventDispatcher->dispatch($requestEvent, TmdbEvents::REQUEST);
 
         $response = $requestEvent->getResponse();
 
