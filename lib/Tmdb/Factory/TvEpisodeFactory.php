@@ -19,6 +19,7 @@ use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Factory\People\GuestStarFactory;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Common\ExternalIds;
@@ -134,6 +135,20 @@ class TvEpisodeFactory extends AbstractFactory
         /** Images */
         if (array_key_exists('images', $data)) {
             $tvEpisode->setImages($this->getImageFactory()->createCollectionFromTvEpisode($data['images']));
+        }
+
+        /** Translations */
+        if (array_key_exists('translations', $data) && null !== $data['translations']) {
+
+            if (array_key_exists('translations', $data['translations'])) {
+                $translations = $data['translations']['translations'];
+            } else {
+                $translations = $data['translations'];
+            }
+
+            $tvEpisode->setTranslations(
+                $this->createGenericCollection($translations, new Translation())
+            );
         }
 
         if (array_key_exists('still_path', $data)) {
