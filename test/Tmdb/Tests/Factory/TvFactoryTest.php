@@ -116,6 +116,8 @@ class TvFactoryTest extends TestCase
         // credits
         // external_ids
         // images
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->tv->getSimilar());
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->tv->getRecommendations());
         // translations
         $this->assertEquals(2, count($this->tv->getContentRatings()));
 

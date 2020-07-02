@@ -132,6 +132,38 @@ class TvRepository extends AbstractRepository
     }
 
     /**
+     * Get the similar TV shows for a specific TV show id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getSimilar($id, array $parameters = [], array $headers = [])
+    {
+        $data  = $this->getApi()->getSimilar($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(['similar' => $data]);
+
+        return $movie->getSimilar();
+    }
+
+    /**
+     * Get the recommended TV shows for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getRecommendations($id, array $parameters = [], array $headers = [])
+    {
+        $data  = $this->getApi()->getRecommendations($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(['recommendations' => $data]);
+
+        return $movie->getRecommendations();
+    }
+
+    /**
      * Get the list of translations that exist for a TV series.
      *
      * These translations cascade down to the episode level.

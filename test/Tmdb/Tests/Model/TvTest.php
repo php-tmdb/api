@@ -36,6 +36,8 @@ class TvTest extends TestCase
                 'getCredits'             => 'Tmdb\Model\Collection\CreditsCollection',
                 'getExternalIds'         => 'Tmdb\Model\Common\ExternalIds',
                 'getImages'              => 'Tmdb\Model\Collection\Images',
+                'getSimilar'             => 'Tmdb\Model\Common\GenericCollection',
+                'getRecommendations'     => 'Tmdb\Model\Common\GenericCollection',
                 'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
                 'getVideos'              => 'Tmdb\Model\Collection\Videos',
             ]
