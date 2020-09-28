@@ -64,6 +64,11 @@ class TvFactory extends AbstractFactory
     private $tvSeasonFactory;
 
     /**
+     * @var TvEpisodeFactory
+     */
+    private $tvEpisodeFactory;
+
+    /**
      * @var NetworkFactory
      */
     private $networkFactory;
@@ -90,15 +95,16 @@ class TvFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory     = new CastFactory($httpClient);
-        $this->crewFactory     = new CrewFactory($httpClient);
-        $this->genreFactory    = new GenreFactory($httpClient);
-        $this->imageFactory    = new ImageFactory($httpClient);
-        $this->tvSeasonFactory = new TvSeasonFactory($httpClient);
-        $this->networkFactory  = new NetworkFactory($httpClient);
-        $this->videoFactory    = new VideoFactory($httpClient);
-        $this->changesFactory  = new ChangeFactory($httpClient);
-        $this->keywordFactory  = new KeywordFactory($httpClient);
+        $this->castFactory      = new CastFactory($httpClient);
+        $this->crewFactory      = new CrewFactory($httpClient);
+        $this->genreFactory     = new GenreFactory($httpClient);
+        $this->imageFactory     = new ImageFactory($httpClient);
+        $this->tvSeasonFactory  = new TvSeasonFactory($httpClient);
+        $this->tvEpisodeFactory = new TvEpisodeFactory($httpClient);
+        $this->networkFactory   = new NetworkFactory($httpClient);
+        $this->videoFactory     = new VideoFactory($httpClient);
+        $this->changesFactory   = new ChangeFactory($httpClient);
+        $this->keywordFactory   = new KeywordFactory($httpClient);
 
         parent::__construct($httpClient);
     }
@@ -203,6 +209,14 @@ class TvFactory extends AbstractFactory
         /** Seasons */
         if (array_key_exists('seasons', $data) && $data['seasons'] !== null) {
             $tvShow->setSeasons($this->getTvSeasonFactory()->createCollection($data['seasons']));
+        }
+        
+        /** Episodes **/
+        if (array_key_exists('last_episode_to_air', $data) && $data['last_episode_to_air'] !== null) {
+            $tvShow->setLastEpisodeToAir($this->getTvEpisodeFactory()->create($data['last_episode_to_air']));
+        }
+        if (array_key_exists('next_episode_to_air', $data) && $data['next_episode_to_air'] !== null) {
+            $tvShow->setNextEpisodeToAir($this->getTvEpisodeFactory()->create($data['next_episode_to_air']));
         }
 
         /** Networks */
@@ -412,6 +426,25 @@ class TvFactory extends AbstractFactory
     public function getTvSeasonFactory()
     {
         return $this->tvSeasonFactory;
+    }
+
+    /**
+     * @param  \Tmdb\Factory\TvEpisodeFactory $tvEpisodeFactory
+     * @return $this
+     */
+    public function setTvEpisodeFactory($tvEpisodeFactory)
+    {
+        $this->tvEpisodeFactory = $tvEpisodeFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return \Tmdb\Factory\TvEpisodeFactory
+     */
+    public function getTvEpisodeFactory()
+    {
+        return $this->tvEpisodeFactory;
     }
 
     /**

@@ -20,6 +20,7 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 use Tmdb\Model\Common\ExternalIds;
+use Tmdb\Model\Tv\Episode;
 
 /**
  * Class Tv
@@ -103,6 +104,16 @@ class Tv extends AbstractModel
      * @var integer
      */
     private $numberOfSeasons;
+
+    /**
+     * @var Episode
+     */
+    private $lastEpisodeToAir;
+
+    /**
+     * @var Episode
+     */
+    private $nextEpisodeToAir;
 
     /**
      * @var string
@@ -576,6 +587,44 @@ class Tv extends AbstractModel
     public function getNumberOfSeasons()
     {
         return $this->numberOfSeasons;
+    }
+
+    /**
+     * @param  ?Episode   $lastEpisodeToAir
+     * @return $this
+     */
+    public function setLastEpisodeToAir($lastEpisodeToAir)
+    {
+        $this->lastEpisodeToAir = $lastEpisodeToAir;
+
+        return $this;
+    }
+
+    /**
+     * @return ?Episode
+     */
+    public function getLastEpisodeToAir(): ?Episode
+    {
+        return $this->lastEpisodeToAir;
+    }
+
+    /**
+     * @param  ?Episode   $nextEpisodeToAir
+     * @return $this
+     */
+    public function setNextEpisodeToAir($nextEpisodeToAir)
+    {
+        $this->nextEpisodeToAir = $nextEpisodeToAir;
+
+        return $this;
+    }
+
+    /**
+     * @return ?Episode
+     */
+    public function getNextEpisodeToAir(): ?Episode
+    {
+        return $this->nextEpisodeToAir;
     }
 
     /**
