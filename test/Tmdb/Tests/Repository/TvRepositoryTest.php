@@ -112,6 +112,36 @@ class TvRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetSimilar()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/similar'))
+        ;
+
+        $repository->getSimilar(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetRecommended()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/recommendations'))
+        ;
+
+        $repository->getRecommendations(self::TV_ID);
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetOnTheAir()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
