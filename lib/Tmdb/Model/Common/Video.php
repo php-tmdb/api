@@ -13,12 +13,14 @@
 namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Filter\CountryFilter;
+use Tmdb\Model\Filter\LanguageFilter;
 
 /**
  * Class Video
  * @package Tmdb\Model\Common
  */
-class Video extends AbstractModel
+class Video extends AbstractModel implements CountryFilter, LanguageFilter
 {
     /**
      * @var string
@@ -29,6 +31,11 @@ class Video extends AbstractModel
      * @var string
      */
     private $iso6391;
+
+    /**
+     * @var string
+     */
+    private $iso31661;
 
     /**
      * @var mixed
@@ -65,6 +72,7 @@ class Video extends AbstractModel
     public static $properties = [
         'id',
         'iso_639_1',
+        'iso_3166_1',
         'key',
         'name',
         'site',
@@ -108,6 +116,25 @@ class Video extends AbstractModel
     public function getIso6391()
     {
         return $this->iso6391;
+    }
+
+    /**
+     * @param  string $iso31661
+     * @return $this
+     */
+    public function setIso31661($iso31661)
+    {
+        $this->iso31661 = $iso31661;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIso31661()
+    {
+        return $this->iso31661;
     }
 
     /**
