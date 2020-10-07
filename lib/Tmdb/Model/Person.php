@@ -62,6 +62,11 @@ class Person extends AbstractModel implements PersonInterface
     /**
      * @var string
      */
+    private $knownForDepartment;
+
+    /**
+     * @var string
+     */
     private $name;
 
     /**
@@ -136,6 +141,7 @@ class Person extends AbstractModel implements PersonInterface
         'deathday',
         'homepage',
         'id',
+        'known_for_department',
         'name',
         'place_of_birth',
         'profile_path',
@@ -345,6 +351,25 @@ class Person extends AbstractModel implements PersonInterface
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @param  string $knownForDepartment
+     * @return $this
+     */
+    public function setKnownForDepartment($knownForDepartment)
+    {
+        $this->knownForDepartment = $knownForDepartment;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKnownForDepartment()
+    {
+        return $this->knownForDepartment;
     }
 
     /**
