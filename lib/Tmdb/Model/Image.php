@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model;
 
 use Tmdb\Model\Filter\ImageFilter;
@@ -21,24 +23,11 @@ use Tmdb\Model\Filter\LanguageFilter;
  */
 class Image extends AbstractModel implements ImageFilter, LanguageFilter
 {
-    const FORMAT_POSTER   = 'poster';
+    const FORMAT_POSTER = 'poster';
     const FORMAT_BACKDROP = 'backdrop';
-    const FORMAT_PROFILE  = 'profile';
-    const FORMAT_LOGO     = 'logo';
-    const FORMAT_STILL    = 'still';
-
-    private $filePath;
-    private $width;
-    private $height;
-    private $iso6391;
-    private $aspectRatio;
-    private $voteAverage;
-    private $voteCount;
-    private $media;
-
-    protected $id;
-    protected $type;
-
+    const FORMAT_PROFILE = 'profile';
+    const FORMAT_LOGO = 'logo';
+    const FORMAT_STILL = 'still';
     public static $properties = [
         'file_path',
         'width',
@@ -48,14 +37,23 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
         'vote_average',
         'vote_count'
     ];
-
     public static $formats = [
-        'posters'   => self::FORMAT_POSTER,
+        'posters' => self::FORMAT_POSTER,
         'backdrops' => self::FORMAT_BACKDROP,
-        'profiles'  => self::FORMAT_PROFILE,
-        'logos'     => self::FORMAT_LOGO,
-        'stills'    => self::FORMAT_STILL
+        'profiles' => self::FORMAT_PROFILE,
+        'logos' => self::FORMAT_LOGO,
+        'stills' => self::FORMAT_STILL
     ];
+    protected $id;
+    protected $type;
+    private $filePath;
+    private $width;
+    private $height;
+    private $iso6391;
+    private $aspectRatio;
+    private $voteAverage;
+    private $voteCount;
+    private $media;
 
     /**
      * Get the singular type as defined in $_types
@@ -71,17 +69,6 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @param  float $aspectRatio
-     * @return $this
-     */
-    public function setAspectRatio($aspectRatio)
-    {
-        $this->aspectRatio = (float) $aspectRatio;
-
-        return $this;
-    }
-
-    /**
      * @return float
      */
     public function getAspectRatio()
@@ -90,31 +77,12 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @param  mixed $filePath
+     * @param float $aspectRatio
      * @return $this
      */
-    public function setFilePath($filePath)
+    public function setAspectRatio($aspectRatio)
     {
-        $this->filePath = $filePath;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFilePath()
-    {
-        return $this->filePath;
-    }
-
-    /**
-     * @param  mixed $height
-     * @return $this
-     */
-    public function setHeight($height)
-    {
-        $this->height = (int) $height;
+        $this->aspectRatio = (float)$aspectRatio;
 
         return $this;
     }
@@ -128,12 +96,12 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @param  mixed $iso6391
+     * @param mixed $height
      * @return $this
      */
-    public function setIso6391($iso6391)
+    public function setHeight($height)
     {
-        $this->iso6391 = $iso6391;
+        $this->height = (int)$height;
 
         return $this;
     }
@@ -147,12 +115,12 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @param  float $voteAverage
+     * @param mixed $iso6391
      * @return $this
      */
-    public function setVoteAverage($voteAverage)
+    public function setIso6391($iso6391)
     {
-        $this->voteAverage = (float) $voteAverage;
+        $this->iso6391 = $iso6391;
 
         return $this;
     }
@@ -166,12 +134,12 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @param  int   $voteCount
+     * @param float $voteAverage
      * @return $this
      */
-    public function setVoteCount($voteCount)
+    public function setVoteAverage($voteAverage)
     {
-        $this->voteCount = (int) $voteCount;
+        $this->voteAverage = (float)$voteAverage;
 
         return $this;
     }
@@ -185,12 +153,12 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @param  int   $width
+     * @param int $voteCount
      * @return $this
      */
-    public function setWidth($width)
+    public function setVoteCount($voteCount)
     {
-        $this->width = (int) $width;
+        $this->voteCount = (int)$voteCount;
 
         return $this;
     }
@@ -204,12 +172,12 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @param  mixed $media
+     * @param int $width
      * @return $this
      */
-    public function setMedia($media)
+    public function setWidth($width)
     {
-        $this->media = $media;
+        $this->width = (int)$width;
 
         return $this;
     }
@@ -223,11 +191,41 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
+     * @param mixed $media
+     * @return $this
+     */
+    public function setMedia($media)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
+
+    /**
      * Return the file path when casted to string
      * @return string
      */
     public function __toString()
     {
         return (string)$this->getFilePath();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFilePath()
+    {
+        return $this->filePath;
+    }
+
+    /**
+     * @param mixed $filePath
+     * @return $this
+     */
+    public function setFilePath($filePath)
+    {
+        $this->filePath = $filePath;
+
+        return $this;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Tv;
 
+use DateTime;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\Changes;
@@ -28,56 +31,6 @@ use Tmdb\Model\Image\StillImage;
  */
 class Episode extends AbstractModel
 {
-    /**
-     * @var \DateTime
-     */
-    private $airDate;
-
-    /**
-     * @var integer
-     */
-    private $episodeNumber;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $overview;
-
-    /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $productionCode;
-
-    /**
-     * @var integer
-     */
-    private $seasonNumber;
-
-    /**
-     * @var string
-     */
-    private $stillPath;
-
-    /**
-     * @var float
-     */
-    private $voteAverage;
-
-    /**
-     * @var int
-     */
-    private $voteCount;
-
     /**
      * Credits
      *
@@ -150,22 +103,7 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  \DateTime $airDate
-     * @return $this
-     */
-    public function setAirDate($airDate)
-    {
-        if (!$airDate instanceof \DateTime) {
-            $airDate = new \DateTime($airDate);
-        }
-
-        $this->airDate = $airDate;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAirDate()
     {
@@ -173,12 +111,16 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  int   $episodeNumber
+     * @param DateTime $airDate
      * @return $this
      */
-    public function setEpisodeNumber($episodeNumber)
+    public function setAirDate($airDate)
     {
-        $this->episodeNumber = (int) $episodeNumber;
+        if (!$airDate instanceof DateTime) {
+            $airDate = new DateTime($airDate);
+        }
+
+        $this->airDate = $airDate;
 
         return $this;
     }
@@ -192,12 +134,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  int   $id
+     * @param int $episodeNumber
      * @return $this
      */
-    public function setId($id)
+    public function setEpisodeNumber($episodeNumber)
     {
-        $this->id = (int) $id;
+        $this->episodeNumber = (int)$episodeNumber;
 
         return $this;
     }
@@ -211,12 +153,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param int $id
      * @return $this
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = (int)$id;
 
         return $this;
     }
@@ -230,12 +172,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  string $overview
+     * @param string $name
      * @return $this
      */
-    public function setOverview($overview)
+    public function setName($name)
     {
-        $this->overview = $overview;
+        $this->name = $name;
 
         return $this;
     }
@@ -249,12 +191,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  string $productionCode
+     * @param string $overview
      * @return $this
      */
-    public function setProductionCode($productionCode)
+    public function setOverview($overview)
     {
-        $this->productionCode = $productionCode;
+        $this->overview = $overview;
 
         return $this;
     }
@@ -268,12 +210,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  int   $seasonNumber
+     * @param string $productionCode
      * @return $this
      */
-    public function setSeasonNumber($seasonNumber)
+    public function setProductionCode($productionCode)
     {
-        $this->seasonNumber = (int) $seasonNumber;
+        $this->productionCode = $productionCode;
 
         return $this;
     }
@@ -287,12 +229,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  string $stillPath
+     * @param int $seasonNumber
      * @return $this
      */
-    public function setStillPath($stillPath)
+    public function setSeasonNumber($seasonNumber)
     {
-        $this->stillPath = $stillPath;
+        $this->seasonNumber = (int)$seasonNumber;
 
         return $this;
     }
@@ -306,12 +248,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  float $voteAverage
+     * @param string $stillPath
      * @return $this
      */
-    public function setVoteAverage($voteAverage)
+    public function setStillPath($stillPath)
     {
-        $this->voteAverage = (float) $voteAverage;
+        $this->stillPath = $stillPath;
 
         return $this;
     }
@@ -325,12 +267,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  int   $voteCount
+     * @param float $voteAverage
      * @return $this
      */
-    public function setVoteCount($voteCount)
+    public function setVoteAverage($voteAverage)
     {
-        $this->voteCount = (int) $voteCount;
+        $this->voteAverage = (float)$voteAverage;
 
         return $this;
     }
@@ -344,12 +286,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  CreditsCollection $credits
+     * @param int $voteCount
      * @return $this
      */
-    public function setCredits($credits)
+    public function setVoteCount($voteCount)
     {
-        $this->credits = $credits;
+        $this->voteCount = (int)$voteCount;
 
         return $this;
     }
@@ -363,12 +305,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  ExternalIds $externalIds
+     * @param CreditsCollection $credits
      * @return $this
      */
-    public function setExternalIds($externalIds)
+    public function setCredits($credits)
     {
-        $this->externalIds = $externalIds;
+        $this->credits = $credits;
 
         return $this;
     }
@@ -379,6 +321,25 @@ class Episode extends AbstractModel
     public function getExternalIds()
     {
         return $this->externalIds;
+    }
+
+    /**
+     * @param ExternalIds $externalIds
+     * @return $this
+     */
+    public function setExternalIds($externalIds)
+    {
+        $this->externalIds = $externalIds;
+
+        return $this;
+    }
+
+    /**
+     * @return Images
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 
     /**
@@ -401,7 +362,7 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  Images $images
+     * @param Images $images
      * @return $this
      */
     public function setImages($images)
@@ -412,15 +373,7 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @return Images
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
-     * @param  StillImage $still
+     * @param StillImage $still
      * @return $this
      */
     public function setStillImage($still)
@@ -439,7 +392,15 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Videos|ResultCollection $videos
+     * @return Videos
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
+
+    /**
+     * @param Videos|ResultCollection $videos
      * @return $this
      */
     public function setVideos($videos)
@@ -450,15 +411,15 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @return Videos
+     * @return Changes
      */
-    public function getVideos()
+    public function getChanges()
     {
-        return $this->videos;
+        return $this->changes;
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Changes $changes
+     * @param Changes $changes
      * @return $this
      */
     public function setChanges($changes)
@@ -466,13 +427,5 @@ class Episode extends AbstractModel
         $this->changes = $changes;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Model\Collection\Changes
-     */
-    public function getChanges()
-    {
-        return $this->changes;
     }
 }

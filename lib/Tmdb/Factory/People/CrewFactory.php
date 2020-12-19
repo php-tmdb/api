@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,10 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory\People;
 
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Collection\People\Crew;
+use Tmdb\Model\Person\CrewMember;
 
 /**
  * Class CrewFactory
@@ -23,7 +26,7 @@ class CrewFactory extends PeopleFactory
 {
     /**
      * {@inheritdoc}
-     * @param \Tmdb\Model\Person\CrewMember|null $person
+     * @param CrewMember|null $person
      */
     public function createCollection(array $data = [], $person = null, $collection = null)
     {

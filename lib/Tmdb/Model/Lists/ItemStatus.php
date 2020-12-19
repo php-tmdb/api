@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Lists;
 
 use Tmdb\Model\AbstractModel;
@@ -21,33 +23,20 @@ use Tmdb\Model\AbstractModel;
 class ItemStatus extends AbstractModel
 {
     /**
-     * @var string
-     */
-    private $id;
-
-    /**
-     * @var boolean
-     */
-    private $itemPresent;
-
-    /**
      * @var array
      */
     public static $properties = [
         'id',
         'item_present'
     ];
-
     /**
-     * @param  string $id
-     * @return $this
+     * @var string
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+    private $id;
+    /**
+     * @var boolean
+     */
+    private $itemPresent;
 
     /**
      * @return string
@@ -58,12 +47,12 @@ class ItemStatus extends AbstractModel
     }
 
     /**
-     * @param  boolean $itemPresent
+     * @param string $id
      * @return $this
      */
-    public function setItemPresent($itemPresent)
+    public function setId($id)
     {
-        $this->itemPresent = $itemPresent;
+        $this->id = $id;
 
         return $this;
     }
@@ -74,5 +63,16 @@ class ItemStatus extends AbstractModel
     public function getItemPresent()
     {
         return $this->itemPresent;
+    }
+
+    /**
+     * @param boolean $itemPresent
+     * @return $this
+     */
+    public function setItemPresent($itemPresent)
+    {
+        $this->itemPresent = $itemPresent;
+
+        return $this;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model;
 
 /**
@@ -18,15 +20,6 @@ namespace Tmdb\Model;
  */
 class Review extends AbstractModel
 {
-    private $id;
-    private $author;
-    private $content;
-    private $iso6391;
-    private $mediaId;
-    private $mediaTitle;
-    private $mediaType;
-    private $url;
-
     public static $properties = [
         'id',
         'author',
@@ -37,17 +30,14 @@ class Review extends AbstractModel
         'media_type',
         'url'
     ];
-
-    /**
-     * @param  mixed $author
-     * @return $this
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
+    private $id;
+    private $author;
+    private $content;
+    private $iso6391;
+    private $mediaId;
+    private $mediaTitle;
+    private $mediaType;
+    private $url;
 
     /**
      * @return mixed
@@ -58,12 +48,12 @@ class Review extends AbstractModel
     }
 
     /**
-     * @param  mixed $content
+     * @param mixed $author
      * @return $this
      */
-    public function setContent($content)
+    public function setAuthor($author)
     {
-        $this->content = $content;
+        $this->author = $author;
 
         return $this;
     }
@@ -77,12 +67,12 @@ class Review extends AbstractModel
     }
 
     /**
-     * @param  mixed $id
+     * @param mixed $content
      * @return $this
      */
-    public function setId($id)
+    public function setContent($content)
     {
-        $this->id = $id;
+        $this->content = $content;
 
         return $this;
     }
@@ -96,12 +86,12 @@ class Review extends AbstractModel
     }
 
     /**
-     * @param  mixed $iso6391
+     * @param mixed $id
      * @return $this
      */
-    public function setIso6391($iso6391)
+    public function setId($id)
     {
-        $this->iso6391 = $iso6391;
+        $this->id = $id;
 
         return $this;
     }
@@ -115,12 +105,12 @@ class Review extends AbstractModel
     }
 
     /**
-     * @param  mixed $mediaId
+     * @param mixed $iso6391
      * @return $this
      */
-    public function setMediaId($mediaId)
+    public function setIso6391($iso6391)
     {
-        $this->mediaId = $mediaId;
+        $this->iso6391 = $iso6391;
 
         return $this;
     }
@@ -134,12 +124,12 @@ class Review extends AbstractModel
     }
 
     /**
-     * @param  mixed $mediaTitle
+     * @param mixed $mediaId
      * @return $this
      */
-    public function setMediaTitle($mediaTitle)
+    public function setMediaId($mediaId)
     {
-        $this->mediaTitle = $mediaTitle;
+        $this->mediaId = $mediaId;
 
         return $this;
     }
@@ -153,12 +143,12 @@ class Review extends AbstractModel
     }
 
     /**
-     * @param  mixed $mediaType
+     * @param mixed $mediaTitle
      * @return $this
      */
-    public function setMediaType($mediaType)
+    public function setMediaTitle($mediaTitle)
     {
-        $this->mediaType = $mediaType;
+        $this->mediaTitle = $mediaTitle;
 
         return $this;
     }
@@ -172,12 +162,12 @@ class Review extends AbstractModel
     }
 
     /**
-     * @param  mixed $url
+     * @param mixed $mediaType
      * @return $this
      */
-    public function setUrl($url)
+    public function setMediaType($mediaType)
     {
-        $this->url = $url;
+        $this->mediaType = $mediaType;
 
         return $this;
     }
@@ -188,5 +178,16 @@ class Review extends AbstractModel
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * @param mixed $url
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
@@ -35,9 +37,10 @@ class Keywords extends GenericCollection
      * Retrieve a keyword from the collection
      *
      * @param $id
-     * @return Keyword
+     *
+     * @return GenericCollection
      */
-    public function getKeyword($id)
+    public function getKeyword($id): GenericCollection
     {
         return $this->filterId($id);
     }
@@ -46,8 +49,10 @@ class Keywords extends GenericCollection
      * Add a keyword to the collection
      *
      * @param Keyword $keyword
+     *
+     * @return void
      */
-    public function addKeyword(Keyword $keyword)
+    public function addKeyword(Keyword $keyword): void
     {
         $this->data[] = $keyword;
     }

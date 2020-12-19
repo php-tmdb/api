@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model;
 
 use Tmdb\Model\Collection\People;
@@ -47,7 +49,15 @@ class Find extends AbstractModel
     private $tvEpisodeResults;
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $movieResults
+     * @return GenericCollection
+     */
+    public function getMovieResults()
+    {
+        return $this->movieResults;
+    }
+
+    /**
+     * @param GenericCollection $movieResults
      * @return $this
      */
     public function setMovieResults($movieResults)
@@ -58,15 +68,15 @@ class Find extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return People
      */
-    public function getMovieResults()
+    public function getPersonResults()
     {
-        return $this->movieResults;
+        return $this->personResults;
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\People $personResults
+     * @param People $personResults
      * @return $this
      */
     public function setPersonResults($personResults)
@@ -77,15 +87,15 @@ class Find extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Collection\People
+     * @return GenericCollection
      */
-    public function getPersonResults()
+    public function getTvResults()
     {
-        return $this->personResults;
+        return $this->tvResults;
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $tvResults
+     * @param GenericCollection $tvResults
      * @return $this
      */
     public function setTvResults($tvResults)
@@ -93,14 +103,6 @@ class Find extends AbstractModel
         $this->tvResults = $tvResults;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Model\Common\GenericCollection
-     */
-    public function getTvResults()
-    {
-        return $this->tvResults;
     }
 
     /**
@@ -112,7 +114,7 @@ class Find extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $tvSeasonResults
+     * @param GenericCollection $tvSeasonResults
      * @return $this
      */
     public function setTvSeasonResults($tvSeasonResults)
@@ -131,7 +133,7 @@ class Find extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $tvEpisodeResults
+     * @param GenericCollection $tvEpisodeResults
      * @return $this
      */
     public function setTvEpisodeResults($tvEpisodeResults)

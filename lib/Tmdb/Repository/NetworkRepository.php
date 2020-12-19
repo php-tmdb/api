@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Networks;
 use Tmdb\Factory\NetworkFactory;
 use Tmdb\Model\Network;
 
@@ -29,8 +32,8 @@ class NetworkRepository extends AbstractRepository
      * At this time we don't have much but this will be fleshed out over time.
      *
      * @param $id
-     * @param  array   $parameters
-     * @param  array   $headers
+     * @param array $parameters
+     * @param array $headers
      * @return Network
      */
     public function load($id, array $parameters = [], array $headers = [])
@@ -41,20 +44,20 @@ class NetworkRepository extends AbstractRepository
     }
 
     /**
-     * Return the related API class
-     *
-     * @return \Tmdb\Api\Networks
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getNetworksApi();
-    }
-
-    /**
      * @return NetworkFactory
      */
     public function getFactory()
     {
         return new NetworkFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
+     * Return the related API class
+     *
+     * @return Networks
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getNetworksApi();
     }
 }

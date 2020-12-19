@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,7 +11,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb;
+
 use Tmdb\Exception\RuntimeException;
 
 /**
@@ -32,9 +35,9 @@ class ApiToken
     }
 
     /**
-     * @param  string           $apiToken
-     * @throws RuntimeException
+     * @param string $apiToken
      * @return $this
+     * @throws RuntimeException
      */
     public function setToken($apiToken)
     {
@@ -57,6 +60,6 @@ class ApiToken
 
     public function __toString()
     {
-        return (string) $this->apiToken;
+        return (string)$this->apiToken;
     }
 }

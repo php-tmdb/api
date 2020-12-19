@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
@@ -22,53 +24,6 @@ use Tmdb\Model\Filter\LanguageFilter;
  */
 class Video extends AbstractModel implements CountryFilter, LanguageFilter
 {
-    /**
-     * @var string
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $iso6391;
-
-    /**
-     * @var string
-     */
-    private $iso31661;
-
-    /**
-     * @var mixed
-     */
-    private $key;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $site;
-
-    /**
-     * @var int
-     */
-    private $size;
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * Holds the format of the url
-     *
-     * @var string
-     */
-    private $url_format;
-
     public static $properties = [
         'id',
         'iso_639_1',
@@ -79,17 +34,44 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
         'size',
         'type'
     ];
-
     /**
-     * @param  string $id
-     * @return $this
+     * @var string
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+    private $id;
+    /**
+     * @var string
+     */
+    private $iso6391;
+    /**
+     * @var string
+     */
+    private $iso31661;
+    /**
+     * @var mixed
+     */
+    private $key;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $site;
+    /**
+     * @var int
+     */
+    private $size;
+    /**
+     * @var string
+     */
+    private $type;
+    /**
+     * Holds the format of the url
+     *
+     * @var string
+     */
+    private $url_format;
 
     /**
      * @return string
@@ -100,12 +82,12 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * @param  string $iso6391
+     * @param string $id
      * @return $this
      */
-    public function setIso6391($iso6391)
+    public function setId($id)
     {
-        $this->iso6391 = $iso6391;
+        $this->id = $id;
 
         return $this;
     }
@@ -119,12 +101,12 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * @param  string $iso31661
+     * @param string $iso6391
      * @return $this
      */
-    public function setIso31661($iso31661)
+    public function setIso6391($iso6391)
     {
-        $this->iso31661 = $iso31661;
+        $this->iso6391 = $iso6391;
 
         return $this;
     }
@@ -138,31 +120,12 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * @param  mixed $key
+     * @param string $iso31661
      * @return $this
      */
-    public function setKey($key)
+    public function setIso31661($iso31661)
     {
-        $this->key = $key;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getKey()
-    {
-        return $this->key;
-    }
-
-    /**
-     * @param  string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+        $this->iso31661 = $iso31661;
 
         return $this;
     }
@@ -176,12 +139,12 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * @param  string $site
+     * @param string $name
      * @return $this
      */
-    public function setSite($site)
+    public function setName($name)
     {
-        $this->site = $site;
+        $this->name = $name;
 
         return $this;
     }
@@ -195,12 +158,12 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * @param  int   $size
+     * @param string $site
      * @return $this
      */
-    public function setSize($size)
+    public function setSite($site)
     {
-        $this->size = $size;
+        $this->site = $site;
 
         return $this;
     }
@@ -214,12 +177,12 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * @param  string $type
+     * @param int $size
      * @return $this
      */
-    public function setType($type)
+    public function setSize($size)
     {
-        $this->type = $type;
+        $this->size = $size;
 
         return $this;
     }
@@ -233,14 +196,24 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * @param  string $url_format
+     * @param string $type
      * @return $this
      */
-    public function setUrlFormat($url_format)
+    public function setType($type)
     {
-        $this->url_format = $url_format;
+        $this->type = $type;
 
         return $this;
+    }
+
+    /**
+     * Retrieve the url to the source
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return sprintf($this->getUrlFormat(), $this->getKey());
     }
 
     /**
@@ -252,12 +225,32 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * Retrieve the url to the source
-     *
-     * @return string
+     * @param string $url_format
+     * @return $this
      */
-    public function getUrl()
+    public function setUrlFormat($url_format)
     {
-        return sprintf($this->getUrlFormat(), $this->getKey());
+        $this->url_format = $url_format;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param mixed $key
+     * @return $this
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+
+        return $this;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Factory\Common\ChangeFactory;
@@ -18,11 +20,12 @@ use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Factory\People\GuestStarFactory;
 use Tmdb\HttpClient\HttpClient;
+use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
-use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Person\GuestStar;
 use Tmdb\Model\Tv\Episode;
 
@@ -69,10 +72,10 @@ class TvEpisodeFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory    = new CastFactory($httpClient);
-        $this->crewFactory    = new CrewFactory($httpClient);
-        $this->imageFactory   = new ImageFactory($httpClient);
-        $this->videoFactory   = new VideoFactory($httpClient);
+        $this->castFactory = new CastFactory($httpClient);
+        $this->crewFactory = new CrewFactory($httpClient);
+        $this->imageFactory = new ImageFactory($httpClient);
+        $this->videoFactory = new VideoFactory($httpClient);
         $this->changesFactory = new ChangeFactory($httpClient);
         $this->guestStarFactory = new GuestStarFactory($httpClient);
 
@@ -82,7 +85,23 @@ class TvEpisodeFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
+    public function createCollection(array $data = [])
+    {
+        $collection = new GenericCollection();
+
+        foreach ($data as $item) {
+            $collection->add(null, $this->create($item));
+        }
+
+        return $collection;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return AbstractModel|null
+     */
+    public function create(array $data = []): ?AbstractModel
     {
         if (!$data) {
             return null;
@@ -167,21 +186,15 @@ class TvEpisodeFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @return CastFactory
      */
-    public function createCollection(array $data = [])
+    public function getCastFactory()
     {
-        $collection = new GenericCollection();
-
-        foreach ($data as $item) {
-            $collection->add(null, $this->create($item));
-        }
-
-        return $collection;
+        return $this->castFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\People\CastFactory $castFactory
+     * @param CastFactory $castFactory
      * @return $this
      */
     public function setCastFactory($castFactory)
@@ -192,15 +205,15 @@ class TvEpisodeFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\People\CastFactory
+     * @return CrewFactory
      */
-    public function getCastFactory()
+    public function getCrewFactory()
     {
-        return $this->castFactory;
+        return $this->crewFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\People\CrewFactory $crewFactory
+     * @param CrewFactory $crewFactory
      * @return $this
      */
     public function setCrewFactory($crewFactory)
@@ -208,14 +221,6 @@ class TvEpisodeFactory extends AbstractFactory
         $this->crewFactory = $crewFactory;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\People\CrewFactory
-     */
-    public function getCrewFactory()
-    {
-        return $this->crewFactory;
     }
 
     /**
@@ -238,7 +243,15 @@ class TvEpisodeFactory extends AbstractFactory
     }
 
     /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
+     * @return ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
+    }
+
+    /**
+     * @param ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
@@ -249,15 +262,15 @@ class TvEpisodeFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\ImageFactory
+     * @return VideoFactory
      */
-    public function getImageFactory()
+    public function getVideoFactory()
     {
-        return $this->imageFactory;
+        return $this->videoFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\Common\VideoFactory $videoFactory
+     * @param VideoFactory $videoFactory
      * @return $this
      */
     public function setVideoFactory($videoFactory)
@@ -268,15 +281,15 @@ class TvEpisodeFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\Common\VideoFactory
+     * @return ChangeFactory
      */
-    public function getVideoFactory()
+    public function getChangesFactory()
     {
-        return $this->videoFactory;
+        return $this->changesFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\Common\ChangeFactory $changesFactory
+     * @param ChangeFactory $changesFactory
      * @return $this
      */
     public function setChangesFactory($changesFactory)
@@ -284,13 +297,5 @@ class TvEpisodeFactory extends AbstractFactory
         $this->changesFactory = $changesFactory;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\Common\ChangeFactory
-     */
-    public function getChangesFactory()
-    {
-        return $this->changesFactory;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,7 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb;
+
+use DateTime;
 
 /**
  * Class RequestToken
@@ -48,7 +52,15 @@ class RequestToken
     }
 
     /**
-     * @param  null  $token
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param null $token
      * @return $this
      */
     public function setToken($token)
@@ -59,30 +71,7 @@ class RequestToken
     }
 
     /**
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-
-    /**
-     * @param  \DateTime $expiresAt
-     * @return $this
-     */
-    public function setExpiresAt($expiresAt)
-    {
-        if (!$expiresAt instanceof \DateTime) {
-            $expiresAt = new \DateTime($expiresAt);
-        }
-
-        $this->expiresAt = $expiresAt;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getExpiresAt()
     {
@@ -90,12 +79,16 @@ class RequestToken
     }
 
     /**
-     * @param  boolean $success
+     * @param DateTime $expiresAt
      * @return $this
      */
-    public function setSuccess($success)
+    public function setExpiresAt($expiresAt)
     {
-        $this->success = $success;
+        if (!$expiresAt instanceof DateTime) {
+            $expiresAt = new DateTime($expiresAt);
+        }
+
+        $this->expiresAt = $expiresAt;
 
         return $this;
     }
@@ -108,8 +101,19 @@ class RequestToken
         return $this->success;
     }
 
+    /**
+     * @param boolean $success
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+
+        return $this;
+    }
+
     public function __toString()
     {
-        return (string) $this->token;
+        return (string)$this->token;
     }
 }

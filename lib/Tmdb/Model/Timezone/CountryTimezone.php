@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Timezone;
 
 use Tmdb\Model\AbstractModel;
@@ -37,7 +39,15 @@ class CountryTimezone extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Timezones $timezones
+     * @return Timezones
+     */
+    public function getTimezones()
+    {
+        return $this->timezones;
+    }
+
+    /**
+     * @param Timezones $timezones
      * @return $this
      */
     public function setTimezones($timezones)
@@ -48,15 +58,15 @@ class CountryTimezone extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Collection\Timezones
+     * @return string
      */
-    public function getTimezones()
+    public function getIso31661()
     {
-        return $this->timezones;
+        return $this->iso31661;
     }
 
     /**
-     * @param  string $iso31661
+     * @param string $iso31661
      * @return $this
      */
     public function setIso31661($iso31661)
@@ -64,14 +74,6 @@ class CountryTimezone extends AbstractModel
         $this->iso31661 = $iso31661;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIso31661()
-    {
-        return $this->iso31661;
     }
 
     /**

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset>
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <arg name="parallel" value="80"/>
+    <arg name="cache" value=".phpcs-cache"/>
+    <arg name="colors"/>
+    <arg value="nps"/>
+
+    <file>.</file>
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <rule ref="PSR12"/>
+</ruleset>

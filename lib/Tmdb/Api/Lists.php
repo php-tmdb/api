@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -22,9 +24,9 @@ class Lists extends AbstractApi
     /**
      * Get a list by id.
      *
-     * @param  string $list_id
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $list_id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getList($list_id, array $parameters = [], array $headers = [])
@@ -35,10 +37,10 @@ class Lists extends AbstractApi
     /**
      * This method lets users create a new list. A valid session id is required.
      *
-     * @param  string $name
-     * @param  string $description
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $name
+     * @param string $description
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function createList($name, $description, array $parameters = [], array $headers = [])
@@ -49,10 +51,10 @@ class Lists extends AbstractApi
     /**
      * Check to see if a movie ID is already added to a list.
      *
-     * @param  string $id
-     * @param  int    $movieId
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $id
+     * @param int $movieId
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getItemStatus($id, $movieId, array $parameters = [], array $headers = [])
@@ -67,8 +69,8 @@ class Lists extends AbstractApi
     /**
      * This method lets users add new movies to a list that they created. A valid session id is required.
      *
-     * @param  string $id
-     * @param  string $mediaId
+     * @param string $id
+     * @param string $mediaId
      * @return mixed
      */
     public function addMediaToList($id, $mediaId)
@@ -79,8 +81,8 @@ class Lists extends AbstractApi
     /**
      * This method lets users delete movies from a list that they created. A valid session id is required.
      *
-     * @param  string $id
-     * @param  string $mediaId
+     * @param string $id
+     * @param string $mediaId
      * @return mixed
      */
     public function removeMediaFromList($id, $mediaId)
@@ -91,7 +93,7 @@ class Lists extends AbstractApi
     /**
      * This method lets users delete a list that they created. A valid session id is required.
      *
-     * @param  string $id
+     * @param string $id
      * @return mixed
      */
     public function deleteList($id)
@@ -105,16 +107,16 @@ class Lists extends AbstractApi
      * This is a irreversible action and should be treated with caution.
      * A valid session id is required.
      *
-     * @param  string  $id
-     * @param  boolean $confirm
+     * @param string $id
+     * @param boolean $confirm
      * @return mixed
      */
     public function clearList($id, $confirm)
     {
         return $this->post(
-            'list/'.$id.'/clear',
+            'list/' . $id . '/clear',
             null,
-            ['confirm' => (bool) $confirm === true ? 'true':'false']
+            ['confirm' => (bool)$confirm === true ? 'true' : 'false']
         );
     }
 }

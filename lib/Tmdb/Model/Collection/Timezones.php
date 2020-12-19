@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
@@ -40,7 +42,7 @@ class Timezones extends GenericCollection
     public function getCountry($id)
     {
         foreach ($this->data as $country) {
-            if (strtoupper($id) == (string) $country) {
+            if (strtoupper($id) == (string)$country) {
                 return $country;
             }
         }
@@ -52,8 +54,10 @@ class Timezones extends GenericCollection
      * Add a timezone to the collection
      *
      * @param CountryTimezone $country
+     *
+     * @return void
      */
-    public function addCountry($country)
+    public function addCountry($country): void
     {
         $this->data[] = $country;
     }

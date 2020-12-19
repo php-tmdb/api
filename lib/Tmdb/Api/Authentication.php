@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,11 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
+use Exception;
+use InvalidArgumentException;
 use Tmdb\Exception\UnauthorizedRequestTokenException;
 use Tmdb\RequestToken;
 
@@ -42,9 +46,10 @@ class Authentication extends AbstractApi
      * Redirect the user to authenticate the request token
      *
      * @param string $token
+     *
+     * @return void
      */
-    //@codeCoverageIgnoreStart
-    public function authenticateRequestToken($token)
+    public function authenticateRequestToken($token): void
     {
         header(sprintf(
             'Location: %s/%s',
@@ -55,42 +60,20 @@ class Authentication extends AbstractApi
     //@codeCoverageIgnoreEnd
 
     /**
-     * This method is used to generate a session id for user based authentication.
-     * A session id is required in order to use any of the write methods.
-     *
-     * @param  string                            $requestToken
-     * @throws UnauthorizedRequestTokenException
-     * @return mixed
-     */
-    public function getNewSession($requestToken)
-    {
-        try {
-            return $this->get('authentication/session/new', ['request_token' => (string) $requestToken]);
-
-            //@codeCoverageIgnoreStart
-        } catch (\Exception $e) {
-            if ($e->getCode() == 401) {
-                throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
-            }
-            //@codeCoverageIgnoreEnd
-        }
-    }
-
-    /**
      * Helper method to validate the request_token and obtain a session_token
      *
-     * @param  RequestToken              $requestToken
-     * @param  string                    $username
-     * @param  string                    $password
+     * @param RequestToken $requestToken
+     * @param string $username
+     * @param string $password
      * @return mixed
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getSessionTokenWithLogin($requestToken, $username, $password)
     {
         $validatedRequestToken = $this->validateRequestTokenWithLogin($requestToken, $username, $password);
 
         if (!$validatedRequestToken['success']) {
-            throw new \InvalidArgumentException('Unable to validate the request_token, please check your credentials.');
+            throw new InvalidArgumentException('Unable to validate the request_token, please check your credentials.');
         }
 
         return $this->getNewSession($validatedRequestToken['request_token']);
@@ -100,27 +83,49 @@ class Authentication extends AbstractApi
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param  string                            $requestToken
-     * @param  string                            $username
-     * @param  string                            $password
-     * @throws UnauthorizedRequestTokenException
+     * @param string $requestToken
+     * @param string $username
+     * @param string $password
      * @return mixed
+     * @throws UnauthorizedRequestTokenException
      */
     public function validateRequestTokenWithLogin($requestToken, $username, $password)
     {
         try {
             return $this->get('authentication/token/validate_with_login', [
-                'username'      => $username,
-                'password'      => $password,
-                'request_token' => (string) $requestToken
+                'username' => $username,
+                'password' => $password,
+                'request_token' => (string)$requestToken
             ]);
-        //@codeCoverageIgnoreStart
-        } catch (\Exception $e) {
+            //@codeCoverageIgnoreStart
+        } catch (Exception $e) {
             if ($e->getCode() == 401) {
                 throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
             }
         }
         //@codeCoverageIgnoreEnd
+    }
+
+    /**
+     * This method is used to generate a session id for user based authentication.
+     * A session id is required in order to use any of the write methods.
+     *
+     * @param string $requestToken
+     * @return mixed
+     * @throws UnauthorizedRequestTokenException
+     */
+    public function getNewSession($requestToken)
+    {
+        try {
+            return $this->get('authentication/session/new', ['request_token' => (string)$requestToken]);
+
+            //@codeCoverageIgnoreStart
+        } catch (Exception $e) {
+            if ($e->getCode() == 401) {
+                throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
+            }
+            //@codeCoverageIgnoreEnd
+        }
     }
 
     /**

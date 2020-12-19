@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Certification;
 
 use Tmdb\Model\AbstractModel;
@@ -20,37 +22,23 @@ use Tmdb\Model\AbstractModel;
  */
 class CountryCertification extends AbstractModel
 {
-    /**
-     * @var string
-     */
-    private $certification;
-
-    /**
-     * @var string
-     */
-    private $meaning;
-
-    /**
-     * @var integer
-     */
-    private $order;
-
     public static $properties = [
         'certification',
         'meaning',
         'order',
     ];
-
     /**
-     * @param  string $certification
-     * @return $this
+     * @var string
      */
-    public function setCertification($certification)
-    {
-        $this->certification = $certification;
-
-        return $this;
-    }
+    private $certification;
+    /**
+     * @var string
+     */
+    private $meaning;
+    /**
+     * @var integer
+     */
+    private $order;
 
     /**
      * @return string
@@ -61,12 +49,12 @@ class CountryCertification extends AbstractModel
     }
 
     /**
-     * @param  string $meaning
+     * @param string $certification
      * @return $this
      */
-    public function setMeaning($meaning)
+    public function setCertification($certification)
     {
-        $this->meaning = $meaning;
+        $this->certification = $certification;
 
         return $this;
     }
@@ -80,12 +68,12 @@ class CountryCertification extends AbstractModel
     }
 
     /**
-     * @param  int   $order
+     * @param string $meaning
      * @return $this
      */
-    public function setOrder($order)
+    public function setMeaning($meaning)
     {
-        $this->order = $order;
+        $this->meaning = $meaning;
 
         return $this;
     }
@@ -96,5 +84,16 @@ class CountryCertification extends AbstractModel
     public function getOrder()
     {
         return $this->order;
+    }
+
+    /**
+     * @param int $order
+     * @return $this
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+
+        return $this;
     }
 }

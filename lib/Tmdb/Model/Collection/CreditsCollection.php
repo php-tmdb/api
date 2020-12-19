@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Collection\People\Cast;
@@ -40,20 +42,9 @@ class CreditsCollection
      */
     public function __construct()
     {
-        $this->cast       = new Cast();
-        $this->crew       = new Crew();
+        $this->cast = new Cast();
+        $this->crew = new Crew();
         $this->guestStars = new GuestStars();
-    }
-
-    /**
-     * @param  Cast  $cast
-     * @return $this
-     */
-    public function setCast(Cast $cast)
-    {
-        $this->cast = $cast;
-
-        return $this;
     }
 
     /**
@@ -65,12 +56,12 @@ class CreditsCollection
     }
 
     /**
-     * @param  Crew  $crew
+     * @param Cast $cast
      * @return $this
      */
-    public function setCrew(Crew $crew)
+    public function setCast(Cast $cast)
     {
-        $this->crew = $crew;
+        $this->cast = $cast;
 
         return $this;
     }
@@ -84,6 +75,17 @@ class CreditsCollection
     }
 
     /**
+     * @param Crew $crew
+     * @return $this
+     */
+    public function setCrew(Crew $crew)
+    {
+        $this->crew = $crew;
+
+        return $this;
+    }
+
+    /**
      * @return GuestStars
      */
     public function getGuestStars()
@@ -93,8 +95,10 @@ class CreditsCollection
 
     /**
      * @param GuestStars $guestStars
+     *
+     * @return void
      */
-    public function setGuestStars($guestStars)
+    public function setGuestStars($guestStars): void
     {
         $this->guestStars = $guestStars;
     }

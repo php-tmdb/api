@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
@@ -20,31 +22,27 @@ use Tmdb\Model\AbstractModel;
  */
 class AccountStates extends AbstractModel
 {
-    /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var boolean
-     */
-    private $favorite;
-
-    /**
-     * @var Rating|boolean
-     */
-    private $rated;
-
-    /**
-     * @var boolean
-     */
-    private $watchlist;
-
     public static $properties = [
         'id',
         'favorite',
         'watchlist',
     ];
+    /**
+     * @var integer
+     */
+    private $id;
+    /**
+     * @var boolean
+     */
+    private $favorite;
+    /**
+     * @var Rating|boolean
+     */
+    private $rated;
+    /**
+     * @var boolean
+     */
+    private $watchlist;
 
     /**
      * Constructor
@@ -52,17 +50,6 @@ class AccountStates extends AbstractModel
     public function __construct()
     {
         $this->rated = new Rating();
-    }
-
-    /**
-     * @param  boolean $favorite
-     * @return $this
-     */
-    public function setFavorite($favorite)
-    {
-        $this->favorite = $favorite;
-
-        return $this;
     }
 
     /**
@@ -74,12 +61,12 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @param  int   $id
+     * @param boolean $favorite
      * @return $this
      */
-    public function setId($id)
+    public function setFavorite($favorite)
     {
-        $this->id = $id;
+        $this->favorite = $favorite;
 
         return $this;
     }
@@ -93,12 +80,12 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @param  Rating|bool $rated
+     * @param int $id
      * @return $this
      */
-    public function setRated($rated)
+    public function setId($id)
     {
-        $this->rated = $rated;
+        $this->id = $id;
 
         return $this;
     }
@@ -112,12 +99,12 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @param  boolean $watchlist
+     * @param Rating|bool $rated
      * @return $this
      */
-    public function setWatchlist($watchlist)
+    public function setRated($rated)
     {
-        $this->watchlist = $watchlist;
+        $this->rated = $rated;
 
         return $this;
     }
@@ -128,5 +115,16 @@ class AccountStates extends AbstractModel
     public function getWatchlist()
     {
         return $this->watchlist;
+    }
+
+    /**
+     * @param boolean $watchlist
+     * @return $this
+     */
+    public function setWatchlist($watchlist)
+    {
+        $this->watchlist = $watchlist;
+
+        return $this;
     }
 }

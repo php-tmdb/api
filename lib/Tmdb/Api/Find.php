@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -32,9 +34,9 @@ class Find extends AbstractApi
      * People: imdb_id, freebase_mid, freebase_id, tvrage_id
      * TV Series: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id
      *
-     * @param  string $id
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function findBy($id, array $parameters = [], array $headers = [])

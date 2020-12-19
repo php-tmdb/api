@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Tv\Episode\QueryParameter;
 
 use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
@@ -20,10 +22,10 @@ use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
  */
 class AppendToResponse extends BaseAppendToResponse
 {
-    const CREDITS      = 'credits';
+    const CREDITS = 'credits';
     const EXTERNAL_IDS = 'external_ids';
-    const IMAGES       = 'images';
-    const TRANSLATIONS       = 'translations';
-    const VIDEOS       = 'videos';
-    const CHANGES      = 'changes';
+    const IMAGES = 'images';
+    const TRANSLATIONS = 'translations';
+    const VIDEOS = 'videos';
+    const CHANGES = 'changes';
 }

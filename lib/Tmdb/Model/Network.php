@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model;
 
 /**
@@ -18,16 +20,6 @@ namespace Tmdb\Model;
  */
 class Network extends AbstractModel
 {
-    /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
     /**
      * Properties that are available in the API
      *
@@ -39,17 +31,14 @@ class Network extends AbstractModel
         'id',
         'name',
     ];
-
     /**
-     * @param  mixed $id
-     * @return $this
+     * @var integer
      */
-    public function setId($id)
-    {
-        $this->id = (int) $id;
-
-        return $this;
-    }
+    private $id;
+    /**
+     * @var string
+     */
+    private $name;
 
     /**
      * @return integer
@@ -60,12 +49,12 @@ class Network extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param mixed $id
      * @return $this
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = (int)$id;
 
         return $this;
     }
@@ -76,5 +65,16 @@ class Network extends AbstractModel
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
     }
 }

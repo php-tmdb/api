@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Account\Avatar;
 
 use Tmdb\Model\AbstractModel;
@@ -21,27 +23,15 @@ use Tmdb\Model\AbstractModel;
 class Gravatar extends AbstractModel
 {
     /**
-     * @var string
-     */
-    private $hash;
-
-    /**
      * @var array
      */
     public static $properties = [
         'hash'
     ];
-
     /**
-     * @param  string $hash
-     * @return $this
+     * @var string
      */
-    public function setHash($hash)
-    {
-        $this->hash = $hash;
-
-        return $this;
-    }
+    private $hash;
 
     /**
      * @return string
@@ -49,5 +39,16 @@ class Gravatar extends AbstractModel
     public function getHash()
     {
         return $this->hash;
+    }
+
+    /**
+     * @param string $hash
+     * @return $this
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+
+        return $this;
     }
 }

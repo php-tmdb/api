@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,12 +11,14 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Genres;
 use Tmdb\Factory\GenreFactory;
 use Tmdb\Factory\MovieFactory;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Genre;
 
 /**
  * Class GenreRepository
@@ -28,11 +31,12 @@ class GenreRepository extends AbstractRepository
      * Load a genre with the given identifier
      *
      * @param $id
-     * @param  array $parameters
-     * @param  array $headers
-     * @return Genre
+     * @param array $parameters
+     * @param array $headers
+     *
+     * @return GenericCollection
      */
-    public function load($id, array $parameters = [], array $headers = [])
+    public function load($id, array $parameters = [], array $headers = []): GenericCollection
     {
         return $this->loadCollection($parameters, $headers)->filterId($id);
     }
@@ -40,8 +44,8 @@ class GenreRepository extends AbstractRepository
     /**
      * Get the list of genres.
      *
-     * @param  array             $parameters
-     * @param  array             $headers
+     * @param array $parameters
+     * @param array $headers
      * @return GenericCollection
      */
     public function loadCollection(array $parameters = [], array $headers = [])
@@ -49,48 +53,6 @@ class GenreRepository extends AbstractRepository
         return $this->createCollection(
             $this->getApi()->getGenres($parameters, $headers)
         );
-    }
-
-    /**
-     * Get the list of movie genres.
-     *
-     * @param  array             $parameters
-     * @param  array             $headers
-     * @return GenericCollection
-     */
-    public function loadMovieCollection(array $parameters = [], array $headers = [])
-    {
-        return $this->createCollection(
-            $this->getApi()->getMovieGenres($parameters, $headers)
-        );
-    }
-
-    /**
-     * Get the list of tv genres.
-     *
-     * @param  array             $parameters
-     * @param  array             $headers
-     * @return GenericCollection
-     */
-    public function loadTvCollection(array $parameters = [], array $headers = [])
-    {
-        return $this->createCollection(
-            $this->getApi()->getTvGenres($parameters, $headers)
-        );
-    }
-
-    /**
-     * Get the list of movies for a particular genre by id.
-     * By default, only movies with 10 or more votes are included.
-     *
-     * @param $id
-     * @param  array   $parameters
-     * @return Genre[]
-     * @param  array   $headers
-     */
-    public function getMovies($id, array $parameters = [], array $headers = [])
-    {
-        return $this->getMovieFactory()->createResultCollection($this->getApi()->getMovies($id, $parameters, $headers));
     }
 
     /**
@@ -105,16 +67,6 @@ class GenreRepository extends AbstractRepository
     }
 
     /**
-     * Return the related API class
-     *
-     * @return \Tmdb\Api\Genres
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getGenresApi();
-    }
-
-    /**
      * @return GenreFactory
      */
     public function getFactory()
@@ -123,9 +75,62 @@ class GenreRepository extends AbstractRepository
     }
 
     /**
-     * @return GenreFactory
+     * Return the related API class
+     *
+     * @return Genres
      */
-    public function getMovieFactory()
+    public function getApi()
+    {
+        return $this->getClient()->getGenresApi();
+    }
+
+    /**
+     * Get the list of movie genres.
+     *
+     * @param array $parameters
+     * @param array $headers
+     * @return GenericCollection
+     */
+    public function loadMovieCollection(array $parameters = [], array $headers = [])
+    {
+        return $this->createCollection(
+            $this->getApi()->getMovieGenres($parameters, $headers)
+        );
+    }
+
+    /**
+     * Get the list of tv genres.
+     *
+     * @param array $parameters
+     * @param array $headers
+     * @return GenericCollection
+     */
+    public function loadTvCollection(array $parameters = [], array $headers = [])
+    {
+        return $this->createCollection(
+            $this->getApi()->getTvGenres($parameters, $headers)
+        );
+    }
+
+    /**
+     * Get the list of movies for a particular genre by id.
+     * By default, only movies with 10 or more votes are included.
+     *
+     * @param $id
+     * @param array $parameters
+     * @param array $headers
+     *
+     * @return ResultCollection
+     */
+    public function getMovies($id, array $parameters = [], array $headers = []): ResultCollection
+    {
+        return $this->getMovieFactory()->createResultCollection($this->getApi()->getMovies($id, $parameters, $headers));
+    }
+
+    /**
+     * @return MovieFactory
+     */
+    public function getMovieFactory(): MovieFactory
     {
         return new MovieFactory($this->getClient()->getHttpClient());
     }

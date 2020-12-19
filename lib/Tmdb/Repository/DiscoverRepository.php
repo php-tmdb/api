@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,12 +11,16 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Discover;
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Exception\RuntimeException;
+use Tmdb\Factory\FactoryInterface;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\TvFactory;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
 
@@ -30,12 +35,14 @@ class DiscoverRepository extends AbstractRepository
      * Discover movies by different types of data like average rating,
      * number of votes, genres and certifications.
      *
-     * @param  DiscoverMoviesQuery $query
-     * @param  array               $headers
+     * @param DiscoverMoviesQuery $query
+     * @param array $headers
+     *
+     * @return ResultCollection
      * @throws RuntimeException    when certification_country is set but certification.lte is not given
-     * @return Movie[]
+     *
      */
-    public function discoverMovies(DiscoverMoviesQuery $query, array $headers = [])
+    public function discoverMovies(DiscoverMoviesQuery $query, array $headers = []): ResultCollection
     {
         $query = $query->toArray();
 
@@ -51,24 +58,9 @@ class DiscoverRepository extends AbstractRepository
     }
 
     /**
-     * Discover TV shows by different types of data like average rating,
-     * number of votes, genres, the network they aired on and air dates.
-     *
-     * @param  DiscoverTvQuery $query
-     * @param  array           $headers
-     * @return Tv[]
-     */
-    public function discoverTv(DiscoverTvQuery $query, array $headers = [])
-    {
-        $data = $this->getApi()->discoverTv($query->toArray(), $headers);
-
-        return $this->getTvFactory()->createResultCollection($data);
-    }
-
-    /**
      * Return the related API class
      *
-     * @return \Tmdb\Api\Discover
+     * @return Discover
      */
     public function getApi()
     {
@@ -76,18 +68,7 @@ class DiscoverRepository extends AbstractRepository
     }
 
     /**
-     * Discover currently does not offer an factory
-     *
-     * @throws NotImplementedException
-     * @return null|\Tmdb\Factory\FactoryInterface
-     */
-    public function getFactory()
-    {
-        throw new NotImplementedException('Discover does not support a generic factory.');
-    }
-
-    /**
-     * @return \Tmdb\Factory\MovieFactory
+     * @return MovieFactory
      */
     public function getMovieFactory()
     {
@@ -95,10 +76,37 @@ class DiscoverRepository extends AbstractRepository
     }
 
     /**
-     * @return \Tmdb\Factory\TvFactory
+     * Discover TV shows by different types of data like average rating,
+     * number of votes, genres, the network they aired on and air dates.
+     *
+     * @param DiscoverTvQuery $query
+     * @param array $headers
+     *
+     * @return ResultCollection
+     */
+    public function discoverTv(DiscoverTvQuery $query, array $headers = []): ResultCollection
+    {
+        $data = $this->getApi()->discoverTv($query->toArray(), $headers);
+
+        return $this->getTvFactory()->createResultCollection($data);
+    }
+
+    /**
+     * @return TvFactory
      */
     public function getTvFactory()
     {
         return new TvFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
+     * Discover currently does not offer an factory
+     *
+     * @return null|FactoryInterface
+     * @throws NotImplementedException
+     */
+    public function getFactory()
+    {
+        throw new NotImplementedException('Discover does not support a generic factory.');
     }
 }

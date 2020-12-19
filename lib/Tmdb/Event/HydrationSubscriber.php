@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,13 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Event;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\HttpClient\HttpClientEventSubscriber;
+use Tmdb\Model\AbstractModel;
 
 /**
  * Class RequestSubscriber
@@ -37,16 +40,16 @@ class HydrationSubscriber extends HttpClientEventSubscriber
     /**
      * Hydrate the subject with data
      *
-     * @param HydrationEvent           $event
-     * @param string                   $eventName
+     * @param HydrationEvent $event
+     * @param string $eventName
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @return \Tmdb\Model\AbstractModel
+     * @return AbstractModel
      */
     public function hydrate(HydrationEvent $event, $eventName, $eventDispatcher)
     {
         // Possibility to load serialized cache
-        $eventDispatcher->dispatch( $event,TmdbEvents::BEFORE_HYDRATION);
+        $eventDispatcher->dispatch($event, TmdbEvents::BEFORE_HYDRATION);
 
         if ($event->isPropagationStopped()) {
             return $event->getSubject();
@@ -56,7 +59,7 @@ class HydrationSubscriber extends HttpClientEventSubscriber
         $event->setSubject($subject);
 
         // Possibility to cache the data
-        $eventDispatcher->dispatch( $event, TmdbEvents::AFTER_HYDRATION);
+        $eventDispatcher->dispatch($event, TmdbEvents::AFTER_HYDRATION);
 
         return $event->getSubject();
     }
@@ -64,8 +67,8 @@ class HydrationSubscriber extends HttpClientEventSubscriber
     /**
      * Hydrate the subject
      *
-     * @param  HydrationEvent            $event
-     * @return \Tmdb\Model\AbstractModel
+     * @param HydrationEvent $event
+     * @return AbstractModel
      */
     public function hydrateSubject(HydrationEvent $event)
     {

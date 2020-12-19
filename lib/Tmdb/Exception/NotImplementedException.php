@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,12 +11,15 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Exception;
+
+use Exception;
 
 /**
  * Class NotImplementedException
  * @package Tmdb\Exception
  */
-class NotImplementedException extends \Exception
+class NotImplementedException extends Exception
 {
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Collection\People;
@@ -35,9 +37,10 @@ class GuestStars extends People
      * Retrieve a cast member from the collection
      *
      * @param $id
-     * @return Person
+     *
+     * @return \Tmdb\Model\Common\GenericCollection
      */
-    public function getGuestStar($id)
+    public function getGuestStar($id): \Tmdb\Model\Common\GenericCollection
     {
         return parent::getPerson($id);
     }

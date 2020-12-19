@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
@@ -47,8 +49,10 @@ class Images extends GenericCollection
      * Add a image to the collection
      *
      * @param Image $image
+     *
+     * @return void
      */
-    public function addImage(Image $image)
+    public function addImage(Image $image): void
     {
         $this->add(null, $image);
     }
@@ -161,7 +165,8 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($height) {
-                if ($value instanceof ImageFilter &&
+                if (
+                    $value instanceof ImageFilter &&
                     $value->getHeight() <= $height && $value->getHeight() !== null
                 ) {
                     return true;
@@ -180,9 +185,11 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($height) {
-                if ($value instanceof ImageFilter &&
+                if (
+                    $value instanceof ImageFilter &&
                     $value->getHeight() >= $height &&
-                    $value->getHeight() !== null) {
+                    $value->getHeight() !== null
+                ) {
                     return true;
                 }
             }
@@ -197,14 +204,14 @@ class Images extends GenericCollection
     public function filterBestVotedImage()
     {
         $currentImage = null;
-        $voteAverage  = -1;
+        $voteAverage = -1;
 
         /**
          * @var $image Image
          */
         foreach ($this->data as $image) {
             if ($image->getVoteAverage() > $voteAverage) {
-                $voteAverage  = $image->getVoteAverage();
+                $voteAverage = $image->getVoteAverage();
                 $currentImage = $image;
             }
         }

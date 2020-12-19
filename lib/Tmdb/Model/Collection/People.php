@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,10 +11,11 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\People\PersonInterface;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person;
 
 /**
@@ -36,9 +38,10 @@ class People extends GenericCollection
      * Retrieve a person from the collection
      *
      * @param $id
-     * @return Person
+     *
+     * @return GenericCollection
      */
-    public function getPerson($id)
+    public function getPerson($id): GenericCollection
     {
         return $this->filterId($id);
     }
@@ -47,8 +50,10 @@ class People extends GenericCollection
      * Add a person to the collection
      *
      * @param PersonInterface $person
+     *
+     * @return void
      */
-    public function addPerson(PersonInterface $person)
+    public function addPerson(PersonInterface $person): void
     {
         $this->data[] = $person;
     }

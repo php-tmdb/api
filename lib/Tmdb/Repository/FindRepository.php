@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\FindFactory;
@@ -26,8 +28,8 @@ class FindRepository extends AbstractRepository
      * Find something
      *
      * @param $id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return Find
      */
     public function findBy($id, array $parameters = [], array $headers = [])
@@ -38,6 +40,14 @@ class FindRepository extends AbstractRepository
     }
 
     /**
+     * @return FindFactory
+     */
+    public function getFactory()
+    {
+        return new FindFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
      * Return the related API class
      *
      * @return \Tmdb\Api\Find
@@ -45,13 +55,5 @@ class FindRepository extends AbstractRepository
     public function getApi()
     {
         return $this->getClient()->getFindApi();
-    }
-
-    /**
-     * @return FindFactory
-     */
-    public function getFactory()
-    {
-        return new FindFactory($this->getClient()->getHttpClient());
     }
 }

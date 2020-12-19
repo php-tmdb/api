@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,9 +11,11 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory\Common;
 
 use Tmdb\Factory\AbstractFactory;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\Video;
 
@@ -22,16 +25,6 @@ use Tmdb\Model\Common\Video;
  */
 class VideoFactory extends AbstractFactory
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function create(array $data = [])
-    {
-        $videoType = $this->resolveVideoType($data);
-
-        return (null === $videoType) ? null : $this->hydrate($videoType, $data);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -54,7 +47,22 @@ class VideoFactory extends AbstractFactory
         return $collection;
     }
 
-    private function resolveVideoType($data)
+    /**
+     * {@inheritdoc}
+     *
+     * @return AbstractModel|null
+     */
+    public function create(array $data = []): ?AbstractModel
+    {
+        $videoType = $this->resolveVideoType($data);
+
+        return (null === $videoType) ? null : $this->hydrate($videoType, $data);
+    }
+
+    /**
+     * @return Video|null
+     */
+    private function resolveVideoType(array $data)
     {
         if (array_key_exists('site', $data) && !empty($data['site'])) {
             $site = strtolower($data['site']);

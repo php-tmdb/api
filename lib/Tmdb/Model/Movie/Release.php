@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Movie;
 
+use DateTime;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Filter\CountryFilter;
 
@@ -22,28 +25,16 @@ use Tmdb\Model\Filter\CountryFilter;
  */
 class Release extends AbstractModel implements CountryFilter
 {
-    private $iso31661;
-    private $certification;
-    private $primary;
-    private $releaseDate;
-
     public static $properties = [
         'iso_3166_1',
         'certification',
         'primary',
         'release_date'
     ];
-
-    /**
-     * @param  mixed $certification
-     * @return $this
-     */
-    public function setCertification($certification)
-    {
-        $this->certification = $certification;
-
-        return $this;
-    }
+    private $iso31661;
+    private $certification;
+    private $primary;
+    private $releaseDate;
 
     /**
      * @return mixed
@@ -54,12 +45,12 @@ class Release extends AbstractModel implements CountryFilter
     }
 
     /**
-     * @param  string $iso31661
+     * @param mixed $certification
      * @return $this
      */
-    public function setIso31661($iso31661)
+    public function setCertification($certification)
     {
-        $this->iso31661 = $iso31661;
+        $this->certification = $certification;
 
         return $this;
     }
@@ -73,22 +64,18 @@ class Release extends AbstractModel implements CountryFilter
     }
 
     /**
-     * @param  string|\DateTime $releaseDate
+     * @param string $iso31661
      * @return $this
      */
-    public function setReleaseDate($releaseDate)
+    public function setIso31661($iso31661)
     {
-        if (!$releaseDate instanceof \DateTime) {
-            $releaseDate = new \DateTime($releaseDate);
-        }
-
-        $this->releaseDate = $releaseDate;
+        $this->iso31661 = $iso31661;
 
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getReleaseDate()
     {
@@ -96,12 +83,16 @@ class Release extends AbstractModel implements CountryFilter
     }
 
     /**
-     * @param  mixed $primary
+     * @param string|DateTime $releaseDate
      * @return $this
      */
-    public function setPrimary($primary)
+    public function setReleaseDate($releaseDate)
     {
-        $this->primary = $primary;
+        if (!$releaseDate instanceof DateTime) {
+            $releaseDate = new DateTime($releaseDate);
+        }
+
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
@@ -112,5 +103,16 @@ class Release extends AbstractModel implements CountryFilter
     public function getPrimary()
     {
         return $this->primary;
+    }
+
+    /**
+     * @param mixed $primary
+     * @return $this
+     */
+    public function setPrimary($primary)
+    {
+        $this->primary = $primary;
+
+        return $this;
     }
 }
