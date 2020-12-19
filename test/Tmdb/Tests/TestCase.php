@@ -179,8 +179,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             'token'   => new ApiToken('abcdef'),
             'secure'  => true,
             'cache'   => [
-                'enabled' => true,
-                'handler' => new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'),
+                'enabled' => false,
+//                'handler' => new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'),
                 'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api',
                 'subscriber' => null
             ],

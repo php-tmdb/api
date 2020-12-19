@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -22,8 +24,8 @@ class Discover extends AbstractApi
     /**
      * Discover movies by different types of data like average rating, number of votes, genres and certifications.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function discoverMovies(array $parameters = [], array $headers = [])
@@ -35,8 +37,8 @@ class Discover extends AbstractApi
      * Discover TV shows by different types of data like average rating, number of votes, genres,
      * the network they aired on and air dates.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function discoverTv(array $parameters = [], array $headers = [])

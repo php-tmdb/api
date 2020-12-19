@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,10 +11,11 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Video;
+use Tmdb\Model\Common\Video;
 
 /**
  * Class Videos
@@ -35,9 +37,10 @@ class Videos extends GenericCollection
      * Retrieve a video from the collection
      *
      * @param $id
-     * @return null
+     *
+     * @return GenericCollection
      */
-    public function getVideo($id)
+    public function getVideo($id): GenericCollection
     {
         return $this->filterId($id);
     }
@@ -46,8 +49,10 @@ class Videos extends GenericCollection
      * Add a video to the collection
      *
      * @param Video $video
+     *
+     * @return void
      */
-    public function addVideo(Video $video)
+    public function addVideo(Video $video): void
     {
         $this->add(null, $video);
     }

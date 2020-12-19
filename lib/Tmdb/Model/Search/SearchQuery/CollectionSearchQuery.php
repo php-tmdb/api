@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Search\SearchQuery;
 
 use Tmdb\Model\Search\SearchQuery;
@@ -24,9 +26,10 @@ class CollectionSearchQuery extends SearchQuery
      * ISO 639-1 code.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function language($language)
+    public function language($language): self
     {
         $this->set('language', $language);
 

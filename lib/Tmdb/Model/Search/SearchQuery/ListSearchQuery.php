@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Search\SearchQuery;
 
 use Tmdb\Model\Search\SearchQuery;
@@ -24,11 +26,12 @@ class ListSearchQuery extends SearchQuery
      * Toggle the inclusion of adult titles. Expected value is: true or false
      *
      * @param bool
-     * @return $this
+     *
+     * @return static
      */
-    public function includeAdult($include_adult)
+    public function includeAdult($include_adult): self
     {
-        $this->set('include_adult', (bool) $include_adult);
+        $this->set('include_adult', (bool)$include_adult);
 
         return $this;
     }

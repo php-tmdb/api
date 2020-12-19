@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory\Common;
 
 use Tmdb\Common\ObjectHydrator;
@@ -24,7 +26,7 @@ use Tmdb\Model\Common\GenericCollection;
 class GenericCollectionFactory
 {
     /**
-     * @param  array             $data
+     * @param array $data
      * @param $class
      * @return GenericCollection
      */
@@ -34,7 +36,7 @@ class GenericCollectionFactory
     }
 
     /**
-     * @param  array             $data
+     * @param array $data
      * @param $class
      * @return GenericCollection
      */
@@ -44,7 +46,7 @@ class GenericCollectionFactory
             $class = get_class($class);
         }
 
-        $collection     = new GenericCollection();
+        $collection = new GenericCollection();
         $objectHydrator = new ObjectHydrator();
 
         foreach ($data as $item) {

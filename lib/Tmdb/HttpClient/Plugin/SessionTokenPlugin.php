@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\HttpClient\Plugin;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -25,7 +27,7 @@ use Tmdb\SessionToken;
 class SessionTokenPlugin implements EventSubscriberInterface
 {
     /**
-     * @var \Tmdb\SessionToken
+     * @var SessionToken
      */
     private $token;
 
@@ -39,7 +41,7 @@ class SessionTokenPlugin implements EventSubscriberInterface
         return [TmdbEvents::BEFORE_REQUEST => 'onBeforeSend'];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         if ($this->token instanceof GuestSessionToken) {
             $event->getRequest()->getParameters()->set('guest_session_id', $this->token->getToken());

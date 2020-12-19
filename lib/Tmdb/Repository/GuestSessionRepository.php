@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
+use Tmdb\Api\GuestSession;
 use Tmdb\Factory\GuestSessionFactory;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Collection\ResultCollection;
@@ -30,7 +33,7 @@ class GuestSessionRepository extends AbstractRepository
      * By default, this list will only include movies that have 10 or more votes.
      * This list refreshes every day.
      *
-     * @param  array                    $options
+     * @param array $options
      * @return ResultCollection|Movie[]
      */
     public function getRatedMovies(array $options = [])
@@ -41,9 +44,17 @@ class GuestSessionRepository extends AbstractRepository
     }
 
     /**
+     * @return MovieFactory
+     */
+    public function getMovieFactory()
+    {
+        return new MovieFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
      * Return the Movies API Class
      *
-     * @return \Tmdb\Api\GuestSession
+     * @return GuestSession
      */
     public function getApi()
     {
@@ -58,13 +69,5 @@ class GuestSessionRepository extends AbstractRepository
     public function getFactory()
     {
         return new GuestSessionFactory($this->getClient()->getHttpClient());
-    }
-
-    /**
-     * @return MovieFactory
-     */
-    public function getMovieFactory()
-    {
-        return new MovieFactory($this->getClient()->getHttpClient());
     }
 }

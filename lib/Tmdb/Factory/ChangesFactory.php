@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Model\Change;
@@ -21,15 +23,6 @@ use Tmdb\Model\Collection\Changes;
  */
 class ChangesFactory extends AbstractFactory
 {
-    /**
-     * {@inheritdoc}
-     * @return \Tmdb\Model\Change
-     */
-    public function create(array $data = [])
-    {
-        return $this->hydrate(new Change(), $data);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -58,5 +51,14 @@ class ChangesFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return Change
+     */
+    public function create(array $data = [])
+    {
+        return $this->hydrate(new Change(), $data);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -23,8 +25,8 @@ class Companies extends AbstractApi
      * This method is used to retrieve all of the basic information about a company.
      *
      * @param $company_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getCompany($company_id, array $parameters = [], array $headers = [])
@@ -35,9 +37,9 @@ class Companies extends AbstractApi
     /**
      * Get the list of movies associated with a particular company.
      *
-     * @param  integer $company_id
-     * @param  array   $parameters
-     * @param  array   $headers
+     * @param integer $company_id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getMovies($company_id, array $parameters = [], array $headers = [])

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,12 +11,17 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
+use RuntimeException;
 use Tmdb\Factory\Account\AvatarFactory;
 use Tmdb\HttpClient\HttpClient;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Account;
 use Tmdb\Model\Lists\Result;
+use Tmdb\Model\Movie;
+use Tmdb\Model\Tv;
 
 /**
  * Class AccountFactory
@@ -39,15 +45,20 @@ class AccountFactory extends AbstractFactory
     private $tvFactory;
 
     /**
+     * @var AvatarFactory
+     */
+    private $avatarFactory;
+
+    /**
      * Constructor
      *
      * @param HttpClient $httpClient
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->movieFactory  = new MovieFactory($httpClient);
-        $this->imageFactory  = new ImageFactory($httpClient);
-        $this->tvFactory     = new TvFactory($httpClient);
+        $this->movieFactory = new MovieFactory($httpClient);
+        $this->imageFactory = new ImageFactory($httpClient);
+        $this->tvFactory = new TvFactory($httpClient);
         $this->avatarFactory = new AvatarFactory($httpClient);
 
         parent::__construct($httpClient);
@@ -72,6 +83,14 @@ class AccountFactory extends AbstractFactory
     }
 
     /**
+     * @return AvatarFactory
+     */
+    public function getAvatarFactory()
+    {
+        return $this->avatarFactory;
+    }
+
+    /**
      * @param array $data
      *
      * @return Result
@@ -84,30 +103,70 @@ class AccountFactory extends AbstractFactory
     /**
      * Create movie
      *
-     * @param  array             $data
-     * @return \Tmdb\Model\Movie
+     * @param array $data
+     *
+     * @return AbstractModel|null
      */
-    public function createMovie(array $data = [])
+    public function createMovie(array $data = []): ?AbstractModel
     {
         return $this->getMovieFactory()->create($data);
     }
 
     /**
+     * @return MovieFactory
+     */
+    public function getMovieFactory()
+    {
+        return $this->movieFactory;
+    }
+
+    /**
+     * @param MovieFactory $movieFactory
+     * @return $this
+     */
+    public function setMovieFactory($movieFactory)
+    {
+        $this->movieFactory = $movieFactory;
+
+        return $this;
+    }
+
+    /**
      * Create TV show
      *
-     * @param  array          $data
-     * @return \Tmdb\Model\Tv
+     * @param array $data
+     *
+     * @return AbstractModel|null
      */
-    public function createTvShow(array $data = [])
+    public function createTvShow(array $data = []): ?AbstractModel
     {
         return $this->getTvFactory()->create($data);
     }
 
     /**
+     * @return TvFactory
+     */
+    public function getTvFactory()
+    {
+        return $this->tvFactory;
+    }
+
+    /**
+     * @param TvFactory $tvFactory
+     * @return $this
+     */
+    public function setTvFactory($tvFactory)
+    {
+        $this->tvFactory = $tvFactory;
+
+        return $this;
+    }
+
+    /**
      * Create list item
      *
-     * @param  array                     $data
-     * @return \Tmdb\Model\AbstractModel
+     * @param array $data
+     * @return AbstractModel
      */
     public function createListItem(array $data = [])
     {
@@ -121,38 +180,15 @@ class AccountFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @return ImageFactory
      */
-    public function createCollection(array $data = [])
+    public function getImageFactory()
     {
-        throw new \RuntimeException(sprintf(
-            'Class "%s" does not support method "%s".',
-            __CLASS__,
-            __METHOD__
-        ));
+        return $this->imageFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\MovieFactory $movieFactory
-     * @return $this
-     */
-    public function setMovieFactory($movieFactory)
-    {
-        $this->movieFactory = $movieFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\MovieFactory
-     */
-    public function getMovieFactory()
-    {
-        return $this->movieFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
+     * @param ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
@@ -163,34 +199,19 @@ class AccountFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\ImageFactory
+     * {@inheritdoc}
      */
-    public function getImageFactory()
+    public function createCollection(array $data = [])
     {
-        return $this->imageFactory;
+        throw new RuntimeException(sprintf(
+            'Class "%s" does not support method "%s".',
+            __CLASS__,
+            __METHOD__
+        ));
     }
 
     /**
-     * @param  \Tmdb\Factory\TvFactory $tvFactory
-     * @return $this
-     */
-    public function setTvFactory($tvFactory)
-    {
-        $this->tvFactory = $tvFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\TvFactory
-     */
-    public function getTvFactory()
-    {
-        return $this->tvFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\Account\AvatarFactory $avatarFactory
+     * @param AvatarFactory $avatarFactory
      * @return $this
      */
     public function setAvatarFactory($avatarFactory)
@@ -198,13 +219,5 @@ class AccountFactory extends AbstractFactory
         $this->avatarFactory = $avatarFactory;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\Account\AvatarFactory
-     */
-    public function getAvatarFactory()
-    {
-        return $this->avatarFactory;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -33,8 +35,8 @@ class Credits extends AbstractApi
      * and are assumed to be "season regulars".
      *
      * @param $credit_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getCredit($credit_id, array $parameters = [], array $headers = [])

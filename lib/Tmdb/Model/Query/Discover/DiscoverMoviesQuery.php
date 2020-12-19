@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Query\Discover;
 
+use DateTime;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\QueryParametersCollection;
 use Tmdb\Model\Common\GenericCollection;
@@ -26,7 +29,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     const MODE_AND = 0;
 
     /** Transform args to an OR query */
-    const MODE_OR  = 1;
+    const MODE_OR = 1;
 
     /**
      * Only include movies with certifications for a specific country.
@@ -34,7 +37,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * When this value is specified, 'certification.lte' is required.
      * A ISO 3166-1 is expected.
      *
-     * @param  string $country
+     * @param string $country
      * @return $this
      */
     public function certificationCountry($country)
@@ -49,7 +52,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is a valid certification for the specified 'certification_country'.
      *
-     * @param  mixed $value
+     * @param mixed $value
      * @return $this
      */
     public function certification($value)
@@ -64,7 +67,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is a valid certification for the specified 'certification_country'.
      *
-     * @param  mixed $value
+     * @param mixed $value
      * @return $this
      */
     public function certificationLte($value)
@@ -79,12 +82,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is a boolean, true or false. Default is false.
      *
-     * @param  boolean $allow
+     * @param boolean $allow
      * @return $this
      */
     public function includeAdult($allow = true)
     {
-        $this->set('include_adult', (bool) $allow);
+        $this->set('include_adult', (bool)$allow);
 
         return $this;
     }
@@ -94,12 +97,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is a boolean, true or false. Default is true.
      *
-     * @param  boolean $allow
+     * @param boolean $allow
      * @return $this
      */
     public function includeVideo($allow = true)
     {
-        $this->set('include_video', (bool) $allow);
+        $this->set('include_video', (bool)$allow);
 
         return $this;
     }
@@ -107,7 +110,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * ISO 639-1 code.
      *
-     * @param  string $language
+     * @param string $language
      * @return $this
      */
     public function language($language)
@@ -120,12 +123,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Minimum value is 1, expected value is an integer.
      *
-     * @param  integer $page
+     * @param integer $page
      * @return $this
      */
     public function page($page = 1)
     {
-        $this->set('page', (int) $page);
+        $this->set('page', (int)$page);
 
         return $this;
     }
@@ -134,14 +137,35 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Filter the results so that only the primary release date year has this value.
      * Expected value is a year.
      *
-     * @param  \DateTime|integer $year
+     * @param DateTime|integer $year
      * @return $this
      */
     public function primaryReleaseYear($year)
     {
-        $this->set('primary_release_year', (int) $this->getDate($year, 'Y'));
+        $this->set('primary_release_year', (int)$this->getDate($year, 'Y'));
 
         return $this;
+    }
+
+    /**
+     * @param DateTime|string|integer $year
+     * @param string $format
+     *
+     * @return false|string
+     */
+    protected function getDate($year, $format = 'Y-m-d')
+    {
+        return ($year instanceof DateTime) ? $year->format($format) : (string)$year;
+    }
+
+    /**
+     * @return static
+     * @deprecated
+     *
+     */
+    public function primaryReleaseYearGte($year): self
+    {
+        return $this->primaryReleaseDateGte($year);
     }
 
     /**
@@ -149,7 +173,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected format is YYYY-MM-DD.
      *
-     * @param  \DateTime|integer $year
+     * @param DateTime|integer $year
      * @return $this
      */
     public function primaryReleaseDateGte($year)
@@ -160,11 +184,13 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
+     * @return static
      * @deprecated
+     *
      */
-    public function primaryReleaseYearGte($year)
+    public function primaryReleaseYearLte($year): self
     {
-        return $this->primaryReleaseDateGte($year);
+        return $this->primaryReleaseDateLte($year);
     }
 
     /**
@@ -172,7 +198,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected format is YYYY-MM-DD.
      *
-     * @param  \DateTime|integer $year
+     * @param DateTime|integer $year
      * @return $this
      */
     public function primaryReleaseDateLte($year)
@@ -183,19 +209,11 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * @deprecated
-     */
-    public function primaryReleaseYearLte($year)
-    {
-        return $this->primaryReleaseDateLte($year);
-    }
-
-    /**
      * Filter by all available release dates and only include those which are greater or equal to the specified value.
      *
      * Expected format is YYYY-MM-DD.
      *
-     * @param  \DateTime|string $date
+     * @param DateTime|string $date
      * @return $this
      */
     public function releaseDateGte($date)
@@ -210,7 +228,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected format is YYYY-MM-DD.
      *
-     * @param  \DateTime $date
+     * @param DateTime $date
      * @return $this
      */
     public function releaseDateLte($date)
@@ -238,7 +256,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * - vote_count.asc
      * - vote_count.desc
      *
-     * @param  string $option
+     * @param string $option
      * @return $this
      */
     public function sortBy($option)
@@ -252,12 +270,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Filter movies by their vote count and only include movies that have a
      * vote count that is equal to or lower than the specified value.
      *
-     * @param  integer $count
+     * @param integer $count
      * @return $this
      */
     public function voteCountGte($count)
     {
-        $this->set('vote_count.gte', (int) $count);
+        $this->set('vote_count.gte', (int)$count);
 
         return $this;
     }
@@ -268,12 +286,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is an integer.
      *
-     * @param  integer $count
+     * @param integer $count
      * @return $this
      */
     public function voteCountLte($count)
     {
-        $this->set('vote_count.lte', (int) $count);
+        $this->set('vote_count.lte', (int)$count);
 
         return $this;
     }
@@ -284,12 +302,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is a float.
      *
-     * @param  float $average
+     * @param float $average
      * @return $this
      */
     public function voteAverageGte($average)
     {
-        $this->set('vote_average.gte', (float) $average);
+        $this->set('vote_average.gte', (float)$average);
 
         return $this;
     }
@@ -300,12 +318,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is a float.
      *
-     * @param  float $average
+     * @param float $average
      * @return $this
      */
     public function voteAverageLte($average)
     {
-        $this->set('vote_average.lte', (float) $average);
+        $this->set('vote_average.lte', (float)$average);
 
         return $this;
     }
@@ -316,8 +334,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is an integer (the id of a person).
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
-     * @param  array|string $cast
-     * @param  int          $mode
+     * @param array|string $cast
+     * @param int $mode
      * @return $this
      */
     public function withCast($cast, $mode = self::MODE_OR)
@@ -328,13 +346,51 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
+     * Format the with compatible parameters.
+     *
+     * @param array|string $with
+     * @param int $mode
+     *
+     * @return null|string
+     */
+    protected function with($with = null, $mode = self::MODE_OR): ?string
+    {
+        if ($with instanceof GenericCollection) {
+            $with = $with->toArray();
+        }
+
+        if (is_array($with)) {
+            return $this->andWith((array)$with, $mode);
+        }
+
+        return $with;
+    }
+
+    /**
+     * Creates an and query to combine an AND or an OR expression.
+     *
+     * @param array $with
+     * @param int $mode
+     * @return string
+     */
+    protected function andWith(array $with, $mode)
+    {
+        return (
+        implode(
+            $mode === self::MODE_OR ? '|' : ',',
+            array_map([$this, 'normalize'], $with)
+        )
+        );
+    }
+
+    /**
      * Only include movies that have this person id added as a crew member.
      *
      * Expected value is an integer (the id of a person).
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
-     * @param  array|string $crew
-     * @param  int          $mode
+     * @param array|string $crew
+     * @param int $mode
      * @return $this
      */
     public function withCrew($crew, $mode = self::MODE_OR)
@@ -350,8 +406,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is an integer (the id of a company).
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
-     * @param  array|string $companies
-     * @param  int          $mode
+     * @param array|string $companies
+     * @param int $mode
      * @return $this
      */
     public function withCompanies($companies, $mode = self::MODE_OR)
@@ -371,8 +427,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * If an array is supplied this defaults to an AND query
      *
-     * @param  array|string $genres
-     * @param  int          $mode
+     * @param array|string $genres
+     * @param int $mode
      * @return $this
      */
     public function withGenres($genres, $mode = self::MODE_OR)
@@ -392,8 +448,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * If an array is supplied this defaults to an AND query
      *
-     * @param  array|string $keywords
-     * @param  int          $mode
+     * @param array|string $keywords
+     * @param int $mode
      * @return $this
      */
     public function withKeywords($keywords, $mode = self::MODE_OR)
@@ -409,8 +465,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is an integer (the id or ids of a person).
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
-     * @param  array|string $people
-     * @param  int          $mode
+     * @param array|string $people
+     * @param int $mode
      * @return $this
      */
     public function withPeople($people, $mode = self::MODE_OR)
@@ -424,51 +480,14 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Filter the results release dates to matches that include this value.
      * Expected value is a year.
      *
-     * @param  \DateTime|integer $year
+     * @param DateTime|integer $year
      * @return $this
      */
     public function year($year)
     {
-        $this->set('year', (int) $this->getDate($year, 'Y'));
+        $this->set('year', (int)$this->getDate($year, 'Y'));
 
         return $this;
-    }
-
-    /**
-     * Format the with compatible parameters.
-     *
-     * @param  array|string $with
-     * @param  int          $mode
-     * @return string
-     */
-    protected function with($with = null, $mode = self::MODE_OR)
-    {
-        if ($with instanceof GenericCollection) {
-            $with = $with->toArray();
-        }
-
-        if (is_array($with)) {
-            return $this->andWith((array) $with, $mode);
-        }
-
-        return $with;
-    }
-
-    /**
-     * Creates an and query to combine an AND or an OR expression.
-     *
-     * @param  array  $with
-     * @param  int    $mode
-     * @return string
-     */
-    protected function andWith(array $with, $mode)
-    {
-        return (
-            implode(
-                $mode === self::MODE_OR ? '|' : ',',
-                array_map([$this, 'normalize'], $with)
-            )
-        );
     }
 
     /**
@@ -484,15 +503,5 @@ class DiscoverMoviesQuery extends QueryParametersCollection
         }
 
         return $mixed;
-    }
-
-    /**
-     * @param  \DateTime|string|integer $year
-     * @param  string                   $format
-     * @return int
-     */
-    protected function getDate($year, $format = 'Y-m-d')
-    {
-        return ($year instanceof \DateTime) ? $year->format($format) : (string) $year;
     }
 }

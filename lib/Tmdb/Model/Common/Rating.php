@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Common;
 
 use Tmdb\Model\AbstractModel;
@@ -20,25 +22,13 @@ use Tmdb\Model\AbstractModel;
  */
 class Rating extends AbstractModel
 {
+    public static $properties = [
+        'value',
+    ];
     /**
      * @var float
      */
     private $value;
-
-    public static $properties = [
-        'value',
-    ];
-
-    /**
-     * @param  float $value
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
 
     /**
      * @return float
@@ -46,5 +36,16 @@ class Rating extends AbstractModel
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * @param float $value
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
     }
 }

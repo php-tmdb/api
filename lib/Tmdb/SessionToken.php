@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,7 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb;
+
+use DateTime;
 
 /**
  * Class SessionToken
@@ -24,7 +28,7 @@ class SessionToken
     private $sessionToken = null;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     private $expiresAt;
 
@@ -44,7 +48,7 @@ class SessionToken
     }
 
     /**
-     * @param  null  $sessionToken
+     * @param null $sessionToken
      * @return $this
      */
     public function setToken($sessionToken)
@@ -63,22 +67,7 @@ class SessionToken
     }
 
     /**
-     * @param  \DateTime $expiresAt
-     * @return $this
-     */
-    public function setExpiresAt($expiresAt)
-    {
-        if (!$expiresAt instanceof \DateTime) {
-            $expiresAt = new \DateTime($expiresAt);
-        }
-
-        $this->expiresAt = $expiresAt;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getExpiresAt()
     {
@@ -86,12 +75,16 @@ class SessionToken
     }
 
     /**
-     * @param  boolean $success
+     * @param DateTime $expiresAt
      * @return $this
      */
-    public function setSuccess($success)
+    public function setExpiresAt($expiresAt)
     {
-        $this->success = $success;
+        if (!$expiresAt instanceof DateTime) {
+            $expiresAt = new DateTime($expiresAt);
+        }
+
+        $this->expiresAt = $expiresAt;
 
         return $this;
     }
@@ -104,8 +97,19 @@ class SessionToken
         return $this->success;
     }
 
+    /**
+     * @param boolean $success
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+
+        return $this;
+    }
+
     public function __toString()
     {
-        return (string) $this->sessionToken;
+        return (string)$this->sessionToken;
     }
 }

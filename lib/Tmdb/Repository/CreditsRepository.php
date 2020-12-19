@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,9 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Credits;
 use Tmdb\Factory\CreditsFactory;
+use Tmdb\Model\Genre;
 
 /**
  * Class CreditsRepository
@@ -25,11 +29,12 @@ class CreditsRepository extends AbstractRepository
      * Load a company with the given identifier
      *
      * @param $id
-     * @param  array   $parameters
-     * @param  array   $headers
-     * @return Company
+     * @param array $parameters
+     * @param array $headers
+     *
+     * @return Genre
      */
-    public function load($id, array $parameters = [], array $headers = [])
+    public function load($id, array $parameters = [], array $headers = []): Genre
     {
         $data = $this->getApi()->getCredit($id, $this->parseQueryParameters($parameters), $headers);
 
@@ -39,7 +44,7 @@ class CreditsRepository extends AbstractRepository
     /**
      * Return the related API class
      *
-     * @return \Tmdb\Api\Credits
+     * @return Credits
      */
     public function getApi()
     {

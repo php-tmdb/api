@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Person;
 
+use DateTime;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image\PosterImage;
 
@@ -21,86 +24,6 @@ use Tmdb\Model\Image\PosterImage;
  */
 class Credit extends AbstractModel
 {
-    /**
-     * @var bool
-     */
-    private $adult;
-
-    /**
-     * @var string
-     */
-    private $character;
-
-    /**
-     * @var string
-     */
-    private $creditId;
-
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $originalTitle;
-
-    /**
-     * @var string
-     */
-    private $posterPath;
-
-    /**
-     * @var \DateTime
-     */
-    private $releaseDate;
-
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var PosterImage
-     */
-    private $posterImage;
-
-    /**
-     * @var string
-     */
-    private $job;
-
-    /**
-     * @var string
-     */
-    private $department;
-
-    /**
-     * @var string
-     */
-    private $mediaType;
-
-    /**
-     * @var string
-     */
-    private $originalName;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var int
-     */
-    private $episodeCount;
-
-    /**
-     * @var mixed
-     */
-    private $firstAirDate;
-
     public static $properties = array(
         'adult',
         'character',
@@ -118,17 +41,70 @@ class Credit extends AbstractModel
         'episode_count',
         'first_air_date'
     );
-
     /**
-     * @param  boolean $adult
-     * @return $this
+     * @var bool
      */
-    public function setAdult($adult)
-    {
-        $this->adult = $adult;
-
-        return $this;
-    }
+    private $adult;
+    /**
+     * @var string
+     */
+    private $character;
+    /**
+     * @var string
+     */
+    private $creditId;
+    /**
+     * @var int
+     */
+    private $id;
+    /**
+     * @var string
+     */
+    private $originalTitle;
+    /**
+     * @var string
+     */
+    private $posterPath;
+    /**
+     * @var DateTime
+     */
+    private $releaseDate;
+    /**
+     * @var string
+     */
+    private $title;
+    /**
+     * @var PosterImage
+     */
+    private $posterImage;
+    /**
+     * @var string
+     */
+    private $job;
+    /**
+     * @var string
+     */
+    private $department;
+    /**
+     * @var string
+     */
+    private $mediaType;
+    /**
+     * @var string
+     */
+    private $originalName;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var int
+     */
+    private $episodeCount;
+    /**
+     * @var mixed
+     */
+    private $firstAirDate;
 
     /**
      * @return boolean
@@ -139,12 +115,12 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  string $character
+     * @param boolean $adult
      * @return $this
      */
-    public function setCharacter($character)
+    public function setAdult($adult)
     {
-        $this->character = $character;
+        $this->adult = $adult;
 
         return $this;
     }
@@ -158,12 +134,12 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  string $creditId
+     * @param string $character
      * @return $this
      */
-    public function setCreditId($creditId)
+    public function setCharacter($character)
     {
-        $this->creditId = $creditId;
+        $this->character = $character;
 
         return $this;
     }
@@ -177,12 +153,12 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  int   $id
+     * @param string $creditId
      * @return $this
      */
-    public function setId($id)
+    public function setCreditId($creditId)
     {
-        $this->id = $id;
+        $this->creditId = $creditId;
 
         return $this;
     }
@@ -196,12 +172,12 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  string $originalTitle
+     * @param int $id
      * @return $this
      */
-    public function setOriginalTitle($originalTitle)
+    public function setId($id)
     {
-        $this->originalTitle = $originalTitle;
+        $this->id = $id;
 
         return $this;
     }
@@ -215,18 +191,18 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image\PosterImage $posterImage
+     * @param string $originalTitle
      * @return $this
      */
-    public function setPosterImage($posterImage)
+    public function setOriginalTitle($originalTitle)
     {
-        $this->posterImage = $posterImage;
+        $this->originalTitle = $originalTitle;
 
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Image\PosterImage
+     * @return PosterImage
      */
     public function getPosterImage()
     {
@@ -234,12 +210,12 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  string $posterPath
+     * @param PosterImage $posterImage
      * @return $this
      */
-    public function setPosterPath($posterPath)
+    public function setPosterImage($posterImage)
     {
-        $this->posterPath = $posterPath;
+        $this->posterImage = $posterImage;
 
         return $this;
     }
@@ -253,22 +229,18 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  \DateTime $releaseDate
+     * @param string $posterPath
      * @return $this
      */
-    public function setReleaseDate($releaseDate)
+    public function setPosterPath($posterPath)
     {
-        if (!$releaseDate instanceof \DateTime) {
-            $releaseDate = new \DateTime($releaseDate);
-        }
-
-        $this->releaseDate = $releaseDate;
+        $this->posterPath = $posterPath;
 
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getReleaseDate()
     {
@@ -276,12 +248,16 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  string $title
+     * @param DateTime $releaseDate
      * @return $this
      */
-    public function setTitle($title)
+    public function setReleaseDate($releaseDate)
     {
-        $this->title = $title;
+        if (!$releaseDate instanceof DateTime) {
+            $releaseDate = new DateTime($releaseDate);
+        }
+
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
@@ -295,12 +271,12 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  string $job
+     * @param string $title
      * @return $this
      */
-    public function setJob($job)
+    public function setTitle($title)
     {
-        $this->job = $job;
+        $this->title = $title;
 
         return $this;
     }
@@ -314,12 +290,12 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param  string $department
+     * @param string $job
      * @return $this
      */
-    public function setDepartment($department)
+    public function setJob($job)
     {
-        $this->department = $department;
+        $this->job = $job;
 
         return $this;
     }
@@ -330,6 +306,17 @@ class Credit extends AbstractModel
     public function getDepartment()
     {
         return $this->department;
+    }
+
+    /**
+     * @param string $department
+     * @return $this
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
     }
 
     /**

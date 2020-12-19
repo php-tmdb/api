@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,12 +11,13 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\HttpClient\HttpClient;
-use Tmdb\Model\Genre;
 use Tmdb\Model\Credits as Credits;
+use Tmdb\Model\Genre;
 use Tmdb\Model\Person;
 
 /**
@@ -46,9 +48,9 @@ class CreditsFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->tvSeasonFactory  = new TvSeasonFactory($httpClient);
+        $this->tvSeasonFactory = new TvSeasonFactory($httpClient);
         $this->tvEpisodeFactory = new TvEpisodeFactory($httpClient);
-        $this->peopleFactory    = new PeopleFactory($httpClient);
+        $this->peopleFactory = new PeopleFactory($httpClient);
 
         parent::__construct($httpClient);
     }
@@ -63,7 +65,6 @@ class CreditsFactory extends AbstractFactory
         $credits = new Credits();
 
         if (array_key_exists('media', $data)) {
-
             $credits->setMedia(
                 $this->hydrate($credits->getMedia(), $data['media'])
             );
@@ -91,37 +92,15 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @throws NotImplementedException
+     * @return TvSeasonFactory
      */
-    public function createCollection(array $data = [])
+    public function getTvSeasonFactory()
     {
-        throw new NotImplementedException(
-            'Credits are usually obtained through the PeopleFactory,
-            however we might add a shortcut for that here.'
-        );
+        return $this->tvSeasonFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\TvEpisodeFactory $tvEpisodeFactory
-     * @return $this
-     */
-    public function setTvEpisodeFactory($tvEpisodeFactory)
-    {
-        $this->tvEpisodeFactory = $tvEpisodeFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\TvEpisodeFactory
-     */
-    public function getTvEpisodeFactory()
-    {
-        return $this->tvEpisodeFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\TvSeasonFactory $tvSeasonFactory
+     * @param TvSeasonFactory $tvSeasonFactory
      * @return $this
      */
     public function setTvSeasonFactory($tvSeasonFactory)
@@ -132,15 +111,34 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\TvSeasonFactory
+     * @return TvEpisodeFactory
      */
-    public function getTvSeasonFactory()
+    public function getTvEpisodeFactory()
     {
-        return $this->tvSeasonFactory;
+        return $this->tvEpisodeFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\PeopleFactory $peopleFactory
+     * @param TvEpisodeFactory $tvEpisodeFactory
+     * @return $this
+     */
+    public function setTvEpisodeFactory($tvEpisodeFactory)
+    {
+        $this->tvEpisodeFactory = $tvEpisodeFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return PeopleFactory
+     */
+    public function getPeopleFactory()
+    {
+        return $this->peopleFactory;
+    }
+
+    /**
+     * @param PeopleFactory $peopleFactory
      * @return $this
      */
     public function setPeopleFactory($peopleFactory)
@@ -151,10 +149,13 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\PeopleFactory
+     * @throws NotImplementedException
      */
-    public function getPeopleFactory()
+    public function createCollection(array $data = [])
     {
-        return $this->peopleFactory;
+        throw new NotImplementedException(
+            'Credits are usually obtained through the PeopleFactory,
+            however we might add a shortcut for that here.'
+        );
     }
 }

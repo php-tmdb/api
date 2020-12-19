@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
@@ -51,7 +53,7 @@ class Genres extends GenericCollection
     /**
      * Add a genre to the collection
      *
-     * @param  Genre $genre
+     * @param Genre $genre
      * @return $this
      */
     public function addGenre(Genre $genre)

@@ -1,0 +1,83 @@
+name: "Continuous Integration"
+
+on: ["pull_request", "push"]
+
+env:
+  fail-fast: true
+
+jobs:
+  phpunit:
+    name: "PHPUnit"
+    runs-on: "ubuntu-20.04"
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.3"
+          - "7.4"
+        deps:
+          - "normal"
+        symfony-require:
+          - ""
+        symfony-deprecations-helper:
+          - ""
+        include:
+          - php-version: "7.3"
+            deps: "normal"
+
+          - php-version: "7.3"
+            deps: "low"
+
+          - php-version: "7.3"
+            deps: "dev"
+
+          - php-version: "7.4"
+            deps: "normal"
+
+          - php-version: "7.4"
+            deps: "low"
+
+          - php-version: "7.4"
+            deps: "dev"
+
+          - php-version: "8.0"
+            deps: "dev"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+        with:
+          fetch-depth: 2
+
+      - name: "Install PHP with PCOV"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+
+      - name: "Cache dependencies installed with composer"
+        uses: "actions/cache@v2"
+        with:
+          path: "~/.composer/cache"
+          key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
+          restore-keys: "php-${{ matrix.php-version }}-composer-locked-"
+
+      - name: "Install stable dependencies with composer"
+        run: "composer update --no-interaction --prefer-dist --prefer-stable"
+        if: "${{ matrix.deps == 'normal' }}"
+
+      - name: "Install dev dependencies with composer"
+        run: "composer update --no-interaction --prefer-dist"
+        if: "${{ matrix.deps == 'dev' }}"
+
+      - name: "Install lowest possible dependencies with composer"
+        run: "composer update --no-interaction --prefer-dist --prefer-stable --prefer-lowest"
+        if: "${{ matrix.deps == 'low' }}"
+
+      - name: "Run PHPUnit"
+        run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
+
+      - name: "Upload coverage file"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "phpunit-${{ matrix.php-version }}-${{ matrix.deps }}-${{ hashFiles('composer.lock') }}.coverage"
+          path: "coverage.xml"

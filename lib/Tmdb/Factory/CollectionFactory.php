@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\HttpClient\HttpClient;
@@ -47,7 +49,21 @@ class CollectionFactory extends AbstractFactory
 
     /**
      * {@inheritdoc}
-     * @return \Tmdb\Model\Collection
+     */
+    public function createCollection(array $data = [])
+    {
+        $collection = new GenericCollection();
+
+        foreach ($data as $item) {
+            $collection->add(null, $this->create($item));
+        }
+
+        return $collection;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return Collection
      */
     public function create(array $data = [])
     {
@@ -81,40 +97,15 @@ class CollectionFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @return MovieFactory
      */
-    public function createCollection(array $data = [])
+    public function getMovieFactory()
     {
-        $collection = new GenericCollection();
-
-        foreach ($data as $item) {
-            $collection->add(null, $this->create($item));
-        }
-
-        return $collection;
+        return $this->movieFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
-     * @return $this
-     */
-    public function setImageFactory($imageFactory)
-    {
-        $this->imageFactory = $imageFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\ImageFactory
-     */
-    public function getImageFactory()
-    {
-        return $this->imageFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\MovieFactory $movieFactory
+     * @param MovieFactory $movieFactory
      * @return $this
      */
     public function setMovieFactory($movieFactory)
@@ -125,10 +116,21 @@ class CollectionFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\MovieFactory
+     * @return ImageFactory
      */
-    public function getMovieFactory()
+    public function getImageFactory()
     {
-        return $this->movieFactory;
+        return $this->imageFactory;
+    }
+
+    /**
+     * @param ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+
+        return $this;
     }
 }

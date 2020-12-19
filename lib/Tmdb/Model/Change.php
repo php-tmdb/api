@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model;
 
 /**
@@ -19,33 +21,20 @@ namespace Tmdb\Model;
 class Change extends AbstractModel
 {
     /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var boolean
-     */
-    private $adult;
-
-    /**
      * @var array
      */
     public static $properties = [
         'id',
         'adult'
     ];
-
     /**
-     * @param  boolean $adult
-     * @return $this
+     * @var integer
      */
-    public function setAdult($adult)
-    {
-        $this->adult = (bool) $adult;
-
-        return $this;
-    }
+    private $id;
+    /**
+     * @var boolean
+     */
+    private $adult;
 
     /**
      * @return boolean
@@ -56,12 +45,12 @@ class Change extends AbstractModel
     }
 
     /**
-     * @param  int   $id
+     * @param boolean $adult
      * @return $this
      */
-    public function setId($id)
+    public function setAdult($adult)
     {
-        $this->id = (int) $id;
+        $this->adult = (bool)$adult;
 
         return $this;
     }
@@ -72,5 +61,16 @@ class Change extends AbstractModel
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = (int)$id;
+
+        return $this;
     }
 }

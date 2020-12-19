@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Search\SearchQuery;
 
+use DateTime;
 use Tmdb\Model\Search\SearchQuery;
 
 /**
@@ -24,9 +27,10 @@ class MovieSearchQuery extends SearchQuery
      * ISO 639-1 code.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function language($language)
+    public function language($language): self
     {
         $this->set('language', $language);
 
@@ -37,11 +41,12 @@ class MovieSearchQuery extends SearchQuery
      * Toggle the inclusion of adult titles. Expected value is: true or false
      *
      * @param bool
-     * @return $this
+     *
+     * @return static
      */
-    public function includeAdult($include_adult)
+    public function includeAdult($include_adult): self
     {
-        $this->set('include_adult', (bool) $include_adult);
+        $this->set('include_adult', (bool)$include_adult);
 
         return $this;
     }
@@ -50,15 +55,16 @@ class MovieSearchQuery extends SearchQuery
      * Filter the results release dates to matches that include this value.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function year($year)
+    public function year($year): self
     {
-        if ($year instanceof \DateTime) {
+        if ($year instanceof DateTime) {
             $year = $year->format('Y');
         }
 
-        $this->set('year', (int) $year);
+        $this->set('year', (int)$year);
 
         return $this;
     }
@@ -67,9 +73,10 @@ class MovieSearchQuery extends SearchQuery
      * Filter the results so that only the primary release dates have this value.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function primaryReleaseYear($primary_release_year)
+    public function primaryReleaseYear($primary_release_year): self
     {
         $this->set('primary_release_year', $primary_release_year);
 
@@ -84,12 +91,13 @@ class MovieSearchQuery extends SearchQuery
      *
      * For those wanting more of an "autocomplete" type search, set this option to 'ngram'.
      *
+     * @param string
+     *
+     * @return static
      * @deprecated
      *
-     * @param string
-     * @return $this
      */
-    public function searchType($search_type = 'phrase')
+    public function searchType($search_type = 'phrase'): self
     {
         return $this;
     }

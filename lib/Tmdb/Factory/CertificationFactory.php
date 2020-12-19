@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Model\Certification;
@@ -21,16 +23,6 @@ use Tmdb\Model\Common\GenericCollection;
  */
 class CertificationFactory extends AbstractFactory
 {
-    /**
-     * @param array $data
-     *
-     * @return Certification
-     */
-    public function create(array $data = [])
-    {
-        return $this->hydrate(new Certification\CountryCertification(), $data);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -56,5 +48,15 @@ class CertificationFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Certification
+     */
+    public function create(array $data = [])
+    {
+        return $this->hydrate(new Certification\CountryCertification(), $data);
     }
 }

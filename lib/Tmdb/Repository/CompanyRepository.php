@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Companies;
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Collection\ResultCollection;
@@ -28,8 +31,8 @@ class CompanyRepository extends AbstractRepository
      * Load a company with the given identifier
      *
      * @param $id
-     * @param  array   $parameters
-     * @param  array   $headers
+     * @param array $parameters
+     * @param array $headers
      * @return Company
      */
     public function load($id, array $parameters = [], array $headers = [])
@@ -40,24 +43,9 @@ class CompanyRepository extends AbstractRepository
     }
 
     /**
-     * Get the list of movies associated with a particular company.
-     *
-     * @param  integer          $id
-     * @param  array            $parameters
-     * @param  array            $headers
-     * @return ResultCollection
-     */
-    public function getMovies($id, array $parameters = [], array $headers = [])
-    {
-        return $this->createMovieCollection(
-            $this->getApi()->getMovies($id, $this->parseQueryParameters($parameters), $headers)
-        );
-    }
-
-    /**
      * Return the related API class
      *
-     * @return \Tmdb\Api\Companies
+     * @return Companies
      */
     public function getApi()
     {
@@ -73,11 +61,18 @@ class CompanyRepository extends AbstractRepository
     }
 
     /**
-     * @return MovieFactory
+     * Get the list of movies associated with a particular company.
+     *
+     * @param integer $id
+     * @param array $parameters
+     * @param array $headers
+     * @return ResultCollection
      */
-    public function getMovieFactory()
+    public function getMovies($id, array $parameters = [], array $headers = [])
     {
-        return new MovieFactory($this->getClient()->getHttpClient());
+        return $this->createMovieCollection(
+            $this->getApi()->getMovies($id, $this->parseQueryParameters($parameters), $headers)
+        );
     }
 
     /**
@@ -99,5 +94,13 @@ class CompanyRepository extends AbstractRepository
         }
 
         return $collection;
+    }
+
+    /**
+     * @return MovieFactory
+     */
+    public function getMovieFactory()
+    {
+        return new MovieFactory($this->getClient()->getHttpClient());
     }
 }

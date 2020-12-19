@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Tv;
 
 use Tmdb\Model\AbstractModel;
@@ -22,16 +24,6 @@ use Tmdb\Model\Filter\CountryFilter;
 class ContentRating extends AbstractModel implements CountryFilter
 {
     /**
-     * @var string
-     */
-    private $iso_3166_1;
-
-    /**
-     * @var string
-     */
-    private $rating;
-
-    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -42,9 +34,25 @@ class ContentRating extends AbstractModel implements CountryFilter
         'iso_3166_1',
         'rating',
     ];
+    /**
+     * @var string
+     */
+    private $iso_3166_1;
+    /**
+     * @var string
+     */
+    private $rating;
 
     /**
-     * @param  string $country
+     * @return string
+     */
+    public function getIso31661()
+    {
+        return $this->iso_3166_1;
+    }
+
+    /**
+     * @param string $country
      * @return $this
      */
     public function setIso31661($country)
@@ -57,13 +65,13 @@ class ContentRating extends AbstractModel implements CountryFilter
     /**
      * @return string
      */
-    public function getIso31661()
+    public function getRating()
     {
-        return $this->iso_3166_1;
+        return $this->rating;
     }
 
     /**
-     * @param  string $rating
+     * @param string $rating
      * @return $this
      */
     public function setRating($rating)
@@ -71,13 +79,5 @@ class ContentRating extends AbstractModel implements CountryFilter
         $this->rating = $rating;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRating()
-    {
-        return $this->rating;
     }
 }

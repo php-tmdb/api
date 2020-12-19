@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Model\Collection\Jobs;
@@ -21,14 +23,6 @@ use Tmdb\Model\Job;
  */
 class JobsFactory extends AbstractFactory
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function create(array $data = [])
-    {
-        return $this->hydrate(new Job(), $data);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -45,5 +39,13 @@ class JobsFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function create(array $data = [])
+    {
+        return $this->hydrate(new Job(), $data);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Lists;
 
 use Tmdb\Model\AbstractModel;
@@ -21,33 +23,20 @@ use Tmdb\Model\AbstractModel;
 class Result extends AbstractModel
 {
     /**
-     * @var int
-     */
-    private $statusCode;
-
-    /**
-     * @var string
-     */
-    private $statusMessage;
-
-    /**
      * @var array
      */
     public static $properties = [
         'status_code',
         'status_message'
     ];
-
     /**
-     * @param  int   $statusCode
-     * @return $this
+     * @var int
      */
-    public function setStatusCode($statusCode)
-    {
-        $this->statusCode = $statusCode;
-
-        return $this;
-    }
+    private $statusCode;
+    /**
+     * @var string
+     */
+    private $statusMessage;
 
     /**
      * @return int
@@ -58,12 +47,12 @@ class Result extends AbstractModel
     }
 
     /**
-     * @param  string $statusMessage
+     * @param int $statusCode
      * @return $this
      */
-    public function setStatusMessage($statusMessage)
+    public function setStatusCode($statusCode)
     {
-        $this->statusMessage = $statusMessage;
+        $this->statusCode = $statusCode;
 
         return $this;
     }
@@ -74,5 +63,16 @@ class Result extends AbstractModel
     public function getStatusMessage()
     {
         return $this->statusMessage;
+    }
+
+    /**
+     * @param string $statusMessage
+     * @return $this
+     */
+    public function setStatusMessage($statusMessage)
+    {
+        $this->statusMessage = $statusMessage;
+
+        return $this;
     }
 }

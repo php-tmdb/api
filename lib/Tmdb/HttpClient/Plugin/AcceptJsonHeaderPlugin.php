@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\HttpClient\Plugin;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -29,7 +31,7 @@ class AcceptJsonHeaderPlugin implements EventSubscriberInterface
         ];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         $event->getRequest()->getHeaders()->set('Accept', 'application/json');
     }

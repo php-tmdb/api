@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
@@ -21,21 +23,6 @@ use Tmdb\Model\Common\GenericCollection;
 class ResultCollection extends GenericCollection
 {
     /**
-     * @var int
-     */
-    private $page = 1;
-
-    /**
-     * @var int
-     */
-    private $totalPages = 1;
-
-    /**
-     * @var int
-     */
-    private $totalResults = 0;
-
-    /**
      * @var array
      */
     public static $properties = [
@@ -43,17 +30,18 @@ class ResultCollection extends GenericCollection
         'total_pages',
         'total_results'
     ];
-
     /**
-     * @param  int   $page
-     * @return $this
+     * @var int
      */
-    public function setPage($page)
-    {
-        $this->page = (int) $page;
-
-        return $this;
-    }
+    private $page = 1;
+    /**
+     * @var int
+     */
+    private $totalPages = 1;
+    /**
+     * @var int
+     */
+    private $totalResults = 0;
 
     /**
      * @return int
@@ -64,12 +52,12 @@ class ResultCollection extends GenericCollection
     }
 
     /**
-     * @param  int   $totalPages
+     * @param int $page
      * @return $this
      */
-    public function setTotalPages($totalPages)
+    public function setPage($page)
     {
-        $this->totalPages = (int) $totalPages;
+        $this->page = (int)$page;
 
         return $this;
     }
@@ -83,12 +71,12 @@ class ResultCollection extends GenericCollection
     }
 
     /**
-     * @param  int   $totalResults
+     * @param int $totalPages
      * @return $this
      */
-    public function setTotalResults($totalResults)
+    public function setTotalPages($totalPages)
     {
-        $this->totalResults = (int) $totalResults;
+        $this->totalPages = (int)$totalPages;
 
         return $this;
     }
@@ -99,5 +87,16 @@ class ResultCollection extends GenericCollection
     public function getTotalResults()
     {
         return $this->totalResults;
+    }
+
+    /**
+     * @param int $totalResults
+     * @return $this
+     */
+    public function setTotalResults($totalResults)
+    {
+        $this->totalResults = (int)$totalResults;
+
+        return $this;
     }
 }

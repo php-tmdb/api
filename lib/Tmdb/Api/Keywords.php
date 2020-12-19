@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -22,9 +24,9 @@ class Keywords extends AbstractApi
     /**
      * Get the basic information for a specific keyword id.
      *
-     * @param  int   $keyword_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param int $keyword_id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getKeyword($keyword_id, array $parameters = [], array $headers = [])
@@ -35,9 +37,9 @@ class Keywords extends AbstractApi
     /**
      * Get the list of movies for a particular keyword by id.
      *
-     * @param  int   $keyword_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param int $keyword_id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getMovies($keyword_id, array $parameters = [], array $headers = [])

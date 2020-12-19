@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,18 +11,21 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
+use Tmdb\Api\TvEpisode;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\TvEpisodeFactory;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\AccountStates;
 use Tmdb\Model\Common\Video;
 use Tmdb\Model\Lists\Result;
-use Tmdb\Model\Tv\Episode\QueryParameter\AppendToResponse;
 use Tmdb\Model\Tv;
-use Tmdb\Model\Tv\Season;
 use Tmdb\Model\Tv\Episode;
+use Tmdb\Model\Tv\Episode\QueryParameter\AppendToResponse;
+use Tmdb\Model\Tv\Season;
 
 /**
  * Class TvEpisodeRepository
@@ -41,8 +45,8 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $episode Episode|integer
      * @param $parameters
      * @param $headers
+     * @return null|AbstractModel
      * @throws RuntimeException
-     * @return null|\Tmdb\Model\AbstractModel
      */
     public function load($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
@@ -58,7 +62,7 @@ class TvEpisodeRepository extends AbstractRepository
             $episode = $episode->getEpisodeNumber();
         }
 
-        if (is_null($tvShow) || is_null($season) || is_null($episode) ) {
+        if (is_null($tvShow) || is_null($season) || is_null($episode)) {
             throw new RuntimeException('Not all required parameters to load an tv episode are present.');
         }
 
@@ -86,6 +90,24 @@ class TvEpisodeRepository extends AbstractRepository
     }
 
     /**
+     * Return the Seasons API Class
+     *
+     * @return TvEpisode
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getTvEpisodeApi();
+    }
+
+    /**
+     * @return TvEpisodeFactory
+     */
+    public function getFactory()
+    {
+        return new TvEpisodeFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
      * Get the cast & crew information about a TV series.
      *
      * Just like the website, we pull this information from the last season of the series.
@@ -95,7 +117,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $episode
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return null|AbstractModel
      */
     public function getCredits($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
@@ -132,7 +154,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $episode
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return null|AbstractModel
      */
     public function getExternalIds($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
@@ -169,7 +191,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $episode
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return null|AbstractModel
      */
     public function getImages($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
@@ -241,9 +263,9 @@ class TvEpisodeRepository extends AbstractRepository
      *
      * A valid session id is required.
      *
-     * @param  mixed         $tvShow
-     * @param  mixed         $season
-     * @param  mixed         $episode
+     * @param mixed $tvShow
+     * @param mixed $season
+     * @param mixed $episode
      * @return AccountStates
      */
     public function getAccountStates($tvShow, $season, $episode)
@@ -270,10 +292,10 @@ class TvEpisodeRepository extends AbstractRepository
      *
      * A valid session id or guest session id is required.
      *
-     * @param  mixed  $tvShow
-     * @param  mixed  $season
-     * @param  mixed  $episode
-     * @param  double $rating
+     * @param mixed $tvShow
+     * @param mixed $season
+     * @param mixed $episode
+     * @param double $rating
      * @return Result
      */
     public function rate($tvShow, $season, $episode, $rating)
@@ -293,23 +315,5 @@ class TvEpisodeRepository extends AbstractRepository
         return $this->getFactory()->createResult(
             $this->getApi()->rateTvEpisode($tvShow, $season, $episode, $rating)
         );
-    }
-
-    /**
-     * Return the Seasons API Class
-     *
-     * @return \Tmdb\Api\TvEpisode
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getTvEpisodeApi();
-    }
-
-    /**
-     * @return TvEpisodeFactory
-     */
-    public function getFactory()
-    {
-        return new TvEpisodeFactory($this->getClient()->getHttpClient());
     }
 }

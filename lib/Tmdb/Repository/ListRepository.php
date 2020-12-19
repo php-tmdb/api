@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,13 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\ListFactory;
-use Tmdb\Model\Lists\ItemStatus;
+use Tmdb\Model\Genre;
 use Tmdb\Model\Lists;
+use Tmdb\Model\Lists\ItemStatus;
 
 /**
  * Class ListRepository
@@ -26,12 +29,13 @@ class ListRepository extends AbstractRepository
     /**
      * Get a list by id.
      *
-     * @param  string $id
-     * @param  array  $parameters
-     * @param  array  $headers
-     * @return Lists
+     * @param string $id
+     * @param array $parameters
+     * @param array $headers
+     *
+     * @return Genre
      */
-    public function load($id, array $parameters = [], array $headers = [])
+    public function load($id, array $parameters = [], array $headers = []): Genre
     {
         return $this->getFactory()->create(
             $this->getApi()->getList($id, $parameters, $headers)
@@ -39,96 +43,11 @@ class ListRepository extends AbstractRepository
     }
 
     /**
-     * Check to see if a movie ID is already added to a list.
-     *
-     * @param  string     $id
-     * @param  int        $mediaId
-     * @param  array      $parameters
-     * @param  array      $headers
-     * @return ItemStatus
+     * @return ListFactory
      */
-    public function getItemStatus($id, $mediaId, array $parameters = [], array $headers = [])
+    public function getFactory()
     {
-        return $this->getFactory()->createItemStatus(
-            $this->getApi()->getItemStatus($id, $mediaId, $parameters, $headers)
-        );
-    }
-
-    /**
-     * This method lets users create a new list. A valid session id is required.
-     *
-     * @param  string $name
-     * @param  string $description
-     * @param  array  $parameters
-     * @param  array  $headers
-     * @return string The list id
-     */
-    public function createList($name, $description = null, array $parameters = [], array $headers = [])
-    {
-        return $this->getFactory()->createResultWithListId(
-            $this->getApi()->createList($name, $description, $parameters, $headers)
-        );
-    }
-
-    /**
-     * This method lets users add new movies to a list that they created.
-     * A valid session id is required.
-     *
-     * @param  string     $id
-     * @param  int        $mediaId
-     * @return ItemStatus
-     */
-    public function add($id, $mediaId)
-    {
-        return $this->getFactory()->createResult(
-            $this->getApi()->addMediaToList($id, $mediaId)
-        );
-    }
-
-    /**
-     * This method lets users delete movies from a list that they created.
-     * A valid session id is required.
-     *
-     * @param  string     $id
-     * @param  int        $mediaId
-     * @return ItemStatus
-     */
-    public function remove($id, $mediaId)
-    {
-        return $this->getFactory()->createResult(
-            $this->getApi()->removeMediaFromList($id, $mediaId)
-        );
-    }
-
-    /**
-     * This method lets users delete a list that they created.
-     * A valid session id is required.
-     *
-     * @param  string     $id
-     * @return ItemStatus
-     */
-    public function deleteList($id)
-    {
-        return $this->getFactory()->createResult(
-            $this->getApi()->deleteList($id)
-        );
-    }
-
-    /**
-     * Clear all of the items within a list.
-     *
-     * This is a irreversible action and should be treated with caution.
-     * A valid session id is required.
-     *
-     * @param  string     $id
-     * @param  boolean    $confirm
-     * @return ItemStatus
-     */
-    public function clearList($id, $confirm)
-    {
-        return $this->getFactory()->createResult(
-            $this->getApi()->clearList($id, (bool) $confirm)
-        );
+        return new ListFactory($this->getClient()->getHttpClient());
     }
 
     /**
@@ -142,10 +61,100 @@ class ListRepository extends AbstractRepository
     }
 
     /**
-     * @return ListFactory
+     * Check to see if a movie ID is already added to a list.
+     *
+     * @param string $id
+     * @param int $mediaId
+     * @param array $parameters
+     * @param array $headers
+     * @return ItemStatus
      */
-    public function getFactory()
+    public function getItemStatus($id, $mediaId, array $parameters = [], array $headers = [])
     {
-        return new ListFactory($this->getClient()->getHttpClient());
+        return $this->getFactory()->createItemStatus(
+            $this->getApi()->getItemStatus($id, $mediaId, $parameters, $headers)
+        );
+    }
+
+    /**
+     * This method lets users create a new list. A valid session id is required.
+     *
+     * @param string $name
+     * @param string $description
+     * @param array $parameters
+     * @param array $headers
+     *
+     * @return Lists\ResultWithListId The list id
+     */
+    public function createList($name, $description = null, array $parameters = [], array $headers = []): Lists\ResultWithListId
+    {
+        return $this->getFactory()->createResultWithListId(
+            $this->getApi()->createList($name, $description, $parameters, $headers)
+        );
+    }
+
+    /**
+     * This method lets users add new movies to a list that they created.
+     * A valid session id is required.
+     *
+     * @param string $id
+     * @param int $mediaId
+     *
+     * @return Lists\Result
+     */
+    public function add($id, $mediaId): Lists\Result
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->addMediaToList($id, $mediaId)
+        );
+    }
+
+    /**
+     * This method lets users delete movies from a list that they created.
+     * A valid session id is required.
+     *
+     * @param string $id
+     * @param int $mediaId
+     *
+     * @return Lists\Result
+     */
+    public function remove($id, $mediaId): Lists\Result
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->removeMediaFromList($id, $mediaId)
+        );
+    }
+
+    /**
+     * This method lets users delete a list that they created.
+     * A valid session id is required.
+     *
+     * @param string $id
+     *
+     * @return Lists\Result
+     */
+    public function deleteList($id): Lists\Result
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->deleteList($id)
+        );
+    }
+
+    /**
+     * Clear all of the items within a list.
+     *
+     * This is a irreversible action and should be treated with caution.
+     * A valid session id is required.
+     *
+     * @param string $id
+     * @param boolean $confirm
+     *
+     * @return Lists\Result
+     */
+    public function clearList($id, $confirm): Lists\Result
+    {
+        return $this->getFactory()->createResult(
+            $this->getApi()->clearList($id, (bool)$confirm)
+        );
     }
 }

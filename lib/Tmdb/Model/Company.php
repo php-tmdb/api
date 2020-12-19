@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model;
 
 use Tmdb\Model\Image\LogoImage;
@@ -20,15 +22,6 @@ use Tmdb\Model\Image\LogoImage;
  */
 class Company extends AbstractModel
 {
-    private $description;
-    private $headquarters;
-    private $homepage;
-    private $id;
-    private $logo;
-    private $logoPath;
-    private $name;
-    private $parentCompany;
-
     public static $properties = [
         'description',
         'headquarters',
@@ -38,17 +31,14 @@ class Company extends AbstractModel
         'name',
         'parent_company'
     ];
-
-    /**
-     * @param  mixed $description
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    private $description;
+    private $headquarters;
+    private $homepage;
+    private $id;
+    private $logo;
+    private $logoPath;
+    private $name;
+    private $parentCompany;
 
     /**
      * @return mixed
@@ -59,12 +49,12 @@ class Company extends AbstractModel
     }
 
     /**
-     * @param  mixed $headquarters
+     * @param mixed $description
      * @return $this
      */
-    public function setHeadquarters($headquarters)
+    public function setDescription($description)
     {
-        $this->headquarters = $headquarters;
+        $this->description = $description;
 
         return $this;
     }
@@ -78,12 +68,12 @@ class Company extends AbstractModel
     }
 
     /**
-     * @param  mixed $homepage
+     * @param mixed $headquarters
      * @return $this
      */
-    public function setHomepage($homepage)
+    public function setHeadquarters($headquarters)
     {
-        $this->homepage = $homepage;
+        $this->headquarters = $headquarters;
 
         return $this;
     }
@@ -97,12 +87,12 @@ class Company extends AbstractModel
     }
 
     /**
-     * @param  mixed $id
+     * @param mixed $homepage
      * @return $this
      */
-    public function setId($id)
+    public function setHomepage($homepage)
     {
-        $this->id = (int) $id;
+        $this->homepage = $homepage;
 
         return $this;
     }
@@ -116,7 +106,18 @@ class Company extends AbstractModel
     }
 
     /**
-     * @param  LogoImage $logo
+     * @param mixed $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = (int)$id;
+
+        return $this;
+    }
+
+    /**
+     * @param LogoImage $logo
      * @return $this
      */
     public function setLogoImage(LogoImage $logo)
@@ -135,17 +136,6 @@ class Company extends AbstractModel
     }
 
     /**
-     * @param  mixed $logoPath
-     * @return $this
-     */
-    public function setLogoPath($logoPath)
-    {
-        $this->logoPath = $logoPath;
-
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function getLogoPath()
@@ -154,12 +144,12 @@ class Company extends AbstractModel
     }
 
     /**
-     * @param  mixed $name
+     * @param mixed $logoPath
      * @return $this
      */
-    public function setName($name)
+    public function setLogoPath($logoPath)
     {
-        $this->name = $name;
+        $this->logoPath = $logoPath;
 
         return $this;
     }
@@ -173,12 +163,12 @@ class Company extends AbstractModel
     }
 
     /**
-     * @param  mixed $parentCompany
+     * @param mixed $name
      * @return $this
      */
-    public function setParentCompany($parentCompany)
+    public function setName($name)
     {
-        $this->parentCompany = $parentCompany;
+        $this->name = $name;
 
         return $this;
     }
@@ -189,5 +179,16 @@ class Company extends AbstractModel
     public function getParentCompany()
     {
         return $this->parentCompany;
+    }
+
+    /**
+     * @param mixed $parentCompany
+     * @return $this
+     */
+    public function setParentCompany($parentCompany)
+    {
+        $this->parentCompany = $parentCompany;
+
+        return $this;
     }
 }

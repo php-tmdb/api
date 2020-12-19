@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Person;
 
 use Tmdb\Model\Collection\People\PersonInterface;
@@ -20,26 +22,6 @@ use Tmdb\Model\Collection\People\PersonInterface;
  */
 class CastMember extends AbstractMember implements PersonInterface
 {
-    /**
-     * @var string
-     */
-    private $character;
-
-    /**
-     * @var int
-     */
-    private $order;
-
-    /**
-     * @var mixed
-     */
-    private $castId;
-
-    /**
-     * @var mixed
-     */
-    private $creditId;
-
     public static $properties = [
         'id',
         'credit_id',
@@ -49,17 +31,22 @@ class CastMember extends AbstractMember implements PersonInterface
         'order',
         'profile_path'
     ];
-
     /**
-     * @param  string $character
-     * @return $this
+     * @var string
      */
-    public function setCharacter($character)
-    {
-        $this->character = $character;
-
-        return $this;
-    }
+    private $character;
+    /**
+     * @var int
+     */
+    private $order;
+    /**
+     * @var mixed
+     */
+    private $castId;
+    /**
+     * @var mixed
+     */
+    private $creditId;
 
     /**
      * @return string
@@ -70,12 +57,12 @@ class CastMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @param  int   $order
+     * @param string $character
      * @return $this
      */
-    public function setOrder($order)
+    public function setCharacter($character)
     {
-        $this->order = (int) $order;
+        $this->character = $character;
 
         return $this;
     }
@@ -89,12 +76,12 @@ class CastMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @param  mixed $castId
+     * @param int $order
      * @return $this
      */
-    public function setCastId($castId)
+    public function setOrder($order)
     {
-        $this->castId = (int) $castId;
+        $this->order = (int)$order;
 
         return $this;
     }
@@ -108,12 +95,12 @@ class CastMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @param  mixed $creditId
+     * @param mixed $castId
      * @return $this
      */
-    public function setCreditId($creditId)
+    public function setCastId($castId)
     {
-        $this->creditId = $creditId;
+        $this->castId = (int)$castId;
 
         return $this;
     }
@@ -124,5 +111,16 @@ class CastMember extends AbstractMember implements PersonInterface
     public function getCreditId()
     {
         return $this->creditId;
+    }
+
+    /**
+     * @param mixed $creditId
+     * @return $this
+     */
+    public function setCreditId($creditId)
+    {
+        $this->creditId = $creditId;
+
+        return $this;
     }
 }

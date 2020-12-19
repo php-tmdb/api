@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Event;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 use Tmdb\Common\ParameterBag;
 use Tmdb\HttpClient\Request;
@@ -20,12 +25,12 @@ use Tmdb\HttpClient\Response;
 class RequestEvent extends Event
 {
     /**
-     * @var Request
+     * @var RequestInterface
      */
     private $request;
 
     /**
-     * @var Response
+     * @var ResponseInterface
      */
     private $response;
 
@@ -64,31 +69,33 @@ class RequestEvent extends Event
     }
 
     /**
-     * @return ParameterBag
+     * @return string[][]
+     *
+     * @psalm-return array<array-key, array<array-key, string>>
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->request->getHeaders();
     }
 
     /**
-     * @return null
+     * @return StreamInterface
      */
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->request->getBody();
     }
 
     /**
-     * @return Request
+     * @return RequestInterface
      */
-    public function getRequest()
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
      * @return $this
      */
     public function setRequest($request)
@@ -99,15 +106,15 @@ class RequestEvent extends Event
     }
 
     /**
-     * @return string
+     * @return ResponseInterface
      */
-    public function getResponse()
+    public function getResponse(): ResponseInterface
     {
         return $this->response;
     }
 
     /**
-     * @param  Response $response
+     * @param Response $response
      * @return $this
      */
     public function setResponse($response)

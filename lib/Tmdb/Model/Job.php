@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model;
 
 /**
@@ -34,15 +36,6 @@ class Job extends AbstractModel
     private $jobList;
 
     /**
-     * @param  string $department
-     * @return $this
-     */
-    public function setDepartment($department)
-    {
-        $this->department = $department;
-    }
-
-    /**
      * @return string
      */
     public function getDepartment()
@@ -51,12 +44,13 @@ class Job extends AbstractModel
     }
 
     /**
-     * @param  array $jobList
-     * @return $this
+     * @param string $department
+     *
+     * @return void
      */
-    public function setJobList(array $jobList)
+    public function setDepartment($department): void
     {
-        $this->jobList = $jobList;
+        $this->department = $department;
     }
 
     /**
@@ -65,5 +59,15 @@ class Job extends AbstractModel
     public function getJobList()
     {
         return $this->jobList;
+    }
+
+    /**
+     * @param array $jobList
+     *
+     * @return void
+     */
+    public function setJobList(array $jobList): void
+    {
+        $this->jobList = $jobList;
     }
 }

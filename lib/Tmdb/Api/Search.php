@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -22,9 +24,9 @@ class Search extends AbstractApi
     /**
      * Search for movies by title.
      *
-     * @param  string $query
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $query
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function searchMovies($query, array $parameters = [], array $headers = [])
@@ -37,9 +39,9 @@ class Search extends AbstractApi
     /**
      * Search for collections by name.
      *
-     * @param  string $query
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $query
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function searchCollection($query, array $parameters = [], array $headers = [])
@@ -52,9 +54,9 @@ class Search extends AbstractApi
     /**
      * Search for TV shows by title.
      *
-     * @param  string $query
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $query
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function searchTv($query, array $parameters = [], array $headers = [])
@@ -67,9 +69,9 @@ class Search extends AbstractApi
     /**
      * Search for people by name.
      *
-     * @param  string $query
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $query
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function searchPersons($query, array $parameters = [], array $headers = [])
@@ -82,9 +84,9 @@ class Search extends AbstractApi
     /**
      * Search for lists by name and description.
      *
-     * @param  string $query
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $query
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function searchList($query, array $parameters = [], array $headers = [])
@@ -98,11 +100,11 @@ class Search extends AbstractApi
      * Search for companies by name.
      *
      * @param $query
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function searchCompany($query, array $parameters = [], array $headers = [])
+    public function searchCompany(string $query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/company', array_merge($parameters, [
             'query' => $query
@@ -112,9 +114,9 @@ class Search extends AbstractApi
     /**
      * Search for companies by name.
      *
-     * @param  string $query
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $query
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function searchKeyword($query, array $parameters = [], array $headers = [])
@@ -130,9 +132,9 @@ class Search extends AbstractApi
      * Each item returned in the result array has a media_type field that maps to either movie, tv or person.
      * Each mapped result is the same response you would get from each independent search.
      *
-     * @param  string $query
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $query
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function searchMulti($query, array $parameters = [], array $headers = [])

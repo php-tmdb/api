@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Common;
 
 use Tmdb\Exception\RuntimeException;
@@ -26,8 +28,8 @@ class ObjectHydrator
     /**
      * Hydrate the object with data
      *
-     * @param  AbstractModel    $object
-     * @param  array            $data
+     * @param AbstractModel $object
+     * @param array $data
      * @return AbstractModel
      * @throws RuntimeException
      */
@@ -35,9 +37,7 @@ class ObjectHydrator
     {
         if (!empty($data)) {
             foreach ($data as $k => $v) {
-
                 if (in_array($k, $object::$properties)) {
-
                     $method = $this->camelize(
                         sprintf('set_%s', $k)
                     );
@@ -63,7 +63,7 @@ class ObjectHydrator
      *
      * @see https://gist.github.com/troelskn/751517
      *
-     * @param  string $candidate
+     * @param string $candidate
      * @return string
      */
     public function camelize($candidate)

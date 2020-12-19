@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
@@ -43,12 +45,12 @@ class HydrationEvent extends Event
      * Constructor
      *
      * @param AbstractModel $subject
-     * @param array         $data
+     * @param array $data
      */
     public function __construct(AbstractModel $subject, array $data = [])
     {
         $this->subject = $subject;
-        $this->data    = $data;
+        $this->data = $data;
     }
 
     /**
@@ -60,7 +62,7 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @param  AbstractModel $subject
+     * @param AbstractModel $subject
      * @return $this
      */
     public function setSubject($subject)
@@ -79,7 +81,7 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      * @return $this
      */
     public function setData($data)
@@ -98,15 +100,15 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @return Request
+     * @return Request|null
      */
-    public function getLastRequest()
+    public function getLastRequest(): ?Request
     {
         return $this->lastRequest;
     }
 
     /**
-     * @param  Request|null $lastRequest
+     * @param Request|null $lastRequest
      * @return $this
      */
     public function setLastRequest($lastRequest)
@@ -117,15 +119,15 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @return Response
+     * @return Response|null
      */
-    public function getLastResponse()
+    public function getLastResponse(): ?Response
     {
         return $this->lastResponse;
     }
 
     /**
-     * @param  Response|null $lastResponse
+     * @param Response|null $lastResponse
      * @return $this
      */
     public function setLastResponse($lastResponse)

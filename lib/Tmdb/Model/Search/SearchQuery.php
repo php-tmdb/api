@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Search;
 
 use Tmdb\Model\Collection\QueryParametersCollection;
@@ -29,27 +31,27 @@ class SearchQuery extends QueryParametersCollection
     }
 
     /**
-     * CGI escaped string
-     *
-     * @param  string $query
-     * @return $this
-     */
-    public function query($query)
-    {
-        $this->set('query', $query);
-
-        return $this;
-    }
-
-    /**
      * Minimum 1, maximum 1000.
      *
-     * @param  int   $page
+     * @param int $page
      * @return $this
      */
     public function page($page)
     {
         $this->set('page', $page);
+
+        return $this;
+    }
+
+    /**
+     * CGI escaped string
+     *
+     * @param string $query
+     * @return $this
+     */
+    public function query($query)
+    {
+        $this->set('query', $query);
 
         return $this;
     }

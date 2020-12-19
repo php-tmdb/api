@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -23,8 +25,8 @@ class Reviews extends AbstractApi
      * Get the full details of a review by ID.
      *
      * @param $review_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getReview($review_id, array $parameters = [], array $headers = [])

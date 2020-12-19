@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -25,8 +27,8 @@ class Certifications extends AbstractApi
      * These can be used in conjunction with the certification_country and
      * certification.lte parameters when using discover.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getMovieList(array $parameters = [], array $headers = [])
@@ -40,8 +42,8 @@ class Certifications extends AbstractApi
      * These can be used in conjunction with the certification_country and
      * certification.lte parameters when using discover.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getTvList(array $parameters = [], array $headers = [])

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Lists;
 
 /**
@@ -19,11 +21,6 @@ namespace Tmdb\Model\Lists;
 class ResultWithListId extends Result
 {
     /**
-     * @var string
-     */
-    private $listId;
-
-    /**
      * @var array
      */
     public static $properties = [
@@ -31,17 +28,10 @@ class ResultWithListId extends Result
         'status_message',
         'list_id'
     ];
-
     /**
-     * @param  string $listId
-     * @return $this
+     * @var string
      */
-    public function setListId($listId)
-    {
-        $this->listId = $listId;
-
-        return $this;
-    }
+    private $listId;
 
     /**
      * @return string
@@ -49,5 +39,16 @@ class ResultWithListId extends Result
     public function getListId()
     {
         return $this->listId;
+    }
+
+    /**
+     * @param string $listId
+     * @return $this
+     */
+    public function setListId($listId)
+    {
+        $this->listId = $listId;
+
+        return $this;
     }
 }

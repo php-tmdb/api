@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\HttpClient\Plugin;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -24,7 +26,7 @@ use Tmdb\Event\TmdbEvents;
 class ApiTokenPlugin implements EventSubscriberInterface
 {
     /**
-     * @var \Tmdb\ApiToken
+     * @var ApiToken
      */
     private $token;
 
@@ -40,7 +42,7 @@ class ApiTokenPlugin implements EventSubscriberInterface
         ];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         $event->getRequest()->getParameters()->set('api_key', $this->token->getToken());
     }

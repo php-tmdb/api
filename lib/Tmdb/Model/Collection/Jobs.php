@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
@@ -23,7 +25,7 @@ class Jobs extends GenericCollection
     /**
      * Filter by department
      *
-     * @param  string $department
+     * @param string $department
      * @return $this
      */
     public function filterByDepartment($department)
@@ -48,7 +50,7 @@ class Jobs extends GenericCollection
     /**
      * Filter by department and return the jobs collection
      *
-     * @param  string $department
+     * @param string $department
      * @return $this
      */
     public function filterByDepartmentAndReturnJobsList($department)
@@ -63,7 +65,7 @@ class Jobs extends GenericCollection
 
         if ($result && 1 === count($result)) {
             $results = $result->toArray();
-            $data =  array_shift($results);
+            $data = array_shift($results);
 
             return $data->getJobList();
         }
@@ -74,7 +76,7 @@ class Jobs extends GenericCollection
     /**
      * Filter by job
      *
-     * @param  string $filterByJob
+     * @param string $filterByJob
      * @return $this
      */
     public function filterByJob($filterByJob)

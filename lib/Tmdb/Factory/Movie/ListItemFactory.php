@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory\Movie;
 
 use Tmdb\Factory\AbstractFactory;
@@ -55,15 +57,15 @@ class ListItemFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @return ImageFactory
      */
-    public function createCollection(array $data = [])
+    public function getImageFactory()
     {
-        return $this->createResultCollection($data);
+        return $this->imageFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
+     * @param ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
@@ -74,10 +76,10 @@ class ListItemFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\ImageFactory
+     * {@inheritdoc}
      */
-    public function getImageFactory()
+    public function createCollection(array $data = [])
     {
-        return $this->imageFactory;
+        return $this->createResultCollection($data);
     }
 }

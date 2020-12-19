@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Model\Common\GenericCollection;
@@ -21,16 +23,6 @@ use Tmdb\Model\Network;
  */
 class NetworkFactory extends AbstractFactory
 {
-    /**
-     * @param array $data
-     *
-     * @return Network
-     */
-    public function create(array $data = [])
-    {
-        return $this->hydrate(new Network(), $data);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -47,5 +39,15 @@ class NetworkFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Network
+     */
+    public function create(array $data = [])
+    {
+        return $this->hydrate(new Network(), $data);
     }
 }
