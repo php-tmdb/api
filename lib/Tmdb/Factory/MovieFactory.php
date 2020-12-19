@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Factory\Common\ChangeFactory;
@@ -169,7 +171,7 @@ class MovieFactory extends AbstractFactory
             $release_dates = new GenericCollection();
             foreach ($data['release_dates']['results'] as $country_releases) {
                 $iso_31661 = $country_releases['iso_3166_1'];
-                foreach($country_releases['release_dates'] as $release_date) {
+                foreach ($country_releases['release_dates'] as $release_date) {
                     $release_date['iso_3166_1'] = $iso_31661;
                     $release_dates->add(null, $this->hydrate(new Movie\ReleaseDate(), $release_date));
                 }

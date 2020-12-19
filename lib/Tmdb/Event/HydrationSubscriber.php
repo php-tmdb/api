@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Event;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -46,7 +48,7 @@ class HydrationSubscriber extends HttpClientEventSubscriber
     public function hydrate(HydrationEvent $event, $eventName, $eventDispatcher)
     {
         // Possibility to load serialized cache
-        $eventDispatcher->dispatch( $event,TmdbEvents::BEFORE_HYDRATION);
+        $eventDispatcher->dispatch($event, TmdbEvents::BEFORE_HYDRATION);
 
         if ($event->isPropagationStopped()) {
             return $event->getSubject();
@@ -56,7 +58,7 @@ class HydrationSubscriber extends HttpClientEventSubscriber
         $event->setSubject($subject);
 
         // Possibility to cache the data
-        $eventDispatcher->dispatch( $event, TmdbEvents::AFTER_HYDRATION);
+        $eventDispatcher->dispatch($event, TmdbEvents::AFTER_HYDRATION);
 
         return $event->getSubject();
     }

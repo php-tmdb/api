@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Exception\NotImplementedException;
@@ -63,7 +65,6 @@ class CreditsFactory extends AbstractFactory
         $credits = new Credits();
 
         if (array_key_exists('media', $data)) {
-
             $credits->setMedia(
                 $this->hydrate($credits->getMedia(), $data['media'])
             );

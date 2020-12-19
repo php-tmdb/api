@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 2.1.7
  */
+
 namespace Tmdb\Model\Movie;
 
 use Tmdb\Model\AbstractModel;

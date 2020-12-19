@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Factory\Common\ChangeFactory;
@@ -194,7 +196,6 @@ class TvFactory extends AbstractFactory
 
         /** Translations */
         if (array_key_exists('translations', $data) && null !== $data['translations']) {
-
             if (array_key_exists('translations', $data['translations'])) {
                 $translations = $data['translations']['translations'];
             } else {
@@ -210,7 +211,7 @@ class TvFactory extends AbstractFactory
         if (array_key_exists('seasons', $data) && $data['seasons'] !== null) {
             $tvShow->setSeasons($this->getTvSeasonFactory()->createCollection($data['seasons']));
         }
-        
+
         /** Episodes **/
         if (array_key_exists('last_episode_to_air', $data) && $data['last_episode_to_air'] !== null) {
             $tvShow->setLastEpisodeToAir($this->getTvEpisodeFactory()->create($data['last_episode_to_air']));

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,7 +11,9 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\HttpClient\Adapter;
+
 use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
 use Tmdb\HttpClient\Response;
@@ -29,7 +32,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * @param \Exception        $previous
      * @return TmdbApiException
      */
-    protected function createApiException(Request $request, Response $response, \Exception $previous= null)
+    protected function createApiException(Request $request, Response $response, \Exception $previous = null)
     {
         $errors = json_decode((string) $response->getBody());
 

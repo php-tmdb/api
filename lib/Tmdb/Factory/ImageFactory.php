@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Factory;
 
 use Tmdb\Exception\RuntimeException;
@@ -76,11 +78,11 @@ class ImageFactory extends AbstractFactory
                 case "tv":
                     $factory = new TvFactory($this->getHttpClient());
                     break;
-                    
+
                 case "season":
                     $factory = new TvSeasonFactory($this->getHttpClient());
                     break;
-                    
+
                 // I don't think this ever occurs, but just in case..
                 case "episode":
                     $factory = new TvEpisodeFactory($this->getHttpClient());
@@ -184,7 +186,6 @@ class ImageFactory extends AbstractFactory
         $collection = new Images();
 
         foreach ($data as $format => $formatCollection) {
-
             if (!is_array($formatCollection)) {
                 continue;
             }

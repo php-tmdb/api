@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Event;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -40,7 +42,7 @@ class RequestSubscriber extends HttpClientEventSubscriber
     public function send(RequestEvent $event, $eventName, EventDispatcherInterface $eventDispatcher)
     {
         // Preparation of request parameters / Possibility to use for logging and caching etc.
-        $eventDispatcher->dispatch($event,TmdbEvents::BEFORE_REQUEST);
+        $eventDispatcher->dispatch($event, TmdbEvents::BEFORE_REQUEST);
 
         if ($event->isPropagationStopped() && $event->hasResponse()) {
             return $event->getResponse();

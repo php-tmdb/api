@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Api;
 
 /**
@@ -112,9 +114,9 @@ class Lists extends AbstractApi
     public function clearList($id, $confirm)
     {
         return $this->post(
-            'list/'.$id.'/clear',
+            'list/' . $id . '/clear',
             null,
-            ['confirm' => (bool) $confirm === true ? 'true':'false']
+            ['confirm' => (bool) $confirm === true ? 'true' : 'false']
         );
     }
 }

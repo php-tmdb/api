@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model;
 
 use Tmdb\Model\Collection\CreditsCollection;
@@ -265,12 +267,12 @@ class Person extends AbstractModel implements PersonInterface
     public function setDeathday($deathday)
     {
         if (!$deathday instanceof \DateTime && !empty($deathday)) {
-        	// Is the format Y-m-d ?
-        	if(strtotime($deathday) === false) {
-        		$deathday = \DateTime::createFromFormat('Y-d-m', $deathday);
-        	} else {
-        		$deathday = new \DateTime($deathday);
-        	}
+            // Is the format Y-m-d ?
+            if (strtotime($deathday) === false) {
+                $deathday = \DateTime::createFromFormat('Y-d-m', $deathday);
+            } else {
+                $deathday = new \DateTime($deathday);
+            }
         }
 
         if (empty($deathday)) {

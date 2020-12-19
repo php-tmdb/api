@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\HttpClient;
 
 use Kevinrob\GuzzleCache\CacheMiddleware;
@@ -34,7 +36,6 @@ use Tmdb\HttpClient\Plugin\ContentTypeJsonHeaderPlugin;
 use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
 use Tmdb\HttpClient\Plugin\UserAgentHeaderPlugin;
 use Tmdb\SessionToken;
-
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -80,8 +81,7 @@ class HttpClient
      */
     public function __construct(
         array $options = []
-    )
-    {
+    ) {
         $this->options         = $options;
         $this->eventDispatcher = $this->options['event_dispatcher'];
 
@@ -370,7 +370,7 @@ class HttpClient
 
         $apiTokenPlugin = new ApiTokenPlugin(
             is_string($this->options['token']) ?
-                new ApiToken($this->options['token']):
+                new ApiToken($this->options['token']) :
                 $this->options['token']
         );
 
@@ -496,7 +496,7 @@ class HttpClient
             if ($this->getAdapter() instanceof GuzzleAdapter) {
                 $middleware = new \Concat\Http\Middleware\Logger($logger);
                 $middleware->setRequestLoggingEnabled(true);
-                $middleware->setLogLevel(function($response) {
+                $middleware->setLogLevel(function ($response) {
                     return LogLevel::DEBUG;
                 });
 

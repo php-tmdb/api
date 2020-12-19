@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
@@ -163,7 +165,8 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($height) {
-                if ($value instanceof ImageFilter &&
+                if (
+                    $value instanceof ImageFilter &&
                     $value->getHeight() <= $height && $value->getHeight() !== null
                 ) {
                     return true;
@@ -182,9 +185,11 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($height) {
-                if ($value instanceof ImageFilter &&
+                if (
+                    $value instanceof ImageFilter &&
                     $value->getHeight() >= $height &&
-                    $value->getHeight() !== null) {
+                    $value->getHeight() !== null
+                ) {
                     return true;
                 }
             }

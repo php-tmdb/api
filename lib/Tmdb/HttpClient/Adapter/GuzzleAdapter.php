@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\HttpClient\Adapter;
 
 use GuzzleHttp\Client;
@@ -55,12 +57,12 @@ class GuzzleAdapter extends AbstractAdapter
         /** @var HandlerStack $handler */
         $handler = $this->client->getConfig('handler');
 
-        $handler->push(Middleware::retry(function(
+        $handler->push(Middleware::retry(function (
             $retries,
             \GuzzleHttp\Psr7\Request $request,
             \GuzzleHttp\Psr7\Response $response = null,
             RequestException $exception = null
-        ){
+        ) {
             if ($retries >= 5) {
                 return false;
             }
@@ -71,18 +73,20 @@ class GuzzleAdapter extends AbstractAdapter
             }
 
             if ($response) {
-                if($response->getStatusCode() >= 500) {
+                if ($response->getStatusCode() >= 500) {
                     return true;
                 }
 
-                if($response->getStatusCode() === 429) {
+                if ($response->getStatusCode() === 429) {
                     $sleep = (int) $response->getHeaderLine('retry-after');
 
                     /**
                      * @see https://github.com/php-tmdb/api/issues/154
                      * Maybe it's even better to set it to $retries value
                      */
-                    if (0 === $sleep) $sleep = 1;
+                    if (0 === $sleep) {
+                        $sleep = 1;
+                    }
 
                     // TMDB allows 40 requests per 10 seconds, anything higher should be faulty.
                     if ($sleep > 10) {
