@@ -59,15 +59,6 @@ class HttpClient
     protected $options;
 
     /**
-     * The base url to built requests on top of
-     *
-     * @var null
-     *
-     * @deprecated since 2.1.10, to be removed in 3.0. Use `base_url` of the request options instead.
-     */
-    protected $base_url = null;
-
-    /**
      * @var Response
      */
     private $lastResponse;
@@ -92,7 +83,6 @@ class HttpClient
     )
     {
         $this->options         = $options;
-        $this->base_url        = $this->options['host'];
         $this->eventDispatcher = $this->options['event_dispatcher'];
 
         $this->setAdapter($this->options['adapter']);
@@ -408,7 +398,7 @@ class HttpClient
     protected function setupCache(array $cache)
     {
         if ($this->isDefaultAdapter()) {
-            $this->setDefaultCaching($cache);
+//            $this->setDefaultCaching($cache);
         } elseif (null !== $subscriber = $cache['subscriber']) {
             $subscriber->setOptions($cache);
             $this->addSubscriber($subscriber);

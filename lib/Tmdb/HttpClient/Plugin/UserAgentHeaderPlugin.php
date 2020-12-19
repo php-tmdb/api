@@ -34,7 +34,7 @@ class UserAgentHeaderPlugin implements EventSubscriberInterface
     {
         $event->getRequest()->getHeaders()->set(
             'User-Agent',
-            sprintf('wtfzdotnet/php-tmdb-api (v%s)', Client::VERSION)
+            sprintf('php-tmdb/api (v%s)', Client::VERSION)
         );
     }
 }

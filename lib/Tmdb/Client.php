@@ -12,7 +12,6 @@
  */
 namespace Tmdb;
 
-use Doctrine\Common\Cache\FilesystemCache;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LogLevel;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -31,7 +30,7 @@ class Client
     use ApiMethodsTrait;
 
     /** Client Version */
-    const VERSION  = '2.1.10';
+    const VERSION  = '3.0.0';
 
     /** Base API URI */
     const TMDB_URI = 'api.themoviedb.org/3/';
@@ -271,7 +270,8 @@ class Client
         $options = $resolver->resolve(array_key_exists('cache', $options) ? $options['cache'] : []);
 
         if ($options['enabled'] && !$options['handler']) {
-            $options['handler'] = new FilesystemCache($options['path']);
+            // @todo implement psr-16
+//            $options['handler'] = new FilesystemCache($options['path']);
         }
 
         return $options;

@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Event;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 use Tmdb\Common\ParameterBag;
 use Tmdb\HttpClient\Request;
@@ -20,12 +22,12 @@ use Tmdb\HttpClient\Response;
 class RequestEvent extends Event
 {
     /**
-     * @var Request
+     * @var RequestInterface
      */
     private $request;
 
     /**
-     * @var Response
+     * @var ResponseInterface
      */
     private $response;
 
