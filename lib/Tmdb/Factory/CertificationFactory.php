@@ -24,16 +24,6 @@ use Tmdb\Model\Common\GenericCollection;
 class CertificationFactory extends AbstractFactory
 {
     /**
-     * @param array $data
-     *
-     * @return Certification
-     */
-    public function create(array $data = [])
-    {
-        return $this->hydrate(new Certification\CountryCertification(), $data);
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function createCollection(array $data = [])
@@ -58,5 +48,15 @@ class CertificationFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Certification
+     */
+    public function create(array $data = [])
+    {
+        return $this->hydrate(new Certification\CountryCertification(), $data);
     }
 }

@@ -14,6 +14,7 @@
 
 namespace Tmdb\Factory;
 
+use RuntimeException;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Find;
 
@@ -55,10 +56,10 @@ class FindFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->movieFactory     = new MovieFactory($httpClient);
-        $this->peopleFactory    = new PeopleFactory($httpClient);
-        $this->tvFactory        = new TvFactory($httpClient);
-        $this->tvSeasonFactory  = new TvSeasonFactory($httpClient);
+        $this->movieFactory = new MovieFactory($httpClient);
+        $this->peopleFactory = new PeopleFactory($httpClient);
+        $this->tvFactory = new TvFactory($httpClient);
+        $this->tvSeasonFactory = new TvSeasonFactory($httpClient);
         $this->tvEpisodeFactory = new TvEpisodeFactory($httpClient);
 
         parent::__construct($httpClient);
@@ -95,19 +96,15 @@ class FindFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @return MovieFactory
      */
-    public function createCollection(array $data = [])
+    public function getMovieFactory()
     {
-        throw new \RuntimeException(sprintf(
-            'Class "%s" does not support method "%s".',
-            __CLASS__,
-            __METHOD__
-        ));
+        return $this->movieFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\MovieFactory $movieFactory
+     * @param MovieFactory $movieFactory
      * @return $this
      */
     public function setMovieFactory($movieFactory)
@@ -118,15 +115,15 @@ class FindFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\MovieFactory
+     * @return PeopleFactory
      */
-    public function getMovieFactory()
+    public function getPeopleFactory()
     {
-        return $this->movieFactory;
+        return $this->peopleFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\PeopleFactory $peopleFactory
+     * @param PeopleFactory $peopleFactory
      * @return $this
      */
     public function setPeopleFactory($peopleFactory)
@@ -137,26 +134,7 @@ class FindFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\PeopleFactory
-     */
-    public function getPeopleFactory()
-    {
-        return $this->peopleFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\TvFactory $tvFactory
-     * @return $this
-     */
-    public function setTvFactory($tvFactory)
-    {
-        $this->tvFactory = $tvFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\TvFactory
+     * @return TvFactory
      */
     public function getTvFactory()
     {
@@ -164,20 +142,12 @@ class FindFactory extends AbstractFactory
     }
 
     /**
-     * @return TvEpisodeFactory
-     */
-    public function getTvEpisodeFactory()
-    {
-        return $this->tvEpisodeFactory;
-    }
-
-    /**
-     * @param  TvEpisodeFactory $tvEpisodeFactory
+     * @param TvFactory $tvFactory
      * @return $this
      */
-    public function setTvEpisodeFactory($tvEpisodeFactory)
+    public function setTvFactory($tvFactory)
     {
-        $this->tvEpisodeFactory = $tvEpisodeFactory;
+        $this->tvFactory = $tvFactory;
 
         return $this;
     }
@@ -191,7 +161,7 @@ class FindFactory extends AbstractFactory
     }
 
     /**
-     * @param  TvSeasonFactory $tvSeasonFactory
+     * @param TvSeasonFactory $tvSeasonFactory
      * @return $this
      */
     public function setTvSeasonFactory($tvSeasonFactory)
@@ -199,5 +169,36 @@ class FindFactory extends AbstractFactory
         $this->tvSeasonFactory = $tvSeasonFactory;
 
         return $this;
+    }
+
+    /**
+     * @return TvEpisodeFactory
+     */
+    public function getTvEpisodeFactory()
+    {
+        return $this->tvEpisodeFactory;
+    }
+
+    /**
+     * @param TvEpisodeFactory $tvEpisodeFactory
+     * @return $this
+     */
+    public function setTvEpisodeFactory($tvEpisodeFactory)
+    {
+        $this->tvEpisodeFactory = $tvEpisodeFactory;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createCollection(array $data = [])
+    {
+        throw new RuntimeException(sprintf(
+            'Class "%s" does not support method "%s".',
+            __CLASS__,
+            __METHOD__
+        ));
     }
 }

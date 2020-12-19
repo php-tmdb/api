@@ -24,16 +24,6 @@ use Tmdb\Model\Keyword;
 class KeywordFactory extends AbstractFactory
 {
     /**
-     * @param array $data
-     *
-     * @return Keyword
-     */
-    public function create(array $data = [])
-    {
-        return $this->hydrate(new Keyword(), $data);
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function createCollection(array $data = [])
@@ -49,5 +39,15 @@ class KeywordFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Keyword
+     */
+    public function create(array $data = [])
+    {
+        return $this->hydrate(new Keyword(), $data);
     }
 }

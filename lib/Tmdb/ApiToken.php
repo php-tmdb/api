@@ -35,9 +35,9 @@ class ApiToken
     }
 
     /**
-     * @param  string           $apiToken
-     * @throws RuntimeException
+     * @param string $apiToken
      * @return $this
+     * @throws RuntimeException
      */
     public function setToken($apiToken)
     {
@@ -60,6 +60,6 @@ class ApiToken
 
     public function __toString()
     {
-        return (string) $this->apiToken;
+        return (string)$this->apiToken;
     }
 }

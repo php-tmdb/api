@@ -20,24 +20,12 @@ namespace Tmdb\Model;
  */
 class Keyword extends AbstractModel
 {
-    private $id;
-    private $name;
-
     public static $properties = [
         'id',
         'name',
     ];
-
-    /**
-     * @param  mixed $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->id = (int) $id;
-
-        return $this;
-    }
+    private $id;
+    private $name;
 
     /**
      * @return integer
@@ -48,12 +36,12 @@ class Keyword extends AbstractModel
     }
 
     /**
-     * @param  mixed $name
+     * @param mixed $id
      * @return $this
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = (int)$id;
 
         return $this;
     }
@@ -64,5 +52,16 @@ class Keyword extends AbstractModel
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
     }
 }

@@ -37,9 +37,10 @@ class GuestStars extends People
      * Retrieve a cast member from the collection
      *
      * @param $id
-     * @return Person
+     *
+     * @return \Tmdb\Model\Common\GenericCollection
      */
-    public function getGuestStar($id)
+    public function getGuestStar($id): \Tmdb\Model\Common\GenericCollection
     {
         return parent::getPerson($id);
     }

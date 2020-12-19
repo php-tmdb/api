@@ -14,13 +14,15 @@
 
 namespace Tmdb\Repository;
 
+use Tmdb\Api\TvSeason;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\TvSeasonFactory;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\Video;
-use Tmdb\Model\Tv\Season\QueryParameter\AppendToResponse;
-use Tmdb\Model\Tv\Season;
 use Tmdb\Model\Tv;
+use Tmdb\Model\Tv\Season;
+use Tmdb\Model\Tv\Season\QueryParameter\AppendToResponse;
 
 /**
  * Class TvSeasonRepository
@@ -38,8 +40,8 @@ class TvSeasonRepository extends AbstractRepository
      * @param int|Season $season
      * @param array $parameters
      * @param array $headers
+     * @return null|AbstractModel
      * @throws RuntimeException
-     * @return null|\Tmdb\Model\AbstractModel
      */
     public function load($tvShow, $season, array $parameters = [], array $headers = [])
     {
@@ -73,6 +75,24 @@ class TvSeasonRepository extends AbstractRepository
     }
 
     /**
+     * Return the Seasons API Class
+     *
+     * @return TvSeason
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getTvSeasonApi();
+    }
+
+    /**
+     * @return TvSeasonFactory
+     */
+    public function getFactory()
+    {
+        return new TvSeasonFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
      * Get the cast & crew information about a TV series.
      *
      * Just like the website, we pull this information from the last season of the series.
@@ -81,7 +101,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param $season
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return null|AbstractModel
      */
     public function getCredits($tvShow, $season, array $parameters = [], array $headers = [])
     {
@@ -93,7 +113,7 @@ class TvSeasonRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        $data   = $this->getApi()->getCredits($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getCredits($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
         $season = $this->getFactory()->create(['credits' => $data]);
 
         return $season->getCredits();
@@ -106,7 +126,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param $season
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return null|AbstractModel
      */
     public function getExternalIds($tvShow, $season, array $parameters = [], array $headers = [])
     {
@@ -118,7 +138,7 @@ class TvSeasonRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        $data   = $this->getApi()->getExternalIds($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getExternalIds($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
         $season = $this->getFactory()->create(['external_ids' => $data]);
 
         return $season->getExternalIds();
@@ -131,7 +151,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param $season
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return null|AbstractModel
      */
     public function getImages($tvShow, $season, array $parameters = [], array $headers = [])
     {
@@ -143,7 +163,7 @@ class TvSeasonRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        $data   = $this->getApi()->getImages($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getImages($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
         $season = $this->getFactory()->create(['images' => $data]);
 
         return $season->getImages();
@@ -168,27 +188,9 @@ class TvSeasonRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        $data   = $this->getApi()->getVideos($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getVideos($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
         $season = $this->getFactory()->create(['videos' => $data]);
 
         return $season->getVideos();
-    }
-
-    /**
-     * Return the Seasons API Class
-     *
-     * @return \Tmdb\Api\TvSeason
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getTvSeasonApi();
-    }
-
-    /**
-     * @return TvSeasonFactory
-     */
-    public function getFactory()
-    {
-        return new TvSeasonFactory($this->getClient()->getHttpClient());
     }
 }

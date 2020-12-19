@@ -42,20 +42,9 @@ class CreditsCollection
      */
     public function __construct()
     {
-        $this->cast       = new Cast();
-        $this->crew       = new Crew();
+        $this->cast = new Cast();
+        $this->crew = new Crew();
         $this->guestStars = new GuestStars();
-    }
-
-    /**
-     * @param  Cast  $cast
-     * @return $this
-     */
-    public function setCast(Cast $cast)
-    {
-        $this->cast = $cast;
-
-        return $this;
     }
 
     /**
@@ -67,12 +56,12 @@ class CreditsCollection
     }
 
     /**
-     * @param  Crew  $crew
+     * @param Cast $cast
      * @return $this
      */
-    public function setCrew(Crew $crew)
+    public function setCast(Cast $cast)
     {
-        $this->crew = $crew;
+        $this->cast = $cast;
 
         return $this;
     }
@@ -83,6 +72,17 @@ class CreditsCollection
     public function getCrew()
     {
         return $this->crew;
+    }
+
+    /**
+     * @param Crew $crew
+     * @return $this
+     */
+    public function setCrew(Crew $crew)
+    {
+        $this->crew = $crew;
+
+        return $this;
     }
 
     /**

@@ -41,8 +41,8 @@ class JobsRepository extends AbstractRepository
     /**
      * Get the list of jobs.
      *
-     * @param  array      $parameters
-     * @param  array      $headers
+     * @param array $parameters
+     * @param array $headers
      * @return Jobs|Job[]
      */
     public function loadCollection(array $parameters = [], array $headers = [])
@@ -64,6 +64,14 @@ class JobsRepository extends AbstractRepository
     }
 
     /**
+     * @return JobsFactory
+     */
+    public function getFactory()
+    {
+        return new JobsFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
      * Return the related API class
      *
      * @return \Tmdb\Api\Jobs
@@ -71,13 +79,5 @@ class JobsRepository extends AbstractRepository
     public function getApi()
     {
         return $this->getClient()->getJobsApi();
-    }
-
-    /**
-     * @return JobsFactory
-     */
-    public function getFactory()
-    {
-        return new JobsFactory($this->getClient()->getHttpClient());
     }
 }

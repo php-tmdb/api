@@ -27,9 +27,9 @@ class Networks extends AbstractApi
      * You can use this ID to search for TV shows with the discover.
      * At this time we don't have much but this will be fleshed out over time.
      *
-     * @param  int   $network_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param int $network_id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getNetwork($network_id, array $parameters = [], array $headers = [])

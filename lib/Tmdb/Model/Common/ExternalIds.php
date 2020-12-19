@@ -22,13 +22,6 @@ use Tmdb\Model\AbstractModel;
  */
 class ExternalIds extends AbstractModel
 {
-    private $imdbId;
-    private $freebaseId;
-    private $freebaseMid;
-    private $id;
-    private $tvdbId;
-    private $tvrageId;
-
     public static $properties = [
         'imdb_id',
         'freebase_id',
@@ -37,17 +30,12 @@ class ExternalIds extends AbstractModel
         'tvdb_id',
         'tvrage_id',
     ];
-
-    /**
-     * @param  mixed $freebaseId
-     * @return $this
-     */
-    public function setFreebaseId($freebaseId)
-    {
-        $this->freebaseId = $freebaseId;
-
-        return $this;
-    }
+    private $imdbId;
+    private $freebaseId;
+    private $freebaseMid;
+    private $id;
+    private $tvdbId;
+    private $tvrageId;
 
     /**
      * @return mixed
@@ -58,12 +46,12 @@ class ExternalIds extends AbstractModel
     }
 
     /**
-     * @param  mixed $freebaseMid
+     * @param mixed $freebaseId
      * @return $this
      */
-    public function setFreebaseMid($freebaseMid)
+    public function setFreebaseId($freebaseId)
     {
-        $this->freebaseMid = $freebaseMid;
+        $this->freebaseId = $freebaseId;
 
         return $this;
     }
@@ -77,12 +65,12 @@ class ExternalIds extends AbstractModel
     }
 
     /**
-     * @param  mixed $id
+     * @param mixed $freebaseMid
      * @return $this
      */
-    public function setId($id)
+    public function setFreebaseMid($freebaseMid)
     {
-        $this->id = (int) $id;
+        $this->freebaseMid = $freebaseMid;
 
         return $this;
     }
@@ -96,12 +84,12 @@ class ExternalIds extends AbstractModel
     }
 
     /**
-     * @param  mixed $imdbId
+     * @param mixed $id
      * @return $this
      */
-    public function setImdbId($imdbId)
+    public function setId($id)
     {
-        $this->imdbId = $imdbId;
+        $this->id = (int)$id;
 
         return $this;
     }
@@ -115,12 +103,12 @@ class ExternalIds extends AbstractModel
     }
 
     /**
-     * @param  mixed $tvdbId
+     * @param mixed $imdbId
      * @return $this
      */
-    public function setTvdbId($tvdbId)
+    public function setImdbId($imdbId)
     {
-        $this->tvdbId = $tvdbId;
+        $this->imdbId = $imdbId;
 
         return $this;
     }
@@ -134,12 +122,12 @@ class ExternalIds extends AbstractModel
     }
 
     /**
-     * @param  mixed $tvrageId
+     * @param mixed $tvdbId
      * @return $this
      */
-    public function setTvrageId($tvrageId)
+    public function setTvdbId($tvdbId)
     {
-        $this->tvrageId = $tvrageId;
+        $this->tvdbId = $tvdbId;
 
         return $this;
     }
@@ -150,5 +138,16 @@ class ExternalIds extends AbstractModel
     public function getTvrageId()
     {
         return $this->tvrageId;
+    }
+
+    /**
+     * @param mixed $tvrageId
+     * @return $this
+     */
+    public function setTvrageId($tvrageId)
+    {
+        $this->tvrageId = $tvrageId;
+
+        return $this;
     }
 }

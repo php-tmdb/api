@@ -27,7 +27,7 @@ use Tmdb\SessionToken;
 class SessionTokenPlugin implements EventSubscriberInterface
 {
     /**
-     * @var \Tmdb\SessionToken
+     * @var SessionToken
      */
     private $token;
 

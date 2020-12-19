@@ -26,8 +26,8 @@ class TvSeason extends AbstractApi
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getSeason(int $tvshow_id, int $season_number, array $parameters = [], array $headers = [])
@@ -40,8 +40,8 @@ class TvSeason extends AbstractApi
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getCredits($tvshow_id, $season_number, array $parameters = [], array $headers = [])
@@ -54,8 +54,8 @@ class TvSeason extends AbstractApi
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getExternalIds($tvshow_id, $season_number, array $parameters = [], array $headers = [])
@@ -68,8 +68,8 @@ class TvSeason extends AbstractApi
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getImages($tvshow_id, $season_number, array $parameters = [], array $headers = [])
@@ -82,8 +82,8 @@ class TvSeason extends AbstractApi
      *
      * @param $tvshow_id
      * @param $season_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getVideos($tvshow_id, $season_number, array $parameters = [], array $headers = [])
@@ -97,10 +97,10 @@ class TvSeason extends AbstractApi
      *
      * This method uses the season_id value found in the change entries.
      *
-     * @param  integer $tvshow_id
-     * @param  integer $season_number
-     * @param  array   $parameters
-     * @param  array   $headers
+     * @param integer $tvshow_id
+     * @param integer $season_number
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getChanges($tvshow_id, $season_number, array $parameters = [], array $headers = [])

@@ -14,10 +14,11 @@
 
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Genres;
 use Tmdb\Factory\GenreFactory;
 use Tmdb\Factory\MovieFactory;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Genre;
 
 /**
  * Class GenreRepository
@@ -43,8 +44,8 @@ class GenreRepository extends AbstractRepository
     /**
      * Get the list of genres.
      *
-     * @param  array             $parameters
-     * @param  array             $headers
+     * @param array $parameters
+     * @param array $headers
      * @return GenericCollection
      */
     public function loadCollection(array $parameters = [], array $headers = [])
@@ -52,49 +53,6 @@ class GenreRepository extends AbstractRepository
         return $this->createCollection(
             $this->getApi()->getGenres($parameters, $headers)
         );
-    }
-
-    /**
-     * Get the list of movie genres.
-     *
-     * @param  array             $parameters
-     * @param  array             $headers
-     * @return GenericCollection
-     */
-    public function loadMovieCollection(array $parameters = [], array $headers = [])
-    {
-        return $this->createCollection(
-            $this->getApi()->getMovieGenres($parameters, $headers)
-        );
-    }
-
-    /**
-     * Get the list of tv genres.
-     *
-     * @param  array             $parameters
-     * @param  array             $headers
-     * @return GenericCollection
-     */
-    public function loadTvCollection(array $parameters = [], array $headers = [])
-    {
-        return $this->createCollection(
-            $this->getApi()->getTvGenres($parameters, $headers)
-        );
-    }
-
-    /**
-     * Get the list of movies for a particular genre by id.
-     * By default, only movies with 10 or more votes are included.
-     *
-     * @param $id
-     * @param array   $parameters
-     * @param array   $headers
-     *
-     * @return \Tmdb\Model\Collection\ResultCollection
-     */
-    public function getMovies($id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection\ResultCollection
-    {
-        return $this->getMovieFactory()->createResultCollection($this->getApi()->getMovies($id, $parameters, $headers));
     }
 
     /**
@@ -109,9 +67,17 @@ class GenreRepository extends AbstractRepository
     }
 
     /**
+     * @return GenreFactory
+     */
+    public function getFactory()
+    {
+        return new GenreFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
      * Return the related API class
      *
-     * @return \Tmdb\Api\Genres
+     * @return Genres
      */
     public function getApi()
     {
@@ -119,11 +85,46 @@ class GenreRepository extends AbstractRepository
     }
 
     /**
-     * @return GenreFactory
+     * Get the list of movie genres.
+     *
+     * @param array $parameters
+     * @param array $headers
+     * @return GenericCollection
      */
-    public function getFactory()
+    public function loadMovieCollection(array $parameters = [], array $headers = [])
     {
-        return new GenreFactory($this->getClient()->getHttpClient());
+        return $this->createCollection(
+            $this->getApi()->getMovieGenres($parameters, $headers)
+        );
+    }
+
+    /**
+     * Get the list of tv genres.
+     *
+     * @param array $parameters
+     * @param array $headers
+     * @return GenericCollection
+     */
+    public function loadTvCollection(array $parameters = [], array $headers = [])
+    {
+        return $this->createCollection(
+            $this->getApi()->getTvGenres($parameters, $headers)
+        );
+    }
+
+    /**
+     * Get the list of movies for a particular genre by id.
+     * By default, only movies with 10 or more votes are included.
+     *
+     * @param $id
+     * @param array $parameters
+     * @param array $headers
+     *
+     * @return ResultCollection
+     */
+    public function getMovies($id, array $parameters = [], array $headers = []): ResultCollection
+    {
+        return $this->getMovieFactory()->createResultCollection($this->getApi()->getMovies($id, $parameters, $headers));
     }
 
     /**

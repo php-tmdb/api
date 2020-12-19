@@ -23,10 +23,6 @@ use Tmdb\Model\Filter\LanguageFilter;
  */
 class Translation extends SpokenLanguage implements CountryFilter, LanguageFilter
 {
-    private $iso31661;
-    private $englishName;
-    private $data;
-
     public static $properties = [
         'iso_3166_1',
         'iso_639_1',
@@ -34,17 +30,9 @@ class Translation extends SpokenLanguage implements CountryFilter, LanguageFilte
         'english_name',
         'data'
     ];
-
-    /**
-     * @param  string $iso31661
-     * @return $this
-     */
-    public function setIso31661($iso31661)
-    {
-        $this->iso31661 = $iso31661;
-
-        return $this;
-    }
+    private $iso31661;
+    private $englishName;
+    private $data;
 
     /**
      * @return string
@@ -55,12 +43,12 @@ class Translation extends SpokenLanguage implements CountryFilter, LanguageFilte
     }
 
     /**
-     * @param  string $englishName
+     * @param string $iso31661
      * @return $this
      */
-    public function setEnglishName($englishName)
+    public function setIso31661($iso31661)
     {
-        $this->englishName = $englishName;
+        $this->iso31661 = $iso31661;
 
         return $this;
     }
@@ -74,12 +62,12 @@ class Translation extends SpokenLanguage implements CountryFilter, LanguageFilte
     }
 
     /**
-     * @param  string $data
+     * @param string $englishName
      * @return $this
      */
-    public function setData($data)
+    public function setEnglishName($englishName)
     {
-        $this->data = $data;
+        $this->englishName = $englishName;
 
         return $this;
     }
@@ -90,5 +78,16 @@ class Translation extends SpokenLanguage implements CountryFilter, LanguageFilte
     public function getData()
     {
         return $this->data;
+    }
+
+    /**
+     * @param string $data
+     * @return $this
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
     }
 }

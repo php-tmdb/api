@@ -45,12 +45,12 @@ class HydrationEvent extends Event
      * Constructor
      *
      * @param AbstractModel $subject
-     * @param array         $data
+     * @param array $data
      */
     public function __construct(AbstractModel $subject, array $data = [])
     {
         $this->subject = $subject;
-        $this->data    = $data;
+        $this->data = $data;
     }
 
     /**
@@ -62,7 +62,7 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @param  AbstractModel $subject
+     * @param AbstractModel $subject
      * @return $this
      */
     public function setSubject($subject)
@@ -81,7 +81,7 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @param  array $data
+     * @param array $data
      * @return $this
      */
     public function setData($data)
@@ -108,7 +108,7 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @param  Request|null $lastRequest
+     * @param Request|null $lastRequest
      * @return $this
      */
     public function setLastRequest($lastRequest)
@@ -127,7 +127,7 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @param  Response|null $lastResponse
+     * @param Response|null $lastResponse
      * @return $this
      */
     public function setLastResponse($lastResponse)

@@ -20,9 +20,15 @@ use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Image;
+use Tmdb\Model\Image\BackdropImage;
+use Tmdb\Model\Image\LogoImage;
+use Tmdb\Model\Image\PosterImage;
+use Tmdb\Model\Image\ProfileImage;
+use Tmdb\Model\Image\StillImage;
+use Tmdb\Model\Person;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
-use Tmdb\Model\Person;
 
 class PeopleFactory extends AbstractFactory
 {
@@ -43,14 +49,42 @@ class PeopleFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->imageFactory  = new ImageFactory($httpClient);
+        $this->imageFactory = new ImageFactory($httpClient);
         $this->changeFactory = new ChangeFactory($httpClient);
 
         parent::__construct($httpClient);
     }
 
     /**
-     * @param array                      $data
+     * {@inheritdoc}
+     * @param Person\AbstractMember|null $person
+     * @param GenericCollection|null $collection
+     */
+    public function createCollection(array $data = [], $person = null, $collection = null)
+    {
+        if (!$collection) {
+            $collection = new People();
+        }
+
+        if (array_key_exists('results', $data)) {
+            $data = $data['results'];
+        }
+
+        if (is_object($person)) {
+            $class = get_class($person);
+        } else {
+            $class = '\Tmdb\Model\Person';
+        }
+
+        foreach ($data as $item) {
+            $collection->add(null, $this->create($item, new $class()));
+        }
+
+        return $collection;
+    }
+
+    /**
+     * @param array $data
      * @param Person\AbstractMember|null $person
      *
      * @return Person
@@ -116,9 +150,47 @@ class PeopleFactory extends AbstractFactory
     }
 
     /**
+     * @return ImageFactory
+     */
+    public function getImageFactory()
+    {
+        return $this->imageFactory;
+    }
+
+    /**
+     * @param ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return ChangeFactory
+     */
+    public function getChangeFactory()
+    {
+        return $this->changeFactory;
+    }
+
+    /**
+     * @param ChangeFactory $changeFactory
+     * @return $this
+     */
+    public function setChangeFactory($changeFactory)
+    {
+        $this->changeFactory = $changeFactory;
+
+        return $this;
+    }
+
+    /**
      * Apply credits
      *
-     * @param array  $data
+     * @param array $data
      * @param Person $person
      *
      * @return void
@@ -126,7 +198,7 @@ class PeopleFactory extends AbstractFactory
     protected function applyCredits(array $data, Person $person): void
     {
         $hydrator = new ObjectHydrator();
-        $types    = ['movie_credits', 'tv_credits', 'combined_credits'];
+        $types = ['movie_credits', 'tv_credits', 'combined_credits'];
 
         foreach ($types as $type) {
             if (array_key_exists($type, $data)) {
@@ -164,76 +236,10 @@ class PeopleFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Model\Image|\Tmdb\Model\Image\BackdropImage|\Tmdb\Model\Image\LogoImage|\Tmdb\Model\Image\PosterImage|\Tmdb\Model\Image\ProfileImage|\Tmdb\Model\Image\StillImage
+     * @return Image|BackdropImage|LogoImage|PosterImage|ProfileImage|StillImage
      */
     protected function getPosterImageForCredit($posterPath)
     {
         return $this->getImageFactory()->createFromPath($posterPath, 'poster_path');
-    }
-
-    /**
-     * {@inheritdoc}
-     * @param Person\AbstractMember|null $person
-     * @param GenericCollection|null $collection
-     */
-    public function createCollection(array $data = [], $person = null, $collection = null)
-    {
-        if (!$collection) {
-            $collection = new People();
-        }
-
-        if (array_key_exists('results', $data)) {
-            $data = $data['results'];
-        }
-
-        if (is_object($person)) {
-            $class = get_class($person);
-        } else {
-            $class = '\Tmdb\Model\Person';
-        }
-
-        foreach ($data as $item) {
-            $collection->add(null, $this->create($item, new $class()));
-        }
-
-        return $collection;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
-     * @return $this
-     */
-    public function setImageFactory($imageFactory)
-    {
-        $this->imageFactory = $imageFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\ImageFactory
-     */
-    public function getImageFactory()
-    {
-        return $this->imageFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\Common\ChangeFactory $changeFactory
-     * @return $this
-     */
-    public function setChangeFactory($changeFactory)
-    {
-        $this->changeFactory = $changeFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\Common\ChangeFactory
-     */
-    public function getChangeFactory()
-    {
-        return $this->changeFactory;
     }
 }

@@ -14,6 +14,7 @@
 
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Keywords;
 use Tmdb\Factory\KeywordFactory;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Keyword;
@@ -29,8 +30,8 @@ class KeywordRepository extends AbstractRepository
      * Get the basic information for a specific keyword id.
      *
      * @param $id
-     * @param  array   $parameters
-     * @param  array   $headers
+     * @param array $parameters
+     * @param array $headers
      * @return Keyword
      */
     public function load($id, array $parameters = [], array $headers = [])
@@ -41,12 +42,30 @@ class KeywordRepository extends AbstractRepository
     }
 
     /**
+     * @return KeywordFactory
+     */
+    public function getFactory()
+    {
+        return new KeywordFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
+     * Return the related API class
+     *
+     * @return Keywords
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getKeywordsApi();
+    }
+
+    /**
      * Get the list of movies for a particular keyword by id.
      * By default, only movies with 10 or more votes are included.
      *
      * @param $id
-     * @param  array                      $parameters
-     * @param  array                      $headers
+     * @param array $parameters
+     * @param array $headers
      * @return ResultCollection|Keyword[]
      */
     public function getMovies($id, array $parameters = [], array $headers = [])
@@ -55,23 +74,5 @@ class KeywordRepository extends AbstractRepository
             $this->getApi()->getMovies($id, $parameters, $headers),
             'createMovie'
         );
-    }
-
-    /**
-     * Return the related API class
-     *
-     * @return \Tmdb\Api\Keywords
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getKeywordsApi();
-    }
-
-    /**
-     * @return KeywordFactory
-     */
-    public function getFactory()
-    {
-        return new KeywordFactory($this->getClient()->getHttpClient());
     }
 }

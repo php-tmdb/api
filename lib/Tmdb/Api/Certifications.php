@@ -27,8 +27,8 @@ class Certifications extends AbstractApi
      * These can be used in conjunction with the certification_country and
      * certification.lte parameters when using discover.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getMovieList(array $parameters = [], array $headers = [])
@@ -42,8 +42,8 @@ class Certifications extends AbstractApi
      * These can be used in conjunction with the certification_country and
      * certification.lte parameters when using discover.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getTvList(array $parameters = [], array $headers = [])

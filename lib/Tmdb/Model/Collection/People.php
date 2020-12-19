@@ -14,8 +14,8 @@
 
 namespace Tmdb\Model\Collection;
 
-use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\People\PersonInterface;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person;
 
 /**

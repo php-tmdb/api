@@ -20,6 +20,7 @@ use Tmdb\Factory\Movie\ListItemFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\HttpClient\HttpClient;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\SpokenLanguage;
@@ -85,25 +86,43 @@ class MovieFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->castFactory     = new CastFactory($httpClient);
-        $this->crewFactory     = new CrewFactory($httpClient);
-        $this->genreFactory    = new GenreFactory($httpClient);
-        $this->imageFactory    = new ImageFactory($httpClient);
-        $this->changeFactory   = new ChangeFactory($httpClient);
-        $this->reviewFactory   = new ReviewFactory($httpClient);
+        $this->castFactory = new CastFactory($httpClient);
+        $this->crewFactory = new CrewFactory($httpClient);
+        $this->genreFactory = new GenreFactory($httpClient);
+        $this->imageFactory = new ImageFactory($httpClient);
+        $this->changeFactory = new ChangeFactory($httpClient);
+        $this->reviewFactory = new ReviewFactory($httpClient);
         $this->listItemFactory = new ListItemFactory($httpClient);
-        $this->keywordFactory  = new KeywordFactory($httpClient);
-        $this->videoFactory    = new VideoFactory($httpClient);
+        $this->keywordFactory = new KeywordFactory($httpClient);
+        $this->videoFactory = new VideoFactory($httpClient);
 
         parent::__construct($httpClient);
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function createCollection(array $data = [])
+    {
+        $collection = new GenericCollection();
+
+        if (array_key_exists('results', $data)) {
+            $data = $data['results'];
+        }
+
+        foreach ($data as $item) {
+            $collection->add(null, $this->create($item));
+        }
+
+        return $collection;
+    }
+
+    /**
      * @param array $data
      *
-     * @return \Tmdb\Model\AbstractModel|null
+     * @return AbstractModel|null
      */
-    public function create(array $data = []): ?\Tmdb\Model\AbstractModel
+    public function create(array $data = []): ?AbstractModel
     {
         if (!$data) {
             return null;
@@ -234,25 +253,15 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @return CastFactory
      */
-    public function createCollection(array $data = [])
+    public function getCastFactory()
     {
-        $collection = new GenericCollection();
-
-        if (array_key_exists('results', $data)) {
-            $data = $data['results'];
-        }
-
-        foreach ($data as $item) {
-            $collection->add(null, $this->create($item));
-        }
-
-        return $collection;
+        return $this->castFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\People\CastFactory $castFactory
+     * @param CastFactory $castFactory
      * @return $this
      */
     public function setCastFactory($castFactory)
@@ -263,15 +272,15 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\People\CastFactory
+     * @return CrewFactory
      */
-    public function getCastFactory()
+    public function getCrewFactory()
     {
-        return $this->castFactory;
+        return $this->crewFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\People\CrewFactory $crewFactory
+     * @param CrewFactory $crewFactory
      * @return $this
      */
     public function setCrewFactory($crewFactory)
@@ -282,15 +291,15 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\People\CrewFactory
+     * @return GenreFactory
      */
-    public function getCrewFactory()
+    public function getGenreFactory()
     {
-        return $this->crewFactory;
+        return $this->genreFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\GenreFactory $genreFactory
+     * @param GenreFactory $genreFactory
      * @return $this
      */
     public function setGenreFactory($genreFactory)
@@ -301,15 +310,15 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\GenreFactory
+     * @return ImageFactory
      */
-    public function getGenreFactory()
+    public function getImageFactory()
     {
-        return $this->genreFactory;
+        return $this->imageFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
+     * @param ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
@@ -320,72 +329,15 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\ImageFactory
+     * @return KeywordFactory
      */
-    public function getImageFactory()
+    public function getKeywordFactory()
     {
-        return $this->imageFactory;
+        return $this->keywordFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\Common\ChangeFactory $changeFactory
-     * @return $this
-     */
-    public function setChangeFactory($changeFactory)
-    {
-        $this->changeFactory = $changeFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\Common\ChangeFactory
-     */
-    public function getChangeFactory()
-    {
-        return $this->changeFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\ReviewFactory $reviewFactory
-     * @return $this
-     */
-    public function setReviewFactory($reviewFactory)
-    {
-        $this->reviewFactory = $reviewFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\ReviewFactory
-     */
-    public function getReviewFactory()
-    {
-        return $this->reviewFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\Movie\ListItemFactory $listItemFactory
-     * @return $this
-     */
-    public function setListItemFactory($listItemFactory)
-    {
-        $this->listItemFactory = $listItemFactory;
-
-        return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\Movie\ListItemFactory
-     */
-    public function getListItemFactory()
-    {
-        return $this->listItemFactory;
-    }
-
-    /**
-     * @param  \Tmdb\Factory\KeywordFactory $keywordFactory
+     * @param KeywordFactory $keywordFactory
      * @return $this
      */
     public function setKeywordFactory($keywordFactory)
@@ -396,15 +348,15 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\KeywordFactory
+     * @return VideoFactory
      */
-    public function getKeywordFactory()
+    public function getVideoFactory()
     {
-        return $this->keywordFactory;
+        return $this->videoFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\Common\VideoFactory $videoFactory
+     * @param VideoFactory $videoFactory
      * @return $this
      */
     public function setVideoFactory($videoFactory)
@@ -415,10 +367,59 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\Common\VideoFactory
+     * @return ReviewFactory
      */
-    public function getVideoFactory()
+    public function getReviewFactory()
     {
-        return $this->videoFactory;
+        return $this->reviewFactory;
+    }
+
+    /**
+     * @param ReviewFactory $reviewFactory
+     * @return $this
+     */
+    public function setReviewFactory($reviewFactory)
+    {
+        $this->reviewFactory = $reviewFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return ListItemFactory
+     */
+    public function getListItemFactory()
+    {
+        return $this->listItemFactory;
+    }
+
+    /**
+     * @param ListItemFactory $listItemFactory
+     * @return $this
+     */
+    public function setListItemFactory($listItemFactory)
+    {
+        $this->listItemFactory = $listItemFactory;
+
+        return $this;
+    }
+
+    /**
+     * @return ChangeFactory
+     */
+    public function getChangeFactory()
+    {
+        return $this->changeFactory;
+    }
+
+    /**
+     * @param ChangeFactory $changeFactory
+     * @return $this
+     */
+    public function setChangeFactory($changeFactory)
+    {
+        $this->changeFactory = $changeFactory;
+
+        return $this;
     }
 }

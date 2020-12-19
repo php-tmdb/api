@@ -27,8 +27,8 @@ class TvEpisode extends AbstractApi
      * @param $tvshow_id
      * @param $season_number
      * @param $episode_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getEpisode(
@@ -56,8 +56,8 @@ class TvEpisode extends AbstractApi
      * @param $tvshow_id
      * @param $season_number
      * @param $episode_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getCredits(
@@ -85,8 +85,8 @@ class TvEpisode extends AbstractApi
      * @param $tvshow_id
      * @param $season_number
      * @param $episode_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getExternalIds(
@@ -114,8 +114,8 @@ class TvEpisode extends AbstractApi
      * @param $tvshow_id
      * @param $season_number
      * @param $episode_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getImages(
@@ -143,8 +143,8 @@ class TvEpisode extends AbstractApi
      * @param $tvshow_id
      * @param $season_number
      * @param $episode_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getVideos(
@@ -175,8 +175,8 @@ class TvEpisode extends AbstractApi
      * @param $tvshow_id
      * @param $season_number
      * @param $episode_number
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getChanges(
@@ -249,7 +249,7 @@ class TvEpisode extends AbstractApi
                 $season_number,
                 $episode_number
             ),
-            ['value' => (float) $rating]
+            ['value' => (float)$rating]
         );
     }
 }

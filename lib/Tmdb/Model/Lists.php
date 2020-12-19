@@ -23,56 +23,6 @@ use Tmdb\Model\Image\PosterImage;
  */
 class Lists extends AbstractModel
 {
-    /**
-     * @var string
-     */
-    private $createdBy;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var int
-     */
-    private $favoriteCount;
-
-    /**
-     * @var string
-     */
-    private $id;
-
-    /**
-     * @var GenericCollection
-     */
-    private $items;
-
-    /**
-     * @var int
-     */
-    private $itemCount;
-
-    /**
-     * @var string
-     */
-    private $iso6391;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $posterPath;
-
-    /**
-     * @var PosterImage
-     */
-    private $posterImage;
-
     public static $properties = [
         'created_by',
         'description',
@@ -83,21 +33,50 @@ class Lists extends AbstractModel
         'name',
         'poster_path'
     ];
+    /**
+     * @var string
+     */
+    private $createdBy;
+    /**
+     * @var string
+     */
+    private $description;
+    /**
+     * @var int
+     */
+    private $favoriteCount;
+    /**
+     * @var string
+     */
+    private $id;
+    /**
+     * @var GenericCollection
+     */
+    private $items;
+    /**
+     * @var int
+     */
+    private $itemCount;
+    /**
+     * @var string
+     */
+    private $iso6391;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $posterPath;
+    /**
+     * @var PosterImage
+     */
+    private $posterImage;
 
     public function __construct()
     {
         $this->items = new GenericCollection();
-    }
-
-    /**
-     * @param  string $createdBy
-     * @return $this
-     */
-    public function setCreatedBy($createdBy)
-    {
-        $this->createdBy = $createdBy;
-
-        return $this;
     }
 
     /**
@@ -109,12 +88,12 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @param  string $description
+     * @param string $createdBy
      * @return $this
      */
-    public function setDescription($description)
+    public function setCreatedBy($createdBy)
     {
-        $this->description = $description;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -128,12 +107,12 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @param  int   $favoriteCount
+     * @param string $description
      * @return $this
      */
-    public function setFavoriteCount($favoriteCount)
+    public function setDescription($description)
     {
-        $this->favoriteCount = $favoriteCount;
+        $this->description = $description;
 
         return $this;
     }
@@ -147,12 +126,12 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @param  string $id
+     * @param int $favoriteCount
      * @return $this
      */
-    public function setId($id)
+    public function setFavoriteCount($favoriteCount)
     {
-        $this->id = $id;
+        $this->favoriteCount = $favoriteCount;
 
         return $this;
     }
@@ -166,12 +145,12 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @param  string $iso6391
+     * @param string $id
      * @return $this
      */
-    public function setIso6391($iso6391)
+    public function setId($id)
     {
-        $this->iso6391 = $iso6391;
+        $this->id = $id;
 
         return $this;
     }
@@ -185,12 +164,12 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @param  int   $itemCount
+     * @param string $iso6391
      * @return $this
      */
-    public function setItemCount($itemCount)
+    public function setIso6391($iso6391)
     {
-        $this->itemCount = $itemCount;
+        $this->iso6391 = $iso6391;
 
         return $this;
     }
@@ -204,18 +183,18 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $items
+     * @param int $itemCount
      * @return $this
      */
-    public function setItems($items)
+    public function setItemCount($itemCount)
     {
-        $this->items = $items;
+        $this->itemCount = $itemCount;
 
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return GenericCollection
      */
     public function getItems()
     {
@@ -223,12 +202,12 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param GenericCollection $items
      * @return $this
      */
-    public function setName($name)
+    public function setItems($items)
     {
-        $this->name = $name;
+        $this->items = $items;
 
         return $this;
     }
@@ -242,7 +221,26 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image\PosterImage $posterImage
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return PosterImage
+     */
+    public function getPosterImage()
+    {
+        return $this->posterImage;
+    }
+
+    /**
+     * @param PosterImage $posterImage
      * @return $this
      */
     public function setPosterImage($posterImage)
@@ -253,15 +251,15 @@ class Lists extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Image\PosterImage
+     * @return string
      */
-    public function getPosterImage()
+    public function getPosterPath()
     {
-        return $this->posterImage;
+        return $this->posterPath;
     }
 
     /**
-     * @param  string $posterPath
+     * @param string $posterPath
      * @return $this
      */
     public function setPosterPath($posterPath)
@@ -269,13 +267,5 @@ class Lists extends AbstractModel
         $this->posterPath = $posterPath;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPosterPath()
-    {
-        return $this->posterPath;
     }
 }

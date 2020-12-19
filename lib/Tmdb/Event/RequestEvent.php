@@ -16,6 +16,7 @@ namespace Tmdb\Event;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 use Tmdb\Common\ParameterBag;
 use Tmdb\HttpClient\Request;
@@ -78,9 +79,9 @@ class RequestEvent extends Event
     }
 
     /**
-     * @return \Psr\Http\Message\StreamInterface
+     * @return StreamInterface
      */
-    public function getBody(): \Psr\Http\Message\StreamInterface
+    public function getBody(): StreamInterface
     {
         return $this->request->getBody();
     }
@@ -94,7 +95,7 @@ class RequestEvent extends Event
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
      * @return $this
      */
     public function setRequest($request)
@@ -113,7 +114,7 @@ class RequestEvent extends Event
     }
 
     /**
-     * @param  Response $response
+     * @param Response $response
      * @return $this
      */
     public function setResponse($response)

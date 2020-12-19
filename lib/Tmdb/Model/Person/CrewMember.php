@@ -22,21 +22,6 @@ use Tmdb\Model\Collection\People\PersonInterface;
  */
 class CrewMember extends AbstractMember implements PersonInterface
 {
-    /**
-     * @var string
-     */
-    private $department;
-
-    /**
-     * @var string
-     */
-    private $job;
-
-    /**
-     * @var mixed
-     */
-    private $creditId;
-
     public static $properties = [
         'id',
         'credit_id',
@@ -45,17 +30,18 @@ class CrewMember extends AbstractMember implements PersonInterface
         'job',
         'profile_path'
     ];
-
     /**
-     * @param  string $department
-     * @return $this
+     * @var string
      */
-    public function setDepartment($department)
-    {
-        $this->department = $department;
-
-        return $this;
-    }
+    private $department;
+    /**
+     * @var string
+     */
+    private $job;
+    /**
+     * @var mixed
+     */
+    private $creditId;
 
     /**
      * @return string
@@ -66,12 +52,12 @@ class CrewMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @param  string $job
+     * @param string $department
      * @return $this
      */
-    public function setJob($job)
+    public function setDepartment($department)
     {
-        $this->job = $job;
+        $this->department = $department;
 
         return $this;
     }
@@ -85,12 +71,12 @@ class CrewMember extends AbstractMember implements PersonInterface
     }
 
     /**
-     * @param  mixed $creditId
+     * @param string $job
      * @return $this
      */
-    public function setCreditId($creditId)
+    public function setJob($job)
     {
-        $this->creditId = $creditId;
+        $this->job = $job;
 
         return $this;
     }
@@ -101,5 +87,16 @@ class CrewMember extends AbstractMember implements PersonInterface
     public function getCreditId()
     {
         return $this->creditId;
+    }
+
+    /**
+     * @param mixed $creditId
+     * @return $this
+     */
+    public function setCreditId($creditId)
+    {
+        $this->creditId = $creditId;
+
+        return $this;
     }
 }

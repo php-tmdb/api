@@ -35,8 +35,8 @@ class Credits extends AbstractApi
      * and are assumed to be "season regulars".
      *
      * @param $credit_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getCredit($credit_id, array $parameters = [], array $headers = [])

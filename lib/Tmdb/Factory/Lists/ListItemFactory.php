@@ -44,6 +44,24 @@ class ListItemFactory extends AbstractFactory
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function createCollection(array $data = [])
+    {
+        $collection = new GenericCollection();
+
+        if (array_key_exists('items', $data)) {
+            $data = $data['items'];
+        }
+
+        foreach ($data as $item) {
+            $collection->add(null, $this->create($item));
+        }
+
+        return $collection;
+    }
+
+    /**
      * @param array $data
      *
      * @return ListItem
@@ -69,25 +87,15 @@ class ListItemFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @return ImageFactory
      */
-    public function createCollection(array $data = [])
+    public function getImageFactory()
     {
-        $collection = new GenericCollection();
-
-        if (array_key_exists('items', $data)) {
-            $data = $data['items'];
-        }
-
-        foreach ($data as $item) {
-            $collection->add(null, $this->create($item));
-        }
-
-        return $collection;
+        return $this->imageFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
+     * @param ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
@@ -95,13 +103,5 @@ class ListItemFactory extends AbstractFactory
         $this->imageFactory = $imageFactory;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Factory\ImageFactory
-     */
-    public function getImageFactory()
-    {
-        return $this->imageFactory;
     }
 }

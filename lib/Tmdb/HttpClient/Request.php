@@ -53,11 +53,11 @@ class Request
     private $body;
 
     /**
-     * @param string       $path
-     * @param string       $method
+     * @param string $path
+     * @param string $method
      * @param ParameterBag $parameters
      * @param ParameterBag $headers
-     * @param string       $body
+     * @param string $body
      * @param ParameterBag $options
      */
     public function __construct(
@@ -80,12 +80,12 @@ class Request
             $options = new ParameterBag();
         }
 
-        $this->path       = $path;
-        $this->method     = $method;
+        $this->path = $path;
+        $this->method = $method;
         $this->parameters = is_array($parameters) ? new ParameterBag($parameters) : $parameters;
-        $this->headers    = is_array($headers) ? new ParameterBag($headers) : $headers;
-        $this->body       = $body;
-        $this->options    = is_array($options) ? new ParameterBag($options) : $options;
+        $this->headers = is_array($headers) ? new ParameterBag($headers) : $headers;
+        $this->body = $body;
+        $this->options = is_array($options) ? new ParameterBag($options) : $options;
     }
 
     /**
@@ -97,7 +97,7 @@ class Request
     }
 
     /**
-     * @param  ParameterBag $headers
+     * @param ParameterBag $headers
      * @return $this
      */
     public function setHeaders(ParameterBag $headers)
@@ -116,7 +116,7 @@ class Request
     }
 
     /**
-     * @param  string $method
+     * @param string $method
      * @return $this
      */
     public function setMethod($method)
@@ -155,7 +155,7 @@ class Request
     }
 
     /**
-     * @param  string $path
+     * @param string $path
      * @return $this
      */
     public function setPath($path)
@@ -174,7 +174,7 @@ class Request
     }
 
     /**
-     * @param  ParameterBag $options
+     * @param ParameterBag $options
      * @return $this
      */
     public function setOptions($options)
@@ -197,7 +197,7 @@ class Request
     }
 
     /**
-     * @param  null|string $body
+     * @param null|string $body
      * @return $this
      */
     public function setBody($body)

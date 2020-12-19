@@ -27,10 +27,10 @@ class GuestSession extends AbstractApi
     /**
      * Get a list of rated movies for a specific guest session id.
      *
-     * @param  array                        $parameters
-     * @param  array                        $headers
-     * @throws MissingSessionTokenException when the guest session token was not set on the client.
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
+     * @throws MissingSessionTokenException when the guest session token was not set on the client.
      */
     public function getRatedMovies(array $parameters = [], array $headers = [])
     {

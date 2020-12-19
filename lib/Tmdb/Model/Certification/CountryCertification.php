@@ -22,37 +22,23 @@ use Tmdb\Model\AbstractModel;
  */
 class CountryCertification extends AbstractModel
 {
-    /**
-     * @var string
-     */
-    private $certification;
-
-    /**
-     * @var string
-     */
-    private $meaning;
-
-    /**
-     * @var integer
-     */
-    private $order;
-
     public static $properties = [
         'certification',
         'meaning',
         'order',
     ];
-
     /**
-     * @param  string $certification
-     * @return $this
+     * @var string
      */
-    public function setCertification($certification)
-    {
-        $this->certification = $certification;
-
-        return $this;
-    }
+    private $certification;
+    /**
+     * @var string
+     */
+    private $meaning;
+    /**
+     * @var integer
+     */
+    private $order;
 
     /**
      * @return string
@@ -63,12 +49,12 @@ class CountryCertification extends AbstractModel
     }
 
     /**
-     * @param  string $meaning
+     * @param string $certification
      * @return $this
      */
-    public function setMeaning($meaning)
+    public function setCertification($certification)
     {
-        $this->meaning = $meaning;
+        $this->certification = $certification;
 
         return $this;
     }
@@ -82,12 +68,12 @@ class CountryCertification extends AbstractModel
     }
 
     /**
-     * @param  int   $order
+     * @param string $meaning
      * @return $this
      */
-    public function setOrder($order)
+    public function setMeaning($meaning)
     {
-        $this->order = $order;
+        $this->meaning = $meaning;
 
         return $this;
     }
@@ -98,5 +84,16 @@ class CountryCertification extends AbstractModel
     public function getOrder()
     {
         return $this->order;
+    }
+
+    /**
+     * @param int $order
+     * @return $this
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+
+        return $this;
     }
 }

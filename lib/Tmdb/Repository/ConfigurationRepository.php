@@ -27,7 +27,7 @@ class ConfigurationRepository extends AbstractRepository
     /**
      * Load up TMDB Configuration
      *
-     * @param  array         $headers
+     * @param array $headers
      * @return Configuration
      */
     public function load(array $headers = [])

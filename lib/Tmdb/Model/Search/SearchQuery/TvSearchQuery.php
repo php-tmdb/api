@@ -14,6 +14,7 @@
 
 namespace Tmdb\Model\Search\SearchQuery;
 
+use DateTime;
 use Tmdb\Model\Search\SearchQuery;
 
 /**
@@ -45,11 +46,11 @@ class TvSearchQuery extends SearchQuery
      */
     public function firstAirDateYear($year): self
     {
-        if ($year instanceof \DateTime) {
+        if ($year instanceof DateTime) {
             $year = $year->format('Y');
         }
 
-        $this->set('first_air_date_year', (int) $year);
+        $this->set('first_air_date_year', (int)$year);
 
         return $this;
     }
@@ -62,11 +63,11 @@ class TvSearchQuery extends SearchQuery
      *
      * For those wanting more of an "autocomplete" type search, set this option to 'ngram'.
      *
-     * @deprecated
-     *
      * @param string
      *
      * @return static
+     * @deprecated
+     *
      */
     public function searchType($search_type = 'phrase'): self
     {

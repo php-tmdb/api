@@ -31,8 +31,8 @@ class Collections extends AbstractApi
      * If you would like to sort them yourself you can use the provided release_date.
      *
      * @param $collection_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getCollection($collection_id, array $parameters = [], array $headers = [])
@@ -44,8 +44,8 @@ class Collections extends AbstractApi
      * Get all of the images for a particular collection by collection id.
      *
      * @param $collection_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getImages($collection_id, array $parameters = [], array $headers = [])

@@ -23,42 +23,27 @@ use Tmdb\Model\Image;
  */
 abstract class AbstractMember extends AbstractModel
 {
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $profilePath;
-
-    /**
-     * @var Image\ProfileImage
-     */
-    private $profile;
-
     public static $properties = [
         'id',
         'name',
         'profile_path'
     ];
-
     /**
-     * @param  mixed $id
-     * @return $this
+     * @var int
      */
-    public function setId($id)
-    {
-        $this->id = (int) $id;
-
-        return $this;
-    }
+    private $id;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $profilePath;
+    /**
+     * @var Image\ProfileImage
+     */
+    private $profile;
 
     /**
      * @return integer
@@ -69,12 +54,12 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param mixed $id
      * @return $this
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = (int)$id;
 
         return $this;
     }
@@ -88,12 +73,12 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @param  string $profilePath
+     * @param string $name
      * @return $this
      */
-    public function setProfilePath($profilePath)
+    public function setName($name)
     {
-        $this->profilePath = $profilePath;
+        $this->name = $name;
 
         return $this;
     }
@@ -107,7 +92,18 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @param  Image\ProfileImage $profile
+     * @param string $profilePath
+     * @return $this
+     */
+    public function setProfilePath($profilePath)
+    {
+        $this->profilePath = $profilePath;
+
+        return $this;
+    }
+
+    /**
+     * @param Image\ProfileImage $profile
      * @return $this
      */
     public function setProfileImage($profile = null)

@@ -18,11 +18,11 @@ final class TmdbEvents
 {
     /** Request */
     const BEFORE_REQUEST = 'tmdb.before_request';
-    const REQUEST        = 'tmdb.request';
-    const AFTER_REQUEST  = 'tmdb.after_request';
+    const REQUEST = 'tmdb.request';
+    const AFTER_REQUEST = 'tmdb.after_request';
 
     /** Hydration */
     const BEFORE_HYDRATION = 'tmdb.before_hydration';
-    const HYDRATE          = 'tmdb.hydrate';
-    const AFTER_HYDRATION  = 'tmdb.after_hydration';
+    const HYDRATE = 'tmdb.hydrate';
+    const AFTER_HYDRATION = 'tmdb.after_hydration';
 }

@@ -14,6 +14,7 @@
 
 namespace Tmdb\Model\Query;
 
+use DateTime;
 use Tmdb\Model\Collection\QueryParametersCollection;
 
 /**
@@ -25,10 +26,10 @@ class ChangesQuery extends QueryParametersCollection
     /**
      * Set the from parameter
      *
-     * @param  \DateTime $date
+     * @param DateTime $date
      * @return $this
      */
-    public function from(\DateTime $date)
+    public function from(DateTime $date)
     {
         $this->set('start_date', $date->format('Y-m-d'));
 
@@ -38,10 +39,10 @@ class ChangesQuery extends QueryParametersCollection
     /**
      * Set the to parameter
      *
-     * @param  \DateTime $date
+     * @param DateTime $date
      * @return $this
      */
-    public function to(\DateTime $date)
+    public function to(DateTime $date)
     {
         $this->set('end_date', $date->format('Y-m-d'));
 
@@ -51,12 +52,12 @@ class ChangesQuery extends QueryParametersCollection
     /**
      * Set the page parameter
      *
-     * @param  int   $page
+     * @param int $page
      * @return $this
      */
     public function page($page = 1)
     {
-        $this->set('page', (int) $page);
+        $this->set('page', (int)$page);
 
         return $this;
     }

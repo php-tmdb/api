@@ -23,41 +23,6 @@ use Tmdb\Model\Common\GenericCollection;
 class Account extends AbstractModel
 {
     /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var boolean
-     */
-    private $includeAdult;
-
-    /**
-     * @var string
-     */
-    private $iso31661;
-
-    /**
-     * @var string
-     */
-    private $iso6391;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var GenericCollection
-     */
-    private $avatar;
-
-    /**
      * @var array
      */
     public static $properties = [
@@ -68,17 +33,34 @@ class Account extends AbstractModel
         'name',
         'username'
     ];
-
     /**
-     * @param  int   $id
-     * @return $this
+     * @var integer
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+    private $id;
+    /**
+     * @var boolean
+     */
+    private $includeAdult;
+    /**
+     * @var string
+     */
+    private $iso31661;
+    /**
+     * @var string
+     */
+    private $iso6391;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $username;
+    /**
+     * @var GenericCollection
+     */
+    private $avatar;
 
     /**
      * @return int
@@ -89,12 +71,12 @@ class Account extends AbstractModel
     }
 
     /**
-     * @param  boolean $includeAdult
+     * @param int $id
      * @return $this
      */
-    public function setIncludeAdult($includeAdult)
+    public function setId($id)
     {
-        $this->includeAdult = $includeAdult;
+        $this->id = $id;
 
         return $this;
     }
@@ -108,12 +90,12 @@ class Account extends AbstractModel
     }
 
     /**
-     * @param  string $iso31661
+     * @param boolean $includeAdult
      * @return $this
      */
-    public function setIso31661($iso31661)
+    public function setIncludeAdult($includeAdult)
     {
-        $this->iso31661 = $iso31661;
+        $this->includeAdult = $includeAdult;
 
         return $this;
     }
@@ -127,12 +109,12 @@ class Account extends AbstractModel
     }
 
     /**
-     * @param  string $iso6391
+     * @param string $iso31661
      * @return $this
      */
-    public function setIso6391($iso6391)
+    public function setIso31661($iso31661)
     {
-        $this->iso6391 = $iso6391;
+        $this->iso31661 = $iso31661;
 
         return $this;
     }
@@ -146,12 +128,12 @@ class Account extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param string $iso6391
      * @return $this
      */
-    public function setName($name)
+    public function setIso6391($iso6391)
     {
-        $this->name = $name;
+        $this->iso6391 = $iso6391;
 
         return $this;
     }
@@ -165,12 +147,12 @@ class Account extends AbstractModel
     }
 
     /**
-     * @param  string $username
+     * @param string $name
      * @return $this
      */
-    public function setUsername($username)
+    public function setName($name)
     {
-        $this->username = $username;
+        $this->name = $name;
 
         return $this;
     }
@@ -184,7 +166,26 @@ class Account extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $avatar
+     * @param string $username
+     * @return $this
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param GenericCollection $avatar
      * @return $this
      */
     public function setAvatar($avatar)
@@ -192,13 +193,5 @@ class Account extends AbstractModel
         $this->avatar = $avatar;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Model\Common\GenericCollection
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
     }
 }

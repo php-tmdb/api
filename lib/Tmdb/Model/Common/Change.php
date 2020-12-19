@@ -22,19 +22,17 @@ use Tmdb\Model\AbstractModel;
  */
 class Change extends AbstractModel
 {
+    public static $properties = [
+        'key',
+    ];
     /**
      * @var string
      */
     private $key;
-
     /**
      * @var GenericCollection
      */
     private $items;
-
-    public static $properties = [
-        'key',
-    ];
 
     public function __construct()
     {
@@ -42,7 +40,15 @@ class Change extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $items
+     * @return GenericCollection
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param GenericCollection $items
      * @return $this
      */
     public function setItems($items)
@@ -53,15 +59,15 @@ class Change extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return string
      */
-    public function getItems()
+    public function getKey()
     {
-        return $this->items;
+        return $this->key;
     }
 
     /**
-     * @param  string $key
+     * @param string $key
      * @return $this
      */
     public function setKey($key)
@@ -69,13 +75,5 @@ class Change extends AbstractModel
         $this->key = $key;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getKey()
-    {
-        return $this->key;
     }
 }

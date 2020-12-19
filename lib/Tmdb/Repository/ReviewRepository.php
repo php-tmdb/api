@@ -14,6 +14,7 @@
 
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Reviews;
 use Tmdb\Factory\ReviewFactory;
 use Tmdb\Model\Review;
 
@@ -28,8 +29,8 @@ class ReviewRepository extends AbstractRepository
      * Get the full details of a review by ID.
      *
      * @param $id
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param array $parameters
+     * @param array $headers
      * @return Review
      */
     public function load($id, array $parameters = [], array $headers = [])
@@ -40,20 +41,20 @@ class ReviewRepository extends AbstractRepository
     }
 
     /**
-     * Return the related API class
-     *
-     * @return \Tmdb\Api\Reviews
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getReviewsApi();
-    }
-
-    /**
      * @return ReviewFactory
      */
     public function getFactory()
     {
         return new ReviewFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
+     * Return the related API class
+     *
+     * @return Reviews
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getReviewsApi();
     }
 }

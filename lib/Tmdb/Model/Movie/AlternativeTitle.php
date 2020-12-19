@@ -23,16 +23,23 @@ use Tmdb\Model\Filter\CountryFilter;
  */
 class AlternativeTitle extends AbstractModel implements CountryFilter
 {
-    private $iso31661;
-    private $title;
-
     public static $properties = [
         'iso_3166_1',
         'title',
     ];
+    private $iso31661;
+    private $title;
 
     /**
-     * @param  string $iso31661
+     * @return string
+     */
+    public function getIso31661()
+    {
+        return $this->iso31661;
+    }
+
+    /**
+     * @param string $iso31661
      * @return $this
      */
     public function setIso31661($iso31661)
@@ -45,13 +52,13 @@ class AlternativeTitle extends AbstractModel implements CountryFilter
     /**
      * @return string
      */
-    public function getIso31661()
+    public function getTitle()
     {
-        return $this->iso31661;
+        return $this->title;
     }
 
     /**
-     * @param  string $title
+     * @param string $title
      * @return $this
      */
     public function setTitle($title)
@@ -59,13 +66,5 @@ class AlternativeTitle extends AbstractModel implements CountryFilter
         $this->title = $title;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 }

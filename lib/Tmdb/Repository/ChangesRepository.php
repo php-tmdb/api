@@ -14,8 +14,10 @@
 
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Changes;
 use Tmdb\Factory\ChangesFactory;
-use Tmdb\Model\Collection\People;
+use Tmdb\Model\Collection\ResultCollection;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Query\ChangesQuery;
 
 /**
@@ -35,15 +37,35 @@ class ChangesRepository extends AbstractRepository
      * Please note that the change log system to support this was changed on October 5, 2012
      * and will only show movies that have been edited since.
      *
-     * @param  ChangesQuery                         $query
-     * @param  array                                $headers
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @param ChangesQuery $query
+     * @param array $headers
+     * @return GenericCollection
      */
     public function getMovieChanges(ChangesQuery $query, array $headers = [])
     {
         $data = $this->getApi()->getMovieChanges($query->toArray(), $headers);
 
         return $this->getFactory()->createResultCollection($data);
+    }
+
+    /**
+     * Return the related API class
+     *
+     * @return Changes
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getChangesApi();
+    }
+
+    /**
+     * Changes does not support a generic factory
+     *
+     * @return ChangesFactory
+     */
+    public function getFactory()
+    {
+        return new ChangesFactory($this->getClient()->getHttpClient());
     }
 
     /**
@@ -57,11 +79,11 @@ class ChangesRepository extends AbstractRepository
      * and will only show people that have been edited since.
      *
      * @param ChangesQuery $query
-     * @param array        $headers
+     * @param array $headers
      *
-     * @return \Tmdb\Model\Collection\ResultCollection
+     * @return ResultCollection
      */
-    public function getPeopleChanges(ChangesQuery $query, array $headers = []): \Tmdb\Model\Collection\ResultCollection
+    public function getPeopleChanges(ChangesQuery $query, array $headers = []): ResultCollection
     {
         $data = $this->getApi()->getPersonChanges($query->toArray(), $headers);
 
@@ -79,34 +101,14 @@ class ChangesRepository extends AbstractRepository
      * Please note that the change log system to support this was changed
      * on May 13, 2014 and will only show tv shows that have been edited since.
      *
-     * @param  ChangesQuery                         $query
-     * @param  array                                $headers
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @param ChangesQuery $query
+     * @param array $headers
+     * @return GenericCollection
      */
     public function getTvChanges(ChangesQuery $query, array $headers = [])
     {
         $data = $this->getApi()->getTvChanges($query->toArray(), $headers);
 
         return $this->getFactory()->createResultCollection($data);
-    }
-
-    /**
-     * Return the related API class
-     *
-     * @return \Tmdb\Api\Changes
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getChangesApi();
-    }
-
-    /**
-     * Changes does not support a generic factory
-     *
-     * @return ChangesFactory
-     */
-    public function getFactory()
-    {
-        return new ChangesFactory($this->getClient()->getHttpClient());
     }
 }

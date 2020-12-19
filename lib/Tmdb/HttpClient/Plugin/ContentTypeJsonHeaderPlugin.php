@@ -36,8 +36,8 @@ class ContentTypeJsonHeaderPlugin implements EventSubscriberInterface
         $method = $event->getRequest()->getMethod();
 
         if (
-            $method == 'POST'  ||
-            $method == 'PUT'   ||
+            $method == 'POST' ||
+            $method == 'PUT' ||
             $method == 'PATCH' ||
             $method == 'DELETE'
         ) {

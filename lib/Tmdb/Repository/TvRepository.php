@@ -15,6 +15,10 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\TvFactory;
+use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Collection\CreditsCollection;
+use Tmdb\Model\Collection\Images;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\AccountStates;
 use Tmdb\Model\Common\GenericCollection;
@@ -36,10 +40,10 @@ class TvRepository extends AbstractRepository
      * If you want to optimize the result set/bandwidth you should
      * define the AppendToResponse parameter
      *
-     * @param  integer                        $id
+     * @param integer $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return null|AbstractModel
      */
     public function load($id, array $parameters = [], array $headers = [])
     {
@@ -67,6 +71,24 @@ class TvRepository extends AbstractRepository
     }
 
     /**
+     * Return the Tvs API Class
+     *
+     * @return \Tmdb\Api\Tv
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getTvApi();
+    }
+
+    /**
+     * @return TvFactory
+     */
+    public function getFactory()
+    {
+        return new TvFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
      * Get the cast & crew information about a TV series.
      *
      * Just like the website, we pull this information from the last season of the series.
@@ -75,12 +97,12 @@ class TvRepository extends AbstractRepository
      * @param $parameters
      * @param $headers
      *
-     * @return \Tmdb\Model\Collection\CreditsCollection
+     * @return CreditsCollection
      */
-    public function getCredits($id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection\CreditsCollection
+    public function getCredits($id, array $parameters = [], array $headers = []): CreditsCollection
     {
         $data = $this->getApi()->getCredits($id, $this->parseQueryParameters($parameters), $headers);
-        $tv   = $this->getFactory()->create(['credits' => $data]);
+        $tv = $this->getFactory()->create(['credits' => $data]);
 
         return $tv->getCredits();
     }
@@ -97,7 +119,7 @@ class TvRepository extends AbstractRepository
     public function getContentRatings($id, array $parameters = array(), array $headers = array()): GenericCollection
     {
         $data = $this->getApi()->getContentRatings($id, $this->parseQueryParameters($parameters), $headers);
-        $tv   = $this->getFactory()->create(['content_ratings' => $data]);
+        $tv = $this->getFactory()->create(['content_ratings' => $data]);
 
         return $tv->getContentRatings();
     }
@@ -108,12 +130,12 @@ class TvRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return null|AbstractModel
      */
     public function getExternalIds($id, array $parameters = [], array $headers = [])
     {
         $data = $this->getApi()->getExternalIds($id, $this->parseQueryParameters($parameters), $headers);
-        $tv   = $this->getFactory()->create(['external_ids' => $data]);
+        $tv = $this->getFactory()->create(['external_ids' => $data]);
 
         return $tv->getExternalIds();
     }
@@ -125,12 +147,12 @@ class TvRepository extends AbstractRepository
      * @param $parameters
      * @param $headers
      *
-     * @return \Tmdb\Model\Collection\Images
+     * @return Images
      */
-    public function getImages($id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection\Images
+    public function getImages($id, array $parameters = [], array $headers = []): Images
     {
         $data = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
-        $tv   = $this->getFactory()->create(['images' => $data]);
+        $tv = $this->getFactory()->create(['images' => $data]);
 
         return $tv->getImages();
     }
@@ -146,7 +168,7 @@ class TvRepository extends AbstractRepository
      */
     public function getSimilar($id, array $parameters = [], array $headers = []): GenericCollection
     {
-        $data  = $this->getApi()->getSimilar($id, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getSimilar($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['similar' => $data]);
 
         return $movie->getSimilar();
@@ -163,7 +185,7 @@ class TvRepository extends AbstractRepository
      */
     public function getRecommendations($id, array $parameters = [], array $headers = []): GenericCollection
     {
-        $data  = $this->getApi()->getRecommendations($id, $this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getRecommendations($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['recommendations' => $data]);
 
         return $movie->getRecommendations();
@@ -183,7 +205,7 @@ class TvRepository extends AbstractRepository
     public function getTranslations($id, array $parameters = [], array $headers = []): GenericCollection
     {
         $data = $this->getApi()->getTranslations($id, $this->parseQueryParameters($parameters), $headers);
-        $tv   = $this->getFactory()->create(['translations' => $data]);
+        $tv = $this->getFactory()->create(['translations' => $data]);
 
         return $tv->getTranslations();
     }
@@ -199,7 +221,7 @@ class TvRepository extends AbstractRepository
     public function getVideos($id, array $parameters = [], array $headers = [])
     {
         $data = $this->getApi()->getVideos($id, $this->parseQueryParameters($parameters), $headers);
-        $tv   = $this->getFactory()->create(['videos' => $data]);
+        $tv = $this->getFactory()->create(['videos' => $data]);
 
         return $tv->getVideos();
     }
@@ -215,27 +237,9 @@ class TvRepository extends AbstractRepository
     public function getAlternativeTitles($id, array $parameters = [], array $headers = [])
     {
         $data = $this->getApi()->getAlternativeTitles($id, $this->parseQueryParameters($parameters), $headers);
-        $tv   = $this->getFactory()->create(['alternative_titles' => $data]);
+        $tv = $this->getFactory()->create(['alternative_titles' => $data]);
 
         return $tv->getAlternativeTitles();
-    }
-
-    /**
-     * Return the Tvs API Class
-     *
-     * @return \Tmdb\Api\Tv
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getTvApi();
-    }
-
-    /**
-     * @return TvFactory
-     */
-    public function getFactory()
-    {
-        return new TvFactory($this->getClient()->getHttpClient());
     }
 
     /**
@@ -244,9 +248,9 @@ class TvRepository extends AbstractRepository
      * @param array $options
      * @param array $headers
      *
-     * @return \Tmdb\Model\Collection\ResultCollection
+     * @return ResultCollection
      */
-    public function getPopular(array $options = [], array $headers = []): \Tmdb\Model\Collection\ResultCollection
+    public function getPopular(array $options = [], array $headers = []): ResultCollection
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getPopular($options, $headers)
@@ -260,9 +264,9 @@ class TvRepository extends AbstractRepository
      * @param array $options
      * @param array $headers
      *
-     * @return \Tmdb\Model\Collection\ResultCollection
+     * @return ResultCollection
      */
-    public function getTopRated(array $options = [], array $headers = []): \Tmdb\Model\Collection\ResultCollection
+    public function getTopRated(array $options = [], array $headers = []): ResultCollection
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getTopRated($options, $headers)
@@ -276,9 +280,9 @@ class TvRepository extends AbstractRepository
      * @param array $options
      * @param array $headers
      *
-     * @return \Tmdb\Model\Collection\ResultCollection
+     * @return ResultCollection
      */
-    public function getOnTheAir(array $options = [], array $headers = []): \Tmdb\Model\Collection\ResultCollection
+    public function getOnTheAir(array $options = [], array $headers = []): ResultCollection
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getOnTheAir($options, $headers)
@@ -293,9 +297,9 @@ class TvRepository extends AbstractRepository
      * @param array $options
      * @param array $headers
      *
-     * @return \Tmdb\Model\Collection\ResultCollection
+     * @return ResultCollection
      */
-    public function getAiringToday(array $options = [], array $headers = []): \Tmdb\Model\Collection\ResultCollection
+    public function getAiringToday(array $options = [], array $headers = []): ResultCollection
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getAiringToday($options, $headers)
@@ -305,8 +309,8 @@ class TvRepository extends AbstractRepository
     /**
      * Get the latest tv-show.
      *
-     * @param  array                          $options
-     * @return null|\Tmdb\Model\AbstractModel
+     * @param array $options
+     * @return null|AbstractModel
      */
     public function getLatest(array $options = [])
     {
@@ -321,7 +325,7 @@ class TvRepository extends AbstractRepository
      *
      * A valid session id is required.
      *
-     * @param  integer       $id
+     * @param integer $id
      * @return AccountStates
      */
     public function getAccountStates($id)
@@ -336,8 +340,8 @@ class TvRepository extends AbstractRepository
      *
      * A valid session id or guest session id is required.
      *
-     * @param  integer $id
-     * @param  float   $rating
+     * @param integer $id
+     * @param float $rating
      * @return Result
      */
     public function rate($id, $rating)

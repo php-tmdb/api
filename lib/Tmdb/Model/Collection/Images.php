@@ -204,14 +204,14 @@ class Images extends GenericCollection
     public function filterBestVotedImage()
     {
         $currentImage = null;
-        $voteAverage  = -1;
+        $voteAverage = -1;
 
         /**
          * @var $image Image
          */
         foreach ($this->data as $image) {
             if ($image->getVoteAverage() > $voteAverage) {
-                $voteAverage  = $image->getVoteAverage();
+                $voteAverage = $image->getVoteAverage();
                 $currentImage = $image;
             }
         }

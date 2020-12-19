@@ -14,9 +14,12 @@
 
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Authentication;
 use Tmdb\Exception\UnauthorizedRequestTokenException;
 use Tmdb\Factory\AuthenticationFactory;
+use Tmdb\GuestSessionToken;
 use Tmdb\RequestToken;
+use Tmdb\SessionToken;
 
 /**
  * Class AuthenticationRepository
@@ -36,21 +39,39 @@ class AuthenticationRepository extends AbstractRepository
      */
     public function getRequestToken()
     {
-        $data  = $this->getApi()->getNewToken();
+        $data = $this->getApi()->getNewToken();
 
         return $this->getFactory()->createRequestToken($data);
+    }
+
+    /**
+     * Return the Collection API Class
+     *
+     * @return Authentication
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getAuthenticationApi();
+    }
+
+    /**
+     * @return AuthenticationFactory
+     */
+    public function getFactory()
+    {
+        return new AuthenticationFactory($this->getClient()->getHttpClient());
     }
 
     /**
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param  RequestToken       $requestToken
-     * @return \Tmdb\SessionToken
+     * @param RequestToken $requestToken
+     * @return SessionToken
      */
     public function getSessionToken(RequestToken $requestToken)
     {
-        $data  = $this->getApi()->getNewSession($requestToken->getToken());
+        $data = $this->getApi()->getNewSession($requestToken->getToken());
 
         return $this->getFactory()->createSessionToken($data);
     }
@@ -59,11 +80,11 @@ class AuthenticationRepository extends AbstractRepository
      * This method is used to validate a request_token for user based authentication.
      * A request_token is required in order to use any of the write methods.
      *
-     * @param  RequestToken                      $requestToken
-     * @param  string                            $username
-     * @param  string                            $password
-     * @throws UnauthorizedRequestTokenException
+     * @param RequestToken $requestToken
+     * @param string $username
+     * @param string $password
      * @return RequestToken
+     * @throws UnauthorizedRequestTokenException
      */
     public function validateRequestTokenWithLogin(RequestToken $requestToken, $username, $password)
     {
@@ -77,14 +98,21 @@ class AuthenticationRepository extends AbstractRepository
     }
 
     /**
+     * Authenticate request token, redirects the user
+     *
+     * @param RequestToken $requestToken
+     * @return void
+     */
+    //@codeCoverageIgnoreStart
+    /**
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param  RequestToken                      $requestToken
-     * @param  string                            $username
-     * @param  string                            $password
+     * @param RequestToken $requestToken
+     * @param string $username
+     * @param string $password
+     * @return SessionToken
      * @throws UnauthorizedRequestTokenException
-     * @return \Tmdb\SessionToken
      */
     public function getSessionTokenWithLogin(RequestToken $requestToken, $username, $password)
     {
@@ -96,6 +124,7 @@ class AuthenticationRepository extends AbstractRepository
 
         return $this->getFactory()->createSessionToken($data);
     }
+    //@codeCoverageIgnoreEnd
 
     /**
      * This method is used to generate a guest session id.
@@ -110,43 +139,18 @@ class AuthenticationRepository extends AbstractRepository
      * If a guest session is not used for the first time within 24 hours,
      * it will be automatically discarded.
      *
-     * @return \Tmdb\GuestSessionToken
+     * @return GuestSessionToken
      */
     public function getGuestSessionToken()
     {
-        $data  = $this->getApi()->getNewGuestSession();
+        $data = $this->getApi()->getNewGuestSession();
 
         return $this->getFactory()->createGuestSessionToken($data);
     }
 
-    /**
-     * Authenticate request token, redirects the user
-     *
-     * @param  RequestToken $requestToken
-     * @return void
-     */
-    //@codeCoverageIgnoreStart
-    public function authenticateRequestToken(RequestToken $requestToken)
+
+    public function authenticateRequestToken(RequestToken $requestToken): void
     {
         $this->getApi()->authenticateRequestToken($requestToken->getToken());
-    }
-    //@codeCoverageIgnoreEnd
-
-    /**
-     * Return the Collection API Class
-     *
-     * @return \Tmdb\Api\Authentication
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getAuthenticationApi();
-    }
-
-    /**
-     * @return AuthenticationFactory
-     */
-    public function getFactory()
-    {
-        return new AuthenticationFactory($this->getClient()->getHttpClient());
     }
 }

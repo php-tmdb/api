@@ -14,6 +14,7 @@
 
 namespace Tmdb\Exception;
 
+use Exception;
 use Tmdb\HttpClient\Request;
 
 /**
@@ -28,10 +29,10 @@ class NullResponseException extends RuntimeException
     protected $request;
 
     /**
-     * @param Request         $request
-     * @param \Exception|null $previous
+     * @param Request $request
+     * @param Exception|null $previous
      */
-    public function __construct(Request $request, \Exception $previous = null)
+    public function __construct(Request $request, Exception $previous = null)
     {
         $this->request = $request;
 
@@ -64,7 +65,7 @@ class NullResponseException extends RuntimeException
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
      * @return $this
      */
     public function setRequest(Request $request)

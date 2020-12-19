@@ -23,9 +23,8 @@ use Tmdb\Model\Image;
  */
 class ImageHelper
 {
-    private $config;
-
     protected $protocolLessBaseUrl;
+    private $config;
 
     public function __construct(Configuration $config)
     {
@@ -52,24 +51,12 @@ class ImageHelper
     }
 
     /**
-     * Get the url for the image resource
-     *
-     * @param  Image|string $image Either an instance of Image or the file_path
-     * @param  string       $size
-     * @return string
-     */
-    public function getUrl($image, $size = 'original')
-    {
-        return $this->protocolLessBaseUrl . $size . $image;
-    }
-
-    /**
      * Get an img html tag for the image in the specified size
      *
-     * @param  Image|string $image  Either an instance of Image or the file_path
-     * @param  string       $size
-     * @param  int|null     $width
-     * @param  int|null     $height
+     * @param Image|string $image Either an instance of Image or the file_path
+     * @param string $size
+     * @param int|null $width
+     * @param int|null $height
      * @return string
      */
     public function getHtml($image, $size = 'original', $width = null, $height = null)
@@ -104,5 +91,17 @@ class ImageHelper
             $width,
             $height
         );
+    }
+
+    /**
+     * Get the url for the image resource
+     *
+     * @param Image|string $image Either an instance of Image or the file_path
+     * @param string $size
+     * @return string
+     */
+    public function getUrl($image, $size = 'original')
+    {
+        return $this->protocolLessBaseUrl . $size . $image;
     }
 }

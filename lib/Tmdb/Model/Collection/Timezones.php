@@ -42,7 +42,7 @@ class Timezones extends GenericCollection
     public function getCountry($id)
     {
         foreach ($this->data as $country) {
-            if (strtoupper($id) == (string) $country) {
+            if (strtoupper($id) == (string)$country) {
                 return $country;
             }
         }

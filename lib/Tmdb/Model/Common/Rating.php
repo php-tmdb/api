@@ -22,25 +22,13 @@ use Tmdb\Model\AbstractModel;
  */
 class Rating extends AbstractModel
 {
+    public static $properties = [
+        'value',
+    ];
     /**
      * @var float
      */
     private $value;
-
-    public static $properties = [
-        'value',
-    ];
-
-    /**
-     * @param  float $value
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
 
     /**
      * @return float
@@ -48,5 +36,16 @@ class Rating extends AbstractModel
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * @param float $value
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
     }
 }

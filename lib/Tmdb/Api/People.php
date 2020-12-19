@@ -25,8 +25,8 @@ class People extends AbstractApi
      * Get the general person information for a specific id.
      *
      * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getPerson($person_id, array $parameters = [], array $headers = [])
@@ -38,8 +38,8 @@ class People extends AbstractApi
      * Get the credits for a specific person id.
      *
      * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getCredits($person_id, array $parameters = [], array $headers = [])
@@ -48,11 +48,27 @@ class People extends AbstractApi
     }
 
     /**
+     * Get the combined (movie and TV) credits for a specific person id.
+     *
+     * To get the expanded details for each TV record, call the /credit method with the provided credit_id.
+     * This will provide details about which episode and/or season the credit is for.
+     *
+     * @param $person_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getCombinedCredits($person_id, array $parameters = [], array $headers = [])
+    {
+        return $this->get('person/' . $person_id . '/combined_credits', $parameters, $headers);
+    }
+
+    /**
      * Get the movie credits for a specific person id.
      *
      * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getMovieCredits($person_id, array $parameters = [], array $headers = [])
@@ -67,8 +83,8 @@ class People extends AbstractApi
      * This will provide details about which episode and/or season the credit is for.
      *
      * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getTvCredits($person_id, array $parameters = [], array $headers = [])
@@ -77,27 +93,11 @@ class People extends AbstractApi
     }
 
     /**
-     * Get the combined (movie and TV) credits for a specific person id.
-     *
-     * To get the expanded details for each TV record, call the /credit method with the provided credit_id.
-     * This will provide details about which episode and/or season the credit is for.
-     *
-     * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
-     * @return mixed
-     */
-    public function getCombinedCredits($person_id, array $parameters = [], array $headers = [])
-    {
-        return $this->get('person/' . $person_id . '/combined_credits', $parameters, $headers);
-    }
-
-    /**
      * Get the images for a specific person id.
      *
      * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getImages($person_id, array $parameters = [], array $headers = [])
@@ -115,8 +115,8 @@ class People extends AbstractApi
      * The language is present on fields that are translatable.
      *
      * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getChanges($person_id, array $parameters = [], array $headers = [])
@@ -128,8 +128,8 @@ class People extends AbstractApi
      * Get the external ids for a specific person id.
      *
      * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getExternalIds($person_id, array $parameters = [], array $headers = [])
@@ -143,8 +143,8 @@ class People extends AbstractApi
      * We return all of the image results with a media object mapped for each image.
      *
      * @param $person_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getTaggedImages($person_id, array $parameters = [], array $headers = [])
@@ -155,8 +155,8 @@ class People extends AbstractApi
     /**
      * Get the list of popular people on The Movie Database. This list refreshes every day.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getPopular(array $parameters = [], array $headers = [])

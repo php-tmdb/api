@@ -31,7 +31,7 @@ class ListSearchQuery extends SearchQuery
      */
     public function includeAdult($include_adult): self
     {
-        $this->set('include_adult', (bool) $include_adult);
+        $this->set('include_adult', (bool)$include_adult);
 
         return $this;
     }

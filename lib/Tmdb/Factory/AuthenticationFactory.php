@@ -14,6 +14,8 @@
 
 namespace Tmdb\Factory;
 
+use DateTime;
+use RuntimeException;
 use Tmdb\GuestSessionToken;
 use Tmdb\RequestToken;
 use Tmdb\SessionToken;
@@ -27,12 +29,12 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @throws \RuntimeException
      * @return void
+     * @throws RuntimeException
      */
     public function create(array $data = [])
     {
-        throw new \RuntimeException(sprintf(
+        throw new RuntimeException(sprintf(
             'Class "%s" does not support method "%s".',
             __CLASS__,
             __METHOD__
@@ -42,12 +44,12 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @throws \RuntimeException
      * @return void
+     * @throws RuntimeException
      */
     public function createCollection(array $data = [])
     {
-        throw new \RuntimeException(sprintf(
+        throw new RuntimeException(sprintf(
             'Class "%s" does not support method "%s".',
             __CLASS__,
             __METHOD__
@@ -57,7 +59,7 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * Create request token
      *
-     * @param  array        $data
+     * @param array $data
      * @return RequestToken
      */
     public function createRequestToken(array $data = [])
@@ -65,7 +67,7 @@ class AuthenticationFactory extends AbstractFactory
         $token = new RequestToken();
 
         if (array_key_exists('expires_at', $data)) {
-            $token->setExpiresAt(new \DateTime($data['expires_at']));
+            $token->setExpiresAt(new DateTime($data['expires_at']));
         }
 
         if (array_key_exists('request_token', $data)) {
@@ -82,7 +84,7 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * Create session token for user
      *
-     * @param  array        $data
+     * @param array $data
      * @return SessionToken
      */
     public function createSessionToken(array $data = [])
@@ -103,7 +105,7 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * Create session token for guest
      *
-     * @param  array        $data
+     * @param array $data
      * @return SessionToken
      */
     public function createGuestSessionToken(array $data = [])
@@ -111,7 +113,7 @@ class AuthenticationFactory extends AbstractFactory
         $token = new GuestSessionToken();
 
         if (array_key_exists('expires_at', $data)) {
-            $token->setExpiresAt(new \DateTime($data['expires_at']));
+            $token->setExpiresAt(new DateTime($data['expires_at']));
         }
 
         if (array_key_exists('guest_session_id', $data)) {

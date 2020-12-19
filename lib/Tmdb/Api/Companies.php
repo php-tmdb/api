@@ -25,8 +25,8 @@ class Companies extends AbstractApi
      * This method is used to retrieve all of the basic information about a company.
      *
      * @param $company_id
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getCompany($company_id, array $parameters = [], array $headers = [])
@@ -37,9 +37,9 @@ class Companies extends AbstractApi
     /**
      * Get the list of movies associated with a particular company.
      *
-     * @param  integer $company_id
-     * @param  array   $parameters
-     * @param  array   $headers
+     * @param integer $company_id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getMovies($company_id, array $parameters = [], array $headers = [])

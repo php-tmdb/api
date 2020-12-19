@@ -23,53 +23,36 @@ use Tmdb\Model\Common\GenericCollection;
  */
 class Media extends AbstractModel
 {
-    /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $originalName;
-
-    /**
-     * @var string
-     */
-    private $character;
-
-    /**
-     * @var GenericCollection
-     */
-    private $episodes;
-
-    /**
-     * @var GenericCollection
-     */
-    private $seasons;
-
     public static $properties = [
         'id',
         'name',
         'original_name',
         'character',
     ];
-
     /**
-     * @param  string $character
-     * @return $this
+     * @var integer
      */
-    public function setCharacter($character)
-    {
-        $this->character = $character;
-
-        return $this;
-    }
+    private $id;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $originalName;
+    /**
+     * @var string
+     */
+    private $character;
+    /**
+     * @var GenericCollection
+     */
+    private $episodes;
+    /**
+     * @var GenericCollection
+     */
+    private $seasons;
 
     /**
      * @return string
@@ -80,18 +63,18 @@ class Media extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $episodes
+     * @param string $character
      * @return $this
      */
-    public function setEpisodes($episodes)
+    public function setCharacter($character)
     {
-        $this->episodes = $episodes;
+        $this->character = $character;
 
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return GenericCollection
      */
     public function getEpisodes()
     {
@@ -99,12 +82,12 @@ class Media extends AbstractModel
     }
 
     /**
-     * @param  int   $id
+     * @param GenericCollection $episodes
      * @return $this
      */
-    public function setId($id)
+    public function setEpisodes($episodes)
     {
-        $this->id = $id;
+        $this->episodes = $episodes;
 
         return $this;
     }
@@ -118,12 +101,12 @@ class Media extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param int $id
      * @return $this
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = $id;
 
         return $this;
     }
@@ -137,12 +120,12 @@ class Media extends AbstractModel
     }
 
     /**
-     * @param  string $originalName
+     * @param string $name
      * @return $this
      */
-    public function setOriginalName($originalName)
+    public function setName($name)
     {
-        $this->originalName = $originalName;
+        $this->name = $name;
 
         return $this;
     }
@@ -156,7 +139,26 @@ class Media extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $seasons
+     * @param string $originalName
+     * @return $this
+     */
+    public function setOriginalName($originalName)
+    {
+        $this->originalName = $originalName;
+
+        return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getSeasons()
+    {
+        return $this->seasons;
+    }
+
+    /**
+     * @param GenericCollection $seasons
      * @return $this
      */
     public function setSeasons($seasons)
@@ -164,13 +166,5 @@ class Media extends AbstractModel
         $this->seasons = $seasons;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Model\Common\GenericCollection
-     */
-    public function getSeasons()
-    {
-        return $this->seasons;
     }
 }

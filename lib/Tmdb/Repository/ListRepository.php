@@ -15,8 +15,9 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\ListFactory;
-use Tmdb\Model\Lists\ItemStatus;
+use Tmdb\Model\Genre;
 use Tmdb\Model\Lists;
+use Tmdb\Model\Lists\ItemStatus;
 
 /**
  * Class ListRepository
@@ -29,12 +30,12 @@ class ListRepository extends AbstractRepository
      * Get a list by id.
      *
      * @param string $id
-     * @param array  $parameters
-     * @param array  $headers
+     * @param array $parameters
+     * @param array $headers
      *
-     * @return \Tmdb\Model\Genre
+     * @return Genre
      */
-    public function load($id, array $parameters = [], array $headers = []): \Tmdb\Model\Genre
+    public function load($id, array $parameters = [], array $headers = []): Genre
     {
         return $this->getFactory()->create(
             $this->getApi()->getList($id, $parameters, $headers)
@@ -42,12 +43,30 @@ class ListRepository extends AbstractRepository
     }
 
     /**
+     * @return ListFactory
+     */
+    public function getFactory()
+    {
+        return new ListFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
+     * Return the related API class
+     *
+     * @return \Tmdb\Api\Lists
+     */
+    public function getApi()
+    {
+        return $this->getClient()->getListsApi();
+    }
+
+    /**
      * Check to see if a movie ID is already added to a list.
      *
-     * @param  string     $id
-     * @param  int        $mediaId
-     * @param  array      $parameters
-     * @param  array      $headers
+     * @param string $id
+     * @param int $mediaId
+     * @param array $parameters
+     * @param array $headers
      * @return ItemStatus
      */
     public function getItemStatus($id, $mediaId, array $parameters = [], array $headers = [])
@@ -62,8 +81,8 @@ class ListRepository extends AbstractRepository
      *
      * @param string $name
      * @param string $description
-     * @param array  $parameters
-     * @param array  $headers
+     * @param array $parameters
+     * @param array $headers
      *
      * @return Lists\ResultWithListId The list id
      */
@@ -78,8 +97,8 @@ class ListRepository extends AbstractRepository
      * This method lets users add new movies to a list that they created.
      * A valid session id is required.
      *
-     * @param string     $id
-     * @param int        $mediaId
+     * @param string $id
+     * @param int $mediaId
      *
      * @return Lists\Result
      */
@@ -94,8 +113,8 @@ class ListRepository extends AbstractRepository
      * This method lets users delete movies from a list that they created.
      * A valid session id is required.
      *
-     * @param string     $id
-     * @param int        $mediaId
+     * @param string $id
+     * @param int $mediaId
      *
      * @return Lists\Result
      */
@@ -110,7 +129,7 @@ class ListRepository extends AbstractRepository
      * This method lets users delete a list that they created.
      * A valid session id is required.
      *
-     * @param string     $id
+     * @param string $id
      *
      * @return Lists\Result
      */
@@ -127,33 +146,15 @@ class ListRepository extends AbstractRepository
      * This is a irreversible action and should be treated with caution.
      * A valid session id is required.
      *
-     * @param string     $id
-     * @param boolean    $confirm
+     * @param string $id
+     * @param boolean $confirm
      *
      * @return Lists\Result
      */
     public function clearList($id, $confirm): Lists\Result
     {
         return $this->getFactory()->createResult(
-            $this->getApi()->clearList($id, (bool) $confirm)
+            $this->getApi()->clearList($id, (bool)$confirm)
         );
-    }
-
-    /**
-     * Return the related API class
-     *
-     * @return \Tmdb\Api\Lists
-     */
-    public function getApi()
-    {
-        return $this->getClient()->getListsApi();
-    }
-
-    /**
-     * @return ListFactory
-     */
-    public function getFactory()
-    {
-        return new ListFactory($this->getClient()->getHttpClient());
     }
 }

@@ -25,51 +25,6 @@ use Tmdb\Model\Image\PosterImage;
  */
 class Collection extends AbstractModel
 {
-    /**
-     * @var string
-     */
-    private $backdropPath;
-
-    /**
-     * @var BackdropImage
-     */
-    private $backdrop;
-
-    /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var Images
-     */
-    private $images;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $overview;
-
-    /**
-     * @var Common\GenericCollection
-     */
-    private $parts;
-
-    /**
-     * @var string
-     */
-    private $posterPath;
-
-    /**
-     * @var PosterImage
-     */
-    private $poster;
-
     public static $properties = [
         'backdrop_path',
         'id',
@@ -77,15 +32,51 @@ class Collection extends AbstractModel
         'overview',
         'poster_path',
     ];
+    /**
+     * @var string
+     */
+    private $backdropPath;
+    /**
+     * @var BackdropImage
+     */
+    private $backdrop;
+    /**
+     * @var integer
+     */
+    private $id;
+    /**
+     * @var Images
+     */
+    private $images;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $overview;
+    /**
+     * @var Common\GenericCollection
+     */
+    private $parts;
+    /**
+     * @var string
+     */
+    private $posterPath;
+    /**
+     * @var PosterImage
+     */
+    private $poster;
 
     public function __construct()
     {
-        $this->parts  = new GenericCollection();
+        $this->parts = new GenericCollection();
         $this->images = new Images();
     }
 
     /**
-     * @param  BackdropImage $backdrop
+     * @param BackdropImage $backdrop
      * @return $this
      */
     public function setBackdropImage(BackdropImage $backdrop)
@@ -104,17 +95,6 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  string $backdropPath
-     * @return $this
-     */
-    public function setBackdropPath($backdropPath)
-    {
-        $this->backdropPath = $backdropPath;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getBackdropPath()
@@ -123,12 +103,12 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  int   $id
+     * @param string $backdropPath
      * @return $this
      */
-    public function setId($id)
+    public function setBackdropPath($backdropPath)
     {
-        $this->id = (int) $id;
+        $this->backdropPath = $backdropPath;
 
         return $this;
     }
@@ -142,18 +122,18 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Images $images
+     * @param int $id
      * @return $this
      */
-    public function setImages(Images $images)
+    public function setId($id)
     {
-        $this->images = $images;
+        $this->id = (int)$id;
 
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Collection\Images
+     * @return Images
      */
     public function getImages()
     {
@@ -161,12 +141,12 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param Images $images
      * @return $this
      */
-    public function setName($name)
+    public function setImages(Images $images)
     {
-        $this->name = $name;
+        $this->images = $images;
 
         return $this;
     }
@@ -180,12 +160,12 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  string $overview
+     * @param string $name
      * @return $this
      */
-    public function setOverview($overview)
+    public function setName($name)
     {
-        $this->overview = $overview;
+        $this->name = $name;
 
         return $this;
     }
@@ -199,12 +179,12 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $parts
+     * @param string $overview
      * @return $this
      */
-    public function setParts($parts)
+    public function setOverview($overview)
     {
-        $this->parts = $parts;
+        $this->overview = $overview;
 
         return $this;
     }
@@ -218,7 +198,18 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @param  PosterImage $poster
+     * @param GenericCollection $parts
+     * @return $this
+     */
+    public function setParts($parts)
+    {
+        $this->parts = $parts;
+
+        return $this;
+    }
+
+    /**
+     * @param PosterImage $poster
      * @return $this
      */
     public function setPosterImage(PosterImage $poster)
@@ -229,22 +220,11 @@ class Collection extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Image\PosterImage
+     * @return PosterImage
      */
     public function getPosterImage()
     {
         return $this->poster;
-    }
-
-    /**
-     * @param  string $posterPath
-     * @return $this
-     */
-    public function setPosterPath($posterPath)
-    {
-        $this->posterPath = $posterPath;
-
-        return $this;
     }
 
     /**
@@ -253,5 +233,16 @@ class Collection extends AbstractModel
     public function getPosterPath()
     {
         return $this->posterPath;
+    }
+
+    /**
+     * @param string $posterPath
+     * @return $this
+     */
+    public function setPosterPath($posterPath)
+    {
+        $this->posterPath = $posterPath;
+
+        return $this;
     }
 }

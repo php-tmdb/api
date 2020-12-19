@@ -28,54 +28,54 @@ interface AdapterInterface
     /**
      * Compose a GET request
      *
-     * @throws TmdbApiException
-     * @param  Request          $request
+     * @param Request $request
      * @return Response
+     * @throws TmdbApiException
      */
     public function get(Request $request);
 
     /**
      * Send a HEAD request
      *
-     * @throws TmdbApiException
-     * @param  Request          $request
+     * @param Request $request
      * @return Response
+     * @throws TmdbApiException
      */
     public function head(Request $request);
 
     /**
      * Compose a POST request
      *
-     * @throws TmdbApiException
-     * @param  Request          $request
+     * @param Request $request
      * @return Response
+     * @throws TmdbApiException
      */
     public function post(Request $request);
 
     /**
      * Send a PUT request
      *
-     * @throws TmdbApiException
-     * @param  Request          $request
+     * @param Request $request
      * @return Response
+     * @throws TmdbApiException
      */
     public function put(Request $request);
 
     /**
      * Send a DELETE request
      *
-     * @throws TmdbApiException
-     * @param  Request          $request
+     * @param Request $request
      * @return Response
+     * @throws TmdbApiException
      */
     public function delete(Request $request);
 
     /**
      * Send a PATCH request
      *
-     * @throws TmdbApiException
-     * @param  Request          $request
+     * @param Request $request
      * @return Response
+     * @throws TmdbApiException
      */
     public function patch(Request $request);
 
@@ -89,7 +89,7 @@ interface AdapterInterface
     /**
      * Register any specific subscribers
      *
-     * @param  EventDispatcherInterface $eventDispatcher
+     * @param EventDispatcherInterface $eventDispatcher
      * @return void
      */
     public function registerSubscribers(EventDispatcherInterface $eventDispatcher);

@@ -24,16 +24,6 @@ use Tmdb\Model\Genre;
 class GenreFactory extends AbstractFactory
 {
     /**
-     * @param array $data
-     *
-     * @return Genre
-     */
-    public function create(array $data = [])
-    {
-        return $this->hydrate(new Genre(), $data);
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function createCollection(array $data = [], $key = 'genres')
@@ -49,5 +39,15 @@ class GenreFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Genre
+     */
+    public function create(array $data = [])
+    {
+        return $this->hydrate(new Genre(), $data);
     }
 }

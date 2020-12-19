@@ -14,6 +14,7 @@
 
 namespace Tmdb\Model\Tv;
 
+use DateTime;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Changes;
 use Tmdb\Model\Collection\CreditsCollection;
@@ -30,77 +31,6 @@ use Tmdb\Model\Image\PosterImage;
 class Season extends AbstractModel
 {
     /**
-     * @var \DateTime
-     */
-    private $airDate;
-
-    /**
-     * @var GenericCollection|Episode[]
-     */
-    private $episodes;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $overview;
-
-    /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $posterPath;
-
-    /**
-     * @var integer
-     */
-    private $seasonNumber;
-
-    /**
-     * Credits
-     *
-     * @var CreditsCollection
-     */
-    protected $credits;
-
-    /**
-     * External Ids
-     *
-     * @var ExternalIds
-     */
-    protected $externalIds;
-
-    /**
-     * Images
-     *
-     * @var Images
-     */
-    protected $images;
-
-    /**
-     * @var PosterImage
-     */
-    protected $poster;
-
-    /**
-     * @var Videos
-     */
-    protected $videos;
-
-    /**
-     * @var \Tmdb\Model\Collection\Changes
-     */
-    protected $changes;
-
-    /**
      * Properties that are available in the API
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
@@ -115,33 +45,80 @@ class Season extends AbstractModel
         'poster_path',
         'season_number'
     ];
+    /**
+     * Credits
+     *
+     * @var CreditsCollection
+     */
+    protected $credits;
+    /**
+     * External Ids
+     *
+     * @var ExternalIds
+     */
+    protected $externalIds;
+    /**
+     * Images
+     *
+     * @var Images
+     */
+    protected $images;
+    /**
+     * @var PosterImage
+     */
+    protected $poster;
+    /**
+     * @var Videos
+     */
+    protected $videos;
+    /**
+     * @var Changes
+     */
+    protected $changes;
+    /**
+     * @var DateTime
+     */
+    private $airDate;
+    /**
+     * @var GenericCollection|Episode[]
+     */
+    private $episodes;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $overview;
+    /**
+     * @var integer
+     */
+    private $id;
+    /**
+     * @var string
+     */
+    private $posterPath;
+    /**
+     * @var integer
+     */
+    private $seasonNumber;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->credits     = new CreditsCollection();
+        $this->credits = new CreditsCollection();
         $this->externalIds = new ExternalIds();
-        $this->images      = new Images();
-        $this->episodes    = new GenericCollection();
-        $this->videos      = new Videos();
-        $this->changes     = new Changes();
+        $this->images = new Images();
+        $this->episodes = new GenericCollection();
+        $this->videos = new Videos();
+        $this->changes = new Changes();
     }
 
     /**
-     * @param  \DateTime $airDate
-     * @return $this
-     */
-    public function setAirDate($airDate)
-    {
-        $this->airDate = new \DateTime($airDate);
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAirDate()
     {
@@ -149,12 +126,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $episodes
+     * @param DateTime $airDate
      * @return $this
      */
-    public function setEpisodes($episodes)
+    public function setAirDate($airDate)
     {
-        $this->episodes = $episodes;
+        $this->airDate = new DateTime($airDate);
 
         return $this;
     }
@@ -168,12 +145,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  int   $id
+     * @param GenericCollection $episodes
      * @return $this
      */
-    public function setId($id)
+    public function setEpisodes($episodes)
     {
-        $this->id = (int) $id;
+        $this->episodes = $episodes;
 
         return $this;
     }
@@ -187,12 +164,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param int $id
      * @return $this
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = (int)$id;
 
         return $this;
     }
@@ -206,12 +183,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  string $overview
+     * @param string $name
      * @return $this
      */
-    public function setOverview($overview)
+    public function setName($name)
     {
-        $this->overview = $overview;
+        $this->name = $name;
 
         return $this;
     }
@@ -225,12 +202,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  string $posterPath
+     * @param string $overview
      * @return $this
      */
-    public function setPosterPath($posterPath)
+    public function setOverview($overview)
     {
-        $this->posterPath = $posterPath;
+        $this->overview = $overview;
 
         return $this;
     }
@@ -244,12 +221,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  int   $seasonNumber
+     * @param string $posterPath
      * @return $this
      */
-    public function setSeasonNumber($seasonNumber)
+    public function setPosterPath($posterPath)
     {
-        $this->seasonNumber = $seasonNumber;
+        $this->posterPath = $posterPath;
 
         return $this;
     }
@@ -263,12 +240,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  CreditsCollection $credits
+     * @param int $seasonNumber
      * @return $this
      */
-    public function setCredits($credits)
+    public function setSeasonNumber($seasonNumber)
     {
-        $this->credits = $credits;
+        $this->seasonNumber = $seasonNumber;
 
         return $this;
     }
@@ -282,12 +259,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  ExternalIds $externalIds
+     * @param CreditsCollection $credits
      * @return $this
      */
-    public function setExternalIds($externalIds)
+    public function setCredits($credits)
     {
-        $this->externalIds = $externalIds;
+        $this->credits = $credits;
 
         return $this;
     }
@@ -301,12 +278,12 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  Images $images
+     * @param ExternalIds $externalIds
      * @return $this
      */
-    public function setImages($images)
+    public function setExternalIds($externalIds)
     {
-        $this->images = $images;
+        $this->externalIds = $externalIds;
 
         return $this;
     }
@@ -320,7 +297,18 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  PosterImage $poster
+     * @param Images $images
+     * @return $this
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * @param PosterImage $poster
      * @return $this
      */
     public function setPosterImage($poster)
@@ -339,7 +327,15 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param  Videos $videos
+     * @return Videos
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
+
+    /**
+     * @param Videos $videos
      * @return $this
      */
     public function setVideos($videos)
@@ -350,15 +346,15 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return Videos
+     * @return Changes
      */
-    public function getVideos()
+    public function getChanges()
     {
-        return $this->videos;
+        return $this->changes;
     }
 
     /**
-     * @param  Changes $changes
+     * @param Changes $changes
      * @return $this
      */
     public function setChanges($changes)
@@ -366,13 +362,5 @@ class Season extends AbstractModel
         $this->changes = $changes;
 
         return $this;
-    }
-
-    /**
-     * @return Changes
-     */
-    public function getChanges()
-    {
-        return $this->changes;
     }
 }

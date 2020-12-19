@@ -31,7 +31,7 @@ class PersonSearchQuery extends SearchQuery
      */
     public function includeAdult($include_adult): self
     {
-        $this->set('include_adult', (bool) $include_adult);
+        $this->set('include_adult', (bool)$include_adult);
 
         return $this;
     }
@@ -44,11 +44,11 @@ class PersonSearchQuery extends SearchQuery
      *
      * For those wanting more of an "autocomplete" type search, set this option to 'ngram'.
      *
-     * @deprecated
-     *
      * @param string
      *
      * @return static
+     * @deprecated
+     *
      */
     public function searchType($search_type = 'phrase'): self
     {

@@ -39,7 +39,7 @@ class Configuration extends AbstractApi
      *
      * http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg
      *
-     * @param  array $headers
+     * @param array $headers
      * @return mixed
      */
     public function getConfiguration(array $headers = [])

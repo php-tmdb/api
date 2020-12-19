@@ -14,6 +14,7 @@
 
 namespace Tmdb\Model\Common\Change;
 
+use DateTime;
 use Tmdb\Model\AbstractModel;
 
 /**
@@ -22,43 +23,28 @@ use Tmdb\Model\AbstractModel;
  */
 class Item extends AbstractModel
 {
-    /**
-     * @var string
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $action;
-
-    /**
-     * @var \DateTime
-     */
-    private $time;
-
-    /**
-     * @var array
-     */
-    private $value;
-
     public static $properties = [
         'id',
         'action',
         'time',
         'value'
     ];
-
     /**
-     * @param  string $action
-     * @return $this
+     * @var string
      */
-    public function setAction($action)
-    {
-        $this->action = $action;
-
-        return $this;
-    }
+    private $id;
+    /**
+     * @var string
+     */
+    private $action;
+    /**
+     * @var DateTime
+     */
+    private $time;
+    /**
+     * @var array
+     */
+    private $value;
 
     /**
      * @return string
@@ -69,12 +55,12 @@ class Item extends AbstractModel
     }
 
     /**
-     * @param  string $id
+     * @param string $action
      * @return $this
      */
-    public function setId($id)
+    public function setAction($action)
     {
-        $this->id = $id;
+        $this->action = $action;
 
         return $this;
     }
@@ -88,22 +74,18 @@ class Item extends AbstractModel
     }
 
     /**
-     * @param  string|\DateTime $time
+     * @param string $id
      * @return $this
      */
-    public function setTime($time)
+    public function setId($id)
     {
-        if (!$time instanceof \DateTime) {
-            $time = new \DateTime($time);
-        }
-
-        $this->time = $time;
+        $this->id = $id;
 
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getTime()
     {
@@ -111,12 +93,16 @@ class Item extends AbstractModel
     }
 
     /**
-     * @param  array $value
+     * @param string|DateTime $time
      * @return $this
      */
-    public function setValue($value)
+    public function setTime($time)
     {
-        $this->value = $value;
+        if (!$time instanceof DateTime) {
+            $time = new DateTime($time);
+        }
+
+        $this->time = $time;
 
         return $this;
     }
@@ -127,5 +113,16 @@ class Item extends AbstractModel
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * @param array $value
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
     }
 }

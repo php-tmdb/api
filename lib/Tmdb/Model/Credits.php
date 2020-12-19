@@ -23,41 +23,6 @@ use Tmdb\Model\Credits\Media;
 class Credits extends AbstractModel
 {
     /**
-     * @var string
-     */
-    private $creditType;
-
-    /**
-     * @var string
-     */
-    private $department;
-
-    /**
-     * @var string
-     */
-    private $job;
-
-    /**
-     * @var Media
-     */
-    private $media;
-
-    /**
-     * @var string
-     */
-    private $mediaType;
-
-    /**
-     * @var string
-     */
-    private $id;
-
-    /**
-     * @var Person
-     */
-    private $person;
-
-    /**
      * @var array
      */
     public static $properties = [
@@ -67,21 +32,38 @@ class Credits extends AbstractModel
         'media_type',
         'id',
     ];
+    /**
+     * @var string
+     */
+    private $creditType;
+    /**
+     * @var string
+     */
+    private $department;
+    /**
+     * @var string
+     */
+    private $job;
+    /**
+     * @var Media
+     */
+    private $media;
+    /**
+     * @var string
+     */
+    private $mediaType;
+    /**
+     * @var string
+     */
+    private $id;
+    /**
+     * @var Person
+     */
+    private $person;
 
     public function __construct()
     {
         $this->media = new Media();
-    }
-
-    /**
-     * @param  string $creditType
-     * @return $this
-     */
-    public function setCreditType($creditType)
-    {
-        $this->creditType = $creditType;
-
-        return $this;
     }
 
     /**
@@ -93,12 +75,12 @@ class Credits extends AbstractModel
     }
 
     /**
-     * @param  string $department
+     * @param string $creditType
      * @return $this
      */
-    public function setDepartment($department)
+    public function setCreditType($creditType)
     {
-        $this->department = $department;
+        $this->creditType = $creditType;
 
         return $this;
     }
@@ -112,12 +94,12 @@ class Credits extends AbstractModel
     }
 
     /**
-     * @param  string $id
+     * @param string $department
      * @return $this
      */
-    public function setId($id)
+    public function setDepartment($department)
     {
-        $this->id = $id;
+        $this->department = $department;
 
         return $this;
     }
@@ -131,12 +113,12 @@ class Credits extends AbstractModel
     }
 
     /**
-     * @param  string $job
+     * @param string $id
      * @return $this
      */
-    public function setJob($job)
+    public function setId($id)
     {
-        $this->job = $job;
+        $this->id = $id;
 
         return $this;
     }
@@ -150,18 +132,18 @@ class Credits extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Credits\Media $media
+     * @param string $job
      * @return $this
      */
-    public function setMedia($media)
+    public function setJob($job)
     {
-        $this->media = $media;
+        $this->job = $job;
 
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Credits\Media
+     * @return Media
      */
     public function getMedia()
     {
@@ -169,12 +151,12 @@ class Credits extends AbstractModel
     }
 
     /**
-     * @param  string $mediaType
+     * @param Media $media
      * @return $this
      */
-    public function setMediaType($mediaType)
+    public function setMedia($media)
     {
-        $this->mediaType = $mediaType;
+        $this->media = $media;
 
         return $this;
     }
@@ -188,7 +170,26 @@ class Credits extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Person $person
+     * @param string $mediaType
+     * @return $this
+     */
+    public function setMediaType($mediaType)
+    {
+        $this->mediaType = $mediaType;
+
+        return $this;
+    }
+
+    /**
+     * @return Person
+     */
+    public function getPerson()
+    {
+        return $this->person;
+    }
+
+    /**
+     * @param Person $person
      * @return $this
      */
     public function setPerson($person)
@@ -196,13 +197,5 @@ class Credits extends AbstractModel
         $this->person = $person;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Model\Person
-     */
-    public function getPerson()
-    {
-        return $this->person;
     }
 }

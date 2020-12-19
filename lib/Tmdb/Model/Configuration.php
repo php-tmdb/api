@@ -20,23 +20,29 @@ namespace Tmdb\Model;
  */
 class Configuration extends AbstractModel
 {
+    public static $properties = [
+        'images',
+        'change_keys',
+    ];
     /**
      * @var array
      */
     private $images;
-
     /**
      * @var array
      */
     private $change_keys;
 
-    public static $properties = [
-        'images',
-        'change_keys',
-    ];
+    /**
+     * @return array
+     */
+    public function getChangeKeys()
+    {
+        return $this->change_keys;
+    }
 
     /**
-     * @param  array $change_keys
+     * @param array $change_keys
      * @return $this
      */
     public function setChangeKeys(array $change_keys = [])
@@ -49,13 +55,13 @@ class Configuration extends AbstractModel
     /**
      * @return array
      */
-    public function getChangeKeys()
+    public function getImages()
     {
-        return $this->change_keys;
+        return $this->images;
     }
 
     /**
-     * @param  array $images
+     * @param array $images
      * @return $this
      */
     public function setImages(array $images = [])
@@ -63,13 +69,5 @@ class Configuration extends AbstractModel
         $this->images = $images;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getImages()
-    {
-        return $this->images;
     }
 }

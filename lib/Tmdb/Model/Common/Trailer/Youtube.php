@@ -23,18 +23,16 @@ use Tmdb\Model\Common\AbstractTrailer;
 class Youtube extends AbstractTrailer
 {
     const URL = 'http://www.youtube.com/watch?v=%s';
-
-    private $name;
-    private $size;
-    private $source;
-    private $type;
-
     public static $properties = [
         'name',
         'size',
         'source',
         'type'
     ];
+    private $name;
+    private $size;
+    private $source;
+    private $type;
 
     /**
      * Retrieve the url to the source
@@ -47,17 +45,6 @@ class Youtube extends AbstractTrailer
     }
 
     /**
-     * @param  string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getName()
@@ -66,12 +53,12 @@ class Youtube extends AbstractTrailer
     }
 
     /**
-     * @param  string $size
+     * @param string $name
      * @return $this
      */
-    public function setSize($size)
+    public function setName($name)
     {
-        $this->size = $size;
+        $this->name = $name;
 
         return $this;
     }
@@ -85,12 +72,12 @@ class Youtube extends AbstractTrailer
     }
 
     /**
-     * @param  string $source
+     * @param string $size
      * @return $this
      */
-    public function setSource($source)
+    public function setSize($size)
     {
-        $this->source = $source;
+        $this->size = $size;
 
         return $this;
     }
@@ -104,12 +91,12 @@ class Youtube extends AbstractTrailer
     }
 
     /**
-     * @param  string $type
+     * @param string $source
      * @return $this
      */
-    public function setType($type)
+    public function setSource($source)
     {
-        $this->type = $type;
+        $this->source = $source;
 
         return $this;
     }
@@ -120,5 +107,16 @@ class Youtube extends AbstractTrailer
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
     }
 }

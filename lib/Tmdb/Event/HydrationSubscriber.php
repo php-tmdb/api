@@ -17,6 +17,7 @@ namespace Tmdb\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\HttpClient\HttpClientEventSubscriber;
+use Tmdb\Model\AbstractModel;
 
 /**
  * Class RequestSubscriber
@@ -39,11 +40,11 @@ class HydrationSubscriber extends HttpClientEventSubscriber
     /**
      * Hydrate the subject with data
      *
-     * @param HydrationEvent           $event
-     * @param string                   $eventName
+     * @param HydrationEvent $event
+     * @param string $eventName
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @return \Tmdb\Model\AbstractModel
+     * @return AbstractModel
      */
     public function hydrate(HydrationEvent $event, $eventName, $eventDispatcher)
     {
@@ -66,8 +67,8 @@ class HydrationSubscriber extends HttpClientEventSubscriber
     /**
      * Hydrate the subject
      *
-     * @param  HydrationEvent            $event
-     * @return \Tmdb\Model\AbstractModel
+     * @param HydrationEvent $event
+     * @return AbstractModel
      */
     public function hydrateSubject(HydrationEvent $event)
     {

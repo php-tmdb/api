@@ -32,8 +32,8 @@ class Changes extends AbstractApi
      * Please note that the change log system to support this was changed
      * on October 5, 2012 and will only show movies that have been edited since.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getMovieChanges(array $parameters = [], array $headers = [])
@@ -52,8 +52,8 @@ class Changes extends AbstractApi
      * Please note that the change log system to support this was changed
      * on October 5, 2012 and will only show movies that have been edited since.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getPersonChanges(array $parameters = [], array $headers = [])
@@ -72,8 +72,8 @@ class Changes extends AbstractApi
      * Please note that the change log system to support this was changed
      * on May 13, 2014 and will only show tv shows that have been edited since.
      *
-     * @param  array $parameters
-     * @param  array $headers
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function getTvChanges(array $parameters = [], array $headers = [])

@@ -15,6 +15,7 @@
 namespace Tmdb\Factory\Common;
 
 use Tmdb\Factory\AbstractFactory;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\Change;
 use Tmdb\Model\Common\GenericCollection;
 
@@ -24,6 +25,24 @@ use Tmdb\Model\Common\GenericCollection;
  */
 class ChangeFactory extends AbstractFactory
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function createCollection(array $data = [])
+    {
+        $collection = new GenericCollection();
+
+        if (array_key_exists('changes', $data)) {
+            $data = $data['changes'];
+        }
+
+        foreach ($data as $item) {
+            $collection->add(null, $this->create($item));
+        }
+
+        return $collection;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -49,29 +68,11 @@ class ChangeFactory extends AbstractFactory
     /**
      * Create individual change items
      *
-     * @param  array                     $data
-     * @return \Tmdb\Model\AbstractModel
+     * @param array $data
+     * @return AbstractModel
      */
     private function createChangeItem(array $data = [])
     {
         return $this->hydrate(new Change\Item(), $data);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function createCollection(array $data = [])
-    {
-        $collection = new GenericCollection();
-
-        if (array_key_exists('changes', $data)) {
-            $data = $data['changes'];
-        }
-
-        foreach ($data as $item) {
-            $collection->add(null, $this->create($item));
-        }
-
-        return $collection;
     }
 }

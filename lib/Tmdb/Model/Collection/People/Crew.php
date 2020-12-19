@@ -37,9 +37,10 @@ class Crew extends People
      * Retrieve a crew member from the collection
      *
      * @param $id
-     * @return Person
+     *
+     * @return \Tmdb\Model\Common\GenericCollection
      */
-    public function getCrewMember($id)
+    public function getCrewMember($id): \Tmdb\Model\Common\GenericCollection
     {
         return parent::getPerson($id);
     }

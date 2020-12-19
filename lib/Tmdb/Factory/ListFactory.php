@@ -43,33 +43,10 @@ class ListFactory extends AbstractFactory
      */
     public function __construct(HttpClient $httpClient)
     {
-        $this->imageFactory    = new ImageFactory($httpClient);
+        $this->imageFactory = new ImageFactory($httpClient);
         $this->listItemFactory = new ListItemFactory($httpClient);
 
         parent::__construct($httpClient);
-    }
-
-    /**
-     * @param array $data
-     *
-     * @return Genre
-     */
-    public function create(array $data = [])
-    {
-        $lists = new Lists();
-
-        if (array_key_exists('items', $data)) {
-            $lists->setItems(
-                $this->getListItemFactory()->createCollection($data['items'])
-            );
-        }
-
-        /** Images */
-        if (array_key_exists('poster_path', $data)) {
-            $lists->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
-        }
-
-        return $this->hydrate($lists, $data);
     }
 
     /**
@@ -117,26 +94,38 @@ class ListFactory extends AbstractFactory
     }
 
     /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
-     * @return $this
+     * @param array $data
+     *
+     * @return Genre
      */
-    public function setImageFactory($imageFactory)
+    public function create(array $data = [])
     {
-        $this->imageFactory = $imageFactory;
+        $lists = new Lists();
 
-        return $this;
+        if (array_key_exists('items', $data)) {
+            $lists->setItems(
+                $this->getListItemFactory()->createCollection($data['items'])
+            );
+        }
+
+        /** Images */
+        if (array_key_exists('poster_path', $data)) {
+            $lists->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
+        }
+
+        return $this->hydrate($lists, $data);
     }
 
     /**
-     * @return \Tmdb\Factory\ImageFactory
+     * @return ListItemFactory
      */
-    public function getImageFactory()
+    public function getListItemFactory()
     {
-        return $this->imageFactory;
+        return $this->listItemFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\Lists\ListItemFactory $listItemFactory
+     * @param ListItemFactory $listItemFactory
      * @return $this
      */
     public function setListItemFactory($listItemFactory)
@@ -147,10 +136,21 @@ class ListFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\Lists\ListItemFactory
+     * @return ImageFactory
      */
-    public function getListItemFactory()
+    public function getImageFactory()
     {
-        return $this->listItemFactory;
+        return $this->imageFactory;
+    }
+
+    /**
+     * @param ImageFactory $imageFactory
+     * @return $this
+     */
+    public function setImageFactory($imageFactory)
+    {
+        $this->imageFactory = $imageFactory;
+
+        return $this;
     }
 }

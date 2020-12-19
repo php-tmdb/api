@@ -22,27 +22,33 @@ use Tmdb\Model\Common\GenericCollection;
  */
 class Certification extends AbstractModel
 {
+    public static $properties = [
+        'country',
+    ];
     /**
      * @var string
      */
     private $country;
-
     /**
      * @var GenericCollection
      */
     private $certifications;
 
-    public static $properties = [
-        'country',
-    ];
-
     public function __construct()
     {
-        $this->certifications  = new GenericCollection();
+        $this->certifications = new GenericCollection();
     }
 
     /**
-     * @param  \Tmdb\Model\Common\GenericCollection $certifications
+     * @return GenericCollection
+     */
+    public function getCertifications()
+    {
+        return $this->certifications;
+    }
+
+    /**
+     * @param GenericCollection $certifications
      * @return $this
      */
     public function setCertifications($certifications)
@@ -53,15 +59,15 @@ class Certification extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return string
      */
-    public function getCertifications()
+    public function getCountry()
     {
-        return $this->certifications;
+        return $this->country;
     }
 
     /**
-     * @param  string $country
+     * @param string $country
      * @return $this
      */
     public function setCountry($country)
@@ -69,13 +75,5 @@ class Certification extends AbstractModel
         $this->country = $country;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
     }
 }

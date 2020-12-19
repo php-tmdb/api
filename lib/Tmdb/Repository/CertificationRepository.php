@@ -14,7 +14,9 @@
 
 namespace Tmdb\Repository;
 
+use Tmdb\Api\Certifications;
 use Tmdb\Factory\CertificationFactory;
+use Tmdb\Model\Common\GenericCollection;
 
 /**
  * Class CertificationRepository
@@ -31,28 +33,11 @@ class CertificationRepository extends AbstractRepository
      *
      * @param $parameters
      * @param $headers
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return GenericCollection
      */
     public function getMovieList(array $parameters = [], array $headers = [])
     {
-        $data  = $this->getApi()->getMovieList($this->parseQueryParameters($parameters), $headers);
-
-        return $this->getFactory()->createCollection($data);
-    }
-
-    /**
-     * Get the list of supported certifications for tv shows.
-     *
-     * These can be used in conjunction with the certification_country
-     * and certification.lte parameters when using discover.
-     *
-     * @param $parameters
-     * @param $headers
-     * @return \Tmdb\Model\Common\GenericCollection
-     */
-    public function getTvList(array $parameters = [], array $headers = [])
-    {
-        $data  = $this->getApi()->getTvList($this->parseQueryParameters($parameters), $headers);
+        $data = $this->getApi()->getMovieList($this->parseQueryParameters($parameters), $headers);
 
         return $this->getFactory()->createCollection($data);
     }
@@ -60,7 +45,7 @@ class CertificationRepository extends AbstractRepository
     /**
      * Return the Collection API Class
      *
-     * @return \Tmdb\Api\Certifications
+     * @return Certifications
      */
     public function getApi()
     {
@@ -73,5 +58,22 @@ class CertificationRepository extends AbstractRepository
     public function getFactory()
     {
         return new CertificationFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
+     * Get the list of supported certifications for tv shows.
+     *
+     * These can be used in conjunction with the certification_country
+     * and certification.lte parameters when using discover.
+     *
+     * @param $parameters
+     * @param $headers
+     * @return GenericCollection
+     */
+    public function getTvList(array $parameters = [], array $headers = [])
+    {
+        $data = $this->getApi()->getTvList($this->parseQueryParameters($parameters), $headers);
+
+        return $this->getFactory()->createCollection($data);
     }
 }

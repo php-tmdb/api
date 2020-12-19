@@ -26,11 +26,22 @@ use Tmdb\Model\Common\GenericCollection;
 class AvatarFactory extends AbstractFactory
 {
     /**
+     * {@inheritdoc}
+     */
+    public function createCollection(array $data = [])
+    {
+        $collection = new GenericCollection();
+        $collection->add(null, $this->create($data));
+
+        return $collection;
+    }
+
+    /**
      * @param array $data
      *
+     * @return mixed
      * @throws InvalidArgumentException
      *
-     * @return mixed
      */
     public function create(array $data = [])
     {
@@ -49,16 +60,5 @@ class AvatarFactory extends AbstractFactory
         }
 
         return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function createCollection(array $data = [])
-    {
-        $collection = new GenericCollection();
-        $collection->add(null, $this->create($data));
-
-        return $collection;
     }
 }

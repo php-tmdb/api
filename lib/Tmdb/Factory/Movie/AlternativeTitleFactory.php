@@ -27,16 +27,6 @@ class AlternativeTitleFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
-    {
-        $title = new AlternativeTitle();
-
-        return $this->hydrate($title, $data);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function createCollection(array $data = [])
     {
         $collection = new GenericCollection();
@@ -46,5 +36,15 @@ class AlternativeTitleFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function create(array $data = [])
+    {
+        $title = new AlternativeTitle();
+
+        return $this->hydrate($title, $data);
     }
 }

@@ -56,15 +56,15 @@ class CompanyFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @return ImageFactory
      */
-    public function createCollection(array $data = [])
+    public function getImageFactory()
     {
-        return new GenericCollection();
+        return $this->imageFactory;
     }
 
     /**
-     * @param  \Tmdb\Factory\ImageFactory $imageFactory
+     * @param ImageFactory $imageFactory
      * @return $this
      */
     public function setImageFactory($imageFactory)
@@ -75,10 +75,10 @@ class CompanyFactory extends AbstractFactory
     }
 
     /**
-     * @return \Tmdb\Factory\ImageFactory
+     * {@inheritdoc}
      */
-    public function getImageFactory()
+    public function createCollection(array $data = [])
     {
-        return $this->imageFactory;
+        return new GenericCollection();
     }
 }

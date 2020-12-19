@@ -14,15 +14,15 @@
 
 namespace Tmdb\Model;
 
+use DateTime;
+use Tmdb\Model\Collection\CreditsCollection;
+use Tmdb\Model\Collection\Genres;
+use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Collection\CreditsCollection;
-use Tmdb\Model\Collection\Genres;
-use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Common\SpokenLanguage;
-use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Movie\AlternativeTitle;
 use Tmdb\Model\Movie\Release;
 use Tmdb\Model\Movie\ReleaseDate;
@@ -33,206 +33,6 @@ use Tmdb\Model\Movie\ReleaseDate;
  */
 class Movie extends AbstractModel
 {
-    /**
-     * @var bool
-     */
-    private $adult = false;
-
-    /**
-     * @var string
-     */
-    private $backdropPath;
-
-    /**
-     * @var Image
-     */
-    private $backdrop;
-
-    /**
-     * @var GenericCollection
-     */
-    private $belongsToCollection;
-
-    /**
-     * @var int
-     */
-    private $budget;
-
-    /**
-     * @var Genres
-     */
-    private $genres;
-
-    /**
-     * @var string
-     */
-    private $homepage;
-
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $imdbId;
-
-    /**
-     * @var string
-     */
-    private $originalTitle;
-
-    /**
-     * @var string
-     */
-    private $originalLanguage;
-
-    /**
-     * @var string
-     */
-    private $overview;
-
-    /**
-     * @var float
-     */
-    private $popularity;
-
-    /**
-     * @var Image
-     */
-    private $poster;
-
-    /**
-     * @var string
-     */
-    private $posterPath;
-
-    /**
-     * @var GenericCollection
-     */
-    private $productionCompanies;
-
-    /**
-     * @var GenericCollection
-     */
-    private $productionCountries;
-
-    /**
-     * @var \DateTime
-     */
-    private $releaseDate;
-
-    /**
-     * @var int
-     */
-    private $revenue;
-
-    /**
-     * @var int
-     */
-    private $runtime;
-
-    /**
-     * @var GenericCollection
-     */
-    private $spokenLanguages;
-
-    /**
-     * @var string
-     */
-    private $status;
-
-    /**
-     * @var string
-     */
-    private $tagline;
-
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var float
-     */
-    private $voteAverage;
-
-    /**
-     * @var int
-     */
-    private $voteCount;
-
-    /**
-     * @var GenericCollection
-     */
-    protected $alternativeTitles;
-
-    /**
-     * @var GenericCollection
-     */
-    protected $changes;
-
-    /**
-     * Credits
-     *
-     * @var CreditsCollection
-     */
-    protected $credits;
-
-    /**
-     * Images
-     *
-     * @var Images
-     */
-    protected $images;
-
-    /**
-     * @var GenericCollection
-     */
-    protected $keywords;
-
-    /**
-     * @var GenericCollection
-     */
-    protected $lists;
-
-    /**
-     * @var GenericCollection
-     * @deprecated Use $release_dates instead
-     */
-    protected $releases;
-
-    /**
-     * @var GenericCollection
-     */
-    protected $release_dates;
-
-    /**
-     * @var GenericCollection
-     */
-    protected $similar;
-
-    /**
-     * @var GenericCollection
-     */
-    protected $recommendations;
-
-    /**
-     * @var GenericCollection
-     */
-    protected $translations;
-
-    /**
-     * @var ResultCollection
-     */
-    protected $reviews;
-
-    /**
-     * @var Videos
-     */
-    protected $videos;
-
     /**
      * Properties that are available in the API
      *
@@ -262,6 +62,167 @@ class Movie extends AbstractModel
         'vote_average',
         'vote_count',
     ];
+    /**
+     * @var GenericCollection
+     */
+    protected $alternativeTitles;
+    /**
+     * @var GenericCollection
+     */
+    protected $changes;
+    /**
+     * Credits
+     *
+     * @var CreditsCollection
+     */
+    protected $credits;
+    /**
+     * Images
+     *
+     * @var Images
+     */
+    protected $images;
+    /**
+     * @var GenericCollection
+     */
+    protected $keywords;
+    /**
+     * @var GenericCollection
+     */
+    protected $lists;
+    /**
+     * @var GenericCollection
+     * @deprecated Use $release_dates instead
+     */
+    protected $releases;
+    /**
+     * @var GenericCollection
+     */
+    protected $release_dates;
+    /**
+     * @var GenericCollection
+     */
+    protected $similar;
+    /**
+     * @var GenericCollection
+     */
+    protected $recommendations;
+    /**
+     * @var GenericCollection
+     */
+    protected $translations;
+    /**
+     * @var ResultCollection
+     */
+    protected $reviews;
+    /**
+     * @var Videos
+     */
+    protected $videos;
+    /**
+     * @var bool
+     */
+    private $adult = false;
+    /**
+     * @var string
+     */
+    private $backdropPath;
+    /**
+     * @var Image
+     */
+    private $backdrop;
+    /**
+     * @var GenericCollection
+     */
+    private $belongsToCollection;
+    /**
+     * @var int
+     */
+    private $budget;
+    /**
+     * @var Genres
+     */
+    private $genres;
+    /**
+     * @var string
+     */
+    private $homepage;
+    /**
+     * @var int
+     */
+    private $id;
+    /**
+     * @var string
+     */
+    private $imdbId;
+    /**
+     * @var string
+     */
+    private $originalTitle;
+    /**
+     * @var string
+     */
+    private $originalLanguage;
+    /**
+     * @var string
+     */
+    private $overview;
+    /**
+     * @var float
+     */
+    private $popularity;
+    /**
+     * @var Image
+     */
+    private $poster;
+    /**
+     * @var string
+     */
+    private $posterPath;
+    /**
+     * @var GenericCollection
+     */
+    private $productionCompanies;
+    /**
+     * @var GenericCollection
+     */
+    private $productionCountries;
+    /**
+     * @var DateTime
+     */
+    private $releaseDate;
+    /**
+     * @var int
+     */
+    private $revenue;
+    /**
+     * @var int
+     */
+    private $runtime;
+    /**
+     * @var GenericCollection
+     */
+    private $spokenLanguages;
+    /**
+     * @var string
+     */
+    private $status;
+    /**
+     * @var string
+     */
+    private $tagline;
+    /**
+     * @var string
+     */
+    private $title;
+    /**
+     * @var float
+     */
+    private $voteAverage;
+    /**
+     * @var int
+     */
+    private $voteCount;
 
     /**
      * Constructor
@@ -270,33 +231,22 @@ class Movie extends AbstractModel
      */
     public function __construct()
     {
-        $this->genres              = new Genres();
+        $this->genres = new Genres();
         $this->productionCompanies = new GenericCollection();
         $this->productionCountries = new GenericCollection();
-        $this->spokenLanguages     = new GenericCollection();
-        $this->alternativeTitles   = new GenericCollection();
-        $this->changes             = new GenericCollection();
-        $this->credits             = new CreditsCollection();
-        $this->images              = new Images();
-        $this->keywords            = new GenericCollection();
-        $this->lists               = new GenericCollection();
-        $this->releases            = new GenericCollection();
-        $this->release_dates       = new GenericCollection();
-        $this->similar             = new GenericCollection();
-        $this->recommendations     = new GenericCollection();
-        $this->translations        = new GenericCollection();
-        $this->videos              = new Videos();
-    }
-
-    /**
-     * @param  boolean $adult
-     * @return $this
-     */
-    public function setAdult($adult)
-    {
-        $this->adult = (bool) $adult;
-
-        return $this;
+        $this->spokenLanguages = new GenericCollection();
+        $this->alternativeTitles = new GenericCollection();
+        $this->changes = new GenericCollection();
+        $this->credits = new CreditsCollection();
+        $this->images = new Images();
+        $this->keywords = new GenericCollection();
+        $this->lists = new GenericCollection();
+        $this->releases = new GenericCollection();
+        $this->release_dates = new GenericCollection();
+        $this->similar = new GenericCollection();
+        $this->recommendations = new GenericCollection();
+        $this->translations = new GenericCollection();
+        $this->videos = new Videos();
     }
 
     /**
@@ -308,12 +258,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $backdropPath
+     * @param boolean $adult
      * @return $this
      */
-    public function setBackdropPath($backdropPath)
+    public function setAdult($adult)
     {
-        $this->backdropPath = $backdropPath;
+        $this->adult = (bool)$adult;
 
         return $this;
     }
@@ -327,12 +277,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  null  $belongsToCollection
+     * @param string $backdropPath
      * @return $this
      */
-    public function setBelongsToCollection($belongsToCollection)
+    public function setBackdropPath($backdropPath)
     {
-        $this->belongsToCollection = $belongsToCollection;
+        $this->backdropPath = $backdropPath;
 
         return $this;
     }
@@ -346,12 +296,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $changes
+     * @param null $belongsToCollection
      * @return $this
      */
-    public function setChanges(GenericCollection $changes)
+    public function setBelongsToCollection($belongsToCollection)
     {
-        $this->changes = $changes;
+        $this->belongsToCollection = $belongsToCollection;
 
         return $this;
     }
@@ -365,12 +315,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  Genres $genres
+     * @param GenericCollection $changes
      * @return $this
      */
-    public function setGenres(Genres $genres)
+    public function setChanges(GenericCollection $changes)
     {
-        $this->genres = $genres;
+        $this->changes = $changes;
 
         return $this;
     }
@@ -384,12 +334,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $homepage
+     * @param Genres $genres
      * @return $this
      */
-    public function setHomepage($homepage)
+    public function setGenres(Genres $genres)
     {
-        $this->homepage = $homepage;
+        $this->genres = $genres;
 
         return $this;
     }
@@ -403,12 +353,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $id
+     * @param string $homepage
      * @return $this
      */
-    public function setId($id)
+    public function setHomepage($homepage)
     {
-        $this->id = (int) $id;
+        $this->homepage = $homepage;
 
         return $this;
     }
@@ -422,12 +372,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  Images $images
+     * @param mixed $id
      * @return $this
      */
-    public function setImages(Images $images)
+    public function setId($id)
     {
-        $this->images = $images;
+        $this->id = (int)$id;
 
         return $this;
     }
@@ -441,12 +391,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $imdbId
+     * @param Images $images
      * @return $this
      */
-    public function setImdbId($imdbId)
+    public function setImages(Images $images)
     {
-        $this->imdbId = $imdbId;
+        $this->images = $images;
 
         return $this;
     }
@@ -460,12 +410,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $originalTitle
+     * @param string $imdbId
      * @return $this
      */
-    public function setOriginalTitle($originalTitle)
+    public function setImdbId($imdbId)
     {
-        $this->originalTitle = $originalTitle;
+        $this->imdbId = $imdbId;
 
         return $this;
     }
@@ -479,12 +429,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $originalLanguage
+     * @param string $originalTitle
      * @return $this
      */
-    public function setOriginalLanguage($originalLanguage)
+    public function setOriginalTitle($originalTitle)
     {
-        $this->originalLanguage = $originalLanguage;
+        $this->originalTitle = $originalTitle;
 
         return $this;
     }
@@ -498,12 +448,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $overview
+     * @param string $originalLanguage
      * @return $this
      */
-    public function setOverview($overview)
+    public function setOriginalLanguage($originalLanguage)
     {
-        $this->overview = $overview;
+        $this->originalLanguage = $originalLanguage;
 
         return $this;
     }
@@ -517,12 +467,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $popularity
+     * @param string $overview
      * @return $this
      */
-    public function setPopularity($popularity)
+    public function setOverview($overview)
     {
-        $this->popularity = (float) $popularity;
+        $this->overview = $overview;
 
         return $this;
     }
@@ -536,12 +486,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $posterPath
+     * @param mixed $popularity
      * @return $this
      */
-    public function setPosterPath($posterPath)
+    public function setPopularity($popularity)
     {
-        $this->posterPath = $posterPath;
+        $this->popularity = (float)$popularity;
 
         return $this;
     }
@@ -555,12 +505,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $productionCompanies
+     * @param string $posterPath
      * @return $this
      */
-    public function setProductionCompanies(GenericCollection $productionCompanies)
+    public function setPosterPath($posterPath)
     {
-        $this->productionCompanies = $productionCompanies;
+        $this->posterPath = $posterPath;
 
         return $this;
     }
@@ -574,12 +524,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $productionCountries
+     * @param GenericCollection $productionCompanies
      * @return $this
      */
-    public function setProductionCountries(GenericCollection $productionCountries)
+    public function setProductionCompanies(GenericCollection $productionCompanies)
     {
-        $this->productionCountries = $productionCountries;
+        $this->productionCompanies = $productionCompanies;
 
         return $this;
     }
@@ -593,22 +543,18 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $releaseDate
+     * @param GenericCollection $productionCountries
      * @return $this
      */
-    public function setReleaseDate($releaseDate)
+    public function setProductionCountries(GenericCollection $productionCountries)
     {
-        if (!$releaseDate instanceof \DateTime) {
-            $releaseDate = new \DateTime($releaseDate);
-        }
-
-        $this->releaseDate = $releaseDate;
+        $this->productionCountries = $productionCountries;
 
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getReleaseDate()
     {
@@ -616,12 +562,16 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $revenue
+     * @param string $releaseDate
      * @return $this
      */
-    public function setRevenue($revenue)
+    public function setReleaseDate($releaseDate)
     {
-        $this->revenue = (int) $revenue;
+        if (!$releaseDate instanceof DateTime) {
+            $releaseDate = new DateTime($releaseDate);
+        }
+
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
@@ -635,12 +585,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $runtime
+     * @param mixed $revenue
      * @return $this
      */
-    public function setRuntime($runtime)
+    public function setRevenue($revenue)
     {
-        $this->runtime = (int) $runtime;
+        $this->revenue = (int)$revenue;
 
         return $this;
     }
@@ -654,12 +604,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $spokenLanguages
+     * @param mixed $runtime
      * @return $this
      */
-    public function setSpokenLanguages(GenericCollection $spokenLanguages)
+    public function setRuntime($runtime)
     {
-        $this->spokenLanguages = $spokenLanguages;
+        $this->runtime = (int)$runtime;
 
         return $this;
     }
@@ -673,12 +623,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $status
+     * @param GenericCollection $spokenLanguages
      * @return $this
      */
-    public function setStatus($status)
+    public function setSpokenLanguages(GenericCollection $spokenLanguages)
     {
-        $this->status = $status;
+        $this->spokenLanguages = $spokenLanguages;
 
         return $this;
     }
@@ -692,12 +642,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $tagline
+     * @param string $status
      * @return $this
      */
-    public function setTagline($tagline)
+    public function setStatus($status)
     {
-        $this->tagline = $tagline;
+        $this->status = $status;
 
         return $this;
     }
@@ -711,12 +661,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  string $title
+     * @param string $tagline
      * @return $this
      */
-    public function setTitle($title)
+    public function setTagline($tagline)
     {
-        $this->title = $title;
+        $this->tagline = $tagline;
 
         return $this;
     }
@@ -730,12 +680,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $voteAverage
+     * @param string $title
      * @return $this
      */
-    public function setVoteAverage($voteAverage)
+    public function setTitle($title)
     {
-        $this->voteAverage = (float) $voteAverage;
+        $this->title = $title;
 
         return $this;
     }
@@ -749,12 +699,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  mixed $voteCount
+     * @param mixed $voteAverage
      * @return $this
      */
-    public function setVoteCount($voteCount)
+    public function setVoteAverage($voteAverage)
     {
-        $this->voteCount = (int) $voteCount;
+        $this->voteAverage = (float)$voteAverage;
 
         return $this;
     }
@@ -768,12 +718,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $alternativeTitles
+     * @param mixed $voteCount
      * @return $this
      */
-    public function setAlternativeTitles($alternativeTitles)
+    public function setVoteCount($voteCount)
     {
-        $this->alternativeTitles = $alternativeTitles;
+        $this->voteCount = (int)$voteCount;
 
         return $this;
     }
@@ -787,12 +737,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  int   $budget
+     * @param GenericCollection $alternativeTitles
      * @return $this
      */
-    public function setBudget($budget)
+    public function setAlternativeTitles($alternativeTitles)
     {
-        $this->budget = $budget;
+        $this->alternativeTitles = $alternativeTitles;
 
         return $this;
     }
@@ -806,12 +756,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  CreditsCollection $credits
+     * @param int $budget
      * @return $this
      */
-    public function setCredits(CreditsCollection $credits)
+    public function setBudget($budget)
     {
-        $this->credits = $credits;
+        $this->budget = $budget;
 
         return $this;
     }
@@ -825,12 +775,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $keywords
+     * @param CreditsCollection $credits
      * @return $this
      */
-    public function setKeywords($keywords)
+    public function setCredits(CreditsCollection $credits)
     {
-        $this->keywords = $keywords;
+        $this->credits = $credits;
 
         return $this;
     }
@@ -844,12 +794,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $lists
+     * @param GenericCollection $keywords
      * @return $this
      */
-    public function setLists($lists)
+    public function setKeywords($keywords)
     {
-        $this->lists = $lists;
+        $this->keywords = $keywords;
 
         return $this;
     }
@@ -863,13 +813,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $releases
+     * @param GenericCollection $lists
      * @return $this
-     * @deprecated Use the setReleaseDates instead.
      */
-    public function setReleases(GenericCollection $releases)
+    public function setLists($lists)
     {
-        $this->releases = $releases;
+        $this->lists = $lists;
 
         return $this;
     }
@@ -884,12 +833,13 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $release_dates
+     * @param GenericCollection $releases
      * @return $this
+     * @deprecated Use the setReleaseDates instead.
      */
-    public function setReleaseDates(GenericCollection $release_dates)
+    public function setReleases(GenericCollection $releases)
     {
-        $this->release_dates = $release_dates;
+        $this->releases = $releases;
 
         return $this;
     }
@@ -903,33 +853,14 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $similar
+     * @param GenericCollection $release_dates
      * @return $this
      */
-    public function setSimilar($similar)
+    public function setReleaseDates(GenericCollection $release_dates)
     {
-        $this->similar = $similar;
+        $this->release_dates = $release_dates;
 
         return $this;
-    }
-
-    /**
-     * @param  GenericCollection $recommendations
-     * @return $this
-     */
-    public function setRecommendations($recommendations)
-    {
-        $this->recommendations = $recommendations;
-
-        return $this;
-    }
-
-    /**
-     * @return GenericCollection|Movie[]
-     */
-    public function getSimilar()
-    {
-        return $this->similar;
     }
 
     /**
@@ -938,6 +869,17 @@ class Movie extends AbstractModel
     public function getRecommendations()
     {
         return $this->recommendations;
+    }
+
+    /**
+     * @param GenericCollection $recommendations
+     * @return $this
+     */
+    public function setRecommendations($recommendations)
+    {
+        $this->recommendations = $recommendations;
+
+        return $this;
     }
 
     /**
@@ -950,12 +892,20 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  GenericCollection $translations
+     * @return GenericCollection|Movie[]
+     */
+    public function getSimilar()
+    {
+        return $this->similar;
+    }
+
+    /**
+     * @param GenericCollection $similar
      * @return $this
      */
-    public function setTranslations($translations)
+    public function setSimilar($similar)
     {
-        $this->translations = $translations;
+        $this->similar = $similar;
 
         return $this;
     }
@@ -969,7 +919,18 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image $backdrop
+     * @param GenericCollection $translations
+     * @return $this
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @param Image $backdrop
      * @return $this
      */
     public function setBackdropImage($backdrop)
@@ -980,7 +941,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Image
+     * @return Image
      */
     public function getBackdropImage()
     {
@@ -988,7 +949,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image $poster
+     * @param Image $poster
      * @return $this
      */
     public function setPosterImage($poster)
@@ -999,7 +960,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Image
+     * @return Image
      */
     public function getPosterImage()
     {
@@ -1007,7 +968,15 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\ResultCollection $reviews
+     * @return ResultCollection
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param ResultCollection $reviews
      * @return $this
      */
     public function setReviews($reviews)
@@ -1018,15 +987,15 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Collection\ResultCollection
+     * @return Videos
      */
-    public function getReviews()
+    public function getVideos()
     {
-        return $this->reviews;
+        return $this->videos;
     }
 
     /**
-     * @param  \Tmdb\Model\Collection\Videos $videos
+     * @param Videos $videos
      * @return $this
      */
     public function setVideos($videos)
@@ -1034,13 +1003,5 @@ class Movie extends AbstractModel
         $this->videos = $videos;
 
         return $this;
-    }
-
-    /**
-     * @return \Tmdb\Model\Collection\Videos
-     */
-    public function getVideos()
-    {
-        return $this->videos;
     }
 }

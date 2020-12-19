@@ -14,6 +14,7 @@
 
 namespace Tmdb\Model\Lists;
 
+use DateTime;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
@@ -24,56 +25,6 @@ use Tmdb\Model\Image\PosterImage;
  */
 class ListItem extends AbstractModel
 {
-    /**
-     * @var string
-     */
-    private $backdropPath;
-
-    /**
-     * @var BackdropImage
-     */
-    private $backdropImage;
-
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $originalTitle;
-
-    /**
-     * @var \DateTime
-     */
-    private $releaseDate;
-
-    /**
-     * @var string
-     */
-    private $posterPath;
-
-    /**
-     * @var PosterImage
-     */
-    private $posterImage;
-
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var float
-     */
-    private $voteAverage;
-
-    /**
-     * @var int
-     */
-    private $voteCount;
-
     /**
      * @var array
      */
@@ -87,20 +38,49 @@ class ListItem extends AbstractModel
         'vote_average',
         'vote_count'
     ];
-
     /**
-     * @param  \Tmdb\Model\Image\BackdropImage $backdropImage
-     * @return $this
+     * @var string
      */
-    public function setBackdropImage($backdropImage)
-    {
-        $this->backdropImage = $backdropImage;
-
-        return $this;
-    }
+    private $backdropPath;
+    /**
+     * @var BackdropImage
+     */
+    private $backdropImage;
+    /**
+     * @var int
+     */
+    private $id;
+    /**
+     * @var string
+     */
+    private $originalTitle;
+    /**
+     * @var DateTime
+     */
+    private $releaseDate;
+    /**
+     * @var string
+     */
+    private $posterPath;
+    /**
+     * @var PosterImage
+     */
+    private $posterImage;
+    /**
+     * @var string
+     */
+    private $title;
+    /**
+     * @var float
+     */
+    private $voteAverage;
+    /**
+     * @var int
+     */
+    private $voteCount;
 
     /**
-     * @return \Tmdb\Model\Image\BackdropImage
+     * @return BackdropImage
      */
     public function getBackdropImage()
     {
@@ -108,12 +88,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  string $backdropPath
+     * @param BackdropImage $backdropImage
      * @return $this
      */
-    public function setBackdropPath($backdropPath)
+    public function setBackdropImage($backdropImage)
     {
-        $this->backdropPath = $backdropPath;
+        $this->backdropImage = $backdropImage;
 
         return $this;
     }
@@ -127,12 +107,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  int   $id
+     * @param string $backdropPath
      * @return $this
      */
-    public function setId($id)
+    public function setBackdropPath($backdropPath)
     {
-        $this->id = $id;
+        $this->backdropPath = $backdropPath;
 
         return $this;
     }
@@ -146,12 +126,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  string $originalTitle
+     * @param int $id
      * @return $this
      */
-    public function setOriginalTitle($originalTitle)
+    public function setId($id)
     {
-        $this->originalTitle = $originalTitle;
+        $this->id = $id;
 
         return $this;
     }
@@ -165,18 +145,18 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image\PosterImage $posterImage
+     * @param string $originalTitle
      * @return $this
      */
-    public function setPosterImage($posterImage)
+    public function setOriginalTitle($originalTitle)
     {
-        $this->posterImage = $posterImage;
+        $this->originalTitle = $originalTitle;
 
         return $this;
     }
 
     /**
-     * @return \Tmdb\Model\Image\PosterImage
+     * @return PosterImage
      */
     public function getPosterImage()
     {
@@ -184,12 +164,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  string $posterPath
+     * @param PosterImage $posterImage
      * @return $this
      */
-    public function setPosterPath($posterPath)
+    public function setPosterImage($posterImage)
     {
-        $this->posterPath = $posterPath;
+        $this->posterImage = $posterImage;
 
         return $this;
     }
@@ -203,18 +183,18 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  \DateTime $releaseDate
+     * @param string $posterPath
      * @return $this
      */
-    public function setReleaseDate($releaseDate)
+    public function setPosterPath($posterPath)
     {
-        $this->releaseDate = $releaseDate;
+        $this->posterPath = $posterPath;
 
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getReleaseDate()
     {
@@ -222,12 +202,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  string $title
+     * @param DateTime $releaseDate
      * @return $this
      */
-    public function setTitle($title)
+    public function setReleaseDate($releaseDate)
     {
-        $this->title = $title;
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
@@ -241,12 +221,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  float $voteAverage
+     * @param string $title
      * @return $this
      */
-    public function setVoteAverage($voteAverage)
+    public function setTitle($title)
     {
-        $this->voteAverage = $voteAverage;
+        $this->title = $title;
 
         return $this;
     }
@@ -260,12 +240,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  int   $voteCount
+     * @param float $voteAverage
      * @return $this
      */
-    public function setVoteCount($voteCount)
+    public function setVoteAverage($voteAverage)
     {
-        $this->voteCount = $voteCount;
+        $this->voteAverage = $voteAverage;
 
         return $this;
     }
@@ -276,5 +256,16 @@ class ListItem extends AbstractModel
     public function getVoteCount()
     {
         return $this->voteCount;
+    }
+
+    /**
+     * @param int $voteCount
+     * @return $this
+     */
+    public function setVoteCount($voteCount)
+    {
+        $this->voteCount = $voteCount;
+
+        return $this;
     }
 }

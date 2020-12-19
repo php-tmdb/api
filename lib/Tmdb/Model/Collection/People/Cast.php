@@ -37,9 +37,10 @@ class Cast extends People
      * Retrieve a cast member from the collection
      *
      * @param $id
-     * @return Person
+     *
+     * @return \Tmdb\Model\Common\GenericCollection
      */
-    public function getCastMember($id)
+    public function getCastMember($id): \Tmdb\Model\Common\GenericCollection
     {
         return parent::getPerson($id);
     }

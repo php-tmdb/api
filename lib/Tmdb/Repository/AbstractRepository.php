@@ -14,11 +14,10 @@
 
 namespace Tmdb\Repository;
 
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Api\ApiInterface;
 use Tmdb\Client;
 use Tmdb\Factory\AbstractFactory;
-use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
+use Tmdb\HttpClient\Adapter\AdapterInterface;
 
 /**
  * Class AbstractRepository
@@ -27,7 +26,7 @@ use Tmdb\Model\Common\QueryParameter\QueryParameterInterface;
 abstract class AbstractRepository
 {
     protected $client = null;
-    protected $api    = null;
+    protected $api = null;
 
     /**
      * Constructor
@@ -50,17 +49,31 @@ abstract class AbstractRepository
     }
 
     /**
-     * @return \Tmdb\HttpClient\Adapter\AdapterInterface
+     * @return AdapterInterface
      */
-    public function getEventDispatcher(): \Tmdb\HttpClient\Adapter\AdapterInterface
+    public function getEventDispatcher(): AdapterInterface
     {
         return $this->client->getEventDispatcher();
     }
 
     /**
+     * Return the API Class
+     *
+     * @return ApiInterface
+     */
+    abstract public function getApi();
+
+    /**
+     * Return the Factory Class
+     *
+     * @return AbstractFactory
+     */
+    abstract public function getFactory();
+
+    /**
      * Process query parameters
      *
-     * @param  array $parameters
+     * @param array $parameters
      * @return array
      */
     protected function parseQueryParameters(array $parameters = [])
@@ -79,18 +92,4 @@ abstract class AbstractRepository
 
         return $parameters;
     }
-
-    /**
-     * Return the API Class
-     *
-     * @return ApiInterface
-     */
-    abstract public function getApi();
-
-    /**
-     * Return the Factory Class
-     *
-     * @return AbstractFactory
-     */
-    abstract public function getFactory();
 }

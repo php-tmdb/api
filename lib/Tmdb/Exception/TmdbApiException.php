@@ -14,6 +14,7 @@
 
 namespace Tmdb\Exception;
 
+use Exception;
 use Tmdb\HttpClient\Request;
 use Tmdb\HttpClient\Response;
 
@@ -21,7 +22,7 @@ use Tmdb\HttpClient\Response;
  * Class TmdbApiException
  * @package Tmdb\Exception
  */
-class TmdbApiException extends \Exception
+class TmdbApiException extends Exception
 {
     const STATUS_SUCCESS = 1;
     const STATUS_INVALID_SERVICE = 2;
@@ -71,17 +72,17 @@ class TmdbApiException extends \Exception
     /**
      * Create the exception
      *
-     * @param int             $code
-     * @param string          $message
-     * @param Request|null    $request
-     * @param Response|null   $response
-     * @param \Exception|null $previous
+     * @param int $code
+     * @param string $message
+     * @param Request|null $request
+     * @param Response|null $response
+     * @param Exception|null $previous
      */
-    public function __construct($code, $message, $request = null, $response = null, \Exception $previous = null)
+    public function __construct($code, $message, $request = null, $response = null, Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
 
-        $this->request  = $request;
+        $this->request = $request;
         $this->response = $response;
     }
 
@@ -94,7 +95,7 @@ class TmdbApiException extends \Exception
     }
 
     /**
-     * @param  Request $request
+     * @param Request $request
      * @return $this
      */
     public function setRequest($request)
@@ -113,7 +114,7 @@ class TmdbApiException extends \Exception
     }
 
     /**
-     * @param  Response $response
+     * @param Response $response
      * @return $this
      */
     public function setResponse($response)

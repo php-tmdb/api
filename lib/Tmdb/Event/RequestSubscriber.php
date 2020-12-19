@@ -14,6 +14,7 @@
 
 namespace Tmdb\Event;
 
+use Exception;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\HttpClient\HttpClientEventSubscriber;
@@ -33,11 +34,11 @@ class RequestSubscriber extends HttpClientEventSubscriber
     }
 
     /**
-     * @param RequestEvent             $event
-     * @param string                   $eventName
+     * @param RequestEvent $event
+     * @param string $eventName
      * @param EventDispatcherInterface $eventDispatcher
      *
-     * @return string|Response
+     * @return Response|\Psr\Http\Message\ResponseInterface
      */
     public function send(RequestEvent $event, $eventName, EventDispatcherInterface $eventDispatcher)
     {
@@ -60,9 +61,9 @@ class RequestSubscriber extends HttpClientEventSubscriber
     /**
      * Call upon the adapter to create an response object
      *
-     * @param  RequestEvent $event
-     * @throws \Exception
+     * @param RequestEvent $event
      * @return Response
+     * @throws Exception
      */
     public function sendRequest(RequestEvent $event)
     {

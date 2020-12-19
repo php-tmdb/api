@@ -20,25 +20,24 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
-use GuzzleHttp\RetryMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Exception\NullResponseException;
+use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
 use Tmdb\HttpClient\Response;
 
 class GuzzleAdapter extends AbstractAdapter
 {
     /**
-     * @var ClientInterface
-     */
-    private $client;
-
-    /**
      * @var Request
      */
     protected $request;
+    /**
+     * @var ClientInterface
+     */
+    private $client;
 
     public function __construct(ClientInterface $client = null, array $options = [])
     {
@@ -78,7 +77,7 @@ class GuzzleAdapter extends AbstractAdapter
                 }
 
                 if ($response->getStatusCode() === 429) {
-                    $sleep = (int) $response->getHeaderLine('retry-after');
+                    $sleep = (int)$response->getHeaderLine('retry-after');
 
                     /**
                      * @see https://github.com/php-tmdb/api/issues/154
@@ -104,9 +103,28 @@ class GuzzleAdapter extends AbstractAdapter
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function get(Request $request)
+    {
+        $response = null;
+        try {
+            $response = $this->client->request(
+                'GET',
+                $request->getPath(),
+                $this->getConfiguration($request)
+            );
+        } catch (RequestException $e) {
+            $this->handleRequestException($request, $e);
+        }
+
+        return $this->createResponse($response);
+    }
+
+    /**
      * Format the request for Guzzle
      *
-     * @param  Request $request
+     * @param Request $request
      * @return array
      */
     public function getConfiguration(Request $request)
@@ -115,39 +133,20 @@ class GuzzleAdapter extends AbstractAdapter
 
         return [
             'base_uri' => $request->getOptions()->get('base_url'),
-            'headers'  => $request->getHeaders()->all(),
-            'query'    => $request->getParameters()->all()
+            'headers' => $request->getHeaders()->all(),
+            'query' => $request->getParameters()->all()
         ];
-    }
-
-    /**
-     * Create the response object
-     *
-     * @param  ResponseInterface         $adapterResponse
-     * @return \Tmdb\HttpClient\Response
-     */
-    private function createResponse(ResponseInterface $adapterResponse = null)
-    {
-        $response = new Response();
-
-        if ($adapterResponse !== null) {
-            $response->setCode($adapterResponse->getStatusCode());
-            $response->setHeaders(new ParameterBag($adapterResponse->getHeaders()));
-            $response->setBody((string) $adapterResponse->getBody());
-        }
-
-        return $response;
     }
 
     /**
      * Create the request exception
      *
-     * @param Request                          $request
+     * @param Request $request
      * @param RequestException $previousException
      *
-     * @throws \Tmdb\Exception\TmdbApiException
-     *
      * @return void
+     * @throws TmdbApiException
+     *
      */
     protected function handleRequestException(Request $request, RequestException $previousException): void
     {
@@ -167,22 +166,22 @@ class GuzzleAdapter extends AbstractAdapter
     }
 
     /**
-     * {@inheritDoc}
+     * Create the response object
+     *
+     * @param ResponseInterface $adapterResponse
+     * @return Response
      */
-    public function get(Request $request)
+    private function createResponse(ResponseInterface $adapterResponse = null)
     {
-        $response = null;
-        try {
-            $response = $this->client->request(
-                'GET',
-                $request->getPath(),
-                $this->getConfiguration($request)
-            );
-        } catch (RequestException $e) {
-            $this->handleRequestException($request, $e);
+        $response = new Response();
+
+        if ($adapterResponse !== null) {
+            $response->setCode($adapterResponse->getStatusCode());
+            $response->setHeaders(new ParameterBag($adapterResponse->getHeaders()));
+            $response->setBody((string)$adapterResponse->getBody());
         }
 
-        return $this->createResponse($response);
+        return $response;
     }
 
     /**
@@ -308,7 +307,7 @@ class GuzzleAdapter extends AbstractAdapter
     }
 
     /**
-     * @param  ClientInterface $client
+     * @param ClientInterface $client
      * @return $this
      */
     public function setClient(ClientInterface $client)

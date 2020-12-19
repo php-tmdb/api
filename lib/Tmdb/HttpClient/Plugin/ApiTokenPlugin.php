@@ -26,7 +26,7 @@ use Tmdb\Event\TmdbEvents;
 class ApiTokenPlugin implements EventSubscriberInterface
 {
     /**
-     * @var \Tmdb\ApiToken
+     * @var ApiToken
      */
     private $token;
 

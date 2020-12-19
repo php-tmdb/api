@@ -34,9 +34,9 @@ class Find extends AbstractApi
      * People: imdb_id, freebase_mid, freebase_id, tvrage_id
      * TV Series: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id
      *
-     * @param  string $id
-     * @param  array  $parameters
-     * @param  array  $headers
+     * @param string $id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
     public function findBy($id, array $parameters = [], array $headers = [])

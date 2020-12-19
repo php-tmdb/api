@@ -24,16 +24,6 @@ use Tmdb\Model\Network;
 class NetworkFactory extends AbstractFactory
 {
     /**
-     * @param array $data
-     *
-     * @return Network
-     */
-    public function create(array $data = [])
-    {
-        return $this->hydrate(new Network(), $data);
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function createCollection(array $data = [])
@@ -49,5 +39,15 @@ class NetworkFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Network
+     */
+    public function create(array $data = [])
+    {
+        return $this->hydrate(new Network(), $data);
     }
 }

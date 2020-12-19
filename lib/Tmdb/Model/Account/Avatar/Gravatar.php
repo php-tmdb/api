@@ -23,27 +23,15 @@ use Tmdb\Model\AbstractModel;
 class Gravatar extends AbstractModel
 {
     /**
-     * @var string
-     */
-    private $hash;
-
-    /**
      * @var array
      */
     public static $properties = [
         'hash'
     ];
-
     /**
-     * @param  string $hash
-     * @return $this
+     * @var string
      */
-    public function setHash($hash)
-    {
-        $this->hash = $hash;
-
-        return $this;
-    }
+    private $hash;
 
     /**
      * @return string
@@ -51,5 +39,16 @@ class Gravatar extends AbstractModel
     public function getHash()
     {
         return $this->hash;
+    }
+
+    /**
+     * @param string $hash
+     * @return $this
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+
+        return $this;
     }
 }

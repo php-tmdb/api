@@ -15,6 +15,7 @@
 namespace Tmdb\Factory\Common;
 
 use Tmdb\Factory\AbstractFactory;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\Video;
 
@@ -24,18 +25,6 @@ use Tmdb\Model\Common\Video;
  */
 class VideoFactory extends AbstractFactory
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @return \Tmdb\Model\AbstractModel|null
-     */
-    public function create(array $data = []): ?\Tmdb\Model\AbstractModel
-    {
-        $videoType = $this->resolveVideoType($data);
-
-        return (null === $videoType) ? null : $this->hydrate($videoType, $data);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -56,6 +45,18 @@ class VideoFactory extends AbstractFactory
         }
 
         return $collection;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return AbstractModel|null
+     */
+    public function create(array $data = []): ?AbstractModel
+    {
+        $videoType = $this->resolveVideoType($data);
+
+        return (null === $videoType) ? null : $this->hydrate($videoType, $data);
     }
 
     /**

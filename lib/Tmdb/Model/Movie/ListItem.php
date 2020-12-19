@@ -23,46 +23,6 @@ use Tmdb\Model\Image\PosterImage;
  */
 class ListItem extends AbstractModel
 {
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var int
-     */
-    private $favoriteCount;
-
-    /**
-     * @var string
-     */
-    private $id;
-
-    /**
-     * @var int
-     */
-    private $itemCount;
-
-    /**
-     * @var string
-     */
-    private $iso6391;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $posterPath;
-
-    /**
-     * @var PosterImage
-     */
-    private $posterImage;
-
     public static $properties = [
         'description',
         'favorite_count',
@@ -72,17 +32,38 @@ class ListItem extends AbstractModel
         'name',
         'poster_path'
     ];
-
     /**
-     * @param  string $description
-     * @return $this
+     * @var string
      */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    private $description;
+    /**
+     * @var int
+     */
+    private $favoriteCount;
+    /**
+     * @var string
+     */
+    private $id;
+    /**
+     * @var int
+     */
+    private $itemCount;
+    /**
+     * @var string
+     */
+    private $iso6391;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var string
+     */
+    private $posterPath;
+    /**
+     * @var PosterImage
+     */
+    private $posterImage;
 
     /**
      * @return string
@@ -93,12 +74,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  int   $favoriteCount
+     * @param string $description
      * @return $this
      */
-    public function setFavoriteCount($favoriteCount)
+    public function setDescription($description)
     {
-        $this->favoriteCount = $favoriteCount;
+        $this->description = $description;
 
         return $this;
     }
@@ -112,12 +93,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  string $id
+     * @param int $favoriteCount
      * @return $this
      */
-    public function setId($id)
+    public function setFavoriteCount($favoriteCount)
     {
-        $this->id = $id;
+        $this->favoriteCount = $favoriteCount;
 
         return $this;
     }
@@ -131,12 +112,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  string $iso6391
+     * @param string $id
      * @return $this
      */
-    public function setIso6391($iso6391)
+    public function setId($id)
     {
-        $this->iso6391 = $iso6391;
+        $this->id = $id;
 
         return $this;
     }
@@ -150,12 +131,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  int   $itemCount
+     * @param string $iso6391
      * @return $this
      */
-    public function setItemCount($itemCount)
+    public function setIso6391($iso6391)
     {
-        $this->itemCount = $itemCount;
+        $this->iso6391 = $iso6391;
 
         return $this;
     }
@@ -169,12 +150,12 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  string $name
+     * @param int $itemCount
      * @return $this
      */
-    public function setName($name)
+    public function setItemCount($itemCount)
     {
-        $this->name = $name;
+        $this->itemCount = $itemCount;
 
         return $this;
     }
@@ -188,7 +169,26 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @param  \Tmdb\Model\Image\PosterImage $posterImage
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return PosterImage
+     */
+    public function getPosterImage()
+    {
+        return $this->posterImage;
+    }
+
+    /**
+     * @param PosterImage $posterImage
      * @return $this
      */
     public function setPosterImage($posterImage)
@@ -199,15 +199,15 @@ class ListItem extends AbstractModel
     }
 
     /**
-     * @return \Tmdb\Model\Image\PosterImage
+     * @return string
      */
-    public function getPosterImage()
+    public function getPosterPath()
     {
-        return $this->posterImage;
+        return $this->posterPath;
     }
 
     /**
-     * @param  string $posterPath
+     * @param string $posterPath
      * @return $this
      */
     public function setPosterPath($posterPath)
@@ -215,13 +215,5 @@ class ListItem extends AbstractModel
         $this->posterPath = $posterPath;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPosterPath()
-    {
-        return $this->posterPath;
     }
 }

@@ -40,8 +40,8 @@ class Response
     /**
      * Construct an response object
      *
-     * @param int          $code
-     * @param null         $body
+     * @param int $code
+     * @param null $body
      * @param ParameterBag $headers
      */
     public function __construct(
@@ -49,7 +49,7 @@ class Response
         $body = null,
         ParameterBag $headers = null
     ) {
-        $this->code    = $code;
+        $this->code = $code;
         $this->body = $body;
         $this->headers = $headers;
     }
@@ -63,7 +63,7 @@ class Response
     }
 
     /**
-     * @param  int   $code
+     * @param int $code
      * @return $this
      */
     public function setCode($code)
@@ -82,7 +82,7 @@ class Response
     }
 
     /**
-     * @param  string $body
+     * @param string $body
      * @return $this
      */
     public function setBody($body)
@@ -101,7 +101,7 @@ class Response
     }
 
     /**
-     * @param  ParameterBag $headers
+     * @param ParameterBag $headers
      * @return $this
      */
     public function setHeaders(ParameterBag $headers)
