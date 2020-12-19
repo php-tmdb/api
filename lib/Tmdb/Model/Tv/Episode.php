@@ -13,6 +13,7 @@
 namespace Tmdb\Model\Tv;
 
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\Changes;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Images;
@@ -99,6 +100,11 @@ class Episode extends AbstractModel
     protected $images;
 
     /**
+     * @var GenericCollection
+     */
+    protected $translations;
+
+    /**
      * @var StillImage
      */
     protected $still;
@@ -135,11 +141,12 @@ class Episode extends AbstractModel
      */
     public function __construct()
     {
-        $this->credits     = new CreditsCollection();
-        $this->externalIds = new ExternalIds();
-        $this->images      = new Images();
-        $this->videos      = new Videos();
-        $this->changes     = new Changes();
+        $this->credits      = new CreditsCollection();
+        $this->externalIds  = new ExternalIds();
+        $this->images       = new Images();
+        $this->translations = new GenericCollection();
+        $this->videos       = new Videos();
+        $this->changes      = new Changes();
     }
 
     /**
@@ -372,6 +379,25 @@ class Episode extends AbstractModel
     public function getExternalIds()
     {
         return $this->externalIds;
+    }
+
+    /**
+     * @param  GenericCollection $translations
+     * @return $this
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 
     /**

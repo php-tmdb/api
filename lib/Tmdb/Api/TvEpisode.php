@@ -136,6 +136,33 @@ class TvEpisode extends AbstractApi
     }
 
     /**
+     * Get the list of translations that exist for a TV episode.
+     *
+     * @param  int   $tvshow_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getTranslations(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        array $parameters = [],
+        array $headers = []
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/translations',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            ),
+            $parameters,
+            $headers
+        );
+    }
+
+    /**
      * Get the videos that have been added to a TV episode (teasers, clips, etc...)
      *
      * @param $tvshow_id

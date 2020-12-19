@@ -33,7 +33,7 @@ class TvEpisodeRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER,
-                ['append_to_response' => 'credits,external_ids,images,changes,videos']
+                ['append_to_response' => 'credits,external_ids,images,translations,changes,videos']
             ))
         ;
 
@@ -51,7 +51,7 @@ class TvEpisodeRepositoryTest extends TestCase
             ->method('get')
             ->with($this->getRequest(
                 'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER,
-                ['append_to_response' => 'credits,external_ids,images,changes,videos']
+                ['append_to_response' => 'credits,external_ids,images,translations,changes,videos']
             ))
         ;
 
@@ -143,6 +143,32 @@ class TvEpisodeRepositoryTest extends TestCase
         $episode->setEpisodeNumber(self::EPISODE_NUMBER);
 
         $repository->getImages($tv, $season, $episode);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTranslations()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest(
+                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/translations'
+            ))
+        ;
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Season();
+        $season->setSeasonNumber(self::SEASON_NUMBER);
+
+        $episode = new Episode();
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
+
+        $repository->getTranslations($tv, $season, $episode);
     }
 
     /**

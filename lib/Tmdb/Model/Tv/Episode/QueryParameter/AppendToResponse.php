@@ -23,6 +23,7 @@ class AppendToResponse extends BaseAppendToResponse
     const CREDITS      = 'credits';
     const EXTERNAL_IDS = 'external_ids';
     const IMAGES       = 'images';
+    const TRANSLATIONS       = 'translations';
     const VIDEOS       = 'videos';
     const CHANGES      = 'changes';
 }
