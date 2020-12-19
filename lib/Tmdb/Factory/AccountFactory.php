@@ -45,6 +45,11 @@ class AccountFactory extends AbstractFactory
     private $tvFactory;
 
     /**
+     * @var AvatarFactory
+     */
+    private $avatarFactory;
+
+    /**
      * Constructor
      *
      * @param HttpClient $httpClient

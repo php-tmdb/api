@@ -15,7 +15,7 @@
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Video;
+use Tmdb\Model\Common\Video;
 
 /**
  * Class Videos
