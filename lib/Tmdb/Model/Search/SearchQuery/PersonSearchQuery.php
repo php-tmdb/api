@@ -24,9 +24,10 @@ class PersonSearchQuery extends SearchQuery
      * Toggle the inclusion of adult titles. Expected value is: true or false
      *
      * @param bool
-     * @return $this
+     *
+     * @return static
      */
-    public function includeAdult($include_adult)
+    public function includeAdult($include_adult): self
     {
         $this->set('include_adult', (bool) $include_adult);
 
@@ -44,9 +45,10 @@ class PersonSearchQuery extends SearchQuery
      * @deprecated
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function searchType($search_type = 'phrase')
+    public function searchType($search_type = 'phrase'): self
     {
         return $this;
     }

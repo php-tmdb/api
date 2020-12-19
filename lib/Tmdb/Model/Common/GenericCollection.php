@@ -302,8 +302,8 @@ class GenericCollection implements \ArrayAccess, \IteratorAggregate, \Countable
      *   return $a->getReleaseDate() < $b->getReleaseDate() ? 1 : -1;
      * });
      *
+     * @param \Closure $closure
      *
-     * @param  callable $closure
      * @return $this
      */
     public function sort(\Closure $closure)

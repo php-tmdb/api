@@ -26,12 +26,13 @@ class ListRepository extends AbstractRepository
     /**
      * Get a list by id.
      *
-     * @param  string $id
-     * @param  array  $parameters
-     * @param  array  $headers
-     * @return Lists
+     * @param string $id
+     * @param array  $parameters
+     * @param array  $headers
+     *
+     * @return \Tmdb\Model\Genre
      */
-    public function load($id, array $parameters = [], array $headers = [])
+    public function load($id, array $parameters = [], array $headers = []): \Tmdb\Model\Genre
     {
         return $this->getFactory()->create(
             $this->getApi()->getList($id, $parameters, $headers)
@@ -57,13 +58,14 @@ class ListRepository extends AbstractRepository
     /**
      * This method lets users create a new list. A valid session id is required.
      *
-     * @param  string $name
-     * @param  string $description
-     * @param  array  $parameters
-     * @param  array  $headers
-     * @return string The list id
+     * @param string $name
+     * @param string $description
+     * @param array  $parameters
+     * @param array  $headers
+     *
+     * @return Lists\ResultWithListId The list id
      */
-    public function createList($name, $description = null, array $parameters = [], array $headers = [])
+    public function createList($name, $description = null, array $parameters = [], array $headers = []): Lists\ResultWithListId
     {
         return $this->getFactory()->createResultWithListId(
             $this->getApi()->createList($name, $description, $parameters, $headers)
@@ -74,11 +76,12 @@ class ListRepository extends AbstractRepository
      * This method lets users add new movies to a list that they created.
      * A valid session id is required.
      *
-     * @param  string     $id
-     * @param  int        $mediaId
-     * @return ItemStatus
+     * @param string     $id
+     * @param int        $mediaId
+     *
+     * @return Lists\Result
      */
-    public function add($id, $mediaId)
+    public function add($id, $mediaId): Lists\Result
     {
         return $this->getFactory()->createResult(
             $this->getApi()->addMediaToList($id, $mediaId)
@@ -89,11 +92,12 @@ class ListRepository extends AbstractRepository
      * This method lets users delete movies from a list that they created.
      * A valid session id is required.
      *
-     * @param  string     $id
-     * @param  int        $mediaId
-     * @return ItemStatus
+     * @param string     $id
+     * @param int        $mediaId
+     *
+     * @return Lists\Result
      */
-    public function remove($id, $mediaId)
+    public function remove($id, $mediaId): Lists\Result
     {
         return $this->getFactory()->createResult(
             $this->getApi()->removeMediaFromList($id, $mediaId)
@@ -104,10 +108,11 @@ class ListRepository extends AbstractRepository
      * This method lets users delete a list that they created.
      * A valid session id is required.
      *
-     * @param  string     $id
-     * @return ItemStatus
+     * @param string     $id
+     *
+     * @return Lists\Result
      */
-    public function deleteList($id)
+    public function deleteList($id): Lists\Result
     {
         return $this->getFactory()->createResult(
             $this->getApi()->deleteList($id)
@@ -120,11 +125,12 @@ class ListRepository extends AbstractRepository
      * This is a irreversible action and should be treated with caution.
      * A valid session id is required.
      *
-     * @param  string     $id
-     * @param  boolean    $confirm
-     * @return ItemStatus
+     * @param string     $id
+     * @param boolean    $confirm
+     *
+     * @return Lists\Result
      */
-    public function clearList($id, $confirm)
+    public function clearList($id, $confirm): Lists\Result
     {
         return $this->getFactory()->createResult(
             $this->getApi()->clearList($id, (bool) $confirm)

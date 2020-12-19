@@ -25,11 +25,12 @@ class CreditsRepository extends AbstractRepository
      * Load a company with the given identifier
      *
      * @param $id
-     * @param  array   $parameters
-     * @param  array   $headers
-     * @return Company
+     * @param array   $parameters
+     * @param array   $headers
+     *
+     * @return \Tmdb\Model\Genre
      */
-    public function load($id, array $parameters = [], array $headers = [])
+    public function load($id, array $parameters = [], array $headers = []): \Tmdb\Model\Genre
     {
         $data = $this->getApi()->getCredit($id, $this->parseQueryParameters($parameters), $headers);
 

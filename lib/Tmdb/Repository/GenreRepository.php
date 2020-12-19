@@ -28,11 +28,12 @@ class GenreRepository extends AbstractRepository
      * Load a genre with the given identifier
      *
      * @param $id
-     * @param  array $parameters
-     * @param  array $headers
-     * @return Genre
+     * @param array $parameters
+     * @param array $headers
+     *
+     * @return GenericCollection
      */
-    public function load($id, array $parameters = [], array $headers = [])
+    public function load($id, array $parameters = [], array $headers = []): GenericCollection
     {
         return $this->loadCollection($parameters, $headers)->filterId($id);
     }
@@ -84,11 +85,12 @@ class GenreRepository extends AbstractRepository
      * By default, only movies with 10 or more votes are included.
      *
      * @param $id
-     * @param  array   $parameters
-     * @return Genre[]
-     * @param  array   $headers
+     * @param array   $parameters
+     * @param array   $headers
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getMovies($id, array $parameters = [], array $headers = [])
+    public function getMovies($id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         return $this->getMovieFactory()->createResultCollection($this->getApi()->getMovies($id, $parameters, $headers));
     }
@@ -123,9 +125,9 @@ class GenreRepository extends AbstractRepository
     }
 
     /**
-     * @return GenreFactory
+     * @return MovieFactory
      */
-    public function getMovieFactory()
+    public function getMovieFactory(): MovieFactory
     {
         return new MovieFactory($this->getClient()->getHttpClient());
     }

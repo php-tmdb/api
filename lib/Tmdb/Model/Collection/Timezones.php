@@ -52,8 +52,10 @@ class Timezones extends GenericCollection
      * Add a timezone to the collection
      *
      * @param CountryTimezone $country
+     *
+     * @return void
      */
-    public function addCountry($country)
+    public function addCountry($country): void
     {
         $this->data[] = $country;
     }

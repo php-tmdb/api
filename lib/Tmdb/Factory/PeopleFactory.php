@@ -118,8 +118,10 @@ class PeopleFactory extends AbstractFactory
      *
      * @param array  $data
      * @param Person $person
+     *
+     * @return void
      */
-    protected function applyCredits(array $data, Person $person)
+    protected function applyCredits(array $data, Person $person): void
     {
         $hydrator = new ObjectHydrator();
         $types    = ['movie_credits', 'tv_credits', 'combined_credits'];
@@ -159,6 +161,9 @@ class PeopleFactory extends AbstractFactory
         }
     }
 
+    /**
+     * @return \Tmdb\Model\Image|\Tmdb\Model\Image\BackdropImage|\Tmdb\Model\Image\LogoImage|\Tmdb\Model\Image\PosterImage|\Tmdb\Model\Image\ProfileImage|\Tmdb\Model\Image\StillImage
+     */
     protected function getPosterImageForCredit($posterPath)
     {
         return $this->getImageFactory()->createFromPath($posterPath, 'poster_path');

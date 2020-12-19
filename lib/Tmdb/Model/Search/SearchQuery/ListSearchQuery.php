@@ -24,9 +24,10 @@ class ListSearchQuery extends SearchQuery
      * Toggle the inclusion of adult titles. Expected value is: true or false
      *
      * @param bool
-     * @return $this
+     *
+     * @return static
      */
-    public function includeAdult($include_adult)
+    public function includeAdult($include_adult): self
     {
         $this->set('include_adult', (bool) $include_adult);
 

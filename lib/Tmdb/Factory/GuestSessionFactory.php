@@ -22,6 +22,8 @@ class GuestSessionFactory extends AbstractFactory
 {
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function create(array $data = [])
     {
@@ -29,6 +31,8 @@ class GuestSessionFactory extends AbstractFactory
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function createCollection(array $data = [])
     {

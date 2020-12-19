@@ -39,7 +39,7 @@ class SessionTokenPlugin implements EventSubscriberInterface
         return [TmdbEvents::BEFORE_REQUEST => 'onBeforeSend'];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         if ($this->token instanceof GuestSessionToken) {
             $event->getRequest()->getParameters()->set('guest_session_id', $this->token->getToken());

@@ -24,9 +24,10 @@ class CollectionSearchQuery extends SearchQuery
      * ISO 639-1 code.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function language($language)
+    public function language($language): self
     {
         $this->set('language', $language);
 

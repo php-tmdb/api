@@ -36,7 +36,7 @@ class LanguageFilterPlugin implements EventSubscriberInterface
         ];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         $event->getRequest()->getParameters()->set('language', $this->language);
     }

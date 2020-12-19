@@ -30,7 +30,7 @@ class UserAgentHeaderPlugin implements EventSubscriberInterface
         ];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         $event->getRequest()->getHeaders()->set(
             'User-Agent',

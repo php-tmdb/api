@@ -102,7 +102,7 @@ class Search extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function searchCompany($query, array $parameters = [], array $headers = [])
+    public function searchCompany(string $query, array $parameters = [], array $headers = [])
     {
         return $this->get('search/company', array_merge($parameters, [
             'query' => $query

@@ -40,7 +40,7 @@ class ApiTokenPlugin implements EventSubscriberInterface
         ];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         $event->getRequest()->getParameters()->set('api_key', $this->token->getToken());
     }

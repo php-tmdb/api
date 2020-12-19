@@ -138,11 +138,14 @@ class GuzzleAdapter extends AbstractAdapter
     /**
      * Create the request exception
      *
-     * @param  Request                          $request
-     * @param  RequestException|null            $previousException
+     * @param Request                          $request
+     * @param RequestException $previousException
+     *
      * @throws \Tmdb\Exception\TmdbApiException
+     *
+     * @return void
      */
-    protected function handleRequestException(Request $request, RequestException $previousException)
+    protected function handleRequestException(Request $request, RequestException $previousException): void
     {
         if (null !== $previousException) {
             $response = $previousException->getResponse();

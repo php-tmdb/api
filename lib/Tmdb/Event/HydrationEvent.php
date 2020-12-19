@@ -98,9 +98,9 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @return Request
+     * @return Request|null
      */
-    public function getLastRequest()
+    public function getLastRequest(): ?Request
     {
         return $this->lastRequest;
     }
@@ -117,9 +117,9 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @return Response
+     * @return Response|null
      */
-    public function getLastResponse()
+    public function getLastResponse(): ?Response
     {
         return $this->lastResponse;
     }

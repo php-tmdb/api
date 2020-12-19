@@ -35,9 +35,10 @@ class Videos extends GenericCollection
      * Retrieve a video from the collection
      *
      * @param $id
-     * @return null
+     *
+     * @return GenericCollection
      */
-    public function getVideo($id)
+    public function getVideo($id): GenericCollection
     {
         return $this->filterId($id);
     }
@@ -46,8 +47,10 @@ class Videos extends GenericCollection
      * Add a video to the collection
      *
      * @param Video $video
+     *
+     * @return void
      */
-    public function addVideo(Video $video)
+    public function addVideo(Video $video): void
     {
         $this->add(null, $video);
     }

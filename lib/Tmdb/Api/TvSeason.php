@@ -28,7 +28,7 @@ class TvSeason extends AbstractApi
      * @param  array $headers
      * @return mixed
      */
-    public function getSeason($tvshow_id, $season_number, array $parameters = [], array $headers = [])
+    public function getSeason(int $tvshow_id, int $season_number, array $parameters = [], array $headers = [])
     {
         return $this->get(sprintf('tv/%s/season/%s', $tvshow_id, $season_number), $parameters, $headers);
     }

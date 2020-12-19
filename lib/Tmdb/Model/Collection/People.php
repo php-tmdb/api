@@ -36,9 +36,10 @@ class People extends GenericCollection
      * Retrieve a person from the collection
      *
      * @param $id
-     * @return Person
+     *
+     * @return GenericCollection
      */
-    public function getPerson($id)
+    public function getPerson($id): GenericCollection
     {
         return $this->filterId($id);
     }
@@ -47,8 +48,10 @@ class People extends GenericCollection
      * Add a person to the collection
      *
      * @param PersonInterface $person
+     *
+     * @return void
      */
-    public function addPerson(PersonInterface $person)
+    public function addPerson(PersonInterface $person): void
     {
         $this->data[] = $person;
     }

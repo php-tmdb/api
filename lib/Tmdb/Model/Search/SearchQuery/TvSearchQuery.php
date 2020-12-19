@@ -24,9 +24,10 @@ class TvSearchQuery extends SearchQuery
      * ISO 639-1 code.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function language($language)
+    public function language($language): self
     {
         $this->set('language', $language);
 
@@ -37,9 +38,10 @@ class TvSearchQuery extends SearchQuery
      * Filter the results to only match shows that have a air date with with value.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function firstAirDateYear($year)
+    public function firstAirDateYear($year): self
     {
         if ($year instanceof \DateTime) {
             $year = $year->format('Y');
@@ -61,9 +63,10 @@ class TvSearchQuery extends SearchQuery
      * @deprecated
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function searchType($search_type = 'phrase')
+    public function searchType($search_type = 'phrase'): self
     {
         return $this;
     }

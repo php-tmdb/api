@@ -24,9 +24,12 @@ use Tmdb\Model\Job;
 class JobsRepository extends AbstractRepository
 {
     /**
-     * @param  array $parameters
-     * @param  array $headers
-     * @return Job
+     * @param array $parameters
+     * @param array $headers
+     *
+     * @return Job[]|Jobs
+     *
+     * @psalm-return Jobs|array<array-key, Job>
      */
     public function load(array $parameters = [], array $headers = [])
     {

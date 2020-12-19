@@ -24,9 +24,10 @@ class MovieSearchQuery extends SearchQuery
      * ISO 639-1 code.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function language($language)
+    public function language($language): self
     {
         $this->set('language', $language);
 
@@ -37,9 +38,10 @@ class MovieSearchQuery extends SearchQuery
      * Toggle the inclusion of adult titles. Expected value is: true or false
      *
      * @param bool
-     * @return $this
+     *
+     * @return static
      */
-    public function includeAdult($include_adult)
+    public function includeAdult($include_adult): self
     {
         $this->set('include_adult', (bool) $include_adult);
 
@@ -50,9 +52,10 @@ class MovieSearchQuery extends SearchQuery
      * Filter the results release dates to matches that include this value.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function year($year)
+    public function year($year): self
     {
         if ($year instanceof \DateTime) {
             $year = $year->format('Y');
@@ -67,9 +70,10 @@ class MovieSearchQuery extends SearchQuery
      * Filter the results so that only the primary release dates have this value.
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function primaryReleaseYear($primary_release_year)
+    public function primaryReleaseYear($primary_release_year): self
     {
         $this->set('primary_release_year', $primary_release_year);
 
@@ -87,9 +91,10 @@ class MovieSearchQuery extends SearchQuery
      * @deprecated
      *
      * @param string
-     * @return $this
+     *
+     * @return static
      */
-    public function searchType($search_type = 'phrase')
+    public function searchType($search_type = 'phrase'): self
     {
         return $this;
     }

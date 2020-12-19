@@ -66,25 +66,27 @@ class RequestEvent extends Event
     }
 
     /**
-     * @return ParameterBag
+     * @return string[][]
+     *
+     * @psalm-return array<array-key, array<array-key, string>>
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->request->getHeaders();
     }
 
     /**
-     * @return null
+     * @return \Psr\Http\Message\StreamInterface
      */
-    public function getBody()
+    public function getBody(): \Psr\Http\Message\StreamInterface
     {
         return $this->request->getBody();
     }
 
     /**
-     * @return Request
+     * @return RequestInterface
      */
-    public function getRequest()
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }
@@ -101,9 +103,9 @@ class RequestEvent extends Event
     }
 
     /**
-     * @return string
+     * @return ResponseInterface
      */
-    public function getResponse()
+    public function getResponse(): ResponseInterface
     {
         return $this->response;
     }

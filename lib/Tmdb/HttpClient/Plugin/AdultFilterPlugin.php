@@ -34,7 +34,7 @@ class AdultFilterPlugin implements EventSubscriberInterface
         return [TmdbEvents::BEFORE_REQUEST => 'onBeforeSend'];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         $event->getRequest()->getParameters()->set(
             'include_adult',

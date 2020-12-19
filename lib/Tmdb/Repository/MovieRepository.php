@@ -87,7 +87,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return GenericCollection
+     *
+     * @return GenericCollection|Movie\AlternativeTitle[]
+     *
+     * @psalm-return GenericCollection|array<array-key, Movie\AlternativeTitle>
      */
     public function getAlternativeTitles($id, array $parameters = [], array $headers = [])
     {
@@ -103,9 +106,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return \Tmdb\Model\Collection\CreditsCollection
      */
-    public function getCredits($id, array $parameters = [], array $headers = [])
+    public function getCredits($id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection\CreditsCollection
     {
         $data  = $this->getApi()->getCredits($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['credits' => $data]);
@@ -119,9 +123,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return \Tmdb\Model\Collection\Images
      */
-    public function getImages($id, array $parameters = [], array $headers = [])
+    public function getImages($id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection\Images
     {
         $data  = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['images' => $data]);
@@ -135,7 +140,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return GenericCollection|\Tmdb\Model\Keyword[]
+     *
+     * @psalm-return GenericCollection|array<array-key, \Tmdb\Model\Keyword>
      */
     public function getKeywords($id, array $parameters = [], array $headers = [])
     {
@@ -151,7 +159,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return GenericCollection|Movie\Release[]
+     *
+     * @psalm-return GenericCollection|array<array-key, Movie\Release>
      */
     public function getReleases($id, array $parameters = [], array $headers = [])
     {
@@ -167,9 +178,12 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return \Tmdb\Model\Common\Translation[]
+     *
+     * @psalm-return array<array-key, \Tmdb\Model\Common\Translation>
      */
-    public function getTranslations($id, array $parameters = [], array $headers = [])
+    public function getTranslations($id, array $parameters = [], array $headers = []): array
     {
         $data  = $this->getApi()->getTranslations($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['translations' => $data]);
@@ -198,7 +212,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return GenericCollection|Movie[]
+     *
+     * @psalm-return GenericCollection|array<array-key, Movie>
      */
     public function getSimilar($id, array $parameters = [], array $headers = [])
     {
@@ -214,7 +231,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return GenericCollection|Movie[]
+     *
+     * @psalm-return GenericCollection|array<array-key, Movie>
      */
     public function getRecommendations($id, array $parameters = [], array $headers = [])
     {
@@ -230,9 +250,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getReviews($id, array $parameters = [], array $headers = [])
+    public function getReviews($id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data  = $this->getApi()->getReviews($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['reviews' => $data]);
@@ -246,9 +267,10 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return GenericCollection
      */
-    public function getLists($id, array $parameters = [], array $headers = [])
+    public function getLists($id, array $parameters = [], array $headers = []): GenericCollection
     {
         $data  = $this->getApi()->getLists($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['lists' => $data]);
@@ -295,10 +317,11 @@ class MovieRepository extends AbstractRepository
      * Get the list of upcoming movies. This list refreshes every day.
      * The maximum number of items this list will include is 100.
      *
-     * @param  array   $options
-     * @return Movie[]
+     * @param array   $options
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getUpcoming(array $options = [])
+    public function getUpcoming(array $options = []): \Tmdb\Model\Collection\ResultCollection
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getUpcoming($options)
@@ -309,10 +332,11 @@ class MovieRepository extends AbstractRepository
      * Get the list of movies playing in theatres. This list refreshes every day.
      * The maximum number of items this list will include is 100.
      *
-     * @param  array   $options
-     * @return Movie[]
+     * @param array   $options
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getNowPlaying(array $options = [])
+    public function getNowPlaying(array $options = []): \Tmdb\Model\Collection\ResultCollection
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getNowPlaying($options)
@@ -323,10 +347,11 @@ class MovieRepository extends AbstractRepository
      * Get the list of popular movies on The Movie Database.
      * This list refreshes every day.
      *
-     * @param  array   $options
-     * @return Movie[]
+     * @param array   $options
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getPopular(array $options = [])
+    public function getPopular(array $options = []): \Tmdb\Model\Collection\ResultCollection
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getPopular($options)
@@ -339,10 +364,11 @@ class MovieRepository extends AbstractRepository
      * By default, this list will only include movies that have 10 or more votes.
      * This list refreshes every day.
      *
-     * @param  array   $options
-     * @return Movie[]
+     * @param array   $options
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getTopRated(array $options = [])
+    public function getTopRated(array $options = []): \Tmdb\Model\Collection\ResultCollection
     {
         return $this->getFactory()->createResultCollection(
             $this->getApi()->getTopRated($options)
@@ -353,10 +379,11 @@ class MovieRepository extends AbstractRepository
      * This method lets users get the status of whether or not the movie has been rated
      * or added to their favourite or watch lists. A valid session id is required.
      *
-     * @param  integer $id
-     * @return Movie[]
+     * @param integer $id
+     *
+     * @return \Tmdb\Model\AbstractModel
      */
-    public function getAccountStates($id)
+    public function getAccountStates($id): \Tmdb\Model\AbstractModel
     {
         return $this->getFactory()->createAccountStates(
             $this->getApi()->getAccountStates($id)
@@ -366,11 +393,12 @@ class MovieRepository extends AbstractRepository
     /**
      * This method lets users rate a movie. A valid session id or guest session id is required.
      *
-     * @param  integer $id
-     * @param  float   $rating
-     * @return Movie[]
+     * @param integer $id
+     * @param float   $rating
+     *
+     * @return \Tmdb\Model\AbstractModel
      */
-    public function rate($id, $rating)
+    public function rate($id, $rating): \Tmdb\Model\AbstractModel
     {
         return $this->getFactory()->createResult(
             $this->getApi()->rateMovie($id, $rating)

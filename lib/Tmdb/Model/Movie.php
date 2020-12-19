@@ -355,10 +355,9 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return mixed
      * @return GenericCollection
      */
-    public function getChanges()
+    public function getChanges(): GenericCollection
     {
         return $this->changes;
     }
@@ -960,9 +959,9 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return Translation[]
+     * @return GenericCollection
      */
-    public function getTranslations()
+    public function getTranslations(): GenericCollection
     {
         return $this->translations;
     }

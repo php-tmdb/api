@@ -34,10 +34,11 @@ class Job extends AbstractModel
     private $jobList;
 
     /**
-     * @param  string $department
-     * @return $this
+     * @param string $department
+     *
+     * @return void
      */
-    public function setDepartment($department)
+    public function setDepartment($department): void
     {
         $this->department = $department;
     }
@@ -51,10 +52,11 @@ class Job extends AbstractModel
     }
 
     /**
-     * @param  array $jobList
-     * @return $this
+     * @param array $jobList
+     *
+     * @return void
      */
-    public function setJobList(array $jobList)
+    public function setJobList(array $jobList): void
     {
         $this->jobList = $jobList;
     }

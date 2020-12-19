@@ -47,8 +47,10 @@ class Images extends GenericCollection
      * Add a image to the collection
      *
      * @param Image $image
+     *
+     * @return void
      */
-    public function addImage(Image $image)
+    public function addImage(Image $image): void
     {
         $this->add(null, $image);
     }

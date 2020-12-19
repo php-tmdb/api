@@ -132,7 +132,8 @@ class Request
     }
 
     /**
-     * @param  array|ParameterBag $parameters
+     * @param ParameterBag $parameters
+     *
      * @return $this
      */
     public function setParameters(ParameterBag $parameters)

@@ -29,7 +29,7 @@ class AcceptJsonHeaderPlugin implements EventSubscriberInterface
         ];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         $event->getRequest()->getHeaders()->set('Accept', 'application/json');
     }

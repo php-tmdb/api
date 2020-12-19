@@ -66,9 +66,10 @@ class CollectionRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     *
+     * @return ApiCollection\Images
      */
-    public function getImages($id, array $parameters = [], array $headers = [])
+    public function getImages($id, array $parameters = [], array $headers = []): ApiCollection\Images
     {
         $data  = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['images' => $data]);

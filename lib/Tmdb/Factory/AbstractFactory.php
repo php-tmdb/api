@@ -72,8 +72,10 @@ abstract class AbstractFactory
     /**
      * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
-     * @param  array             $data
+     * @param array             $data
      * @param $class
+     * @param \Tmdb\Model\Common\Country|\Tmdb\Model\Common\SpokenLanguage|\Tmdb\Model\Company|\Tmdb\Model\Movie\AlternativeTitle|\Tmdb\Model\Movie\Release|\Tmdb\Model\Tv\ContentRating $class
+     *
      * @return GenericCollection
      */
     protected function createGenericCollection($data = [], $class)

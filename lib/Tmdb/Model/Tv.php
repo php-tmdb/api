@@ -483,9 +483,9 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return GenericCollection
+     * @return array
      */
-    public function getLanguages()
+    public function getLanguages(): array
     {
         return $this->languages;
     }
@@ -544,7 +544,9 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return Network[]
+     * @return GenericCollection|Network[]
+     *
+     * @psalm-return GenericCollection|array<array-key, Network>
      */
     public function getNetworks()
     {
@@ -1075,7 +1077,7 @@ class Tv extends AbstractModel
         return $this;
     }
 
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }

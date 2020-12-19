@@ -93,8 +93,10 @@ class CreditsCollection
 
     /**
      * @param GuestStars $guestStars
+     *
+     * @return void
      */
-    public function setGuestStars($guestStars)
+    public function setGuestStars($guestStars): void
     {
         $this->guestStars = $guestStars;
     }

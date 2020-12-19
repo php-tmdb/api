@@ -42,9 +42,10 @@ class Authentication extends AbstractApi
      * Redirect the user to authenticate the request token
      *
      * @param string $token
+     *
+     * @return void
      */
-    //@codeCoverageIgnoreStart
-    public function authenticateRequestToken($token)
+    public function authenticateRequestToken($token): void
     {
         header(sprintf(
             'Location: %s/%s',

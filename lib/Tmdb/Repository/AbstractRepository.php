@@ -48,9 +48,9 @@ abstract class AbstractRepository
     }
 
     /**
-     * @return EventDispatcher
+     * @return \Tmdb\HttpClient\Adapter\AdapterInterface
      */
-    public function getEventDispatcher()
+    public function getEventDispatcher(): \Tmdb\HttpClient\Adapter\AdapterInterface
     {
         return $this->client->getEventDispatcher();
     }

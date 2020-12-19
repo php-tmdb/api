@@ -103,8 +103,10 @@ class Client
 
     /**
      * @param HttpClient $httpClient
+     *
+     * @return void
      */
-    public function setHttpClient(HttpClient $httpClient)
+    public function setHttpClient(HttpClient $httpClient): void
     {
         $this->httpClient = $httpClient;
     }
@@ -158,9 +160,9 @@ class Client
     /**
      * @param array $options
      *
-     * @return array
+     * @return void
      */
-    public function setOptions(array $options = [])
+    public function setOptions(array $options = []): void
     {
         $this->options = $this->configureOptions($options);
     }
@@ -186,8 +188,10 @@ class Client
 
     /**
      * Reconstruct the HTTP Client
+     *
+     * @return void
      */
-    protected function reconstructHttpClient()
+    protected function reconstructHttpClient(): void
     {
         if (null !== $this->getHttpClient()) {
             $this->constructHttpClient();
@@ -323,8 +327,10 @@ class Client
      * Post resolve
      *
      * @param array $options
+     *
+     * @return void
      */
-    protected function postResolve(array $options = [])
+    protected function postResolve(array $options = []): void
     {
         $this->options['base_url'] = sprintf(
             '%s://%s',

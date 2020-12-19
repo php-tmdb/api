@@ -78,8 +78,10 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * {@inheritdoc}
+     *
+     * @return \Tmdb\Model\AbstractModel|null
      */
-    public function create(array $data = [])
+    public function create(array $data = []): ?\Tmdb\Model\AbstractModel
     {
         if (!$data) {
             return null;

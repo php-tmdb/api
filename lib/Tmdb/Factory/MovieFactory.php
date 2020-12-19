@@ -97,10 +97,11 @@ class MovieFactory extends AbstractFactory
     }
 
     /**
-     * @param  array $data
-     * @return Movie
+     * @param array $data
+     *
+     * @return \Tmdb\Model\AbstractModel|null
      */
-    public function create(array $data = [])
+    public function create(array $data = []): ?\Tmdb\Model\AbstractModel
     {
         if (!$data) {
             return null;

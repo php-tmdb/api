@@ -26,8 +26,10 @@ abstract class HttpClientEventSubscriber implements EventSubscriberInterface
 
     /**
      * @param HttpClient $httpClient
+     *
+     * @return void
      */
-    public function attachHttpClient(HttpClient $httpClient)
+    public function attachHttpClient(HttpClient $httpClient): void
     {
         $this->httpClient = $httpClient;
     }

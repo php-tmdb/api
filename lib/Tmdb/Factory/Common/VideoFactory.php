@@ -24,8 +24,10 @@ class VideoFactory extends AbstractFactory
 {
     /**
      * {@inheritdoc}
+     *
+     * @return \Tmdb\Model\AbstractModel|null
      */
-    public function create(array $data = [])
+    public function create(array $data = []): ?\Tmdb\Model\AbstractModel
     {
         $videoType = $this->resolveVideoType($data);
 
@@ -54,7 +56,10 @@ class VideoFactory extends AbstractFactory
         return $collection;
     }
 
-    private function resolveVideoType($data)
+    /**
+     * @return Video|null
+     */
+    private function resolveVideoType(array $data)
     {
         if (array_key_exists('site', $data) && !empty($data['site'])) {
             $site = strtolower($data['site']);

@@ -91,48 +91,60 @@ class HttpClient
 
     /**
      * {@inheritDoc}
+     *
+     * @return string
      */
-    public function get($path, array $parameters = [], array $headers = [])
+    public function get(string $path, array $parameters = [], array $headers = []): string
     {
         return $this->send($path, 'GET', $parameters, $headers);
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @return string
      */
-    public function post($path, $body, array $parameters = [], array $headers = [])
+    public function post(string $path, $body, array $parameters = [], array $headers = []): string
     {
         return $this->send($path, 'POST', $parameters, $headers, $body);
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @return string
      */
-    public function head($path, array $parameters = [], array $headers = [])
+    public function head($path, array $parameters = [], array $headers = []): string
     {
         return $this->send($path, 'HEAD', $parameters, $headers);
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @return string
      */
-    public function put($path, $body = null, array $parameters = [], array $headers = [])
+    public function put($path, $body = null, array $parameters = [], array $headers = []): string
     {
         return $this->send($path, 'PUT', $parameters, $headers, $body);
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @return string
      */
-    public function patch($path, $body = null, array $parameters = [], array $headers = [])
+    public function patch($path, $body = null, array $parameters = [], array $headers = []): string
     {
         return $this->send($path, 'PATCH', $parameters, $headers, $body);
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @return string
      */
-    public function delete($path, $body = null, array $parameters = [], array $headers = [])
+    public function delete(string $path, $body = null, array $parameters = [], array $headers = []): string
     {
         return $this->send($path, 'DELETE', $parameters, $headers, $body);
     }
@@ -165,17 +177,17 @@ class HttpClient
     }
 
     /**
-     * @return \Psr\Http\Message\RequestInterface
+     * @return Request
      */
-    public function getLastRequest()
+    public function getLastRequest(): Request
     {
         return $this->lastRequest;
     }
 
     /**
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return Response
      */
-    public function getLastResponse()
+    public function getLastResponse(): Response
     {
         return $this->lastResponse;
     }
@@ -208,12 +220,15 @@ class HttpClient
      *
      * @param $path
      * @param $method
-     * @param  array  $parameters
-     * @param  array  $headers
-     * @param  null   $body
-     * @return string
+     * @param array  $parameters
+     * @param array  $headers
+     * @param null   $body
+     *
+     * @return array|string
+     *
+     * @psalm-return array<empty, empty>|string
      */
-    private function send($path, $method, array $parameters = [], array $headers = [], $body = null)
+    private function send($path, string $method, array $parameters = [], array $headers = [], $body = null)
     {
         $request = $this->createRequest(
             $path,
@@ -265,8 +280,10 @@ class HttpClient
      * Add a subscriber
      *
      * @param EventSubscriberInterface $subscriber
+     *
+     * @return void
      */
-    public function addSubscriber(EventSubscriberInterface $subscriber)
+    public function addSubscriber(EventSubscriberInterface $subscriber): void
     {
         if ($subscriber instanceof HttpClientEventSubscriber) {
             $subscriber->attachHttpClient($this);
@@ -279,8 +296,10 @@ class HttpClient
      * Remove a subscriber
      *
      * @param EventSubscriberInterface $subscriber
+     *
+     * @return void
      */
-    public function removeSubscriber(EventSubscriberInterface $subscriber)
+    public function removeSubscriber(EventSubscriberInterface $subscriber): void
     {
         if ($subscriber instanceof HttpClientEventSubscriber) {
             $subscriber->attachHttpClient($this);
@@ -301,8 +320,10 @@ class HttpClient
      * Add an subscriber to append the session_token to the query parameters.
      *
      * @param SessionToken $sessionToken
+     *
+     * @return void
      */
-    public function setSessionToken(SessionToken $sessionToken)
+    public function setSessionToken(SessionToken $sessionToken): void
     {
         $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
         $this->addSubscriber($sessionTokenPlugin);
@@ -367,7 +388,7 @@ class HttpClient
         return $this;
     }
 
-    public function isDefaultAdapter()
+    public function isDefaultAdapter(): bool
     {
         if (!class_exists('GuzzleHttp\Client')) {
             return false;
@@ -376,7 +397,7 @@ class HttpClient
         return ($this->getAdapter() instanceof GuzzleAdapter);
     }
 
-    protected function processOptions()
+    protected function processOptions(): void
     {
         if ($sessionToken = $this->options['session_token']) {
             $this->setSessionToken($sessionToken);
@@ -395,7 +416,7 @@ class HttpClient
         }
     }
 
-    protected function setupCache(array $cache)
+    protected function setupCache(array $cache): void
     {
         if ($this->isDefaultAdapter()) {
 //            $this->setDefaultCaching($cache);
@@ -405,7 +426,7 @@ class HttpClient
         }
     }
 
-    protected function setupLog(array $log)
+    protected function setupLog(array $log): void
     {
         if ($this->isDefaultAdapter()) {
             $this->setDefaultLogging($log);

@@ -54,11 +54,12 @@ class ChangesRepository extends AbstractRepository
      * Please note that the change log system to support this was changed on October 5, 2012
      * and will only show people that have been edited since.
      *
-     * @param  ChangesQuery $query
-     * @param  array        $headers
-     * @return People
+     * @param ChangesQuery $query
+     * @param array        $headers
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function getPeopleChanges(ChangesQuery $query, array $headers = [])
+    public function getPeopleChanges(ChangesQuery $query, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->getPersonChanges($query->toArray(), $headers);
 

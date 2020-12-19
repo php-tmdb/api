@@ -112,9 +112,9 @@ class TvFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return Tv
+     * @return \Tmdb\Model\AbstractModel|null
      */
-    public function create(array $data = [])
+    public function create(array $data = []): ?\Tmdb\Model\AbstractModel
     {
         if (!$data) {
             return null;
@@ -344,10 +344,11 @@ class TvFactory extends AbstractFactory
     }
 
     /**
-     * @param  \Tmdb\Factory\ContentRatingFactory $contentRatingFactory
-     * @return $this
+     * @param \Tmdb\Factory\ContentRatingFactory $contentRatingFactory
+     *
+     * @return void
      */
-    public function setContentRatingsFactory($contentRatingsFactory)
+    public function setContentRatingsFactory($contentRatingsFactory): void
     {
         $this->contentRatingsFactory = $contentRatingsFactory;
     }

@@ -563,8 +563,10 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param int $gender
+     *
+     * @return void
      */
-    public function setGender($gender)
+    public function setGender($gender): void
     {
         $this->gender = (int) $gender;
     }
@@ -579,8 +581,10 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param float $popularity
+     *
+     * @return void
      */
-    public function setPopularity($popularity)
+    public function setPopularity($popularity): void
     {
         $this->popularity = $popularity;
     }

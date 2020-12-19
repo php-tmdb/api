@@ -161,8 +161,10 @@ class DiscoverMoviesQuery extends QueryParametersCollection
 
     /**
      * @deprecated
+     *
+     * @return static
      */
-    public function primaryReleaseYearGte($year)
+    public function primaryReleaseYearGte($year): self
     {
         return $this->primaryReleaseDateGte($year);
     }
@@ -184,8 +186,10 @@ class DiscoverMoviesQuery extends QueryParametersCollection
 
     /**
      * @deprecated
+     *
+     * @return static
      */
-    public function primaryReleaseYearLte($year)
+    public function primaryReleaseYearLte($year): self
     {
         return $this->primaryReleaseDateLte($year);
     }
@@ -437,11 +441,12 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Format the with compatible parameters.
      *
-     * @param  array|string $with
-     * @param  int          $mode
-     * @return string
+     * @param array|string $with
+     * @param int          $mode
+     *
+     * @return null|string
      */
-    protected function with($with = null, $mode = self::MODE_OR)
+    protected function with($with = null, $mode = self::MODE_OR): ?string
     {
         if ($with instanceof GenericCollection) {
             $with = $with->toArray();
@@ -487,9 +492,10 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * @param  \DateTime|string|integer $year
-     * @param  string                   $format
-     * @return int
+     * @param \DateTime|string|integer $year
+     * @param string                   $format
+     *
+     * @return false|string
      */
     protected function getDate($year, $format = 'Y-m-d')
     {

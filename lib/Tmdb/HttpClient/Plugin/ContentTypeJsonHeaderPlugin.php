@@ -29,7 +29,7 @@ class ContentTypeJsonHeaderPlugin implements EventSubscriberInterface
         ];
     }
 
-    public function onBeforeSend(RequestEvent $event)
+    public function onBeforeSend(RequestEvent $event): void
     {
         $method = $event->getRequest()->getMethod();
 

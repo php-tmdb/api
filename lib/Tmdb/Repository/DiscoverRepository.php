@@ -30,12 +30,14 @@ class DiscoverRepository extends AbstractRepository
      * Discover movies by different types of data like average rating,
      * number of votes, genres and certifications.
      *
-     * @param  DiscoverMoviesQuery $query
-     * @param  array               $headers
+     * @param DiscoverMoviesQuery $query
+     * @param array               $headers
+     *
      * @throws RuntimeException    when certification_country is set but certification.lte is not given
-     * @return Movie[]
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function discoverMovies(DiscoverMoviesQuery $query, array $headers = [])
+    public function discoverMovies(DiscoverMoviesQuery $query, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $query = $query->toArray();
 
@@ -54,11 +56,12 @@ class DiscoverRepository extends AbstractRepository
      * Discover TV shows by different types of data like average rating,
      * number of votes, genres, the network they aired on and air dates.
      *
-     * @param  DiscoverTvQuery $query
-     * @param  array           $headers
-     * @return Tv[]
+     * @param DiscoverTvQuery $query
+     * @param array           $headers
+     *
+     * @return \Tmdb\Model\Collection\ResultCollection
      */
-    public function discoverTv(DiscoverTvQuery $query, array $headers = [])
+    public function discoverTv(DiscoverTvQuery $query, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->discoverTv($query->toArray(), $headers);
 
