@@ -158,7 +158,6 @@ class TvEpisodeFactory extends AbstractFactory
 
         /** Translations */
         if (array_key_exists('translations', $data) && null !== $data['translations']) {
-
             if (array_key_exists('translations', $data['translations'])) {
                 $translations = $data['translations']['translations'];
             } else {
