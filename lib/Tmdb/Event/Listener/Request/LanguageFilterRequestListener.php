@@ -12,25 +12,35 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\HttpClient\Plugin;
+namespace Tmdb\Event\Listener\Request;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\TmdbEvents;
+use Tmdb\Helper\RequestQueryHelper;
 
 /**
  * Class LanguageFilterPlugin
  * @package Tmdb\HttpClient\Plugin
  */
-class LanguageFilterPlugin implements EventSubscriberInterface
+class Languafe implements EventSubscriberInterface
 {
+    /**
+     * @var string
+     */
     private $language;
 
+    /**
+     * @var RequestQueryHelper
+     */
+    private $requestQueryHelper;
+
+    /**
     public function __construct($language = 'en')
     {
         $this->language = $language;
+        $this->requestQueryHelper = new RequestQueryHelper();
     }
-
     public static function getSubscribedEvents()
     {
         return [
@@ -41,5 +51,15 @@ class LanguageFilterPlugin implements EventSubscriberInterface
     public function onBeforeSend(RequestEvent $event): void
     {
         $event->getRequest()->getParameters()->set('language', $this->language);
+    }
+
+    /**
+     * Add the API token to the headers.
+     *
+     * @param RequestEvent $event
+     */
+    public function __invoke(RequestEvent $event): void
+    {
+        $event->getRequest()->withHeader('Authorization', sprintf('Bearer %s', (string)$this->token));
     }
 }

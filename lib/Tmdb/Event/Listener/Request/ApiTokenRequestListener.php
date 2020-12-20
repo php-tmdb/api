@@ -15,32 +15,28 @@
 namespace Tmdb\HttpClient\Plugin;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Tmdb\ApiToken;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\TmdbEvents;
 
 /**
- * Class AdultFilterPlugin
+ * Class ApiTokenPlugin
  * @package Tmdb\HttpClient\Plugin
  */
-class AdultFilterPlugin implements EventSubscriberInterface
+class ApiTokenRequestListener
 {
-    private $includeAdult;
+    /**
+     * @var ApiToken
+     */
+    private $token;
 
-    public function __construct($includeAdult = false)
+    public function __construct(ApiToken $token)
     {
-        $this->includeAdult = $includeAdult;
+        $this->token = $token;
     }
 
-    public static function getSubscribedEvents()
+    public function __invoke(RequestEvent $event): void
     {
-        return [TmdbEvents::BEFORE_REQUEST => 'onBeforeSend'];
-    }
-
-    public function onBeforeSend(RequestEvent $event): void
-    {
-        $event->getRequest()->getParameters()->set(
-            'include_adult',
-            $this->includeAdult === true ? 'true' : 'false'
-        );
+        $event->getRequest()->withHeader('Authorization', sprintf('Bearer %s', $this->token->getToken()));
     }
 }

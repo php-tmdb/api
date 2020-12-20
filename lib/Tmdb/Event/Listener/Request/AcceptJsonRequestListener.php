@@ -19,10 +19,10 @@ use Tmdb\Event\RequestEvent;
 use Tmdb\Event\TmdbEvents;
 
 /**
- * Class ContentTypeJsonHeaderPlugin
+ * Class AcceptJsonHeaderPlugin
  * @package Tmdb\HttpClient\Plugin
  */
-class ContentTypeJsonHeaderPlugin implements EventSubscriberInterface
+class AcceptJsonHeaderPlugin implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
@@ -33,15 +33,6 @@ class ContentTypeJsonHeaderPlugin implements EventSubscriberInterface
 
     public function onBeforeSend(RequestEvent $event): void
     {
-        $method = $event->getRequest()->getMethod();
-
-        if (
-            $method == 'POST' ||
-            $method == 'PUT' ||
-            $method == 'PATCH' ||
-            $method == 'DELETE'
-        ) {
-            $event->getRequest()->getHeaders()->set('Content-Type', 'application/json');
-        }
+        $event->getRequest()->withHeader('Accept', 'application/json');
     }
 }
