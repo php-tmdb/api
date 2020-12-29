@@ -14,6 +14,7 @@ namespace Tmdb\Factory;
 
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Collection;
+use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
@@ -74,6 +75,19 @@ class CollectionFactory extends AbstractFactory
         if (array_key_exists('poster_path', $data)) {
             $collection->setPosterImage(
                 $this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path')
+            );
+        }
+
+        /** Translations */
+        if (array_key_exists('translations', $data) && null !== $data['translations']) {
+            if (array_key_exists('translations', $data['translations'])) {
+                $translations = $data['translations']['translations'];
+            } else {
+                $translations = $data['translations'];
+            }
+
+            $collection->setTranslations(
+                $this->createGenericCollection($translations, new Translation())
             );
         }
 

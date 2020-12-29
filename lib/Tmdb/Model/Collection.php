@@ -44,6 +44,11 @@ class Collection extends AbstractModel
     private $images;
 
     /**
+     * @var GenericCollection
+     */
+    private $translations;
+
+    /**
      * @var string
      */
     private $name;
@@ -78,8 +83,9 @@ class Collection extends AbstractModel
 
     public function __construct()
     {
-        $this->parts  = new GenericCollection();
-        $this->images = new Images();
+        $this->parts        = new GenericCollection();
+        $this->images       = new Images();
+        $this->translations = new GenericCollection();
     }
 
     /**
@@ -156,6 +162,24 @@ class Collection extends AbstractModel
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @param  GenericCollection $translations
+     * @return $this
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+         return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 
     /**
