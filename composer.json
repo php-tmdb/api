@@ -38,7 +38,7 @@
         "psr/event-dispatcher": "^1.0",
         "psr/event-dispatcher-implementation": "^1.0",
         "psr/log": "^1.0",
-        "php-http/discovery": "^1.0",
+        "php-http/discovery": "^1.11",
         "psr/http-client": "^1.0",
         "psr/http-client-implementation": "^1.0",
         "psr/http-factory": "^1.0",
