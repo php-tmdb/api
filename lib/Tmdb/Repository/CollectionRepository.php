@@ -54,6 +54,7 @@ class CollectionRepository extends AbstractRepository
             $parameters = [
                 new AppendToResponse([
                     AppendToResponse::IMAGES,
+                    AppendToResponse::TRANSLATIONS,
                 ])
             ];
         }
@@ -96,6 +97,21 @@ class CollectionRepository extends AbstractRepository
         $movie = $this->getFactory()->create(['images' => $data]);
 
         return $movie->getImages();
+    }
+
+    /**
+     * Get the list of translations that exist for a particular collection by collection id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getTranslations($id, array $parameters = [], array $headers = [])
+    {
+        $data = $this->getApi()->getTranslations($id, $this->parseQueryParameters($parameters), $headers);
+
+        return $this->getFactory()->create(['translations' => $data]);
     }
 
     /**

@@ -52,4 +52,18 @@ class Collections extends AbstractApi
     {
         return $this->get('collection/' . $collection_id . '/images', $parameters, $headers);
     }
+
+    /**
+     * Get the list of translations that exist for a TV episode.
+     *
+     * @param $collection_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getTranslations($collection_id, array $parameters = [], array $headers = [])
+    {
+        return $this->get('collection/' . $collection_id . '/translations', $parameters, $headers);
+    }
+
 }
