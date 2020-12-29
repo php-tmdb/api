@@ -1,3 +1,4 @@
+# Disable for time being
 name: Static Analysis
 
 on:

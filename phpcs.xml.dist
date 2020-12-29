@@ -7,7 +7,6 @@
     <arg name="colors"/>
     <arg value="nps"/>
 
-    <file>.</file>
-    <exclude-pattern>vendor/*</exclude-pattern>
+    <file>./lib</file>
     <rule ref="PSR12"/>
 </ruleset>
