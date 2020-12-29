@@ -14,3 +14,5 @@
 /cache.properties
 /tmdb.log
 .phpcs-cache
+.phpunit.result.cache
+.phpcs-cache

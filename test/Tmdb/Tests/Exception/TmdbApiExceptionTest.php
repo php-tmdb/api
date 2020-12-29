@@ -14,9 +14,10 @@
 
 namespace Tmdb\Tests\Exception;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Tmdb\Exception\TmdbApiException;
-use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\ResponseInterface;
 
 class TmdbApiExceptionTest extends \PHPUnit\Framework\TestCase
 {
@@ -25,17 +26,24 @@ class TmdbApiExceptionTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstruct()
     {
-        $exception = new TmdbApiException(1, 'code', new Request(), new ResponseInterface());
+        $factory = new Psr17Factory();
+        $request = $factory->createRequest('GET', 'http://www.test.com');
+        $response = $factory->createResponse(500, 'uh-oh');
+
+        $exception = new TmdbApiException(1, 'code', $request, $response);
 
         $this->assertEquals(1, $exception->getCode());
         $this->assertEquals('code', $exception->getMessage());
-        $this->assertEquals(new Request(), $exception->getRequest());
-        $this->assertEquals(new ResponseInterface(), $exception->getResponse());
+        $this->assertInstanceOf(RequestInterface::class, $exception->getRequest());
+        $this->assertInstanceOf(ResponseInterface::class, $exception->getResponse());
 
-        $exception->setRequest(new Request('/bla'));
-        $exception->setResponse(new ResponseInterface(404));
+        $request = $factory->createRequest('GET', 'http://www.testing.com/foo/bar');
+        $response = $factory->createResponse(418, 'I\'m a teapot');
 
-        $this->assertEquals('/bla', $exception->getRequest()->getPath());
-        $this->assertEquals(404, $exception->getResponse()->getCode());
+        $exception->setRequest($request);
+        $exception->setResponse($response);
+
+        $this->assertEquals('/foo/bar', $exception->getRequest()->getUri()->getPath());
+        $this->assertEquals(418, $exception->getResponse()->getStatusCode());
     }
 }

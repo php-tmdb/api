@@ -15,8 +15,8 @@
 namespace Tmdb\Exception;
 
 use Exception;
-use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class TmdbApiException
@@ -60,7 +60,7 @@ class TmdbApiException extends Exception
     public const STATUS_RESOURCE_NOT_FOUND = 34;
 
     /**
-     * @var Request
+     * @var RequestInterface
      */
     protected $request;
 
@@ -74,12 +74,17 @@ class TmdbApiException extends Exception
      *
      * @param int $code
      * @param string $message
-     * @param Request|null $request
+     * @param RequestInterface|null $request
      * @param ResponseInterface|null $response
      * @param Exception|null $previous
      */
-    public function __construct($code, $message, $request = null, $response = null, Exception $previous = null)
-    {
+    public function __construct(
+        int $code,
+        string $message,
+        RequestInterface $request = null,
+        ResponseInterface $response = null,
+        Exception $previous = null
+    ) {
         parent::__construct($message, $code, $previous);
 
         $this->request = $request;
@@ -87,7 +92,7 @@ class TmdbApiException extends Exception
     }
 
     /**
-     * @return Request
+     * @return RequestInterface
      */
     public function getRequest()
     {
@@ -95,10 +100,10 @@ class TmdbApiException extends Exception
     }
 
     /**
-     * @param Request $request
+     * @param RequestInterface $request
      * @return $this
      */
-    public function setRequest($request)
+    public function setRequest(RequestInterface $request): TmdbApiException
     {
         $this->request = $request;
 
@@ -117,7 +122,7 @@ class TmdbApiException extends Exception
      * @param ResponseInterface $response
      * @return $this
      */
-    public function setResponse($response)
+    public function setResponse(ResponseInterface $response): TmdbApiException
     {
         $this->response = $response;
 
