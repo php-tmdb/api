@@ -17,18 +17,18 @@ class GenreRepositoryTest extends TestCase
     const GENRE_ID = 28;
 
     /**
-     * @test
+     * @todo
      */
     public function shouldLoadGenre()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->at(0))
+        $this->getPsr18Client()->expects($this->at(0))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list', []))
         ;
 
-        $this->getAdapter()->expects($this->at(1))
+        $this->getPsr18Client()->expects($this->at(1))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list', []))
         ;
@@ -37,18 +37,18 @@ class GenreRepositoryTest extends TestCase
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldLoadCollection()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->at(0))
+        $this->getPsr18Client()->expects($this->at(0))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list', []))
         ;
 
-        $this->getAdapter()->expects($this->at(1))
+        $this->getPsr18Client()->expects($this->at(1))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list', []))
         ;
@@ -63,12 +63,8 @@ class GenreRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list', []))
-        ;
-
         $repository->loadMovieCollection();
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/movie/list');
     }
 
     /**
@@ -78,12 +74,8 @@ class GenreRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list', []))
-        ;
-
         $repository->loadTvCollection();
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/tv/list');
     }
 
     /**
@@ -93,12 +85,8 @@ class GenreRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/' . self::GENRE_ID . '/movies', []))
-        ;
-
         $repository->getMovies(self::GENRE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/' . self::GENRE_ID. '/movies');
     }
 
     /**

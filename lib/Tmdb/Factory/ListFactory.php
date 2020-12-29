@@ -96,7 +96,7 @@ class ListFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return Genre
+     * @return Lists
      */
     public function create(array $data = [])
     {

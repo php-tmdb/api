@@ -98,6 +98,17 @@ class TvEpisodeTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetEpisodeTranslations()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $api->getTranslations(self::TV_ID, self::SEASON_ID, self::EPISODE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/episode/' . self::EPISODE_ID . '/translations');
+    }
+
+    /**
+     * @test
+     */
     public function shouldRateTvEpisode()
     {
         $api = $this->getApiWithMockedHttpAdapter();

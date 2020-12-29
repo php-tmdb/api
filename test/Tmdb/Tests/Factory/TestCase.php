@@ -24,14 +24,14 @@ abstract class TestCase extends Base
      */
     private $client;
 
+    protected $factory;
+
     public function __construct()
     {
         $this->client = new Client(new ApiToken('abcdef'), [
             'event_dispatcher' => ['adapter' => new EventDispatcher()]
         ]);
     }
-
-    protected $factory;
 
     protected function getFactory()
     {

@@ -13,13 +13,10 @@
 namespace Tmdb\Tests\Api;
 
 use Psr\Http\Client\ClientInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Tests\TestCase as Base;
-
-use function _HumbugBox39a196d4601e\RingCentral\Psr7\parse_query;
 
 abstract class TestCase extends Base
 {

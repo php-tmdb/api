@@ -23,30 +23,20 @@ class PeopleRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/person/' . self::PERSON_ID,
-                ['append_to_response' => 'images,changes,combined_credits,movie_credits,tv_credits,external_ids,tagged_images']
-            ))
-        ;
-
         $repository->load(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID);
+        $this->assertRequestHasQueryParameters(['append_to_response' => 'images,changes,combined_credits,movie_credits,tv_credits,external_ids,tagged_images']);
     }
 
     /**
      * @test
      */
-    public function souldGetMovieCredits()
+    public function shouldGetMovieCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/movie_credits'))
-        ;
-
         $repository->getMovieCredits(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/movie_credits');
     }
 
     /**
@@ -56,12 +46,8 @@ class PeopleRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/external_ids'))
-        ;
-
         $repository->getExternalIds(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/external_ids');
     }
 
     /**
@@ -71,12 +57,8 @@ class PeopleRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/images'))
-        ;
-
         $repository->getImages(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/images');
     }
 
     /**
@@ -86,12 +68,8 @@ class PeopleRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/changes'))
-        ;
-
         $repository->getChanges(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/changes');
     }
 
     /**
@@ -101,12 +79,8 @@ class PeopleRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/tagged_images'))
-        ;
-
         $repository->getTaggedImages(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/tagged_images');
     }
 
     /**
@@ -116,12 +90,8 @@ class PeopleRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/popular'))
-        ;
-
         $repository->getPopular();
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/popular');
     }
 
     /**
@@ -131,12 +101,8 @@ class PeopleRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/latest'))
-        ;
-
         $repository->getLatest();
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/latest');
     }
 
     /**
@@ -146,27 +112,19 @@ class PeopleRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/tv_credits'))
-        ;
-
         $repository->getTvCredits(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/tv_credits');
     }
 
     /**
      * @test
      */
-    public function souldGetCombinedCredits()
+    public function shouldGetCombinedCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/combined_credits'))
-        ;
-
         $repository->getCombinedCredits(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/combined_credits');
     }
 
     protected function getApiClass()

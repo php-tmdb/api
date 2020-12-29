@@ -73,7 +73,13 @@ abstract class AbstractApi implements ApiInterface
      */
     private function decodeResponse(ResponseInterface $response)
     {
-        return json_decode((string)$response->getBody(), true);
+        $responseData = json_decode((string)$response->getBody(), true);
+
+        if (!$responseData) {
+            return [];
+        }
+
+        return $responseData;
     }
 
     /**

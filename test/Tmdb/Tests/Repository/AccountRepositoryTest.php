@@ -21,7 +21,7 @@ class AccountRepositoryTest extends TestCase
 {
     const ACCOUNT_ID = '12345';
     const LIST_ID  = '509ec17b19c2950a0600050d';
-    const MOVIE_ID = 150;
+    const MEDIA_ID = 150;
 
     /**
      * @test
@@ -30,12 +30,8 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account'))
-        ;
-
         $repository->getAccount();
+        $this->assertLastRequestIsWithPathAndMethod('/3/account');
     }
 
     /**
@@ -45,12 +41,8 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/lists'))
-        ;
-
         $repository->getLists(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/lists');
     }
 
     /**
@@ -60,12 +52,8 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite/movies'))
-        ;
-
         $repository->getFavoriteMovies(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/favorite/movies');
     }
 
     /**
@@ -75,12 +63,8 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite/tv'))
-        ;
-
         $repository->getFavoriteTvShows(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/favorite/tv');
     }
 
     /**
@@ -90,12 +74,8 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist/movies'))
-        ;
-
         $repository->getMovieWatchlist(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/watchlist/movies');
     }
 
     /**
@@ -105,12 +85,8 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist/tv'))
-        ;
-
         $repository->getTvWatchlist(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/watchlist/tv');
     }
 
     /**
@@ -120,12 +96,8 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/rated/tv'))
-        ;
-
         $repository->getRatedTvShows(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/rated/tv');
     }
 
     /**
@@ -135,18 +107,15 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite',
-                [],
-                'POST',
-                [],
-                ['media_id' => self::MOVIE_ID, 'media_type' => 'movie', 'favorite' => true]
-            ))
-        ;
-
-        $repository->favorite(self::ACCOUNT_ID, self::MOVIE_ID, true);
+        $repository->favorite(self::ACCOUNT_ID, self::MEDIA_ID, true);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/favorite', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MEDIA_ID,
+                'media_type' => 'movie',
+                'favorite' => true
+            ]
+        );
     }
 
     /**
@@ -156,21 +125,18 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite',
-                [],
-                'POST',
-                [],
-                ['media_id' => self::MOVIE_ID, 'media_type' => 'movie', 'favorite' => true]
-            ))
-        ;
-
         $movie = new Movie();
-        $movie->setId(self::MOVIE_ID);
+        $movie->setId(self::MEDIA_ID);
 
         $repository->favorite(self::ACCOUNT_ID, $movie, true);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/favorite', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MEDIA_ID,
+                'media_type' => 'movie',
+                'favorite' => true
+            ]
+        );
     }
 
     /**
@@ -180,21 +146,18 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite',
-                [],
-                'POST',
-                [],
-                ['media_id' => self::MOVIE_ID, 'media_type' => 'tv', 'favorite' => true]
-            ))
-        ;
-
         $tv = new Tv();
-        $tv->setId(self::MOVIE_ID);
+        $tv->setId(self::MEDIA_ID);
 
         $repository->favorite(self::ACCOUNT_ID, $tv, true);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/favorite', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MEDIA_ID,
+                'media_type' => 'tv',
+                'favorite' => true
+            ]
+        );
     }
 
     /**
@@ -204,12 +167,8 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/rated/movies'))
-        ;
-
         $repository->getRatedMovies(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/rated/movies');
     }
 
     /**
@@ -219,18 +178,15 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist',
-                [],
-                'POST',
-                [],
-                ['media_id' => self::MOVIE_ID, 'media_type' => 'movie', 'watchlist' => true]
-            ))
-        ;
-
-        $repository->watchlist(self::ACCOUNT_ID, self::MOVIE_ID, true);
+        $repository->watchlist(self::ACCOUNT_ID, self::MEDIA_ID, true);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/watchlist', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MEDIA_ID,
+                'media_type' => 'movie',
+                'watchlist' => true
+            ]
+        );
     }
 
     /**
@@ -240,21 +196,18 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist',
-                [],
-                'POST',
-                [],
-                ['media_id' => self::MOVIE_ID, 'media_type' => 'movie', 'watchlist' => true]
-            ))
-        ;
-
         $movie = new Movie();
-        $movie->setId(self::MOVIE_ID);
+        $movie->setId(self::MEDIA_ID);
 
         $repository->watchlist(self::ACCOUNT_ID, $movie, true);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/watchlist', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MEDIA_ID,
+                'media_type' => 'movie',
+                'watchlist' => true
+            ]
+        );
     }
 
     /**
@@ -264,21 +217,18 @@ class AccountRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist',
-                [],
-                'POST',
-                [],
-                ['media_id' => self::MOVIE_ID, 'media_type' => 'tv', 'watchlist' => true]
-            ))
-        ;
-
         $tv = new Tv();
-        $tv->setId(self::MOVIE_ID);
+        $tv->setId(self::MEDIA_ID);
 
         $repository->watchlist(self::ACCOUNT_ID, $tv, true);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/watchlist', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MEDIA_ID,
+                'media_type' => 'tv',
+                'watchlist' => true
+            ]
+        );
     }
 
     /**

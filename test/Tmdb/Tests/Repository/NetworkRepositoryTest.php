@@ -23,12 +23,8 @@ class NetworkRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/network/' . self::NETWORK_ID))
-        ;
-
         $repository->load(self::NETWORK_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/network/' . self::NETWORK_ID);
     }
 
     protected function getApiClass()

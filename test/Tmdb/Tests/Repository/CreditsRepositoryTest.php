@@ -14,7 +14,7 @@ namespace Tmdb\Tests\Repository;
 
 class CreditsRepositoryTest extends TestCase
 {
-    const CREDITS_ID = '5240760b5dbf5b0c2c0139db';
+    const CREDIT_ID = '5240760b5dbf5b0c2c0139db';
 
     /**
      * @test
@@ -23,12 +23,8 @@ class CreditsRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/credit/' . self::CREDITS_ID, []))
-        ;
-
-        $repository->load(self::CREDITS_ID);
+        $repository->load(self::CREDIT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/credit/' . self::CREDIT_ID);
     }
 
     protected function getApiClass()

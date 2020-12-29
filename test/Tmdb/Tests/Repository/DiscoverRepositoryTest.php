@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests\Repository;
 
+use Tmdb\Exception\NotImplementedException;
+use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
 
@@ -25,22 +27,19 @@ class DiscoverRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/discover/movie', []))
-        ;
-
         $query = new DiscoverMoviesQuery();
 
         $repository->discoverMovies($query);
+        $this->assertLastRequestIsWithPathAndMethod('/3/discover/movie');
     }
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\RuntimeException
+     *
      */
     public function shouldThrowExceptionWhenCertificationCountryIssetButCertificationLteIsNot()
     {
+        $this->expectException(RuntimeException::class);
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $query = new DiscoverMoviesQuery();
@@ -51,10 +50,10 @@ class DiscoverRepositoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldThrowExceptionForGetFactory()
     {
+        $this->expectException(NotImplementedException::class);
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $repository->getFactory();
@@ -67,14 +66,10 @@ class DiscoverRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/discover/tv', []))
-        ;
-
         $query = new DiscoverTvQuery();
 
         $repository->discoverTv($query);
+        $this->assertLastRequestIsWithPathAndMethod('/3/discover/tv');
     }
 
     protected function getApiClass()

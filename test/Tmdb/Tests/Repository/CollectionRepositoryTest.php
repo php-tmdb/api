@@ -25,12 +25,11 @@ class CollectionRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID,['append_to_response'=>'images,translations']))
-        ;
-
         $repository->load(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID);
+        $this->assertRequestHasQueryParameters([
+            'append_to_response' => 'images,translations'
+                                               ]);
     }
 
     /**
@@ -40,12 +39,8 @@ class CollectionRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID.'/images'))
-        ;
-
         $repository->getImages(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID . '/images');
     }
 
     /**
@@ -55,12 +50,8 @@ class CollectionRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID.'/translations'))
-        ;
-
         $repository->getTranslations(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID . '/translations');
     }
 
     /**

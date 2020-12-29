@@ -58,7 +58,7 @@ class CreditsFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return Genre
+     * @return Credits
      */
     public function create(array $data = [])
     {

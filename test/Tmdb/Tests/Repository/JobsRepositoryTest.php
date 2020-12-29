@@ -21,12 +21,8 @@ class JobsRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/job/list', []))
-        ;
-
         $repository->load();
+        $this->assertLastRequestIsWithPathAndMethod('/3/job/list');
     }
 
     /**
@@ -36,12 +32,8 @@ class JobsRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/job/list', []))
-        ;
-
         $repository->loadCollection();
+        $this->assertLastRequestIsWithPathAndMethod('/3/job/list');
     }
 
     /**

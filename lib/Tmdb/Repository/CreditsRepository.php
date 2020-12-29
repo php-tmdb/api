@@ -16,7 +16,6 @@ namespace Tmdb\Repository;
 
 use Tmdb\Api\Credits;
 use Tmdb\Factory\CreditsFactory;
-use Tmdb\Model\Genre;
 
 /**
  * Class CreditsRepository
@@ -32,9 +31,9 @@ class CreditsRepository extends AbstractRepository
      * @param array $parameters
      * @param array $headers
      *
-     * @return Genre
+     * @return \Tmdb\Model\Credits
      */
-    public function load($id, array $parameters = [], array $headers = []): Genre
+    public function load($id, array $parameters = [], array $headers = []): \Tmdb\Model\Credits
     {
         $data = $this->getApi()->getCredit($id, $this->parseQueryParameters($parameters), $headers);
 

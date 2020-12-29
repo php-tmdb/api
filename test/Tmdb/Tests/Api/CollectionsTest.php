@@ -38,6 +38,17 @@ class CollectionsTest extends TestCase
         $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID . '/images');
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetTranslations()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $api->getTranslations(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID . '/translations');
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Collections';

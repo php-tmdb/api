@@ -24,17 +24,8 @@ class GuestSessionRepositoryTest extends TestCase
         $sessionToken = new GuestSessionToken('xyz');
         $repository   = $this->getRepositoryWithMockedHttpAdapter(['session_token' => $sessionToken]);
 
-        $request = $this->getRequest(
-            sprintf('https://api.themoviedb.org/3/guest_session/%s/rated_movies', (string) $sessionToken),
-            ['guest_session_id' => (string) $sessionToken]
-        );
-        $request->getOptions()->set('session_token', $sessionToken);
-
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($request);
-
         $repository->getRatedMovies();
+        $this->assertLastRequestIsWithPathAndMethod(sprintf('/3/guest_session/%s/rated_movies', 'xyz'));
     }
 
     /**

@@ -23,14 +23,10 @@ class ChangesRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/changes'))
-        ;
-
         $query = new ChangesQuery();
 
         $repository->getMovieChanges($query);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/changes');
     }
 
     /**
@@ -40,14 +36,10 @@ class ChangesRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/changes'))
-        ;
-
         $query = new ChangesQuery();
 
         $repository->getPeopleChanges($query);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/changes');
     }
 
     /**
@@ -57,14 +49,10 @@ class ChangesRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/changes'))
-        ;
-
         $query = new ChangesQuery();
 
         $repository->getTvChanges($query);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/changes');
     }
 
     protected function getApiClass()

@@ -20,6 +20,7 @@ use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Event\Listener\Request\AcceptJsonRequestListener;
+use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\Request;
@@ -82,8 +83,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         $options['event_dispatcher']['adapter'] = $this->eventDispatcher = new EventDispatcher();
 
-
-
         $token = new ApiToken('abcdef');
         $options['http']['client'] = new \Http\Mock\Client();
         $response = $this->createMock('Psr\Http\Message\ResponseInterface');
@@ -95,10 +94,18 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $options['event_dispatcher']['adapter']
         );
 
-        // @todo setup in client
-        $this->eventDispatcher->addListener(\Tmdb\Event\BeforeRequestEvent::class, new AcceptJsonRequestListener());
-        $this->eventDispatcher->addListener(\Tmdb\Event\BeforeRequestEvent::class, new ContentTypeJsonRequestListener());
-        $this->eventDispatcher->addListener(\Tmdb\Event\RequestEvent::class, $requestListener);
+        /**
+         * We do not need api keys being added to the requests here.
+         *
+         * @var EventDispatcher
+         */
+        foreach ($client->getEventDispatcher()->getListeners() as $event => $listeners) {
+            foreach ($listeners as $listener) {
+                if ($listener instanceof ApiTokenRequestListener) {
+                    $client->getEventDispatcher()->removeListener($event, $listener);
+                }
+            }
+        }
 
         return $client;
     }
@@ -116,9 +123,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected function getMockedTmdbClient()
     {
         $token   = new ApiToken('abcdef');
-        $adapter = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
+        $adapter = new \Http\Mock\Client();
 
-        return $this->_client = new Client($token, ['http' => ['client' => $adapter]]);
+        return $this->_client = new Client($token, [
+            'http' => ['client' => $adapter],
+            'event_dispatcher' => ['adapter' => new EventDispatcher()]
+        ]);
     }
 
     /**

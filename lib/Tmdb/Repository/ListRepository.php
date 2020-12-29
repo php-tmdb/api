@@ -15,7 +15,6 @@
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\ListFactory;
-use Tmdb\Model\Genre;
 use Tmdb\Model\Lists;
 use Tmdb\Model\Lists\ItemStatus;
 
@@ -33,9 +32,9 @@ class ListRepository extends AbstractRepository
      * @param array $parameters
      * @param array $headers
      *
-     * @return Genre
+     * @return Lists
      */
-    public function load($id, array $parameters = [], array $headers = []): Genre
+    public function load($id, array $parameters = [], array $headers = []): \Tmdb\Model\Lists
     {
         return $this->getFactory()->create(
             $this->getApi()->getList($id, $parameters, $headers)
@@ -69,7 +68,7 @@ class ListRepository extends AbstractRepository
      * @param array $headers
      * @return ItemStatus
      */
-    public function getItemStatus($id, $mediaId, array $parameters = [], array $headers = [])
+    public function getItemStatus($id, $mediaId, array $parameters = [], array $headers = []): ItemStatus
     {
         return $this->getFactory()->createItemStatus(
             $this->getApi()->getItemStatus($id, $mediaId, $parameters, $headers)

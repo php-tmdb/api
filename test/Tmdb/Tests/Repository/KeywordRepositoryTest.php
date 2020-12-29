@@ -25,12 +25,8 @@ class KeywordRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/'.self::KEYWORD_ID, []))
-        ;
-
         $repository->load(self::KEYWORD_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/keyword/' . self::KEYWORD_ID);
     }
 
     /**
@@ -43,12 +39,8 @@ class KeywordRepositoryTest extends TestCase
          */
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/1/movies', []))
-        ;
-
-        $repository->getMovies(1);
+        $repository->getMovies(self::KEYWORD_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/keyword/' . self::KEYWORD_ID . '/movies');
     }
 
     protected function getApiClass()

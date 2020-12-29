@@ -16,6 +16,7 @@ namespace Tmdb\Tests\Api;
 class ListsTest extends TestCase
 {
     const LIST_ID = '509ec17b19c2950a0600050d';
+    const MOVIE_ID = 150;
 
     /**
      * @test
@@ -52,8 +53,9 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $api->getItemStatus(self::LIST_ID, 150);
+        $api->getItemStatus(self::LIST_ID, self::MOVIE_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/item_status', 'GET');
+        $this->assertRequestHasQueryParameters(['movie_id' => self::MOVIE_ID]);
     }
 
     /**
@@ -63,11 +65,11 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $api->addMediaToList(self::LIST_ID, 150);
+        $api->addMediaToList(self::LIST_ID, self::MOVIE_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/add_item', 'POST');
         $this->assertRequestBodyHasContents(
             [
-                'media_id' => 150
+                'media_id' => self::MOVIE_ID
             ]
         );
     }
@@ -79,11 +81,11 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $api->removeMediaFromList(self::LIST_ID, 150);
+        $api->removeMediaFromList(self::LIST_ID, self::MOVIE_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/remove_item', 'POST');
         $this->assertRequestBodyHasContents(
             [
-                'media_id' => 150
+                'media_id' => self::MOVIE_ID
             ]
         );
     }

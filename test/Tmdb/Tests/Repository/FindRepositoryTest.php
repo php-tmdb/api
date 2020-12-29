@@ -23,12 +23,8 @@ class FindRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/find/' . self::FIND_QUERY, []))
-        ;
-
         $repository->findBy(self::FIND_QUERY);
+        $this->assertLastRequestIsWithPathAndMethod('/3/find/' . self::FIND_QUERY);
     }
 
     protected function getApiClass()

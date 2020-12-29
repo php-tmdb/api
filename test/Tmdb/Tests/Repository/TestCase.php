@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Tests\Repository;
 
+use Psr\Http\Client\ClientInterface;
 use Tmdb\Tests\TestCase as Base;
 
 use Tmdb\Client;
@@ -66,10 +67,64 @@ abstract class TestCase extends Base
     /**
      * Shortcut to obtain the http client adapter
      *
-     * @return \Tmdb\HttpClient\Adapter\AdapterInterface
+     * @return ClientInterface
      */
-    protected function getAdapter()
+    protected function getPsr18Client()
     {
-        return $this->_client->getHttpClient()->getAdapter();
+        return $this->_client->getHttpClient()->getPsr18Client();
+    }
+
+    /**
+     * @return \Psr\Http\Message\RequestInterface
+     */
+    protected function getLastRequest()
+    {
+        $requests = $this->getPsr18Client()->getRequests();
+        $lastRequest = array_pop($requests);
+
+        return $lastRequest;
+    }
+
+    /**
+     * @param $path
+     * @param string $method
+     */
+    protected function assertLastRequestIsWithPathAndMethod($path, $method = 'GET')
+    {
+        $lastRequest = $this->getLastRequest();
+
+        $this->assertEquals($path, $lastRequest->getUri()->getPath());
+        $this->assertEquals($method, $lastRequest->getMethod());
+    }
+
+    /**
+     * @param mixed $contents
+     */
+    protected function assertRequestBodyHasContents($contents)
+    {
+        $lastRequest = $this->getLastRequest();
+        $lastRequest->getBody()->rewind();
+
+        $actualBody = $lastRequest->getBody()->getContents();
+
+        if ($lastRequest->hasHeader('content-type')) {
+            $contentType = $lastRequest->getHeader('content-type')[0];
+
+            if ('application/json' === $contentType) {
+                $actualBody = \json_decode($actualBody, true);
+            }
+        }
+
+        $this->assertEquals($contents, $actualBody);
+    }
+
+    /**
+     * @param array $parameters
+     */
+    protected function assertRequestHasQueryParameters(array $parameters = array())
+    {
+        $actualParameters = array();
+        parse_str($this->getLastRequest()->getUri()->getQuery(), $actualParameters);
+        $this->assertEquals($parameters, $actualParameters);
     }
 }

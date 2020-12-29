@@ -1,9 +1,12 @@
 <?php
 namespace Tmdb\Tests\Event;
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\Listener\RequestListener;
 use Tmdb\Event\RequestEvent;
-use Tmdb\Event\RequestListener;
 use Tmdb\Event\TmdbEvents;
+use Tmdb\Exception\RuntimeException;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\HttpClientEventSubscriber;
 use Tmdb\HttpClient\Request;
 use Tmdb\HttpClient\ResponseInterface;
@@ -27,8 +30,8 @@ class RequestSubscriberTest extends \PHPUnit\Framework\TestCase
      */
     public function throwsExceptionWithNonExistingMethod()
     {
-        $this->expectException(\Tmdb\Exception\RuntimeException::class);
-        $subscriber   = new RequestListener();
+        $this->expectException(RuntimeException::class);
+        $subscriber   = new RequestListener(new HttpClient(), new EventDispatcher());
         $requestEvent = new RequestEvent(new Request('/', '1337'));
 
         $subscriber->sendRequest($requestEvent);

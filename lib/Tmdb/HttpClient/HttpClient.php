@@ -14,9 +14,6 @@
 
 namespace Tmdb\HttpClient;
 
-use Kevinrob\GuzzleCache\CacheMiddleware;
-use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
-use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
 use Monolog\Logger;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
@@ -34,17 +31,10 @@ use Tmdb\ApiToken;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Event\HydrationListener;
 use Tmdb\Event\RequestEvent;
-use Tmdb\Event\RequestListener;
+use Tmdb\Event\Listener\RequestListener;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\Exception\ApiTokenMissingException;
 use Tmdb\GuestSessionToken;
-use Tmdb\HttpClient\Adapter\AdapterInterface;
-use Tmdb\HttpClient\Adapter\GuzzleAdapter;
-use Tmdb\HttpClient\Plugin\AcceptJsonRequestListener;
-use Tmdb\HttpClient\Plugin\ApiTokenPlugin;
-use Tmdb\HttpClient\Plugin\ContentTypeJsonHeaderPlugin;
-use Tmdb\HttpClient\Plugin\SessionTokenPlugin;
-use Tmdb\HttpClient\Plugin\UserAgentHeaderPlugin;
 use Tmdb\SessionToken;
 
 /**

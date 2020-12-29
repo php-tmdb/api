@@ -21,12 +21,8 @@ class ConfigurationRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/configuration'))
-        ;
-
         $repository->load();
+        $this->assertLastRequestIsWithPathAndMethod('/3/configuration');
     }
 
     protected function getApiClass()

@@ -84,6 +84,7 @@ class MoviesTest extends TestCase
 
     /**
      * @test
+     * @todo verify this is implemented in repository
      */
     public function shouldGetTrailers()
     {

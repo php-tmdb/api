@@ -26,12 +26,8 @@ class AuthenticationRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/new', []))
-        ;
-
         $repository->getRequestToken();
+        $this->assertLastRequestIsWithPathAndMethod('/3/authentication/token/new');
     }
 
     /**
@@ -41,17 +37,15 @@ class AuthenticationRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/session/new', ['request_token' => 'request_token']))
-        ;
-
         $repository->getSessionToken(new RequestToken('request_token'));
+        $this->assertLastRequestIsWithPathAndMethod('/3/authentication/session/new');
+        $this->assertRequestHasQueryParameters([
+                                                   'request_token' => 'request_token'
+                                               ]);
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldValidateRequestTokenWithLogin()
     {
@@ -63,7 +57,7 @@ class AuthenticationRepositoryTest extends TestCase
             'request_token' => 'abcdefghijklmnopqrstuvwxyz'
         ]));
 
-        $this->getAdapter()
+        $this->getPsr18Client()
             ->expects($this->any())
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/validate_with_login', [
@@ -78,13 +72,13 @@ class AuthenticationRepositoryTest extends TestCase
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldGetGuestSession()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
+        $this->getPsr18Client()->expects($this->once())
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/authentication/guest_session/new', []))
         ;
