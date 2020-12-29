@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Api;
@@ -26,7 +26,7 @@ use Tmdb\RequestToken;
  */
 class Authentication extends AbstractApi
 {
-    const REQUEST_TOKEN_URI = 'https://www.themoviedb.org/authenticate';
+    public const REQUEST_TOKEN_URI = 'https://www.themoviedb.org/authenticate';
 
     /**
      * This method is used to generate a valid request token for user based authentication.

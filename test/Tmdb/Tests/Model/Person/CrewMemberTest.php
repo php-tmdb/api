@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Model\Person;
 
 use Tmdb\Common\ObjectHydrator;
@@ -24,10 +26,10 @@ class CrewMemberTest extends TestCase
     public function shouldBeFunctional()
     {
         $data = [
-            'id'           => 7477,
-            'name'         => 'John King',
-            'department'   => 'Sound',
-            'job'          => 'Original Music Composer',
+            'id' => 7477,
+            'name' => 'John King',
+            'department' => 'Sound',
+            'job' => 'Original Music Composer',
             'profile_path' => null
         ];
 

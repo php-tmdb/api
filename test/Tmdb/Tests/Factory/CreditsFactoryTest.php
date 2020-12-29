@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,10 +9,12 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Factory;
 
+use Tmdb\Exception\NotImplementedException;
 use Tmdb\Factory\CreditsFactory;
 use Tmdb\Model\Credits;
 
@@ -24,7 +27,7 @@ class CreditsFactoryTest extends TestCase
      */
     private $credits;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         $this->data = $this->loadByFile('credits/get.json');
 
@@ -62,10 +65,10 @@ class CreditsFactoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldThrowExceptionForCollection()
     {
+        $this->expectException(NotImplementedException::class);
         $factory = $this->getFactory();
 
         $factory->createCollection([]);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,10 +9,12 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Model\Query\Discover;
 
+use DateTime;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
 use Tmdb\Tests\TestCase;
 
@@ -23,7 +26,7 @@ class DiscoverTvQueryTest extends TestCase
     public function shouldCreateValidQuery()
     {
         $query = new DiscoverTvQuery();
-        $now   = new \DateTime();
+        $now = new DateTime();
 
         $query
             ->page(1)
@@ -32,14 +35,13 @@ class DiscoverTvQueryTest extends TestCase
             ->firstAirDateYear($now)
             ->voteCountGte(5)
             ->voteAverageGte(3)
-            ->withGenres([15,18])
-            ->withGenresOr([1,2])
+            ->withGenres([15, 18])
+            ->withGenresOr([1, 2])
             ->withGenresAnd([18])
             ->firstAirDateGte($now)
             ->firstAirDateLte($now)
-            ->withNetworks([1,2])
-            ->withNetworksAnd([1,2,3])
-        ;
+            ->withNetworks([1, 2])
+            ->withNetworksAnd([1, 2, 3]);
 
         $this->assertEquals(10, count($query));
     }

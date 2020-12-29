@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Factory;
@@ -23,6 +23,7 @@ use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Person\GuestStar;
@@ -153,6 +154,19 @@ class TvEpisodeFactory extends AbstractFactory
         /** Images */
         if (array_key_exists('images', $data)) {
             $tvEpisode->setImages($this->getImageFactory()->createCollectionFromTvEpisode($data['images']));
+        }
+
+        /** Translations */
+        if (array_key_exists('translations', $data) && null !== $data['translations']) {
+            if (array_key_exists('translations', $data['translations'])) {
+                $translations = $data['translations']['translations'];
+            } else {
+                $translations = $data['translations'];
+            }
+
+            $tvEpisode->setTranslations(
+                $this->createGenericCollection($translations, new Translation())
+            );
         }
 
         if (array_key_exists('still_path', $data)) {

@@ -10,7 +10,7 @@
  * @author Michael Roterman <michael@wtfz.net>
  * @author Benny <benny@whitewashing.de> ( borrowed array object extension )
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Common;
@@ -194,7 +194,11 @@ class ParameterBag implements IteratorAggregate, Countable
                 $currentKey = null;
             } else {
                 if (null === $currentKey) {
-                    throw new InvalidArgumentException(sprintf('Malformed path. Unexpected "%s" at position %d.', $char, $i));
+                    throw new InvalidArgumentException(sprintf(
+                        'Malformed path. Unexpected "%s" at position %d.',
+                        $char,
+                        $i
+                    ));
                 }
                 $currentKey .= $char;
             }

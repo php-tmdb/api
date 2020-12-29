@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,13 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
 class CompaniesTest extends TestCase
 {
-    const COMPANY_ID = 1;
+    public const COMPANY_ID = 1;
 
     /**
      * @test
@@ -23,11 +25,8 @@ class CompaniesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/company/' . self::COMPANY_ID));
-
         $api->getCompany(self::COMPANY_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/company/' . self::COMPANY_ID);
     }
 
     /**
@@ -37,11 +36,8 @@ class CompaniesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/company/' . self::COMPANY_ID. '/movies'));
-
         $api->getMovies(self::COMPANY_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/company/' . self::COMPANY_ID . '/movies');
     }
 
     protected function getApiClass()

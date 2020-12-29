@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
 class ChangesTest extends TestCase
@@ -21,11 +23,8 @@ class ChangesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/changes'));
-
         $api->getMovieChanges();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/changes');
     }
 
     /**
@@ -35,11 +34,8 @@ class ChangesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/changes'));
-
         $api->getPersonChanges();
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/changes');
     }
 
     /**
@@ -49,11 +45,8 @@ class ChangesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/changes'));
-
         $api->getTvChanges();
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/changes');
     }
 
     protected function getApiClass()

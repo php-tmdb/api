@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,13 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 class CreditsRepositoryTest extends TestCase
 {
-    const CREDITS_ID = '5240760b5dbf5b0c2c0139db';
+    public const CREDIT_ID = '5240760b5dbf5b0c2c0139db';
 
     /**
      * @test
@@ -23,12 +25,8 @@ class CreditsRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/credit/' . self::CREDITS_ID, []))
-        ;
-
-        $repository->load(self::CREDITS_ID);
+        $repository->load(self::CREDIT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/credit/' . self::CREDIT_ID);
     }
 
     protected function getApiClass()

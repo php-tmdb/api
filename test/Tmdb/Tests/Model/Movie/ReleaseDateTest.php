@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,15 +9,18 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 2.1.7
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Model\Movie;
 
+use DateTime;
+use DateTimeZone;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\Movie\ReleaseDate;
 use Tmdb\Tests\Model\TestCase;
 
-class ReleaseDateTest  extends TestCase
+class ReleaseDateTest extends TestCase
 {
     /**
      * @test
@@ -24,12 +28,12 @@ class ReleaseDateTest  extends TestCase
     public function shouldBeFunctional()
     {
         $data = [
-            'iso_3166_1'    => 'US',
-            'iso_639_1'     => 'en',
+            'iso_3166_1' => 'US',
+            'iso_639_1' => 'en',
             'certification' => 'R',
-            'note'          => 'Released only to IMAX screens',
-            'release_date'  => '2013-09-06T00:00:00.000Z',
-            'type'          => 3
+            'note' => 'Released only to IMAX screens',
+            'release_date' => '2013-09-06T00:00:00.000Z',
+            'type' => 3
         ];
 
         $hydrator = new ObjectHydrator();
@@ -43,7 +47,7 @@ class ReleaseDateTest  extends TestCase
         $this->assertEquals('en', $object->getIso6391());
         $this->assertEquals('R', $object->getCertification());
         $this->assertEquals('Released only to IMAX screens', $object->getNote());
-        $this->assertEquals(new \DateTime('2013-09-06', new \DateTimeZone('UTC')), $object->getReleaseDate());
+        $this->assertEquals(new DateTime('2013-09-06', new DateTimeZone('UTC')), $object->getReleaseDate());
         $this->assertEquals(3, $object->getType());
     }
 }

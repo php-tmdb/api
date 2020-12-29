@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,13 +9,15 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Exception;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Tmdb\Exception\TmdbApiException;
-use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
 
 class TmdbApiExceptionTest extends \PHPUnit\Framework\TestCase
 {
@@ -23,17 +26,24 @@ class TmdbApiExceptionTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstruct()
     {
-        $exception = new TmdbApiException(1, 'code', new Request(), new Response());
+        $factory = new Psr17Factory();
+        $request = $factory->createRequest('GET', 'http://www.test.com');
+        $response = $factory->createResponse(500, 'uh-oh');
+
+        $exception = new TmdbApiException(1, 'code', $request, $response);
 
         $this->assertEquals(1, $exception->getCode());
         $this->assertEquals('code', $exception->getMessage());
-        $this->assertEquals(new Request(), $exception->getRequest());
-        $this->assertEquals(new Response(), $exception->getResponse());
+        $this->assertInstanceOf(RequestInterface::class, $exception->getRequest());
+        $this->assertInstanceOf(ResponseInterface::class, $exception->getResponse());
 
-        $exception->setRequest(new Request('/bla'));
-        $exception->setResponse(new Response(404));
+        $request = $factory->createRequest('GET', 'http://www.testing.com/foo/bar');
+        $response = $factory->createResponse(418, 'I\'m a teapot');
 
-        $this->assertEquals('/bla', $exception->getRequest()->getPath());
-        $this->assertEquals(404, $exception->getResponse()->getCode());
+        $exception->setRequest($request);
+        $exception->setResponse($response);
+
+        $this->assertEquals('/foo/bar', $exception->getRequest()->getUri()->getPath());
+        $this->assertEquals(418, $exception->getResponse()->getStatusCode());
     }
 }

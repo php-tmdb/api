@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Factory;
@@ -155,13 +155,16 @@ abstract class AbstractFactory
      * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
      * @param array $data
-     * @param $class
-     * @param AlternativeTitle|Company|ContentRating|Country|Release|SpokenLanguage $class
+     * @param AbstractModel $class
      *
      * @return GenericCollection
      */
-    protected function createGenericCollection($data = [], $class): GenericCollection
+    protected function createGenericCollection(array $data = [], AbstractModel $class = null): GenericCollection
     {
+        if (!$class) {
+            throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
+        }
+
         if (is_object($class)) {
             $class = get_class($class);
         }
@@ -194,7 +197,7 @@ abstract class AbstractFactory
         $event->setLastRequest($httpClient->getLastRequest());
         $event->setLastResponse($httpClient->getLastResponse());
 
-        $this->getHttpClient()->getEventDispatcher()->dispatch($event, TmdbEvents::HYDRATE);
+        $this->getHttpClient()->getEventDispatcher()->dispatch($event);
 
         return $event->getSubject();
     }
@@ -217,8 +220,15 @@ abstract class AbstractFactory
      * @param GenericCollection $collection
      * @return GenericCollection
      */
-    protected function createCustomCollection($data = [], $class, $collection)
-    {
+    protected function createCustomCollection(
+        array $data = [],
+        AbstractModel $class = null,
+        GenericCollection $collection
+    ) {
+        if (!$class || !$collection) {
+            throw new \Tmdb\Exception\RuntimeException('Expected both an class and collection to be given.');
+        }
+
         if (is_object($class)) {
             $class = get_class($class);
         }

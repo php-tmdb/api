@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,12 +9,16 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Helper;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
+use Tmdb\Event\HydrationEvent;
+use Tmdb\Event\HydrationListener;
 use Tmdb\Tests\TestCase as Base;
 
 class ImageHelperTest extends Base
@@ -23,13 +28,15 @@ class ImageHelperTest extends Base
      */
     private $helper;
 
-    public function setUp() :void
+    public function setUp(): void
     {
-        $client = new Client(new ApiToken('abcdef'));
+        $ed = new EventDispatcher();
+        $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
+        $client = new Client(new ApiToken('abcdef'), ['event_dispatcher' => ['adapter' => $ed]]);
 
         $factory = new \Tmdb\Factory\ConfigurationFactory($client->getHttpClient());
 
-        $data          = $this->loadByFile('configuration/get.json');
+        $data = $this->loadByFile('configuration/get.json');
         $configuration = $factory->create($data);
 
         $this->helper = new \Tmdb\Helper\ImageHelper($configuration);
@@ -85,7 +92,7 @@ class ImageHelperTest extends Base
     /**
      * @test
      */
-    
+
     public function shouldReadImageDimensions()
     {
         $image = new \Tmdb\Model\Image();

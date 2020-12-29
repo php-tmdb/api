@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model;
@@ -23,11 +23,11 @@ use Tmdb\Model\Filter\LanguageFilter;
  */
 class Image extends AbstractModel implements ImageFilter, LanguageFilter
 {
-    const FORMAT_POSTER = 'poster';
-    const FORMAT_BACKDROP = 'backdrop';
-    const FORMAT_PROFILE = 'profile';
-    const FORMAT_LOGO = 'logo';
-    const FORMAT_STILL = 'still';
+    public const FORMAT_POSTER = 'poster';
+    public const FORMAT_BACKDROP = 'backdrop';
+    public const FORMAT_PROFILE = 'profile';
+    public const FORMAT_LOGO = 'logo';
+    public const FORMAT_STILL = 'still';
     public static $properties = [
         'file_path',
         'width',

@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Common\Video;
@@ -22,7 +22,7 @@ use Tmdb\Model\Common\Video;
  */
 class Youtube extends Video
 {
-    const URL_FORMAT = 'http://www.youtube.com/watch?v=%s';
+    public const URL_FORMAT = 'http://www.youtube.com/watch?v=%s';
 
     public function __construct()
     {

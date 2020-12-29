@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Movie\QueryParameter;
@@ -22,21 +22,21 @@ use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
  */
 final class AppendToResponse extends BaseAppendToResponse
 {
-    const ALTERNATIVE_TITLES = 'alternative_titles';
-    const CREDITS = 'credits';
-    const IMAGES = 'images';
-    const KEYWORDS = 'keywords';
+    public const ALTERNATIVE_TITLES = 'alternative_titles';
+    public const CREDITS = 'credits';
+    public const IMAGES = 'images';
+    public const KEYWORDS = 'keywords';
     /**
      * @see https://developers.themoviedb.org/3/movies/get-movie-release-dates
      * @deprecated Use RELEASE_DATES instead, but format has changed.
      */
-    const RELEASES = 'releases';
-    const RELEASE_DATES = 'release_dates';
-    const TRANSLATIONS = 'translations';
-    const SIMILAR = 'similar';
-    const RECOMMENDATIONS = 'recommendations';
-    const REVIEWS = 'reviews';
-    const LISTS = 'lists';
-    const CHANGES = 'changes';
-    const VIDEOS = 'videos';
+    public const RELEASES = 'releases';
+    public const RELEASE_DATES = 'release_dates';
+    public const TRANSLATIONS = 'translations';
+    public const SIMILAR = 'similar';
+    public const RECOMMENDATIONS = 'recommendations';
+    public const REVIEWS = 'reviews';
+    public const LISTS = 'lists';
+    public const CHANGES = 'changes';
+    public const VIDEOS = 'videos';
 }

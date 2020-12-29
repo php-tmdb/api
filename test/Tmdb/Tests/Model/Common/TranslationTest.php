@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Model\Common;
 
 use Tmdb\Common\ObjectHydrator;
@@ -24,8 +26,8 @@ class TranslationTest extends TestCase
     public function shouldBeFunctional()
     {
         $data = [
-            'iso_639_1'    => 'en',
-            'name'         => 'English',
+            'iso_639_1' => 'en',
+            'name' => 'English',
             'english_name' => 'English'
         ];
 

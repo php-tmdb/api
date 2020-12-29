@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,13 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests;
 
 class SessionTokenTest extends \PHPUnit\Framework\TestCase
 {
-    const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
+    public const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
 
     /**
      * @test

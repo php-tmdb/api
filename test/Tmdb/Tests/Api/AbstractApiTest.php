@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
 use Tmdb\Api\AbstractApi;
@@ -23,13 +25,8 @@ class AbstractApiTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'GET'))
-        ;
-
         $api->get('');
+        $this->assertLastRequestIsWithPathAndMethod('/3/', 'GET');
     }
 
     /**
@@ -39,13 +36,8 @@ class AbstractApiTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('head')
-            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'HEAD'))
-        ;
-
         $api->head('');
+        $this->assertLastRequestIsWithPathAndMethod('/3/', 'HEAD');
     }
 
     /**
@@ -55,13 +47,8 @@ class AbstractApiTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'POST'))
-        ;
-
         $api->post('');
+        $this->assertLastRequestIsWithPathAndMethod('/3/', 'POST');
     }
 
     /**
@@ -71,13 +58,8 @@ class AbstractApiTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('put')
-            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'PUT'))
-        ;
-
         $api->put('');
+        $this->assertLastRequestIsWithPathAndMethod('/3/', 'PUT');
     }
 
     /**
@@ -87,13 +69,8 @@ class AbstractApiTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('delete')
-            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'DELETE'))
-        ;
-
         $api->delete('');
+        $this->assertLastRequestIsWithPathAndMethod('/3/', 'DELETE');
     }
 
     /**
@@ -103,13 +80,8 @@ class AbstractApiTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('patch')
-            ->with($this->getRequest('https://api.themoviedb.org/3/', [], 'PATCH'))
-        ;
-
         $api->patch('');
+        $this->assertLastRequestIsWithPathAndMethod('/3/', 'PATCH');
     }
 
     protected function getApiClass()
@@ -118,4 +90,6 @@ class AbstractApiTest extends TestCase
     }
 }
 
-class TestApi extends AbstractApi {}
+class TestApi extends AbstractApi
+{
+}

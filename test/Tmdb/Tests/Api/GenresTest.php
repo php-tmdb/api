@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,48 +9,51 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
 class GenresTest extends TestCase
 {
-    const GENRE_ID = 28;
+    public const GENRE_ID = 28;
 
     /**
-     * @test
+     * @todo
      */
     public function shouldGetGenre()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->at(0))
+        $responseMock = $response = $this->createMock('Psr\Http\Message\ResponseInterface');
+        $this->getPsr18Client()->setDefaultResponse();
+
+        $this->getPsr18Client()->expects($this->at(0))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'))
-            ->will($this->returnValue(['genres']))
-        ;
+            ->will($this->returnValue(['genres']));
 
-        $this->getAdapter()->expects($this->at(1))
+        $this->getPsr18Client()->expects($this->at(1))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'))
-            ->will($this->returnValue(['genres']))
-        ; // there is no "selective" call, we always lean on both lists
+            ->will($this->returnValue(['genres']));
 
         $api->getGenre(self::GENRE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/tv/list');
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldGetGenres()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->at(0))
+        $this->getPsr18Client()->expects($this->at(0))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'));
 
-        $this->getAdapter()->expects($this->at(1))
+        $this->getPsr18Client()->expects($this->at(1))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'));
 
@@ -63,11 +67,8 @@ class GenresTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'));
-
         $api->getMovieGenres();
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/movie/list');
     }
 
     /**
@@ -77,11 +78,8 @@ class GenresTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'));
-
         $api->getTvGenres();
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/tv/list');
     }
 
     /**
@@ -91,11 +89,8 @@ class GenresTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/' . self::GENRE_ID. '/movies'));
-
         $api->getMovies(self::GENRE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/' . self::GENRE_ID . '/movies');
     }
 
     /**
@@ -107,10 +102,13 @@ class GenresTest extends TestCase
 
         $api->expects($this->once())
             ->method('getGenres')
-            ->will($this->returnCallback(function () {
-                return ['genres' => [['id' => 28, 'name' => 'Action']]];
-            }))
-        ;
+            ->will(
+                $this->returnCallback(
+                    function () {
+                        return ['genres' => [['id' => 28, 'name' => 'Action']]];
+                    }
+                )
+            );
 
         $genre = $api->getGenre(self::GENRE_ID);
 
@@ -127,10 +125,13 @@ class GenresTest extends TestCase
 
         $api->expects($this->once())
             ->method('getGenres')
-            ->will($this->returnCallback(function () {
-                return ['genres' => []];
-            }))
-        ;
+            ->will(
+                $this->returnCallback(
+                    function () {
+                        return ['genres' => []];
+                    }
+                )
+            );
 
         $genre = $api->getGenre(self::GENRE_ID);
 

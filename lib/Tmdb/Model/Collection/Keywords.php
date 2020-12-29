@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Collection;
@@ -38,9 +38,9 @@ class Keywords extends GenericCollection
      *
      * @param $id
      *
-     * @return GenericCollection
+     * @return Keyword|null
      */
-    public function getKeyword($id): GenericCollection
+    public function getKeyword($id): ?Keyword
     {
         return $this->filterId($id);
     }

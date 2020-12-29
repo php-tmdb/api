@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\GuestSessionToken;
@@ -24,17 +26,8 @@ class GuestSessionRepositoryTest extends TestCase
         $sessionToken = new GuestSessionToken('xyz');
         $repository   = $this->getRepositoryWithMockedHttpAdapter(['session_token' => $sessionToken]);
 
-        $request = $this->getRequest(
-            sprintf('https://api.themoviedb.org/3/guest_session/%s/rated_movies', (string) $sessionToken),
-            ['guest_session_id' => (string) $sessionToken]
-        );
-        $request->getOptions()->set('session_token', $sessionToken);
-
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($request);
-
         $repository->getRatedMovies();
+        $this->assertLastRequestIsWithPathAndMethod(sprintf('/3/guest_session/%s/rated_movies', 'xyz'));
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,15 +9,16 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Repository\MovieRepository;
 
 class MovieRepositoryTest extends TestCase
 {
-    const MOVIE_ID = 120;
+    public const MOVIE_ID = 120;
 
     /**
      * @test
@@ -25,15 +27,11 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/movie/' . self::MOVIE_ID,
-                ['append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,release_dates,reviews,similar,recommendations,translations,videos']
-            ))
-        ;
-
         $repository->load(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID);
+        $this->assertRequestHasQueryParameters([
+            'append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,release_dates,reviews,similar,recommendations,translations,videos'
+        ]);
     }
 
     /**
@@ -43,12 +41,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/alternative_titles'))
-        ;
-
         $repository->getAlternativeTitles(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/alternative_titles');
     }
 
     /**
@@ -58,12 +52,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/credits'))
-        ;
-
         $repository->getCredits(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/credits');
     }
 
     /**
@@ -73,11 +63,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/images'))
-        ;
         $repository->getImages(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/images');
     }
 
     /**
@@ -87,12 +74,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/keywords'))
-        ;
-
         $repository->getKeywords(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/keywords');
     }
 
     /**
@@ -102,12 +85,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/releases'))
-        ;
-
         $repository->getReleases(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/releases');
     }
 
     /**
@@ -117,12 +96,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/translations'))
-        ;
-
         $repository->getTranslations(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/translations');
     }
 
     /**
@@ -132,12 +107,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/similar'))
-        ;
-
         $repository->getSimilar(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/similar');
     }
 
     /**
@@ -147,12 +118,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/recommendations'))
-        ;
-
         $repository->getRecommendations(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/recommendations');
     }
 
     /**
@@ -162,12 +129,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/reviews'))
-        ;
-
         $repository->getReviews(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/reviews');
     }
 
     /**
@@ -177,12 +140,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/lists'))
-        ;
-
         $repository->getLists(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/lists');
     }
 
     /**
@@ -192,12 +151,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/changes'))
-        ;
-
         $repository->getChanges(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/changes');
     }
 
     /**
@@ -207,12 +162,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/latest'))
-        ;
-
         $repository->getLatest();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/latest');
     }
 
     /**
@@ -222,12 +173,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/upcoming'))
-        ;
-
         $repository->getUpcoming();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/upcoming');
     }
 
     /**
@@ -237,12 +184,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/now_playing'))
-        ;
-
         $repository->getNowPlaying();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/now_playing');
     }
 
     /**
@@ -252,12 +195,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/popular'))
-        ;
-
         $repository->getPopular();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/popular');
     }
 
     /**
@@ -267,12 +206,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/top_rated'))
-        ;
-
         $repository->getTopRated();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/top_rated');
     }
 
     /**
@@ -282,12 +217,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/id/account_states'))
-        ;
-
-        $repository->getAccountStates('id');
+        $repository->getAccountStates(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/account_states');
     }
 
     /**
@@ -297,18 +228,11 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/movie/id/rating',
-                [],
-                'POST',
-                [],
-                ['value' => 5.2]
-            ))
-        ;
-
-        $repository->rate('id', 5.2);
+        $repository->rate(self::MOVIE_ID, 5.2);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/rating', 'POST');
+        $this->assertRequestBodyHasContents([
+            'value' => 5.2
+        ]);
     }
 
     /**
@@ -318,12 +242,8 @@ class MovieRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/videos'))
-        ;
-
         $repository->getVideos(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/videos');
     }
 
     /**

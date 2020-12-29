@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Factory;
@@ -73,6 +73,7 @@ class AccountFactory extends AbstractFactory
     {
         $account = new Account();
 
+        // @todo 4.0.0 re-enable, fix bug
         if (array_key_exists('avatar', $data)) {
             $account->setAvatar(
                 $this->getAvatarFactory()->createCollection($data['avatar'])

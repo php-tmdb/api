@@ -9,20 +9,19 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Event;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\EventDispatcher\StoppableEventInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Symfony\Contracts\EventDispatcher\Event;
-use Tmdb\Common\ParameterBag;
 use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
 
-class RequestEvent extends Event
+class RequestEvent extends StoppableEvent
 {
     /**
      * @var RequestInterface
@@ -37,53 +36,11 @@ class RequestEvent extends Event
     /**
      * Construct the request event
      *
-     * @param Request $request
+     * @param RequestInterface $request
      */
-    public function __construct(Request $request)
+    public function __construct(RequestInterface $request)
     {
         $this->request = $request;
-    }
-
-    /**
-     * @return ParameterBag
-     */
-    public function getParameters()
-    {
-        return $this->request->getParameters();
-    }
-
-    /**
-     * @return string
-     */
-    public function getPath()
-    {
-        return $this->request->getPath();
-    }
-
-    /**
-     * @return string
-     */
-    public function getMethod()
-    {
-        return $this->request->getMethod();
-    }
-
-    /**
-     * @return string[][]
-     *
-     * @psalm-return array<array-key, array<array-key, string>>
-     */
-    public function getHeaders(): array
-    {
-        return $this->request->getHeaders();
-    }
-
-    /**
-     * @return StreamInterface
-     */
-    public function getBody(): StreamInterface
-    {
-        return $this->request->getBody();
     }
 
     /**
@@ -95,10 +52,10 @@ class RequestEvent extends Event
     }
 
     /**
-     * @param Request $request
+     * @param RequestInterface $request
      * @return $this
      */
-    public function setRequest($request)
+    public function setRequest(RequestInterface $request)
     {
         $this->request = $request;
 
@@ -108,16 +65,16 @@ class RequestEvent extends Event
     /**
      * @return ResponseInterface
      */
-    public function getResponse(): ResponseInterface
+    public function getResponse(): ?ResponseInterface
     {
         return $this->response;
     }
 
     /**
-     * @param Response $response
+     * @param ResponseInterface $response
      * @return $this
      */
-    public function setResponse($response)
+    public function setResponse(ResponseInterface $response)
     {
         $this->response = $response;
 
@@ -129,6 +86,6 @@ class RequestEvent extends Event
      */
     public function hasResponse()
     {
-        return null !== $this->response;
+        return $this->response instanceof ResponseInterface;
     }
 }

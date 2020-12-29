@@ -9,13 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Tv;
 
 use DateTime;
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Collection\Changes;
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\Images;
@@ -30,6 +31,44 @@ use Tmdb\Model\Image\StillImage;
  */
 class Episode extends AbstractModel
 {
+    /**
+     * Credits
+     *
+     * @var CreditsCollection
+     */
+    protected $credits;
+
+    /**
+     * External Ids
+     *
+     * @var ExternalIds
+     */
+    protected $externalIds;
+
+    /**
+     * Images
+     *
+     * @var Images
+     */
+    protected $images;
+
+    /**
+     * @var GenericCollection
+     */
+    protected $translations;
+
+    /**
+     * @var StillImage
+     */
+    protected $still;
+
+    /**
+     * @var Videos
+     */
+    protected $videos;
+
+    protected $changes;
+
     /**
      * Properties that are available in the API
      *
@@ -49,84 +88,18 @@ class Episode extends AbstractModel
         'vote_average',
         'vote_count'
     ];
-    /**
-     * Credits
-     *
-     * @var CreditsCollection
-     */
-    protected $credits;
-    /**
-     * External Ids
-     *
-     * @var ExternalIds
-     */
-    protected $externalIds;
-    /**
-     * Images
-     *
-     * @var Images
-     */
-    protected $images;
-    /**
-     * @var StillImage
-     */
-    protected $still;
-    /**
-     * @var Videos
-     */
-    protected $videos;
-    protected $changes;
-    /**
-     * @var DateTime
-     */
-    private $airDate;
-    /**
-     * @var integer
-     */
-    private $episodeNumber;
-    /**
-     * @var string
-     */
-    private $name;
-    /**
-     * @var string
-     */
-    private $overview;
-    /**
-     * @var integer
-     */
-    private $id;
-    /**
-     * @var string
-     */
-    private $productionCode;
-    /**
-     * @var integer
-     */
-    private $seasonNumber;
-    /**
-     * @var string
-     */
-    private $stillPath;
-    /**
-     * @var float
-     */
-    private $voteAverage;
-    /**
-     * @var int
-     */
-    private $voteCount;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->credits = new CreditsCollection();
-        $this->externalIds = new ExternalIds();
-        $this->images = new Images();
-        $this->videos = new Videos();
-        $this->changes = new Changes();
+        $this->credits      = new CreditsCollection();
+        $this->externalIds  = new ExternalIds();
+        $this->images       = new Images();
+        $this->translations = new GenericCollection();
+        $this->videos       = new Videos();
+        $this->changes      = new Changes();
     }
 
     /**
@@ -367,6 +340,25 @@ class Episode extends AbstractModel
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @param  GenericCollection $translations
+     * @return $this
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 
     /**

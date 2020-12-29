@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\TvEpisodeFactory;
@@ -22,7 +24,7 @@ class TvEpisodeFactoryTest extends TestCase
      */
     private $episode;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         /**
          * @var TvEpisodeFactory $factory
@@ -87,7 +89,6 @@ class TvEpisodeFactoryTest extends TestCase
         $this->assertEquals('/bwgioLAgihPCUK21rLWocDaDM3g.jpg', $this->episode->getStillPath());
         $this->assertEquals(0, $this->episode->getVoteAverage());
         $this->assertEquals(0, $this->episode->getVoteCount());
-
     }
 
     protected function getFactoryClass()

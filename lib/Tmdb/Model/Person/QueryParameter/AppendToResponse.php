@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Person\QueryParameter;
@@ -22,11 +22,11 @@ use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
  */
 final class AppendToResponse extends BaseAppendToResponse
 {
-    const MOVIE_CREDITS = 'movie_credits';
-    const TV_CREDITS = 'tv_credits';
-    const COMBINED_CREDITS = 'combined_credits';
-    const IMAGES = 'images';
-    const CHANGES = 'changes';
-    const EXTERNAL_IDS = 'external_ids';
-    const TAGGED_IMAGES = 'tagged_images';
+    public const MOVIE_CREDITS = 'movie_credits';
+    public const TV_CREDITS = 'tv_credits';
+    public const COMBINED_CREDITS = 'combined_credits';
+    public const IMAGES = 'images';
+    public const CHANGES = 'changes';
+    public const EXTERNAL_IDS = 'external_ids';
+    public const TAGGED_IMAGES = 'tagged_images';
 }

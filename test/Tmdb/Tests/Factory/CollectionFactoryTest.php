@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\CollectionFactory;
@@ -22,7 +24,7 @@ class CollectionFactoryTest extends TestCase
      */
     private $collection;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         /**
          * @var CollectionFactory $factory
@@ -88,14 +90,14 @@ class CollectionFactoryTest extends TestCase
     public function shouldBeFunctional()
     {
         $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->collection->getBackdropImage());
-        $this->assertEquals('/qCECROwx3TRUEgoZv2Mz2D723QC.jpg', $this->collection->getBackdropPath());
+        $this->assertEquals('/d8duYyyC9J5T825Hg7grmaabfxQ.jpg', $this->collection->getBackdropPath());
         $this->assertEquals(10, $this->collection->getId());
         $this->assertEquals('external', $this->collection->getOverview());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->collection->getImages());
         $this->assertEquals('Star Wars Collection', $this->collection->getName());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->collection->getParts());
         $this->assertInstanceOf('Tmdb\Model\Image\PosterImage', $this->collection->getPosterImage());
-        $this->assertEquals('/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg', $this->collection->getPosterPath());
+        $this->assertEquals('/iTQHKziZy9pAAY4hHEDCGPaOvFC.jpg', $this->collection->getPosterPath());
     }
 
     protected function getFactoryClass()

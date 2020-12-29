@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Model\Tv;
 
 use Tmdb\Common\ObjectHydrator;
@@ -24,12 +26,12 @@ class ExternalIdsTest extends TestCase
     public function shouldBeFunctional()
     {
         $data = [
-            'imdb_id'      => 'tt0903747',
-            'freebase_id'  => '/en/breaking_bad',
+            'imdb_id' => 'tt0903747',
+            'freebase_id' => '/en/breaking_bad',
             'freebase_mid' => '/m/03d34x8',
-            'id'           => 1396,
-            'tvdb_id'      => 81189,
-            'tvrage_id'    => 18164,
+            'id' => 1396,
+            'tvdb_id' => 81189,
+            'tvrage_id' => 18164,
         ];
 
         $hydrator = new ObjectHydrator();

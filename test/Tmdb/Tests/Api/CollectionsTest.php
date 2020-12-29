@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,13 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
 class CollectionsTest extends TestCase
 {
-    const COLLECTION_ID = 120;
+    public const COLLECTION_ID = 120;
 
     /**
      * @test
@@ -23,11 +25,8 @@ class CollectionsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/collection/' . self::COLLECTION_ID));
-
         $api->getCollection(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID);
     }
 
     /**
@@ -37,11 +36,19 @@ class CollectionsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/collection/' . self::COLLECTION_ID . '/images'));
-
         $api->getImages(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID . '/images');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTranslations()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $api->getTranslations(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID . '/translations');
     }
 
     protected function getApiClass()

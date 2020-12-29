@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Model;
 
 use Tmdb\Model\Tv;
@@ -26,20 +28,20 @@ class TvTest extends TestCase
         $this->assertInstancesOf(
             $tv,
             [
-//                'getCreatedBy'           => 'Tmdb\Model\Collection\Images',
-//                'getEpisodeRuntime'      => 'Tmdb\Model\Common\GenericCollection',
-                'getGenres'              => 'Tmdb\Model\Collection\Genres',
-//                'getLanguages'           => 'Tmdb\Model\Common\GenericCollection',
-                'getNetworks'            => 'Tmdb\Model\Common\GenericCollection',
-                'getOriginCountry'       => 'Tmdb\Model\Common\GenericCollection',
-                'getSeasons'             => 'Tmdb\Model\Common\GenericCollection',
-                'getCredits'             => 'Tmdb\Model\Collection\CreditsCollection',
-                'getExternalIds'         => 'Tmdb\Model\Common\ExternalIds',
-                'getImages'              => 'Tmdb\Model\Collection\Images',
-                'getSimilar'             => 'Tmdb\Model\Common\GenericCollection',
-                'getRecommendations'     => 'Tmdb\Model\Common\GenericCollection',
-                'getTranslations'        => 'Tmdb\Model\Common\GenericCollection',
-                'getVideos'              => 'Tmdb\Model\Collection\Videos',
+                //                'getCreatedBy'           => 'Tmdb\Model\Collection\Images',
+                //                'getEpisodeRuntime'      => 'Tmdb\Model\Common\GenericCollection',
+                'getGenres' => 'Tmdb\Model\Collection\Genres',
+                //                'getLanguages'           => 'Tmdb\Model\Common\GenericCollection',
+                'getNetworks' => 'Tmdb\Model\Common\GenericCollection',
+                'getOriginCountry' => 'Tmdb\Model\Common\GenericCollection',
+                'getSeasons' => 'Tmdb\Model\Common\GenericCollection',
+                'getCredits' => 'Tmdb\Model\Collection\CreditsCollection',
+                'getExternalIds' => 'Tmdb\Model\Common\ExternalIds',
+                'getImages' => 'Tmdb\Model\Collection\Images',
+                'getSimilar' => 'Tmdb\Model\Common\GenericCollection',
+                'getRecommendations' => 'Tmdb\Model\Common\GenericCollection',
+                'getTranslations' => 'Tmdb\Model\Common\GenericCollection',
+                'getVideos' => 'Tmdb\Model\Collection\Videos',
             ]
         );
     }

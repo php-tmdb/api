@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,16 +9,18 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
+use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Tv;
 
 class TvSeasonRepositoryTest extends TestCase
 {
-    const TV_ID     = 3572;
-    const SEASON_NUMBER = 1;
+    public const TV_ID     = 3572;
+    public const SEASON_NUMBER = 1;
 
     /**
      * @test
@@ -26,15 +29,9 @@ class TvSeasonRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER,
-                ['append_to_response' => 'credits,external_ids,images,changes,videos']
-            ))
-        ;
-
         $repository->load(self::TV_ID, self::SEASON_NUMBER);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER);
+        $this->assertRequestHasQueryParameters(['append_to_response' => 'credits,external_ids,images,changes,videos']);
     }
 
     /**
@@ -44,14 +41,6 @@ class TvSeasonRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER,
-                ['append_to_response' => 'credits,external_ids,images,changes,videos']
-            ))
-        ;
-
         $tv = new Tv();
         $tv->setId(self::TV_ID);
 
@@ -59,6 +48,8 @@ class TvSeasonRepositoryTest extends TestCase
         $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->load($tv, $season);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER);
+        $this->assertRequestHasQueryParameters(['append_to_response' => 'credits,external_ids,images,changes,videos']);
     }
 
     /**
@@ -68,13 +59,6 @@ class TvSeasonRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/credits'
-            ))
-        ;
-
         $tv = new Tv();
         $tv->setId(self::TV_ID);
 
@@ -82,6 +66,7 @@ class TvSeasonRepositoryTest extends TestCase
         $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->getCredits($tv, $season);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/credits');
     }
 
     /**
@@ -91,13 +76,6 @@ class TvSeasonRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/external_ids'
-            ))
-        ;
-
         $tv = new Tv();
         $tv->setId(self::TV_ID);
 
@@ -105,6 +83,7 @@ class TvSeasonRepositoryTest extends TestCase
         $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->getExternalIds($tv, $season);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/external_ids');
     }
 
     /**
@@ -114,13 +93,6 @@ class TvSeasonRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/images'
-            ))
-        ;
-
         $tv = new Tv();
         $tv->setId(self::TV_ID);
 
@@ -128,6 +100,7 @@ class TvSeasonRepositoryTest extends TestCase
         $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->getImages($tv, $season);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/images');
     }
 
     /**
@@ -137,13 +110,6 @@ class TvSeasonRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/videos'
-            ))
-        ;
-
         $tv = new Tv();
         $tv->setId(self::TV_ID);
 
@@ -151,14 +117,15 @@ class TvSeasonRepositoryTest extends TestCase
         $season->setSeasonNumber(self::SEASON_NUMBER);
 
         $repository->getVideos($tv, $season);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/videos');
     }
 
     /**
-     * @expectedException Tmdb\Exception\RuntimeException
      * @test
      */
     public function shouldThrowExceptionWhenConditionsNotMet()
     {
+        $this->expectException(RuntimeException::class);
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $tv = new Tv();
@@ -168,11 +135,11 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
-     * @expectedException Tmdb\Exception\RuntimeException
      * @test
      */
     public function shouldThrowExceptionWhenConditionsNotMetAll()
     {
+        $this->expectException(RuntimeException::class);
         $repository = $this->getRepositoryWithMockedHttpClient();
         $repository->load(null, null);
     }

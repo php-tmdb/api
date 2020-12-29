@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Repository;
@@ -72,6 +72,7 @@ class TvEpisodeRepository extends AbstractRepository
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
+                    AppendToResponse::TRANSLATIONS,
                     AppendToResponse::CHANGES,
                     AppendToResponse::VIDEOS
                 ])
@@ -218,6 +219,41 @@ class TvEpisodeRepository extends AbstractRepository
         $episode = $this->getFactory()->create(['images' => $data]);
 
         return $episode->getImages();
+    }
+
+    /**
+     * Get the list of translations that exist for a TV episode.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|\Tmdb\Model\AbstractModel
+     */
+    public function getTranslations($tvShow, $season, $episode, array $parameters = [], array $headers = [])
+    {
+        if ($tvShow instanceof Tv) {
+            $tvShow = $tvShow->getId();
+        }
+
+        if ($season instanceof Season) {
+            $season = $season->getSeasonNumber();
+        }
+
+        if ($episode instanceof Tv\Episode) {
+            $episode = $episode->getEpisodeNumber();
+        }
+
+        $data = $this->getApi()->getTranslations(
+            $tvShow,
+            $season,
+            $episode,
+            $this->parseQueryParameters($parameters),
+            $headers
+        );
+
+        $episode = $this->getFactory()->create(['translations' => $data]);
+
+        return $episode->getTranslations();
     }
 
     /**

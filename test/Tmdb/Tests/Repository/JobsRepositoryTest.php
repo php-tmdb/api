@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 class JobsRepositoryTest extends TestCase
@@ -21,12 +23,8 @@ class JobsRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/job/list', []))
-        ;
-
         $repository->load();
+        $this->assertLastRequestIsWithPathAndMethod('/3/job/list');
     }
 
     /**
@@ -36,12 +34,8 @@ class JobsRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/job/list', []))
-        ;
-
         $repository->loadCollection();
+        $this->assertLastRequestIsWithPathAndMethod('/3/job/list');
     }
 
     /**

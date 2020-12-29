@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,12 +9,13 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Api\Authentication;
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\Repository\AuthenticationRepository;
 use Tmdb\RequestToken;
 
@@ -26,12 +28,8 @@ class AuthenticationRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/new', []))
-        ;
-
         $repository->getRequestToken();
+        $this->assertLastRequestIsWithPathAndMethod('/3/authentication/token/new');
     }
 
     /**
@@ -41,29 +39,27 @@ class AuthenticationRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/session/new', ['request_token' => 'request_token']))
-        ;
-
         $repository->getSessionToken(new RequestToken('request_token'));
+        $this->assertLastRequestIsWithPathAndMethod('/3/authentication/session/new');
+        $this->assertRequestHasQueryParameters([
+                                                   'request_token' => 'request_token'
+                                               ]);
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldValidateRequestTokenWithLogin()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $response = new Response(200);
+        $response = new ResponseInterface(200);
         $response->setBody(json_encode([
             'success' => true,
             'request_token' => 'abcdefghijklmnopqrstuvwxyz'
         ]));
 
-        $this->getAdapter()
+        $this->getPsr18Client()
             ->expects($this->any())
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/validate_with_login', [
@@ -78,13 +74,13 @@ class AuthenticationRepositoryTest extends TestCase
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldGetGuestSession()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
+        $this->getPsr18Client()->expects($this->once())
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/authentication/guest_session/new', []))
         ;

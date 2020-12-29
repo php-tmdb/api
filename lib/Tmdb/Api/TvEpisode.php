@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Api;
@@ -128,6 +128,33 @@ class TvEpisode extends AbstractApi
         return $this->get(
             sprintf(
                 'tv/%s/season/%s/episode/%s/images',
+                $tvshow_id,
+                $season_number,
+                $episode_number
+            ),
+            $parameters,
+            $headers
+        );
+    }
+
+    /**
+     * Get the list of translations that exist for a TV episode.
+     *
+     * @param  int   $tvshow_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getTranslations(
+        $tvshow_id,
+        $season_number,
+        $episode_number,
+        array $parameters = [],
+        array $headers = []
+    ) {
+        return $this->get(
+            sprintf(
+                'tv/%s/season/%s/episode/%s/translations',
                 $tvshow_id,
                 $season_number,
                 $episode_number

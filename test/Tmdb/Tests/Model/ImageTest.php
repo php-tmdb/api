@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,12 +9,16 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Model;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
+use Tmdb\Event\HydrationEvent;
+use Tmdb\Event\HydrationListener;
 use Tmdb\Factory\ImageFactory;
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image;
@@ -27,25 +32,30 @@ class ImageTest extends TestCase
 
     private $images = [
         [
-            'file_path'    => '/abc.jpg',
-            'width'        => 1000,
-            'height'       => 750,
-            'iso_639_1'    => 'en',
+            'file_path' => '/abc.jpg',
+            'width' => 1000,
+            'height' => 750,
+            'iso_639_1' => 'en',
             'aspect_ratio' => 0.75,
             'vote_average' => 2.25,
-            'vote_count'   => 25
+            'vote_count' => 25
         ],
     ];
 
-    public function setUp() :void
+    public function setUp(): void
     {
-        $client = new Client(new ApiToken('abcdef'));
+        $ed = new EventDispatcher();
+        $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
+
+        $client = new Client(
+            new ApiToken('abcdef'),
+            ['event_dispatcher' => ['adapter' => $ed]]
+        );
         $this->collection = new Images();
 
         foreach ($this->images as $image) {
-
             $factory = new ImageFactory($client->getHttpClient());
-            $object  = $factory->create($image);
+            $object = $factory->create($image);
 
             $this->collection->addImage($object);
         }

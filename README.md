@@ -203,7 +203,7 @@ $popular = $repository->getPopular();
 Since 2.0 requests are handled by the `EventDispatcher`, which gives you before and after hooks, the before hook allows an event to stop propagation for the
 request event, meaning you are able to stop the main request from happening, you will have to set a `Response` object in that event though.
 
-See the files for [TmdbEvents](lib/Tmdb/Event/TmdbEvents.php) and [RequestSubscriber](lib/Tmdb/Event/RequestSubscriber.php) respectively.
+See the files for [TmdbEvents](lib/Tmdb/Event/TmdbEvents.php) and [RequestSubscriber](lib/Tmdb/Event/RequestListener.php) respectively.
 
 ### Image Helper
 

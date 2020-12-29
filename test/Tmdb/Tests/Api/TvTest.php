@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,13 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
 class TvTest extends TestCase
 {
-    const TV_ID = 3572;
+    public const TV_ID = 3572;
 
     /**
      * @test
@@ -23,11 +25,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID));
-
         $api->getTvshow(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID);
     }
 
     /**
@@ -37,11 +36,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/credits'));
-
         $api->getCredits(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/credits');
     }
 
     /**
@@ -51,11 +47,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/external_ids'));
-
         $api->getExternalIds(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/external_ids');
     }
 
     /**
@@ -65,11 +58,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/images'));
-
         $api->getImages(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/images');
     }
 
     /**
@@ -79,11 +69,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/translations'));
-
         $api->getTranslations(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/translations');
     }
 
     /**
@@ -93,11 +80,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/popular'));
-
         $api->getPopular();
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/popular');
     }
 
     /**
@@ -107,11 +91,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/top_rated'));
-
         $api->getTopRated();
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/top_rated');
     }
 
     /**
@@ -121,11 +102,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/on_the_air'));
-
         $api->getOnTheAir();
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/on_the_air');
     }
 
     /**
@@ -135,11 +113,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/airing_today'));
-
         $api->getAiringToday();
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/airing_today');
     }
 
     /**
@@ -149,12 +124,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/videos'))
-        ;
-
         $api->getVideos(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/videos');
     }
 
     /**
@@ -164,12 +135,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/changes'))
-        ;
-
         $api->getChanges(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/changes');
     }
 
     /**
@@ -179,12 +146,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/keywords'))
-        ;
-
         $api->getKeywords(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/keywords');
     }
 
     /**
@@ -194,12 +157,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/similar'))
-        ;
-
         $api->getSimilar(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/similar');
     }
 
     /**
@@ -209,12 +168,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/recommendations'))
-        ;
-
         $api->getRecommendations(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/recommendations');
     }
 
     /**
@@ -224,18 +179,13 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest(
-                'https://api.themoviedb.org/3/tv/' . self::TV_ID . '/rating',
-                [],
-                'POST',
-                [],
-                ['value' => 8.5]
-            ))
-        ;
-
         $api->rateTvShow(self::TV_ID, 8.5);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/rating', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'value' => 8.5
+            ]
+        );
     }
 
     /**
@@ -245,11 +195,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/latest'));
-
         $api->getLatest();
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/latest');
     }
 
     /**
@@ -259,11 +206,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/account_states'));
-
         $api->getAccountStates(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/account_states');
     }
 
     /**
@@ -273,11 +217,8 @@ class TvTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/content_ratings'));
-
         $api->getContentRatings(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/content_ratings');
     }
 
     protected function getApiClass()

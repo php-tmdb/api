@@ -9,14 +9,13 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Collection\People\PersonInterface;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Person;
 
 /**
  * Class People
@@ -27,7 +26,7 @@ class People extends GenericCollection
     /**
      * Returns all people
      *
-     * @return Person[]
+     * @return PersonInterface[]
      */
     public function getPeople()
     {
@@ -39,9 +38,9 @@ class People extends GenericCollection
      *
      * @param $id
      *
-     * @return GenericCollection
+     * @return PersonInterface|null
      */
-    public function getPerson($id): GenericCollection
+    public function getPerson($id): ?PersonInterface
     {
         return $this->filterId($id);
     }

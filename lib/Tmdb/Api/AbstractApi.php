@@ -9,11 +9,12 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Api;
 
+use Psr\Http\Message\ResponseInterface;
 use Tmdb\Client;
 
 /**
@@ -67,12 +68,18 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Decode the response
      *
-     * @param $response
-     * @return mixed
+     * @param ResponseInterface $response
+     * @return array
      */
-    private function decodeResponse(string $response)
+    private function decodeResponse(ResponseInterface $response)
     {
-        return is_string($response) ? json_decode($response, true) : $response;
+        $responseData = json_decode((string)$response->getBody(), true);
+
+        if (!$responseData) {
+            return [];
+        }
+
+        return $responseData;
     }
 
     /**

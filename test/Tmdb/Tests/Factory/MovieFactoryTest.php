@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\MovieFactory;
@@ -20,14 +22,14 @@ use Tmdb\Model\Person\CastMember;
 
 class MovieFactoryTest extends TestCase
 {
-    const MOVIE_ID = 120;
+    public const MOVIE_ID = 120;
 
     /**
      * @var Movie
      */
     private $movie;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         /**
          * @var MovieFactory $factory
@@ -118,7 +120,7 @@ class MovieFactoryTest extends TestCase
         /** @var ReleaseDate[] $release_dates */
         $release_dates = $this->movie->getReleaseDates()->getAll();
         $this->assertEquals(46, count($release_dates));
-        foreach($release_dates as $release_date) {
+        foreach ($release_dates as $release_date) {
             $this->assertNotEmpty($release_date->getIso31661());
             $this->assertInstanceOf(\DateTime::class, $release_date->getReleaseDate());
             $this->assertTrue(is_int($release_date->getType()));

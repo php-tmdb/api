@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Event;
@@ -17,12 +17,12 @@ namespace Tmdb\Event;
 final class TmdbEvents
 {
     /** Request */
-    const BEFORE_REQUEST = 'tmdb.before_request';
-    const REQUEST = 'tmdb.request';
-    const AFTER_REQUEST = 'tmdb.after_request';
+    public const BEFORE_REQUEST = 'tmdb.before_request';
+    public const REQUEST = 'tmdb.request';
+    public const AFTER_REQUEST = 'tmdb.after_request';
 
     /** Hydration */
-    const BEFORE_HYDRATION = 'tmdb.before_hydration';
-    const HYDRATE = 'tmdb.hydrate';
-    const AFTER_HYDRATION = 'tmdb.after_hydration';
+    public const BEFORE_HYDRATION = 'tmdb.before_hydration';
+    public const HYDRATE = 'tmdb.hydrate';
+    public const AFTER_HYDRATION = 'tmdb.after_hydration';
 }

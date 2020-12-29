@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,30 +9,41 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\SessionToken;
 
 class ClientTest extends \Tmdb\Tests\TestCase
 {
-    const API_TOKEN     = 'abcdef';
-    const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
+    public const API_TOKEN     = 'abcdef';
+    public const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
 
     /**
      * @var Client
      */
     private $client = null;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         $token        = new ApiToken(self::API_TOKEN);
         $sessionToken = new SessionToken(self::SESSION_TOKEN);
+        $eventDispatcher = new EventDispatcher();
 
-        $client = new Client($token, ['session_token' => $sessionToken]);
+        $client = new Client(
+            $token,
+            [
+                'session_token' => $sessionToken,
+                'event_dispatcher' => [
+                    'adapter' => $eventDispatcher
+                ]
+            ]
+        );
 
         $this->client = $client;
     }
@@ -96,37 +108,37 @@ class ClientTest extends \Tmdb\Tests\TestCase
     {
         $token  = new ApiToken(self::API_TOKEN);
 
-        $client = new \Tmdb\Client($token);
+        $client = new \Tmdb\Client($token, ['event_dispatcher' => ['adapter' => new EventDispatcher()]]);
         $options = $client->getOptions();
         $this->assertTrue(true === $options['secure']);
-        $this->assertTrue(false !== strpos($options['base_url'], 'https://'));
+        $this->assertTrue(false !== strpos($options['base_uri'], 'https://'));
 
-        $client = new \Tmdb\Client($token, ['secure' => true]);
+        $client = new \Tmdb\Client($token, ['secure' => true, 'event_dispatcher' => ['adapter' => new EventDispatcher()]]);
         $options = $client->getOptions();
         $this->assertTrue(true === $options['secure']);
-        $this->assertTrue(false !== strpos($options['base_url'], 'https://'));
+        $this->assertTrue(false !== strpos($options['base_uri'], 'https://'));
 
-        $client = new \Tmdb\Client($token, ['secure' => false]);
+        $client = new \Tmdb\Client($token, ['secure' => false, 'event_dispatcher' => ['adapter' => new EventDispatcher()]]);
         $options = $client->getOptions();
         $this->assertTrue(false === $options['secure']);
-        $this->assertTrue(false !== strpos($options['base_url'], 'http://'));
+        $this->assertTrue(false !== strpos($options['base_uri'], 'http://'));
     }
 
     public function testShouldSwitchHttpScheme()
     {
         $token  = new ApiToken(self::API_TOKEN);
-        $client = new Client($token);
+        $client = new Client($token, ['event_dispatcher' => ['adapter' => new EventDispatcher()]]);
 
         $options = $client->getOptions();
 
-        $this->assertEquals('https://api.themoviedb.org/3/', $options['base_url']);
+        $this->assertEquals('https://api.themoviedb.org/3', $options['base_uri']);
 
         $options['secure'] = false;
         $client->setOptions($options);
 
         $options = $client->getOptions();
 
-        $this->assertEquals('http://api.themoviedb.org/3/', $options['base_url']);
+        $this->assertEquals('http://api.themoviedb.org/3', $options['base_uri']);
     }
 
     /**
@@ -165,6 +177,9 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $this->client->setOptions(array(
             'token' => new ApiToken($expectedToken),
             'session_token' =>  new SessionToken($expectedSessionToken),
+            'event_dispatcher' => [
+                'adapter' => new EventDispatcher()
+            ]
         ));
 
         $token = $this->client->getOption('token');
@@ -185,5 +200,4 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $this->assertEquals(self::API_TOKEN, $token);
         $this->assertEquals(null, $invalidOption);
     }
-
 }

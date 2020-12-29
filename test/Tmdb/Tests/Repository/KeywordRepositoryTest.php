@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,15 +9,16 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Repository\KeywordRepository;
 
 class KeywordRepositoryTest extends TestCase
 {
-    const KEYWORD_ID = 1721;
+    public const KEYWORD_ID = 1721;
 
     /**
      * @test
@@ -25,12 +27,8 @@ class KeywordRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/'.self::KEYWORD_ID, []))
-        ;
-
         $repository->load(self::KEYWORD_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/keyword/' . self::KEYWORD_ID);
     }
 
     /**
@@ -43,12 +41,8 @@ class KeywordRepositoryTest extends TestCase
          */
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/1/movies', []))
-        ;
-
-        $repository->getMovies(1);
+        $repository->getMovies(self::KEYWORD_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/keyword/' . self::KEYWORD_ID . '/movies');
     }
 
     protected function getApiClass()

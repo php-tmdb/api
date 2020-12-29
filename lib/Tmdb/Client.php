@@ -9,18 +9,28 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 2.1.10
+ * @version 4.0.0
  */
 
 namespace Tmdb;
 
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
+use Http\Message\RequestFactory;
 use Monolog\Handler\StreamHandler;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\UriFactoryInterface;
+use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tmdb\ApiToken as Token;
+use Tmdb\Event\HydrationListener;
 use Tmdb\HttpClient\Adapter\AdapterInterface;
-use Tmdb\HttpClient\Adapter\GuzzleAdapter;
 use Tmdb\HttpClient\HttpClient;
 
 /**
@@ -32,16 +42,16 @@ class Client
     use ApiMethodsTrait;
 
     /** Client Version */
-    const VERSION = '3.0.0';
+    public const VERSION = '4.0.0';
 
     /** Base API URI */
-    const TMDB_URI = 'api.themoviedb.org/3/';
+    public const TMDB_URI = 'api.themoviedb.org/3';
 
     /** Insecure schema */
-    const SCHEME_INSECURE = 'http';
+    public const SCHEME_INSECURE = 'http';
 
     /** Secure schema */
-    const SCHEME_SECURE = 'https';
+    public const SCHEME_SECURE = 'https';
 
     /**
      * Stores the HTTP Client
@@ -71,6 +81,20 @@ class Client
 
         $this->configureOptions(array_replace(['token' => $token], (array)$options));
         $this->constructHttpClient();
+
+
+        $ed = $this->getEventDispatcher();
+        $requestListener = new \Tmdb\Event\Listener\RequestListener($this->getHttpClient(), $ed);
+        $apiTokenListener = new \Tmdb\Event\Listener\Request\ApiTokenRequestListener($this->getToken());
+        $acceptJsonListener = new \Tmdb\Event\Listener\Request\AcceptJsonRequestListener();
+        $jsonContentTypeListener = new \Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener();
+        $hydrationListener = new HydrationListener($ed);
+
+        $ed->addListener(\Tmdb\Event\BeforeRequestEvent::class, $apiTokenListener);
+        $ed->addListener(\Tmdb\Event\BeforeRequestEvent::class, $acceptJsonListener);
+        $ed->addListener(\Tmdb\Event\BeforeRequestEvent::class, $jsonContentTypeListener);
+        $ed->addListener(\Tmdb\Event\RequestEvent::class, $requestListener);
+        $ed->addListener(\Tmdb\Event\HydrationEvent::class, $hydrationListener);
     }
 
     /**
@@ -84,33 +108,74 @@ class Client
         $resolver = new OptionsResolver();
 
         $resolver->setDefaults([
-            'adapter' => null,
             'secure' => true,
             'host' => self::TMDB_URI,
-            'base_url' => null,
+            'base_uri' => null,
             'token' => null,
             'session_token' => null,
-            'event_dispatcher' => array_key_exists('event_dispatcher', $this->options) ? $this->options['event_dispatcher'] : new EventDispatcher(),
-            'cache' => [],
-            'log' => [],
+            'http' => function (OptionsResolver $optionsResolver) {
+                $optionsResolver->setDefaults([
+                    'client' => null,
+                    'request_factory' => null,
+                    'response_factory' => null,
+                    'stream_factory' => null,
+                    'uri_factory' => null,
+                ]);
+                $optionsResolver->setRequired([
+                    'client',
+                                                  'request_factory',
+                                                  'response_factory',
+                                                  'stream_factory',
+                                                  'uri_factory'
+                                              ]);
+                $optionsResolver->setAllowedTypes('client', [ClientInterface::class, 'null']);
+                $optionsResolver->setAllowedTypes('request_factory', [RequestFactoryInterface::class, 'null']);
+                $optionsResolver->setAllowedTypes('response_factory', [ResponseFactoryInterface::class, 'null']);
+                $optionsResolver->setAllowedTypes('stream_factory', [StreamFactoryInterface::class, 'null']);
+                $optionsResolver->setAllowedTypes('uri_factory', [UriFactoryInterface::class, 'null']);
+            },
+            'event_dispatcher' => function (OptionsResolver $optionsResolver) {
+                $optionsResolver->setDefaults([
+                    'adapter' => null
+                ]);
+                $optionsResolver->setRequired(['adapter']);
+                $optionsResolver->setAllowedTypes('adapter', [EventDispatcherInterface::class]);
+            },
+            'cache' => function (OptionsResolver $optionsResolver) {
+                $optionsResolver->setDefaults([
+                    'enabled' => false,
+                    'adapter' => null,
+                ]);
+
+//                $optionsResolver->setAllowedTypes('adapter', [CacheInterface::class, 'null']);
+            },
+            'log' => function (OptionsResolver $optionsResolver) {
+                $optionsResolver->setDefaults([
+                    'enabled' => false,
+                    'adapter' => null
+                ]);
+//                $optionsResolver->setAllowedTypes('adapter', [LoggerInterface::class, 'null']);
+            },
         ]);
 
         $resolver->setRequired([
-            'adapter',
             'host',
             'token',
             'secure',
+            'http',
             'event_dispatcher',
             'cache',
             'log'
         ]);
 
-        $resolver->setAllowedTypes('adapter', ['object', 'null']);
         $resolver->setAllowedTypes('host', ['string']);
-        $resolver->setAllowedTypes('secure', ['bool']);
         $resolver->setAllowedTypes('token', ['object']);
+        $resolver->setAllowedTypes('secure', ['bool']);
+        $resolver->setAllowedTypes('http', ['array']);
+        $resolver->setAllowedTypes('event_dispatcher', ['array']);
+        $resolver->setAllowedTypes('cache', ['array']);
+        $resolver->setAllowedTypes('log', ['array']);
         $resolver->setAllowedTypes('session_token', ['object', 'null']);
-        $resolver->setAllowedTypes('event_dispatcher', ['object']);
 
         $this->options = $resolver->resolve($options);
 
@@ -128,20 +193,31 @@ class Client
      */
     protected function postResolve(array $options = []): void
     {
-        $this->options['base_url'] = sprintf(
+        $this->options['http']['client'] = $this->options['http']['client'] ??
+            Psr18ClientDiscovery::find();
+        $this->options['http']['request_factory'] = $this->options['http']['request_factory'] ??
+            Psr17FactoryDiscovery::findRequestFactory();
+        $this->options['http']['response_factory'] = $this->options['http']['response_factory'] ??
+            Psr17FactoryDiscovery::findResponseFactory();
+        $this->options['http']['stream_factory'] = $this->options['http']['stream_factory'] ??
+            Psr17FactoryDiscovery::findStreamFactory();
+        $this->options['http']['uri_factory'] = $this->options['http']['uri_factory'] ??
+            Psr17FactoryDiscovery::findUriFactory();
+
+        $this->options['base_uri'] = sprintf(
             '%s://%s',
             $this->options['secure'] ? self::SCHEME_SECURE : self::SCHEME_INSECURE,
             $this->options['host']
         );
 
-        if (!$this->options['adapter']) {
-            $this->options['adapter'] = new GuzzleAdapter(
-                new \GuzzleHttp\Client()
-            );
-        }
-
-        $this->options['cache'] = $this->configureCacheOptions($options);
-        $this->options['log'] = $this->configureLogOptions($options);
+//        if (!$this->options['adapter']) {
+//            $this->options['adapter'] = new GuzzleAdapter(
+//                new \GuzzleHttp\Client()
+//            );
+//        }
+//
+//        $this->options['cache'] = $this->configureCacheOptions($options);
+//        $this->options['log'] = $this->configureLogOptions($options);
     }
 
     /**
@@ -333,11 +409,11 @@ class Client
     /**
      * Get the event dispatcher
      *
-     * @return AdapterInterface
+     * @return EventDispatcherInterface
      */
     public function getEventDispatcher()
     {
-        return $this->options['event_dispatcher'];
+        return $this->options['event_dispatcher']['adapter'];
     }
 
     /**

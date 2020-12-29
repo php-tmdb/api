@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,14 +9,15 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
 class AccountTest extends TestCase
 {
-    const ACCOUNT_ID = 1;
-    const MEDIA_ID   = 123;
+    public const ACCOUNT_ID = 1;
+    public const MEDIA_ID = 123;
 
     /**
      * @test
@@ -24,13 +26,8 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account'))
-        ;
-
         $api->getAccount();
+        $this->assertLastRequestIsWithPathAndMethod('/3/account');
     }
 
     /**
@@ -40,13 +37,8 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/lists'))
-        ;
-
         $api->getLists(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/lists');
     }
 
     /**
@@ -56,13 +48,8 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite/movies'))
-        ;
-
         $api->getFavoriteMovies(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/favorite/movies');
     }
 
     /**
@@ -72,13 +59,8 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite/tv'))
-        ;
-
         $api->getFavoriteTvShows(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/favorite/tv');
     }
 
     /**
@@ -88,17 +70,15 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/favorite', [], 'POST', [], [
-                'media_id'   => self::MEDIA_ID,
-                'media_type' => 'movie',
-                'favorite'   => true
-            ]))
-        ;
-
         $api->favorite(self::ACCOUNT_ID, self::MEDIA_ID, true, 'movie');
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/favorite', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MEDIA_ID,
+                'media_type' => 'movie',
+                'favorite' => true
+            ]
+        );
     }
 
     /**
@@ -108,13 +88,8 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/rated/movies'))
-        ;
-
         $api->getRatedMovies(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/rated/movies');
     }
 
     /**
@@ -124,13 +99,8 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/rated/tv'))
-        ;
-
         $api->getRatedTvShows(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/rated/tv');
     }
 
     /**
@@ -140,13 +110,8 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist/movies'))
-        ;
-
         $api->getMovieWatchlist(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/watchlist/movies');
     }
 
     /**
@@ -156,13 +121,8 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist/tv'))
-        ;
-
         $api->getTvWatchlist(self::ACCOUNT_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/watchlist/tv');
     }
 
     /**
@@ -172,17 +132,15 @@ class AccountTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/account/'.self::ACCOUNT_ID.'/watchlist', [], 'POST', [], [
-                'media_id'   => self::MEDIA_ID,
-                'media_type' => 'movie',
-                'watchlist'  => true
-            ]))
-        ;
-
         $api->watchlist(self::ACCOUNT_ID, self::MEDIA_ID, true, 'movie');
+        $this->assertLastRequestIsWithPathAndMethod('/3/account/' . self::ACCOUNT_ID . '/watchlist', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MEDIA_ID,
+                'media_type' => 'movie',
+                'watchlist' => true
+            ]
+        );
     }
 
     protected function getApiClass()

@@ -9,13 +9,12 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Repository;
 
 use Tmdb\Factory\ListFactory;
-use Tmdb\Model\Genre;
 use Tmdb\Model\Lists;
 use Tmdb\Model\Lists\ItemStatus;
 
@@ -33,9 +32,9 @@ class ListRepository extends AbstractRepository
      * @param array $parameters
      * @param array $headers
      *
-     * @return Genre
+     * @return Lists
      */
-    public function load($id, array $parameters = [], array $headers = []): Genre
+    public function load($id, array $parameters = [], array $headers = []): Lists
     {
         return $this->getFactory()->create(
             $this->getApi()->getList($id, $parameters, $headers)
@@ -69,7 +68,7 @@ class ListRepository extends AbstractRepository
      * @param array $headers
      * @return ItemStatus
      */
-    public function getItemStatus($id, $mediaId, array $parameters = [], array $headers = [])
+    public function getItemStatus($id, $mediaId, array $parameters = [], array $headers = []): ItemStatus
     {
         return $this->getFactory()->createItemStatus(
             $this->getApi()->getItemStatus($id, $mediaId, $parameters, $headers)
@@ -86,8 +85,12 @@ class ListRepository extends AbstractRepository
      *
      * @return Lists\ResultWithListId The list id
      */
-    public function createList($name, $description = null, array $parameters = [], array $headers = []): Lists\ResultWithListId
-    {
+    public function createList(
+        $name,
+        $description = null,
+        array $parameters = [],
+        array $headers = []
+    ): Lists\ResultWithListId {
         return $this->getFactory()->createResultWithListId(
             $this->getApi()->createList($name, $description, $parameters, $headers)
         );

@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Factory;
@@ -96,7 +96,7 @@ class ListFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return Genre
+     * @return Lists
      */
     public function create(array $data = [])
     {

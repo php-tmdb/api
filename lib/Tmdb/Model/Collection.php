@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model;
@@ -25,13 +25,6 @@ use Tmdb\Model\Image\PosterImage;
  */
 class Collection extends AbstractModel
 {
-    public static $properties = [
-        'backdrop_path',
-        'id',
-        'name',
-        'overview',
-        'poster_path',
-    ];
     /**
      * @var string
      */
@@ -48,6 +41,12 @@ class Collection extends AbstractModel
      * @var Images
      */
     private $images;
+
+    /**
+     * @var GenericCollection
+     */
+    private $translations;
+
     /**
      * @var string
      */
@@ -69,10 +68,19 @@ class Collection extends AbstractModel
      */
     private $poster;
 
+    public static $properties = [
+        'backdrop_path',
+        'id',
+        'name',
+        'overview',
+        'poster_path',
+    ];
+
     public function __construct()
     {
-        $this->parts = new GenericCollection();
-        $this->images = new Images();
+        $this->parts        = new GenericCollection();
+        $this->images       = new Images();
+        $this->translations = new GenericCollection();
     }
 
     /**
@@ -157,6 +165,24 @@ class Collection extends AbstractModel
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param  GenericCollection $translations
+     * @return $this
+     */
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+         return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 
     /**

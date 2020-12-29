@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use Tmdb\Common\ObjectHydrator;
+use Tmdb\Model\AbstractModel;
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,21 +13,24 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
-class ObjectHydratorTest extends \PHPUnit\Framework\TestCase
+class ObjectHydratorTest extends TestCase
 {
     /**
      * @test
      */
     public function canHydrateObject()
     {
-        $objectHydrator = new \Tmdb\Common\ObjectHydrator();
+        $objectHydrator = new ObjectHydrator();
 
-        $subject = $objectHydrator->hydrate(new TestModel(), [
-            'id'   => 15,
-            'name' => 'Michael'
-        ]);
+        $subject = $objectHydrator->hydrate(
+            new TestModel(),
+            [
+                'id' => 15,
+                'name' => 'Michael'
+            ]
+        );
 
         $this->assertInstanceOf('TestModel', $subject);
         $this->assertEquals(15, $subject->getId());
@@ -30,26 +38,34 @@ class ObjectHydratorTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @expectedException \Tmdb\Exception\RuntimeException
+     *
      * @test
      */
     public function callingNonExistingMethodThrowsException()
     {
-        $objectHydrator = new \Tmdb\Common\ObjectHydrator();
+        $this->expectException(\Tmdb\Exception\RuntimeException::class);
+        $objectHydrator = new ObjectHydrator();
 
         $objectHydrator->hydrate(new FailingTestModel(), ['lastname' => 'Roterman']);
     }
 }
 
-class TestModel extends \Tmdb\Model\AbstractModel
+class TestModel extends AbstractModel
 {
+    static $properties = ['id', 'name'];
     private $id;
     private $name;
 
-    static $properties = ['id', 'name'];
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * @param  mixed $id
+     * @param mixed $id
      * @return $this
      */
     public function setId($id)
@@ -62,13 +78,13 @@ class TestModel extends \Tmdb\Model\AbstractModel
     /**
      * @return mixed
      */
-    public function getId()
+    public function getName()
     {
-        return $this->id;
+        return $this->name;
     }
 
     /**
-     * @param  mixed $name
+     * @param mixed $name
      * @return $this
      */
     public function setName($name)
@@ -77,17 +93,9 @@ class TestModel extends \Tmdb\Model\AbstractModel
 
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 }
 
-class FailingTestModel extends \Tmdb\Model\AbstractModel
+class FailingTestModel extends AbstractModel
 {
     static $properties = ['lastname'];
 }

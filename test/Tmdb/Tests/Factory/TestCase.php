@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,12 +9,17 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Factory;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
+use Tmdb\Event\HydrationEvent;
+use Tmdb\Event\HydrationListener;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Tests\TestCase as Base;
 
 abstract class TestCase extends Base
@@ -23,23 +29,33 @@ abstract class TestCase extends Base
      */
     private $client;
 
-    public function __construct()
-    {
-        $this->client = new Client(new ApiToken('abcdef'));
-    }
-
     protected $factory;
 
     protected function getFactory()
     {
         $class = $this->getFactoryClass();
 
-        return new $class($this->client->getHttpClient());
+        $ed = new EventDispatcher();
+        $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
+        $client = new Client(new ApiToken('abcdef'), [
+            'event_dispatcher' => ['adapter' => $ed]
+        ]);
+
+        return new $class($client->getHttpClient());
     }
 
+    /**
+     * @return HttpClient
+     */
     protected function getHttpClient()
     {
-        return $this->client->getHttpClient();
+        $ed = new EventDispatcher();
+        $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
+        $client = new Client(new ApiToken('abcdef'), [
+            'event_dispatcher' => ['adapter' => $ed]
+        ]);
+
+        return $client->getHttpClient();
     }
 
     abstract protected function getFactoryClass();

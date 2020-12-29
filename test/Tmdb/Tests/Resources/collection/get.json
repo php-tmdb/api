@@ -1,338 +1,1735 @@
 {
-    "id":10,
-    "name":"Star Wars Collection",
-    "overview":"An epic space opera theatrical film series created by George Lucas.\r The first film in the franchise was originally released on May 25, 1977, by 20th Century Fox, and became a worldwide pop culture  phenomenon, followed by two sequels, released at three-year intervals. Sixteen years after the release of the trilogy's final film, the first in a new prequel trilogy of films was released, again released at three-year intervals, with the final film released on May 19, 2005.",
-    "poster_path":"\/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg",
-    "backdrop_path":"\/qCECROwx3TRUEgoZv2Mz2D723QC.jpg",
-    "parts":[
+    "id": 10,
+    "name": "Star Wars Collection",
+    "overview": "An epic space-opera theatrical film series, which depicts the adventures of various characters \"a long time ago in a galaxy far, far away….\"",
+    "poster_path": "/iTQHKziZy9pAAY4hHEDCGPaOvFC.jpg",
+    "backdrop_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg",
+    "parts": [
         {
-            "title":"Star Wars: Episode IV - A New Hope",
-            "id":11,
-            "release_date":"1977-05-25",
-            "poster_path":"\/tvSlBzAdRE29bZe5yYWrJ2ds137.jpg",
-            "backdrop_path":"\/4iJfYYoQzZcONB9hNzg0J0wWyPH.jpg"
+            "overview": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
+            "release_date": "1977-05-25",
+            "id": 11,
+            "adult": false,
+            "backdrop_path": "/zqkmTXzjkAgXmEWLRsY4UpTWCeo.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "vote_count": 14777,
+            "original_language": "en",
+            "original_title": "Star Wars",
+            "poster_path": "/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+            "video": false,
+            "title": "Star Wars",
+            "vote_average": 8.2,
+            "popularity": 182.956
         },
         {
-            "title":"Star Wars: Episode V - The Empire Strikes Back",
-            "id":1891,
-            "release_date":"1980-05-21",
-            "poster_path":"\/6u1fYtxG5eqjhtCPDx04pJphQRW.jpg",
-            "backdrop_path":"\/AkE7LQs2hPMG5tpWYcum847Knre.jpg"
+            "adult": false,
+            "backdrop_path": "/dMZxEdrWIzUmUoOz2zvmFuutbj7.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "id": 1891,
+            "original_language": "en",
+            "original_title": "The Empire Strikes Back",
+            "overview": "The epic saga continues as Luke Skywalker, in hopes of defeating the evil Galactic Empire, learns the ways of the Jedi from aging master Yoda. But Darth Vader is more determined than ever to capture Luke. Meanwhile, rebel leader Princess Leia, cocky Han Solo, Chewbacca, and droids C-3PO and R2-D2 are thrown into various stages of capture, betrayal and despair.",
+            "poster_path": "/7BuH8itoSrLExs2YZSsM01Qk2no.jpg",
+            "release_date": "1980-05-20",
+            "title": "The Empire Strikes Back",
+            "video": false,
+            "vote_average": 8.4,
+            "vote_count": 12361,
+            "popularity": 65.202
         },
         {
-            "title":"Star Wars: Episode VI - Return of the Jedi",
-            "id":1892,
-            "release_date":"1983-05-25",
-            "poster_path":"\/jx5p0aHlbPXqe3AH9G15NvmWaqQ.jpg",
-            "backdrop_path":"\/bvJOpyHYWACDusvQvXxKEHFNjce.jpg"
+            "vote_average": 7.9,
+            "overview": "Luke Skywalker leads a mission to rescue his friend Han Solo from the clutches of Jabba the Hutt, while the Emperor seeks to destroy the Rebellion once and for all with a second dreaded Death Star.",
+            "release_date": "1983-05-25",
+            "title": "Return of the Jedi",
+            "adult": false,
+            "backdrop_path": "/iP2tEA2A77qhbhRfcFkiD6WFOqH.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "vote_count": 10632,
+            "original_language": "en",
+            "original_title": "Return of the Jedi",
+            "poster_path": "/mDCBQNhR6R0PVFucJl0O4Hp5klZ.jpg",
+            "id": 1892,
+            "video": false,
+            "popularity": 63.654
         },
         {
-            "title":"Star Wars: Episode I - The Phantom Menace",
-            "id":1893,
-            "release_date":"1999-05-19",
-            "poster_path":"\/n8V09dDc02KsSN6Q4hC2BX6hN8X.jpg",
-            "backdrop_path":"\/rtG5TRrQXf11jlO9WqcYTq46jKa.jpg"
+            "original_language": "en",
+            "original_title": "Star Wars: Episode I - The Phantom Menace",
+            "poster_path": "/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg",
+            "video": false,
+            "vote_average": 6.5,
+            "overview": "Anakin Skywalker, a young slave strong with the Force, is discovered on Tatooine. Meanwhile, the evil Sith have returned, enacting their plot for revenge against the Jedi.",
+            "release_date": "1999-05-19",
+            "vote_count": 10463,
+            "title": "Star Wars: Episode I - The Phantom Menace",
+            "adult": false,
+            "backdrop_path": "/5fu7fzy4NZTsL1Jap00UBIInAuB.jpg",
+            "id": 1893,
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "popularity": 80.21
         },
         {
-            "title":"Star Wars: Episode II - Attack of the Clones",
-            "id":1894,
-            "release_date":"2002-05-16",
-            "poster_path":"\/2vcNFtrZXNwIcBgH5e2xXCmVR8t.jpg",
-            "backdrop_path":"\/560F7BPaxRy8BsOfVU6cW4ivM46.jpg"
+            "vote_average": 6.5,
+            "overview": "Following an assassination attempt on Senator Padmé Amidala, Jedi Knights Anakin Skywalker and Obi-Wan Kenobi investigate a mysterious plot that could change the galaxy forever.",
+            "release_date": "2002-05-15",
+            "title": "Star Wars: Episode II - Attack of the Clones",
+            "adult": false,
+            "backdrop_path": "/msYmRFJfXy0zsFd73PAEqdetKpO.jpg",
+            "genre_ids": [
+                12,
+                28,
+                878
+            ],
+            "vote_count": 9443,
+            "original_language": "en",
+            "original_title": "Star Wars: Episode II - Attack of the Clones",
+            "poster_path": "/oZNPzxqM2s5DyVWab09NTQScDQt.jpg",
+            "id": 1894,
+            "video": false,
+            "popularity": 62.72
         },
         {
-            "title":"Star Wars: Episode III - Revenge of the Sith",
-            "id":1895,
-            "release_date":"2005-05-19",
-            "poster_path":"\/tgr5Pdy7ehZYBqBkN2K7Q02xgOb.jpg",
-            "backdrop_path":"\/wUYTfFbfPiZC6Lcyt1nonr69ZmK.jpg"
+            "adult": false,
+            "backdrop_path": "/uuh6uNEGqLCU7wQ2L4xMqYv0DPr.jpg",
+            "genre_ids": [
+                878,
+                12,
+                28
+            ],
+            "id": 1895,
+            "original_language": "en",
+            "original_title": "Star Wars: Episode III - Revenge of the Sith",
+            "overview": "The evil Darth Sidious enacts his final plan for unlimited power -- and the heroic Jedi Anakin Skywalker must choose a side.",
+            "poster_path": "/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg",
+            "release_date": "2005-05-17",
+            "title": "Star Wars: Episode III - Revenge of the Sith",
+            "video": false,
+            "vote_average": 7.3,
+            "vote_count": 9797,
+            "popularity": 75.18
         },
         {
-            "title":"Star Wars: Episode VII",
-            "id":140607,
-            "release_date":"2015-12-18",
-            "poster_path":"\/t3aXDG1ktf6cRJ6iK4epQKxh6Ey.jpg",
-            "backdrop_path":null
+            "overview": "Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.",
+            "release_date": "2015-12-15",
+            "id": 140607,
+            "adult": false,
+            "backdrop_path": "/k6EOrckWFuz7I4z4wiRwz8zsj4H.jpg",
+            "genre_ids": [
+                28,
+                12,
+                878,
+                14
+            ],
+            "vote_count": 15242,
+            "original_language": "en",
+            "original_title": "Star Wars: The Force Awakens",
+            "poster_path": "/wqnLdwVXoBjKibFRR5U3y0aDUhs.jpg",
+            "video": false,
+            "title": "Star Wars: The Force Awakens",
+            "vote_average": 7.4,
+            "popularity": 119.071
         },
         {
-            "title":"Star Wars: Episode VIII",
-            "id":181808,
-            "release_date":"2017-01-01",
-            "poster_path":null,
-            "backdrop_path":null
+            "adult": false,
+            "backdrop_path": "/SPkEiZGxq5aHWQ2Zw7AITwSEo2.jpg",
+            "genre_ids": [
+                28,
+                12,
+                878
+            ],
+            "id": 181812,
+            "original_language": "en",
+            "original_title": "Star Wars: The Rise of Skywalker",
+            "overview": "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues. With the power and knowledge of generations behind them, the final battle begins.",
+            "poster_path": "/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
+            "release_date": "2019-12-18",
+            "title": "Star Wars: The Rise of Skywalker",
+            "video": false,
+            "vote_average": 6.6,
+            "vote_count": 6077,
+            "popularity": 150.173
         },
         {
-            "title":"Star Wars: Episode IX",
-            "id":181812,
-            "release_date":"2019-12-31",
-            "poster_path":null,
-            "backdrop_path":null
+            "genre_ids": [
+                878,
+                28,
+                12
+            ],
+            "original_language": "en",
+            "original_title": "Star Wars: The Last Jedi",
+            "poster_path": "/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
+            "video": false,
+            "title": "Star Wars: The Last Jedi",
+            "vote_count": 11364,
+            "overview": "Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.",
+            "release_date": "2017-12-13",
+            "id": 181808,
+            "vote_average": 6.9,
+            "adult": false,
+            "backdrop_path": "/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg",
+            "popularity": 126.731
         }
     ],
-    "images":{
-        "backdrops":[
+    "images": {
+        "backdrops": [
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/qCECROwx3TRUEgoZv2Mz2D723QC.jpg",
-                "height":720,
-                "iso_639_1":"xx",
-                "vote_average":"5.38461538461539",
-                "vote_count":2,
-                "width":1280
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 5.512,
+                "vote_count": 29,
+                "width": 1920
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/trf3Hi3tPOJARsCBoVMDBlpjPC4.jpg",
-                "height":1080,
-                "iso_639_1":"en",
-                "vote_average":"5.31746031746032",
-                "vote_count":3,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/eO3PyZbDe7UlkyypMgfHWdeo9VZ.jpg",
+                "height": 2160,
+                "iso_639_1": null,
+                "vote_average": 5.384,
+                "vote_count": 2,
+                "width": 3840
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/d8duYyyC9J5T825Hg7grmaabfxQ.jpg",
-                "height":1080,
-                "iso_639_1":null,
-                "vote_average":"5.31512605042017",
-                "vote_count":5,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/trf3Hi3tPOJARsCBoVMDBlpjPC4.jpg",
+                "height": 1080,
+                "iso_639_1": "en",
+                "vote_average": 5.374,
+                "vote_count": 4,
+                "width": 1920
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/sGxcMvC6mfCzEir0c1tldsPhZEF.jpg",
-                "height":1080,
-                "iso_639_1":"xx",
-                "vote_average":5.3125,
-                "vote_count":1,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/sGxcMvC6mfCzEir0c1tldsPhZEF.jpg",
+                "height": 1080,
+                "iso_639_1": "xx",
+                "vote_average": 5.352,
+                "vote_count": 20,
+                "width": 1920
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/n9NcXAZIurCo9RHvMahOCT244rF.jpg",
-                "height":1080,
-                "iso_639_1":"en",
-                "vote_average":5.3125,
-                "vote_count":1,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/iY2ujEY2m68OTTlPFTiHub9joHS.jpg",
+                "height": 2160,
+                "iso_639_1": "xx",
+                "vote_average": 5.326,
+                "vote_count": 7,
+                "width": 3840
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/rgjAb1oUCzJk1U2WhtQt7gGu84U.jpg",
-                "height":1080,
-                "iso_639_1":null,
-                "vote_average":"5.29330572808834",
-                "vote_count":6,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/n9NcXAZIurCo9RHvMahOCT244rF.jpg",
+                "height": 1080,
+                "iso_639_1": "en",
+                "vote_average": 5.318,
+                "vote_count": 3,
+                "width": 1920
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/noKFlPn2GjuUounuxtmPnkRlZpa.jpg",
-                "height":1080,
-                "iso_639_1":"en",
-                "vote_average":"5.25230987917555",
-                "vote_count":4,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/h3JDR9iruHqwGC4Dm8UbYkY9paK.jpg",
+                "height": 1080,
+                "iso_639_1": "en",
+                "vote_average": 5.316,
+                "vote_count": 5,
+                "width": 1920
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/3XwvVWP33yWOqwVlJCSZWC1Uy58.jpg",
-                "height":720,
-                "iso_639_1":null,
-                "vote_average":"5.24509803921569",
-                "vote_count":5,
-                "width":1280
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/zZDkgOmFMVYpGAkR9Tkxw0CRnxX.jpg",
+                "height": 720,
+                "iso_639_1": null,
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1280
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/h3JDR9iruHqwGC4Dm8UbYkY9paK.jpg",
-                "height":1080,
-                "iso_639_1":"en",
-                "vote_average":"5.23809523809524",
-                "vote_count":2,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/bMPfIfBZOUv7c357J8HliYJfpca.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1920
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/8JLnshhK3pRzIup79skBpDGeGTC.jpg",
-                "height":1080,
-                "iso_639_1":null,
-                "vote_average":"5.21677327647477",
-                "vote_count":4,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/benqmUIQGqU7iMYrDl8aUxhXWC.jpg",
+                "height": 1080,
+                "iso_639_1": "en",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1920
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/oGf9FeB8coLGYVp3SMHjAR809Lv.jpg",
-                "height":1080,
-                "iso_639_1":"en",
-                "vote_average":"5.07275132275132",
-                "vote_count":9,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/qCECROwx3TRUEgoZv2Mz2D723QC.jpg",
+                "height": 720,
+                "iso_639_1": "xx",
+                "vote_average": 5.312,
+                "vote_count": 8,
+                "width": 1280
             },
             {
-                "aspect_ratio":1.78,
-                "file_path":"\/qVPChlozQ1BP3svfHjiAdNneMGA.jpg",
-                "height":1080,
-                "iso_639_1":null,
-                "vote_average":0,
-                "vote_count":0,
-                "width":1920
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/qVPChlozQ1BP3svfHjiAdNneMGA.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 5.306,
+                "vote_count": 8,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/3XwvVWP33yWOqwVlJCSZWC1Uy58.jpg",
+                "height": 720,
+                "iso_639_1": null,
+                "vote_average": 5.305164319248826,
+                "vote_count": 8,
+                "width": 1280
+            },
+            {
+                "aspect_ratio": 1.779317169717961,
+                "file_path": "/4z9ijhgEthfRHShoOvMaBlpciXS.jpg",
+                "height": 2021,
+                "iso_639_1": "xx",
+                "vote_average": 5.258,
+                "vote_count": 6,
+                "width": 3596
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/noKFlPn2GjuUounuxtmPnkRlZpa.jpg",
+                "height": 1080,
+                "iso_639_1": "en",
+                "vote_average": 5.258,
+                "vote_count": 6,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/gTwXUbylwCBNedCSNrOVKZzLTT8.jpg",
+                "height": 1080,
+                "iso_639_1": "xx",
+                "vote_average": 5.252,
+                "vote_count": 4,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/9RykAYGe1wbygBAmqNhhtCj99ss.jpg",
+                "height": 1080,
+                "iso_639_1": "xx",
+                "vote_average": 5.246,
+                "vote_count": 2,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/rgjAb1oUCzJk1U2WhtQt7gGu84U.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 5.198,
+                "vote_count": 9,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/e9mh9iqVxhon2Y7pkLZ7zItUWHX.jpg",
+                "height": 1080,
+                "iso_639_1": "en",
+                "vote_average": 5.196,
+                "vote_count": 4,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/uyFHjhN8McyCy9EPaO1MsS3CydT.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/oGf9FeB8coLGYVp3SMHjAR809Lv.jpg",
+                "height": 1080,
+                "iso_639_1": "en",
+                "vote_average": 5.016,
+                "vote_count": 10,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/ojMAbHNL0VBXiV2oQpROJ6Xx827.jpg",
+                "height": 1080,
+                "iso_639_1": "it",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/5PqKzRkcPZOsKy1sqAC8IrYkeyc.jpg",
+                "height": 2160,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 3840
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/vusuae67ukSLazTnR5Ab8uUZ0dj.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/e2XZ6rbBFYqWB5n5na4GCjljfDM.jpg",
+                "height": 1080,
+                "iso_639_1": "en",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/osBSTziJWBaXbK0eTpNnPb5eIi4.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1920
             }
         ],
-        "posters":[
+        "posters": [
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg",
-                "height":1500,
-                "iso_639_1":"en",
-                "vote_average":"5.56190476190476",
-                "vote_count":12,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/r8Ph5MYXL04Qzu4QBbq2KjqwtkQ.jpg",
+                "height": 3000,
+                "iso_639_1": "pl",
+                "vote_average": 5.52,
+                "vote_count": 8,
+                "width": 2000
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/mEpQbsUSekbQRdffXMeQWjeHb34.jpg",
-                "height":1500,
-                "iso_639_1":"en",
-                "vote_average":"5.52795031055901",
-                "vote_count":6,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/iTQHKziZy9pAAY4hHEDCGPaOvFC.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.402,
+                "vote_count": 18,
+                "width": 1000
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/gq5Wi7i4SF3lo4HHkJasDV95xI9.jpg",
-                "height":1500,
-                "iso_639_1":"en",
-                "vote_average":"5.50034506556246",
-                "vote_count":6,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/pWVLFh4OuejTpUaDQbB1C4zoS2p.jpg",
+                "height": 2529,
+                "iso_639_1": "en",
+                "vote_average": 5.392,
+                "vote_count": 8,
+                "width": 1686
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/y6oGacKFP025f0PVwG94X60jjQS.jpg",
-                "height":1500,
-                "iso_639_1":"en",
-                "vote_average":"5.45988258317025",
-                "vote_count":10,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/y6kKwGLCCy3MMbBdUnxB3afIfsd.jpg",
+                "height": 3000,
+                "iso_639_1": "hu",
+                "vote_average": 5.384,
+                "vote_count": 2,
+                "width": 2000
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/aLDdG5e3c2qNMcWzlxAnW15okOr.jpg",
-                "height":1500,
-                "iso_639_1":"en",
-                "vote_average":"5.33759772565743",
-                "vote_count":4,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/gbaFVZMVL0nUhZLmX3TWNZj8ydE.jpg",
+                "height": 3000,
+                "iso_639_1": "pl",
+                "vote_average": 5.384,
+                "vote_count": 2,
+                "width": 2000
             },
             {
-                "aspect_ratio":0.7,
-                "file_path":"\/4B4OwAiu0xhOLI0p1AWBifG3qPE.jpg",
-                "height":1426,
-                "iso_639_1":"fr",
-                "vote_average":5.3125,
-                "vote_count":1,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/6mHkagjziBPth2Mx0VpEercocm4.jpg",
+                "height": 1500,
+                "iso_639_1": "fr",
+                "vote_average": 5.384,
+                "vote_count": 2,
+                "width": 1000
             },
             {
-                "aspect_ratio":0.68,
-                "file_path":"\/jVTIJ33eGKja0SfI40ntASPBmnw.jpg",
-                "height":1240,
-                "iso_639_1":"fr",
-                "vote_average":"5.28860028860029",
-                "vote_count":3,
-                "width":844
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/mEpQbsUSekbQRdffXMeQWjeHb34.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.36,
+                "vote_count": 23,
+                "width": 1000
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/7TOaabZ4TFqtn8cD1Jw1G7ycgSs.jpg",
-                "height":1500,
-                "iso_639_1":"it",
-                "vote_average":"5.26785714285714",
-                "vote_count":1,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/bLPTI0236VjeBhcycu2wUwNSXGv.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.334,
+                "vote_count": 11,
+                "width": 1000
             },
             {
-                "aspect_ratio":0.71,
-                "file_path":"\/me843ySolO7vwJqQcJ6OUbcRM3H.jpg",
-                "height":1437,
-                "iso_639_1":"ru",
-                "vote_average":"5.24542124542125",
-                "vote_count":2,
-                "width":1027
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/gq5Wi7i4SF3lo4HHkJasDV95xI9.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.334,
+                "vote_count": 21,
+                "width": 1000
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/ilNSTtnUMe2ddDlP13d8jD0aEMN.jpg",
-                "height":1500,
-                "iso_639_1":"en",
-                "vote_average":"5.24542124542125",
-                "vote_count":2,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/btVpLbQCNE8mDTRrb6Llk5B5pGr.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.33,
+                "vote_count": 9,
+                "width": 2000
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/klv4rvIxnyJcZAI3DFvW5gHTSpM.jpg",
-                "height":1500,
-                "iso_639_1":"en",
-                "vote_average":"5.17687074829932",
-                "vote_count":7,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/ww4rH6EQ3610fBNuZBdIL9hSYkE.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.322,
+                "vote_count": 5,
+                "width": 2000
             },
             {
-                "aspect_ratio":0.7,
-                "file_path":"\/ui6EhLps52ZzINfrpJUj3VbO8k1.jpg",
-                "height":2185,
-                "iso_639_1":"en",
-                "vote_average":"5.17216117216117",
-                "vote_count":2,
-                "width":1528
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/bYbHqvRANCpuRTs0RAu10LhmVKU.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.322,
+                "vote_count": 5,
+                "width": 2000
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/5UH606AITCZt5Q0l6ovLyD3zsif.jpg",
-                "height":1500,
-                "iso_639_1":"hu",
-                "vote_average":"5.17113095238095",
-                "vote_count":1,
-                "width":1000
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/aSrMJYmQX8kpF26LijkCsYhBMvm.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.322,
+                "vote_count": 5,
+                "width": 2000
             },
             {
-                "aspect_ratio":0.65,
-                "file_path":"\/9nW1f6FqC87aNaRcNGL4J2exLkY.jpg",
-                "height":2301,
-                "iso_639_1":"en",
-                "vote_average":"5.16369047619048",
-                "vote_count":1,
-                "width":1500
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/fI9R8fkW21fv0HDrwNnM3PZhgN.jpg",
+                "height": 3000,
+                "iso_639_1": "pt",
+                "vote_average": 5.318,
+                "vote_count": 3,
+                "width": 2000
             },
             {
-                "aspect_ratio":0.75,
-                "file_path":"\/mWAfAZVaw9mOOFEpaPwJHRENPza.jpg",
-                "height":1200,
-                "iso_639_1":"fr",
-                "vote_average":"5.06122448979592",
-                "vote_count":7,
-                "width":900
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/8Li4KawpEa5i2gm5gFSBKmEFtvy.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.318,
+                "vote_count": 3,
+                "width": 1000
             },
             {
-                "aspect_ratio":0.67,
-                "file_path":"\/ssxXzbpxQtaa20qcl3Z2vHEKwmm.jpg",
-                "height":1500,
-                "iso_639_1":"en",
-                "vote_average":"5.05772005772006",
-                "vote_count":3,
-                "width":1000
+                "aspect_ratio": 0.6661991584852734,
+                "file_path": "/8X3WoKnDw9r7SIvM5vx0mpnb2yZ.jpg",
+                "height": 1426,
+                "iso_639_1": "ru",
+                "vote_average": 5.318,
+                "vote_count": 3,
+                "width": 950
             },
             {
-                "aspect_ratio":0.7,
-                "file_path":"\/fdmSovGcTO4qeYH4llwqDsYi5cB.jpg",
-                "height":713,
-                "iso_639_1":"en",
-                "vote_average":"5.03105590062112",
-                "vote_count":6,
-                "width":500
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/22dj38IckjzEEUZwN1tPU5VJ1qq.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.318,
+                "vote_count": 3,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6663333333333333,
+                "file_path": "/hU6FebQXRKu0bd0VMNa8mTal8Eh.jpg",
+                "height": 3000,
+                "iso_639_1": "uk",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1999
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/qhEimz49g0r2sQ06Xfb8Hxmfk3T.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/l9cWYWFwRZNdw0r2gesdDyXTbGx.jpg",
+                "height": 1500,
+                "iso_639_1": null,
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/oFgwvpoPi2Ixcg3YLxQpYhoH1Jm.jpg",
+                "height": 1500,
+                "iso_639_1": null,
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/9cSsr4dqTSqSlUOsbufco2YRrZQ.jpg",
+                "height": 1500,
+                "iso_639_1": null,
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/sqYlJCjwdbhxlhbOVK9iMLYUZIF.jpg",
+                "height": 1500,
+                "iso_639_1": null,
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/fByDz2DSFKR8jugyApmHFUQF1pq.jpg",
+                "height": 1500,
+                "iso_639_1": null,
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/xFnzs2hjiWBgv46XnCdBUToBKED.jpg",
+                "height": 2529,
+                "iso_639_1": "en",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1686
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/ojQvEl8rFqJWYIATlDCUtxa1TeV.jpg",
+                "height": 2250,
+                "iso_639_1": "sk",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1500
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/fv8llFOMoOGigxRZbACkBpSe9D5.jpg",
+                "height": 1500,
+                "iso_639_1": "de",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.7012622720897616,
+                "file_path": "/tGKRoZprIpJXFNvOtWu93KfWYIk.jpg",
+                "height": 1426,
+                "iso_639_1": "es",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/jGNtfNeFRmJBIwL1exFteZhedOr.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/rG8P8pPUDSm02VW3cKtivca4rqE.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/4QfUvGMaSMoItapTeg51Knf1PiF.jpg",
+                "height": 3000,
+                "iso_639_1": "pl",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/dXYuoRx7o7OxssIhznx3AJbgKHe.jpg",
+                "height": 1500,
+                "iso_639_1": "fr",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.703771849126035,
+                "file_path": "/48pBzCurbH36b1BwuFRDo1VVV3w.jpg",
+                "height": 2174,
+                "iso_639_1": "hu",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1530
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.292,
+                "vote_count": 25,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/z37SuzzQZawvdBmtYcQWxriQmCK.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.27,
+                "vote_count": 10,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/7TOaabZ4TFqtn8cD1Jw1G7ycgSs.jpg",
+                "height": 1500,
+                "iso_639_1": "es",
+                "vote_average": 5.267857142857143,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/zwFQlQZYf6Zh6FncP76okjFZZfh.jpg",
+                "height": 1500,
+                "iso_639_1": "es",
+                "vote_average": 5.267857142857143,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/fYWbvEBCLHWPHo0QZt6o7dKBSLP.jpg",
+                "height": 3000,
+                "iso_639_1": "de",
+                "vote_average": 5.252,
+                "vote_count": 4,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/drJ1vvVlwr5bmH9ssOl1m37q3Lc.jpg",
+                "height": 2100,
+                "iso_639_1": "en",
+                "vote_average": 5.252,
+                "vote_count": 4,
+                "width": 1400
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/t2sABFPr9ft0bJ6XYdhCPsfooCd.jpg",
+                "height": 3000,
+                "iso_639_1": "pt",
+                "vote_average": 5.246,
+                "vote_count": 2,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/wRBGET9QNCOQJY55yAA1ZyF6cCb.jpg",
+                "height": 3000,
+                "iso_639_1": "ru",
+                "vote_average": 5.246,
+                "vote_count": 2,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/dcVdgUBO8lpuKpH7GzeyeqjSO0l.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.246,
+                "vote_count": 2,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/v3e56rck9tv8zeMuNldJdtpgFeQ.jpg",
+                "height": 3000,
+                "iso_639_1": "pt",
+                "vote_average": 5.246,
+                "vote_count": 2,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/lYFNh6yeYWTPgg0qvnZMKKA8RS1.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.246,
+                "vote_count": 2,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/wCRLEnMHmMLiQ6ixs8lbggLeNq4.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.238,
+                "vote_count": 0,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/aLDdG5e3c2qNMcWzlxAnW15okOr.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.226,
+                "vote_count": 10,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6806451612903226,
+                "file_path": "/jVTIJ33eGKja0SfI40ntASPBmnw.jpg",
+                "height": 1240,
+                "iso_639_1": "fr",
+                "vote_average": 5.224,
+                "vote_count": 4,
+                "width": 844
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/4c9XUZkxoQ4zdrolZFoc9aHIzvM.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.19,
+                "vote_count": 5,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/iuAnFkvdmHMccdZhVp6AEXf2xHK.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.19,
+                "vote_count": 5,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/ijAC17I7X4xCrKxtp1JUc2YBGuM.jpg",
+                "height": 1500,
+                "iso_639_1": "fr",
+                "vote_average": 5.19,
+                "vote_count": 5,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/kVstTGhkSsILxxIUYIEGmlaYTFe.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.182,
+                "vote_count": 5,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/k6SPwdWi1m3p2JhoYn2KhRgZgEx.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.18,
+                "vote_count": 3,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/4gsn3sBxH3Owx1Id7lTYkW52524.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.18,
+                "vote_count": 3,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/mfTCpTeQ3eEj2xf0SFjg7btqBDD.jpg",
+                "height": 1500,
+                "iso_639_1": "fr",
+                "vote_average": 5.18,
+                "vote_count": 3,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/pKLFj7UNEcsRJxV69xmq6BB2i9s.jpg",
+                "height": 1500,
+                "iso_639_1": "sk",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/aWxzsGF7PaZKR77F7SXkTc6npP1.jpg",
+                "height": 1500,
+                "iso_639_1": "sk",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/t06usnuvImXwTa92SHoAkMEn8v2.jpg",
+                "height": 1500,
+                "iso_639_1": "sk",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/y8T6UdWBPSG878n2sZiddx9vWER.jpg",
+                "height": 1500,
+                "iso_639_1": "sk",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/lBdOIyD5rOJA34qiDi3yrZqdbg7.jpg",
+                "height": 3000,
+                "iso_639_1": "it",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/3egJ1UkajntR6VdJDFuft6ngULc.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/5sv87Z4aVInQcwMd7ubrImH4UhA.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/58CAUPUgoTTA1LuesMrM5CbpcuW.jpg",
+                "height": 1500,
+                "iso_639_1": "ru",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/defdE4jKZSBJ4DxdmOtYnLz8Qj7.jpg",
+                "height": 1500,
+                "iso_639_1": "ru",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6659979939819458,
+                "file_path": "/juoqZnVARJhZn5UjRodl6rVHXHY.jpg",
+                "height": 997,
+                "iso_639_1": "uk",
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 664
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/xAwL3ySFqWHYjpqXlQQXcbWCoII.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.128,
+                "vote_count": 6,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/4A91e9HLL3Y1RXNr205j3VGxotS.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.128,
+                "vote_count": 6,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/xwsYa1wA9EB9ibW1stJZpqHznKY.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.12,
+                "vote_count": 5,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/dLBoWkfIbEQRAYiXdB2uMXAqFoT.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.118,
+                "vote_count": 4,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/4Bun8QL3MXAlVFFmT8RdXdRbpBG.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.118,
+                "vote_count": 4,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.7012622720897616,
+                "file_path": "/4B4OwAiu0xhOLI0p1AWBifG3qPE.jpg",
+                "height": 1426,
+                "iso_639_1": "fr",
+                "vote_average": 5.118,
+                "vote_count": 4,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.7146833681280446,
+                "file_path": "/me843ySolO7vwJqQcJ6OUbcRM3H.jpg",
+                "height": 1437,
+                "iso_639_1": "ru",
+                "vote_average": 5.118,
+                "vote_count": 4,
+                "width": 1027
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/68UTyVrtqdFDWYsgoPE8uavtfH0.jpg",
+                "height": 945,
+                "iso_639_1": "en",
+                "vote_average": 5.106,
+                "vote_count": 2,
+                "width": 630
+            },
+            {
+                "aspect_ratio": 0.7029411764705882,
+                "file_path": "/4KbyasqkVIPuEm8AkgUNTckm2fS.jpg",
+                "height": 1020,
+                "iso_639_1": "en",
+                "vote_average": 5.106,
+                "vote_count": 2,
+                "width": 717
+            },
+            {
+                "aspect_ratio": 0.75,
+                "file_path": "/mWAfAZVaw9mOOFEpaPwJHRENPza.jpg",
+                "height": 1200,
+                "iso_639_1": "fr",
+                "vote_average": 5.072,
+                "vote_count": 9,
+                "width": 900
+            },
+            {
+                "aspect_ratio": 0.6993135011441648,
+                "file_path": "/ui6EhLps52ZzINfrpJUj3VbO8k1.jpg",
+                "height": 2185,
+                "iso_639_1": "en",
+                "vote_average": 5.058,
+                "vote_count": 6,
+                "width": 1528
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/y6oGacKFP025f0PVwG94X60jjQS.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.054,
+                "vote_count": 15,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.651890482398957,
+                "file_path": "/9nW1f6FqC87aNaRcNGL4J2exLkY.jpg",
+                "height": 2301,
+                "iso_639_1": "en",
+                "vote_average": 5.036,
+                "vote_count": 3,
+                "width": 1500
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/klv4rvIxnyJcZAI3DFvW5gHTSpM.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.004,
+                "vote_count": 10,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/5UH606AITCZt5Q0l6ovLyD3zsif.jpg",
+                "height": 1500,
+                "iso_639_1": "hu",
+                "vote_average": 4.922,
+                "vote_count": 5,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/zGk4DSSkr2x7gDyh3ZLJD0FEf4f.jpg",
+                "height": 3000,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/bM4XSbzEpeDARqSQZ0NDAJP3UKc.jpg",
+                "height": 1500,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/mf0vCw9d6XmD9ax3lehNsnhABee.jpg",
+                "height": 3000,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.675219446320054,
+                "file_path": "/lGM4SPc5MtQDUTz6M18aVTEjy7Y.jpg",
+                "height": 1481,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/ajd1f8pX1JcYZBrxbAVm3l53TJ7.jpg",
+                "height": 1500,
+                "iso_639_1": "ru",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/nn6Szec06km87B2WJSrwKbuUg1K.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/pYOArjBUvtPBsuWTIE58lQTrDwn.jpg",
+                "height": 3000,
+                "iso_639_1": "pl",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/oG2xkP2Kwkrn3C8dyqyRXMOEx50.jpg",
+                "height": 2100,
+                "iso_639_1": "bo",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1400
+            },
+            {
+                "aspect_ratio": 0.7012622720897616,
+                "file_path": "/vGkiaAWM6B0bFyz2aW3fSRSM8cH.jpg",
+                "height": 1426,
+                "iso_639_1": "en",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/hCxhxuc5or4ZKtiwQDmWBUN7Xbr.jpg",
+                "height": 3000,
+                "iso_639_1": "pl",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/18ticQ3bpUUGZGCR3pGglrz7ly0.jpg",
+                "height": 3000,
+                "iso_639_1": "pl",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/teZTQNiybTnaMnwWxFjCmSZAbEy.jpg",
+                "height": 1500,
+                "iso_639_1": "de",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.666,
+                "file_path": "/qJNGWrKB3Bnshc1iuedpxXbVQMe.jpg",
+                "height": 1000,
+                "iso_639_1": "es",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 666
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/3JacSFXvk9AbCjz0nTdHMkDwTTH.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.7048710601719198,
+                "file_path": "/o40o9vvxAjIUwLeCi8rLnyuIGkL.jpg",
+                "height": 2792,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1968
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/6EvyuI0XpL7JopXTE72FsgM5d47.jpg",
+                "height": 3000,
+                "iso_639_1": "en",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 2000
+            },
+            {
+                "aspect_ratio": 0.6642066420664207,
+                "file_path": "/gZPLydtYmniGwP4zoxTnP47yWnu.jpg",
+                "height": 1084,
+                "iso_639_1": "en",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 720
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/qgnOC2T0kmxWOS32SKGsbtxSvN6.jpg",
+                "height": 1500,
+                "iso_639_1": "hu",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1000
+            }
+        ]
+    },
+    "translations": {
+        "translations": [
+            {
+                "iso_3166_1": "AE",
+                "iso_639_1": "ar",
+                "name": "العربية",
+                "english_name": "Arabic",
+                "data": {
+                    "title": "",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "BG",
+                "iso_639_1": "bg",
+                "name": "български език",
+                "english_name": "Bulgarian",
+                "data": {
+                    "title": "Междузвездни войни (поредица)",
+                    "overview": "Междузвездни войни е поредица от шест филма проследяващи живота на Анакин Скайуокър. Открит от джедая Куай-Гон Джин на пустинната планета Татуин Анакин е все още дете, но постепенно се превръща в силния Дарт Вейдър, дясната ръка на Императорът, който почти успява да унищожи джедайте.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "CZ",
+                "iso_639_1": "cs",
+                "name": "Český",
+                "english_name": "Czech",
+                "data": {
+                    "title": "Star Wars (kolekce)",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "DK",
+                "iso_639_1": "da",
+                "name": "Dansk",
+                "english_name": "Danish",
+                "data": {
+                    "title": "Star Wars (Samling)",
+                    "overview": "Alle otte Star Wars film i science fiction-sagaen, som foregår i \"en fjern, fjern galakse for meget længe siden\" ... den 9. og sidste film i denne serie får biograf premiere i 2019. Men mange andre spin-offs er på vej.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "DE",
+                "iso_639_1": "de",
+                "name": "Deutsch",
+                "english_name": "German",
+                "data": {
+                    "title": "Star Wars Filmreihe",
+                    "overview": "\"Star Wars™\" ist die größte Science-Fiction-Saga aller Zeiten, die mit ihren bislang neun filmischen Episoden und den unüberschaubaren Verzweigungen alle Dimensionen der Unterhaltungskultur gesprengt hat. Die Abenteuer von Luke Skywalker, Han Solo und der schönen Prinzessin Leia fesseln die Kinozuschauer und die Leser in aller Welt seit fast 30 Jahren.",
+                    "homepage": "http://www.starwars-union.de"
+                }
+            },
+            {
+                "iso_3166_1": "GR",
+                "iso_639_1": "el",
+                "name": "ελληνικά",
+                "english_name": "Greek",
+                "data": {
+                    "title": "",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "US",
+                "iso_639_1": "en",
+                "name": "English",
+                "english_name": "English",
+                "data": {
+                    "title": "",
+                    "overview": "An epic space-opera theatrical film series, which depicts the adventures of various characters \"a long time ago in a galaxy far, far away….\"",
+                    "homepage": "https://www.starwars.com/films"
+                }
+            },
+            {
+                "iso_3166_1": "ES",
+                "iso_639_1": "es",
+                "name": "Español",
+                "english_name": "Spanish",
+                "data": {
+                    "title": "La guerra de las galaxias - Colección",
+                    "overview": "La colección de las 9 películas del director , escritor y productor George Lucas. Con Luke Skywalker, Princesa Leia, Darth Vader,C3PO,R2D2 y más personajes de la saga de la Guerra de las Galaxias.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "MX",
+                "iso_639_1": "es",
+                "name": "Español",
+                "english_name": "Spanish",
+                "data": {
+                    "title": "Star Wars - Colección",
+                    "overview": "Star Wars es una franquicia compuesta por una serie de películas concebidas primordialmentede por el cineasta estadounidense George Lucas, y producidas y distribuidas por The Walt Disney Company a partir de 2012. Su trama describe las vivencias de un grupo de personajes que habitan en una galaxia ficticia e interactúan con elementos como «la Fuerza», un campo de energía metafísico y omnipresente​ que posee un «lado oscuro» provocado por la ira, el miedo y el odio.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "IR",
+                "iso_639_1": "fa",
+                "name": "فارسی",
+                "english_name": "Persian",
+                "data": {
+                    "title": "",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "FI",
+                "iso_639_1": "fi",
+                "name": "suomi",
+                "english_name": "Finnish",
+                "data": {
+                    "title": "Tähtien sota",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "CA",
+                "iso_639_1": "fr",
+                "name": "Français",
+                "english_name": "French",
+                "data": {
+                    "title": "Collection Star Wars",
+                    "overview": "Luke Skywalker, la Princesse Leia, Dark Vador, C3PO, R2D2 et de nombreux autres personnages du film sont désormais des noms familiers de l'un des projets cinématographiques les plus réussis de tous les temps.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "FR",
+                "iso_639_1": "fr",
+                "name": "Français",
+                "english_name": "French",
+                "data": {
+                    "title": "Star Wars - Saga",
+                    "overview": "Luke Skywalker, la Princesse Leia, Dark Vador, C3PO, R2D2 et de nombreux autres personnages du film sont désormais des noms familiers de l'un des projets cinématographiques les plus réussis de tous les temps.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "IL",
+                "iso_639_1": "he",
+                "name": "עִבְרִית",
+                "english_name": "Hebrew",
+                "data": {
+                    "title": "מלחמת הכוכבים - אוסף",
+                    "overview": "מלחמת הכוכבים הוא שמה של סדרת סרטי מדע בדיוני מצליחים שיצר במאי הקולנוע ג'ורג' לוקאס. הסרט הראשון בסדרה, שנקרא אז \"מלחמת הכוכבים\" וכיום נקרא \"מלחמת הכוכבים - פרק 4: תקווה חדשה\", יצא בשנת 1977. מאז יצאו חמישה סרטים נוספים בסדרה, האחרון שבהם בשנת 2005. בסדרת הסרטים כיכבו אנסמבל של שחקנים כדוגמת מארק המיל, האריסון פורד, קארי פישר ואלק גינס (בטרילוגיה המקורית) והיידן כריסטנסן, נטלי פורטמן, יואן מקגרגור, ליאם ניסן, כריסטופר לי וסמואל ל. ג'קסון (בטרילוגיה המקדימה). בעקבות רכישת לוקאס פילם על ידי דיסני, הכריזו הרוכשים על הפקת טרילוגיה חדשה (פרקים 7-9); הראשון בהם צפוי לצאת לאקרנים בשנת 2015.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "HR",
+                "iso_639_1": "hr",
+                "name": "Hrvatski",
+                "english_name": "Croatian",
+                "data": {
+                    "title": "Ratovi zvijezda zbirka",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "HU",
+                "iso_639_1": "hu",
+                "name": "Magyar",
+                "english_name": "Hungarian",
+                "data": {
+                    "title": "Star Wars gyűjtemény",
+                    "overview": "A Csillagok háborúja (eredeti címe: Star Wars) egy űropera filmsorozatnak, irodalmi műveknek és számítógépes játékoknak a neve. Mindezek George Lucas filmrendező ötletei alapján készültek el. A filmek cselekménye a Galaktikus Köztársaság és a Galaktikus Birodalom közti átmenetek, valamint a Galaktikus Polgárháború (amely a Lázadó Szövetség és a Galaktikus Birodalom között zajlik) körül forog. Valójában az egész cselekmény a jó és a rossz harcát jelképezi. A történet „réges régen, egy messzi-messzi galaxisban…” játszódik. Az eredeti Csillagok háborúja-trilógia, főleg annak elsőként vetített része, az Egy új remény (IV. epizód) úttörő jelentőségű volt a sci-fi műfajában mind tartalmilag, mind a technikai megvalósítást tekintve, de az előzmény-trilógia (Baljós árnyak, A klónok támadása, A Sith-ek bosszúja) is számos újítást hozott magával.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "ID",
+                "iso_639_1": "id",
+                "name": "Bahasa indonesia",
+                "english_name": "Indonesian",
+                "data": {
+                    "title": "",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "IT",
+                "iso_639_1": "it",
+                "name": "Italiano",
+                "english_name": "Italian",
+                "data": {
+                    "title": "Star Wars - Collezione",
+                    "overview": "Star Wars è un franchise colossal di fantascienza creato da George Lucas, che si sviluppa da una saga cinematografica iniziata nel 1977 col film Guerre stellari e sottotitolato retroattivamente Episodio IV - Una nuova speranza. A questo film sono seguiti L'Impero colpisce ancora (1980) e Il ritorno dello Jedi (1983)che insieme formano la \"trilogia originale\" alla quale seguì dal 2002 una trilogia prequel, e una trilogia sequel dal 2015.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "JP",
+                "iso_639_1": "ja",
+                "name": "日本語",
+                "english_name": "Japanese",
+                "data": {
+                    "title": "スター・ウォーズ シリーズ",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "GE",
+                "iso_639_1": "ka",
+                "name": "ქართული",
+                "english_name": "Georgian",
+                "data": {
+                    "title": "",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "KR",
+                "iso_639_1": "ko",
+                "name": "한국어/조선말",
+                "english_name": "Korean",
+                "data": {
+                    "title": "스타 워즈 시리즈",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "LT",
+                "iso_639_1": "lt",
+                "name": "Lietuvių",
+                "english_name": "Lithuanian",
+                "data": {
+                    "title": "Filmai „Žvaigždžių karai“",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "NO",
+                "iso_639_1": "nb",
+                "name": "Bokmål",
+                "english_name": "Norwegian Bokmål",
+                "data": {
+                    "title": "",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "NL",
+                "iso_639_1": "nl",
+                "name": "Nederlands",
+                "english_name": "Dutch",
+                "data": {
+                    "title": "Star Wars collectie",
+                    "overview": "De collectie van de 9 theatrale productie van films uit de regisseur, scenarioschrijver en producer George Lucas. Luke Skywalker, Princess Leia, Darth Vader, C3PO, R2D2 en vele andere personages uit de film zijn nu vertrouwde namen van een van de meest succesvolle filmprojecten aller tijden.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "NO",
+                "iso_639_1": "no",
+                "name": "Norsk",
+                "english_name": "Norwegian",
+                "data": {
+                    "title": "Star Wars - Den Komplette Samlingen",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "PL",
+                "iso_639_1": "pl",
+                "name": "Polski",
+                "english_name": "Polish",
+                "data": {
+                    "title": "Gwiezdne Wojny - Kolekcja",
+                    "overview": "Seria filmów fantastycznych z gatunku space opera (science fantasy) George’a Lucasa.",
+                    "homepage": "http://www.starwars.com/"
+                }
+            },
+            {
+                "iso_3166_1": "BR",
+                "iso_639_1": "pt",
+                "name": "Português",
+                "english_name": "Portuguese",
+                "data": {
+                    "title": "Coleção Star Wars",
+                    "overview": "Uma série épica de filmes ópera espacial, que retratam as aventuras de vários personagens \"há muito tempo em uma galáxia muito, muito distante ....\"",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "PT",
+                "iso_639_1": "pt",
+                "name": "Português",
+                "english_name": "Portuguese",
+                "data": {
+                    "title": "Coleção Star Wars",
+                    "overview": "Star Wars é uma saga colossal de ficção científica criada por George Lucas, que se desenvolve a partir de uma trilogia de filmes que começou em 1977 com o filme Star Wars Episódio IV - Uma Nova Esperança. Este filme foi seguido por dois outros filmes, distribuídos em três anos: Star Wars: Episódio V - O Império Contra-Ataca (1980) e Star Wars: Episódio VI - O Regresso de Jedi (1983). Estes três filmes compõem a chamada \"trilogia original\". Dezasseis anos após o lançamento do último filme, Lucas decidiu filmar uma trilogia prequela, composta por Star Wars: Episódio I - A Ameaça Fantasma (1999), Star Wars: Episódio II - Ataque dos Clones (2002) e Star Wars: Episódio III - A Vingança dos Sith (2005). Em 2012, a Walt Disney Company comprou os direitos da série e iniciou a produção de uma trilogia subsequente, que começou com Star Wars: Episódio VII - O Despertar da Força (2015) e continuou com Star Wars: Episódio VIII - Os Últimos Jedi (2017).",
+                    "homepage": "https://www.starwars.com/"
+                }
+            },
+            {
+                "iso_3166_1": "RO",
+                "iso_639_1": "ro",
+                "name": "Română",
+                "english_name": "Romanian",
+                "data": {
+                    "title": "Colecția Star Wars",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "RU",
+                "iso_639_1": "ru",
+                "name": "Pусский",
+                "english_name": "Russian",
+                "data": {
+                    "title": "Звёздные войны (Коллекция)",
+                    "overview": "«Звёздные войны» — эпическая фантастическая киносага, созданная Джорджем Лукасом. Эпизоды серии вобрали в себя архетипы как научной фантастики, так и классической мифологии, а также предоставили их великолепную музыкальную интерпретацию. Фильмы являются прекрасным примером космооперы, они заняли заметное место в поп-культуре и стали самой кассовой киносерией всех времён. В последние годы серия приобрела ещё большую популярность, породив новое поколение восторженных фанатов.",
+                    "homepage": "http://www.starwars.com"
+                }
+            },
+            {
+                "iso_3166_1": "SK",
+                "iso_639_1": "sk",
+                "name": "Slovenčina",
+                "english_name": "Slovak",
+                "data": {
+                    "title": "Star Wars (kolekcia)",
+                    "overview": "",
+                    "homepage": "http://www.starwars.com"
+                }
+            },
+            {
+                "iso_3166_1": "RS",
+                "iso_639_1": "sr",
+                "name": "Srpski",
+                "english_name": "Serbian",
+                "data": {
+                    "title": "колекција Ратови Звезда",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "SE",
+                "iso_639_1": "sv",
+                "name": "svenska",
+                "english_name": "Swedish",
+                "data": {
+                    "title": "Star Wars (samling)",
+                    "overview": "Star Wars är en saga som utspelar sig i en fjärran galax och där kampen mellan gott och ont står i centrum. I de tre första filmerna som producerades utkämpas ett inbördeskrig i galaxen där kampen står mellan det onda Rymdimperiet.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "TH",
+                "iso_639_1": "th",
+                "name": "ภาษาไทย",
+                "english_name": "Thai",
+                "data": {
+                    "title": "สตาร์ วอร์ส คอลเลกชัน",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "TR",
+                "iso_639_1": "tr",
+                "name": "Türkçe",
+                "english_name": "Turkish",
+                "data": {
+                    "title": "Yıldız Savaşları [Seri]",
+                    "overview": "Yıldız Savaşları, George Lucas tarafından yapılmış, öncelikle filmleriyle tanınmış, sonraki yıllarda çizgi roman, bilgisayar ve konsol oyunları, televizyon yapımları vb. dallarda ününü geliştirmiş kurgusal evren ve markadır. Bugüne kadar 11 film bizlerle buluşsa da ana hikayeyi anlatan 8 film bulunmakta. İzleme sıralaması 4-5-6-1-2-3-7-8 şeklindedir.",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "UA",
+                "iso_639_1": "uk",
+                "name": "Український",
+                "english_name": "Ukrainian",
+                "data": {
+                    "title": "Зоряні війни - кіноцикл",
+                    "overview": "Культова епічна фантастична сага, що містить оповіді про протистояння планет, цивілізації та фракцій «Далекої галактики»",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "CN",
+                "iso_639_1": "zh",
+                "name": "普通话",
+                "english_name": "Mandarin",
+                "data": {
+                    "title": "星球大战（系列）",
+                    "overview": "《星球大战》(英语：Star Wars)，中文可简称“星战”，是美国导演兼编剧乔治·卢卡斯所构思拍摄的一系列科幻电影。同时“星球大战”也是该系列电影最早拍摄上映的第四章故事的原始片名。从1970年代末到1980年代，卢卡斯出品了《星球大战》三部曲。他曾说明第一部星战（第四部曲）的人物及故事是参照日本导演黑泽明的《战国英豪》(隠し砦の三悪人)所创作而成；原三部曲以二战英德大战为架构并溶入美国西部片及日本武士刀剧的节奏；蕴涵了太空冒险、希腊神话的大视野制作。影片中所使用的特效技术重新定义并改变了往后太空科幻片的未来发展。1990年代末，基于各界要求又拍摄了原三部曲之前的故事，又称“星战前传”。同时他把最初的三部曲改为六部系列的第四、五、六集，并将最早的第四集改名为“新希望”（A New Hope）。2012年10月，华特迪士尼公司以40.5亿美元收购卢卡斯影业。该片描写，在很久以前，一个遥远的银河系，肩负正义使命的绝地武士与帝国邪恶黑暗势力作战的故事。本片开启好莱坞电影商品授权的庞大事业，旗下分别有小说、漫画、玩具与电玩游戏等相关周边产业，系列中每部电影，小说与电玩游戏，皆以“很久以前，在一个遥远的银河系……”(A long time ago in a galaxy far, far away...)开头。",
+                    "homepage": "https://www.starwars.com/"
+                }
+            },
+            {
+                "iso_3166_1": "HK",
+                "iso_639_1": "zh",
+                "name": "普通话",
+                "english_name": "Mandarin",
+                "data": {
+                    "title": "《星球大戰》系列",
+                    "overview": "",
+                    "homepage": ""
+                }
+            },
+            {
+                "iso_3166_1": "TW",
+                "iso_639_1": "zh",
+                "name": "普通话",
+                "english_name": "Mandarin",
+                "data": {
+                    "title": "星際大戰 系列",
+                    "overview": "在很久以前，一個遙遠的銀河系，肩負正義使命的絕地武士與帝國邪惡黑暗勢力作戰的故事。",
+                    "homepage": ""
+                }
             }
         ]
     }

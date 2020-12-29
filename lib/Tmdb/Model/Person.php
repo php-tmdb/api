@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model;
@@ -108,6 +108,12 @@ class Person extends AbstractModel implements PersonInterface
      * @var integer
      */
     private $id;
+
+    /**
+     * @var string
+     */
+    private $knownForDepartment;
+
     /**
      * @var string
      */
@@ -339,6 +345,25 @@ class Person extends AbstractModel implements PersonInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param  string $knownForDepartment
+     * @return $this
+     */
+    public function setKnownForDepartment($knownForDepartment)
+    {
+        $this->knownForDepartment = $knownForDepartment;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKnownForDepartment()
+    {
+        return $this->knownForDepartment;
     }
 
     /**

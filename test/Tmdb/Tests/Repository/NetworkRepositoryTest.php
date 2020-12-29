@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,13 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 class NetworkRepositoryTest extends TestCase
 {
-    const NETWORK_ID = 49;
+    public const NETWORK_ID = 49;
 
     /**
      * @test
@@ -23,12 +25,8 @@ class NetworkRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/network/' . self::NETWORK_ID))
-        ;
-
         $repository->load(self::NETWORK_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/network/' . self::NETWORK_ID);
     }
 
     protected function getApiClass()

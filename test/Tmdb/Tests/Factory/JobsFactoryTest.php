@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Model\Collection\Jobs;
@@ -18,7 +20,7 @@ class JobsFactoryTest extends TestCase
 {
     private $jobs;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         $factory = $this->getFactory();
         $data    = $this->loadByFile('jobs/list.json');

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,13 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
 class PeopleTest extends TestCase
 {
-    const PERSON_ID = 287;
+    public const PERSON_ID = 287;
 
     /**
      * @test
@@ -23,11 +25,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID));
-
         $api->getPerson(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID);
     }
 
     /**
@@ -37,11 +36,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/combined_credits'));
-
         $api->getCredits(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/combined_credits');
     }
 
     /**
@@ -51,11 +47,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/movie_credits'));
-
         $api->getMovieCredits(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/movie_credits');
     }
 
     /**
@@ -65,11 +58,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/tv_credits'));
-
         $api->getTvCredits(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/tv_credits');
     }
 
     /**
@@ -79,11 +69,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/images'));
-
         $api->getImages(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/images');
     }
 
     /**
@@ -93,11 +80,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/changes'));
-
         $api->getChanges(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/changes');
     }
 
     /**
@@ -107,11 +91,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/external_ids'));
-
         $api->getExternalIds(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/external_ids');
     }
 
     /**
@@ -121,11 +102,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/popular'));
-
         $api->getPopular();
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/popular');
     }
 
     /**
@@ -135,11 +113,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/latest'));
-
         $api->getLatest();
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/latest');
     }
 
     /**
@@ -149,11 +124,8 @@ class PeopleTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/' . self::PERSON_ID . '/tagged_images'));
-
         $api->getTaggedImages(self::PERSON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/' . self::PERSON_ID . '/tagged_images');
     }
 
     protected function getApiClass()

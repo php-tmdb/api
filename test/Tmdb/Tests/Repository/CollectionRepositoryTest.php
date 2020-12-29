@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,15 +9,16 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Repository\CollectionRepository;
 
 class CollectionRepositoryTest extends TestCase
 {
-    const COLLECTION_ID = 120;
+    public const COLLECTION_ID = 120;
 
     /**
      * @test
@@ -25,12 +27,11 @@ class CollectionRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID,['append_to_response'=>'images']))
-        ;
-
         $repository->load(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID);
+        $this->assertRequestHasQueryParameters([
+            'append_to_response' => 'images,translations'
+                                               ]);
     }
 
     /**
@@ -40,12 +41,19 @@ class CollectionRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID.'/images'))
-        ;
-
         $repository->getImages(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID . '/images');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTranslations()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $repository->getTranslations(self::COLLECTION_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/collection/' . self::COLLECTION_ID . '/translations');
     }
 
     /**

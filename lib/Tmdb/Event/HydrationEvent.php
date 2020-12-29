@@ -9,14 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Event;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Contracts\EventDispatcher\Event;
-use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
 use Tmdb\Model\AbstractModel;
 
 class HydrationEvent extends Event
@@ -32,12 +32,12 @@ class HydrationEvent extends Event
     private $data;
 
     /**
-     * @var Request|null
+     * @var RequestInterface|null
      */
     private $lastRequest;
 
     /**
-     * @var Response|null
+     * @var ResponseInterface|null
      */
     private $lastResponse;
 
@@ -100,15 +100,15 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @return Request|null
+     * @return RequestInterface|null
      */
-    public function getLastRequest(): ?Request
+    public function getLastRequest(): ?RequestInterface
     {
         return $this->lastRequest;
     }
 
     /**
-     * @param Request|null $lastRequest
+     * @param RequestInterface|null $lastRequest
      * @return $this
      */
     public function setLastRequest($lastRequest)
@@ -119,15 +119,15 @@ class HydrationEvent extends Event
     }
 
     /**
-     * @return Response|null
+     * @return ResponseInterface|null
      */
-    public function getLastResponse(): ?Response
+    public function getLastResponse(): ?ResponseInterface
     {
         return $this->lastResponse;
     }
 
     /**
-     * @param Response|null $lastResponse
+     * @param ResponseInterface|null $lastResponse
      * @return $this
      */
     public function setLastResponse($lastResponse)

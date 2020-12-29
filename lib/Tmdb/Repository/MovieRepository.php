@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Repository;
@@ -208,11 +208,11 @@ class MovieRepository extends AbstractRepository
      * @param $parameters
      * @param $headers
      *
-     * @return Translation[]
+     * @return GenericCollection|Translation[]
      *
      * @psalm-return array<array-key, \Tmdb\Model\Common\Translation>
      */
-    public function getTranslations($id, array $parameters = [], array $headers = []): array
+    public function getTranslations($id, array $parameters = [], array $headers = []): GenericCollection
     {
         $data = $this->getApi()->getTranslations($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['translations' => $data]);
@@ -233,7 +233,7 @@ class MovieRepository extends AbstractRepository
      *
      * @psalm-return GenericCollection|array<array-key, Movie>
      */
-    public function getSimilarMovies($id, array $parameters = [], array $headers = [])
+    public function getSimilarMovies($id, array $parameters = [], array $headers = []): GenericCollection
     {
         return $this->getSimilar($id, $parameters, $headers);
     }
@@ -249,7 +249,7 @@ class MovieRepository extends AbstractRepository
      *
      * @psalm-return GenericCollection|array<array-key, Movie>
      */
-    public function getSimilar($id, array $parameters = [], array $headers = [])
+    public function getSimilar($id, array $parameters = [], array $headers = []): GenericCollection
     {
         $data = $this->getApi()->getSimilar($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['similar' => $data]);
@@ -268,7 +268,7 @@ class MovieRepository extends AbstractRepository
      *
      * @psalm-return GenericCollection|array<array-key, Movie>
      */
-    public function getRecommendations($id, array $parameters = [], array $headers = [])
+    public function getRecommendations($id, array $parameters = [], array $headers = []): GenericCollection
     {
         $data = $this->getApi()->getRecommendations($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['recommendations' => $data]);

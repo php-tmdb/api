@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Tv\Season\QueryParameter;
@@ -22,9 +22,9 @@ use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
  */
 class AppendToResponse extends BaseAppendToResponse
 {
-    const CREDITS = 'credits';
-    const EXTERNAL_IDS = 'external_ids';
-    const IMAGES = 'images';
-    const VIDEOS = 'videos';
-    const CHANGES = 'changes';
+    public const CREDITS = 'credits';
+    public const EXTERNAL_IDS = 'external_ids';
+    public const IMAGES = 'images';
+    public const VIDEOS = 'videos';
+    public const CHANGES = 'changes';
 }

@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Collection\QueryParameter;
@@ -22,5 +22,6 @@ use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
  */
 final class AppendToResponse extends BaseAppendToResponse
 {
-    const IMAGES = 'images';
+    public const IMAGES = 'images';
+    public const TRANSLATIONS = 'translations';
 }

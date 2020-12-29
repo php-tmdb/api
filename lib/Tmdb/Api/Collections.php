@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Api;
@@ -51,5 +51,18 @@ class Collections extends AbstractApi
     public function getImages($collection_id, array $parameters = [], array $headers = [])
     {
         return $this->get('collection/' . $collection_id . '/images', $parameters, $headers);
+    }
+
+    /**
+     * Get the list of translations that exist for a TV episode.
+     *
+     * @param $collection_id
+     * @param  array $parameters
+     * @param  array $headers
+     * @return mixed
+     */
+    public function getTranslations($collection_id, array $parameters = [], array $headers = [])
+    {
+        return $this->get('collection/' . $collection_id . '/translations', $parameters, $headers);
     }
 }

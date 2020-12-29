@@ -8,7 +8,7 @@
  * @package Tmdb
  * @author Eugenia Schneider <eugenia@werstreamt.es>
  * @copyright (c) 2018, Eugenia Schneider
- * @version 0.0.1
+ * @version 4.0.0
  */
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';

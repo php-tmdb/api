@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,24 +9,28 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Api;
 
+use Tmdb\Api\GuestSession;
+use Tmdb\Exception\MissingSessionTokenException;
 use Tmdb\GuestSessionToken;
 
 class GuestSessionTest extends TestCase
 {
-//    /**
-//     * @test
-//     * @expectedException \Tmdb\Exception\MissingSessionTokenException
-//     */
-//    public function shouldThrowExceptionGettingRatedMoviesWithNoSessionToken()
-//    {
-//        $api = $this->getApiWithMockedHttpAdapter();
-//
-//        $api->getRatedMovies();
-//    }
+    /**
+     * @test
+     *
+     */
+    public function shouldThrowExceptionGettingRatedMoviesWithNoSessionToken()
+    {
+        $this->expectException(MissingSessionTokenException::class);
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $api->getRatedMovies();
+    }
 
     /**
      * @test
@@ -33,19 +38,11 @@ class GuestSessionTest extends TestCase
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');
-        $api          = $this->getApiWithMockedHttpAdapter(['session_token' => $sessionToken]);
+        $api = $this->getApiWithMockedHttpAdapter(['session_token' => $sessionToken]);
 
-        $request = $this->getRequest(
-            sprintf('https://api.themoviedb.org/3/guest_session/%s/rated_movies', (string) $sessionToken),
-            ['guest_session_id' => (string) $sessionToken]
-        );
-        $request->getOptions()->set('session_token', $sessionToken);
-
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($request);
-
+        /** @var GuestSession $api */
         $api->getRatedMovies();
+        $this->assertLastRequestIsWithPathAndMethod(sprintf('/3/guest_session/%s/rated_movies', 'xyz'));
     }
 
     protected function getApiClass()

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Model\Common\Trailer;
 
 use Tmdb\Model\Common\Trailer\Youtube;
@@ -22,14 +24,17 @@ class YoutubeTest extends TestCase
      */
     private $subject;
 
-    public function setUp() :void
+    public function setUp(): void
     {
-        $this->subject = $this->hydrate(new Youtube(), [
-            'name'   => 'Trailer 1',
-            'size'   => 'HD',
-            'source' => 'SUXWAEX2jlg',
-            'type'   => 'Trailer'
-        ]);
+        $this->subject = $this->hydrate(
+            new Youtube(),
+            [
+                'name' => 'Trailer 1',
+                'size' => 'HD',
+                'source' => 'SUXWAEX2jlg',
+                'type' => 'Trailer'
+            ]
+        );
     }
 
     /**

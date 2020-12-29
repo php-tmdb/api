@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,8 +9,9 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Model\Query\ChangesQuery;
@@ -23,14 +25,10 @@ class ChangesRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/changes'))
-        ;
-
         $query = new ChangesQuery();
 
         $repository->getMovieChanges($query);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/changes');
     }
 
     /**
@@ -40,14 +38,10 @@ class ChangesRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/changes'))
-        ;
-
         $query = new ChangesQuery();
 
         $repository->getPeopleChanges($query);
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/changes');
     }
 
     /**
@@ -57,14 +51,10 @@ class ChangesRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/changes'))
-        ;
-
         $query = new ChangesQuery();
 
         $repository->getTvChanges($query);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/changes');
     }
 
     protected function getApiClass()

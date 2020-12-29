@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,14 +9,15 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
+
 namespace Tmdb\Tests\Repository;
 
 class ListRepositoryTest extends TestCase
 {
-    const LIST_ID  = '509fb10819c29510bb000675';
-    const MOVIE_ID = 150;
+    public const LIST_ID  = '509fb10819c29510bb000675';
+    public const MOVIE_ID = 150;
 
     /**
      * @test
@@ -24,12 +26,8 @@ class ListRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID))
-        ;
-
         $repository->load(self::LIST_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID);
     }
 
     /**
@@ -39,12 +37,9 @@ class ListRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID . '/item_status', ['movie_id' => self::MOVIE_ID]))
-        ;
-
         $repository->getItemStatus(self::LIST_ID, self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/item_status', 'GET');
+        $this->assertRequestHasQueryParameters(['movie_id' => self::MOVIE_ID]);
     }
 
     /**
@@ -54,12 +49,14 @@ class ListRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list', [], 'POST', [], ['name' => 'list-name', 'description' => 'list-description']))
-        ;
-
         $repository->createList('list-name', 'list-description');
+        $this->assertLastRequestIsWithPathAndMethod('/3/list', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'name' => 'list-name',
+                'description' => 'list-description'
+            ]
+        );
     }
 
     /**
@@ -69,12 +66,13 @@ class ListRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/add_item', [], 'POST', [], ['media_id' => self::MOVIE_ID]))
-        ;
-
         $repository->add(self::LIST_ID, self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/add_item', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MOVIE_ID
+            ]
+        );
     }
 
     /**
@@ -84,12 +82,13 @@ class ListRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/remove_item', [], 'POST', [], ['media_id' => self::MOVIE_ID]))
-        ;
-
         $repository->remove(self::LIST_ID, self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/remove_item', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => self::MOVIE_ID
+            ]
+        );
     }
 
     /**
@@ -99,12 +98,8 @@ class ListRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('delete')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID, [], 'DELETE'))
-        ;
-
         $repository->deleteList(self::LIST_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID, 'DELETE');
     }
 
     /**
@@ -114,12 +109,13 @@ class ListRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/clear', ['confirm'=>'true'], 'POST'))
-        ;
-
         $repository->clearList(self::LIST_ID, true);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/clear', 'POST');
+        $this->assertRequestHasQueryParameters(
+            [
+                'confirm' => 'true'
+            ]
+        );
     }
 
     protected function getApiClass()

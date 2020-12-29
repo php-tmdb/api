@@ -9,14 +9,14 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Exception;
 
 use Exception;
-use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class TmdbApiException
@@ -24,48 +24,48 @@ use Tmdb\HttpClient\Response;
  */
 class TmdbApiException extends Exception
 {
-    const STATUS_SUCCESS = 1;
-    const STATUS_INVALID_SERVICE = 2;
-    const STATUS_AUTHENTICATION_FAILED_NO_PERMISSION = 3;
-    const STATUS_INVALID_FORMAT = 4;
-    const STATUS_INVALID_PARAMETERS = 5;
-    const STATUS_INVALID_ID = 6;
-    const STATUS_INVALID_API_KEY = 7;
-    const STATUS_DUPLICATE_ENTRY = 8;
-    const STATUS_SERVICE_OFFLINE = 9;
-    const STATUS_SUSPENDED_API_KEY = 10;
-    const STATUS_INTERNAL_ERROR = 11;
-    const STATUS_UPDATE_SUCCESS = 12;
-    const STATUS_DELETE_SUCCESS = 13;
-    const STATUS_AUTHENTICATION_FAILED = 14;
-    const STATUS_FAILED = 15;
-    const STATUS_DEVICE_DENIED = 16;
-    const STATUS_SESSION_DENIED = 17;
-    const STATUS_VALIDATION_FAILED = 18;
-    const STATUS_INVALID_ACCEPT_HEADER = 19;
-    const STATUS_INVALID_DATE_RANGE = 20;
-    const STATUS_ENTRY_NOT_FOUND = 21;
-    const STATUS_INVALID_PAGE = 22;
-    const STATUS_INVALID_DATE = 23;
-    const STATUS_BACKEND_TIMEOUT = 24;
-    const STATUS_REQUEST_COUNT = 25;
-    const STATUS_USERNAME_PASSWORD_NOT_PROVIDED = 26;
-    const STATUS_TOO_MANY_APPEND_TO_RESPONSE = 27;
-    const STATUS_INVALID_TIMEZONE = 28;
-    const STATUS_CONFIRM_REQUIRED = 29;
-    const STATUS_INVALID_USERNAME_PASSWORD = 30;
-    const STATUS_ACCOUNT_DISABLED = 31;
-    const STATUS_EMAIL_NOT_VERIFIED = 32;
-    const STATUS_INVALID_REQUEST_TOKEN = 33;
-    const STATUS_RESOURCE_NOT_FOUND = 34;
+    public const STATUS_SUCCESS = 1;
+    public const STATUS_INVALID_SERVICE = 2;
+    public const STATUS_AUTHENTICATION_FAILED_NO_PERMISSION = 3;
+    public const STATUS_INVALID_FORMAT = 4;
+    public const STATUS_INVALID_PARAMETERS = 5;
+    public const STATUS_INVALID_ID = 6;
+    public const STATUS_INVALID_API_KEY = 7;
+    public const STATUS_DUPLICATE_ENTRY = 8;
+    public const STATUS_SERVICE_OFFLINE = 9;
+    public const STATUS_SUSPENDED_API_KEY = 10;
+    public const STATUS_INTERNAL_ERROR = 11;
+    public const STATUS_UPDATE_SUCCESS = 12;
+    public const STATUS_DELETE_SUCCESS = 13;
+    public const STATUS_AUTHENTICATION_FAILED = 14;
+    public const STATUS_FAILED = 15;
+    public const STATUS_DEVICE_DENIED = 16;
+    public const STATUS_SESSION_DENIED = 17;
+    public const STATUS_VALIDATION_FAILED = 18;
+    public const STATUS_INVALID_ACCEPT_HEADER = 19;
+    public const STATUS_INVALID_DATE_RANGE = 20;
+    public const STATUS_ENTRY_NOT_FOUND = 21;
+    public const STATUS_INVALID_PAGE = 22;
+    public const STATUS_INVALID_DATE = 23;
+    public const STATUS_BACKEND_TIMEOUT = 24;
+    public const STATUS_REQUEST_COUNT = 25;
+    public const STATUS_USERNAME_PASSWORD_NOT_PROVIDED = 26;
+    public const STATUS_TOO_MANY_APPEND_TO_RESPONSE = 27;
+    public const STATUS_INVALID_TIMEZONE = 28;
+    public const STATUS_CONFIRM_REQUIRED = 29;
+    public const STATUS_INVALID_USERNAME_PASSWORD = 30;
+    public const STATUS_ACCOUNT_DISABLED = 31;
+    public const STATUS_EMAIL_NOT_VERIFIED = 32;
+    public const STATUS_INVALID_REQUEST_TOKEN = 33;
+    public const STATUS_RESOURCE_NOT_FOUND = 34;
 
     /**
-     * @var Request
+     * @var RequestInterface
      */
     protected $request;
 
     /**
-     * @var Response
+     * @var ResponseInterface
      */
     protected $response;
 
@@ -74,12 +74,17 @@ class TmdbApiException extends Exception
      *
      * @param int $code
      * @param string $message
-     * @param Request|null $request
-     * @param Response|null $response
+     * @param RequestInterface|null $request
+     * @param ResponseInterface|null $response
      * @param Exception|null $previous
      */
-    public function __construct($code, $message, $request = null, $response = null, Exception $previous = null)
-    {
+    public function __construct(
+        int $code,
+        string $message,
+        RequestInterface $request = null,
+        ResponseInterface $response = null,
+        Exception $previous = null
+    ) {
         parent::__construct($message, $code, $previous);
 
         $this->request = $request;
@@ -87,7 +92,7 @@ class TmdbApiException extends Exception
     }
 
     /**
-     * @return Request
+     * @return RequestInterface
      */
     public function getRequest()
     {
@@ -95,10 +100,10 @@ class TmdbApiException extends Exception
     }
 
     /**
-     * @param Request $request
+     * @param RequestInterface $request
      * @return $this
      */
-    public function setRequest($request)
+    public function setRequest(RequestInterface $request): TmdbApiException
     {
         $this->request = $request;
 
@@ -106,7 +111,7 @@ class TmdbApiException extends Exception
     }
 
     /**
-     * @return Response
+     * @return ResponseInterface
      */
     public function getResponse()
     {
@@ -114,10 +119,10 @@ class TmdbApiException extends Exception
     }
 
     /**
-     * @param Response $response
+     * @param ResponseInterface $response
      * @return $this
      */
-    public function setResponse($response)
+    public function setResponse(ResponseInterface $response): TmdbApiException
     {
         $this->response = $response;
 
