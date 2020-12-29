@@ -21,6 +21,8 @@ use Psr\Http\Message\ResponseInterface;
 use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\ResponseEvent;
+use Tmdb\Exception\Factory\ResponseExceptionFactory;
+use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\HttpClient;
 
 /**
@@ -40,6 +42,11 @@ class RequestListener
     private $eventDispatcher;
 
     /**
+     * @var ResponseExceptionFactory
+     */
+    private $responseExceptionFactory;
+
+    /**
      * RequestListener constructor.
      * @param EventDispatcherInterface $eventDispatcher
      */
@@ -47,12 +54,14 @@ class RequestListener
     {
         $this->httpClient = $httpClient;
         $this->eventDispatcher = $eventDispatcher;
+        $this->responseExceptionFactory = new ResponseExceptionFactory();
     }
 
     /**
      * @param RequestEvent $event
      * @return void
      * @throws Exception
+     * @throws TmdbApiException
      * @throws ClientExceptionInterface
      */
     public function __invoke(RequestEvent $event)
@@ -68,6 +77,14 @@ class RequestListener
         }
 
         $response = $this->sendRequest($beforeRequestEvent);
+
+        if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 600) {
+            throw $this->responseExceptionFactory->createTmdbApiException(
+                $beforeRequestEvent->getRequest(),
+                $response
+            );
+        }
+
         $event->setRequest($beforeRequestEvent->getRequest());
         $event->setResponse($response);
 

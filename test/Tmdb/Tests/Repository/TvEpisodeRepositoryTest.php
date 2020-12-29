@@ -69,6 +69,28 @@ class TvEpisodeRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetAccountStates()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Season();
+        $season->setSeasonNumber(self::SEASON_NUMBER);
+
+        $episode = new Episode();
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
+
+        $repository->getAccountStates($tv, $season, $episode);
+        $this->assertLastRequestIsWithPathAndMethod(
+            '/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/account_states'
+        );
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -174,6 +196,49 @@ class TvEpisodeRepositoryTest extends TestCase
         $this->assertLastRequestIsWithPathAndMethod(
             '/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/videos'
         );
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRate()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $repository->rate(self::TV_ID, self::SEASON_NUMBER, self::EPISODE_NUMBER, 6.2);
+        $this->assertLastRequestIsWithPathAndMethod(
+            '/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/rating',
+            'POST'
+        );
+        $this->assertRequestBodyHasContents([
+            'value' => 6.2
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRateModel()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $tv = new Tv();
+        $tv->setId(self::TV_ID);
+
+        $season = new Season();
+        $season->setSeasonNumber(self::SEASON_NUMBER);
+
+        $episode = new Episode();
+        $episode->setEpisodeNumber(self::EPISODE_NUMBER);
+
+        $repository->rate($tv, $season, $episode, 7.2);
+        $this->assertLastRequestIsWithPathAndMethod(
+            '/3/tv/' . self::TV_ID . '/season/' . self::SEASON_NUMBER . '/episode/' . self::EPISODE_NUMBER . '/rating',
+            'POST'
+        );
+        $this->assertRequestBodyHasContents([
+            'value' => 7.2
+        ]);
     }
 
     /**

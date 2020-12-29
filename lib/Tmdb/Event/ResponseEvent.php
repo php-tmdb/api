@@ -88,4 +88,12 @@ class ResponseEvent
     {
         return null !== $this->response;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasRequest()
+    {
+        return null !== $this->request;
+    }
 }

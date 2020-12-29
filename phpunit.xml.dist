@@ -12,13 +12,8 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
   <coverage processUncoveredFiles="true">
     <include>
-      <directory>./</directory>
+      <directory>./lib</directory>
     </include>
-    <exclude>
-      <directory>./examples</directory>
-      <directory>./test</directory>
-      <directory>./vendor</directory>
-    </exclude>
   </coverage>
   <testsuites>
     <testsuite name="php-tmdb-symfony Test Suite">

@@ -16,3 +16,4 @@
 .phpcs-cache
 .phpunit.result.cache
 .phpcs-cache
+coverage/
