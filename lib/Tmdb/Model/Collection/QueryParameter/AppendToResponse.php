@@ -21,4 +21,5 @@ use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
 final class AppendToResponse extends BaseAppendToResponse
 {
     const IMAGES             = 'images';
+    const TRANSLATIONS       = 'translations';
 }

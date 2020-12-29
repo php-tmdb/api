@@ -27,7 +27,7 @@ class CollectionRepositoryTest extends TestCase
 
         $this->getAdapter()->expects($this->once())
             ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID,['append_to_response'=>'images']))
+            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID,['append_to_response'=>'images,translations']))
         ;
 
         $repository->load(self::COLLECTION_ID);
@@ -46,6 +46,21 @@ class CollectionRepositoryTest extends TestCase
         ;
 
         $repository->getImages(self::COLLECTION_ID);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetTranslations()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $this->getAdapter()->expects($this->once())
+            ->method('get')
+            ->with($this->getRequest('https://api.themoviedb.org/3/collection/'.self::COLLECTION_ID.'/translations'))
+        ;
+
+        $repository->getTranslations(self::COLLECTION_ID);
     }
 
     /**
