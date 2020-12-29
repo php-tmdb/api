@@ -15,6 +15,7 @@
       <directory>./</directory>
     </include>
     <exclude>
+      <directory>./examples</directory>
       <directory>./test</directory>
       <directory>./vendor</directory>
     </exclude>
