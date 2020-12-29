@@ -14,54 +14,64 @@
 
 namespace Tmdb\Event;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ObjectHydrator;
-use Tmdb\HttpClient\HttpClientEventSubscriber;
 use Tmdb\Model\AbstractModel;
 
 /**
  * Class RequestSubscriber
  * @package Tmdb\Event
  */
-class HydrationSubscriber extends HttpClientEventSubscriber
+class HydrationListener
 {
     /**
-     * Get subscribed events
-     *
-     * @return array
+     * @var EventDispatcherInterface
      */
-    public static function getSubscribedEvents()
+    private $eventDispatcher;
+
+    /**
+     * @var ObjectHydrator
+     */
+    private $hydrator;
+
+    /**
+     * HydrationListener constructor.
+     * @param EventDispatcherInterface $eventDispatcher
+     */
+    public function __construct(EventDispatcherInterface $eventDispatcher)
     {
-        return [
-            TmdbEvents::HYDRATE => 'hydrate',
-        ];
+        $this->eventDispatcher = $eventDispatcher;
+        $this->hydrator = new ObjectHydrator();
     }
 
     /**
      * Hydrate the subject with data
      *
      * @param HydrationEvent $event
-     * @param string $eventName
-     * @param EventDispatcherInterface $eventDispatcher
      *
      * @return AbstractModel
      */
-    public function hydrate(HydrationEvent $event, $eventName, $eventDispatcher)
+    public function __invoke(HydrationEvent $event)
     {
         // Possibility to load serialized cache
-        $eventDispatcher->dispatch($event, TmdbEvents::BEFORE_HYDRATION);
+        $before = new BeforeHydrationEvent($event->getSubject(), $event->getData());
+        $before->setLastRequest($event->getLastRequest());
+        $before->setLastResponse($event->getLastResponse());
 
-        if ($event->isPropagationStopped()) {
-            return $event->getSubject();
+        $this->eventDispatcher->dispatch($before);
+
+        if ($before->isPropagationStopped()) {
+            return $before->getSubject();
         }
 
-        $subject = $this->hydrateSubject($event);
-        $event->setSubject($subject);
-
         // Possibility to cache the data
-        $eventDispatcher->dispatch($event, TmdbEvents::AFTER_HYDRATION);
+        $after = new AfterHydrationEvent($this->hydrateSubject($before), $before->getData());
+        $after->setLastRequest($event->getLastRequest());
+        $after->setLastResponse($event->getLastResponse());
 
-        return $event->getSubject();
+        $this->eventDispatcher->dispatch($after);
+
+        return $after->getSubject();
     }
 
     /**
@@ -72,8 +82,6 @@ class HydrationSubscriber extends HttpClientEventSubscriber
      */
     public function hydrateSubject(HydrationEvent $event)
     {
-        $objectHydrator = new ObjectHydrator();
-
-        return $objectHydrator->hydrate($event->getSubject(), $event->getData());
+        return $this->hydrator->hydrate($event->getSubject(), $event->getData());
     }
 }

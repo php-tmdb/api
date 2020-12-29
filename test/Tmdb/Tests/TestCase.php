@@ -12,18 +12,21 @@
  */
 namespace Tmdb\Tests;
 
-use Doctrine\Common\Cache\FilesystemCache;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Psr\Http\Client\ClientInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Common\ParameterBag;
+use Tmdb\Event\Listener\Request\AcceptJsonRequestListener;
+use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\HttpClient\Request;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
-    protected $adapter = null;
+    protected $psr18mock = null;
 
     protected $eventDispatcher = null;
 
@@ -77,12 +80,27 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function getClientWithMockedHttpClient(array $options = array())
     {
-        $options['event_dispatcher'] = $this->eventDispatcher = new EventDispatcher();
+        $options['event_dispatcher']['adapter'] = $this->eventDispatcher = new EventDispatcher();
+
+
 
         $token = new ApiToken('abcdef');
-        $options['adapter'] = $this->getAdapterMock();
+        $options['http']['client'] = new \Http\Mock\Client();
+        $response = $this->createMock('Psr\Http\Message\ResponseInterface');
+        $options['http']['client']->setDefaultResponse($response);
 
-        return new Client($token, $options);
+        $client = new Client($token, $options);
+        $requestListener = new \Tmdb\Event\Listener\RequestListener(
+            $client->getHttpClient(),
+            $options['event_dispatcher']['adapter']
+        );
+
+        // @todo setup in client
+        $this->eventDispatcher->addListener(\Tmdb\Event\BeforeRequestEvent::class, new AcceptJsonRequestListener());
+        $this->eventDispatcher->addListener(\Tmdb\Event\BeforeRequestEvent::class, new ContentTypeJsonRequestListener());
+        $this->eventDispatcher->addListener(\Tmdb\Event\RequestEvent::class, $requestListener);
+
+        return $client;
     }
 
     public function getAdapterMock()
@@ -100,7 +118,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $token   = new ApiToken('abcdef');
         $adapter = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
-        return $this->_client = new Client($token, ['adapter' => $adapter]);
+        return $this->_client = new Client($token, ['http' => ['client' => $adapter]]);
     }
 
     /**
@@ -159,11 +177,11 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $parameters['api_key'] = 'abcdef';
 
         $headers['Accept']     = 'application/json';
-        $headers['User-Agent'] = sprintf('wtfzdotnet/php-tmdb-api (v%s)', Client::VERSION);
+        $headers['User-Agent'] = sprintf('php-tmdb/api (v%s)', Client::VERSION);
 
-        $baseUrl = 'https://api.themoviedb.org/3/';
-        if (strpos($url, $baseUrl) === 0) {
-            $path = substr($url, strlen($baseUrl));
+        $baseUri = 'https://api.themoviedb.org/3/';
+        if (strpos($url, $baseUri) === 0) {
+            $path = substr($url, strlen($baseUri));
         } else {
             $path = $url;
         }
@@ -175,27 +193,34 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             new ParameterBag($headers)
         );
 
+        $responseFactory = Psr17FactoryDiscovery::findResponseFactory();
         $request->setOptions(new ParameterBag([
             'token'   => new ApiToken('abcdef'),
             'secure'  => true,
             'cache'   => [
                 'enabled' => false,
-//                'handler' => new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'),
+//                'adapter' => new FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api'),
                 'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api',
                 'subscriber' => null
             ],
             'log'     => [
                 'enabled' => false,
                 'level'   => 'debug',
-                'handler' => null,
+                'adapter' => null,
                 'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log',
                 'subscriber' => null
             ],
-            'adapter' => $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
+            'http' => [
+                'client' => new \Http\Mock\Client($responseFactory),
+                'request_factory' => Psr17FactoryDiscovery::findRequestFactory(),
+                'response_factory' => $responseFactory,
+                'stream_factory' => Psr17FactoryDiscovery::findStreamFactory(),
+                'uri_factory' => Psr17FactoryDiscovery::findUriFactory(),
+            ],
             'host'    => 'api.themoviedb.org/3/',
-            'base_url' => $baseUrl,
+            'base_uri' => $baseUri,
             'session_token' => null,
-            'event_dispatcher' => $this->eventDispatcher
+            'event_dispatcher' => ['adapter' => $this->eventDispatcher]
         ]));
 
         if ($body !== null) {

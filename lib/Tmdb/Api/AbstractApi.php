@@ -14,6 +14,7 @@
 
 namespace Tmdb\Api;
 
+use Psr\Http\Message\ResponseInterface;
 use Tmdb\Client;
 
 /**
@@ -67,12 +68,12 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Decode the response
      *
-     * @param $response
-     * @return mixed
+     * @param ResponseInterface $response
+     * @return array
      */
-    private function decodeResponse(string $response)
+    private function decodeResponse(ResponseInterface $response)
     {
-        return is_string($response) ? json_decode($response, true) : $response;
+        return json_decode((string)$response->getBody(), true);
     }
 
     /**

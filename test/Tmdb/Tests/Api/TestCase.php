@@ -12,11 +12,14 @@
  */
 namespace Tmdb\Tests\Api;
 
+use Psr\Http\Client\ClientInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Tests\TestCase as Base;
+
+use function _HumbugBox39a196d4601e\RingCentral\Psr7\parse_query;
 
 abstract class TestCase extends Base
 {
@@ -39,8 +42,6 @@ abstract class TestCase extends Base
      */
     protected function getApiWithMockedHttpAdapter(array $options = [])
     {
-        $options['event_dispatcher'] = $this->eventDispatcher = new EventDispatcher();
-
         $this->_client = $this->getClientWithMockedHttpClient($options);
         $apiClass = $this->getApiClass();
 
@@ -88,10 +89,64 @@ abstract class TestCase extends Base
     /**
      * Shortcut to obtain the http client adapter
      *
-     * @return \Tmdb\HttpClient\Adapter\AdapterInterface
+     * @return ClientInterface|\Http\Mock\Client
      */
-    protected function getAdapter()
+    protected function getPsr18Client()
     {
-        return clone $this->_client->getHttpClient()->getAdapter();
+        return clone $this->_client->getHttpClient()->getPsr18Client();
+    }
+
+    /**
+     * @return \Psr\Http\Message\RequestInterface
+     */
+    protected function getLastRequest()
+    {
+        $requests = $this->getPsr18Client()->getRequests();
+        $lastRequest = array_pop($requests);
+
+        return $lastRequest;
+    }
+
+    /**
+     * @param $path
+     * @param string $method
+     */
+    protected function assertLastRequestIsWithPathAndMethod($path, $method = 'GET')
+    {
+        $lastRequest = $this->getLastRequest();
+
+        $this->assertEquals($path, $lastRequest->getUri()->getPath());
+        $this->assertEquals($method, $lastRequest->getMethod());
+    }
+
+    /**
+     * @param mixed $contents
+     */
+    protected function assertRequestBodyHasContents($contents)
+    {
+        $lastRequest = $this->getLastRequest();
+        $lastRequest->getBody()->rewind();
+
+        $actualBody = $lastRequest->getBody()->getContents();
+
+        if ($lastRequest->hasHeader('content-type')) {
+            $contentType = $lastRequest->getHeader('content-type')[0];
+
+            if ('application/json' === $contentType) {
+                $actualBody = \json_decode($actualBody, true);
+            }
+        }
+
+        $this->assertEquals($contents, $actualBody);
+    }
+
+    /**
+     * @param array $parameters
+     */
+    protected function assertRequestHasQueryParameters(array $parameters = array())
+    {
+        $actualParameters = array();
+        parse_str($this->getLastRequest()->getUri()->getQuery(), $actualParameters);
+        $this->assertEquals($parameters, $actualParameters);
     }
 }

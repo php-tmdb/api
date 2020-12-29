@@ -16,7 +16,7 @@ namespace Tmdb\Exception;
 
 use Exception;
 use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 
 /**
  * Class TmdbApiException
@@ -65,7 +65,7 @@ class TmdbApiException extends Exception
     protected $request;
 
     /**
-     * @var Response
+     * @var ResponseInterface
      */
     protected $response;
 
@@ -75,7 +75,7 @@ class TmdbApiException extends Exception
      * @param int $code
      * @param string $message
      * @param Request|null $request
-     * @param Response|null $response
+     * @param ResponseInterface|null $response
      * @param Exception|null $previous
      */
     public function __construct($code, $message, $request = null, $response = null, Exception $previous = null)
@@ -106,7 +106,7 @@ class TmdbApiException extends Exception
     }
 
     /**
-     * @return Response
+     * @return ResponseInterface
      */
     public function getResponse()
     {
@@ -114,7 +114,7 @@ class TmdbApiException extends Exception
     }
 
     /**
-     * @param Response $response
+     * @param ResponseInterface $response
      * @return $this
      */
     public function setResponse($response)

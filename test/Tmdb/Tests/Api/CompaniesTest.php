@@ -23,11 +23,8 @@ class CompaniesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/company/' . self::COMPANY_ID));
-
         $api->getCompany(self::COMPANY_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/company/' . self::COMPANY_ID);
     }
 
     /**
@@ -37,11 +34,8 @@ class CompaniesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/company/' . self::COMPANY_ID. '/movies'));
-
         $api->getMovies(self::COMPANY_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/company/' . self::COMPANY_ID. '/movies');
     }
 
     protected function getApiClass()

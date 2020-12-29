@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Tests\Repository;
 
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\Model\Search\SearchQuery\CollectionSearchQuery;
 use Tmdb\Model\Search\SearchQuery\CompanySearchQuery;
 use Tmdb\Model\Search\SearchQuery\KeywordSearchQuery;
@@ -196,7 +196,7 @@ class SearchRepositoryTest extends TestCase
                 'https://api.themoviedb.org/3/search/multi',
                 ['page' => 1, 'query' => self::MULTI_QUERY]
             ))
-            ->will($this->returnValue(new Response(200, json_encode([
+            ->will($this->returnValue(new ResponseInterface(200, json_encode([
                 'page' => 1,
                 'total_pages' => 1,
                 'total_results' => 3,

@@ -12,11 +12,14 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\Event;
+namespace Tmdb\Event\Listener;
 
 use Exception;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\RequestEvent;
+use Tmdb\Event\ResponseEvent;
 use Tmdb\HttpClient\HttpClient;
 
 /**
@@ -55,19 +58,19 @@ class RequestListener
     public function __invoke(RequestEvent $event)
     {
         // Preparation of request parameters / Possibility to use for logging and caching etc.
-        $this->eventDispatcher->dispatch(new BeforeRequestEvent($event->getRequest()));
+        $beforeRequestEvent = new BeforeRequestEvent($event->getRequest());
+        $this->eventDispatcher->dispatch($beforeRequestEvent);
 
-        if ($event->isPropagationStopped() && $event->hasResponse()) {
-            return $event->getResponse();
+        if ($beforeRequestEvent->isPropagationStopped() && $beforeRequestEvent->hasResponse()) {
+            return $beforeRequestEvent->getResponse();
         }
 
-        $response = $this->sendRequest($event);
+        $response = $this->sendRequest($beforeRequestEvent);
+        $event->setRequest($beforeRequestEvent->getRequest());
         $event->setResponse($response);
-var_dump($response);exit;
+
         // Possibility to cache the request
         $this->eventDispatcher->dispatch(new ResponseEvent($response, $event->getRequest()));
-
-        return $response;
     }
 
     /**

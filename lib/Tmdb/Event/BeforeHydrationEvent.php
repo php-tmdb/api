@@ -12,16 +12,13 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\Event\Listener\Request;
+namespace Tmdb\Event;
 
-use Tmdb\Event\RequestEvent;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Symfony\Contracts\EventDispatcher\Event;
+use Tmdb\Model\AbstractModel;
 
-class AcceptJsonRequestListener
+class BeforeHydrationEvent extends HydrationEvent
 {
-    public function __invoke(RequestEvent $event): void
-    {
-        $event->setRequest(
-            $event->getRequest()->withHeader('Accept', 'application/json; charset=utf-8')
-        );
-    }
 }

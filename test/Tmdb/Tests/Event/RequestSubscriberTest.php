@@ -2,11 +2,11 @@
 namespace Tmdb\Tests\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Event\RequestEvent;
-use Tmdb\Event\RequestSubscriber;
+use Tmdb\Event\RequestListener;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\HttpClientEventSubscriber;
 use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
@@ -22,12 +22,13 @@ use Tmdb\HttpClient\Response;
 class RequestSubscriberTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @expectedException \Tmdb\Exception\RuntimeException
+     *
      * @test
      */
     public function throwsExceptionWithNonExistingMethod()
     {
-        $subscriber   = new RequestSubscriber();
+        $this->expectException(\Tmdb\Exception\RuntimeException::class);
+        $subscriber   = new RequestListener();
         $requestEvent = new RequestEvent(new Request('/', '1337'));
 
         $subscriber->sendRequest($requestEvent);
@@ -40,7 +41,7 @@ class RequestSubscriberTest extends \PHPUnit\Framework\TestCase
     {
         $eventDispatcher = new EventDispatcher();
         $eventDispatcher->addSubscriber(new FakeCacheSubscriber());
-        $eventDispatcher->addSubscriber(new RequestSubscriber());
+        $eventDispatcher->addSubscriber(new RequestListener());
 
         $requestEvent = new RequestEvent(new Request('/', '1337'));
         $eventDispatcher->dispatch($requestEvent, TmdbEvents::REQUEST);
@@ -62,7 +63,7 @@ class FakeCacheSubscriber extends HttpClientEventSubscriber
 
     public function isCached(RequestEvent $event)
     {
-        $response = new Response(301);
+        $response = new ResponseInterface(301);
         $event->setResponse($response);
 
         $event->stopPropagation();

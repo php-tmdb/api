@@ -26,7 +26,7 @@ use Tmdb\Common\ParameterBag;
 use Tmdb\Exception\NullResponseException;
 use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 
 class GuzzleAdapter extends AbstractAdapter
 {
@@ -169,11 +169,11 @@ class GuzzleAdapter extends AbstractAdapter
      * Create the response object
      *
      * @param ResponseInterface $adapterResponse
-     * @return Response
+     * @return ResponseInterface
      */
     private function createResponse(ResponseInterface $adapterResponse = null)
     {
-        $response = new Response();
+        $response = new ResponseInterface();
 
         if ($adapterResponse !== null) {
             $response->setCode($adapterResponse->getStatusCode());

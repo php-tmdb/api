@@ -21,13 +21,8 @@ class CertificationsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/certification/movie/list'))
-        ;
-
         $api->getMovieList();
+        $this->assertLastRequestIsWithPathAndMethod('/3/certification/movie/list');
     }
 
     /**
@@ -37,13 +32,8 @@ class CertificationsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/certification/tv/list'))
-        ;
-
         $api->getTvList();
+        $this->assertLastRequestIsWithPathAndMethod('/3/certification/tv/list');
     }
 
     protected function getApiClass()

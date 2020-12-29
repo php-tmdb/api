@@ -30,11 +30,12 @@ class ObjectHydratorTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @expectedException \Tmdb\Exception\RuntimeException
+     *
      * @test
      */
     public function callingNonExistingMethodThrowsException()
     {
+        $this->expectException(\Tmdb\Exception\RuntimeException::class);
         $objectHydrator = new \Tmdb\Common\ObjectHydrator();
 
         $objectHydrator->hydrate(new FailingTestModel(), ['lastname' => 'Roterman']);

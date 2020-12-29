@@ -12,24 +12,42 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\HttpClient\Event\Listener\Request;
+namespace Tmdb\Event\Listener\Request;
 
 use Tmdb\Event\RequestEvent;
+use Tmdb\Helper\RequestQueryHelper;
 
 class AdultFilterRequestListener
 {
     private $includeAdult;
+    /**
+     * @var RequestQueryHelper
+     */
+    private $requestQueryHelper;
 
+    /**
+     * AdultFilterRequestListener constructor.
+     * @param bool $includeAdult
+     */
     public function __construct($includeAdult = false)
     {
         $this->includeAdult = $includeAdult;
+        $this->requestQueryHelper = new RequestQueryHelper();
     }
 
-    public function onBeforeSend(RequestEvent $event): void
+    /**
+     * Set the adult filter.
+     *
+     * @param RequestEvent $event
+     */
+    public function __invoke(RequestEvent $event): void
     {
-        $event->getRequest()->getParameters()->set(
-            'include_adult',
-            $this->includeAdult === true ? 'true' : 'false'
+        $event->setRequest(
+            $this->requestQueryHelper->withQuery(
+                $event->getRequest(),
+                'include_adult',
+                $this->includeAdult === true ? 'true' : 'false'
+            )
         );
     }
 }

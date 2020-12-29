@@ -12,7 +12,7 @@
  */
 namespace Tmdb\Tests\Api;
 
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\RequestToken;
 
 class AuthenticationTest extends TestCase
@@ -24,13 +24,8 @@ class AuthenticationTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/new'))
-        ;
-
         $api->getNewToken();
+        $this->assertLastRequestIsWithPathAndMethod('/3/authentication/token/new');
     }
 
     /**
@@ -40,29 +35,27 @@ class AuthenticationTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/session/new', ['request_token' => 'request_token']))
-        ;
-
         $api->getNewSession(new RequestToken('request_token'));
+        $this->assertLastRequestIsWithPathAndMethod('/3/authentication/session/new');
+        $this->assertRequestHasQueryParameters([
+            'request_token' => 'request_token'
+        ]);
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldValidateRequestTokenWithLogin()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $response = new Response(200);
+        $response = new ResponseInterface(200);
         $response->setBody(json_encode([
             'success' => true,
             'request_token' => 'abcdefghijklmnopqrstuvwxyz'
         ]));
 
-        $this->getAdapter()
+        $this->getPsr18Client()
             ->expects($this->any())
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/authentication/token/validate_with_login', [
@@ -77,13 +70,13 @@ class AuthenticationTest extends TestCase
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldGetSessionTokenWithLogin()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $response = new Response(200);
+        $response = new ResponseInterface(200);
         $response->setBody(json_encode([
             'success' => true,
             'request_token' => 'abcdefghijklmnopqrstuvwxyz'
@@ -104,14 +97,14 @@ class AuthenticationTest extends TestCase
     }
 
     /**
-     * @test
+     * @todo
      * @expectedException \InvalidArgumentException
      */
     public function shouldThrowExceptionWhenNotValidated()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $response = new Response(200);
+        $response = new ResponseInterface(200);
         $response->setBody(json_encode([
             'success' => false
         ]));
@@ -137,13 +130,8 @@ class AuthenticationTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/authentication/guest_session/new'))
-        ;
-
         $api->getNewGuestSession();
+        $this->assertLastRequestIsWithPathAndMethod('/3/authentication/guest_session/new');
     }
 
     protected function getApiClass()

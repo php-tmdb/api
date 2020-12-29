@@ -17,7 +17,7 @@ namespace Tmdb\HttpClient\Adapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 
 /**
  * Interface AdapterInterface
@@ -29,7 +29,7 @@ interface AdapterInterface
      * Compose a GET request
      *
      * @param Request $request
-     * @return Response
+     * @return ResponseInterface
      * @throws TmdbApiException
      */
     public function get(Request $request);
@@ -38,7 +38,7 @@ interface AdapterInterface
      * Send a HEAD request
      *
      * @param Request $request
-     * @return Response
+     * @return ResponseInterface
      * @throws TmdbApiException
      */
     public function head(Request $request);
@@ -47,7 +47,7 @@ interface AdapterInterface
      * Compose a POST request
      *
      * @param Request $request
-     * @return Response
+     * @return ResponseInterface
      * @throws TmdbApiException
      */
     public function post(Request $request);
@@ -56,7 +56,7 @@ interface AdapterInterface
      * Send a PUT request
      *
      * @param Request $request
-     * @return Response
+     * @return ResponseInterface
      * @throws TmdbApiException
      */
     public function put(Request $request);
@@ -65,7 +65,7 @@ interface AdapterInterface
      * Send a DELETE request
      *
      * @param Request $request
-     * @return Response
+     * @return ResponseInterface
      * @throws TmdbApiException
      */
     public function delete(Request $request);
@@ -74,7 +74,7 @@ interface AdapterInterface
      * Send a PATCH request
      *
      * @param Request $request
-     * @return Response
+     * @return ResponseInterface
      * @throws TmdbApiException
      */
     public function patch(Request $request);

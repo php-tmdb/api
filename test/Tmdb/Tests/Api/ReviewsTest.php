@@ -19,15 +19,12 @@ class ReviewsTest extends TestCase
     /**
      * @test
      */
-    public function shouldGetPerson()
+    public function shouldGetReview()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/review/' . self::REVIEW_ID));
-
         $api->getReview(self::REVIEW_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/review/' . self::REVIEW_ID);
     }
 
     protected function getApiClass()

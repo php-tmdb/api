@@ -24,11 +24,8 @@ class TvSeasonTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID));
-
         $api->getSeason(self::TV_ID, self::SEASON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID);
     }
 
     /**
@@ -38,11 +35,8 @@ class TvSeasonTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/credits'));
-
         $api->getCredits(self::TV_ID, self::SEASON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/credits');
     }
 
     /**
@@ -52,11 +46,8 @@ class TvSeasonTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids'));
-
         $api->getExternalIds(self::TV_ID, self::SEASON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids');
     }
 
     /**
@@ -66,11 +57,8 @@ class TvSeasonTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/images'));
-
         $api->getImages(self::TV_ID, self::SEASON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/images');
     }
 
     /**
@@ -80,11 +68,8 @@ class TvSeasonTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/videos'));
-
         $api->getVideos(self::TV_ID, self::SEASON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/videos');
     }
 
     /**
@@ -94,11 +79,8 @@ class TvSeasonTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/changes'));
-
         $api->getChanges(self::TV_ID, self::SEASON_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/changes');
     }
 
     protected function getApiClass()

@@ -13,7 +13,7 @@
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Api\Authentication;
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\Repository\AuthenticationRepository;
 use Tmdb\RequestToken;
 
@@ -57,7 +57,7 @@ class AuthenticationRepositoryTest extends TestCase
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
-        $response = new Response(200);
+        $response = new ResponseInterface(200);
         $response->setBody(json_encode([
             'success' => true,
             'request_token' => 'abcdefghijklmnopqrstuvwxyz'

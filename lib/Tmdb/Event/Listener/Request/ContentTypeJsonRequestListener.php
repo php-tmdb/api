@@ -12,11 +12,9 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\HttpClient\Event\Listener\Request;
+namespace Tmdb\Event\Listener\Request;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\Event\RequestEvent;
-use Tmdb\Event\TmdbEvents;
 
 class ContentTypeJsonRequestListener
 {
@@ -34,7 +32,9 @@ class ContentTypeJsonRequestListener
             $method == 'PATCH' ||
             $method == 'DELETE'
         ) {
-            $event->getRequest()->withHeader('Content-Type', 'application/json');
+            $event->setRequest(
+                $event->getRequest()->withHeader('Content-Type', 'application/json')
+            );
         }
     }
 }

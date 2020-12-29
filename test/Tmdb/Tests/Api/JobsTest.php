@@ -10,6 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 class JobsTest extends TestCase
@@ -21,11 +22,8 @@ class JobsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/job/list'));
-
         $api->getJobs();
+        $this->assertLastRequestIsWithPathAndMethod('/3/job/list');
     }
 
     protected function getApiClass()

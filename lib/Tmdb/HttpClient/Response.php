@@ -20,7 +20,7 @@ use Tmdb\Common\ParameterBag;
  * Class Response
  * @package Tmdb\HttpClient
  */
-class Response
+class ResponseInterface
 {
     /**
      * @var string

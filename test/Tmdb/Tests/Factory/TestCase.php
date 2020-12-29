@@ -12,6 +12,7 @@
  */
 namespace Tmdb\Tests\Factory;
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Client;
 use Tmdb\Tests\TestCase as Base;
@@ -25,7 +26,9 @@ abstract class TestCase extends Base
 
     public function __construct()
     {
-        $this->client = new Client(new ApiToken('abcdef'));
+        $this->client = new Client(new ApiToken('abcdef'), [
+            'event_dispatcher' => ['adapter' => new EventDispatcher()]
+        ]);
     }
 
     protected $factory;

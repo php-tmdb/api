@@ -12,17 +12,12 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\HttpClient\Plugin;
+namespace Tmdb\Event\Listener\Request;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\ApiToken;
 use Tmdb\Event\RequestEvent;
-use Tmdb\Event\TmdbEvents;
+use Tmdb\Helper\RequestQueryHelper;
 
-/**
- * Class ApiTokenPlugin
- * @package Tmdb\HttpClient\Plugin
- */
 class ApiTokenRequestListener
 {
     /**
@@ -30,13 +25,30 @@ class ApiTokenRequestListener
      */
     private $token;
 
+    /**
+     * @var RequestQueryHelper
+     */
+    private $requestQueryHelper;
+
+    /**
+     * ApiTokenRequestListener constructor.
+     * @param ApiToken $token
+     */
     public function __construct(ApiToken $token)
     {
         $this->token = $token;
+        $this->requestQueryHelper = new RequestQueryHelper();
     }
 
+    /**
+     * Add the API token to the headers.
+     *
+     * @param RequestEvent $event
+     */
     public function __invoke(RequestEvent $event): void
     {
-        $event->getRequest()->withHeader('Authorization', sprintf('Bearer %s', $this->token->getToken()));
+        $event->setRequest(
+            $this->requestQueryHelper->withQuery($event->getRequest(), 'api_key', (string)$this->token)
+        );
     }
 }

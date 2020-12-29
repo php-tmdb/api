@@ -23,11 +23,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID));
-
         $api->getMovie(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID);
     }
 
     /**
@@ -37,11 +34,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/alternative_titles'));
-
         $api->getAlternativeTitles(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/alternative_titles');
     }
 
     /**
@@ -51,11 +45,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/credits'));
-
         $api->getCredits(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/credits');
     }
 
     /**
@@ -65,11 +56,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/images'));
-
         $api->getImages(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/images');
     }
 
     /**
@@ -79,11 +67,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/keywords'));
-
         $api->getKeywords(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/keywords');
     }
 
     /**
@@ -93,11 +78,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/releases'));
-
         $api->getReleases(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/releases');
     }
 
     /**
@@ -107,11 +89,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/trailers'));
-
         $api->getTrailers(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/trailers');
     }
 
     /**
@@ -121,11 +100,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/translations'));
-
         $api->getTranslations(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/translations');
     }
 
     /**
@@ -135,11 +111,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/similar'));
-
         $api->getSimilar(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/similar');
     }
 
     /**
@@ -149,11 +122,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/recommendations'));
-
         $api->getRecommendations(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/recommendations');
     }
 
     /**
@@ -163,11 +133,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/reviews'));
-
         $api->getReviews(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/reviews');
     }
 
     /**
@@ -177,11 +144,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/lists'));
-
         $api->getLists(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/lists');
     }
 
     /**
@@ -191,11 +155,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/changes'));
-
         $api->getChanges(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/changes');
     }
 
     /**
@@ -205,11 +166,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/latest'));
-
         $api->getLatest();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/latest');
     }
 
     /**
@@ -219,11 +177,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/upcoming'));
-
         $api->getUpcoming();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/upcoming');
     }
 
     /**
@@ -233,11 +188,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/now_playing'));
-
         $api->getNowPlaying();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/now_playing');
     }
 
     /**
@@ -247,11 +199,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/popular'));
-
         $api->getPopular();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/popular');
     }
 
     /**
@@ -261,12 +210,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/top_rated'))
-        ;
-
         $api->getTopRated();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/top_rated');
     }
 
     /**
@@ -276,13 +221,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/'.self::MOVIE_ID.'/account_states'))
-        ;
-
         $api->getAccountStates(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/account_states');
     }
 
     /**
@@ -292,13 +232,11 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/'.self::MOVIE_ID.'/rating', [], 'POST', [], ['value' => 7.5]))
-        ;
-
         $api->rateMovie(self::MOVIE_ID, 7.5);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/rating', 'POST');
+        $this->assertRequestBodyHasContents([
+            'value' => 7.5
+        ]);
     }
 
     /**
@@ -308,11 +246,8 @@ class MoviesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/' . self::MOVIE_ID . '/videos'));
-
         $api->getVideos(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/videos');
     }
 
     protected function getApiClass()

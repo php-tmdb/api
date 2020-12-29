@@ -10,6 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 class KeywordsTest extends TestCase
@@ -23,11 +24,8 @@ class KeywordsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/' . self::KEYWORD_ID));
-
         $api->getKeyword(self::KEYWORD_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/keyword/' . self::KEYWORD_ID);
     }
 
     /**
@@ -37,11 +35,8 @@ class KeywordsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/keyword/' . self::KEYWORD_ID . '/movies'));
-
         $api->getMovies(self::KEYWORD_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/keyword/' . self::KEYWORD_ID . '/movies');
     }
 
     protected function getApiClass()

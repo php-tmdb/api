@@ -10,6 +10,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 class ListsTest extends TestCase
@@ -23,11 +24,8 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID));
-
         $api->getList(self::LIST_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID);
     }
 
     /**
@@ -37,16 +35,14 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list', [], 'POST', [], [
+        $api->createList('name', 'description');
+        $this->assertLastRequestIsWithPathAndMethod('/3/list', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
                 'name' => 'name',
                 'description' => 'description'
-            ]))
-        ;
-
-        $api->createList('name', 'description');
+            ]
+        );
     }
 
     /**
@@ -56,12 +52,8 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID . '/item_status', ['movie_id' => 150]));
-
         $api->getItemStatus(self::LIST_ID, 150);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/item_status', 'GET');
     }
 
     /**
@@ -71,13 +63,13 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/add_item', [], 'POST', [], ['media_id' => 150]))
-        ;
-
         $api->addMediaToList(self::LIST_ID, 150);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/add_item', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => 150
+            ]
+        );
     }
 
     /**
@@ -87,13 +79,13 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/'.self::LIST_ID.'/remove_item', [], 'POST', [], ['media_id' => 150]))
-        ;
-
         $api->removeMediaFromList(self::LIST_ID, 150);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/remove_item', 'POST');
+        $this->assertRequestBodyHasContents(
+            [
+                'media_id' => 150
+            ]
+        );
     }
 
     /**
@@ -103,13 +95,8 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('delete')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID, [], 'DELETE'))
-        ;
-
         $api->deleteList(self::LIST_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID, 'DELETE');
     }
 
     /**
@@ -119,13 +106,13 @@ class ListsTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()
-            ->expects($this->once())
-            ->method('post')
-            ->with($this->getRequest('https://api.themoviedb.org/3/list/' . self::LIST_ID . '/clear', ['confirm' => 'true'], 'POST'))
-        ;
-
         $api->clearList(self::LIST_ID, true);
+        $this->assertLastRequestIsWithPathAndMethod('/3/list/' . self::LIST_ID . '/clear', 'POST');
+        $this->assertRequestHasQueryParameters(
+            [
+                'confirm' => 'true'
+            ]
+        );
     }
 
     protected function getApiClass()

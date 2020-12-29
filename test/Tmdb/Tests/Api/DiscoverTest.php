@@ -21,11 +21,8 @@ class DiscoverTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/discover/movie'));
-
         $api->discoverMovies();
+        $this->assertLastRequestIsWithPathAndMethod('/3/discover/movie');
     }
 
     /**
@@ -35,11 +32,8 @@ class DiscoverTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/discover/tv'));
-
         $api->discoverTv();
+        $this->assertLastRequestIsWithPathAndMethod('/3/discover/tv');
     }
 
     protected function getApiClass()

@@ -12,7 +12,7 @@
  * @version 0.0.1
  */
 
-namespace Tmdb\HttpClient\Event\Listener\Request;
+namespace Tmdb\Event\Listener\Request;
 
 use Tmdb\Client;
 use Tmdb\Event\RequestEvent;
@@ -26,6 +26,8 @@ class UserAgentRequestListener
      */
     public function __invoke(RequestEvent $event): void
     {
-        $event->getRequest()->withHeader('User-Agent', sprintf('php-tmdb/api (v%s)', Client::VERSION));
+        $event->setRequest(
+            $event->getRequest()->withHeader('User-Agent', sprintf('php-tmdb/api (v%s)', Client::VERSION))
+        );
     }
 }

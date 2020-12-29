@@ -21,11 +21,8 @@ class TimezonesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/timezones/list'));
-
         $api->getTimezones();
+        $this->assertLastRequestIsWithPathAndMethod('/3/timezones/list');
     }
 
     protected function getApiClass()

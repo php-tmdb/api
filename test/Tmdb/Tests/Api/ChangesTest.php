@@ -21,11 +21,8 @@ class ChangesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/movie/changes'));
-
         $api->getMovieChanges();
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/changes');
     }
 
     /**
@@ -35,11 +32,8 @@ class ChangesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/person/changes'));
-
         $api->getPersonChanges();
+        $this->assertLastRequestIsWithPathAndMethod('/3/person/changes');
     }
 
     /**
@@ -49,11 +43,8 @@ class ChangesTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/tv/changes'));
-
         $api->getTvChanges();
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/changes');
     }
 
     protected function getApiClass()

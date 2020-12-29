@@ -10,17 +10,18 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 class SearchTest extends TestCase
 {
-    const QUERY_MOVIE      = 'resident evil';
+    const QUERY_MOVIE = 'resident evil';
     const QUERY_COLLECTION = 'lord of the rings';
-    const QUERY_TV         = 'the simpsons';
-    const QUERY_PERSON     = 'vin diesel';
-    const QUERY_LIST       = 'best of';
-    const QUERY_COMPANY    = 'sony pictures';
-    const QUERY_KEYWORD    = 'horror';
+    const QUERY_TV = 'the simpsons';
+    const QUERY_PERSON = 'vin diesel';
+    const QUERY_LIST = 'best of';
+    const QUERY_COMPANY = 'sony pictures';
+    const QUERY_KEYWORD = 'horror';
 
     /**
      * @test
@@ -29,12 +30,13 @@ class SearchTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/search/movie', ['query' => self::QUERY_MOVIE]))
-        ;
-
         $api->searchMovies(self::QUERY_MOVIE);
+        $this->assertLastRequestIsWithPathAndMethod('/3/search/movie');
+        $this->assertRequestHasQueryParameters(
+            [
+                'query' => self::QUERY_MOVIE
+            ]
+        );
     }
 
     /**
@@ -44,12 +46,13 @@ class SearchTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/search/collection', ['query' => self::QUERY_COLLECTION]))
-        ;
-
         $api->searchCollection(self::QUERY_COLLECTION);
+        $this->assertLastRequestIsWithPathAndMethod('/3/search/collection');
+        $this->assertRequestHasQueryParameters(
+            [
+                'query' => self::QUERY_COLLECTION
+            ]
+        );
     }
 
     /**
@@ -59,12 +62,13 @@ class SearchTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/search/tv', ['query' => self::QUERY_TV]))
-        ;
-
         $api->searchTv(self::QUERY_TV);
+        $this->assertLastRequestIsWithPathAndMethod('/3/search/tv');
+        $this->assertRequestHasQueryParameters(
+            [
+                'query' => self::QUERY_TV
+            ]
+        );
     }
 
     /**
@@ -74,12 +78,13 @@ class SearchTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/search/person', ['query' => self::QUERY_PERSON]))
-        ;
-
         $api->searchPersons(self::QUERY_PERSON);
+        $this->assertLastRequestIsWithPathAndMethod('/3/search/person');
+        $this->assertRequestHasQueryParameters(
+            [
+                'query' => self::QUERY_PERSON
+            ]
+        );
     }
 
     /**
@@ -89,12 +94,13 @@ class SearchTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/search/list', ['query' => self::QUERY_LIST]))
-        ;
-
         $api->searchList(self::QUERY_LIST);
+        $this->assertLastRequestIsWithPathAndMethod('/3/search/list');
+        $this->assertRequestHasQueryParameters(
+            [
+                'query' => self::QUERY_LIST
+            ]
+        );
     }
 
     /**
@@ -104,12 +110,13 @@ class SearchTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/search/company', ['query' => self::QUERY_COMPANY]))
-        ;
-
         $api->searchCompany(self::QUERY_COMPANY);
+        $this->assertLastRequestIsWithPathAndMethod('/3/search/company');
+        $this->assertRequestHasQueryParameters(
+            [
+                'query' => self::QUERY_COMPANY
+            ]
+        );
     }
 
     /**
@@ -119,12 +126,13 @@ class SearchTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/search/keyword', ['query' => self::QUERY_KEYWORD]))
-        ;
-
         $api->searchKeyword(self::QUERY_KEYWORD);
+        $this->assertLastRequestIsWithPathAndMethod('/3/search/keyword');
+        $this->assertRequestHasQueryParameters(
+            [
+                'query' => self::QUERY_KEYWORD
+            ]
+        );
     }
 
     /**
@@ -134,12 +142,13 @@ class SearchTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/search/multi', ['query' => self::QUERY_KEYWORD]))
-        ;
-
         $api->searchMulti(self::QUERY_KEYWORD);
+        $this->assertLastRequestIsWithPathAndMethod('/3/search/multi');
+        $this->assertRequestHasQueryParameters(
+            [
+                'query' => self::QUERY_KEYWORD
+            ]
+        );
     }
 
     protected function getApiClass()

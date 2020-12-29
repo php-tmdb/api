@@ -194,7 +194,7 @@ abstract class AbstractFactory
         $event->setLastRequest($httpClient->getLastRequest());
         $event->setLastResponse($httpClient->getLastResponse());
 
-        $this->getHttpClient()->getEventDispatcher()->dispatch($event, TmdbEvents::HYDRATE);
+        $this->getHttpClient()->getEventDispatcher()->dispatch($event);
 
         return $event->getSubject();
     }

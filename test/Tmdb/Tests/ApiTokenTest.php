@@ -12,6 +12,8 @@
  */
 namespace Tmdb\Tests;
 
+use Tmdb\Exception\RuntimeException;
+
 class ApiTokenTest extends \PHPUnit\Framework\TestCase
 {
     const API_TOKEN = 'abcdefg';
@@ -29,11 +31,11 @@ class ApiTokenTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @expectedException Tmdb\Exception\RuntimeException
      * @test
      */
     public function testThrowsErrorOnEmptyApiToken()
     {
+        $this->expectException(RuntimeException::class);
         $token  = new \Tmdb\ApiToken();
         $token->setToken(null);
     }

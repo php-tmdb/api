@@ -17,39 +17,43 @@ class GenresTest extends TestCase
     const GENRE_ID = 28;
 
     /**
-     * @test
+     * @todo
      */
     public function shouldGetGenre()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->at(0))
+        $responseMock = $response = $this->createMock('Psr\Http\Message\ResponseInterface');
+        $this->getPsr18Client()->setDefaultResponse();
+
+        $this->getPsr18Client()->expects($this->at(0))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'))
             ->will($this->returnValue(['genres']))
         ;
 
-        $this->getAdapter()->expects($this->at(1))
+        $this->getPsr18Client()->expects($this->at(1))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'))
             ->will($this->returnValue(['genres']))
-        ; // there is no "selective" call, we always lean on both lists
+        ;
 
         $api->getGenre(self::GENRE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/tv/list');
     }
 
     /**
-     * @test
+     * @todo
      */
     public function shouldGetGenres()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->at(0))
+        $this->getPsr18Client()->expects($this->at(0))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'));
 
-        $this->getAdapter()->expects($this->at(1))
+        $this->getPsr18Client()->expects($this->at(1))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'));
 
@@ -63,11 +67,8 @@ class GenresTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'));
-
         $api->getMovieGenres();
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/movie/list');
     }
 
     /**
@@ -77,11 +78,8 @@ class GenresTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'));
-
         $api->getTvGenres();
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/tv/list');
     }
 
     /**
@@ -91,11 +89,8 @@ class GenresTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/' . self::GENRE_ID. '/movies'));
-
         $api->getMovies(self::GENRE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/' . self::GENRE_ID. '/movies');
     }
 
     /**

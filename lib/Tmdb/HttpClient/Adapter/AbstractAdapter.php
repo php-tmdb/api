@@ -17,7 +17,7 @@ namespace Tmdb\HttpClient\Adapter;
 use Exception;
 use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\Request;
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 
 /**
  * Interface AdapterInterface
@@ -29,11 +29,11 @@ abstract class AbstractAdapter implements AdapterInterface
      * Create the unified exception to throw
      *
      * @param Request $request
-     * @param Response $response
+     * @param ResponseInterface $response
      * @param Exception $previous
      * @return TmdbApiException
      */
-    protected function createApiException(Request $request, Response $response, Exception $previous = null)
+    protected function createApiException(Request $request, ResponseInterface $response, Exception $previous = null)
     {
         $errors = json_decode((string)$response->getBody());
 

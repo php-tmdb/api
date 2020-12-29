@@ -14,6 +14,8 @@ namespace Tmdb\Tests\Api;
 
 class NetworksTest extends TestCase
 {
+    const NETWORK_ID = 49;
+
     /**
      * @test
      */
@@ -21,11 +23,8 @@ class NetworksTest extends TestCase
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/network/49'));
-
-        $api->getNetwork(49);
+        $api->getNetwork(self::NETWORK_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/network/' . self::NETWORK_ID);
     }
 
     protected function getApiClass()

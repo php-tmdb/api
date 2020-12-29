@@ -12,20 +12,23 @@
  */
 namespace Tmdb\Tests\Api;
 
+use Tmdb\Api\GuestSession;
+use Tmdb\Exception\MissingSessionTokenException;
 use Tmdb\GuestSessionToken;
 
 class GuestSessionTest extends TestCase
 {
-//    /**
-//     * @test
-//     * @expectedException \Tmdb\Exception\MissingSessionTokenException
-//     */
-//    public function shouldThrowExceptionGettingRatedMoviesWithNoSessionToken()
-//    {
-//        $api = $this->getApiWithMockedHttpAdapter();
-//
-//        $api->getRatedMovies();
-//    }
+    /**
+     * @test
+     *
+     */
+    public function shouldThrowExceptionGettingRatedMoviesWithNoSessionToken()
+    {
+        $this->expectException(MissingSessionTokenException::class);
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $api->getRatedMovies();
+    }
 
     /**
      * @test
@@ -35,17 +38,9 @@ class GuestSessionTest extends TestCase
         $sessionToken = new GuestSessionToken('xyz');
         $api          = $this->getApiWithMockedHttpAdapter(['session_token' => $sessionToken]);
 
-        $request = $this->getRequest(
-            sprintf('https://api.themoviedb.org/3/guest_session/%s/rated_movies', (string) $sessionToken),
-            ['guest_session_id' => (string) $sessionToken]
-        );
-        $request->getOptions()->set('session_token', $sessionToken);
-
-        $this->getAdapter()->expects($this->once())
-            ->method('get')
-            ->with($request);
-
+        /** @var GuestSession $api */
         $api->getRatedMovies();
+        $this->assertLastRequestIsWithPathAndMethod(sprintf('/3/guest_session/%s/rated_movies', 'xyz'));
     }
 
     protected function getApiClass()

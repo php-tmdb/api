@@ -13,7 +13,7 @@
 namespace Tmdb\Tests\HttpClient;
 
 use Tmdb\Common\ParameterBag;
-use Tmdb\HttpClient\Response;
+use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\Tests\TestCase;
 
 class ResponseTest extends TestCase
@@ -23,7 +23,7 @@ class ResponseTest extends TestCase
      */
     public function doesSetGetCode()
     {
-        $response = new Response();
+        $response = new ResponseInterface();
         $response->setCode('/');
 
         $this->assertEquals('/', $response->getCode());
@@ -34,7 +34,7 @@ class ResponseTest extends TestCase
      */
     public function doesSetGetHeaders()
     {
-        $response = new Response();
+        $response = new ResponseInterface();
         $response->setHeaders(new ParameterBag([
             'X-Test' => '123'
         ]));

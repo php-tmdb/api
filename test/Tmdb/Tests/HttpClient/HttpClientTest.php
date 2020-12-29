@@ -35,9 +35,15 @@ class HttpClientTest extends TestCase
 
     public function setUp() :void
     {
-        $this->adapter = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
-
-        $this->client  = new Client(new ApiToken('abcdef'), ['adapter' => $this->adapter]);
+        $this->psr18mock = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
+        $this->client  = new Client(
+            new ApiToken('abcdef'),
+            [
+                'http' => [
+                    'client' => $this->psr18mock
+                ]
+            ]
+        );
         $this->testApi = new TestApi($this->client);
     }
 
@@ -47,7 +53,7 @@ class HttpClientTest extends TestCase
     public function shouldCallGet()
     {
         $this->setUp();
-        $this->adapter
+        $this->psr18mock
             ->expects($this->once())
             ->method('get')
             ->will($this->returnValue([]))
@@ -63,7 +69,7 @@ class HttpClientTest extends TestCase
     {
 
         $this->setUp();
-        $this->adapter
+        $this->psr18mock
             ->expects($this->once())
             ->method('head')
             ->will($this->returnValue([]))
@@ -79,7 +85,7 @@ class HttpClientTest extends TestCase
     {
         $this->setUp();
 
-        $this->adapter
+        $this->psr18mock
             ->expects($this->once())
             ->method('post')
             ->will($this->returnValue([]))
@@ -96,7 +102,7 @@ class HttpClientTest extends TestCase
         $this->setUp();
 
 
-        $this->adapter
+        $this->psr18mock
             ->expects($this->once())
             ->method('patch')
             ->will($this->returnValue([]))
@@ -112,7 +118,7 @@ class HttpClientTest extends TestCase
     {
 
 
-        $this->adapter
+        $this->psr18mock
             ->expects($this->once())
             ->method('delete')
             ->will($this->returnValue([]))
@@ -128,7 +134,7 @@ class HttpClientTest extends TestCase
     {
 
         $this->setUp();
-        $this->adapter
+        $this->psr18mock
             ->expects($this->once())
             ->method('put')
             ->will($this->returnValue([]))
@@ -144,7 +150,9 @@ class HttpClientTest extends TestCase
     {
         $this->eventDispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->client  = new Client(new ApiToken('abcdef'), [
-            'adapter'          => $this->adapter,
+            'http' => [
+                'client' => $this->psr18mock
+            ],
             'event_dispatcher' => $this->eventDispatcher
         ]);
         $this->testApi = new TestApi($this->client);
@@ -165,7 +173,9 @@ class HttpClientTest extends TestCase
     {
         $this->eventDispatcher = $this->createMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->client  = new Client(new ApiToken('abcdef'), [
-            'adapter'          => $this->adapter,
+            'http' => [
+                'client' => $this->psr18mock
+            ],
             'event_dispatcher' => $this->eventDispatcher
         ]);
         $this->testApi = new TestApi($this->client);
@@ -184,23 +194,6 @@ class HttpClientTest extends TestCase
         $this->testApi->addSubscriber($subscriber);
         $this->testApi->removeSubscriber($subscriber);
     }
-
-    /**
-     * @test
-     */
-    public function shouldBeAbleToOverrideAdapter()
-    {
-        $httpClient = new HttpClient([
-            'host'             => 'google.com',
-            'adapter'          => $this->createMock('\Tmdb\HttpClient\Adapter\AdapterInterface'),
-            'event_dispatcher' => new EventDispatcher(),
-            'session_token'    => null,
-            'cache'            => null,
-            'log'              => null
-        ]);
-
-        $this->assertInstanceOf('Tmdb\HttpClient\Adapter\AdapterInterface', $httpClient->getAdapter());
-    }
 }
 
 class TestApi extends AbstractApi
@@ -218,41 +211,41 @@ class TestApi extends AbstractApi
 
     public function get($path, array $parameters = [], $headers = [])
     {
-        $this->client->getHttpClient()->get('/');
+        $this->client->get('/');
     }
 
     public function head($path, array $parameters = [], $headers = [])
     {
-        $this->client->getHttpClient()->head('/');
+        $this->client->head('/');
     }
 
     public function post($path, $postBody = null, array $parameters = [], $headers = [])
     {
-        $this->client->getHttpClient()->post('/', ['id' => 1]);
+        $this->client->post('/', ['id' => 1]);
     }
 
     public function patch($path, $body = null, array $parameters = [], $headers = [])
     {
-        $this->client->getHttpClient()->patch('http://www.google.com/');
+        $this->client->patch('http://www.google.com/');
     }
 
     public function delete($path, $body = null, array $parameters = [], $headers = [])
     {
-        $this->client->getHttpClient()->delete('http://www.google.com/');
+        $this->client->delete('http://www.google.com/');
     }
 
     public function put($path, $body = null, array $parameters = [], $headers = [])
     {
-        $this->client->getHttpClient()->put('http://www.google.com/');
+        $this->client->put('http://www.google.com/');
     }
 
     public function addSubscriber($event)
     {
-        $this->client->getHttpClient()->addSubscriber($event);
+        $this->client->addSubscriber($event);
     }
 
     public function removeSubscriber($event)
     {
-        $this->client->getHttpClient()->removeSubscriber($event);
+        $this->client->removeSubscriber($event);
     }
 }

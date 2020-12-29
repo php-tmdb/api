@@ -15,7 +15,7 @@ namespace Tmdb\Tests\HttpClient\Plugin;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\TmdbEvents;
-use Tmdb\HttpClient\Plugin\AcceptJsonHeaderPlugin;
+use Tmdb\HttpClient\Plugin\AcceptJsonRequestListener;
 use Tmdb\HttpClient\Request;
 use Tmdb\Tests\TestCase;
 
@@ -30,7 +30,7 @@ class AcceptJsonHeaderPluginTest extends TestCase
         $event   = new RequestEvent($request);
 
         $eventDispatcher = new EventDispatcher();
-        $eventDispatcher->addSubscriber(new AcceptJsonHeaderPlugin());
+        $eventDispatcher->addSubscriber(new AcceptJsonRequestListener());
         $eventDispatcher->dispatch($event, TmdbEvents::BEFORE_REQUEST);
 
         $this->assertEquals('application/json', (string) $event->getRequest()->getHeaders()->get('Accept'));
