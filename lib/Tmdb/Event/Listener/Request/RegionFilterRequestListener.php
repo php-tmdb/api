@@ -14,17 +14,16 @@
 
 namespace Tmdb\Event\Listener\Request;
 
-use Tmdb\ApiToken;
-use Tmdb\BearerToken;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Helper\RequestQueryHelper;
 
-class ApiTokenRequestListener
+class RegionFilterRequestListener
 {
     /**
-     * @var ApiToken
+     * @var string
      */
-    private $token;
+    private $region;
 
     /**
      * @var RequestQueryHelper
@@ -32,30 +31,24 @@ class ApiTokenRequestListener
     private $requestQueryHelper;
 
     /**
-     * ApiTokenRequestListener constructor.
-     * @param ApiToken $token
+     * RegionFilterRequestListener constructor.
+     * @param string $region
      */
-    public function __construct(ApiToken $token)
+    public function __construct($region = 'en')
     {
-        $this->token = $token;
+        $this->region = $region;
         $this->requestQueryHelper = new RequestQueryHelper();
     }
 
     /**
-     * Add the API token to the headers.
+     * Set the region filter.
      *
      * @param RequestEvent $event
      */
     public function __invoke(RequestEvent $event): void
     {
-        if ($this->token instanceof BearerToken) {
-            $event->setRequest(
-                $event->getRequest()->withHeader('Authorization', sprintf('Bearer %s', (string)$this->token))
-            );
-        } else {
-            $event->setRequest(
-                $this->requestQueryHelper->withQuery($event->getRequest(), 'api_key', (string)$this->token)
-            );
-        }
+        $event->setRequest(
+            $this->requestQueryHelper->withQuery($event->getRequest(), 'region', $this->region)
+        );
     }
 }

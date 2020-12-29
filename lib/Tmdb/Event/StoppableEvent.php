@@ -20,6 +20,11 @@ class StoppableEvent implements StoppableEventInterface
 {
     protected $isPropagationStopped;
 
+    public function stopPropagation(): void
+    {
+        $this->isPropagationStopped = true;
+    }
+
     public function isPropagationStopped(): bool
     {
         return (bool)$this->isPropagationStopped;

@@ -86,6 +86,6 @@ class RequestEvent extends StoppableEvent
      */
     public function hasResponse()
     {
-        return null !== $this->response;
+        return $this->response instanceof ResponseInterface;
     }
 }

@@ -14,15 +14,17 @@
 
 namespace Tmdb\Event\Listener\Request;
 
-use Tmdb\ApiToken;
 use Tmdb\BearerToken;
 use Tmdb\Event\RequestEvent;
+use Tmdb\GuestSessionToken;
 use Tmdb\Helper\RequestQueryHelper;
+use Tmdb\SessionBearerToken;
+use Tmdb\SessionToken;
 
-class ApiTokenRequestListener
+class SessionTokenRequestListener
 {
     /**
-     * @var ApiToken
+     * @var string
      */
     private $token;
 
@@ -32,30 +34,36 @@ class ApiTokenRequestListener
     private $requestQueryHelper;
 
     /**
-     * ApiTokenRequestListener constructor.
-     * @param ApiToken $token
+     * SessionTokenRequestListener constructor.
+     * @param SessionToken $token
      */
-    public function __construct(ApiToken $token)
+    public function __construct(SessionToken $token)
     {
         $this->token = $token;
         $this->requestQueryHelper = new RequestQueryHelper();
     }
 
     /**
-     * Add the API token to the headers.
+     * Set the token filter.
      *
      * @param RequestEvent $event
      */
     public function __invoke(RequestEvent $event): void
     {
-        if ($this->token instanceof BearerToken) {
+        if ($this->token instanceof SessionBearerToken) {
             $event->setRequest(
                 $event->getRequest()->withHeader('Authorization', sprintf('Bearer %s', (string)$this->token))
             );
+
+            return;
+        } elseif ($this->token instanceof GuestSessionToken) {
+            $key = 'guest_session_id';
         } else {
-            $event->setRequest(
-                $this->requestQueryHelper->withQuery($event->getRequest(), 'api_key', (string)$this->token)
-            );
+            $key = 'session_id';
         }
+
+        $event->setRequest(
+            $this->requestQueryHelper->withQuery($event->getRequest(), $key, (string)$this->token)
+        );
     }
 }

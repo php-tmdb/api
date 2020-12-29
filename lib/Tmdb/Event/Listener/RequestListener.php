@@ -16,6 +16,7 @@ namespace Tmdb\Event\Listener;
 
 use Exception;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Event\RequestEvent;
@@ -50,10 +51,9 @@ class RequestListener
 
     /**
      * @param RequestEvent $event
-     * @param string $eventName
-     * @param EventDispatcherInterface $eventDispatcher
-     *
-     * @return ResponseInterface
+     * @return void
+     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function __invoke(RequestEvent $event)
     {
@@ -62,7 +62,9 @@ class RequestListener
         $this->eventDispatcher->dispatch($beforeRequestEvent);
 
         if ($beforeRequestEvent->isPropagationStopped() && $beforeRequestEvent->hasResponse()) {
-            return $beforeRequestEvent->getResponse();
+            $event->setRequest($beforeRequestEvent->getRequest());
+            $event->setResponse($beforeRequestEvent->getResponse());
+            return;
         }
 
         $response = $this->sendRequest($beforeRequestEvent);
@@ -79,6 +81,7 @@ class RequestListener
      * @param RequestEvent $event
      * @return ResponseInterface
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function sendRequest(RequestEvent $event): ResponseInterface
     {
