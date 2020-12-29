@@ -30,6 +30,11 @@ class AvatarFactory extends AbstractFactory
      */
     public function createCollection(array $data = [])
     {
+        // @todo 4.0.0 double check on this bug
+        if (array_key_exists(0, $data)) {
+            $data = $data[0];
+        }
+
         $collection = new GenericCollection();
         $collection->add(null, $this->create($data));
 
@@ -46,6 +51,11 @@ class AvatarFactory extends AbstractFactory
     public function create(array $data = [])
     {
         foreach ($data as $type => $content) {
+            // @todo 4.0.0 double check on this bug
+            if (array_key_exists(0, $content)) {
+                $content = array_shift($content);
+            }
+
             switch ($type) {
                 case "gravatar":
                     return $this->hydrate(new Gravatar(), $content);

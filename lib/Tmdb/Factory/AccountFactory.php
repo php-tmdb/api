@@ -73,6 +73,7 @@ class AccountFactory extends AbstractFactory
     {
         $account = new Account();
 
+        // @todo 4.0.0 re-enable, fix bug
         if (array_key_exists('avatar', $data)) {
             $account->setAvatar(
                 $this->getAvatarFactory()->createCollection($data['avatar'])
