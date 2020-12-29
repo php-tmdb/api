@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,11 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Psr\Http\Client\ClientInterface;
 use Tmdb\Tests\TestCase as Base;
-
 use Tmdb\Client;
 
 abstract class TestCase extends Base

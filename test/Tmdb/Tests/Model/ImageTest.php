@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model;
 
 use Tmdb\ApiToken;
@@ -27,25 +29,24 @@ class ImageTest extends TestCase
 
     private $images = [
         [
-            'file_path'    => '/abc.jpg',
-            'width'        => 1000,
-            'height'       => 750,
-            'iso_639_1'    => 'en',
+            'file_path' => '/abc.jpg',
+            'width' => 1000,
+            'height' => 750,
+            'iso_639_1' => 'en',
             'aspect_ratio' => 0.75,
             'vote_average' => 2.25,
-            'vote_count'   => 25
+            'vote_count' => 25
         ],
     ];
 
-    public function setUp() :void
+    public function setUp(): void
     {
         $client = new Client(new ApiToken('abcdef'));
         $this->collection = new Images();
 
         foreach ($this->images as $image) {
-
             $factory = new ImageFactory($client->getHttpClient());
-            $object  = $factory->create($image);
+            $object = $factory->create($image);
 
             $this->collection->addImage($object);
         }

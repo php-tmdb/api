@@ -23,11 +23,11 @@ use Tmdb\Model\Filter\LanguageFilter;
  */
 class Image extends AbstractModel implements ImageFilter, LanguageFilter
 {
-    const FORMAT_POSTER = 'poster';
-    const FORMAT_BACKDROP = 'backdrop';
-    const FORMAT_PROFILE = 'profile';
-    const FORMAT_LOGO = 'logo';
-    const FORMAT_STILL = 'still';
+    public const FORMAT_POSTER = 'poster';
+    public const FORMAT_BACKDROP = 'backdrop';
+    public const FORMAT_PROFILE = 'profile';
+    public const FORMAT_LOGO = 'logo';
+    public const FORMAT_STILL = 'still';
     public static $properties = [
         'file_path',
         'width',

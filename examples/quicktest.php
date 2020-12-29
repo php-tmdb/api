@@ -50,6 +50,7 @@ $adultFilterListener = new \Tmdb\Event\Listener\Request\AdultFilterRequestListen
 $languageFilterListener = new \Tmdb\Event\Listener\Request\LanguageFilterRequestListener('nl');
 $acceptJsonListener = new \Tmdb\Event\Listener\Request\AcceptJsonRequestListener();
 $jsonContentTypeListener = new \Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener();
+$psr16CacheListener = new \Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener();
 
 $ed->addListener(\Tmdb\Event\BeforeRequestEvent::class, $apiTokenListener);
 $ed->addListener(\Tmdb\Event\BeforeRequestEvent::class, $acceptJsonListener);

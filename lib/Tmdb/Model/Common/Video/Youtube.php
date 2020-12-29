@@ -22,7 +22,7 @@ use Tmdb\Model\Common\Video;
  */
 class Youtube extends Video
 {
-    const URL_FORMAT = 'http://www.youtube.com/watch?v=%s';
+    public const URL_FORMAT = 'http://www.youtube.com/watch?v=%s';
 
     public function __construct()
     {

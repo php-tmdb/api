@@ -41,10 +41,15 @@ class LoadCachedPsr6ResponseListener
 
     /**
      * LoadResponseFromCacheListener constructor.
-     * @param CacheInterface $cache
+     * @param CacheItemPoolInterface $cache
+     * @param StreamFactoryInterface $streamFactory
+     * @param array $options
      */
-    public function __construct(CacheItemPoolInterface $cache, StreamFactoryInterface $streamFactory, array $options = array())
-    {
+    public function __construct(
+        CacheItemPoolInterface $cache,
+        StreamFactoryInterface $streamFactory,
+        array $options = array()
+    ) {
         $this->cache = $cache;
         $this->streamFactory = $streamFactory;
         $this->options = $options;

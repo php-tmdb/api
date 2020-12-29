@@ -1,5 +1,8 @@
 <?php
+
 namespace Tmdb\Tests\Event;
+
+use PHPUnit\Framework\TestCase;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Event\RequestEvent;
 use Tmdb\HttpClient\Request;
@@ -15,20 +18,22 @@ use Tmdb\HttpClient\Request;
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
-class RequestEventTest extends \PHPUnit\Framework\TestCase
+class RequestEventTest extends TestCase
 {
     /**
      * @test
      */
     public function isFunctional()
     {
-        $requestEvent = new RequestEvent(new Request(
-            '/',
-            'POST',
-            new ParameterBag(['query' => 'parameter']),
-            new ParameterBag(['X-Monkey' => true]),
-            new ParameterBag(['key' => 'value'])
-        ));
+        $requestEvent = new RequestEvent(
+            new Request(
+                '/',
+                'POST',
+                new ParameterBag(['query' => 'parameter']),
+                new ParameterBag(['X-Monkey' => true]),
+                new ParameterBag(['key' => 'value'])
+            )
+        );
 
         $this->assertEquals('/', $requestEvent->getPath());
         $this->assertEquals('parameter', $requestEvent->getParameters()->get('query'));

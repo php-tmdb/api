@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -19,15 +21,15 @@ use Tmdb\SessionToken;
 
 class ClientTest extends \Tmdb\Tests\TestCase
 {
-    const API_TOKEN     = 'abcdef';
-    const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
+    public const API_TOKEN     = 'abcdef';
+    public const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
 
     /**
      * @var Client
      */
     private $client = null;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         $token        = new ApiToken(self::API_TOKEN);
         $sessionToken = new SessionToken(self::SESSION_TOKEN);
@@ -198,5 +200,4 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $this->assertEquals(self::API_TOKEN, $token);
         $this->assertEquals(null, $invalidOption);
     }
-
 }

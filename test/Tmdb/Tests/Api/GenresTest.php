@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 class GenresTest extends TestCase
 {
-    const GENRE_ID = 28;
+    public const GENRE_ID = 28;
 
     /**
      * @todo
@@ -29,14 +31,12 @@ class GenresTest extends TestCase
         $this->getPsr18Client()->expects($this->at(0))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'))
-            ->will($this->returnValue(['genres']))
-        ;
+            ->will($this->returnValue(['genres']));
 
         $this->getPsr18Client()->expects($this->at(1))
             ->method('get')
             ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'))
-            ->will($this->returnValue(['genres']))
-        ;
+            ->will($this->returnValue(['genres']));
 
         $api->getGenre(self::GENRE_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/genre/tv/list');
@@ -90,7 +90,7 @@ class GenresTest extends TestCase
         $api = $this->getApiWithMockedHttpAdapter();
 
         $api->getMovies(self::GENRE_ID);
-        $this->assertLastRequestIsWithPathAndMethod('/3/genre/' . self::GENRE_ID. '/movies');
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/' . self::GENRE_ID . '/movies');
     }
 
     /**
@@ -102,10 +102,13 @@ class GenresTest extends TestCase
 
         $api->expects($this->once())
             ->method('getGenres')
-            ->will($this->returnCallback(function () {
-                return ['genres' => [['id' => 28, 'name' => 'Action']]];
-            }))
-        ;
+            ->will(
+                $this->returnCallback(
+                    function () {
+                        return ['genres' => [['id' => 28, 'name' => 'Action']]];
+                    }
+                )
+            );
 
         $genre = $api->getGenre(self::GENRE_ID);
 
@@ -122,10 +125,13 @@ class GenresTest extends TestCase
 
         $api->expects($this->once())
             ->method('getGenres')
-            ->will($this->returnCallback(function () {
-                return ['genres' => []];
-            }))
-        ;
+            ->will(
+                $this->returnCallback(
+                    function () {
+                        return ['genres' => []];
+                    }
+                )
+            );
 
         $genre = $api->getGenre(self::GENRE_ID);
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model\Person;
 
 use Tmdb\Common\ObjectHydrator;
@@ -24,11 +26,11 @@ class CastMemberTest extends TestCase
     public function shouldBeFunctional()
     {
         $data = [
-            'id'           => 819,
-            'name'         => 'Edward Norton',
-            'character'    => 'The Narrator',
-            'order'        => 0,
-            'cast_id'      => 4,
+            'id' => 819,
+            'name' => 'Edward Norton',
+            'character' => 'The Narrator',
+            'order' => 0,
+            'cast_id' => 4,
             'profile_path' => '/588Hrov6wwM9WcU88nJHlw2iufN.jpg'
         ];
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Factory\CompanyFactory;
@@ -18,11 +20,11 @@ use Tmdb\Model\Company;
 
 class CompanyFactoryTest extends TestCase
 {
-    const COMPANY_ID = 1;
+    public const COMPANY_ID = 1;
 
     private $data;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         $this->data = $this->loadByFile('company/get.json');
     }

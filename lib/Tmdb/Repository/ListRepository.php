@@ -34,7 +34,7 @@ class ListRepository extends AbstractRepository
      *
      * @return Lists
      */
-    public function load($id, array $parameters = [], array $headers = []): \Tmdb\Model\Lists
+    public function load($id, array $parameters = [], array $headers = []): Lists
     {
         return $this->getFactory()->create(
             $this->getApi()->getList($id, $parameters, $headers)
@@ -85,8 +85,12 @@ class ListRepository extends AbstractRepository
      *
      * @return Lists\ResultWithListId The list id
      */
-    public function createList($name, $description = null, array $parameters = [], array $headers = []): Lists\ResultWithListId
-    {
+    public function createList(
+        $name,
+        $description = null,
+        array $parameters = [],
+        array $headers = []
+    ): Lists\ResultWithListId {
         return $this->getFactory()->createResultWithListId(
             $this->getApi()->createList($name, $description, $parameters, $headers)
         );

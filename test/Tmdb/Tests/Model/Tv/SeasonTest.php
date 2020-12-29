@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,10 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model\Tv;
 
-use Tmdb\Tests\Model\TestCase;
+use stdClass;
 use Tmdb\Model\Tv\Season;
+use Tmdb\Tests\Model\TestCase;
 
 class SeasonTest extends TestCase
 {
@@ -27,11 +30,11 @@ class SeasonTest extends TestCase
         $this->assertInstancesOf(
             $season,
             [
-                'getCredits'     => 'Tmdb\Model\Collection\CreditsCollection',
+                'getCredits' => 'Tmdb\Model\Collection\CreditsCollection',
                 'getExternalIds' => 'Tmdb\Model\Common\ExternalIds',
-                'getImages'      => 'Tmdb\Model\Collection\Images',
-                'getEpisodes'    => 'Tmdb\Model\Common\GenericCollection',
-                'getVideos'      => 'Tmdb\Model\Collection\Videos',
+                'getImages' => 'Tmdb\Model\Collection\Images',
+                'getEpisodes' => 'Tmdb\Model\Common\GenericCollection',
+                'getVideos' => 'Tmdb\Model\Collection\Videos',
             ]
         );
     }
@@ -43,7 +46,7 @@ class SeasonTest extends TestCase
     {
         $season = new Season();
 
-        $class = new \stdClass();
+        $class = new stdClass();
 
         $season->setCredits($class);
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 class CreditsTest extends TestCase
 {
-    const CREDIT_ID = '5240760b5dbf5b0c2c0139db';
+    public const CREDIT_ID = '5240760b5dbf5b0c2c0139db';
 
     /**
      * @test

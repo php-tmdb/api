@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model\Movie;
 
+use DateTime;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\Movie\Release;
 use Tmdb\Tests\Model\TestCase;
@@ -24,10 +27,10 @@ class ReleaseTest extends TestCase
     public function shouldBeFunctional()
     {
         $data = [
-            'iso_3166_1'    => 'US',
+            'iso_3166_1' => 'US',
             'certification' => 'R',
-            'release_date'  => '1999-10-15',
-            'primary'       => true
+            'release_date' => '1999-10-15',
+            'primary' => true
         ];
 
         $hydrator = new ObjectHydrator();
@@ -39,7 +42,7 @@ class ReleaseTest extends TestCase
 
         $this->assertEquals('US', $object->getIso31661());
         $this->assertEquals('R', $object->getCertification());
-        $this->assertEquals(new \DateTime('1999-10-15'), $object->getReleaseDate());
+        $this->assertEquals(new DateTime('1999-10-15'), $object->getReleaseDate());
         $this->assertEquals(true, $object->getPrimary());
     }
 }

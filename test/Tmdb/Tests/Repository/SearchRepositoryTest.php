@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Exception\NotImplementedException;
@@ -25,14 +27,14 @@ use Tmdb\Repository\SearchRepository;
 
 class SearchRepositoryTest extends TestCase
 {
-    const MOVIE_QUERY      = 'rush hour';
-    const COLLECTION_QUERY = 'the matrix';
-    const TV_QUERY         = 'breaking bad';
-    const PERSON_QUERY     = 'johnny knoxville';
-    const LIST_QUERY       = 'golden';
-    const COMPANY_QUERY    = 'disney';
-    const KEYWORD_QUERY    = 'alien';
-    const MULTI_QUERY      = 'jack';
+    public const MOVIE_QUERY      = 'rush hour';
+    public const COLLECTION_QUERY = 'the matrix';
+    public const TV_QUERY         = 'breaking bad';
+    public const PERSON_QUERY     = 'johnny knoxville';
+    public const LIST_QUERY       = 'golden';
+    public const COMPANY_QUERY    = 'disney';
+    public const KEYWORD_QUERY    = 'alien';
+    public const MULTI_QUERY      = 'jack';
 
     /**
      * @test

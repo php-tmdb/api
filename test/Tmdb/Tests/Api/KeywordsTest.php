@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -15,7 +16,7 @@ namespace Tmdb\Tests\Api;
 
 class KeywordsTest extends TestCase
 {
-    const KEYWORD_ID = 1712;
+    public const KEYWORD_ID = 1712;
 
     /**
      * @test

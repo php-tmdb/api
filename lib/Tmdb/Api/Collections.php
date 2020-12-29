@@ -65,5 +65,4 @@ class Collections extends AbstractApi
     {
         return $this->get('collection/' . $collection_id . '/translations', $parameters, $headers);
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 class MoviesTest extends TestCase
 {
-    const MOVIE_ID = 120;
+    public const MOVIE_ID = 120;
 
     /**
      * @test
@@ -235,9 +237,11 @@ class MoviesTest extends TestCase
 
         $api->rateMovie(self::MOVIE_ID, 7.5);
         $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/rating', 'POST');
-        $this->assertRequestBodyHasContents([
-            'value' => 7.5
-        ]);
+        $this->assertRequestBodyHasContents(
+            [
+                'value' => 7.5
+            ]
+        );
     }
 
     /**

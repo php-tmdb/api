@@ -38,7 +38,8 @@ class NullResponseException extends RuntimeException
 
         if (null !== $previous && is_a($previous, 'GuzzleHttp\Exception\RequestException')) {
             $message = sprintf(
-                'The request to path "%s" with query parameters "%s" failed to return a valid response. The previous exception reported "%s" at "%s:%d".',
+                'The request to path "%s" with query parameters "%s" failed to return a valid response.
+                The previous exception reported "%s" at "%s:%d".',
                 $request->getPath(),
                 json_encode($request->getParameters()->all()),
                 $previous->getMessage(),

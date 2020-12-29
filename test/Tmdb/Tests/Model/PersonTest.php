@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model;
 
+use stdClass;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person;
 
@@ -27,11 +30,11 @@ class PersonTest extends TestCase
         $this->assertInstancesOf(
             $person,
             [
-                'getImages'          => 'Tmdb\Model\Collection\Images',
-                'getChanges'         => 'Tmdb\Model\Common\GenericCollection',
+                'getImages' => 'Tmdb\Model\Collection\Images',
+                'getChanges' => 'Tmdb\Model\Common\GenericCollection',
                 'getCombinedCredits' => 'Tmdb\Model\Collection\CreditsCollection\CombinedCredits',
-                'getMovieCredits'    => 'Tmdb\Model\Collection\CreditsCollection\MovieCredits',
-                'getTvCredits'       => 'Tmdb\Model\Collection\CreditsCollection\TvCredits',
+                'getMovieCredits' => 'Tmdb\Model\Collection\CreditsCollection\MovieCredits',
+                'getTvCredits' => 'Tmdb\Model\Collection\CreditsCollection\TvCredits',
             ]
         );
     }
@@ -42,7 +45,7 @@ class PersonTest extends TestCase
     public function shouldBeAbleToReplaceCollections()
     {
         $factory = new Person();
-        $class   = new \stdClass();
+        $class = new stdClass();
 
         $factory->setCombinedCredits($class);
         $factory->setMovieCredits($class);
@@ -60,7 +63,7 @@ class PersonTest extends TestCase
     {
         $movie = new Person();
 
-        $class     = new GenericCollection();
+        $class = new GenericCollection();
         $className = get_class($class);
 
         $movie->setChanges($class);

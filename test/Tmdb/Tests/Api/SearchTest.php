@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -15,13 +16,13 @@ namespace Tmdb\Tests\Api;
 
 class SearchTest extends TestCase
 {
-    const QUERY_MOVIE = 'resident evil';
-    const QUERY_COLLECTION = 'lord of the rings';
-    const QUERY_TV = 'the simpsons';
-    const QUERY_PERSON = 'vin diesel';
-    const QUERY_LIST = 'best of';
-    const QUERY_COMPANY = 'sony pictures';
-    const QUERY_KEYWORD = 'horror';
+    public const QUERY_MOVIE = 'resident evil';
+    public const QUERY_COLLECTION = 'lord of the rings';
+    public const QUERY_TV = 'the simpsons';
+    public const QUERY_PERSON = 'vin diesel';
+    public const QUERY_LIST = 'best of';
+    public const QUERY_COMPANY = 'sony pictures';
+    public const QUERY_KEYWORD = 'horror';
 
     /**
      * @test

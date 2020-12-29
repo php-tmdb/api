@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Repository;
 
 class GenreRepositoryTest extends TestCase
 {
-    const GENRE_ID = 28;
+    public const GENRE_ID = 28;
 
     /**
      * @todo
@@ -86,7 +88,7 @@ class GenreRepositoryTest extends TestCase
         $repository = $this->getRepositoryWithMockedHttpAdapter();
 
         $repository->getMovies(self::GENRE_ID);
-        $this->assertLastRequestIsWithPathAndMethod('/3/genre/' . self::GENRE_ID. '/movies');
+        $this->assertLastRequestIsWithPathAndMethod('/3/genre/' . self::GENRE_ID . '/movies');
     }
 
     /**

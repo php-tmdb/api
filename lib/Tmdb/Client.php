@@ -41,16 +41,16 @@ class Client
     use ApiMethodsTrait;
 
     /** Client Version */
-    const VERSION = '4.0.0';
+    public const VERSION = '4.0.0';
 
     /** Base API URI */
-    const TMDB_URI = 'api.themoviedb.org/3';
+    public const TMDB_URI = 'api.themoviedb.org/3';
 
     /** Insecure schema */
-    const SCHEME_INSECURE = 'http';
+    public const SCHEME_INSECURE = 'http';
 
     /** Secure schema */
-    const SCHEME_SECURE = 'https';
+    public const SCHEME_SECURE = 'https';
 
     /**
      * Stores the HTTP Client
@@ -110,7 +110,7 @@ class Client
             'base_uri' => null,
             'token' => null,
             'session_token' => null,
-            'http' => function(OptionsResolver $optionsResolver) {
+            'http' => function (OptionsResolver $optionsResolver) {
                 $optionsResolver->setDefaults([
                     'client' => null,
                     'request_factory' => null,
@@ -118,21 +118,27 @@ class Client
                     'stream_factory' => null,
                     'uri_factory' => null,
                 ]);
-                $optionsResolver->setRequired(['client', 'request_factory', 'response_factory', 'stream_factory', 'uri_factory']);
+                $optionsResolver->setRequired([
+                    'client',
+                                                  'request_factory',
+                                                  'response_factory',
+                                                  'stream_factory',
+                                                  'uri_factory'
+                                              ]);
                 $optionsResolver->setAllowedTypes('client', [ClientInterface::class, 'null']);
                 $optionsResolver->setAllowedTypes('request_factory', [RequestFactoryInterface::class, 'null']);
                 $optionsResolver->setAllowedTypes('response_factory', [ResponseFactoryInterface::class, 'null']);
                 $optionsResolver->setAllowedTypes('stream_factory', [StreamFactoryInterface::class, 'null']);
                 $optionsResolver->setAllowedTypes('uri_factory', [UriFactoryInterface::class, 'null']);
             },
-            'event_dispatcher' => function(OptionsResolver $optionsResolver) {
+            'event_dispatcher' => function (OptionsResolver $optionsResolver) {
                 $optionsResolver->setDefaults([
                     'adapter' => null
                 ]);
                 $optionsResolver->setRequired(['adapter']);
                 $optionsResolver->setAllowedTypes('adapter', [EventDispatcherInterface::class]);
             },
-            'cache' => function(OptionsResolver $optionsResolver) {
+            'cache' => function (OptionsResolver $optionsResolver) {
                 $optionsResolver->setDefaults([
                     'enabled' => false,
                     'adapter' => null,
@@ -140,7 +146,7 @@ class Client
 
 //                $optionsResolver->setAllowedTypes('adapter', [CacheInterface::class, 'null']);
             },
-            'log' => function(OptionsResolver $optionsResolver) {
+            'log' => function (OptionsResolver $optionsResolver) {
                 $optionsResolver->setDefaults([
                     'enabled' => false,
                     'adapter' => null
@@ -184,11 +190,16 @@ class Client
      */
     protected function postResolve(array $options = []): void
     {
-        $this->options['http']['client'] = $this->options['http']['client'] ?? Psr18ClientDiscovery::find();
-        $this->options['http']['request_factory'] = $this->options['http']['request_factory'] ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->options['http']['response_factory'] = $this->options['http']['response_factory'] ?? Psr17FactoryDiscovery::findResponseFactory();
-        $this->options['http']['stream_factory'] = $this->options['http']['stream_factory'] ?? Psr17FactoryDiscovery::findStreamFactory();
-        $this->options['http']['uri_factory'] = $this->options['http']['uri_factory'] ?? Psr17FactoryDiscovery::findUriFactory();
+        $this->options['http']['client'] = $this->options['http']['client'] ??
+            Psr18ClientDiscovery::find();
+        $this->options['http']['request_factory'] = $this->options['http']['request_factory'] ??
+            Psr17FactoryDiscovery::findRequestFactory();
+        $this->options['http']['response_factory'] = $this->options['http']['response_factory'] ??
+            Psr17FactoryDiscovery::findResponseFactory();
+        $this->options['http']['stream_factory'] = $this->options['http']['stream_factory'] ??
+            Psr17FactoryDiscovery::findStreamFactory();
+        $this->options['http']['uri_factory'] = $this->options['http']['uri_factory'] ??
+            Psr17FactoryDiscovery::findUriFactory();
 
         $this->options['base_uri'] = sprintf(
             '%s://%s',

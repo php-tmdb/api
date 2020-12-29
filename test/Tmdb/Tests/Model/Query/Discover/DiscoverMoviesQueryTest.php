@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model\Query\Discover;
 
+use DateTime;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Genre;
 use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
@@ -25,7 +28,7 @@ class DiscoverMoviesQueryTest extends TestCase
     public function shouldCreateValidQuery()
     {
         $query = new DiscoverMoviesQuery();
-        $now   = new \DateTime();
+        $now = new DateTime();
 
         $query
             ->page(1)
@@ -36,13 +39,12 @@ class DiscoverMoviesQueryTest extends TestCase
             ->primaryReleaseYear($now)
             ->voteCountGte(5)
             ->voteAverageGte(3)
-            ->withGenres([15,18])
+            ->withGenres([15, 18])
             ->releaseDateGte($now)
             ->releaseDateLte($now)
             ->certificationCountry('NL')
             ->certificationLte(1)
-            ->withCompanies([1])
-        ;
+            ->withCompanies([1]);
 
         $this->assertEquals(14, count($query));
     }
@@ -61,18 +63,16 @@ class DiscoverMoviesQueryTest extends TestCase
         $genreTwo->setId(5);
 
         $query
-            ->withGenres([$genre, $genreTwo])
-        ;
+            ->withGenres([$genre, $genreTwo]);
 
         $this->assertEquals("1|5", $query->get('with_genres'));
 
-        $query      = new DiscoverMoviesQuery();
+        $query = new DiscoverMoviesQuery();
         $collection = new Genres();
 
         $collection
             ->addGenre($genre)
-            ->addGenre($genreTwo)
-        ;
+            ->addGenre($genreTwo);
 
         $query->withGenres($collection);
 
@@ -93,8 +93,7 @@ class DiscoverMoviesQueryTest extends TestCase
         $genreTwo->setId(5);
 
         $query
-            ->withGenres([$genre, $genreTwo], DiscoverMoviesQuery::MODE_AND)
-        ;
+            ->withGenres([$genre, $genreTwo], DiscoverMoviesQuery::MODE_AND);
 
         $this->assertEquals("1,5", $query->get('with_genres'));
     }

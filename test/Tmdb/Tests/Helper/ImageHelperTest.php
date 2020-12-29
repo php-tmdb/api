@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Helper;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -26,7 +28,7 @@ class ImageHelperTest extends Base
      */
     private $helper;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         $ed = new EventDispatcher();
         $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
@@ -34,7 +36,7 @@ class ImageHelperTest extends Base
 
         $factory = new \Tmdb\Factory\ConfigurationFactory($client->getHttpClient());
 
-        $data          = $this->loadByFile('configuration/get.json');
+        $data = $this->loadByFile('configuration/get.json');
         $configuration = $factory->create($data);
 
         $this->helper = new \Tmdb\Helper\ImageHelper($configuration);

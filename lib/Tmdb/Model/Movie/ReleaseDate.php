@@ -25,12 +25,12 @@ use Tmdb\Model\Filter\LanguageFilter;
  */
 class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 {
-    const PREMIERE = 1;
-    const THEATRICAL_LIMITED = 2;
-    const THEATRICAL = 3;
-    const DIGITAL = 4;
-    const PHYSICAL = 5;
-    const TV = 6;
+    public const PREMIERE = 1;
+    public const THEATRICAL_LIMITED = 2;
+    public const THEATRICAL = 3;
+    public const DIGITAL = 4;
+    public const PHYSICAL = 5;
+    public const TV = 6;
     public static $properties = [
         'iso_3166_1',
         'iso_639_1',

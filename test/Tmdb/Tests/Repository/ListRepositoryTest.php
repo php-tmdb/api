@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,12 +11,13 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Repository;
 
 class ListRepositoryTest extends TestCase
 {
-    const LIST_ID  = '509fb10819c29510bb000675';
-    const MOVIE_ID = 150;
+    public const LIST_ID  = '509fb10819c29510bb000675';
+    public const MOVIE_ID = 150;
 
     /**
      * @test

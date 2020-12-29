@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -20,9 +21,9 @@ use Tmdb\Model\Tv\Season;
 
 class TvEpisodeRepositoryTest extends TestCase
 {
-    const TV_ID = 3572;
-    const SEASON_NUMBER = 1;
-    const EPISODE_NUMBER = 1;
+    public const TV_ID = 3572;
+    public const SEASON_NUMBER = 1;
+    public const EPISODE_NUMBER = 1;
 
     /**
      * @test

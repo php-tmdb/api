@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,12 +11,13 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 class TvSeasonTest extends TestCase
 {
-    const TV_ID     = 3572;
-    const SEASON_ID = 1;
+    public const TV_ID = 3572;
+    public const SEASON_ID = 1;
 
     /**
      * @test
@@ -47,7 +49,9 @@ class TvSeasonTest extends TestCase
         $api = $this->getApiWithMockedHttpAdapter();
 
         $api->getExternalIds(self::TV_ID, self::SEASON_ID);
-        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids');
+        $this->assertLastRequestIsWithPathAndMethod(
+            '/3/tv/' . self::TV_ID . '/season/' . self::SEASON_ID . '/external_ids'
+        );
     }
 
     /**

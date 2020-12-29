@@ -22,15 +22,15 @@ use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
  */
 class AppendToResponse extends BaseAppendToResponse
 {
-    const CREDITS = 'credits';
-    const EXTERNAL_IDS = 'external_ids';
-    const IMAGES = 'images';
-    const TRANSLATIONS = 'translations';
-    const VIDEOS = 'videos';
-    const CHANGES = 'changes';
-    const KEYWORDS = 'keywords';
-    const SIMILAR = 'similar';
-    const RECOMMENDATIONS = 'recommendations';
-    const CONTENT_RATINGS = 'content_ratings';
-    const ALTERNATIVE_TITLES = 'alternative_titles';
+    public const CREDITS = 'credits';
+    public const EXTERNAL_IDS = 'external_ids';
+    public const IMAGES = 'images';
+    public const TRANSLATIONS = 'translations';
+    public const VIDEOS = 'videos';
+    public const CHANGES = 'changes';
+    public const KEYWORDS = 'keywords';
+    public const SIMILAR = 'similar';
+    public const RECOMMENDATIONS = 'recommendations';
+    public const CONTENT_RATINGS = 'content_ratings';
+    public const ALTERNATIVE_TITLES = 'alternative_titles';
 }

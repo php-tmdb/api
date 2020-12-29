@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests;
 
 class GuestSessionTokenTest extends \PHPUnit\Framework\TestCase
 {
-    const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8d';
+    public const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8d';
 
     /**
      * @test

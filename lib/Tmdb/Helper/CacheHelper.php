@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tmdb\Helper;
-
 
 use Psr\Http\Message\RequestInterface;
 
@@ -14,6 +12,5 @@ class CacheHelper
      */
     public function getUniqueIdentifier(RequestInterface $request): string
     {
-
     }
 }

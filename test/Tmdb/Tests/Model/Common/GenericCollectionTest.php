@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,8 +11,10 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model\Common;
 
+use stdClass;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Tests\Model\TestCase;
 
@@ -22,25 +25,17 @@ class GenericCollectionTest extends TestCase
      */
     private $collection;
 
-    public function setUp() :void
-    {
-        $this->collection = new GenericCollection([
-            'id' => 1,
-            'name' => 'Dave'
-        ]);
-    }
-
     /**
      * @test
      */
     public function shouldConstructGenericCollection()
     {
         $emptyArray = [];
-        $dataArray  = ['id' => 1];
+        $dataArray = ['id' => 1];
 
-        $emptyConstructCollection  = new GenericCollection();
-        $emptyCollection           = new GenericCollection($emptyArray);
-        $dataCollection            = new GenericCollection($dataArray);
+        $emptyConstructCollection = new GenericCollection();
+        $emptyCollection = new GenericCollection($emptyArray);
+        $dataCollection = new GenericCollection($dataArray);
 
         $this->assertEquals($emptyArray, $emptyConstructCollection->toArray());
         $this->assertEquals($emptyArray, $emptyCollection->toArray());
@@ -65,6 +60,16 @@ class GenericCollectionTest extends TestCase
         $this->collection['id'] = 1;
         $this->assertEquals(2, count($this->collection));
         $this->assertEquals(1, $this->collection['id']);
+    }
+
+    public function setUp(): void
+    {
+        $this->collection = new GenericCollection(
+            [
+                'id' => 1,
+                'name' => 'Dave'
+            ]
+        );
     }
 
     /**
@@ -110,10 +115,10 @@ class GenericCollectionTest extends TestCase
 
         $this->assertEquals(2, $this->collection['id']);
 
-        $object = new \stdClass();
+        $object = new stdClass();
         $object->id = 1;
 
-        $hash   = spl_object_hash($object);
+        $hash = spl_object_hash($object);
 
         $this->collection->set(null, $object);
 

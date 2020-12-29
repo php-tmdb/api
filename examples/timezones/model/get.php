@@ -14,7 +14,7 @@ require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
 $token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+$client = new \Tmdb\Client($token, ['event_dispatcher' => ['adapter' => new Symfony\Component\EventDispatcher\EventDispatcher()]]);
 
 $repository = new \Tmdb\Repository\TimezoneRepository($client);
 $timezones  = $repository->getTimezones();

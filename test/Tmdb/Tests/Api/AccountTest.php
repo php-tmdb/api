@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -15,8 +16,8 @@ namespace Tmdb\Tests\Api;
 
 class AccountTest extends TestCase
 {
-    const ACCOUNT_ID = 1;
-    const MEDIA_ID = 123;
+    public const ACCOUNT_ID = 1;
+    public const MEDIA_ID = 123;
 
     /**
      * @test

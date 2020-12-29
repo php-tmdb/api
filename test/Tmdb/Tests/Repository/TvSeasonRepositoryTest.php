@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Exception\RuntimeException;
@@ -17,8 +19,8 @@ use Tmdb\Model\Tv;
 
 class TvSeasonRepositoryTest extends TestCase
 {
-    const TV_ID     = 3572;
-    const SEASON_NUMBER = 1;
+    public const TV_ID     = 3572;
+    public const SEASON_NUMBER = 1;
 
     /**
      * @test

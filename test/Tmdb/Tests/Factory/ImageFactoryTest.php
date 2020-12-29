@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Factory;
 
 use Tmdb\Model\Collection\Images;
@@ -22,7 +24,7 @@ class ImageFactoryTest extends TestCase
      */
     private $images;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         $factory   = $this->getFactory();
 
@@ -200,7 +202,8 @@ class ImageFactoryTest extends TestCase
      * @test
      */
 
-    public function shouldFilterBestVotedImage() {
+    public function shouldFilterBestVotedImage()
+    {
         $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/movie_novotes.json'));
 
         $poster = $collection->filterPosters()->filterBestVotedImage();

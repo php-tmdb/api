@@ -26,7 +26,7 @@ use Tmdb\RequestToken;
  */
 class Authentication extends AbstractApi
 {
-    const REQUEST_TOKEN_URI = 'https://www.themoviedb.org/authenticate';
+    public const REQUEST_TOKEN_URI = 'https://www.themoviedb.org/authenticate';
 
     /**
      * This method is used to generate a valid request token for user based authentication.

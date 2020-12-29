@@ -22,7 +22,7 @@ use Tmdb\Model\Common\AbstractTrailer;
  */
 class Youtube extends AbstractTrailer
 {
-    const URL = 'http://www.youtube.com/watch?v=%s';
+    public const URL = 'http://www.youtube.com/watch?v=%s';
     public static $properties = [
         'name',
         'size',

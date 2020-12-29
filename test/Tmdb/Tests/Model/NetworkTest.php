@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model;
 
 use Tmdb\Common\ObjectHydrator;
@@ -23,8 +25,8 @@ class NetworkTest extends TestCase
     public function shouldBeFunctional()
     {
         $data = [
-            'id'      => 1,
-            'name'  => 'name',
+            'id' => 1,
+            'name' => 'name',
         ];
 
         $hydrator = new ObjectHydrator();

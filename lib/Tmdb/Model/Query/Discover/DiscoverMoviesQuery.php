@@ -26,10 +26,10 @@ use Tmdb\Model\Common\GenericCollection;
 class DiscoverMoviesQuery extends QueryParametersCollection
 {
     /** Transform args to an AND query */
-    const MODE_AND = 0;
+    public const MODE_AND = 0;
 
     /** Transform args to an OR query */
-    const MODE_OR = 1;
+    public const MODE_OR = 1;
 
     /**
      * Only include movies with certifications for a specific country.

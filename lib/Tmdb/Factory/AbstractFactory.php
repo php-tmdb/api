@@ -155,13 +155,16 @@ abstract class AbstractFactory
      * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
      * @param array $data
-     * @param $class
-     * @param AlternativeTitle|Company|ContentRating|Country|Release|SpokenLanguage $class
+     * @param AbstractModel $class
      *
      * @return GenericCollection
      */
-    protected function createGenericCollection($data = [], $class): GenericCollection
+    protected function createGenericCollection(array $data = [], AbstractModel $class = null): GenericCollection
     {
+        if (!$class) {
+            throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
+        }
+
         if (is_object($class)) {
             $class = get_class($class);
         }
@@ -217,8 +220,15 @@ abstract class AbstractFactory
      * @param GenericCollection $collection
      * @return GenericCollection
      */
-    protected function createCustomCollection($data = [], $class, $collection)
-    {
+    protected function createCustomCollection(
+        array $data = [],
+        AbstractModel $class = null,
+        GenericCollection $collection
+    ) {
+        if (!$class || !$collection) {
+            throw new \Tmdb\Exception\RuntimeException('Expected both an class and collection to be given.');
+        }
+
         if (is_object($class)) {
             $class = get_class($class);
         }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Api;
 
 use Tmdb\Api\GuestSession;
@@ -36,7 +38,7 @@ class GuestSessionTest extends TestCase
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');
-        $api          = $this->getApiWithMockedHttpAdapter(['session_token' => $sessionToken]);
+        $api = $this->getApiWithMockedHttpAdapter(['session_token' => $sessionToken]);
 
         /** @var GuestSession $api */
         $api->getRatedMovies();

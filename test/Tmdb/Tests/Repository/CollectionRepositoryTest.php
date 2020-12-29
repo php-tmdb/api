@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,13 +11,14 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Repository;
 
 use Tmdb\Repository\CollectionRepository;
 
 class CollectionRepositoryTest extends TestCase
 {
-    const COLLECTION_ID = 120;
+    public const COLLECTION_ID = 120;
 
     /**
      * @test

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,6 +11,7 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 0.0.1
  */
+
 namespace Tmdb\Tests\Model\Common;
 
 use Tmdb\Common\ObjectHydrator;
@@ -25,7 +27,7 @@ class CountryTest extends TestCase
     {
         $data = [
             'iso_3166_1' => 'US',
-            'name'       => 'United States of America'
+            'name' => 'United States of America'
         ];
 
         $hydrator = new ObjectHydrator();

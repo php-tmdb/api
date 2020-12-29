@@ -258,7 +258,7 @@ class HttpClient
         }
 
         $uri = empty($parameters) ?
-            sprintf('%s/%s', $this->options['base_uri'], $path):
+            sprintf('%s/%s', $this->options['base_uri'], $path) :
             sprintf('%s/%s?%s', $this->options['base_uri'], $path, http_build_query($parameters));
 
         $request = $this->getPsr17RequestFactory()->createRequest(
@@ -482,7 +482,10 @@ class HttpClient
     {
         return;
         if (!array_key_exists('token', $this->options)) {
-            throw new ApiTokenMissingException('An API token was not configured, please configure the `token` option with an correct ApiToken() object.');
+            throw new ApiTokenMissingException(
+                'An API token was not configured, ' .
+                'please configure the `token` option with an correct ApiToken() object.'
+            );
         }
 
         $requestSubscriber = new RequestListener();
@@ -545,7 +548,7 @@ class HttpClient
         return $this;
     }
 
-    public function getPsr14EventDispatcher() : EventDispatcherInterface
+    public function getPsr14EventDispatcher(): EventDispatcherInterface
     {
         return $this->options['event_dispatcher']['adapter'];
     }
@@ -553,7 +556,7 @@ class HttpClient
     /**
      * @return ClientInterface
      */
-    public function getPsr18Client() : ClientInterface
+    public function getPsr18Client(): ClientInterface
     {
         return $this->options['http']['client'];
     }
@@ -561,7 +564,7 @@ class HttpClient
     /**
      * @return RequestFactoryInterface
      */
-    public function getPsr17RequestFactory() : RequestFactoryInterface
+    public function getPsr17RequestFactory(): RequestFactoryInterface
     {
         return $this->options['http']['request_factory'];
     }
@@ -569,7 +572,7 @@ class HttpClient
     /**
      * @return ResponseFactoryInterface
      */
-    public function getPsr17ResponseFactory() : ResponseFactoryInterface
+    public function getPsr17ResponseFactory(): ResponseFactoryInterface
     {
         return $this->options['http']['response_factory'];
     }
@@ -577,7 +580,7 @@ class HttpClient
     /**
      * @return StreamFactoryInterface
      */
-    public function getPsr17StreamFactory() : StreamFactoryInterface
+    public function getPsr17StreamFactory(): StreamFactoryInterface
     {
         return $this->options['http']['stream_factory'];
     }
@@ -585,7 +588,7 @@ class HttpClient
     /**
      * @return UriFactoryInterface
      */
-    public function getPsr17UriFactory() : UriFactoryInterface
+    public function getPsr17UriFactory(): UriFactoryInterface
     {
         return $this->options['http']['uri_factory'];
     }
