@@ -10,7 +10,7 @@
  * @author Michael Roterman <michael@wtfz.net>
  * @author Benny <benny@whitewashing.de> ( borrowed array object extension )
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 4.0.0
  */
 
 namespace Tmdb\Common;

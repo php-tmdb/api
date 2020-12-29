@@ -9,7 +9,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 2.1.7
+ * @version 4.0.0
  */
 
 namespace Tmdb\Model\Movie;
