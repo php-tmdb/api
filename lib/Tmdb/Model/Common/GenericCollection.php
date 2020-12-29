@@ -22,6 +22,7 @@ use ArrayIterator;
 use Closure;
 use Countable;
 use IteratorAggregate;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Filter\AdultFilter;
 use Tmdb\Model\Filter\CountryFilter;
 use Tmdb\Model\Filter\LanguageFilter;
@@ -311,7 +312,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * Filter by id
      *
      * @param integer $id
-     * @return GenericCollection
+     * @return AbstractModel|null
      */
     public function filterId($id)
     {

@@ -70,10 +70,10 @@ class AuthenticationFactoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException \RuntimeException
      */
     public function shouldThrowExceptionForCreate()
     {
+        $this->expectException(\RuntimeException::class);
         /**
          * @var AuthenticationFactory $factory
          */
@@ -84,10 +84,10 @@ class AuthenticationFactoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException \RuntimeException
      */
     public function shouldThrowExceptionForCreateCollection()
     {
+        $this->expectException(\RuntimeException::class);
         /**
          * @var AuthenticationFactory $factory
          */

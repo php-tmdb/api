@@ -37,7 +37,7 @@ class HttpClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->psr18mock = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
+        $this->psr18mock = new \Http\Mock\Client();
         $this->client  = new Client(
             new ApiToken('abcdef'),
             [

@@ -16,7 +16,6 @@ namespace Tmdb\Model\Collection;
 
 use Tmdb\Model\Collection\People\PersonInterface;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Person;
 
 /**
  * Class People
@@ -27,7 +26,7 @@ class People extends GenericCollection
     /**
      * Returns all people
      *
-     * @return Person[]
+     * @return PersonInterface[]
      */
     public function getPeople()
     {
@@ -39,9 +38,9 @@ class People extends GenericCollection
      *
      * @param $id
      *
-     * @return GenericCollection
+     * @return PersonInterface|null
      */
-    public function getPerson($id): GenericCollection
+    public function getPerson($id): ?PersonInterface
     {
         return $this->filterId($id);
     }

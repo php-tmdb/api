@@ -69,10 +69,10 @@ class FindFactoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException \RuntimeException
      */
     public function shouldThrowExceptionForCreateCollection()
     {
+        $this->expectException(\RuntimeException::class);
         $factory = $this->getFactory();
         $factory->createCollection([]);
     }

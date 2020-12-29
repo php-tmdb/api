@@ -29,6 +29,7 @@ use Psr\Log\LogLevel;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tmdb\ApiToken as Token;
+use Tmdb\Event\HydrationListener;
 use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\HttpClient;
 
@@ -87,11 +88,13 @@ class Client
         $apiTokenListener = new \Tmdb\Event\Listener\Request\ApiTokenRequestListener($this->getToken());
         $acceptJsonListener = new \Tmdb\Event\Listener\Request\AcceptJsonRequestListener();
         $jsonContentTypeListener = new \Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener();
+        $hydrationListener = new HydrationListener($ed);
 
         $ed->addListener(\Tmdb\Event\BeforeRequestEvent::class, $apiTokenListener);
         $ed->addListener(\Tmdb\Event\BeforeRequestEvent::class, $acceptJsonListener);
         $ed->addListener(\Tmdb\Event\BeforeRequestEvent::class, $jsonContentTypeListener);
         $ed->addListener(\Tmdb\Event\RequestEvent::class, $requestListener);
+        $ed->addListener(\Tmdb\Event\HydrationEvent::class, $hydrationListener);
     }
 
     /**

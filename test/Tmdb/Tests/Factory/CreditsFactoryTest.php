@@ -14,6 +14,7 @@
 
 namespace Tmdb\Tests\Factory;
 
+use Tmdb\Exception\NotImplementedException;
 use Tmdb\Factory\CreditsFactory;
 use Tmdb\Model\Credits;
 
@@ -64,10 +65,10 @@ class CreditsFactoryTest extends TestCase
 
     /**
      * @test
-     * @expectedException Tmdb\Exception\NotImplementedException
      */
     public function shouldThrowExceptionForCollection()
     {
+        $this->expectException(NotImplementedException::class);
         $factory = $this->getFactory();
 
         $factory->createCollection([]);

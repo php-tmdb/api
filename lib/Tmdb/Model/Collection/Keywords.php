@@ -38,9 +38,9 @@ class Keywords extends GenericCollection
      *
      * @param $id
      *
-     * @return GenericCollection
+     * @return Keyword|null
      */
-    public function getKeyword($id): GenericCollection
+    public function getKeyword($id): ?Keyword
     {
         return $this->filterId($id);
     }
