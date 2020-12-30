@@ -22,12 +22,7 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
-use RuntimeException;
-use Tmdb\Token\Api\ApiToken;
-use Tmdb\Event\HydrationListener;
 use Tmdb\Event\RequestEvent;
-use Tmdb\Event\Listener\RequestListener;
-use Tmdb\Exception\ApiTokenMissingException;
 use Tmdb\Token\Session\GuestSessionToken;
 use Tmdb\Token\Session\SessionToken;
 
@@ -153,10 +148,15 @@ class HttpClient
     }
 
     /**
-     * @return array
+     * @param string|null $key
+     * @return array|mixed
      */
-    public function getOptions()
+    public function getOptions(string $key = null)
     {
+        if ($key) {
+            return isset($this->options[$key]) ? $this->options[$key] : null;
+        }
+
         return $this->options;
     }
 
@@ -173,7 +173,6 @@ class HttpClient
 
     /**
      * @return EventDispatcherInterface
-     * @todo remove before 4.0
      */
     public function getEventDispatcher()
     {

@@ -15,21 +15,16 @@
 namespace Tmdb\Factory;
 
 use RuntimeException;
+use Tmdb\Common\ObjectHydrator;
 use Tmdb\Event\HydrationEvent;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\AccountStates;
-use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Rating;
-use Tmdb\Model\Common\SpokenLanguage;
-use Tmdb\Model\Company;
 use Tmdb\Model\Lists\Result;
-use Tmdb\Model\Movie\AlternativeTitle;
-use Tmdb\Model\Movie\Release;
-use Tmdb\Model\Tv\ContentRating;
 
 /**
  * Class AbstractFactory
@@ -118,6 +113,49 @@ abstract class AbstractFactory
     }
 
     /**
+     * Hydrate the object with data
+     *
+     * @param AbstractModel $subject
+     * @param array $data
+     * @return AbstractModel
+     */
+    protected function hydrate(AbstractModel $subject, $data = [])
+    {
+        $httpClient = $this->getHttpClient();
+        $hydrationOptions = $this->getHttpClient()->getOptions('hydration');
+
+        $eventListenerHandlesHydration = $hydrationOptions['event_listener_handles_hydration'];
+        $eventBasedHydrationModels = $hydrationOptions['only_for_specified_models'];
+
+        if (
+            $eventListenerHandlesHydration && empty($eventBasedHydrationModels) || in_array(
+                get_class($subject),
+                $eventBasedHydrationModels
+            )
+        ) {
+            $event = new HydrationEvent($subject, $data);
+            $event->setLastRequest($httpClient->getLastRequest());
+            $event->setLastResponse($httpClient->getLastResponse());
+
+            $this->getHttpClient()->getEventDispatcher()->dispatch($event);
+
+            return $event->getSubject();
+        }
+
+        return (new ObjectHydrator())->hydrate($subject, $data);
+    }
+
+    /**
+     * Get the http client
+     *
+     * @return HttpClient
+     */
+    protected function getHttpClient()
+    {
+        return $this->httpClient;
+    }
+
+    /**
      * Create the account states
      *
      * @param array $data
@@ -180,36 +218,6 @@ abstract class AbstractFactory
         }
 
         return $collection;
-    }
-
-    /**
-     * Hydrate the object with data
-     *
-     * @param AbstractModel $subject
-     * @param array $data
-     * @return AbstractModel
-     */
-    protected function hydrate(AbstractModel $subject, $data = [])
-    {
-        $httpClient = $this->getHttpClient();
-
-        $event = new HydrationEvent($subject, $data);
-        $event->setLastRequest($httpClient->getLastRequest());
-        $event->setLastResponse($httpClient->getLastResponse());
-
-        $this->getHttpClient()->getEventDispatcher()->dispatch($event);
-
-        return $event->getSubject();
-    }
-
-    /**
-     * Get the http client
-     *
-     * @return HttpClient
-     */
-    protected function getHttpClient()
-    {
-        return $this->httpClient;
     }
 
     /**

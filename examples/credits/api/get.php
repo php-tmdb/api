@@ -15,6 +15,7 @@
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../../../setup-client.php');
 $credit = $client->getCreditsApi()->getCredit('52542282760ee313280017f9');
 

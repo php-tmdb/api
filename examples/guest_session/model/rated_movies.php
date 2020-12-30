@@ -15,6 +15,7 @@
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../../../setup-client.php');
 $client = new \Tmdb\Client($token, ['session_token' => new \Tmdb\SessionToken(TMDB_SESSION_TOKEN)]);
 

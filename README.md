@@ -111,7 +111,7 @@ Now that we have everything we need installed, let's get started setting up to b
 
 ## Quick setup
 
-Review the `examples/setup.php` file and `examples/movies/model/get.php` or `examples/movies/model/get.php` files.
+Review the `examples/client-setup.php` file and `examples/movies/model/get.php` or `examples/movies/model/get.php` files.
 
 ## Constructing the Client
 
@@ -171,6 +171,35 @@ We dispatch the following events inside the library, which by using event listen
 - `Tmdb\Event\BeforeHydrationEvent`
   - Allows modification of the response data before being hydrated.
   
+The current implementation within the event dispatcher causes significant overhead, you might actually not want at all.
+
+_In the future we will look into this further for improvement, for now we have bigger fish to catch._
+
+From `4.0` moving forward by default the hydration events have been disabled.
+
+To re-enable this functionality, we recommend only using it for models you need to modify data for;
+
+```php
+$client = new \Tmdb\Client([
+    'hydration' => [
+        'event_listener_handles_hydration' => true,
+        'only_for_specified_models' => [
+            Tmdb\Model\Movie::class
+        ]
+    ]
+]);
+```
+
+If that configuration has been applied, also make sure the event dispatcher you use is aware of;
+
+```php
+$eventDispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+$hydrationListener = new \Tmdb\Event\Listener\HydrationListener($eventDispatcher);
+$eventDispatcher->addListener(\Tmdb\Event\HydrationEvent::class, $hydrationListener);
+```
+
+_If you re-enable this functionality without specifying any models, all hydration will be done through the event listeners._
+
 ### Requests & Responses  
 - `Tmdb\Event\BeforeRequestEvent`
   - Allows modification of the PSR-7 request data before being sent.

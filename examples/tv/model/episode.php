@@ -17,6 +17,7 @@ use Tmdb\Repository\TvEpisodeRepository;
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../../../setup-client.php');
 $repository = new TvEpisodeRepository($client);
 $episode = $repository->load(1396, 2, 1);

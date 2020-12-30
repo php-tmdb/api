@@ -34,7 +34,7 @@ class ResponseExceptionFactory
         try {
             if (
                 $response->hasHeader('content-type') &&
-                $response->getHeaderLine('content-type') === 'application/json; charset=utf-8'
+                strpos($response->getHeaderLine('content-type'), 'application/json')  !== false
             ) {
                 $response->getBody()->rewind();
 

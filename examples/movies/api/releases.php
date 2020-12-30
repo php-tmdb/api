@@ -15,6 +15,7 @@
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../../../setup-client.php');
 $releases = $client->getMoviesApi()->getReleases(87421);
 

@@ -20,6 +20,7 @@ use Tmdb\Exception\TmdbApiException;
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../setup-client.php');
 $repository  = new MovieRepository($client);
 
@@ -31,7 +32,7 @@ try {
 } catch (TmdbApiException $e) {
     if (TmdbApiException::STATUS_RESOURCE_NOT_FOUND == $e->getCode()) {
         // not found
-        echo '404';
+        echo $e->getMessage();
         exit;
     }
 

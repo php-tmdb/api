@@ -18,7 +18,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Event\HydrationEvent;
-use Tmdb\Event\HydrationListener;
+use Tmdb\Event\Listener\HydrationListener;
 use Tmdb\Tests\TestCase as Base;
 
 class ImageHelperTest extends Base

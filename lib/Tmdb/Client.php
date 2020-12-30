@@ -26,7 +26,7 @@ use Psr\Log\LogLevel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Event\HydrationEvent;
-use Tmdb\Event\HydrationListener;
+use Tmdb\Event\Listener\HydrationListener;
 use Tmdb\Event\Listener\Request\AcceptJsonRequestListener;
 use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
@@ -89,7 +89,8 @@ class Client
         $this->httpClient = new HttpClient([
             'http' => $this->options['http'],
             'event_dispatcher' => $this->options['event_dispatcher'],
-            'base_uri' => $this->options['base_uri']
+            'base_uri' => $this->options['base_uri'],
+            'hydration' => $this->options['hydration']
         ]);
 
         $ed = $this->getEventDispatcher();
@@ -147,6 +148,17 @@ class Client
                     $optionsResolver->setAllowedTypes('response_factory', [ResponseFactoryInterface::class, 'null']);
                     $optionsResolver->setAllowedTypes('stream_factory', [StreamFactoryInterface::class, 'null']);
                     $optionsResolver->setAllowedTypes('uri_factory', [UriFactoryInterface::class, 'null']);
+                },
+                'hydration' => function (OptionsResolver $optionsResolver) {
+                    $optionsResolver->setDefaults(
+                        [
+                            'event_listener_handles_hydration' => false,
+                            'only_for_specified_models' => []
+                        ]
+                    );
+                    $optionsResolver->setAllowedTypes('event_listener_handles_hydration', ['bool']);
+                    // @todo 4.1 validate these are actually models
+                    $optionsResolver->setAllowedTypes('only_for_specified_models', ['array']);
                 },
                 'event_dispatcher' => function (OptionsResolver $optionsResolver) {
                     $optionsResolver->setDefaults(
@@ -234,6 +246,11 @@ class Client
             Psr17FactoryDiscovery::findStreamFactory();
         $this->options['http']['uri_factory'] = $this->options['http']['uri_factory'] ??
             Psr17FactoryDiscovery::findUriFactory();
+
+        if (!empty($this->options['hydration']['only_for_specified_models']) &&
+            !$this->options['hydration']['event_listener_handles_hydration']) {
+            $this->options['hydration']['event_listener_handles_hydration'] = true;
+        }
 
         $this->options['base_uri'] = sprintf(
             '%s://%s',

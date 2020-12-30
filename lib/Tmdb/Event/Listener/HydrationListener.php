@@ -12,10 +12,13 @@
  * @version 4.0.0
  */
 
-namespace Tmdb\Event;
+namespace Tmdb\Event\Listener;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Common\ObjectHydrator;
+use Tmdb\Event\AfterHydrationEvent;
+use Tmdb\Event\BeforeHydrationEvent;
+use Tmdb\Event\HydrationEvent;
 use Tmdb\Model\AbstractModel;
 
 /**
@@ -53,7 +56,6 @@ class HydrationListener
      */
     public function __invoke(HydrationEvent $event)
     {
-        // Possibility to load serialized cache
         $before = new BeforeHydrationEvent($event->getSubject(), $event->getData());
         $before->setLastRequest($event->getLastRequest());
         $before->setLastResponse($event->getLastResponse());
@@ -64,7 +66,6 @@ class HydrationListener
             return $before->getSubject();
         }
 
-        // Possibility to cache the data
         $after = new AfterHydrationEvent($this->hydrateSubject($before), $before->getData());
         $after->setLastRequest($event->getLastRequest());
         $after->setLastResponse($event->getLastResponse());

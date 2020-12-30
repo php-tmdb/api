@@ -18,6 +18,7 @@ use Tmdb\Repository\MovieRepository;
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../setup-client.php');
 // Caching is enabled by default, and makes use of your sys_get_temp_dir()
 // If you'd like to disable it or change the path:

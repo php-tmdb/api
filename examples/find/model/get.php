@@ -17,6 +17,7 @@ use Tmdb\Repository\FindRepository;
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../../../setup-client.php');
 $repository = new FindRepository($client);
 $find = $repository->findBy('tt0120737', ['external_source' => 'imdb_id']);

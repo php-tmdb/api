@@ -17,6 +17,7 @@ use Tmdb\Repository\ReviewRepository;
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../../../setup-client.php');
 $repository = new ReviewRepository($client);
 $review = $repository->load('5013bc76760ee372cb00253e');

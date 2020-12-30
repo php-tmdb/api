@@ -15,6 +15,14 @@
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../setup-client.php');
-$plugin = new \Tmdb\HttpClient\Plugin\AdultFilterPlugin(); // explicitly set this to true to show adult results
-$client->getHttpClient()->addSubscriber($plugin);
+
+/** @var Symfony\Component\EventDispatcher\EventDispatcher $ed */
+$ed = $client->getEventDispatcher();
+$ed->addListener(
+    \Tmdb\Event\BeforeRequestEvent::class,
+    new \Tmdb\Event\Listener\Request\AdultFilterRequestListener(true)
+);
+
+// do request

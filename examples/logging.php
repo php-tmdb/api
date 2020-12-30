@@ -19,6 +19,7 @@ use Tmdb\Repository\MovieRepository;
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
+/** @var Tmdb\Client $client **/
 $client = require_once('../setup-client.php');
 // A simple change the path of the log
 /*

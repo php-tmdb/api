@@ -12,14 +12,17 @@
  * @version 4.0.0
  */
 
-require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../vendor/autoload.php';
+require_once '../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../../setup-client.php');
-$token = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
+$client = require_once('../setup-client.php');
 
+/** @var Symfony\Component\EventDispatcher\EventDispatcher $ed */
+$ed = $client->getEventDispatcher();
+$ed->addListener(
+    \Tmdb\Event\BeforeRequestEvent::class,
+    new \Tmdb\Event\Listener\Request\RegionFilterRequestListener('nl')
+);
 
-$requestToken  = new \Tmdb\RequestToken(TMDB_REQUEST_TOKEN);
-
-$client->getAuthenticationApi()->authenticateRequestToken($requestToken->getToken());
+// do request
