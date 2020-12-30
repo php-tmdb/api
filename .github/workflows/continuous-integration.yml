@@ -81,3 +81,7 @@ jobs:
         with:
           name: "phpunit-${{ matrix.php-version }}-${{ matrix.deps }}-${{ hashFiles('composer.lock') }}.coverage"
           path: "coverage.xml"
+
+      - uses: codecov/codecov-action@v1
+        with:
+          verbose: true
