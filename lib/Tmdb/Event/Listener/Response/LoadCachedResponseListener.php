@@ -15,14 +15,12 @@
 namespace Tmdb\Event\Listener\Response;
 
 use Http\Client\Common\Plugin\CachePlugin;
-use Nyholm\Psr7\Stream;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\SimpleCache\CacheInterface;
 use Tmdb\Client;
 use Tmdb\Event\RequestEvent;
 
-class LoadCachedPsr6ResponseListener
+class LoadCachedResponseListener
 {
     /**
      * @var CacheItemPoolInterface

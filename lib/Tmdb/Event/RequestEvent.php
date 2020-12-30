@@ -20,6 +20,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 use Tmdb\HttpClient\Request;
+use Tmdb\Token\Session\SessionToken;
 
 class RequestEvent extends StoppableEvent
 {
@@ -34,11 +35,17 @@ class RequestEvent extends StoppableEvent
     private $response;
 
     /**
+     * @var SessionToken
+     */
+    private $sessionToken;
+
+    /**
      * Construct the request event
      *
      * @param RequestInterface $request
+     * @param SessionToken|null $sessionToken
      */
-    public function __construct(RequestInterface $request)
+    public function __construct(RequestInterface $request, SessionToken $sessionToken = null)
     {
         $this->request = $request;
     }
@@ -88,4 +95,29 @@ class RequestEvent extends StoppableEvent
     {
         return $this->response instanceof ResponseInterface;
     }
+
+    /**
+     * @return SessionToken
+     */
+    public function getSessionToken(): SessionToken
+    {
+        return $this->sessionToken;
+    }
+
+    /**
+     * @param SessionToken|null $sessionToken
+     */
+    public function setSessionToken(SessionToken $sessionToken = null): void
+    {
+        $this->sessionToken = $sessionToken;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSessionToken()
+    {
+        return $this->response instanceof ResponseInterface;
+    }
+
 }

@@ -32,7 +32,10 @@ class ImageHelperTest extends Base
     {
         $ed = new EventDispatcher();
         $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
-        $client = new Client(new ApiToken('abcdef'), ['event_dispatcher' => ['adapter' => $ed]]);
+        $client = new Client([
+            'api_token' => new ApiToken('abcdef'),
+            'event_dispatcher' => ['adapter' => $ed]
+        ]);
 
         $factory = new \Tmdb\Factory\ConfigurationFactory($client->getHttpClient());
 

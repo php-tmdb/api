@@ -84,16 +84,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         $options['event_dispatcher']['adapter'] = $this->eventDispatcher = new EventDispatcher();
 
-        $token = new ApiToken('abcdef');
+        $options['api_token'] = new ApiToken('abcdef');
         $options['http']['client'] = new \Http\Mock\Client();
         $response = $this->createMock('Psr\Http\Message\ResponseInterface');
         $options['http']['client']->setDefaultResponse($response);
 
-        $client = new Client($token, $options);
-        $requestListener = new \Tmdb\Event\Listener\RequestListener(
-            $client->getHttpClient(),
-            $options['event_dispatcher']['adapter']
-        );
+        $client = new Client($options);
 
         /**
          * We do not need api keys being added to the requests here.
@@ -123,10 +119,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function getMockedTmdbClient()
     {
-        $token   = new ApiToken('abcdef');
         $adapter = new \Http\Mock\Client();
 
-        return $this->_client = new Client($token, [
+        return $this->_client = new Client([
+            'api_token' => new ApiToken('abcdef'),
             'http' => ['client' => $adapter],
             'event_dispatcher' => ['adapter' => new EventDispatcher()]
         ]);

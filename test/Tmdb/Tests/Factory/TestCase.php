@@ -37,9 +37,12 @@ abstract class TestCase extends Base
 
         $ed = new EventDispatcher();
         $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
-        $client = new Client(new ApiToken('abcdef'), [
-            'event_dispatcher' => ['adapter' => $ed]
-        ]);
+        $client = new Client(
+            [
+                'api_token' => new ApiToken('abcdef'),
+                'event_dispatcher' => ['adapter' => $ed]
+            ]
+        );
 
         return new $class($client->getHttpClient());
     }
@@ -51,9 +54,12 @@ abstract class TestCase extends Base
     {
         $ed = new EventDispatcher();
         $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
-        $client = new Client(new ApiToken('abcdef'), [
-            'event_dispatcher' => ['adapter' => $ed]
-        ]);
+        $client = new Client(
+            [
+                'api_token' => new ApiToken('test'),
+                'event_dispatcher' => ['adapter' => new EventDispatcher()]
+            ]
+        );
 
         return $client->getHttpClient();
     }

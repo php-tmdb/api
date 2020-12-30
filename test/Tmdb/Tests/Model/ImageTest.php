@@ -48,8 +48,10 @@ class ImageTest extends TestCase
         $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
 
         $client = new Client(
-            new ApiToken('abcdef'),
-            ['event_dispatcher' => ['adapter' => $ed]]
+            [
+                'api_token' => new ApiToken('abcdef'),
+                'event_dispatcher' => ['adapter' => $ed]
+            ]
         );
         $this->collection = new Images();
 
