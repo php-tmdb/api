@@ -107,7 +107,7 @@ This will install the library without issues as all requirements will be met, yo
 
 ```shell script
 # Dependencies per 30-12-2020
-$ composer require php-tmdb/api:dev-release/4.0.0 nyholm/psr7 symfony/dependency-injection symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
+$ composer require php-tmdb/api:^4 nyholm/psr7 symfony/dependency-injection symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
 Using version ^1.3 for nyholm/psr7
 Using version ^5.2 for symfony/dependency-injection
 Using version ^5.2 for symfony/event-dispatcher
@@ -120,6 +120,10 @@ Using version ^2.2 for monolog/monolog
 
 Now that we have everything we need installed, let's get started setting up to be able to use the library.
 
+## Quick setup
+
+Review the `examples/setup.php` file and `examples/movies/model/get.php` or `examples/movies/model/get.php` files.
+
 ## Constructing the Client
 
 _If you have chosen different implementations than the examples suggested beforehand, obviously all the upcoming documentation won't match. Adjust accordingly to your dependencies, we will go along with the examples given earlier._
@@ -128,7 +132,8 @@ _If you have chosen different implementations than the examples suggested before
 
 ## General API Usage
 
-If your looking for a simple array entry point the API namespace is the place to be.
+If you're looking for a simple array entry point the API namespace is the place to be, however we recommend you use the 
+repositories and model's functionality up ahead.
 
 ```php
 $movie = $client->getMoviesApi()->getMovie(550);
@@ -139,6 +144,8 @@ If you want to provide any other query arguments.
 ```php
 $movie = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
 ```
+
+For all further calls just review the unit tests or examples provided, or the API classes themselves.
 
 ## Model Usage
 
@@ -161,6 +168,8 @@ $topRated = $repository->getTopRated(array('page' => 3));
 // or
 $popular = $repository->getPopular();
 ```
+
+For all further calls just review the unit tests or examples provided, or the model's themselves.
 
 ## Event Dispatching
 
