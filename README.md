@@ -52,7 +52,9 @@ break has been made to introduce PSR compliance where we can ( basically everywh
 
 Install [composer](https://getcomposer.org/download/).
 
-Before we can install the api library, you need to install a dependency that provides this implementation.
+Before we can install the api library, you need to install a set of dependencies that provide the following implementations.
+
+**Required**
 
 - For `PSR-7: HTTP Message Interface`, for example `nyholm/psr7`.
 - For `PSR-14: Event Dispatcher`, for example `symfony/event-dispatcher`.
@@ -61,12 +63,21 @@ Before we can install the api library, you need to install a dependency that pro
 
 **I urge you to implement the optional caching implementation**
 
+As [themoviedb.org](https://www.themoviedb.org/) applies [rate limiting](https://developers.themoviedb.org/3/getting-started/request-rate-limiting) to requests, we strongly 
+advise caching responses whenever possible. 
+
 - For `PSR-6: Caching Interface`, for example `symfony/cache`.
 - For `PSR-16: Simple Cache`, for example `symfony/cache`.
 
+Not only will this make your application more responsive, it also decreases the amount of requests we need to send.
+
 _Optional dependencies_
 
-- For `PSR-3: Logger Interface`, for example `monolog/monolog`, 
+- For `PSR-3: Logger Interface`, for example `monolog/monolog`.
+
+@todo
+
+### Install php-tmdb/api
 
 If the required dependencies above are met, you are ready to install the library.
 
