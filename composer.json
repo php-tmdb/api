@@ -61,6 +61,14 @@
         "monolog/monolog": ">=1.11.0",
         "vimeo/psalm": "^4"
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml coverage",
+        "test-coverage": "php -d xdebug.mode=coverage vendor/bin/phpunit --coverage-html build/coverage",
+        "test-cs": "vendor/bin/phpcs",
+        "test-phpstan": "vendor/bin/phpstan analyse",
+        "test-psalm": "vendor/bin/psalm lib/"
+    },
     "suggest": {
         "psr/log-implementation": "If you wish to enable logging features, provide an PSR-3 logger.",
         "psr/cache-implementation": "If you wish to enable caching features, provide an PSR-6 cache implementation.",

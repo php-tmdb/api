@@ -39,8 +39,28 @@ We used to always bring sensible defaults, **from now it is your responsibility 
 
 As much I'd love to 
 
+Plugins were really just event listeners
+----------------------------------------
+
+Review the new listeners in `lib/Tmdb/Event/Listener`, if you made use of an extra plugin before, 
+they were moved here and renamed.
+
+@todo since library isn't fully done, can't write much yet about PSR-14
+
 Request and Responses
-=====================
+---------------------
+
+The base request and response classes internally are gone.
 
 Where you used to be able to rely on an internal library request / response within events, you will now have to 
-modify your code to adhere to PSR-7. We also have 
+modify your code to adhere to PSR-7. The internals now also rely on an PSR-18 client to be provided,
+ the http factores from PSR-17 and request and response messages according to PSR-7.
+ 
+Registering the event listeners ( yourself )
+--------------------------------------------
+
+_we could create a callback function the user gives, and call that to register each listener?_
+
+- ExampleEvent::class => new ExampleListener($deps)
+ 
+
