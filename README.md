@@ -107,7 +107,7 @@ This will install the library without issues as all requirements will be met, yo
 
 ```shell script
 # Dependencies per 30-12-2020
-composer require php-tmdb/api:dev-release/4.0.0 nyholm/psr7 symfony/dependency-injection symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
+$ composer require php-tmdb/api:dev-release/4.0.0 nyholm/psr7 symfony/dependency-injection symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
 Using version ^1.3 for nyholm/psr7
 Using version ^5.2 for symfony/dependency-injection
 Using version ^5.2 for symfony/event-dispatcher
@@ -124,73 +124,7 @@ Now that we have everything we need installed, let's get started setting up to b
 
 _If you have chosen different implementations than the examples suggested beforehand, obviously all the upcoming documentation won't match. Adjust accordingly to your dependencies, we will go along with the examples given earlier._
 
-```php
-$token  = new \Tmdb\Token\Api\ApiToken('your_tmdb_api_key_here');
-$client = new \Tmdb\Client($token);
-```
-
-If you'd like to make unsecure requests (by __default__ we use secure requests).
-
-```php
-$client = new \Tmdb\Client($token, ['secure' => false]);
-```
-
-Caching is enabled by default, and uses a slow filesystem handler, which you can either:
-
-  - Replace the `path` of the storage of, by supplying the option in the client:
-
-```php
-$client = new \Tmdb\Client($token, [
-    'cache' => [
-        'path' => '/tmp/php-tmdb'
-    ]
-]);
-```
-  - Or replace the whole implementation with another CacheStorage of Doctrine:
-
-```php
-use Doctrine\Common\Cache\ArrayCache;
-
-$client = new \Tmdb\Client($token, [
-        'cache' => [
-            'handler' => new ArrayCache()
-        ]
-    ]
-);
-```
-_This will only keep cache in memory during the length of the request,  see the [documentation of Doctrine Cache](http://doctrine-common.readthedocs.org/en/latest/reference/caching.html) for the available adapters._
-
-Strongly against this, disabling cache:
-
-```php
-$client = new \Tmdb\Client($token, [
-    'cache' => [
-        'enabled' => false
-    ]
-]);
-```
-
-If you want to add some logging capabilities (requires `monolog/monolog`), defaulting to the filesystem;
-
-```php
-$client = new \Tmdb\Client($token, [
-    'log' => [
-        'enabled' => true,
-        'path'    => '/var/www/php-tmdb-api.log'
-    ]
-]);
-```
-
-However during development you might like some console magic like `ChromePHP` or `FirePHP`;
-
-```php
-$client = new \Tmdb\Client($token, [
-    'log' => [
-        'enabled' => true,
-        'handler' => new \Monolog\Handler\ChromePHPHandler()
-    ]
-]);
-```
+### @TODO rewrite chapter from scratch 
 
 ## General API Usage
 
@@ -228,16 +162,43 @@ $topRated = $repository->getTopRated(array('page' => 3));
 $popular = $repository->getPopular();
 ```
 
-## Some other useful hints
+## Event Dispatching
 
-### Event Dispatching
+We dispatch the following events inside the library, which by using event listeners you could modify some behavior.
 
-Since 2.0 requests are handled by the `EventDispatcher`, which gives you before and after hooks, the before hook allows an event to stop propagation for the
-request event, meaning you are able to stop the main request from happening, you will have to set a `Response` object in that event though.
+### Hydration
 
-See the files for [TmdbEvents](lib/Tmdb/Event/TmdbEvents.php) and [RequestSubscriber](lib/Tmdb/Event/RequestListener.php) respectively.
+- `Tmdb\Event\AfterHydrationEvent`
+  - Allows modification of the eventual subject returned.
+- `Tmdb\Event\BeforeHydrationEvent`
+  - Allows modification of the response data before being hydrated.
+  
+### Requests & Responses  
+- `Tmdb\Event\BeforeRequestEvent`
+  - Allows modification of the PSR-7 request data before being sent.
+  - Allows early response behavior ( think of caching ), by calling `$event->isPropagated()` in your listener.
+- `Tmdb\Event\ResponseEvent`
+  - Contains the `Request` object.
+  - Allows modification of the PSR-7 response before being hydrated.
+  - Allows end-user to implement their own cache, or any other actions you'd like to perform on the given response. 
 
-### Image Helper
+## Event listeners 
+
+We have a small couple of optional event listeners that you could add to provide additional functionality.
+
+### Adult filter
+
+@todo
+
+### Language filter
+
+@todo
+
+### Region filter
+
+@todo
+
+## Image Helper
 
 An `ImageHelper` class is provided to take care of the images, which does require the configuration to be loaded:
 
@@ -250,21 +211,8 @@ $imageHelper = new \Tmdb\Helper\ImageHelper($config);
 echo $imageHelper->getHtml($image, 'w154', 154, 80);
 ```
 
-### Plug-ins
 
-At the moment there are only two useful plug-ins that are not enabled by default, and you might want to use these:
-
-```php
-$plugin = new \Tmdb\HttpClient\Plugin\LanguageFilterPlugin('nl');
-```
-_Tries to fetch everything it can in Dutch._
-
-```php
-$plugin = new \Tmdb\HttpClient\Plugin\AdultFilterPlugin(true);
-```
-_We like naughty results, if configured this way, provide `false` to filter these out._
-
-### Collection Filtering
+## Collection Filtering
 
 We also provide some easy methods to filter any collection, you should note however you can always implement your own filter easily by using Closures:
 
