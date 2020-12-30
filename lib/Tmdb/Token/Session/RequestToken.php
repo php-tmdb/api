@@ -25,14 +25,14 @@ class RequestToken
     /**
      * The token for obtaining a session
      *
-     * @var string
+     * @var string|null
      */
-    private $token = null;
+    private $token;
 
     /**
      * Expiry date UTC
      *
-     * @var
+     * @var \DateTime
      */
     private $expiresAt;
 
@@ -44,15 +44,15 @@ class RequestToken
     /**
      * Token bag
      *
-     * @param $request_token
+     * @param string|null $requestToken
      */
-    public function __construct($request_token = null)
+    public function __construct($requestToken = null)
     {
-        $this->token = $request_token;
+        $this->token = $requestToken;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getToken()
     {
@@ -60,10 +60,10 @@ class RequestToken
     }
 
     /**
-     * @param null $token
+     * @param string|null $token
      * @return $this
      */
-    public function setToken($token)
+    public function setToken(string $token = null)
     {
         $this->token = $token;
 
@@ -79,7 +79,7 @@ class RequestToken
     }
 
     /**
-     * @param DateTime $expiresAt
+     * @param DateTime|string $expiresAt
      * @return $this
      */
     public function setExpiresAt($expiresAt)
@@ -105,13 +105,16 @@ class RequestToken
      * @param boolean $success
      * @return $this
      */
-    public function setSuccess($success)
+    public function setSuccess(bool $success)
     {
         $this->success = $success;
 
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return (string)$this->token;

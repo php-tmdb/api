@@ -101,7 +101,7 @@ class RequestListenerTest extends TestCase
                 $event->setResponse(
                     $event->getResponse()->withStatus(418)
                 );
-                
+
                 $this->assertEquals(418, $event->getResponse()->getStatusCode());
             }
         );

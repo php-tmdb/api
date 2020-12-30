@@ -250,13 +250,12 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      *
      * @param Closure $closure Closure to apply
      * @param array $context Context to pass to the closure
-     * @param bool $static Set to TRUE to use the same class as the return rather than returning a Collection
      *
      * @return GenericCollection
      */
-    public function map(Closure $closure, array $context = [], $static = true)
+    public function map(Closure $closure, array $context = [])
     {
-        $collection = $static ? new static() : new self();
+        $collection = new self();
         foreach ($this as $key => $value) {
             $collection->add($key, $closure($key, $value, $context));
         }
@@ -343,13 +342,12 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * parameters: (string) $key, (string) $value and return Boolean TRUE or FALSE for each value.
      *
      * @param Closure $closure Closure evaluation function
-     * @param bool $static Set to TRUE to use the same class as the return rather than returning a Collection
      *
      * @return GenericCollection
      */
-    public function filter(Closure $closure, $static = true)
+    public function filter(Closure $closure)
     {
-        $collection = ($static) ? new static() : new self();
+        $collection = new self();
         foreach ($this->data as $key => $value) {
             if ($closure($key, $value)) {
                 $collection->add($key, $value);

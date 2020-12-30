@@ -1,26 +1,12 @@
 # A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
 
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
-[![Build Status](https://travis-ci.org/php-tmdb/api.svg?branch=2.1)](https://travis-ci.org/php-tmdb/api)
-[![Code Coverage](https://scrutinizer-ci.com/g/php-tmdb/api/badges/coverage.png?b=2.1)](https://scrutinizer-ci.com/g/php-tmdb/api/?branch=2.1)
-[![PHP & HHVM](https://img.shields.io/badge/php->=5.6,%20HHVM-8892BF.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
-
-Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api), [php-gitlab-api](https://github.com/m4tthumphrey/php-gitlab-api/) and the Symfony Community.
-
-If you have any questions or feature requests, please visit the [google+ community](https://plus.google.com/communities/113544625011244846907).
-
-## Stable
-
-[![Latest Stable Version](https://poser.pugx.org/php-tmdb/api/v/stable.svg)](https://packagist.org/packages/php-tmdb/api)
-[![Latest Unstable Version](https://poser.pugx.org/php-tmdb/api/v/unstable.svg)](https://packagist.org/packages/php-tmdb/api)
-[![Dependency Status](https://www.versioneye.com/user/projects/551fe134971f7847ca000451/badge.svg?style=flat)](https://www.versioneye.com/user/projects/551fe134971f7847ca000451)
+[![License](https://img.shields.io/github/v/tag/php-tmdb/api)](https://github.com/php-tmdb/api/releases)
+[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/api/Continuous%20Integration?label=phpunit)](https://travis-ci.org/php-tmdb/api)
+[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/api/Coding%20Standards?label=phpcs)](https://travis-ci.org/php-tmdb/api)
+[![codecov](https://img.shields.io/codecov/c/github/php-tmdb/api?token=gTM9AiO5vH)](https://codecov.io/gh/php-tmdb/api)
+[![PHP & HHVM](https://img.shields.io/badge/php->=7.3,%20>=8.0-8892BF.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/api/downloads.svg)](https://packagist.org/packages/php-tmdb/api)
-
-Currently unit tests are run via github actions, with the following versions:
-
-- 7.3
-- 7.4
-- 8.0
 
 Tests run with minimal, normal and development dependencies.
 

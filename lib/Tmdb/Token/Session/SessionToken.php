@@ -23,9 +23,9 @@ use DateTime;
 class SessionToken
 {
     /**
-     * @var string
+     * @var string|null
      */
-    private $sessionToken = null;
+    private $sessionToken;
 
     /**
      * @var DateTime
@@ -40,11 +40,11 @@ class SessionToken
     /**
      * Token bag
      *
-     * @param $session_token
+     * @param string|null $sessionToken
      */
-    public function __construct($session_token = null)
+    public function __construct(string $sessionToken = null)
     {
-        $this->sessionToken = $session_token;
+        $this->sessionToken = $sessionToken;
     }
 
     /**
