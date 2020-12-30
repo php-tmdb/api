@@ -24,7 +24,8 @@ class HttpClientTest extends TestCase
     /**
      * @test
      */
-    public function hi(){
+    public function hi()
+    {
         $this->assertTrue(true);
     }
 }

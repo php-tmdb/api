@@ -206,7 +206,9 @@ abstract class AbstractApi implements ApiInterface
                     'Unable to decode response with body "%s", %s.',
                     (string)$response->getBody(),
                     json_last_error_msg()
-                ), $response->getStatusCode(), $e
+                ),
+                $response->getStatusCode(),
+                $e
             );
         }
     }

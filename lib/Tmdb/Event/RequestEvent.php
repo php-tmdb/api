@@ -119,5 +119,4 @@ class RequestEvent extends StoppableEvent
     {
         return $this->response instanceof ResponseInterface;
     }
-
 }

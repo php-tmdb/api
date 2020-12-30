@@ -164,7 +164,7 @@ class Client
                             'adapter' => null,
                         ]
                     );
-//                $optionsResolver->setAllowedTypes('adapter', [CacheInterface::class, 'null']);
+            //                $optionsResolver->setAllowedTypes('adapter', [CacheInterface::class, 'null']);
                 },
                 'log' => function (OptionsResolver $optionsResolver) {
                     $optionsResolver->setDefaults(
@@ -173,7 +173,7 @@ class Client
                             'adapter' => null
                         ]
                     );
-//                $optionsResolver->setAllowedTypes('adapter', [LoggerInterface::class, 'null']);
+            //                $optionsResolver->setAllowedTypes('adapter', [LoggerInterface::class, 'null']);
                 },
             ]
         );
