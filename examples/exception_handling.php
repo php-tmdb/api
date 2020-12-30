@@ -18,7 +18,7 @@ use Tmdb\Exception\TmdbApiException;
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
 $client = new \Tmdb\Client($token);
 
 $repository  = new MovieRepository($client);

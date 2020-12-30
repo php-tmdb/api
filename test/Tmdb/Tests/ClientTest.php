@@ -15,9 +15,9 @@
 namespace Tmdb\Tests;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
-use Tmdb\SessionToken;
+use Tmdb\Token\Session\SessionToken;
 
 class ClientTest extends \Tmdb\Tests\TestCase
 {
@@ -61,7 +61,7 @@ class ClientTest extends \Tmdb\Tests\TestCase
      */
     public function shouldContainSessionToken()
     {
-        $this->assertInstanceOf('Tmdb\SessionToken', $this->client->getSessionToken());
+        $this->assertInstanceOf('Tmdb\Token\Session\SessionToken', $this->client->getSessionToken());
         $this->assertEquals(self::SESSION_TOKEN, $this->client->getSessionToken()->getToken());
     }
 

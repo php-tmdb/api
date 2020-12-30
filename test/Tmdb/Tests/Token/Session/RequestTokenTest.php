@@ -12,7 +12,7 @@
  * @version 4.0.0
  */
 
-namespace Tmdb\Tests;
+namespace Tmdb\Tests\Token\Session;
 
 class RequestTokenTest extends \PHPUnit\Framework\TestCase
 {
@@ -23,7 +23,7 @@ class RequestTokenTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetGet()
     {
-        $token  = new \Tmdb\RequestToken();
+        $token  = new \Tmdb\Token\Session\RequestToken();
         $token->setToken(self::REQUEST_TOKEN);
         $token->setExpiresAt('2012-02-09 19:50:25 UTC');
         $token->setSuccess(true);

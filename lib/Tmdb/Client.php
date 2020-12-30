@@ -28,9 +28,8 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tmdb\ApiToken as Token;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Event\HydrationListener;
-use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\HttpClient;
 
 /**

@@ -17,7 +17,7 @@ namespace Tmdb\Tests\Api;
 use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
-use Tmdb\ApiToken;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Tests\TestCase as Base;

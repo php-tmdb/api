@@ -16,7 +16,7 @@ namespace Tmdb\Tests\Api;
 
 use Tmdb\Api\GuestSession;
 use Tmdb\Exception\MissingSessionTokenException;
-use Tmdb\GuestSessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
 
 class GuestSessionTest extends TestCase
 {

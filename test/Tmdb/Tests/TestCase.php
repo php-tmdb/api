@@ -15,9 +15,8 @@
 namespace Tmdb\Tests;
 
 use Http\Discovery\Psr17FactoryDiscovery;
-use Psr\Http\Client\ClientInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Common\ParameterBag;

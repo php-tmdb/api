@@ -27,15 +27,15 @@ use Psr\Log\LogLevel;
 use RuntimeException;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Tmdb\ApiToken;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Event\HydrationListener;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\Listener\RequestListener;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\Exception\ApiTokenMissingException;
-use Tmdb\GuestSessionToken;
-use Tmdb\SessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
+use Tmdb\Token\Session\SessionToken;
 
 /**
  * Class HttpClient

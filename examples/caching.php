@@ -13,7 +13,7 @@
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
 
 // Caching is enabled by default, and makes use of your sys_get_temp_dir()
 // If you'd like to disable it or change the path:

@@ -17,7 +17,7 @@ use Http\Discovery\Psr18ClientDiscovery;
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
+$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
 
 // A simple change the path of the log
 /*

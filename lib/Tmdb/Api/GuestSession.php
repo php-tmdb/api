@@ -15,7 +15,7 @@
 namespace Tmdb\Api;
 
 use Tmdb\Exception\MissingSessionTokenException;
-use Tmdb\SessionToken;
+use Tmdb\Token\Session\SessionToken;
 
 /**
  * Class GuestSession

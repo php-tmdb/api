@@ -12,7 +12,7 @@
  * @version 4.0.0
  */
 
-namespace Tmdb\Tests;
+namespace Tmdb\Tests\Token\Api;
 
 use Tmdb\Exception\RuntimeException;
 
@@ -25,7 +25,7 @@ class ApiTokenTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetGet()
     {
-        $token  = new \Tmdb\ApiToken();
+        $token  = new \Tmdb\Token\Api\ApiToken();
         $token->setToken(self::API_TOKEN);
 
         $this->assertEquals(self::API_TOKEN, $token->getToken());
@@ -38,7 +38,7 @@ class ApiTokenTest extends \PHPUnit\Framework\TestCase
     public function testThrowsErrorOnEmptyApiToken()
     {
         $this->expectException(RuntimeException::class);
-        $token  = new \Tmdb\ApiToken();
+        $token  = new \Tmdb\Token\Api\ApiToken();
         $token->setToken(null);
     }
 }

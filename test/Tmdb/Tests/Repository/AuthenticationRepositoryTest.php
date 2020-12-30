@@ -17,7 +17,7 @@ namespace Tmdb\Tests\Repository;
 use Tmdb\Api\Authentication;
 use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\Repository\AuthenticationRepository;
-use Tmdb\RequestToken;
+use Tmdb\Token\Session\RequestToken;
 
 class AuthenticationRepositoryTest extends TestCase
 {

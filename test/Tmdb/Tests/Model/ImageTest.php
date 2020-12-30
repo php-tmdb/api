@@ -15,7 +15,7 @@
 namespace Tmdb\Tests\Model;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Event\HydrationEvent;
 use Tmdb\Event\HydrationListener;

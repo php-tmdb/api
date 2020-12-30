@@ -14,7 +14,7 @@
 
 namespace Tmdb\Tests\Repository;
 
-use Tmdb\GuestSessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
 
 class GuestSessionRepositoryTest extends TestCase
 {

@@ -17,7 +17,7 @@ namespace Tmdb\Api;
 use Exception;
 use InvalidArgumentException;
 use Tmdb\Exception\UnauthorizedRequestTokenException;
-use Tmdb\RequestToken;
+use Tmdb\Token\Session\RequestToken;
 
 /**
  * Class Authentication

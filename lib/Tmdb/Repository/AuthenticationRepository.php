@@ -17,9 +17,9 @@ namespace Tmdb\Repository;
 use Tmdb\Api\Authentication;
 use Tmdb\Exception\UnauthorizedRequestTokenException;
 use Tmdb\Factory\AuthenticationFactory;
-use Tmdb\GuestSessionToken;
-use Tmdb\RequestToken;
-use Tmdb\SessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
+use Tmdb\Token\Session\RequestToken;
+use Tmdb\Token\Session\SessionToken;
 
 /**
  * Class AuthenticationRepository

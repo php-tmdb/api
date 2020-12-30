@@ -12,7 +12,7 @@
  * @version 4.0.0
  */
 
-namespace Tmdb;
+namespace Tmdb\Token\Session;
 
 use DateTime;
 

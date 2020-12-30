@@ -12,7 +12,7 @@
  * @version 4.0.0
  */
 
-namespace Tmdb;
+namespace Tmdb\Token\Api;
 
 use Tmdb\Exception\RuntimeException;
 

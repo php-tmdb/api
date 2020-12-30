@@ -12,12 +12,19 @@
  * @version 4.0.0
  */
 
-namespace Tmdb;
+namespace Tmdb\Tests\HttpClient;
 
-/**
- * Class BearerToken
- * @package Tmdb
- */
-class BearerToken extends ApiToken
+use Tmdb\Token\Api\ApiToken;
+use Tmdb\Common\ParameterBag;
+use Tmdb\HttpClient\Request;
+use Tmdb\Tests\TestCase;
+
+class HttpClientTest extends TestCase
 {
+    /**
+     * @test
+     */
+    public function hi(){
+        $this->assertTrue(true);
+    }
 }
