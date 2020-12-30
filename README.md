@@ -16,68 +16,83 @@ If you have any questions or feature requests, please visit the [google+ communi
 [![Dependency Status](https://www.versioneye.com/user/projects/551fe134971f7847ca000451/badge.svg?style=flat)](https://www.versioneye.com/user/projects/551fe134971f7847ca000451)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/api/downloads.svg)](https://packagist.org/packages/php-tmdb/api)
 
-Currently unit tests are run on travis, with the following versions:
+Currently unit tests are run via github actions, with the following versions:
 
-- 5.6
-- 7.0
-- 7.1
-- HHVM (failures allowed)
-- nightly (failures allowed)
+- 7.3
+- 7.4
+- 8.0
 
-## Features
+Tests run with minimal, normal and development dependencies.
 
-### Main features
+## Main features
 
-- An complete integration of all the TMDB API has to offer (accounts, movies, tv etc. _if something is missing I haven't added the updates yet!_).
 - Array implementation of the movie database (RAW)
 - Model implementation of the movie database (By making use of the repositories)
 - An `ImageHelper` class to help build image urls or html <img> elements.
 
-### Other things worth mentioning
+## PSR Compliance
 
-- Retry subscriber enabled by default to handle any rate limit errors.
-- Caching subscriber enabled by default, based on `max-age` headers returned by TMDB, requires `doctrine-cache`.
-- Logging subscriber and is optional, requires `monolog`. Could prove useful during development.
+We try to leave as many options open to the end users of this library, as such for 4.0 a major
+break has been made to introduce PSR compliance where we can.
 
-## Plug-ins
+- [PSR-3: Logger Interface](https://www.php-fig.org/psr/psr-3/)
+    - Access to the logger of your choice through the container in the client.
+    - Logs requests and responses
+    - Logs caching behavior
+- [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/)
+    - Access to the cache of your choice through the container in the client.
+- [PSR-7: HTTP Message Interface](https://www.php-fig.org/psr/psr-7/)
+    - Requests and responses are modify by their interfaces via events.
+- [PSR-11: Container Interface](https://www.php-fig.org/psr/psr-11/)
+    - Allows easier implementation by being able to access pre-built services.
+- _[PSR-12: Extended Coding Style](https://www.php-fig.org/psr/psr-12/)._
+    - Work in progress, I'll do my best to finish before `4.1` but there is a lot to review and refactor.
+      It would be nice to get contributions going our way helping out with this massive task.
+- [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/)
+    - Access to the event dispatcher of your choice through the container in the client.
+    - Register our listeners and events, we handle the rest.
+    
+    @todo link to anchor below when implementation is solid
+    
+- [PSR-16: Simple Cache](https://www.php-fig.org/psr/psr-16/)
+    - @todo
+- [PSR-17: HTTP Factories](https://www.php-fig.org/psr/psr-17/)
+    - Bring along the http factories of your choice.
+- [PSR-18: HTTP Client](https://www.php-fig.org/psr/psr-18/)
+    - Bring along the PSR-18 http client of your choice.
 
-- Symfony
-  - [php-tmdb/symfony](https://github.com/php-tmdb/symfony).
-- Laravel
-  - [php-tmdb/laravel](https://github.com/php-tmdb/laravel).
+## Framework implementations
+
+- Symfony _(maintained by php-tmdb developers)_
+  - [php-tmdb/symfony](https://github.com/php-tmdb/symfony)
+- Laravel _(community maintained)_
+  - [php-tmdb/laravel](https://github.com/php-tmdb/laravel)
 
 ## Installation
 
-Install Composer
+Install [composer](https://getcomposer.org/download/).
 
-```
-$ curl -sS https://getcomposer.org/installer | php
-$ sudo mv composer.phar /usr/local/bin/composer
-```
-_You are not obliged to move the `composer.phar` file to your `/usr/local/bin`, it is however considered easy to have an global installation._
+Before we can install the api library, you need to install a dependency that provides this implementation.
 
-Add the following to your require block in `composer.json` config
+- For `PSR-7: HTTP Message Interface`, for example `nyholm/psr7`.
+- For `PSR-11: Container Interface`, for example `symfony/dependency-injection`.
+- For `PSR-14: Event Dispatcher`, for example `symfony/event-dispatcher`.
+- For `PSR-17: HTTP Factories`, for example `nyholm/psr7`.
+- For `PSR-18: HTTP Client`, for example `php-http/guzzle7-adapter`.
 
-```json
-"php-tmdb/api": "~2.1"
-```
+**I urge you to implement the optional caching implementation**
 
-__If your new to composer and have no clue what I'm talking about__
+- For `PSR-6: Caching Interface`, for example `symfony/cache`.
+- For `PSR-16: Simple Cache`, for example `symfony/cache`.
 
-Just create a file named `composer.json` in your document root:
+_Optional dependencies_
 
-```json
-{
-    "require": {
-        "php-tmdb/api": "~2.1"
-    }
-}
-```
+- For `PSR-3: Logger Interface`, for example `monolog/monolog`, 
 
-Now let's install and pull in the dependencies!
+If the required dependencies above are met, you are ready to install the library.
 
-```
-composer install
+```shell script
+composer require php-tmdb/api:^4
 ```
 
 Include Composer's autoloader:
@@ -88,12 +103,43 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 To use the examples provided, copy the `apikey.php.dist` to `apikey.php` and change the settings.
 
+### New to PSR standards or composer?
+
+If you came here looking to start a fun project to start learning, the above might seem a little daunting.
+
+Don't worry! The documentation here was setup with beginners in mind as well.
+
+We also provide a bunch of examples in the `examples/` folder.
+
+To get started;
+
+```shell script
+composer require php-tmdb/api:dev-release/4.0.0 nyholm/psr7 symfony/dependency-injection symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
+```
+
+This will install the library without issues as all requirements will be met, you will be presented with the following output;
+
+```shell script
+# Dependencies per 30-12-2020
+composer require php-tmdb/api:dev-release/4.0.0 nyholm/psr7 symfony/dependency-injection symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
+Using version ^1.3 for nyholm/psr7
+Using version ^5.2 for symfony/dependency-injection
+Using version ^5.2 for symfony/event-dispatcher
+Using version ^0.1.1 for php-http/guzzle7-adapter
+Using version ^5.2 for symfony/cache
+Using version ^2.2 for monolog/monolog
+./composer.json has been created
+# --- cut ---
+```
+
+Now that we have everything we need installed, let's get started setting up to be able to use the library.
+
 ## Constructing the Client
 
-First we always have to construct the client:
+_If you have chosen different implementations than the examples suggested beforehand, obviously all the upcoming documentation won't match. Adjust accordingly to your dependencies, we will go along with the examples given earlier._
 
 ```php
-$token  = new \Tmdb\ApiToken('your_tmdb_api_key_here');
+$token  = new \Tmdb\Token\Api\ApiToken('your_tmdb_api_key_here');
 $client = new \Tmdb\Client($token);
 ```
 
@@ -262,7 +308,7 @@ _And there are more Collections which provide filters, but you will find those o
 The `GenericCollection` holds any collection of objects (e.g. an collection of movies).
 
 The `ResultCollection` is an extension of the `GenericCollection`, and inherits the response parameters _(page, total_pages, total_results)_ from an result set,
-this can be used to create paginators.
+this can be used to create pagination.
 
 ## Help & Donate
 

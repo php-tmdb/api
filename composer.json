@@ -44,8 +44,7 @@
         "psr/http-client-implementation": "^1.0",
         "psr/http-factory": "^1.0",
         "psr/http-factory-implementation": "^1.0",
-        "psr/http-message": "^1.0",
-        "php-http/cache-plugin": "^1.7"
+        "psr/http-message": "^1.0"
     },
     "require-dev": {
         "nyholm/psr7": "^1.2",
@@ -59,7 +58,8 @@
         "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
         "php-http/guzzle7-adapter": "^0.1",
         "monolog/monolog": ">=1.11.0",
-        "vimeo/psalm": "^4"
+        "vimeo/psalm": "^4",
+        "php-http/cache-plugin": "^1.7"
     },
     "scripts": {
         "test": "vendor/bin/phpunit",

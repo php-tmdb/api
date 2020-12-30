@@ -1,7 +1,7 @@
-Upgrading to 3.0
+Upgrading to 4.0
 ----------------
 
-3.0 brings a massive refreshment to this library, and thus the upgrade path involves a little more than you have
+4.0 brings a massive refreshment to this library, and thus the upgrade path involves a little more than you have
 been used to in the past.
 
 **Important**
@@ -50,11 +50,11 @@ they were moved here and renamed.
 Request and Responses
 ---------------------
 
-The base request and response classes internally are gone.
+The base request and response classes internally are gone, as well as the adapter interfacing that was present.
 
 Where you used to be able to rely on an internal library request / response within events, you will now have to 
 modify your code to adhere to PSR-7. The internals now also rely on an PSR-18 client to be provided,
- the http factores from PSR-17 and request and response messages according to PSR-7.
+ the http factories from PSR-17 and request and response messages according to PSR-7.
  
 Registering the event listeners ( yourself )
 --------------------------------------------
