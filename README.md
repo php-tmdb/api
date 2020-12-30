@@ -19,29 +19,23 @@ Tests run with minimal, normal and development dependencies.
 ## PSR Compliance
 
 We try to leave as many options open to the end users of this library, as such for 4.0 a major
-break has been made to introduce PSR compliance where we can.
+break has been made to introduce PSR compliance where we can ( basically everywhere :-) ).
 
 - [PSR-3: Logger Interface](https://www.php-fig.org/psr/psr-3/)
-    - Access to the logger of your choice through the container in the client.
     - Logs requests and responses
     - Logs caching behavior
 - [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/)
-    - Access to the cache of your choice through the container in the client.
 - [PSR-7: HTTP Message Interface](https://www.php-fig.org/psr/psr-7/)
     - Requests and responses are modify by their interfaces via events.
-- [PSR-11: Container Interface](https://www.php-fig.org/psr/psr-11/)
-    - Allows easier implementation by being able to access pre-built services.
 - _[PSR-12: Extended Coding Style](https://www.php-fig.org/psr/psr-12/)._
     - Work in progress, I'll do my best to finish before `4.1` but there is a lot to review and refactor.
       It would be nice to get contributions going our way helping out with this massive task.
 - [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/)
-    - Access to the event dispatcher of your choice through the container in the client.
     - Register our listeners and events, we handle the rest.
     
     @todo link to anchor below when implementation is solid
     
 - [PSR-16: Simple Cache](https://www.php-fig.org/psr/psr-16/)
-    - @todo
 - [PSR-17: HTTP Factories](https://www.php-fig.org/psr/psr-17/)
     - Bring along the http factories of your choice.
 - [PSR-18: HTTP Client](https://www.php-fig.org/psr/psr-18/)
@@ -61,7 +55,6 @@ Install [composer](https://getcomposer.org/download/).
 Before we can install the api library, you need to install a dependency that provides this implementation.
 
 - For `PSR-7: HTTP Message Interface`, for example `nyholm/psr7`.
-- For `PSR-11: Container Interface`, for example `symfony/dependency-injection`.
 - For `PSR-14: Event Dispatcher`, for example `symfony/event-dispatcher`.
 - For `PSR-17: HTTP Factories`, for example `nyholm/psr7`.
 - For `PSR-18: HTTP Client`, for example `php-http/guzzle7-adapter`.
@@ -100,16 +93,15 @@ We also provide a bunch of examples in the `examples/` folder.
 To get started;
 
 ```shell script
-composer require php-tmdb/api:dev-release/4.0.0 nyholm/psr7 symfony/dependency-injection symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
+composer require php-tmdb/api:^4 nyholm/psr7 symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
 ```
 
 This will install the library without issues as all requirements will be met, you will be presented with the following output;
 
 ```shell script
 # Dependencies per 30-12-2020
-$ composer require php-tmdb/api:^4 nyholm/psr7 symfony/dependency-injection symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
+$ composer require php-tmdb/api:^4 nyholm/psr7 symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
 Using version ^1.3 for nyholm/psr7
-Using version ^5.2 for symfony/dependency-injection
 Using version ^5.2 for symfony/event-dispatcher
 Using version ^0.1.1 for php-http/guzzle7-adapter
 Using version ^5.2 for symfony/cache
