@@ -56,7 +56,7 @@
         "symfony/event-dispatcher": "^5.0,<6",
         "phpstan/phpstan": "^0.12.18",
         "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
-        "php-http/guzzle7-adapter": "^0.1",
+        "guzzlehttp/guzzle": "^7",
         "monolog/monolog": ">=1.11.0",
         "vimeo/psalm": "^4",
         "php-http/cache-plugin": "^1.7"

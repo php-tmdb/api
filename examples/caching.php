@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,14 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Client;
+use Tmdb\Repository\MovieRepository;
+
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
-$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-
+$client = require_once('../setup-client.php');
 // Caching is enabled by default, and makes use of your sys_get_temp_dir()
 // If you'd like to disable it or change the path:
 
@@ -22,14 +26,19 @@ $token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
 //    'cache' => ['enabled' => false]
 //]);
 
-$client = new \Tmdb\Client($token, [
+$client = new Client(
+    $token,
+    [
     'cache' => [
         'enabled' => true,
-        'handler' => new Doctrine\Common\Cache\FilesystemCache(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'my-cache-path')
+        'handler' => new Doctrine\Common\Cache\FilesystemCache(
+            sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'my-cache-path'
+        )
     ]
-]);
+    ]
+);
 
-$repository = new \Tmdb\Repository\MovieRepository($client);
-$movie      = $repository->load(19995);
+$repository = new MovieRepository($client);
+$movie = $repository->load(19995);
 
 var_dump($movie);

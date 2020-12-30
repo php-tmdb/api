@@ -59,7 +59,7 @@ Before we can install the api library, you need to install a set of dependencies
 - For `PSR-7: HTTP Message Interface`, for example `nyholm/psr7`.
 - For `PSR-14: Event Dispatcher`, for example `symfony/event-dispatcher`.
 - For `PSR-17: HTTP Factories`, for example `nyholm/psr7`.
-- For `PSR-18: HTTP Client`, for example `php-http/guzzle7-adapter`.
+- For `PSR-18: HTTP Client`, for example `guzzlehttp/guzzle`.
 
 **I urge you to implement the optional caching implementation**
 
@@ -104,21 +104,7 @@ We also provide a bunch of examples in the `examples/` folder.
 To get started;
 
 ```shell script
-composer require php-tmdb/api:^4 nyholm/psr7 symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
-```
-
-This will install the library without issues as all requirements will be met, you will be presented with the following output;
-
-```shell script
-# Dependencies per 30-12-2020
-$ composer require php-tmdb/api:^4 nyholm/psr7 symfony/event-dispatcher php-http/guzzle7-adapter symfony/cache monolog/monolog
-Using version ^1.3 for nyholm/psr7
-Using version ^5.2 for symfony/event-dispatcher
-Using version ^0.1.1 for php-http/guzzle7-adapter
-Using version ^5.2 for symfony/cache
-Using version ^2.2 for monolog/monolog
-./composer.json has been created
-# --- cut ---
+composer require php-tmdb/api:^4 symfony/event-dispatcher guzzlehttp/guzzle symfony/cache monolog/monolog
 ```
 
 Now that we have everything we need installed, let's get started setting up to be able to use the library.

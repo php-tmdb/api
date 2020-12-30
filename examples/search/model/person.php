@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,16 +11,18 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Model\Search\SearchQuery\PersonSearchQuery;
+use Tmdb\Repository\SearchRepository;
+
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
-$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
-$query = new \Tmdb\Model\Search\SearchQuery\PersonSearchQuery();
+$client = require_once('../../../setup-client.php');
+$query = new PersonSearchQuery();
 $query->page(1);
 
-$repository = new \Tmdb\Repository\SearchRepository($client);
+$repository = new SearchRepository($client);
 
 $find = $repository->searchPerson('bruce lee', $query);
 

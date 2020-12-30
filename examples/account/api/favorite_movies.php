@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,17 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Client;
+use Tmdb\SessionToken;
+use Tmdb\Token\Api\ApiToken;
+
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
-$token = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token, ['session_token' => new \Tmdb\SessionToken(TMDB_SESSION_TOKEN)]);
+$client = require_once('../../../setup-client.php');
+$token = new ApiToken(TMDB_API_KEY);
+$client = new Client($token, ['session_token' => new SessionToken(TMDB_SESSION_TOKEN)]);
 
 $favorite_movies = $client->getAccountApi()->getFavoriteMovies(TMDB_ACCOUNT_ID);
 

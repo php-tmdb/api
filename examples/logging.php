@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,15 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Monolog\Handler\ChromePHPHandler;
+use Tmdb\Client;
+use Tmdb\Repository\MovieRepository;
+
 require_once '../vendor/autoload.php';
 require_once '../apikey.php';
 
-$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-
+$client = require_once('../setup-client.php');
 // A simple change the path of the log
 /*
 $client = new \Tmdb\Client($token, [
@@ -26,13 +31,16 @@ $client = new \Tmdb\Client($token, [
 */
 
 // If you'd like to know what's going on during development, something like this could prove handy.
-$client = new \Tmdb\Client($token, [
+$client = new Client(
+    $token,
+    [
     'log' => [
         'enabled' => true,
-        'handler' => new \Monolog\Handler\ChromePHPHandler() // chrome php extension
-//        'handler' => new \Monolog\Handler\FirePHPHandler() // firefox php extension
+        'handler' => new ChromePHPHandler() // chrome php extension
+    //        'handler' => new \Monolog\Handler\FirePHPHandler() // firefox php extension
     ]
-]);
+    ]
+);
 
-$repository = new \Tmdb\Repository\MovieRepository($client);
-$movie      = $repository->load(19995);
+$repository = new MovieRepository($client);
+$movie = $repository->load(19995);

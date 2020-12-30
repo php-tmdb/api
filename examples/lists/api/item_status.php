@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,13 +11,18 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\SessionToken;
+use Tmdb\Token\Api\ApiToken;
+
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
-$token = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+$client = require_once('../../../setup-client.php');
+$token = new ApiToken(TMDB_API_KEY);
 
-$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
+
+$sessionToken = new SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 
 $remove = $client->getListsApi()->getItemStatus(TMDB_LIST_ID, 49047);

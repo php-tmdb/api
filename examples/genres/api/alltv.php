@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,12 +11,11 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
-$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
+$client = require_once('../../../setup-client.php');
 $genres = $client->getGenresApi()->getTvGenres();
 
 var_dump($genres);

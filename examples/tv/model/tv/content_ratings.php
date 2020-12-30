@@ -12,13 +12,13 @@
  * @version 4.0.0
  */
 
+use Tmdb\Repository\TvRepository;
+
 require_once '../../../../vendor/autoload.php';
 require_once '../../../../apikey.php';
 
-$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
-$repository = new \Tmdb\Repository\TvRepository($client);
-$tvShow     = $repository->getContentRatings(1396);
+$client = require_once('../../../../setup-client.php');
+$repository = new TvRepository($client);
+$tvShow = $repository->getContentRatings(1396);
 
 var_dump($tvShow);

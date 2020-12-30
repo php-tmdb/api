@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,24 +11,25 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Model\Query\ChangesQuery;
+use Tmdb\Repository\ChangesRepository;
+
 require_once '../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
-$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+$client = require_once('../../../setup-client.php');
+$query = new ChangesQuery();
 
-$query = new \Tmdb\Model\Query\ChangesQuery();
-
-$from = new \DateTime('01-01-2014');
-$to   = new \DateTime('02-01-2014');
+$from = new DateTime('01-01-2014');
+$to = new DateTime('02-01-2014');
 
 $query
     ->page(1)
     ->from($from)
-    ->to($to)
-;
+    ->to($to);
 
-$repository = new \Tmdb\Repository\ChangesRepository($client);
+$repository = new ChangesRepository($client);
 $response = $repository->getMovieChanges($query);
 
 var_dump($response);

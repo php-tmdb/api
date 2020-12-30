@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,14 +11,15 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\SessionToken;
+
 ini_set('display_errors', 'On');
 require_once '../../../../vendor/autoload.php';
 require_once '../../../../apikey.php';
 
-$token  = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
-$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
+$client = require_once('../../../../setup-client.php');
+$sessionToken = new SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 
 $result = $client->getTvApi()->rateTvShow(1396, 9.5);
