@@ -28,7 +28,7 @@ with PSR standards, register the listeners, and we handle the rest.
     - Logs requests and responses, [jump to section](#tmdbeventlistenerloggerloghttpmessagelistener).
     - Logs response hydration, [jump to section](#tmdbeventlistenerloggerloghydrationlistener).
     - Logs caching behavior , [jump to section](#todo).
-- [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/), [jump to section](#todo).
+- [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/), [jump to section](#caching).
 - [PSR-7: HTTP Message Interface](https://www.php-fig.org/psr/psr-7/)
     - Requests and responses will be modified via relevant event listeners.
 - _[PSR-12: Extended Coding Style](https://www.php-fig.org/psr/psr-12/)._
@@ -80,8 +80,6 @@ Not only will this make your application more responsive, it also decreases the 
 _Optional dependencies_
 
 - For `PSR-3: Logger Interface`, for example `monolog/monolog`.
-
-@todo
 
 ## Install php-tmdb/api
 

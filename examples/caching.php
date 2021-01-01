@@ -24,4 +24,5 @@ $client = require_once('setup-client-cache-psr6.php');
 $repository = new MovieRepository($client);
 $movie = $repository->load(19995);
 
-var_dump($movie);exit;
+var_dump($movie);
+exit;
