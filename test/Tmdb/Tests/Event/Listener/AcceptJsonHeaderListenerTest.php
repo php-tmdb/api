@@ -19,7 +19,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Event\Listener\Request\AcceptJsonRequestListener;
 
-class AcceptJsonHeaderPluginTest extends ListenerTestCase
+class AcceptJsonHeaderListenerTest extends ListenerTestCase
 {
     /**
      * @test

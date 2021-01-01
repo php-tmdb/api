@@ -18,7 +18,7 @@ use Tmdb\Repository\MovieRepository;
 require_once '../vendor/autoload.php';
 require_once 'apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Client $client **/
 $client = require_once('setup-client-cache-psr6.php');
 
 $repository = new MovieRepository($client);

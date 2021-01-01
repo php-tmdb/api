@@ -1,6 +1,6 @@
 <?php
 
-namespace Tmdb\Tests\Event;
+namespace Tmdb\Tests\Event\Listener;
 
 use Http\Mock\Client;
 use Nyholm\Psr7\Factory\Psr17Factory;
