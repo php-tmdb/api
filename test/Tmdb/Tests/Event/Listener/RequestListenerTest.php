@@ -226,15 +226,3 @@ class RequestListenerTest extends TestCase
         $eventDispatcher->dispatch($event);
     }
 }
-
-class FakeTestListener
-{
-    public function __invoke(RequestEvent $event)
-    {
-        $factory = new Psr17Factory();
-        $response = $factory->createResponse(301, 'hello world');
-        $event->setResponse($response);
-
-        $event->stopPropagation();
-    }
-}
