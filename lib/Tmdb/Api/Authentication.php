@@ -117,6 +117,10 @@ class Authentication extends AbstractApi
     public function getNewSession($requestToken)
     {
         try {
+            // @todo 4.0 / 4.1 verify
+            if (is_array($requestToken)) {
+                $requestToken = $requestToken['request_token'];
+            }
             return $this->get('authentication/session/new', ['request_token' => (string)$requestToken]);
 
             //@codeCoverageIgnoreStart

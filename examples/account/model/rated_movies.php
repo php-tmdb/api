@@ -12,16 +12,20 @@
  * @version 4.0.0
  */
 
-use Tmdb\Client;
+use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Repository\AccountRepository;
-use Tmdb\SessionToken;
 
 require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
-/** @var Tmdb\Client $client **/
-$client = require_once('../../setup-client.php');
-$client = new Client($token, ['session_token' => new SessionToken(TMDB_SESSION_TOKEN)]);
+/** @var Tmdb\Client $client * */
+$client = require_once('../../setup-client-full.php');
+$client->getEventDispatcher()->addListener(
+    BeforeRequestEvent::class,
+    new Tmdb\Event\Listener\Request\SessionTokenRequestListener(
+        new Tmdb\Token\Session\SessionToken(TMDB_SESSION_TOKEN)
+    )
+);
 
 /**
  * @var AccountRepository $accountRepository

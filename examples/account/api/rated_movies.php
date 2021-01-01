@@ -13,16 +13,22 @@
  */
 
 use Tmdb\Client;
-use Tmdb\SessionToken;
+use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Token\Api\ApiToken;
+use Tmdb\Token\Session\SessionToken;
 
 require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Client $client * */
 $client = require_once('../../setup-client.php');
 $token = new ApiToken(TMDB_API_KEY);
-$client = new Client($token, ['session_token' => new SessionToken(TMDB_SESSION_TOKEN)]);
+$client->getEventDispatcher()->addListener(
+    BeforeRequestEvent::class,
+    new Tmdb\Event\Listener\Request\SessionTokenRequestListener(
+        new SessionToken(TMDB_SESSION_TOKEN)
+    )
+);
 
 $rated_movies = $client->getAccountApi()->getRatedMovies(TMDB_ACCOUNT_ID);
 

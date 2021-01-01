@@ -17,7 +17,7 @@ require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
 $client = require_once('../../setup-client.php');
-$requestToken = new \Tmdb\RequestToken(TMDB_REQUEST_TOKEN);
+$requestToken = new \Tmdb\Token\Session\RequestToken(TMDB_REQUEST_TOKEN);
 
 $validatedRequestToken = $client->getAuthenticationApi()->validateRequestTokenWithLogin(
     $requestToken,

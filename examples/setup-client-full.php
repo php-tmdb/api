@@ -99,7 +99,7 @@ $ed->addListener(BeforeRequestEvent::class, $jsonContentTypeListener);
  */
 $requestLoggerListener = new LogHttpMessageListener(
     $logger,
-    new SimpleHttpMessageFormatter()
+    new \Tmdb\Formatter\HttpMessage\FullHttpMessageFormatter()
 );
 $ed->addListener(BeforeRequestEvent::class, $requestLoggerListener);
 $ed->addListener(ResponseEvent::class, $requestLoggerListener);

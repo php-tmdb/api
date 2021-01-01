@@ -16,10 +16,9 @@ require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../setup-client.php');
+$client = require_once('../../setup-client-full.php.php');
 $token = new \Tmdb\Token\Api\ApiToken(TMDB_API_KEY);
 
-
-$requestToken  = new \Tmdb\RequestToken(TMDB_REQUEST_TOKEN);
+$requestToken  = new \Tmdb\Token\Session\RequestToken(TMDB_REQUEST_TOKEN);
 
 $client->getAuthenticationApi()->authenticateRequestToken($requestToken->getToken());

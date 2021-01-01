@@ -93,8 +93,9 @@ class Psr6CachedRequestListener extends RequestListener
         $beforeRequestEvent = new BeforeRequestEvent($event->getRequest());
         $this->eventDispatcher->dispatch($beforeRequestEvent);
 
+        $event->setRequest($beforeRequestEvent->getRequest());
+
         if ($beforeRequestEvent->isPropagationStopped() && $beforeRequestEvent->hasResponse()) {
-            $event->setRequest($beforeRequestEvent->getRequest());
             $event->setResponse($beforeRequestEvent->getResponse());
             return;
         }
