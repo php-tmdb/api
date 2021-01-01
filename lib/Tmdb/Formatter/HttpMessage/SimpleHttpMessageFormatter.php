@@ -7,6 +7,13 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Tmdb\Formatter\HttpMessageFormatterInterface;
 
+/**
+ * Borrowed this from our friends of `php-http/message`.
+ * @see https://github.com/php-http/message/blob/master/src/Formatter/SimpleHttpMessageFormatter.php
+ *
+ * Class SimpleHttpMessageFormatter
+ * @package Tmdb\Formatter\HttpMessage
+ */
 class SimpleHttpMessageFormatter implements HttpMessageFormatterInterface
 {
     /**

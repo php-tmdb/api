@@ -59,7 +59,8 @@
         "php-http/guzzle7-adapter": "^0.1",
         "monolog/monolog": ">=1.11.0",
         "vimeo/psalm": "^4",
-        "php-http/cache-plugin": "^1.7"
+        "php-http/cache-plugin": "^1.7",
+        "wmde/psr-log-test-doubles": "^2"
     },
     "scripts": {
         "test": "vendor/bin/phpunit",

@@ -21,15 +21,15 @@ Tests run with minimal, normal and development dependencies.
 We try to leave as many options open to the end users of this library, as such for 4.0 a major
 break has been made to introduce PSR compliance where we can ( basically everywhere :-) ).
 
-- [PSR-3: Logger Interface](https://www.php-fig.org/psr/psr-3/), [go to relevant documentation section](#todo).
-    - Logs TMDB API exceptions
-    - Logs PSR-18 client exceptions
-    - Logs requests and responses
-    - Logs response hydration
-    - Logs caching behavior 
+- [PSR-3: Logger Interface](https://www.php-fig.org/psr/psr-3/), [go to relevant documentation section](#logging).
+    - Logs TMDB API exceptions, [go to relevant documentation section](#tmdbeventlistenerloggerlogapierrorlistener).
+    - Logs PSR-18 client exceptions, [go to relevant documentation section](#tmdbeventlistenerloggerloghttpmessagelistener).
+    - Logs requests and responses, [go to relevant documentation section](#tmdbeventlistenerloggerloghttpmessagelistener).
+    - Logs response hydration, [go to relevant documentation section](#tmdbeventlistenerloggerloghydrationlistener).
+    - Logs caching behavior , [go to relevant documentation section](#todo).
 - [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/), [go to relevant documentation section](#todo).
 - [PSR-7: HTTP Message Interface](https://www.php-fig.org/psr/psr-7/)
-    - Requests and responses are modify by their interfaces via events.
+    - Requests and responses will be modified via relevant event listeners.
 - _[PSR-12: Extended Coding Style](https://www.php-fig.org/psr/psr-12/)._
     - Work in progress, I'll do my best to finish before `4.1` but there is a lot to review and refactor.
       It would be nice to get contributions going our way helping out with this massive task.
@@ -140,7 +140,7 @@ If you want to provide any other query arguments.
 use Tmdb\Client;
 
 $client = new Client();
-$movie = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
+$movie = $client->getMoviesApi()->getMovie(550, ['language' => 'en']);
 ```
 
 For all further calls just review the unit tests or examples provided, or the API classes themselves.
@@ -170,7 +170,7 @@ use Tmdb\Client;
 
 $client = new Client();
 $repository = new MovieRepository($client);
-$topRated = $repository->getTopRated(array('page' => 3));
+$topRated = $repository->getTopRated(['page' => 3]);
 // or
 $popular = $repository->getPopular();
 ```
@@ -180,6 +180,14 @@ For all further calls just review the unit tests or examples provided, or the mo
 ## Event Dispatching
 
 We (can) dispatch the following events inside the library, which by using event listeners you could modify some behavior.
+
+### HTTP Client exceptions
+- `Tmdb\Event\HttpClientExceptionEvent`
+  - Allows to still set a successful response if the error can be corrected, by calling `$event->isPropagated()` in your listener.
+
+### TMDB API exceptions 
+- `Tmdb\Event\TmdbExceptionEvent`
+  - Allows to still set a successful response if the error can be corrected, by calling `$event->isPropagated()` in your listener.
 
 ### Hydration
 
@@ -237,6 +245,8 @@ _If you re-enable this functionality without specifying any models, all hydratio
 We have a small couple of optional event listeners that you could add to provide additional functionality.
 
 ### Caching
+
+*TODO*
 
 ### Logging
 
