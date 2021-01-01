@@ -14,6 +14,7 @@
 
 namespace Tmdb\HttpClient;
 
+use InvalidArgumentException;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -22,6 +23,8 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
+use RuntimeException;
+use Tmdb\Event\Listener\RequestListener;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Token\Session\GuestSessionToken;
 use Tmdb\Token\Session\SessionToken;
@@ -36,11 +39,6 @@ class HttpClient
      * @var array
      */
     protected $options;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
 
     /**
      * @var ResponseInterface
@@ -100,11 +98,18 @@ class HttpClient
             return $this->lastResponse;
         }
 
-        return [];
+        throw new RuntimeException(
+            sprintf(
+                'Expected an instance of a "%s", have you configured the event dispatcher for listener "%s" correctly for handling the "%s" event?',
+                ResponseInterface::class,
+                RequestListener::class,
+                RequestEvent::class
+            )
+        );
     }
 
     /**
-     * Create the request object
+     * Create the PSR-7 request object by making use of the PSR-17 factories.
      *
      * @param string $path
      * @param string $method
@@ -113,8 +118,13 @@ class HttpClient
      * @param string|null $body
      * @return RequestInterface
      */
-    private function createRequest($path, string $method, array $parameters = [], array $headers = [], $body = null)
-    {
+    private function createRequest(
+        string $path,
+        string $method,
+        array $parameters = [],
+        array $headers = [],
+        $body = null
+    ) {
         if (!empty($parameters)) {
             ksort($parameters);
         }
@@ -128,16 +138,22 @@ class HttpClient
             $this->getPsr17UriFactory()->createUri($uri)
         );
 
+        if (!empty($headers)) {
+            ksort($headers);
+        }
+
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
         if ($body) {
             if (in_array($method, $this->getHttpMethodsWithoutBody())) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Trying to create a request with body with invalid method "%s", it should not contain a body.',
-                    $method
-                ));
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Trying to create a request with body with invalid method "%s", it should not contain a body.',
+                        $method
+                    )
+                );
             }
 
             $stream = $this->getPsr17StreamFactory()->createStream($body);
@@ -145,6 +161,38 @@ class HttpClient
         }
 
         return $this->lastRequest = $request;
+    }
+
+    /**
+     * @return RequestFactoryInterface
+     */
+    public function getPsr17RequestFactory(): RequestFactoryInterface
+    {
+        return $this->options['http']['request_factory'];
+    }
+
+    /**
+     * @return UriFactoryInterface
+     */
+    public function getPsr17UriFactory(): UriFactoryInterface
+    {
+        return $this->options['http']['uri_factory'];
+    }
+
+    /**
+     * @return StreamFactoryInterface
+     */
+    public function getPsr17StreamFactory(): StreamFactoryInterface
+    {
+        return $this->options['http']['stream_factory'];
+    }
+
+    /**
+     * @return EventDispatcherInterface
+     */
+    public function getPsr14EventDispatcher(): EventDispatcherInterface
+    {
+        return $this->options['event_dispatcher']['adapter'];
     }
 
     /**
@@ -164,7 +212,7 @@ class HttpClient
      * @param array $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(array $options): HttpClient
     {
         $this->options = $options;
 
@@ -174,7 +222,7 @@ class HttpClient
     /**
      * @return EventDispatcherInterface
      */
-    public function getEventDispatcher()
+    public function getEventDispatcher(): EventDispatcherInterface
     {
         return $this->getPsr14EventDispatcher();
     }
@@ -196,27 +244,11 @@ class HttpClient
     }
 
     /**
-     * @return EventDispatcherInterface
-     */
-    public function getPsr14EventDispatcher(): EventDispatcherInterface
-    {
-        return $this->options['event_dispatcher']['adapter'];
-    }
-
-    /**
      * @return ClientInterface
      */
     public function getPsr18Client(): ClientInterface
     {
         return $this->options['http']['client'];
-    }
-
-    /**
-     * @return RequestFactoryInterface
-     */
-    public function getPsr17RequestFactory(): RequestFactoryInterface
-    {
-        return $this->options['http']['request_factory'];
     }
 
     /**
@@ -228,21 +260,8 @@ class HttpClient
     }
 
     /**
-     * @return StreamFactoryInterface
+     * @return string[]
      */
-    public function getPsr17StreamFactory(): StreamFactoryInterface
-    {
-        return $this->options['http']['stream_factory'];
-    }
-
-    /**
-     * @return UriFactoryInterface
-     */
-    public function getPsr17UriFactory(): UriFactoryInterface
-    {
-        return $this->options['http']['uri_factory'];
-    }
-
     private function getHttpMethodsWithoutBody(): array
     {
         return [

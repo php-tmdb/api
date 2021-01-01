@@ -12,36 +12,57 @@
  * @version 4.0.0
  */
 
-use Monolog\Handler\ChromePHPHandler;
-use Tmdb\Client;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Psr\Log\LogLevel;
+use Tmdb\Event\BeforeHydrationEvent;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\HttpClientExceptionEvent;
+use Tmdb\Event\Listener\Logger\LogApiErrorListener;
+use Tmdb\Event\Listener\Logger\LogHttpMessageListener;
+use Tmdb\Event\Listener\Logger\LogHydrationListener;
+use Tmdb\Event\ResponseEvent;
+use Tmdb\Event\TmdbExceptionEvent;
+use Tmdb\Formatter\HttpMessage\SimpleHttpMessageFormatter;
+use Tmdb\Formatter\Hydration\SimpleHydrationFormatter;
+use Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter;
 use Tmdb\Repository\MovieRepository;
 
 require_once '../vendor/autoload.php';
 require_once 'apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Tmdb\Client $client * */
 $client = require_once('setup-client.php');
-// A simple change the path of the log
-/*
-$client = new \Tmdb\Client($token, [
-    'log' => [
-        'enabled' => true,
-        'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'application-api.log'
-    ]
-]);
-*/
+$ed = $client->getEventDispatcher();
 
-// If you'd like to know what's going on during development, something like this could prove handy.
-$client = new Client(
-    $token,
+$logger = new Logger(
+    'php-tmdb',
     [
-    'log' => [
-        'enabled' => true,
-        'handler' => new ChromePHPHandler() // chrome php extension
-    //        'handler' => new \Monolog\Handler\FirePHPHandler() // firefox php extension
-    ]
+        new StreamHandler(__DIR__ . '/php-tmdb.log', LogLevel::DEBUG)
     ]
 );
+
+// Optional for logging, you can also omit events you do not wish to be logged.
+$requestLoggerListener = new LogHttpMessageListener(
+    $logger,
+    new SimpleHttpMessageFormatter()
+);
+$hydrationLoggerListener = new LogHydrationListener(
+    $logger,
+    new SimpleHydrationFormatter(),
+    true // set to true if you wish to add the json data passed for each hydration, do not use this on production
+);
+$apiErrorListener = new LogApiErrorListener(
+    $logger,
+    new SimpleTmdbApiExceptionFormatter()
+);
+
+$ed->addListener(BeforeRequestEvent::class, $requestLoggerListener);
+$ed->addListener(ResponseEvent::class, $requestLoggerListener);
+$ed->addListener(HttpClientExceptionEvent::class, $requestLoggerListener);
+
+$ed->addListener(TmdbExceptionEvent::class, $apiErrorListener);
+$ed->addListener(BeforeHydrationEvent::class, $hydrationLoggerListener);
 
 $repository = new MovieRepository($client);
 $movie = $repository->load(19995);

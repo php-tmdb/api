@@ -16,6 +16,9 @@ namespace Tmdb\Tests;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\Listener\RequestListener;
+use Tmdb\Event\RequestEvent;
 use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
@@ -90,6 +93,16 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $options['http']['client']->setDefaultResponse($response);
 
         $client = new Client($options);
+
+        $requestListener = new RequestListener($client->getHttpClient(), $this->eventDispatcher);
+        $apiTokenListener = new ApiTokenRequestListener($options['api_token']);
+        $acceptJsonListener = new AcceptJsonRequestListener();
+        $jsonContentTypeListener = new ContentTypeJsonRequestListener();
+
+        $this->eventDispatcher->addListener(BeforeRequestEvent::class, $apiTokenListener);
+        $this->eventDispatcher->addListener(BeforeRequestEvent::class, $acceptJsonListener);
+        $this->eventDispatcher->addListener(BeforeRequestEvent::class, $jsonContentTypeListener);
+        $this->eventDispatcher->addListener(RequestEvent::class, $requestListener);
 
         /**
          * We do not need api keys being added to the requests here.

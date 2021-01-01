@@ -30,12 +30,6 @@ $token = defined('TMDB_BEARER_TOKEN') && TMDB_BEARER_TOKEN !== 'TMDB_BEARER_TOKE
     new ApiToken(TMDB_API_KEY);
 
 $ed = new Symfony\Component\EventDispatcher\EventDispatcher();
-$logger = new Logger(
-    'php-tmdb',
-    [
-        new StreamHandler(__DIR__ . '/php-tmdb.log', LogLevel::DEBUG)
-    ]
-);
 
 $client = new Client(
     [
@@ -57,35 +51,9 @@ $client = new Client(
         'hydration' => [
             'event_listener_handles_hydration' => false,
             'only_for_specified_models' => []
-        ],
-        'cache' => [
-            'enabled' => false,
-            'adapter' => null
-        ],
-        'log' => [
-            'enabled' => true,
-            'adapter' => $logger
         ]
     ]
 );
-
-// Optional for logging, you can also omit events you do not wish to be logged.
-$requestLoggerListener = new LogHttpMessageListener(
-    $logger,
-    new SimpleHttpMessageFormatter()
-);
-$hydrationLoggerListener = new LogHydrationListener(
-    $logger,
-    new SimpleHydrationFormatter(),
-    true // set to true if you wish to add the json data passed for each hydration, do not use this on production
-);
-$apiErrorListener = new LogApiErrorListener(
-    $logger,
-    new SimpleTmdbApiExceptionFormatter()
-);
-
-// Optional for caching, highly recommend usage of caching.
-// @todo
 
 // Required
 $requestListener = new RequestListener($client->getHttpClient(), $ed);
@@ -102,13 +70,5 @@ $ed->addListener(BeforeRequestEvent::class, $jsonContentTypeListener);
 $ed->addListener(BeforeRequestEvent::class, $adultFilterListener);
 $ed->addListener(BeforeRequestEvent::class, $languageFilterListener);
 $ed->addListener(BeforeRequestEvent::class, $regionFilterListener);
-
-// Logging
-$ed->addListener(BeforeRequestEvent::class, $requestLoggerListener);
-$ed->addListener(ResponseEvent::class, $requestLoggerListener);
-$ed->addListener(HttpClientExceptionEvent::class, $requestLoggerListener);
-
-$ed->addListener(TmdbExceptionEvent::class, $apiErrorListener);
-$ed->addListener(BeforeHydrationEvent::class, $hydrationLoggerListener);
 
 return $client;

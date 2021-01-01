@@ -12,17 +12,22 @@
  * @version 4.0.0
  */
 
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\Listener\Request\AdultFilterRequestListener;
+use Tmdb\Repository\MovieRepository;
+
 require_once '../vendor/autoload.php';
 require_once 'apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Tmdb\Client $client * */
 $client = require_once('setup-client.php');
 
 /** @var Symfony\Component\EventDispatcher\EventDispatcher $ed */
 $ed = $client->getEventDispatcher();
 $ed->addListener(
-    \Tmdb\Event\BeforeRequestEvent::class,
-    new \Tmdb\Event\Listener\Request\AdultFilterRequestListener(true)
+    BeforeRequestEvent::class,
+    new AdultFilterRequestListener(true)
 );
 
-// do request
+$repository = new MovieRepository($client);
+$movie = $repository->load(19995);

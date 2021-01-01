@@ -153,61 +153,11 @@ class ClientTest extends TestCase
         $this->assertEquals('https://api.themoviedb.org/3', $options['base_uri']);
 
         $options['secure'] = false;
-        $client->setOptions($options);
+        $client = new Client($options);
 
         $options = $client->getOptions();
 
         $this->assertEquals('http://api.themoviedb.org/3', $options['base_uri']);
-    }
-
-    /**
-     * @todo
-     */
-    public function shouldBeAbleSetCache()
-    {
-        $path = '/tmp/php-tmdb-api';
-
-        $this->client->setCaching(true, $path);
-
-        $this->assertEquals(true, $this->client->getCacheEnabled());
-        $this->assertEquals($path, $this->client->getCachePath());
-    }
-
-    /**
-     * @todo
-     */
-    public function shouldBeAbleSetLogging()
-    {
-        $path = '/tmp/php-tmdb-api.log';
-
-        $this->client->setLogging(true, $path);
-
-        $this->assertEquals(true, $this->client->getLogEnabled());
-        $this->assertEquals($path, $this->client->getLogPath());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldBeAbleSetOptions()
-    {
-        $expectedToken = 'xyz';
-        $expectedSessionToken = 'qwertyuiop';
-        $this->client->setOptions(
-            array(
-                'api_token' => new ApiToken($expectedToken),
-                'session_token' => new SessionToken($expectedSessionToken),
-                'event_dispatcher' => [
-                    'adapter' => new EventDispatcher()
-                ]
-            )
-        );
-
-        $token = $this->client->getOption('api_token');
-        $sessionToken = $this->client->getOption('session_token');
-
-        $this->assertEquals($expectedToken, $token);
-        $this->assertEquals($expectedSessionToken, $sessionToken);
     }
 
     /**

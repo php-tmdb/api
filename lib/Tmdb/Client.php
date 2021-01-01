@@ -85,26 +85,6 @@ class Client
         }
 
         $this->configureOptions($options);
-
-        $this->httpClient = new HttpClient([
-            'http' => $this->options['http'],
-            'event_dispatcher' => $this->options['event_dispatcher'],
-            'base_uri' => $this->options['base_uri'],
-            'hydration' => $this->options['hydration']
-        ]);
-
-        $ed = $this->getEventDispatcher();
-        $requestListener = new RequestListener($this->getHttpClient(), $ed);
-        $apiTokenListener = new ApiTokenRequestListener($this->getToken());
-        $acceptJsonListener = new AcceptJsonRequestListener();
-        $jsonContentTypeListener = new ContentTypeJsonRequestListener();
-        $hydrationListener = new HydrationListener($ed);
-
-        $ed->addListener(BeforeRequestEvent::class, $apiTokenListener);
-        $ed->addListener(BeforeRequestEvent::class, $acceptJsonListener);
-        $ed->addListener(BeforeRequestEvent::class, $jsonContentTypeListener);
-        $ed->addListener(RequestEvent::class, $requestListener);
-        $ed->addListener(HydrationEvent::class, $hydrationListener);
     }
 
     /**
@@ -166,27 +146,10 @@ class Client
                             'adapter' => null
                         ]
                     );
+
                     $optionsResolver->setRequired(['adapter']);
                     $optionsResolver->setAllowedTypes('adapter', [EventDispatcherInterface::class]);
-                },
-                'cache' => function (OptionsResolver $optionsResolver) {
-                    $optionsResolver->setDefaults(
-                        [
-                            'enabled' => false,
-                            'adapter' => null,
-                        ]
-                    );
-            //                $optionsResolver->setAllowedTypes('adapter', [CacheInterface::class, 'null']);
-                },
-                'log' => function (OptionsResolver $optionsResolver) {
-                    $optionsResolver->setDefaults(
-                        [
-                            'enabled' => false,
-                            'adapter' => null
-                        ]
-                    );
-            //                $optionsResolver->setAllowedTypes('adapter', [LoggerInterface::class, 'null']);
-                },
+                }
             ]
         );
 
@@ -197,8 +160,6 @@ class Client
                 'secure',
                 'http',
                 'event_dispatcher',
-                'cache',
-                'log'
             ]
         );
 
@@ -209,8 +170,6 @@ class Client
         $resolver->setAllowedTypes('secure', ['bool']);
         $resolver->setAllowedTypes('http', ['array']);
         $resolver->setAllowedTypes('event_dispatcher', ['array']);
-        $resolver->setAllowedTypes('cache', ['array']);
-        $resolver->setAllowedTypes('log', ['array']);
 
         // @todo 4.1 fix smelly stuff
         $resolver->setAllowedTypes('session_token', [
@@ -220,9 +179,16 @@ class Client
             'null'
         ]);
 
-        $this->options = $resolver->resolve($options);
+        $this->options = $this->postResolve(
+            $resolver->resolve($options)
+        );
 
-        $this->postResolve($options);
+        $this->httpClient = new HttpClient([
+           'http' => $this->options['http'],
+           'event_dispatcher' => $this->options['event_dispatcher'],
+           'base_uri' => $this->options['base_uri'],
+           'hydration' => $this->options['hydration']
+        ]);
 
         return $this->options;
     }
@@ -231,35 +197,36 @@ class Client
      * Post resolve
      *
      * @param array $options
-     *
-     * @return void
+     * @return array
      */
-    protected function postResolve(array $options = []): void
+    protected function postResolve(array $options = []): array
     {
-        $this->options['http']['client'] = $this->options['http']['client'] ??
+        $options['http']['client'] = $options['http']['client'] ??
             Psr18ClientDiscovery::find();
-        $this->options['http']['request_factory'] = $this->options['http']['request_factory'] ??
+        $options['http']['request_factory'] = $options['http']['request_factory'] ??
             Psr17FactoryDiscovery::findRequestFactory();
-        $this->options['http']['response_factory'] = $this->options['http']['response_factory'] ??
+        $options['http']['response_factory'] = $options['http']['response_factory'] ??
             Psr17FactoryDiscovery::findResponseFactory();
-        $this->options['http']['stream_factory'] = $this->options['http']['stream_factory'] ??
+        $options['http']['stream_factory'] = $options['http']['stream_factory'] ??
             Psr17FactoryDiscovery::findStreamFactory();
-        $this->options['http']['uri_factory'] = $this->options['http']['uri_factory'] ??
+        $options['http']['uri_factory'] = $options['http']['uri_factory'] ??
             Psr17FactoryDiscovery::findUriFactory();
 
         // Automatically enable event listener acceptance if the end-user forgot to enable this.
         if (
-            !empty($this->options['hydration']['only_for_specified_models']) &&
-            !$this->options['hydration']['event_listener_handles_hydration']
+            !empty($options['hydration']['only_for_specified_models']) &&
+            !$options['hydration']['event_listener_handles_hydration']
         ) {
-            $this->options['hydration']['event_listener_handles_hydration'] = true;
+            $options['hydration']['event_listener_handles_hydration'] = true;
         }
 
-        $this->options['base_uri'] = sprintf(
+        $options['base_uri'] = sprintf(
             '%s://%s',
-            $this->options['secure'] ? self::SCHEME_SECURE : self::SCHEME_INSECURE,
-            $this->options['host']
+            $options['secure'] ? self::SCHEME_SECURE : self::SCHEME_INSECURE,
+            $options['host']
         );
+
+        return $options;
     }
 
     /**
@@ -267,7 +234,7 @@ class Client
      *
      * @return EventDispatcherInterface
      */
-    public function getEventDispatcher()
+    public function getEventDispatcher(): EventDispatcherInterface
     {
         return $this->options['event_dispatcher']['adapter'];
     }
@@ -275,29 +242,9 @@ class Client
     /**
      * @return HttpClient
      */
-    public function getHttpClient()
+    public function getHttpClient(): HttpClient
     {
         return $this->httpClient;
-    }
-
-    /**
-     * @param HttpClient $httpClient
-     *
-     * @return void
-     */
-    public function setHttpClient(HttpClient $httpClient): void
-    {
-        $this->httpClient = $httpClient;
-    }
-
-    /**
-     * Get the API token
-     *
-     * @return ApiToken
-     */
-    public function getToken()
-    {
-        return $this->options['api_token'];
     }
 
     /**
@@ -309,43 +256,9 @@ class Client
     }
 
     /**
-     * @param array $options
-     *
-     * @return void
+     * @return SessionToken|null
      */
-    public function setOptions(array $options = []): void
-    {
-        $this->options = $this->configureOptions($options);
-    }
-
-    /**
-     * @param SessionToken $sessionToken
-     * @return $this
-     */
-    public function setSessionToken(SessionToken $sessionToken)
-    {
-        $this->options['session_token'] = $sessionToken;
-        $this->reconstructHttpClient();
-
-        return $this;
-    }
-
-    /**
-     * Reconstruct the HTTP Client
-     *
-     * @return void
-     */
-    protected function reconstructHttpClient(): void
-    {
-        if (null !== $this->getHttpClient()) {
-            $this->constructHttpClient();
-        }
-    }
-
-    /**
-     * @return SessionToken
-     */
-    public function getSessionToken()
+    public function getSessionToken(): ?SessionToken
     {
         return $this->options['session_token'];
     }
@@ -353,97 +266,10 @@ class Client
     /**
      * @param string $key
      *
-     * @return array
+     * @return array|mixed
      */
-    public function getOption($key)
+    public function getOption(string $key)
     {
         return array_key_exists($key, $this->options) ? $this->options[$key] : null;
-    }
-
-    /**
-     * Configure caching
-     *
-     * @param array $options
-     * @return array
-     */
-    protected function configureCacheOptions(array $options = [])
-    {
-        $resolver = new OptionsResolver();
-
-        $resolver->setDefaults(
-            [
-                'enabled' => true,
-                'handler' => null,
-                'subscriber' => null,
-                'path' => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api',
-            ]
-        );
-
-        $resolver->setRequired(
-            [
-                'enabled',
-                'handler',
-            ]
-        );
-
-        $resolver->setAllowedTypes('enabled', ['bool']);
-        $resolver->setAllowedTypes('handler', ['object', 'null']);
-        $resolver->setAllowedTypes('subscriber', ['object', 'null']);
-        $resolver->setAllowedTypes('path', ['string', 'null']);
-
-        $options = $resolver->resolve(array_key_exists('cache', $options) ? $options['cache'] : []);
-
-        if ($options['enabled'] && !$options['handler']) {
-            // @todo implement psr-16
-//            $options['handler'] = new FilesystemCache($options['path']);
-        }
-
-        return $options;
-    }
-
-    /**
-     * Configure logging
-     *
-     * @param array $options
-     * @return array
-     */
-    protected function configureLogOptions(array $options = [])
-    {
-        $resolver = new OptionsResolver();
-
-        $resolver->setDefaults(
-            [
-                'enabled' => false,
-                'level' => LogLevel::DEBUG,
-                'handler' => null,
-                'subscriber' => null,
-                'path' => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log',
-            ]
-        );
-
-        $resolver->setRequired(
-            [
-                'enabled',
-                'level',
-                'handler',
-            ]
-        );
-
-        $resolver->setAllowedTypes('enabled', ['bool']);
-        $resolver->setAllowedTypes('level', ['string']);
-        $resolver->setAllowedTypes('handler', ['object', 'null']);
-        $resolver->setAllowedTypes('path', ['string', 'null']);
-        $resolver->setAllowedTypes('subscriber', ['object', 'null']);
-
-        $options = $resolver->resolve(array_key_exists('log', $options) ? $options['log'] : []);
-
-        if ($options['enabled'] && !$options['handler']) {
-            $options['handler'] = new StreamHandler(
-                $options['path'],
-                $options['level']
-            );
-        }
-
-        return $options;
     }
 }
