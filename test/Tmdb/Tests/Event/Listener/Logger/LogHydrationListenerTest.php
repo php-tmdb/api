@@ -58,7 +58,7 @@ class LogHydrationListenerTest extends LoggerListenerTestCase
         $messages = $logger->getLogCalls()->getMessages();
         $this->assertCount(1, $logger->getLogCalls());
         $this->assertSame(['Hydrating model "Tmdb\Model\Movie".'], $messages);
-        $this->assertSame(['id' => 123], $logger->getFirstLogCall()->getContext()['data']);
-        $this->assertEquals(10, $logger->getFirstLogCall()->getContext()['data_size']);
+        $this->assertSame(['id' => 123], $logger->getLogCalls()->getFirstCall()->getContext()['data']);
+        $this->assertEquals(10, $logger->getLogCalls()->getFirstCall()->getContext()['data_size']);
     }
 }
