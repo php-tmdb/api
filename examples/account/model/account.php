@@ -17,10 +17,10 @@ use Tmdb\Repository\AccountRepository;
 use Tmdb\SessionToken;
 
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../../setup-client.php');
+$client = require_once('../../setup-client.php');
 $client = new Client($token, ['session_token' => new SessionToken(TMDB_SESSION_TOKEN)]);
 
 $accountRepository = new AccountRepository($client);

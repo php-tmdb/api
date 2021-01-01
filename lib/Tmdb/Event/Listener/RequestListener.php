@@ -17,10 +17,13 @@ namespace Tmdb\Event\Listener;
 use Exception;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\HttpClientExceptionEvent;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\ResponseEvent;
+use Tmdb\Event\TmdbExceptionEvent;
 use Tmdb\Exception\Factory\ResponseExceptionFactory;
 use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\HttpClient;
@@ -76,17 +79,25 @@ class RequestListener
             return;
         }
 
-        $response = $this->sendRequest($beforeRequestEvent);
-
-        if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 600) {
-            throw $this->responseExceptionFactory->createTmdbApiException(
-                $beforeRequestEvent->getRequest(),
-                $response
-            );
+        try {
+            $response = $this->sendRequest($beforeRequestEvent);
+        } catch (ClientExceptionInterface $e) {
+            $response = $this->handleClientException($e, $beforeRequestEvent->getRequest());
         }
 
-        $event->setRequest($beforeRequestEvent->getRequest());
-        $event->setResponse($response);
+        try {
+            if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 600) {
+                throw $this->responseExceptionFactory->createTmdbApiException(
+                    $beforeRequestEvent->getRequest(),
+                    $response
+                );
+            }
+
+            $event->setRequest($beforeRequestEvent->getRequest());
+            $event->setResponse($response);
+        } catch (TmdbApiException $e) {
+            $response = $this->handleTmdbApiException($e);
+        }
 
         // Possibility to cache the request
         $this->eventDispatcher->dispatch(new ResponseEvent($response, $event->getRequest()));
@@ -103,5 +114,46 @@ class RequestListener
     public function sendRequest(RequestEvent $event): ResponseInterface
     {
         return $this->httpClient->getPsr18Client()->sendRequest($event->getRequest());
+    }
+
+    /**
+     * @param ClientExceptionInterface $e
+     * @param RequestInterface $request
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     */
+    protected function handleClientException(
+        ClientExceptionInterface $e,
+        RequestInterface $request
+    ): ResponseInterface {
+        // In the event of failures, you can recover certain exceptions.
+        $exceptionEvent = new HttpClientExceptionEvent($e, $request);
+
+        $this->eventDispatcher->dispatch($exceptionEvent);
+
+        if (!$exceptionEvent->isPropagationStopped() || !$exceptionEvent->hasResponse()) {
+            throw $e;
+        }
+
+        return $exceptionEvent->getResponse();
+    }
+
+    /**
+     * @param TmdbApiException $e
+     * @return ResponseInterface
+     * @throws TmdbApiException
+     */
+    protected function handleTmdbApiException(TmdbApiException $e): ResponseInterface
+    {
+        // In the event of failures, you can recover certain exceptions.
+        $exceptionEvent = new TmdbExceptionEvent($e);
+
+        $this->eventDispatcher->dispatch($exceptionEvent);
+
+        if (!$exceptionEvent->isPropagationStopped() || !$exceptionEvent->hasResponse()) {
+            throw $e;
+        }
+
+        return $exceptionEvent->getResponse();
     }
 }

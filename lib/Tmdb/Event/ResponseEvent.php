@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 use Tmdb\HttpClient\Request;
 
-class ResponseEvent
+class ResponseEvent implements LoggableHttpEventInterface
 {
     /**
      * @var RequestInterface

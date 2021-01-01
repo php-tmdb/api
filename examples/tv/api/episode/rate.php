@@ -16,10 +16,10 @@ use Tmdb\SessionToken;
 
 ini_set('display_errors', 'On');
 require_once '../../../../vendor/autoload.php';
-require_once '../../../../apikey.php';
+require_once '../../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../../../setup-client.php');
+$client = require_once('../../../setup-client.php');
 $sessionToken = new SessionToken(TMDB_SESSION_TOKEN);
 $client->setSessionToken($sessionToken);
 

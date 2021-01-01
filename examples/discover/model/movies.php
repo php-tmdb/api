@@ -16,10 +16,10 @@ use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
 use Tmdb\Repository\DiscoverRepository;
 
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../../setup-client.php');
+$client = require_once('../../setup-client.php');
 $query = new DiscoverMoviesQuery();
 
 $query

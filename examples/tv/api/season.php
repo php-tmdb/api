@@ -13,10 +13,10 @@
  */
 
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../../setup-client.php');
+$client = require_once('../../setup-client.php');
 $season = $client->getTvSeasonApi()->getSeason(1396, 2);
 
 var_dump($season);

@@ -247,8 +247,11 @@ class Client
         $this->options['http']['uri_factory'] = $this->options['http']['uri_factory'] ??
             Psr17FactoryDiscovery::findUriFactory();
 
-        if (!empty($this->options['hydration']['only_for_specified_models']) &&
-            !$this->options['hydration']['event_listener_handles_hydration']) {
+        // Automatically enable event listener acceptance if the end-user forgot to enable this.
+        if (
+            !empty($this->options['hydration']['only_for_specified_models']) &&
+            !$this->options['hydration']['event_listener_handles_hydration']
+        ) {
             $this->options['hydration']['event_listener_handles_hydration'] = true;
         }
 
@@ -257,15 +260,6 @@ class Client
             $this->options['secure'] ? self::SCHEME_SECURE : self::SCHEME_INSECURE,
             $this->options['host']
         );
-
-//        if (!$this->options['adapter']) {
-//            $this->options['adapter'] = new GuzzleAdapter(
-//                new \GuzzleHttp\Client()
-//            );
-//        }
-//
-//        $this->options['cache'] = $this->configureCacheOptions($options);
-//        $this->options['log'] = $this->configureLogOptions($options);
     }
 
     /**
@@ -328,7 +322,7 @@ class Client
      * @param SessionToken $sessionToken
      * @return $this
      */
-    public function setSessionToken($sessionToken)
+    public function setSessionToken(SessionToken $sessionToken)
     {
         $this->options['session_token'] = $sessionToken;
         $this->reconstructHttpClient();

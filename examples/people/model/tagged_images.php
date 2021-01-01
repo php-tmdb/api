@@ -17,10 +17,10 @@ use Tmdb\Repository\PeopleRepository;
 ini_set('display_errors', 'On');
 
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../../setup-client.php');
+$client = require_once('../../setup-client.php');
 $repository = new PeopleRepository($client);
 $person = $repository->getTaggedImages(287);
 

@@ -16,10 +16,10 @@ use Tmdb\Model\Search\SearchQuery\CompanySearchQuery;
 use Tmdb\Repository\SearchRepository;
 
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../../setup-client.php');
+$client = require_once('../../setup-client.php');
 $query = new CompanySearchQuery();
 $query->page(1);
 

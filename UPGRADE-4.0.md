@@ -32,18 +32,13 @@ The good news
 Just to give you a little sense of relief, besides adding the necessary type hints, the user API for the `Tmdb/Api` calls and `Tmdb/Repository` namespaces will **not** change.
 If you have custom API classes or Repository classes these will need to be adjusted.
 
-Defaults
---------
-
-We used to always bring sensible defaults, **from now it is your responsibility to register a caching provider**.
-
-As much I'd love to 
-
 Plugins were really just event listeners
 ----------------------------------------
 
 Review the new listeners in `lib/Tmdb/Event/Listener`, if you made use of an extra plugin before, 
 they were moved here and renamed.
+
+With this release also the new `Tmdb/Event/Listener/RegionFilterRequestListener` was introduced.
 
 @todo since library isn't fully done, can't write much yet about PSR-14
 
@@ -63,4 +58,31 @@ _we could create a callback function the user gives, and call that to register e
 
 - ExampleEvent::class => new ExampleListener($deps)
  
+Hydration Events
+----------------
 
+The hydration events caused a significant overhead, as such it has been disabled by default.
+
+To re-enable this functionality, we recommend only using it for models you need to modify data for;
+
+```php
+$client = new \Tmdb\Client([
+    'hydration' => [
+        'event_listener_handles_hydration' => true,
+        'only_for_specified_models' => [
+            Tmdb\Model\Movie::class
+        ]
+    ]
+]);
+```
+
+If that configuration has been applied, also make sure the event dispatcher you use is aware of our `HydrationListener`;
+
+```php
+// Or any other PSR-14 compliant Event Dispatcher
+$eventDispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+$hydrationListener = new \Tmdb\Event\Listener\HydrationListener($eventDispatcher);
+$eventDispatcher->addListener(\Tmdb\Event\HydrationEvent::class, $hydrationListener);
+```
+
+_If you re-enable this functionality without specifying any models, all hydration will be done through the event listeners._

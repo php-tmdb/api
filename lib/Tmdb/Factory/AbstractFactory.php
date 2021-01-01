@@ -16,6 +16,7 @@ namespace Tmdb\Factory;
 
 use RuntimeException;
 use Tmdb\Common\ObjectHydrator;
+use Tmdb\Event\BeforeHydrationEvent;
 use Tmdb\Event\HydrationEvent;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\HttpClient;
@@ -141,6 +142,13 @@ abstract class AbstractFactory
 
             return $event->getSubject();
         }
+
+        // Still fire the before hydration event.
+        $event = new BeforeHydrationEvent($subject, $data);
+        $event->setLastRequest($httpClient->getLastRequest());
+        $event->setLastResponse($httpClient->getLastResponse());
+
+        $this->getHttpClient()->getEventDispatcher()->dispatch($event);
 
         return (new ObjectHydrator())->hydrate($subject, $data);
     }

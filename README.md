@@ -21,16 +21,19 @@ Tests run with minimal, normal and development dependencies.
 We try to leave as many options open to the end users of this library, as such for 4.0 a major
 break has been made to introduce PSR compliance where we can ( basically everywhere :-) ).
 
-- [PSR-3: Logger Interface](https://www.php-fig.org/psr/psr-3/)
+- [PSR-3: Logger Interface](https://www.php-fig.org/psr/psr-3/), [go to relevant documentation section](#todo).
+    - Logs TMDB API exceptions
+    - Logs PSR-18 client exceptions
     - Logs requests and responses
-    - Logs caching behavior
-- [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/)
+    - Logs response hydration
+    - Logs caching behavior 
+- [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/), [go to relevant documentation section](#todo).
 - [PSR-7: HTTP Message Interface](https://www.php-fig.org/psr/psr-7/)
     - Requests and responses are modify by their interfaces via events.
 - _[PSR-12: Extended Coding Style](https://www.php-fig.org/psr/psr-12/)._
     - Work in progress, I'll do my best to finish before `4.1` but there is a lot to review and refactor.
       It would be nice to get contributions going our way helping out with this massive task.
-- [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/)
+- [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/), [go to relevant documentation section](#event-dispatching).
     - Register our listeners and events, we handle the rest.
     
     @todo link to anchor below when implementation is solid
@@ -77,7 +80,7 @@ _Optional dependencies_
 
 @todo
 
-### Install php-tmdb/api
+## Install php-tmdb/api
 
 If the required dependencies above are met, you are ready to install the library.
 
@@ -91,7 +94,7 @@ Include Composer's autoloader:
 require_once dirname(__DIR__).'/vendor/autoload.php';
 ```
 
-To use the examples provided, copy the `apikey.php.dist` to `apikey.php` and change the settings.
+To use the examples provided, copy the `examples/apikey.php.dist` to `examples/apikey.php` and change the settings.
 
 ### New to PSR standards or composer?
 
@@ -125,12 +128,18 @@ If you're looking for a simple array entry point the API namespace is the place 
 repositories and model's functionality up ahead.
 
 ```php
+use Tmdb\Client;
+
+$client = new Client();
 $movie = $client->getMoviesApi()->getMovie(550);
 ```
 
 If you want to provide any other query arguments.
 
 ```php
+use Tmdb\Client;
+
+$client = new Client();
 $movie = $client->getMoviesApi()->getMovie(550, array('language' => 'en'));
 ```
 
@@ -143,8 +152,12 @@ However the library can also be used in an object oriented manner, which I recko
 Instead of calling upon the client, you pass the client onto one of the many repositories and do then some work on it.
 
 ```php
-$repository = new \Tmdb\Repository\MovieRepository($client);
-$movie      = $repository->load(87421);
+use Tmdb\Repository\MovieRepository;
+use Tmdb\Client;
+
+$client = new Client();
+$repository = new MovieRepository($client);
+$movie = $repository->load(87421);
 
 echo $movie->getTitle();
 ```
@@ -152,7 +165,11 @@ echo $movie->getTitle();
 __The repositories also contain the other API methods that are available through the API namespace.__
 
 ```php
-$repository = new \Tmdb\Repository\MovieRepository($client);
+use Tmdb\Repository\MovieRepository;
+use Tmdb\Client;
+
+$client = new Client();
+$repository = new MovieRepository($client);
 $topRated = $repository->getTopRated(array('page' => 3));
 // or
 $popular = $repository->getPopular();
@@ -162,14 +179,14 @@ For all further calls just review the unit tests or examples provided, or the mo
 
 ## Event Dispatching
 
-We dispatch the following events inside the library, which by using event listeners you could modify some behavior.
+We (can) dispatch the following events inside the library, which by using event listeners you could modify some behavior.
 
 ### Hydration
 
-- `Tmdb\Event\AfterHydrationEvent`
-  - Allows modification of the eventual subject returned.
-- `Tmdb\Event\BeforeHydrationEvent`
-  - Allows modification of the response data before being hydrated.
+- `Tmdb\Event\BeforeHydrationEvent`, _allows modification of the response data before being hydrated._
+    - This event will still be thrown regardless if the `event_listener_handles_hydration` option is set to false, this
+      allows for example the logger to still produce records.
+- `Tmdb\Event\AfterHydrationEvent`, _allows modification of the eventual subject returned._
   
 The current implementation within the event dispatcher causes significant overhead, you might actually not want at all.
 
@@ -180,7 +197,9 @@ From `4.0` moving forward by default the hydration events have been disabled.
 To re-enable this functionality, we recommend only using it for models you need to modify data for;
 
 ```php
-$client = new \Tmdb\Client([
+use Tmdb\Client;
+
+$client = new Client([
     'hydration' => [
         'event_listener_handles_hydration' => true,
         'only_for_specified_models' => [
@@ -190,12 +209,16 @@ $client = new \Tmdb\Client([
 ]);
 ```
 
-If that configuration has been applied, also make sure the event dispatcher you use is aware of;
+If that configuration has been applied, also make sure the event dispatcher you use is aware of our `HydrationListener`;
 
 ```php
-$eventDispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-$hydrationListener = new \Tmdb\Event\Listener\HydrationListener($eventDispatcher);
-$eventDispatcher->addListener(\Tmdb\Event\HydrationEvent::class, $hydrationListener);
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\HydrationEvent;
+use Tmdb\Event\Listener\HydrationListener;
+
+$eventDispatcher = new EventDispatcher();
+$hydrationListener = new HydrationListener($eventDispatcher);
+$eventDispatcher->addListener(HydrationEvent::class, $hydrationListener);
 ```
 
 _If you re-enable this functionality without specifying any models, all hydration will be done through the event listeners._
@@ -213,27 +236,167 @@ _If you re-enable this functionality without specifying any models, all hydratio
 
 We have a small couple of optional event listeners that you could add to provide additional functionality.
 
+### Caching
+
+### Logging
+
+The logging is divided in a couple of listeners, so you can decide what you want to log, or not. All of these 
+listeners have support for writing custom formatted messages. See the relevant interfaces and classes located in the 
+`Tmdb\Formatter` namespace.
+
+Instead of monolog you can pass any PSR-3 compatible logger.
+
+#### Tmdb\Event\Listener\Logger\LogApiErrorListener
+
+```php
+use Monolog\Logger;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\Listener\Logger\LogApiErrorListener;
+use Tmdb\Event\TmdbExceptionEvent;
+use Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter;
+
+$eventDispatcher = new EventDispatcher();
+$apiErrorListener = new LogApiErrorListener(
+    new Logger(),
+    new SimpleTmdbApiExceptionFormatter()
+);
+
+$eventDispatcher->addListener(TmdbExceptionEvent::class, $apiErrorListener);
+```
+
+This will log exceptions thrown when a response has successfully been received, but the response indicated the request was not successful.
+
+```log
+[2021-01-01 13:24:14] php-tmdb.CRITICAL: Critical API exception: 7 Invalid API key: You must be granted a valid key. [] []
+```
+
+#### Tmdb\Event\Listener\Logger\LogHttpMessageListener
+
+```php
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\HttpClientExceptionEvent;
+use Tmdb\Event\Listener\Logger\LogHttpMessageListener;
+use Tmdb\Event\ResponseEvent;
+use Tmdb\Formatter\HttpMessage\SimpleHttpMessageFormatter;
+
+$eventDispatcher = new EventDispatcher();
+$requestLoggerListener = new LogHttpMessageListener(
+    new Monolog\Logger(),
+    new SimpleHttpMessageFormatter()
+);
+
+$eventDispatcher->addListener(BeforeRequestEvent::class, $requestLoggerListener);
+$eventDispatcher->addListener(ResponseEvent::class, $requestLoggerListener);
+$eventDispatcher->addListener(HttpClientExceptionEvent::class, $requestLoggerListener);
+```
+
+This will log outgoing requests and responses.
+
+```log
+[2021-01-01 13:11:18] php-tmdb.INFO: Sending request: GET https://api.themoviedb.org/3/company/1?include_adult=true&language=en-US&region=us 1.1 {"length":0,"has_session_token":false} []
+[2021-01-01 13:11:18] php-tmdb.INFO: Received response: 200 OK 1.1 {"status_code":200,"length":223} []
+```
+
+In case of any other PSR-18 client exceptions ( connection errors for example ), these will also be written to the log.
+
+```log
+[2021-01-01 13:36:39] php-tmdb.INFO: Sending request: GET https://api.themoviedb.org/3/company/1?include_adult=true&language=en-US&region=us 1.1 {"length":0,"has_session_token":false} []
+[2021-01-01 13:36:39] php-tmdb.CRITICAL: Critical http client error: 0 cURL error 7: Failed to connect to api.themoviedb.org port 443: Connection refused (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) {"request":"https://api.themoviedb.org/3/company/1?include_adult=true&language=en-US&region=us"} []
+```
+
+#### Tmdb\Event\Listener\Logger\LogHydrationListener
+
+```php
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\BeforeHydrationEvent;
+use Tmdb\Event\Listener\Logger\LogHydrationListener;
+use Tmdb\Formatter\Hydration\SimpleHydrationFormatter;
+
+$eventDispatcher = new EventDispatcher();
+$hydrationLoggerListener = new LogHydrationListener(
+    new Monolog\Logger(),
+    new SimpleHydrationFormatter(),
+    false // set to true if you wish to add the json data passed for each hydration, do not use this in production!
+);
+
+$eventDispatcher->addListener(BeforeHydrationEvent::class, $hydrationLoggerListener);
+```
+
+This will log hydration of models with (optionally) their data, useful for debugging.
+
+```log
+[2021-01-01 13:11:18] php-tmdb.DEBUG: Hydrating model "Tmdb\Model\Image\LogoImage". {"data":{"file_path":"/o86DbpburjxrqAzEDhXZcyE8pDb.png"},"data_size":49} []
+[2021-01-01 13:11:18] php-tmdb.DEBUG: Hydrating model "Tmdb\Model\Company". {"data":{"description":"","headquarters":"San Francisco, California","homepage":"https://www.lucasfilm.com/","id":1,"logo_path":"/o86DbpburjxrqAzEDhXZcyE8pDb.png","name":"Lucasfilm Ltd.","origin_country":"US","parent_company":null},"data_size":227} []
+```
+
+For calls with a lot of appended data, this quickly becomes a large dump in the log file, and I would advise to 
+only use this when necessary. 
+
+**Do not enable the hydration data dumping on production, it will generate massive logs**.
+
 ### Adult filter
 
-@todo
+To enable inclusion of results considered "adult", add the following listener.
+
+```php
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\Listener\Request\AdultFilterRequestListener;
+
+$eventDispatcher = new EventDispatcher();
+$adultFilterListener = new AdultFilterRequestListener(true);
+
+$eventDispatcher->addListener(BeforeRequestEvent::class, $adultFilterListener);
+```
 
 ### Language filter
 
-@todo
+To enable filtering contents on language, add the following listener.
+
+```php
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\Listener\Request\RegionFilterRequestListener;
+
+$eventDispatcher = new EventDispatcher();
+$languageFilterListener = new RegionFilterRequestListener('nl-NL');
+
+$eventDispatcher->addListener(BeforeRequestEvent::class, $languageFilterListener);
+```
 
 ### Region filter
 
-@todo
+To enable filtering contents on region, add the following listener.
+
+```php
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\Listener\Request\RegionFilterRequestListener;
+
+$eventDispatcher = new EventDispatcher();
+$regionFilterListener = new RegionFilterRequestListener('nl');
+
+$eventDispatcher->addListener(BeforeRequestEvent::class, $regionFilterListener);
+```
+
 
 ## Image Helper
 
 An `ImageHelper` class is provided to take care of the images, which does require the configuration to be loaded:
 
 ```php
-$configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
+use Tmdb\Client;
+use Tmdb\Helper\ImageHelper;
+use Tmdb\Model\Image;
+use Tmdb\Repository\ConfigurationRepository;
+
+$client = new Client();
+$image = new Image();
+$configRepository = new ConfigurationRepository($client);
 $config = $configRepository->load();
 
-$imageHelper = new \Tmdb\Helper\ImageHelper($config);
+$imageHelper = new ImageHelper($config);
 
 echo $imageHelper->getHtml($image, 'w154', 154, 80);
 ```
@@ -244,9 +407,12 @@ echo $imageHelper->getHtml($image, 'w154', 154, 80);
 We also provide some easy methods to filter any collection, you should note however you can always implement your own filter easily by using Closures:
 
 ```php
+use Tmdb\Model\Movie;
+
+/** @var $movie Movie **/
 foreach($movie->getImages()->filter(
         function($key, $value){
-            if ($value instanceof \Tmdb\Model\Image\PosterImage) { return true; }
+            if ($value instanceof PosterImage) { return true; }
         }
     ) as $image) {
 
@@ -257,6 +423,9 @@ foreach($movie->getImages()->filter(
 These basic filters however are already covered in the `Images` collection object:
 
 ```php
+use Tmdb\Model\Movie;
+
+/** @var $movie Movie **/
 $backdrop = $movie
     ->getImages()
     ->filterBackdrops()

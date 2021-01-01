@@ -1,0 +1,23 @@
+<?php
+/**
+ * Fill these out when you want to use the examples and rename or copy it to apikey.php
+ */
+
+// Specify the later introduced bearer token
+define('TMDB_BEARER_TOKEN', 'BEARER_TOKEN');
+
+// Or specify the which I guess can now be considered "legacy api key".
+define('TMDB_API_KEY', 'API_KEY');
+
+// Globals
+define('TMDB_LANGUAGE', 'en-US');
+define('TMDB_REGION', 'us');
+
+// Session based
+define('TMDB_REQUEST_TOKEN', 'REQUEST_TOKEN'); // for accounts
+define('TMDB_SESSION_TOKEN', 'SESSION_TOKEN'); // for accounts
+define('TMDB_GUEST_SESSION_TOKEN', 'GUEST_SESSION_TOKEN'); // for guest sessions
+define('TMDB_ACCOUNT_ID', 12345);
+
+// Account based
+define('TMDB_LIST_ID', 'LIST_ID');

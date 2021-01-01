@@ -16,10 +16,10 @@ use Tmdb\Model\Query\ChangesQuery;
 use Tmdb\Repository\ChangesRepository;
 
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../../setup-client.php');
+$client = require_once('../../setup-client.php');
 $query = new ChangesQuery();
 
 $from = new DateTime('01-01-2014');
