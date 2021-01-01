@@ -22,16 +22,7 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
-use Psr\Log\LogLevel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tmdb\Event\BeforeRequestEvent;
-use Tmdb\Event\HydrationEvent;
-use Tmdb\Event\Listener\HydrationListener;
-use Tmdb\Event\Listener\Request\AcceptJsonRequestListener;
-use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
-use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
-use Tmdb\Event\Listener\RequestListener;
-use Tmdb\Event\RequestEvent;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Token\Api\ApiToken;
 use Tmdb\Token\Api\BearerToken;
@@ -172,23 +163,28 @@ class Client
         $resolver->setAllowedTypes('event_dispatcher', ['array']);
 
         // @todo 4.1 fix smelly stuff
-        $resolver->setAllowedTypes('session_token', [
-            GuestSessionToken::class,
-            SessionToken::class,
-            SessionBearerToken::class,
-            'null'
-        ]);
+        $resolver->setAllowedTypes(
+            'session_token',
+            [
+                GuestSessionToken::class,
+                SessionToken::class,
+                SessionBearerToken::class,
+                'null'
+            ]
+        );
 
         $this->options = $this->postResolve(
             $resolver->resolve($options)
         );
 
-        $this->httpClient = new HttpClient([
-           'http' => $this->options['http'],
-           'event_dispatcher' => $this->options['event_dispatcher'],
-           'base_uri' => $this->options['base_uri'],
-           'hydration' => $this->options['hydration']
-        ]);
+        $this->httpClient = new HttpClient(
+            [
+                'http' => $this->options['http'],
+                'event_dispatcher' => $this->options['event_dispatcher'],
+                'base_uri' => $this->options['base_uri'],
+                'hydration' => $this->options['hydration']
+            ]
+        );
 
         return $this->options;
     }
@@ -261,6 +257,14 @@ class Client
     public function getSessionToken(): ?SessionToken
     {
         return $this->options['session_token'];
+    }
+
+    /**
+     * @return ApiToken|BearerToken
+     */
+    public function getToken(): ApiToken
+    {
+        return $this->options['api_token'];
     }
 
     /**

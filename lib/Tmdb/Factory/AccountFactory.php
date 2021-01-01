@@ -20,8 +20,6 @@ use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Account;
 use Tmdb\Model\Lists\Result;
-use Tmdb\Model\Movie;
-use Tmdb\Model\Tv;
 
 /**
  * Class AccountFactory
@@ -73,7 +71,6 @@ class AccountFactory extends AbstractFactory
     {
         $account = new Account();
 
-        // @todo 4.0.0 re-enable, fix bug
         if (array_key_exists('avatar', $data)) {
             $account->setAvatar(
                 $this->getAvatarFactory()->createCollection($data['avatar'])

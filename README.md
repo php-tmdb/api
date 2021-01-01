@@ -18,26 +18,25 @@ Tests run with minimal, normal and development dependencies.
 
 ## PSR Compliance
 
-We try to leave as many options open to the end users of this library, as such for 4.0 a major
-break has been made to introduce PSR compliance where we can ( basically everywhere :-) ).
+We try to leave as many options open to the end users of this library, as such with 4.0 changes have
+been made to introduce PSR compliance where we can. You bring the dependencies you prefer that are compliant
+with PSR standards, register the listeners, and we handle the rest. 
 
-- [PSR-3: Logger Interface](https://www.php-fig.org/psr/psr-3/), [go to relevant documentation section](#logging).
-    - Logs TMDB API exceptions, [go to relevant documentation section](#tmdbeventlistenerloggerlogapierrorlistener).
-    - Logs PSR-18 client exceptions, [go to relevant documentation section](#tmdbeventlistenerloggerloghttpmessagelistener).
-    - Logs requests and responses, [go to relevant documentation section](#tmdbeventlistenerloggerloghttpmessagelistener).
-    - Logs response hydration, [go to relevant documentation section](#tmdbeventlistenerloggerloghydrationlistener).
-    - Logs caching behavior , [go to relevant documentation section](#todo).
-- [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/), [go to relevant documentation section](#todo).
+- [PSR-3: Logger Interface](https://www.php-fig.org/psr/psr-3/), [jump to section](#logging).
+    - Logs TMDB API exceptions, [jump to section](#tmdbeventlistenerloggerlogapierrorlistener).
+    - Logs PSR-18 client exceptions, [jump to section](#tmdbeventlistenerloggerloghttpmessagelistener).
+    - Logs requests and responses, [jump to section](#tmdbeventlistenerloggerloghttpmessagelistener).
+    - Logs response hydration, [jump to section](#tmdbeventlistenerloggerloghydrationlistener).
+    - Logs caching behavior , [jump to section](#todo).
+- [PSR-6: Caching Interface](https://www.php-fig.org/psr/psr-6/), [jump to section](#todo).
 - [PSR-7: HTTP Message Interface](https://www.php-fig.org/psr/psr-7/)
     - Requests and responses will be modified via relevant event listeners.
 - _[PSR-12: Extended Coding Style](https://www.php-fig.org/psr/psr-12/)._
     - Work in progress, I'll do my best to finish before `4.1` but there is a lot to review and refactor.
-      It would be nice to get contributions going our way helping out with this massive task.
-- [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/), [go to relevant documentation section](#event-dispatching).
-    - Register our listeners and events, we handle the rest.
-    
-    @todo link to anchor below when implementation is solid
-    
+      It would be nice to get contributions going our way helping out with this massive task. I can imagine
+      it may take several months of doing small bits here and there to achieve this.
+- [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/), [jump to section](#event-dispatching).
+    - Register our listeners and events, we handle the rest.   
 - [PSR-16: Simple Cache](https://www.php-fig.org/psr/psr-16/)
 - [PSR-17: HTTP Factories](https://www.php-fig.org/psr/psr-17/)
     - Bring along the http factories of your choice.
@@ -120,7 +119,13 @@ Review the `examples/client-setup.php` file and `examples/movies/model/get.php` 
 
 _If you have chosen different implementations than the examples suggested beforehand, obviously all the upcoming documentation won't match. Adjust accordingly to your dependencies, we will go along with the examples given earlier._
 
-### @TODO rewrite chapter from scratch 
+- [Minimal setup](examples/setup-client.php)
+- [Full setup](examples/setup-client-full.php)
+    - Includes logging
+    - Includes caching
+    - Includes filtering by region
+    - Includes filtering by language
+    - Includes filtering by adult content
 
 ## General API Usage
 
