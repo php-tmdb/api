@@ -38,7 +38,7 @@ $ed = $client->getEventDispatcher();
 $logger = new Logger(
     'php-tmdb',
     [
-        new StreamHandler(__DIR__ . '/php-tmdb.log', LogLevel::DEBUG)
+        new StreamHandler(__DIR__ . '/var/log/php-tmdb.log', LogLevel::DEBUG)
     ]
 );
 

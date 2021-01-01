@@ -42,12 +42,12 @@ class RequestListener
     /**
      * @var EventDispatcherInterface
      */
-    private $eventDispatcher;
+    protected $eventDispatcher;
 
     /**
      * @var ResponseExceptionFactory
      */
-    private $responseExceptionFactory;
+    protected $responseExceptionFactory;
 
     /**
      * RequestListener constructor.

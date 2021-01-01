@@ -6,4 +6,5 @@ examples/apikey.php
 composer.lock
 .phpcs-cache
 .phpunit.result.cache
-examples/php-tmdb.log
+examples/
+examples/var/

@@ -100,14 +100,24 @@ class LogHttpMessageListener
      */
     protected function logResponse(ResponseEvent $event): void
     {
+        $cacheHit = $event->getResponse()->hasHeader('X-TMDB-Cache') &&
+            'HIT' === $event->getResponse()->getHeaderLine('X-TMDB-Cache');
+
         $context = [
             'status_code' => $event->getResponse()->getStatusCode(),
-            'length' => $event->getResponse()->getBody()->getSize()
+            'length' => $event->getResponse()->getBody()->getSize(),
+            'cached' => $cacheHit
         ];
+
+        $format = 'Received response:' . PHP_EOL . '%s';
+
+        if ($cacheHit) {
+            $format = 'Obtained cached response ' . PHP_EOL . '%s';
+        }
 
         $this->logger->info(
             sprintf(
-                'Received response:' . PHP_EOL . '%s',
+                $format,
                 $this->formatter->formatResponse($event->getResponse())
             ),
             $context

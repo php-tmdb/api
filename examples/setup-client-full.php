@@ -3,6 +3,7 @@
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LogLevel;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Tmdb\Client;
 use Tmdb\Event\BeforeHydrationEvent;
 use Tmdb\Event\BeforeRequestEvent;
@@ -10,13 +11,13 @@ use Tmdb\Event\HttpClientExceptionEvent;
 use Tmdb\Event\Listener\Logger\LogApiErrorListener;
 use Tmdb\Event\Listener\Logger\LogHttpMessageListener;
 use Tmdb\Event\Listener\Logger\LogHydrationListener;
+use Tmdb\Event\Listener\Psr6CachedRequestListener;
 use Tmdb\Event\Listener\Request\AcceptJsonRequestListener;
 use Tmdb\Event\Listener\Request\AdultFilterRequestListener;
 use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
 use Tmdb\Event\Listener\Request\LanguageFilterRequestListener;
 use Tmdb\Event\Listener\Request\RegionFilterRequestListener;
-use Tmdb\Event\Listener\RequestListener;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\ResponseEvent;
 use Tmdb\Event\TmdbExceptionEvent;
@@ -35,7 +36,7 @@ $ed = new Symfony\Component\EventDispatcher\EventDispatcher();
 $logger = new Logger(
     'php-tmdb',
     [
-        new StreamHandler(__DIR__ . '/php-tmdb.log', LogLevel::DEBUG)
+        new StreamHandler(__DIR__ . '/var/log/php-tmdb.log', LogLevel::DEBUG)
     ]
 );
 
@@ -65,9 +66,23 @@ $client = new Client(
 );
 
 /**
+ * Instantiate the PSR-6 cache
+ */
+$cache = new FilesystemAdapter('php-tmdb', 86400, __DIR__ . '/var/cache');
+
+/**
+ * The full setup makes use of the Psr6CachedRequestListener.
+ *
  * Required event listeners and events to be registered with the PSR-14 Event Dispatcher.
  */
-$requestListener = new RequestListener($client->getHttpClient(), $ed);
+$requestListener = new Psr6CachedRequestListener(
+    $client->getHttpClient(),
+    $ed,
+    $cache,
+    $client->getHttpClient()->getPsr17StreamFactory(),
+    []
+);
+
 $ed->addListener(RequestEvent::class, $requestListener);
 
 $apiTokenListener = new ApiTokenRequestListener($client->getToken());

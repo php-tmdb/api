@@ -19,27 +19,9 @@ require_once '../vendor/autoload.php';
 require_once 'apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('setup-client.php');
-// Caching is enabled by default, and makes use of your sys_get_temp_dir()
-// If you'd like to disable it or change the path:
-
-//$client = new \Tmdb\Client($token, null, true, [
-//    'cache' => ['enabled' => false]
-//]);
-
-$client = new Client(
-    $token,
-    [
-    'cache' => [
-        'enabled' => true,
-        'handler' => new Doctrine\Common\Cache\FilesystemCache(
-            sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'my-cache-path'
-        )
-    ]
-    ]
-);
+$client = require_once('setup-client-cache-psr6.php');
 
 $repository = new MovieRepository($client);
 $movie = $repository->load(19995);
 
-var_dump($movie);
+var_dump($movie);exit;

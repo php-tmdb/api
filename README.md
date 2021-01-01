@@ -38,6 +38,7 @@ with PSR standards, register the listeners, and we handle the rest.
 - [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/), [jump to section](#event-dispatching).
     - Register our listeners and events, we handle the rest.   
 - [PSR-16: Simple Cache](https://www.php-fig.org/psr/psr-16/)
+    - Although we do not implement this at the current stage, there are plenty of adapters converting `PSR-16` implementations to `PSR-6`.
 - [PSR-17: HTTP Factories](https://www.php-fig.org/psr/psr-17/)
     - Bring along the http factories of your choice.
 - [PSR-18: HTTP Client](https://www.php-fig.org/psr/psr-18/)
@@ -120,6 +121,7 @@ Review the `examples/client-setup.php` file and `examples/movies/model/get.php` 
 _If you have chosen different implementations than the examples suggested beforehand, obviously all the upcoming documentation won't match. Adjust accordingly to your dependencies, we will go along with the examples given earlier._
 
 - [Minimal setup](examples/setup-client.php)
+- [Minimal setup with psr-6 caching](examples/setup-client-cache-psr6.php)
 - [Full setup](examples/setup-client-full.php)
     - Includes logging
     - Includes caching
@@ -251,7 +253,32 @@ We have a small couple of optional event listeners that you could add to provide
 
 ### Caching
 
-*TODO*
+Instead of constructing the default `RequestListener`, construct the client with the `Psr6CachedRequestListener`.
+
+```php
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Tmdb\Event\Listener\Psr6CachedRequestListener;
+use Tmdb\Repository\MovieRepository;
+use Tmdb\Client;
+
+$client = new Client();
+
+$cache = new FilesystemAdapter('php-tmdb', 86400, __DIR__ . '/cache');
+$requestListener = new Psr6CachedRequestListener(
+    $client->getHttpClient(),
+    $client->getEventDispatcher(),
+    $cache,
+    $client->getHttpClient()->getPsr17StreamFactory(),
+    []
+);
+
+$repository = new MovieRepository($client);
+$popular = $repository->getPopular();
+```
+
+_The current implementation will change again in the future, it will either involve a small change in listener registration, 
+or will just happen without you being aware._ We currently base this on `php-http/cache-plugin`, which pulls in extra
+dependencies we don't really use. Since caching is quite a subject itself, for now we have chosen the "quick 'n dirty way".
 
 ### Logging
 
