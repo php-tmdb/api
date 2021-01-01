@@ -110,7 +110,8 @@ class Psr6CachedRequestListener extends RequestListener
 
                     return new FulfilledPromise($response);
                 },
-                function () {} // we do not need the plugin to go back
+                function () {
+                } // we do not need the plugin to go back
             );
 
             $response->then(

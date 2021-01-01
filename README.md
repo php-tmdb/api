@@ -37,8 +37,11 @@ with PSR standards, register the listeners, and we handle the rest.
       it may take several months of doing small bits here and there to achieve this.
 - [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/), [jump to section](#event-dispatching).
     - Register our listeners and events, we handle the rest.   
-- [PSR-16: Simple Cache](https://www.php-fig.org/psr/psr-16/)
+- _[PSR-16: Simple Cache](https://www.php-fig.org/psr/psr-16/)_
     - Although we do not implement this at the current stage, there are plenty of adapters converting `PSR-16` implementations to `PSR-6`.
+    - Cache implementation will be reworked on in a later version again, (_`4.1` - `4.2`_) to natively support both `PSR-6` and `PSR-16` without 
+      the intermediary plugin that is in place now. This pulls in dependencies we don't really want or need, however to meet this requirement
+      quickly and keep up the pace of releasing `4.0` soon, I decided to take a shortcut here.
 - [PSR-17: HTTP Factories](https://www.php-fig.org/psr/psr-17/)
     - Bring along the http factories of your choice.
 - [PSR-18: HTTP Client](https://www.php-fig.org/psr/psr-18/)

@@ -108,7 +108,8 @@ class CachedRequestListener extends RequestListener
 
                     return new FulfilledPromise($response);
                 },
-                function () {}
+                function () {
+                }
             );
 
             $response->then(
@@ -119,7 +120,8 @@ class CachedRequestListener extends RequestListener
         } catch (ClientExceptionInterface $e) {
             $response = $this->handleClientException($e, $beforeRequestEvent->getRequest());
         }
-var_dump($cachedResponse);exit;
+        var_dump($cachedResponse);
+        exit;
         try {
             if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 600) {
                 throw $this->responseExceptionFactory->createTmdbApiException(
