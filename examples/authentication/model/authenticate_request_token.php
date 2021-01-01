@@ -12,13 +12,15 @@
  * @version 4.0.0
  */
 
+use Tmdb\Repository\AuthenticationRepository;
+
 require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Tmdb\Client $client * */
 $client = require_once('../../setup-client.php');
-$authenticationRepository = new \Tmdb\Repository\AuthenticationRepository($client);
-$requestToken             = $authenticationRepository->getRequestToken();
+$authenticationRepository = new AuthenticationRepository($client);
+$requestToken = $authenticationRepository->getRequestToken();
 
 // Will force a redirect
 $authenticationRepository->authenticateRequestToken($requestToken);

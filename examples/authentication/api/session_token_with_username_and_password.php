@@ -12,12 +12,14 @@
  * @version 4.0.0
  */
 
+use Tmdb\Token\Session\RequestToken;
+
 require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Tmdb\Client $client * */
 $client = require_once('../../setup-client.php');
-$requestToken = new \Tmdb\Token\Session\RequestToken(TMDB_REQUEST_TOKEN);
+$requestToken = new RequestToken(TMDB_REQUEST_TOKEN);
 
 $validatedRequestToken = $client->getAuthenticationApi()->validateRequestTokenWithLogin(
     $requestToken,
