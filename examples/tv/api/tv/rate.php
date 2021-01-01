@@ -12,16 +12,21 @@
  * @version 4.0.0
  */
 
-use Tmdb\SessionToken;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Token\Session\SessionToken;
 
 ini_set('display_errors', 'On');
 require_once '../../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Tmdb\Client $client * */
 $client = require_once('../../../setup-client.php');
-$sessionToken = new SessionToken(TMDB_SESSION_TOKEN);
-$client->setSessionToken($sessionToken);
+$client->getEventDispatcher()->addListener(
+    BeforeRequestEvent::class,
+    new Tmdb\Event\Listener\Request\SessionTokenRequestListener(
+        new SessionToken(TMDB_SESSION_TOKEN)
+    )
+);
 
 $result = $client->getTvApi()->rateTvShow(1396, 9.5);
 

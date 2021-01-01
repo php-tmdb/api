@@ -13,15 +13,18 @@
  */
 
 use Tmdb\Repository\ListRepository;
-use Tmdb\SessionToken;
 
 require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
 $client = require_once('../../setup-client.php');
-$sessionToken = new SessionToken(TMDB_SESSION_TOKEN);
-$client->setSessionToken($sessionToken);
+$client->getEventDispatcher()->addListener(
+    \Tmdb\Event\BeforeRequestEvent::class,
+    new Tmdb\Event\Listener\Request\SessionTokenRequestListener(
+        new \Tmdb\Token\Session\SessionToken(TMDB_SESSION_TOKEN)
+    )
+);
 
 $repository = new ListRepository($client);
 $list = $repository->getItemStatus('509ec17b19c2950a0600050d', 150);

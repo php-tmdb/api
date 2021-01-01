@@ -17,7 +17,7 @@ use Tmdb\Repository\TvRepository;
 require_once '../../../../vendor/autoload.php';
 require_once '../../../apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Tmdb\Client $client * */
 $client = require_once('../../../setup-client.php');
 $repository = new TvRepository($client);
 $tvShow = $repository->getPopular();

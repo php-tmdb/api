@@ -12,20 +12,20 @@
  * @version 4.0.0
  */
 
-use Tmdb\SessionToken;
-use Tmdb\Token\Api\ApiToken;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Token\Session\SessionToken;
 
 require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
-/** @var Tmdb\Client $client **/
+/** @var Tmdb\Client $client * */
 $client = require_once('../../setup-client.php');
-$token = new ApiToken(TMDB_API_KEY);
-
-
-$sessionToken = new SessionToken(TMDB_SESSION_TOKEN);
-$client->setSessionToken($sessionToken);
-
+$client->getEventDispatcher()->addListener(
+    BeforeRequestEvent::class,
+    new Tmdb\Event\Listener\Request\SessionTokenRequestListener(
+        new SessionToken(TMDB_SESSION_TOKEN)
+    )
+);
 $add = $client->getListsApi()->addMediaToList(TMDB_LIST_ID, 49047);
 
 var_dump($add);
