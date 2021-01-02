@@ -239,7 +239,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             ],
             'host'    => 'api.themoviedb.org/3/',
             'base_uri' => $baseUri,
-            'session_token' => null,
+            'guest_session_token' => null,
             'event_dispatcher' => ['adapter' => $this->eventDispatcher]
         ]));
 

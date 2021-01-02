@@ -94,7 +94,7 @@ class Client
                 'host' => self::TMDB_URI,
                 'base_uri' => null,
                 'api_token' => null,
-                'session_token' => null,
+                'guest_session_token' => null,
                 'http' => function (OptionsResolver $optionsResolver) {
                     $optionsResolver->setDefaults(
                         [
@@ -164,10 +164,9 @@ class Client
 
         // @todo 4.1 fix smelly stuff
         $resolver->setAllowedTypes(
-            'session_token',
+            'guest_session_token',
             [
                 GuestSessionToken::class,
-                SessionToken::class,
                 SessionBearerToken::class,
                 'null'
             ]
@@ -252,11 +251,22 @@ class Client
     }
 
     /**
-     * @return SessionToken|null
+     * @return GuestSessionToken|null
      */
-    public function getSessionToken(): ?SessionToken
+    public function getGuestSessionToken(): ?GuestSessionToken
     {
-        return $this->options['session_token'];
+        return $this->options['guest_session_token'];
+    }
+
+    /**
+     * @param GuestSessionToken|null $guestSessionToken
+     * @return $this
+     */
+    public function setGuestSessionToken(GuestSessionToken $guestSessionToken): Client
+    {
+        $this->options['guest_session_token'] = $guestSessionToken;
+
+        return $this;
     }
 
     /**

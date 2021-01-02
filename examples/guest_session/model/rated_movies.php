@@ -1,7 +1,5 @@
 <?php
 
-// @todo 4.0
-
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -18,13 +16,7 @@ require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client **/
-$client = require_once('../../setup-client.php');
-$client->getEventDispatcher()->addListener(
-    \Tmdb\Event\BeforeRequestEvent::class,
-    new Tmdb\Event\Listener\Request\SessionTokenRequestListener(
-        new Tmdb\Token\Session\SessionToken(TMDB_SESSION_TOKEN)
-    )
-);
+$client = require_once('../../setup-client-guest-session.php');
 
 /**
  * @var \Tmdb\Repository\GuestSessionRepository $guestSessionRepository

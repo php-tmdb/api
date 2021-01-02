@@ -12,7 +12,6 @@
  * @version 4.0.0
  */
 
-
 require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 

@@ -2,19 +2,32 @@
 
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
 [![License](https://img.shields.io/github/v/tag/php-tmdb/api)](https://github.com/php-tmdb/api/releases)
-[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/api/Continuous%20Integration?label=phpunit)](https://travis-ci.org/php-tmdb/api)
-[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/api/Coding%20Standards?label=phpcs)](https://travis-ci.org/php-tmdb/api)
+[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/api/Continuous%20Integration?label=phpunit)](https://github.com/php-tmdb/api/actions?query=workflow%3A%22Continuous+Integration%22)
+[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/api/Coding%20Standards?label=phpcs)](https://github.com/php-tmdb/api/actions?query=workflow%3A%22Coding+Standards%22)
 [![codecov](https://img.shields.io/codecov/c/github/php-tmdb/api?token=gTM9AiO5vH)](https://codecov.io/gh/php-tmdb/api)
-[![PHP & HHVM](https://img.shields.io/badge/php->=7.3,%20>=8.0-8892BF.svg)](http://hhvm.h4cc.de/package/php-tmdb/api)
+[![PHP](https://img.shields.io/badge/php->=7.3,%20>=8.0-8892BF.svg)](https://packagist.org/packages/php-tmdb/api)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/api/downloads.svg)](https://packagist.org/packages/php-tmdb/api)
 
 Tests run with minimal, normal and development dependencies.
+
+## Buy me a coffee, or a beer :-)
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMLZ362KQ8K8W"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
+
+My stomach will appreciate your donation! 
 
 ## Main features
 
 - Array implementation of the movie database (RAW)
 - Model implementation of the movie database (By making use of the repositories)
 - An `ImageHelper` class to help build image urls or html <img> elements.
+
+## Attention newcomers to php
+
+_If  you are new to php and starting a project to learn, I'd recommend [you skip down to the installation](#install-php-tmdbapi),
+and then follow [the quickstart](#new-to-psr-standards-or-composer) that's just  for you!_
+
+I do advise you to take a broader look later on what all these PSR standards mean and do for the php community :-). 
 
 ## PSR Compliance
 
@@ -37,11 +50,9 @@ with PSR standards, register the listeners, and we handle the rest.
       it may take several months of doing small bits here and there to achieve this.
 - [PSR-14: Event Dispatcher](https://www.php-fig.org/psr/psr-7/), [jump to section](#event-dispatching).
     - Register our listeners and events, we handle the rest.   
-- _[PSR-16: Simple Cache](https://www.php-fig.org/psr/psr-16/)_
+- _[PSR-16: Simple Cache](https://www.php-fig.org/psr/psr-16/), by adapting to PSR-6_
     - Although we do not implement this at the current stage, there are plenty of adapters converting `PSR-16` implementations to `PSR-6`.
-    - Cache implementation will be reworked on in a later version again, (_`4.1` - `4.2`_) to natively support both `PSR-6` and `PSR-16` without 
-      the intermediary plugin that is in place now. This pulls in dependencies we don't really want or need, however to meet this requirement
-      quickly and keep up the pace of releasing `4.0` soon, I decided to take a shortcut here.
+    - We might rework this at a later stage to prevent the extra dependencies that the `php-http/cache-plugin` brings along.
 - [PSR-17: HTTP Factories](https://www.php-fig.org/psr/psr-17/)
     - Bring along the http factories of your choice.
 - [PSR-18: HTTP Client](https://www.php-fig.org/psr/psr-18/)
@@ -69,13 +80,21 @@ Before we can install the api library, you need to install a set of dependencies
 
 **I urge you to implement the optional caching implementation**
 
-As [themoviedb.org](https://www.themoviedb.org/) applies [rate limiting](https://developers.themoviedb.org/3/getting-started/request-rate-limiting) to requests, we strongly 
-advise caching responses whenever possible. 
+When making use of caching, make sure to also include `php-http/cache-plugin` in composer, this plugin handles the logic for us, 
+so we don't have to re-invent the wheel. You are however also free to choose to implement your own cache listener, or add 
+the caching logic inside the http client of your choice.
+
+```shell script
+composer require php-http/cache-plugin:^1.7
+```
+
+Even though [themoviedb.org](https://www.themoviedb.org/) disabled [rate limiting](https://developers.themoviedb.org/3/getting-started/request-rate-limiting) since the end of 2019, 
+I'd still recommend enabling the cache to make your application run a bit smoother. As such the `427` retry subscriber in previous versions is not present anymore.
 
 - For `PSR-6: Caching Interface`, for example `symfony/cache`.
-- For `PSR-16: Simple Cache`, for example `symfony/cache`.
+- For `PSR-16: Simple Cache`, with an PSR-6 adapter for example `symfony/cache`, then use [the PSR-16 to PSR-6 adapter](https://symfony.com/doc/current/components/cache/psr6_psr16_adapters.html).
 
-Not only will this make your application more responsive, it also decreases the amount of requests we need to send.
+Not only will this make your application more responsive, by loading from cache when we can, it also decreases the amount of requests we need to send.
 
 _Optional dependencies_
 
@@ -115,7 +134,8 @@ Now that we have everything we need installed, let's get started setting up to b
 
 ## Quick setup
 
-Review the `examples/client-setup.php` file and `examples/movies/model/get.php` or `examples/movies/model/get.php` files.
+Review the setup files below and go over the [examples](examples/) folder, for example 
+[examples/movies/api/get.php](examples/movies/model/get.php) or [examples/movies/api/get.php](examples/movies/api/get.php) files.
 
 ## Constructing the Client
 
@@ -133,7 +153,7 @@ _If you have chosen different implementations than the examples suggested before
 ## General API Usage
 
 If you're looking for a simple array entry point the API namespace is the place to be, however we recommend you use the 
-repositories and model's functionality up ahead.
+[repositories and model](#model-usage)'s functionality up ahead.
 
 ```php
 use Tmdb\Client;
@@ -151,11 +171,11 @@ $client = new Client();
 $movie = $client->getMoviesApi()->getMovie(550, ['language' => 'en']);
 ```
 
-For all further calls just review the unit tests or examples provided, or the API classes themselves.
+For all further calls just review the [unit tests](test/Tmdb/Tests) or [examples](examples/) provided, or the API classes themselves.
 
 ## Model Usage
 
-However the library can also be used in an object oriented manner, which I reckon is the __preferred__ way of doing things.
+The library can also be used in an object oriented manner, which I reckon is the __preferred__ way of doing things.
 
 Instead of calling upon the client, you pass the client onto one of the many repositories and do then some work on it.
 
@@ -183,7 +203,7 @@ $topRated = $repository->getTopRated(['page' => 3]);
 $popular = $repository->getPopular();
 ```
 
-For all further calls just review the unit tests or examples provided, or the model's themselves.
+For all further calls just review the [unit tests](test/Tmdb/Tests) or [examples](examples/) provided, or the model's themselves.
 
 ## Event Dispatching
 
@@ -191,11 +211,13 @@ We (can) dispatch the following events inside the library, which by using event 
 
 ### HTTP Client exceptions
 - `Tmdb\Event\HttpClientExceptionEvent`
-  - Allows to still set a successful response if the error can be corrected, by calling `$event->isPropagated()` in your listener.
+  - Allows to still set a successful response if the error can be corrected, by calling `$event->isPropagated()` in your listener,
+    this does require you to provide a PSR-7 response object and set it with `$event->setResponse($response)`.
 
 ### TMDB API exceptions 
 - `Tmdb\Event\TmdbExceptionEvent`
-  - Allows to still set a successful response if the error can be corrected, by calling `$event->isPropagated()` in your listener.
+  - Allows to still set a successful response if the error can be corrected, by calling `$event->isPropagated()` in your listener, 
+    this does require you to provide a PSR-7 response object and set it with `$event->setResponse($response)`.
 
 ### Hydration
 
@@ -242,15 +264,17 @@ _If you re-enable this functionality without specifying any models, all hydratio
 ### Requests & Responses  
 - `Tmdb\Event\BeforeRequestEvent`
   - Allows modification of the PSR-7 request data before being sent.
-  - Allows early response behavior ( think of caching ), by calling `$event->isPropagated()` in your listener.
+  - Allows early response behavior ( think of caching ), by calling `$event->isPropagated()` in your listener,
+    this does require you to provide a PSR-7 response object and set it with `$event->setResponse($response)`
 - `Tmdb\Event\ResponseEvent`
   - Contains the `Request` object.
-  - Allows modification of the PSR-7 response before being hydrated.
+  - Allows modification of the PSR-7 response before being hydrated, this does require you to provide a PSR-7
+    response object and set it with `$event->setResponse($response)`
   - Allows end-user to implement their own cache, or any other actions you'd like to perform on the given response. 
 
 ## Event listeners 
 
-We have a small couple of optional event listeners that you could add to provide additional functionality.
+We have a couple of optional event listeners that you could add to provide additional functionality.
 
 ### Caching
 
@@ -400,10 +424,10 @@ To enable filtering contents on language, add the following listener.
 ```php
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Event\BeforeRequestEvent;
-use Tmdb\Event\Listener\Request\RegionFilterRequestListener;
+use Tmdb\Event\Listener\Request\LanguageFilterRequestListener;
 
 $eventDispatcher = new EventDispatcher();
-$languageFilterListener = new RegionFilterRequestListener('nl-NL');
+$languageFilterListener = new LanguageFilterRequestListener('nl-NL');
 
 $eventDispatcher->addListener(BeforeRequestEvent::class, $languageFilterListener);
 ```
@@ -423,10 +447,23 @@ $regionFilterListener = new RegionFilterRequestListener('nl');
 $eventDispatcher->addListener(BeforeRequestEvent::class, $regionFilterListener);
 ```
 
+## Guest session
+
+If you want to make use of guest sessions, you need to specify this explicitly on the client.
+
+```php
+use Tmdb\Client;
+use Tmdb\Token\Session\GuestSessionToken;
+
+$client = new Client();
+$client->setGuestSessionToken(new GuestSessionToken('my_token'));
+
+// Now you can make calls in the guest sessions namespace. 
+```
 
 ## Image Helper
 
-An `ImageHelper` class is provided to take care of the images, which does require the configuration to be loaded:
+An `ImageHelper` class is present to take care of the images, which does require the configuration to be loaded:
 
 ```php
 use Tmdb\Client;
@@ -451,15 +488,16 @@ We also provide some easy methods to filter any collection, you should note howe
 
 ```php
 use Tmdb\Model\Movie;
+use Tmdb\Model\Image\PosterImage;
 
-/** @var $movie Movie **/
+$movie = new Movie();
+
 foreach($movie->getImages()->filter(
         function($key, $value){
-            if ($value instanceof PosterImage) { return true; }
+            return $value instanceof PosterImage;
         }
     ) as $image) {
-
-    // do something with all poster images
+        // do something with all poster images
 }
 ```
 
@@ -476,17 +514,7 @@ $backdrop = $movie
 ```
 _And there are more Collections which provide filters, but you will find those out along the way._
 
-### The `GenericCollection` and the `ResultCollection`
+### The GenericCollection and the ResultCollection
 
-The `GenericCollection` holds any collection of objects (e.g. an collection of movies).
-
-The `ResultCollection` is an extension of the `GenericCollection`, and inherits the response parameters _(page, total_pages, total_results)_ from an result set,
-this can be used to create pagination.
-
-## Help & Donate
-
-If you use this in a project whether personal or business, I'd like to know where it is being used, __so please drop me an e-mail!__ :-)
-
-If this project saved you a bunch of work, or you just simply appreciate my efforts, please consider donating a beer (or two ;))!
-
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMLZ362KQ8K8W"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
+- The `GenericCollection` holds any collection of objects (e.g. an collection of movies).
+- The `ResultCollection` is an extension of the `GenericCollection`, and inherits the response parameters _(page, total_pages, total_results)_ from an result set, this can be used to create pagination.

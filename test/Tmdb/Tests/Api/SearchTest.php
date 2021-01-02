@@ -20,7 +20,6 @@ class SearchTest extends TestCase
     public const QUERY_COLLECTION = 'lord of the rings';
     public const QUERY_TV = 'the simpsons';
     public const QUERY_PERSON = 'vin diesel';
-    public const QUERY_LIST = 'best of';
     public const QUERY_COMPANY = 'sony pictures';
     public const QUERY_KEYWORD = 'horror';
 
@@ -84,22 +83,6 @@ class SearchTest extends TestCase
         $this->assertRequestHasQueryParameters(
             [
                 'query' => self::QUERY_PERSON
-            ]
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function shouldSearchList()
-    {
-        $api = $this->getApiWithMockedHttpAdapter();
-
-        $api->searchList(self::QUERY_LIST);
-        $this->assertLastRequestIsWithPathAndMethod('/3/search/list');
-        $this->assertRequestHasQueryParameters(
-            [
-                'query' => self::QUERY_LIST
             ]
         );
     }

@@ -17,6 +17,7 @@ namespace Tmdb\Tests;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Client;
 use Tmdb\Token\Api\ApiToken;
+use Tmdb\Token\Session\GuestSessionToken;
 use Tmdb\Token\Session\SessionToken;
 
 class ClientTest extends TestCase
@@ -32,13 +33,13 @@ class ClientTest extends TestCase
     public function setUp(): void
     {
         $token = new ApiToken(self::API_TOKEN);
-        $sessionToken = new SessionToken(self::SESSION_TOKEN);
+        $sessionToken = new GuestSessionToken(self::SESSION_TOKEN);
         $eventDispatcher = new EventDispatcher();
 
         $client = new Client(
             [
                 'api_token' => $token,
-                'session_token' => $sessionToken,
+                'guest_session_token' => $sessionToken,
                 'event_dispatcher' => [
                     'adapter' => $eventDispatcher
                 ]
@@ -59,10 +60,10 @@ class ClientTest extends TestCase
     /**
      * @test
      */
-    public function shouldContainSessionToken()
+    public function shouldContainGuestSessionToken()
     {
-        $this->assertInstanceOf('Tmdb\Token\Session\SessionToken', $this->client->getSessionToken());
-        $this->assertEquals(self::SESSION_TOKEN, $this->client->getSessionToken()->getToken());
+        $this->assertInstanceOf('Tmdb\Token\Session\GuestSessionToken', $this->client->getGuestSessionToken());
+        $this->assertEquals(self::SESSION_TOKEN, $this->client->getGuestSessionToken()->getToken());
     }
 
     /**

@@ -31,7 +31,6 @@ class SearchRepositoryTest extends TestCase
     public const COLLECTION_QUERY = 'the matrix';
     public const TV_QUERY         = 'breaking bad';
     public const PERSON_QUERY     = 'johnny knoxville';
-    public const LIST_QUERY       = 'golden';
     public const COMPANY_QUERY    = 'disney';
     public const KEYWORD_QUERY    = 'alien';
     public const MULTI_QUERY      = 'jack';
@@ -112,26 +111,6 @@ class SearchRepositoryTest extends TestCase
             [
                 'page' => 1,
                 'query' => self::PERSON_QUERY
-            ]
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function shouldSearchList()
-    {
-        /**
-         * @var SearchRepository $repository
-         */
-        $repository = $this->getRepositoryWithMockedHttpAdapter();
-
-        $repository->searchList(self::LIST_QUERY, new ListSearchQuery());
-        $this->assertLastRequestIsWithPathAndMethod('/3/search/list');
-        $this->assertRequestHasQueryParameters(
-            [
-                'page' => 1,
-                'query' => self::LIST_QUERY
             ]
         );
     }
@@ -225,7 +204,6 @@ class SearchRepositoryTest extends TestCase
         $repository->setCollectionFactory($class);
         $repository->setCompanyFactory($class);
         $repository->setKeywordFactory($class);
-        $repository->setListItemFactory($class);
         $repository->setPeopleFactory($class);
         $repository->setTvFactory($class);
 
@@ -233,7 +211,6 @@ class SearchRepositoryTest extends TestCase
         $this->assertInstanceOf('stdClass', $repository->getCollectionFactory());
         $this->assertInstanceOf('stdClass', $repository->getCompanyFactory());
         $this->assertInstanceOf('stdClass', $repository->getKeywordFactory());
-        $this->assertInstanceOf('stdClass', $repository->getListItemFactory());
         $this->assertInstanceOf('stdClass', $repository->getPeopleFactory());
         $this->assertInstanceOf('stdClass', $repository->getTvFactory());
     }

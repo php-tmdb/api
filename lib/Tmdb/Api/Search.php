@@ -82,21 +82,6 @@ class Search extends AbstractApi
     }
 
     /**
-     * Search for lists by name and description.
-     *
-     * @param string $query
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
-     */
-    public function searchList($query, array $parameters = [], array $headers = [])
-    {
-        return $this->get('search/list', array_merge($parameters, [
-            'query' => $query
-        ], $headers));
-    }
-
-    /**
      * Search for companies by name.
      *
      * @param $query

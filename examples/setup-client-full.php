@@ -108,7 +108,7 @@ $ed->addListener(HttpClientExceptionEvent::class, $requestLoggerListener);
 $hydrationLoggerListener = new LogHydrationListener(
     $logger,
     new SimpleHydrationFormatter(),
-    true // set to true if you wish to add the json data passed for each hydration, do not use this on production
+    false // set to true if you wish to add the json data passed for each hydration, do not use this on production
 );
 $ed->addListener(BeforeHydrationEvent::class, $hydrationLoggerListener);
 
@@ -121,7 +121,7 @@ $ed->addListener(TmdbExceptionEvent::class, $apiErrorListener);
 /**
  * Optional plugins.
  */
-$adultFilterListener = new AdultFilterRequestListener(true);
+$adultFilterListener = new AdultFilterRequestListener(false);
 $ed->addListener(BeforeRequestEvent::class, $adultFilterListener);
 
 $languageFilterListener = new LanguageFilterRequestListener(TMDB_LANGUAGE);
