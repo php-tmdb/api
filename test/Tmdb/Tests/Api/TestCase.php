@@ -17,10 +17,12 @@ namespace Tmdb\Tests\Api;
 use PHPUnit_Framework_MockObject_MockObject;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
-use Tmdb\ApiToken;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Tests\TestCase as Base;
+
+use Tmdb\Token\Session\GuestSessionToken;
 
 use function json_decode;
 
@@ -54,15 +56,15 @@ abstract class TestCase extends Base
      *
      * @param array $methods
      * @param array $clientMethods
-     * @param null $sessionToken
+     * @param GuestSessionToken|null $sessionToken
      * @return PHPUnit_Framework_MockObject_MockObject
      */
-    protected function getMockedApi(array $methods = [], array $clientMethods = [], $sessionToken = null)
+    protected function getMockedApi(array $methods = [], array $clientMethods = [], $guestSessionToken = null)
     {
         $this->_client = $this->getClientWithMockedHttpClient($clientMethods);
 
-        if ($sessionToken) {
-            $this->_client->setSessionToken($sessionToken);
+        if ($guestSessionToken) {
+            $this->_client->setGuestSessionToken($guestSessionToken);
         }
 
         return $this->_api = $this->getMockBuilder($this->getApiClass())

@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 use Tmdb\HttpClient\Request;
 
-class ResponseEvent
+class ResponseEvent implements LoggableHttpEventInterface
 {
     /**
      * @var RequestInterface
@@ -87,5 +87,13 @@ class ResponseEvent
     public function hasResponse()
     {
         return null !== $this->response;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasRequest()
+    {
+        return null !== $this->request;
     }
 }

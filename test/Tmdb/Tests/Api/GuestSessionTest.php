@@ -16,7 +16,7 @@ namespace Tmdb\Tests\Api;
 
 use Tmdb\Api\GuestSession;
 use Tmdb\Exception\MissingSessionTokenException;
-use Tmdb\GuestSessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
 
 class GuestSessionTest extends TestCase
 {
@@ -38,7 +38,7 @@ class GuestSessionTest extends TestCase
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');
-        $api = $this->getApiWithMockedHttpAdapter(['session_token' => $sessionToken]);
+        $api = $this->getApiWithMockedHttpAdapter(['guest_session_token' => $sessionToken]);
 
         /** @var GuestSession $api */
         $api->getRatedMovies();

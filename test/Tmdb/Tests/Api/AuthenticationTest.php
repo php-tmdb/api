@@ -16,7 +16,7 @@ namespace Tmdb\Tests\Api;
 
 use InvalidArgumentException;
 use Tmdb\HttpClient\ResponseInterface;
-use Tmdb\RequestToken;
+use Tmdb\Token\Session\RequestToken;
 
 class AuthenticationTest extends TestCase
 {

@@ -90,7 +90,6 @@ class SearchRepository extends AbstractRepository
         $this->collectionFactory = new CollectionFactory($this->getClient()->getHttpClient());
         $this->tvFactory = new TvFactory($this->getClient()->getHttpClient());
         $this->peopleFactory = new PeopleFactory($this->getClient()->getHttpClient());
-        $this->listItemFactory = new ListItemFactory($this->getClient()->getHttpClient());
         $this->companyFactory = new CompanyFactory($this->getClient()->getHttpClient());
         $this->keywordFactory = new KeywordFactory($this->getClient()->getHttpClient());
     }
@@ -248,39 +247,6 @@ class SearchRepository extends AbstractRepository
     public function setPeopleFactory($peopleFactory)
     {
         $this->peopleFactory = $peopleFactory;
-
-        return $this;
-    }
-
-    /**
-     * @param string $query
-     * @param ListSearchQuery $parameters
-     * @param array $headers
-     *
-     * @return ResultCollection
-     */
-    public function searchList($query, ListSearchQuery $parameters, array $headers = [])
-    {
-        $data = $this->getApi()->searchList($query, $this->getParameters($parameters), $headers);
-
-        return $this->getListitemFactory()->createResultCollection($data);
-    }
-
-    /**
-     * @return ListItemFactory
-     */
-    public function getListItemFactory()
-    {
-        return $this->listItemFactory;
-    }
-
-    /**
-     * @param ListItemFactory $listItemFactory
-     * @return $this
-     */
-    public function setListItemFactory($listItemFactory)
-    {
-        $this->listItemFactory = $listItemFactory;
 
         return $this;
     }

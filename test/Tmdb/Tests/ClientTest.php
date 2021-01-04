@@ -15,13 +15,14 @@
 namespace Tmdb\Tests;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
 use Tmdb\Client;
-use Tmdb\SessionToken;
+use Tmdb\Token\Api\ApiToken;
+use Tmdb\Token\Session\GuestSessionToken;
+use Tmdb\Token\Session\SessionToken;
 
-class ClientTest extends \Tmdb\Tests\TestCase
+class ClientTest extends TestCase
 {
-    public const API_TOKEN     = 'abcdef';
+    public const API_TOKEN = 'abcdef';
     public const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8c';
 
     /**
@@ -31,14 +32,14 @@ class ClientTest extends \Tmdb\Tests\TestCase
 
     public function setUp(): void
     {
-        $token        = new ApiToken(self::API_TOKEN);
-        $sessionToken = new SessionToken(self::SESSION_TOKEN);
+        $token = new ApiToken(self::API_TOKEN);
+        $sessionToken = new GuestSessionToken(self::SESSION_TOKEN);
         $eventDispatcher = new EventDispatcher();
 
         $client = new Client(
-            $token,
             [
-                'session_token' => $sessionToken,
+                'api_token' => $token,
+                'guest_session_token' => $sessionToken,
                 'event_dispatcher' => [
                     'adapter' => $eventDispatcher
                 ]
@@ -59,10 +60,10 @@ class ClientTest extends \Tmdb\Tests\TestCase
     /**
      * @test
      */
-    public function shouldContainSessionToken()
+    public function shouldContainGuestSessionToken()
     {
-        $this->assertInstanceOf('Tmdb\SessionToken', $this->client->getSessionToken());
-        $this->assertEquals(self::SESSION_TOKEN, $this->client->getSessionToken()->getToken());
+        $this->assertInstanceOf('Tmdb\Token\Session\GuestSessionToken', $this->client->getGuestSessionToken());
+        $this->assertEquals(self::SESSION_TOKEN, $this->client->getGuestSessionToken()->getToken());
     }
 
     /**
@@ -73,30 +74,30 @@ class ClientTest extends \Tmdb\Tests\TestCase
         $this->assertInstancesOf(
             $this->client,
             [
-                'getAccountApi'        => 'Tmdb\Api\Account',
+                'getAccountApi' => 'Tmdb\Api\Account',
                 'getAuthenticationApi' => 'Tmdb\Api\Authentication',
                 'getCertificationsApi' => 'Tmdb\Api\Certifications',
-                'getChangesApi'        => 'Tmdb\Api\Changes',
-                'getCollectionsApi'    => 'Tmdb\Api\Collections',
-                'getCompaniesApi'      => 'Tmdb\Api\Companies',
-                'getConfigurationApi'  => 'Tmdb\Api\Configuration',
-                'getCreditsApi'        => 'Tmdb\Api\Credits',
-                'getDiscoverApi'       => 'Tmdb\Api\Discover',
-                'getFindApi'           => 'Tmdb\Api\Find',
-                'getGenresApi'         => 'Tmdb\Api\Genres',
-                'getGuestSessionApi'   => 'Tmdb\Api\GuestSession',
-                'getJobsApi'           => 'Tmdb\Api\Jobs',
-                'getKeywordsApi'       => 'Tmdb\Api\Keywords',
-                'getListsApi'          => 'Tmdb\Api\Lists',
-                'getMoviesApi'         => 'Tmdb\Api\Movies',
-                'getNetworksApi'       => 'Tmdb\Api\Networks',
-                'getPeopleApi'         => 'Tmdb\Api\People',
-                'getReviewsApi'        => 'Tmdb\Api\Reviews',
-                'getSearchApi'         => 'Tmdb\Api\Search',
-                'getTimezonesApi'      => 'Tmdb\Api\Timezones',
-                'getTvApi'             => 'Tmdb\Api\Tv',
-                'getTvSeasonApi'       => 'Tmdb\Api\TvSeason',
-                'getTvEpisodeApi'      => 'Tmdb\Api\TvEpisode',
+                'getChangesApi' => 'Tmdb\Api\Changes',
+                'getCollectionsApi' => 'Tmdb\Api\Collections',
+                'getCompaniesApi' => 'Tmdb\Api\Companies',
+                'getConfigurationApi' => 'Tmdb\Api\Configuration',
+                'getCreditsApi' => 'Tmdb\Api\Credits',
+                'getDiscoverApi' => 'Tmdb\Api\Discover',
+                'getFindApi' => 'Tmdb\Api\Find',
+                'getGenresApi' => 'Tmdb\Api\Genres',
+                'getGuestSessionApi' => 'Tmdb\Api\GuestSession',
+                'getJobsApi' => 'Tmdb\Api\Jobs',
+                'getKeywordsApi' => 'Tmdb\Api\Keywords',
+                'getListsApi' => 'Tmdb\Api\Lists',
+                'getMoviesApi' => 'Tmdb\Api\Movies',
+                'getNetworksApi' => 'Tmdb\Api\Networks',
+                'getPeopleApi' => 'Tmdb\Api\People',
+                'getReviewsApi' => 'Tmdb\Api\Reviews',
+                'getSearchApi' => 'Tmdb\Api\Search',
+                'getTimezonesApi' => 'Tmdb\Api\Timezones',
+                'getTvApi' => 'Tmdb\Api\Tv',
+                'getTvSeasonApi' => 'Tmdb\Api\TvSeason',
+                'getTvEpisodeApi' => 'Tmdb\Api\TvEpisode',
             ]
         );
     }
@@ -106,19 +107,34 @@ class ClientTest extends \Tmdb\Tests\TestCase
      */
     public function shouldRespectSecureClientOption()
     {
-        $token  = new ApiToken(self::API_TOKEN);
-
-        $client = new \Tmdb\Client($token, ['event_dispatcher' => ['adapter' => new EventDispatcher()]]);
+        $client = new Client(
+            [
+                'api_token' => new ApiToken('test'),
+                'event_dispatcher' => ['adapter' => new EventDispatcher()]
+            ]
+        );
         $options = $client->getOptions();
         $this->assertTrue(true === $options['secure']);
         $this->assertTrue(false !== strpos($options['base_uri'], 'https://'));
 
-        $client = new \Tmdb\Client($token, ['secure' => true, 'event_dispatcher' => ['adapter' => new EventDispatcher()]]);
+        $client = new Client(
+            [
+                'api_token' => new ApiToken('test'),
+                'secure' => true,
+                'event_dispatcher' => ['adapter' => new EventDispatcher()]
+            ]
+        );
         $options = $client->getOptions();
         $this->assertTrue(true === $options['secure']);
         $this->assertTrue(false !== strpos($options['base_uri'], 'https://'));
 
-        $client = new \Tmdb\Client($token, ['secure' => false, 'event_dispatcher' => ['adapter' => new EventDispatcher()]]);
+        $client = new Client(
+            [
+                'api_token' => new ApiToken('test'),
+                'secure' => false,
+                'event_dispatcher' => ['adapter' => new EventDispatcher()]
+            ]
+        );
         $options = $client->getOptions();
         $this->assertTrue(false === $options['secure']);
         $this->assertTrue(false !== strpos($options['base_uri'], 'http://'));
@@ -126,15 +142,19 @@ class ClientTest extends \Tmdb\Tests\TestCase
 
     public function testShouldSwitchHttpScheme()
     {
-        $token  = new ApiToken(self::API_TOKEN);
-        $client = new Client($token, ['event_dispatcher' => ['adapter' => new EventDispatcher()]]);
+        $client = new Client(
+            [
+                'api_token' => new ApiToken(self::API_TOKEN),
+                'event_dispatcher' => ['adapter' => new EventDispatcher()]
+            ]
+        );
 
         $options = $client->getOptions();
 
         $this->assertEquals('https://api.themoviedb.org/3', $options['base_uri']);
 
         $options['secure'] = false;
-        $client->setOptions($options);
+        $client = new Client($options);
 
         $options = $client->getOptions();
 
@@ -142,59 +162,11 @@ class ClientTest extends \Tmdb\Tests\TestCase
     }
 
     /**
-     * @todo
-     */
-    public function shouldBeAbleSetCache()
-    {
-        $path = '/tmp/php-tmdb-api';
-
-        $this->client->setCaching(true, $path);
-
-        $this->assertEquals(true, $this->client->getCacheEnabled());
-        $this->assertEquals($path, $this->client->getCachePath());
-    }
-
-    /**
-     * @todo
-     */
-    public function shouldBeAbleSetLogging()
-    {
-        $path = '/tmp/php-tmdb-api.log';
-
-        $this->client->setLogging(true, $path);
-
-        $this->assertEquals(true, $this->client->getLogEnabled());
-        $this->assertEquals($path, $this->client->getLogPath());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldBeAbleSetOptions()
-    {
-        $expectedToken = 'xyz';
-        $expectedSessionToken = 'qwertyuiop';
-        $this->client->setOptions(array(
-            'token' => new ApiToken($expectedToken),
-            'session_token' =>  new SessionToken($expectedSessionToken),
-            'event_dispatcher' => [
-                'adapter' => new EventDispatcher()
-            ]
-        ));
-
-        $token = $this->client->getOption('token');
-        $sessionToken = $this->client->getOption('session_token');
-
-        $this->assertEquals($expectedToken, $token);
-        $this->assertEquals($expectedSessionToken, $sessionToken);
-    }
-
-    /**
      * @test
      */
     public function shouldBeAbleGetOption()
     {
-        $token = $this->client->getOption('token');
+        $token = $this->client->getOption('api_token');
         $invalidOption = $this->client->getOption('invalid_key');
 
         $this->assertEquals(self::API_TOKEN, $token);

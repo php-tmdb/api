@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,16 +11,22 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Repository\ListRepository;
+
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+/** @var Tmdb\Client $client **/
+$client = require_once('../../setup-client.php');
+$client->getEventDispatcher()->addListener(
+    \Tmdb\Event\BeforeRequestEvent::class,
+    new Tmdb\Event\Listener\Request\SessionTokenRequestListener(
+        new \Tmdb\Token\Session\SessionToken(TMDB_SESSION_TOKEN)
+    )
+);
 
-$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
-$client->setSessionToken($sessionToken);
-
-$repository = new \Tmdb\Repository\ListRepository($client);
-$list       = $repository->load('509ec17b19c2950a0600050d');
+$repository = new ListRepository($client);
+$list = $repository->load('509ec17b19c2950a0600050d');
 
 var_dump($list);

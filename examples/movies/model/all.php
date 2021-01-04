@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,25 +11,32 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Helper\ImageHelper;
+use Tmdb\Model\Image\PosterImage;
+use Tmdb\Model\Movie;
+use Tmdb\Repository\ConfigurationRepository;
+use Tmdb\Repository\MovieRepository;
+
 header('Content-Type: text/html; charset=utf-8');
 
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
-$configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
+/** @var Tmdb\Client $client **/
+$client = require_once('../../setup-client.php');
+$configRepository = new ConfigurationRepository($client);
 $config = $configRepository->load();
 
-$imageHelper = new \Tmdb\Helper\ImageHelper($config);
-$repository  = new \Tmdb\Repository\MovieRepository($client);
+$imageHelper = new ImageHelper($config);
+$repository = new MovieRepository($client);
 
 /**
- * @var \Tmdb\Model\Movie $movie
+ * @var Movie $movie
  */
 $movie = $repository->load(87421);
-var_dump($movie);exit;
+var_dump($movie);
+exit;
 echo $movie->getTitle() . "<br/>";
 
 echo "Alternative Titles<br/>";
@@ -54,11 +62,15 @@ foreach ($movie->getCredits()->getCrew() as $person) {
 echo "Images<br/>";
 
 // All collection classes support filtering by closure functions, provided by the generic collection implementation.
-foreach($movie->getImages()->filter(
+foreach (
+    $movie->getImages()->filter(
         function ($key, $value) {
-            if ($value->getIso6391() == 'en' && $value instanceof \Tmdb\Model\Image\PosterImage) { return true; }
+            if ($value->getIso6391() == 'en' && $value instanceof PosterImage) {
+                return true;
+            }
         }
-    ) as $image) {
+    ) as $image
+) {
     echo $imageHelper->getHtml($image, 'w154', 150);
 
     printf(" - %s<br/>", $imageHelper->getUrl($image));
@@ -68,8 +80,7 @@ foreach($movie->getImages()->filter(
 $backdrop = $movie
     ->getImages()
     ->filterBackdrops()
-    ->filterBestVotedImage()
-;
+    ->filterBestVotedImage();
 
 echo $imageHelper->getHtml($backdrop, 'original', '1024');
 

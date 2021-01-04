@@ -14,7 +14,7 @@
 
 namespace Tmdb\Tests\Repository;
 
-use Tmdb\GuestSessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
 
 class GuestSessionRepositoryTest extends TestCase
 {
@@ -24,7 +24,7 @@ class GuestSessionRepositoryTest extends TestCase
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');
-        $repository   = $this->getRepositoryWithMockedHttpAdapter(['session_token' => $sessionToken]);
+        $repository   = $this->getRepositoryWithMockedHttpAdapter(['guest_session_token' => $sessionToken]);
 
         $repository->getRatedMovies();
         $this->assertLastRequestIsWithPathAndMethod(sprintf('/3/guest_session/%s/rated_movies', 'xyz'));

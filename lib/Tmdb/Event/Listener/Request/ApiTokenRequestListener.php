@@ -14,8 +14,8 @@
 
 namespace Tmdb\Event\Listener\Request;
 
-use Tmdb\ApiToken;
-use Tmdb\BearerToken;
+use Tmdb\Token\Api\ApiToken;
+use Tmdb\Token\Api\BearerToken;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Helper\RequestQueryHelper;
 

@@ -14,14 +14,15 @@
 
 namespace Tmdb\Event;
 
-use Psr\EventDispatcher\EventDispatcherInterface;
-use Psr\EventDispatcher\StoppableEventInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Symfony\Contracts\EventDispatcher\Event;
-use Tmdb\HttpClient\Request;
+use Tmdb\Token\Session\SessionToken;
 
-class RequestEvent extends StoppableEvent
+/**
+ * Class RequestEvent
+ * @package Tmdb\Event
+ */
+class RequestEvent extends StoppableEvent implements LoggableHttpEventInterface
 {
     /**
      * @var RequestInterface
@@ -34,13 +35,20 @@ class RequestEvent extends StoppableEvent
     private $response;
 
     /**
+     * @var SessionToken
+     */
+    private $sessionToken;
+
+    /**
      * Construct the request event
      *
      * @param RequestInterface $request
+     * @param SessionToken|null $sessionToken
      */
-    public function __construct(RequestInterface $request)
+    public function __construct(RequestInterface $request, SessionToken $sessionToken = null)
     {
         $this->request = $request;
+        $this->sessionToken = $sessionToken;
     }
 
     /**
@@ -55,7 +63,7 @@ class RequestEvent extends StoppableEvent
      * @param RequestInterface $request
      * @return $this
      */
-    public function setRequest(RequestInterface $request)
+    public function setRequest(RequestInterface $request): RequestEvent
     {
         $this->request = $request;
 
@@ -74,7 +82,7 @@ class RequestEvent extends StoppableEvent
      * @param ResponseInterface $response
      * @return $this
      */
-    public function setResponse(ResponseInterface $response)
+    public function setResponse(ResponseInterface $response): RequestEvent
     {
         $this->response = $response;
 
@@ -87,5 +95,32 @@ class RequestEvent extends StoppableEvent
     public function hasResponse()
     {
         return $this->response instanceof ResponseInterface;
+    }
+
+    /**
+     * @return SessionToken
+     */
+    public function getSessionToken(): SessionToken
+    {
+        return $this->sessionToken;
+    }
+
+    /**
+     * @param SessionToken|null $sessionToken
+     * @return $this
+     */
+    public function setSessionToken(SessionToken $sessionToken = null): RequestEvent
+    {
+        $this->sessionToken = $sessionToken;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSessionToken(): bool
+    {
+        return $this->sessionToken instanceof SessionToken;
     }
 }

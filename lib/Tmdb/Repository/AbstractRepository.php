@@ -14,6 +14,7 @@
 
 namespace Tmdb\Repository;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Tmdb\Api\ApiInterface;
 use Tmdb\Client;
 use Tmdb\Factory\AbstractFactory;
@@ -49,9 +50,9 @@ abstract class AbstractRepository
     }
 
     /**
-     * @return AdapterInterface
+     * @return EventDispatcherInterface
      */
-    public function getEventDispatcher(): AdapterInterface
+    public function getEventDispatcher(): EventDispatcherInterface
     {
         return $this->client->getEventDispatcher();
     }

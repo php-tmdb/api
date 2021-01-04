@@ -14,12 +14,11 @@
 
 namespace Tmdb\Event\Listener\Request;
 
-use Tmdb\BearerToken;
 use Tmdb\Event\RequestEvent;
-use Tmdb\GuestSessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
 use Tmdb\Helper\RequestQueryHelper;
-use Tmdb\SessionBearerToken;
-use Tmdb\SessionToken;
+use Tmdb\Token\Session\SessionBearerToken;
+use Tmdb\Token\Session\SessionToken;
 
 class SessionTokenRequestListener
 {

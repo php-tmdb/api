@@ -86,18 +86,6 @@ class MoviesTest extends TestCase
 
     /**
      * @test
-     * @todo verify this is implemented in repository
-     */
-    public function shouldGetTrailers()
-    {
-        $api = $this->getApiWithMockedHttpAdapter();
-
-        $api->getTrailers(self::MOVIE_ID);
-        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/trailers');
-    }
-
-    /**
-     * @test
      */
     public function shouldGetTranslations()
     {

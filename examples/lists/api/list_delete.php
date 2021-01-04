@@ -1,4 +1,7 @@
 <?php
+
+// @todo FREEZER API call fails, but result succeeds, I've sent tmdb an e-mail about this.
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,14 +13,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
-$token = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
-$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
-$client->setSessionToken($sessionToken);
+/** @var Tmdb\Client $client **/
+$client = require_once('../../setup-client-session.php');
 
 $create = $client->getListsApi()->deleteList(TMDB_LIST_ID);
 

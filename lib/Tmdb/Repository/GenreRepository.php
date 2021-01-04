@@ -17,6 +17,7 @@ namespace Tmdb\Repository;
 use Tmdb\Api\Genres;
 use Tmdb\Factory\GenreFactory;
 use Tmdb\Factory\MovieFactory;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
 
@@ -34,9 +35,9 @@ class GenreRepository extends AbstractRepository
      * @param array $parameters
      * @param array $headers
      *
-     * @return GenericCollection
+     * @return AbstractModel
      */
-    public function load($id, array $parameters = [], array $headers = []): GenericCollection
+    public function load($id, array $parameters = [], array $headers = []): ?AbstractModel
     {
         return $this->loadCollection($parameters, $headers)->filterId($id);
     }

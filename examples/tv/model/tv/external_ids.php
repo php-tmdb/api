@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,13 +11,15 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Repository\TvRepository;
+
 require_once '../../../../vendor/autoload.php';
-require_once '../../../../apikey.php';
+require_once '../../../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
-$repository = new \Tmdb\Repository\TvRepository($client);
-$tvShow     = $repository->getExternalIds(1396);
+/** @var Tmdb\Client $client * */
+$client = require_once('../../../setup-client.php');
+$repository = new TvRepository($client);
+$tvShow = $repository->getExternalIds(1396);
 
 var_dump($tvShow);

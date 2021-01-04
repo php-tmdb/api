@@ -15,7 +15,7 @@
 namespace Tmdb\Api;
 
 use Tmdb\Exception\MissingSessionTokenException;
-use Tmdb\SessionToken;
+use Tmdb\Token\Session\SessionToken;
 
 /**
  * Class GuestSession
@@ -34,7 +34,7 @@ class GuestSession extends AbstractApi
      */
     public function getRatedMovies(array $parameters = [], array $headers = [])
     {
-        $sessionToken = $this->client->getSessionToken();
+        $sessionToken = $this->client->getGuestSessionToken();
 
         if (!$sessionToken instanceof SessionToken) {
             throw new MissingSessionTokenException('The guest session token was not set on the client.');

@@ -56,7 +56,7 @@ class HydrationEvent extends Event
     /**
      * @return AbstractModel
      */
-    public function getSubject()
+    public function getSubject(): AbstractModel
     {
         return $this->subject;
     }
@@ -65,7 +65,7 @@ class HydrationEvent extends Event
      * @param AbstractModel $subject
      * @return $this
      */
-    public function setSubject($subject)
+    public function setSubject(AbstractModel $subject): HydrationEvent
     {
         $this->subject = $subject;
 
@@ -75,7 +75,7 @@ class HydrationEvent extends Event
     /**
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
@@ -84,7 +84,7 @@ class HydrationEvent extends Event
      * @param array $data
      * @return $this
      */
-    public function setData($data)
+    public function setData(array $data = []): HydrationEvent
     {
         $this->data = $data;
 
@@ -94,7 +94,7 @@ class HydrationEvent extends Event
     /**
      * @return bool
      */
-    public function hasData()
+    public function hasData(): bool
     {
         return !empty($this->data);
     }
@@ -111,7 +111,7 @@ class HydrationEvent extends Event
      * @param RequestInterface|null $lastRequest
      * @return $this
      */
-    public function setLastRequest($lastRequest)
+    public function setLastRequest(RequestInterface $lastRequest = null): HydrationEvent
     {
         $this->lastRequest = $lastRequest;
 
@@ -130,7 +130,7 @@ class HydrationEvent extends Event
      * @param ResponseInterface|null $lastResponse
      * @return $this
      */
-    public function setLastResponse($lastResponse)
+    public function setLastResponse(ResponseInterface $lastResponse = null): HydrationEvent
     {
         $this->lastResponse = $lastResponse;
 

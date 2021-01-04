@@ -97,10 +97,10 @@ class TvSeasonRepository extends AbstractRepository
      *
      * Just like the website, we pull this information from the last season of the series.
      *
-     * @param $tvShow
-     * @param $season
-     * @param $parameters
-     * @param $headers
+     * @param Tv|int $tvShow
+     * @param TvSeason|int $season
+     * @param array $parameters
+     * @param array $headers
      * @return null|AbstractModel
      */
     public function getCredits($tvShow, $season, array $parameters = [], array $headers = [])

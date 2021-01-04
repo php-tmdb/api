@@ -24,5 +24,6 @@ class CacheHelper
      */
     public function getUniqueIdentifier(RequestInterface $request): string
     {
+        return 'hello';
     }
 }

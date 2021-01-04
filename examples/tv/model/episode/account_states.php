@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,16 +11,24 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Repository\TvEpisodeRepository;
+use Tmdb\Token\Session\SessionToken;
+
 require_once '../../../../vendor/autoload.php';
-require_once '../../../../apikey.php';
+require_once '../../../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+/** @var Tmdb\Client $client * */
+$client = require_once('../../../setup-client.php');
+$client->getEventDispatcher()->addListener(
+    BeforeRequestEvent::class,
+    new Tmdb\Event\Listener\Request\SessionTokenRequestListener(
+        new SessionToken(TMDB_SESSION_TOKEN)
+    )
+);
 
-$sessionToken = new \Tmdb\SessionToken(TMDB_SESSION_TOKEN);
-$client->setSessionToken($sessionToken);
-
-$repository = new \Tmdb\Repository\TvEpisodeRepository($client);
-$tvShow     = $repository->getAccountStates(1396, 1, 1);
+$repository = new TvEpisodeRepository($client);
+$tvShow = $repository->getAccountStates(1396, 1, 1);
 
 var_dump($tvShow);

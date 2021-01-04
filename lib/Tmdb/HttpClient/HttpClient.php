@@ -14,7 +14,7 @@
 
 namespace Tmdb\HttpClient;
 
-use Monolog\Logger;
+use InvalidArgumentException;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -23,19 +23,11 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
-use Psr\Log\LogLevel;
 use RuntimeException;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Tmdb\ApiToken;
-use Tmdb\Common\ParameterBag;
-use Tmdb\Event\HydrationListener;
-use Tmdb\Event\RequestEvent;
 use Tmdb\Event\Listener\RequestListener;
-use Tmdb\Event\TmdbEvents;
-use Tmdb\Exception\ApiTokenMissingException;
-use Tmdb\GuestSessionToken;
-use Tmdb\SessionToken;
+use Tmdb\Event\RequestEvent;
+use Tmdb\Token\Session\GuestSessionToken;
+use Tmdb\Token\Session\SessionToken;
 
 /**
  * Class HttpClient
@@ -47,11 +39,6 @@ class HttpClient
      * @var array
      */
     protected $options;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
 
     /**
      * @var ResponseInterface
@@ -77,133 +64,6 @@ class HttpClient
         array $options = []
     ) {
         $this->options = $options;
-//
-//        $this->setAdapter($this->options['adapter']);
-//        $this->processOptions();
-    }
-
-    protected function processOptions(): void
-    {
-        if ($sessionToken = $this->options['session_token']) {
-            $this->setSessionToken($sessionToken);
-        }
-
-        $cache = $this->options['cache'];
-
-        if ($cache['enabled']) {
-            $this->setupCache($cache);
-        }
-
-        $log = $this->options['log'];
-
-        if ($log['enabled']) {
-            $this->setupLog($log);
-        }
-    }
-
-    protected function setupCache(array $cache): void
-    {
-        if ($this->isDefaultAdapter()) {
-//            $this->setDefaultCaching($cache);
-        } elseif (null !== $subscriber = $cache['subscriber']) {
-            $subscriber->setOptions($cache);
-            $this->addSubscriber($subscriber);
-        }
-    }
-
-    public function isDefaultAdapter(): bool
-    {
-        if (!class_exists('GuzzleHttp\Client')) {
-            return false;
-        }
-
-        return ($this->getAdapter() instanceof GuzzleAdapter);
-    }
-
-    /**
-     * @return AdapterInterface
-     */
-    public function getAdapter()
-    {
-        return $this->adapter;
-    }
-
-    /**
-     * @param AdapterInterface $adapter
-     * @return $this
-     */
-    public function setAdapter(AdapterInterface $adapter)
-    {
-        $adapter->registerSubscribers($this->getEventDispatcher());
-        $this->adapter = $adapter;
-
-        return $this;
-    }
-
-    /**
-     * Add a subscriber
-     *
-     * @param EventSubscriberInterface $subscriber
-     *
-     * @return void
-     */
-    public function addSubscriber(EventSubscriberInterface $subscriber): void
-    {
-        if ($subscriber instanceof HttpClientEventSubscriber) {
-            $subscriber->attachHttpClient($this);
-        }
-
-        $this->eventDispatcher->addSubscriber($subscriber);
-    }
-
-    protected function setupLog(array $log): void
-    {
-        if ($this->isDefaultAdapter()) {
-            $this->setDefaultLogging($log);
-        } elseif (null !== $subscriber = $log['subscriber']) {
-            $subscriber->setOptions($log);
-            $this->addSubscriber($subscriber);
-        }
-    }
-
-    /**
-     * Enable logging
-     *
-     * @param array $parameters
-     * @return $this
-     * @throws RuntimeException
-     */
-    public function setDefaultLogging(array $parameters)
-    {
-        if ($parameters['enabled']) {
-            if (!class_exists('\Monolog\Logger')) {
-                //@codeCoverageIgnoreStart
-                throw new RuntimeException(
-                    'Could not find any logger set and the monolog logger library was not found
-                    to provide a default, you have to  set a custom logger on the client or
-                    have you forgot adding monolog to your composer.json?'
-                );
-                //@codeCoverageIgnoreEnd
-            }
-
-            $logger = new Logger('php-tmdb-api');
-            $logger->pushHandler($parameters['handler']);
-
-            if ($this->getAdapter() instanceof GuzzleAdapter) {
-                $middleware = new \Concat\Http\Middleware\Logger($logger);
-                $middleware->setRequestLoggingEnabled(true);
-                $middleware->setLogLevel(function ($response) {
-                    return LogLevel::DEBUG;
-                });
-
-                $this->getAdapter()->getClient()->getConfig('handler')->push(
-                    $middleware,
-                    'tmdb-log'
-                );
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -219,7 +79,7 @@ class HttpClient
      *
      * @psalm-return array<empty, empty>|string
      */
-    private function send(string $path, string $method, array $parameters = [], array $headers = [], $body = null)
+    public function send(string $path, string $method, array $parameters = [], array $headers = [], $body = null)
     {
         $request = $this->createRequest(
             $path,
@@ -229,7 +89,7 @@ class HttpClient
             $body
         );
 
-        $event = new RequestEvent($request);
+        $event = new RequestEvent($request, $this->sessionToken ?? null);
         $this->getPsr14EventDispatcher()->dispatch($event);
 
         $this->lastResponse = $event->getResponse();
@@ -238,11 +98,18 @@ class HttpClient
             return $this->lastResponse;
         }
 
-        return [];
+        throw new RuntimeException(
+            sprintf(
+                'Expected an instance of a "%s", have you configured the event dispatcher for listener "%s" correctly for handling the "%s" event?',
+                ResponseInterface::class,
+                RequestListener::class,
+                RequestEvent::class
+            )
+        );
     }
 
     /**
-     * Create the request object
+     * Create the PSR-7 request object by making use of the PSR-17 factories.
      *
      * @param string $path
      * @param string $method
@@ -251,8 +118,13 @@ class HttpClient
      * @param string|null $body
      * @return RequestInterface
      */
-    private function createRequest($path, string $method, array $parameters = [], array $headers = [], $body = null)
-    {
+    private function createRequest(
+        string $path,
+        string $method,
+        array $parameters = [],
+        array $headers = [],
+        $body = null
+    ) {
         if (!empty($parameters)) {
             ksort($parameters);
         }
@@ -266,112 +138,73 @@ class HttpClient
             $this->getPsr17UriFactory()->createUri($uri)
         );
 
+        if (!empty($headers)) {
+            ksort($headers);
+        }
+
         foreach ($headers as $key => $value) {
             $request = $request->withHeader($key, $value);
         }
 
         if ($body) {
             if (in_array($method, $this->getHttpMethodsWithoutBody())) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Trying to create a request with body with invalid method "%s", it should not contain a body.',
-                    $method
-                ));
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Trying to create a request with body with invalid method "%s", it should not contain a body.',
+                        $method
+                    )
+                );
             }
 
             $stream = $this->getPsr17StreamFactory()->createStream($body);
             $request = $request->withBody($stream);
         }
 
-//        $request = new Request();
-
-//        $request
-//            ->setPath($path)
-//            ->setMethod($method)
-//            ->setParameters(new ParameterBag((array)$parameters))
-//            ->setHeaders(new ParameterBag((array)$headers))
-//            ->setBody($body)
-//            ->setOptions(new ParameterBag((array)$this->options));
-
         return $this->lastRequest = $request;
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return array|string
-     *
-     * @psalm-return array<empty, empty>|string
+     * @return RequestFactoryInterface
      */
-    public function get(string $path, array $parameters = [], array $headers = [])
+    public function getPsr17RequestFactory(): RequestFactoryInterface
     {
-        return $this->send($path, 'GET', $parameters, $headers);
+        return $this->options['http']['request_factory'];
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return array|string
-     *
-     * @psalm-return array<empty, empty>|string
+     * @return UriFactoryInterface
      */
-    public function post(string $path, $body, array $parameters = [], array $headers = [])
+    public function getPsr17UriFactory(): UriFactoryInterface
     {
-        return $this->send($path, 'POST', $parameters, $headers, $body);
+        return $this->options['http']['uri_factory'];
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return array|string
-     *
-     * @psalm-return array<empty, empty>|string
+     * @return StreamFactoryInterface
      */
-    public function head($path, array $parameters = [], array $headers = [])
+    public function getPsr17StreamFactory(): StreamFactoryInterface
     {
-        return $this->send($path, 'HEAD', $parameters, $headers);
+        return $this->options['http']['stream_factory'];
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return array|string
-     *
-     * @psalm-return array<empty, empty>|string
+     * @return EventDispatcherInterface
      */
-    public function put($path, $body = null, array $parameters = [], array $headers = [])
+    public function getPsr14EventDispatcher(): EventDispatcherInterface
     {
-        return $this->send($path, 'PUT', $parameters, $headers, $body);
+        return $this->options['event_dispatcher']['adapter'];
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * @return array|string
-     *
-     * @psalm-return array<empty, empty>|string
+     * @param string|null $key
+     * @return array|mixed
      */
-    public function patch($path, $body = null, array $parameters = [], array $headers = [])
+    public function getOptions(string $key = null)
     {
-        return $this->send($path, 'PATCH', $parameters, $headers, $body);
-    }
+        if ($key) {
+            return isset($this->options[$key]) ? $this->options[$key] : null;
+        }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return array|string
-     *
-     * @psalm-return array<empty, empty>|string
-     */
-    public function delete(string $path, $body = null, array $parameters = [], array $headers = [])
-    {
-        return $this->send($path, 'DELETE', $parameters, $headers, $body);
-    }
-
-    /**
-     * @return array
-     */
-    public function getOptions()
-    {
         return $this->options;
     }
 
@@ -379,7 +212,7 @@ class HttpClient
      * @param array $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(array $options): HttpClient
     {
         $this->options = $options;
 
@@ -388,9 +221,8 @@ class HttpClient
 
     /**
      * @return EventDispatcherInterface
-     * @todo remove before 4.0
      */
-    public function getEventDispatcher()
+    public function getEventDispatcher(): EventDispatcherInterface
     {
         return $this->getPsr14EventDispatcher();
     }
@@ -412,161 +244,11 @@ class HttpClient
     }
 
     /**
-     * Get the current base url
-     *
-     * @return null|string
-     */
-    public function getBaseUrl()
-    {
-        return $this->base_url;
-    }
-
-    /**
-     * Set the base url secure / insecure
-     *
-     * @param $url
-     * @return HttpClient
-     */
-    public function setBaseUrl($url)
-    {
-        $this->base_url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Remove a subscriber
-     *
-     * @param EventSubscriberInterface $subscriber
-     *
-     * @return void
-     */
-    public function removeSubscriber(EventSubscriberInterface $subscriber): void
-    {
-        if ($subscriber instanceof HttpClientEventSubscriber) {
-            $subscriber->attachHttpClient($this);
-        }
-
-        $this->eventDispatcher->removeSubscriber($subscriber);
-    }
-
-    /**
-     * @return GuestSessionToken|SessionToken
-     */
-    public function getSessionToken()
-    {
-        return $this->sessionToken;
-    }
-
-    /**
-     * Add an subscriber to append the session_token to the query parameters.
-     *
-     * @param SessionToken $sessionToken
-     *
-     * @return void
-     */
-    public function setSessionToken(SessionToken $sessionToken): void
-    {
-        $sessionTokenPlugin = new SessionTokenPlugin($sessionToken);
-        $this->addSubscriber($sessionTokenPlugin);
-
-        $this->sessionToken = $sessionToken;
-    }
-
-    /**
-     * Register the default plugins
-     *
-     * @return $this
-     */
-    public function registerDefaults()
-    {
-        return;
-        if (!array_key_exists('token', $this->options)) {
-            throw new ApiTokenMissingException(
-                'An API token was not configured, ' .
-                'please configure the `token` option with an correct ApiToken() object.'
-            );
-        }
-
-        $requestSubscriber = new RequestListener();
-        $this->addSubscriber($requestSubscriber);
-
-        $hydrationSubscriber = new HydrationListener();
-        $this->addSubscriber($hydrationSubscriber);
-
-        $apiTokenPlugin = new ApiTokenPlugin(
-            is_string($this->options['token']) ?
-                new ApiToken($this->options['token']) :
-                $this->options['token']
-        );
-
-        $this->addSubscriber($apiTokenPlugin);
-
-        $acceptJsonHeaderPlugin = new AcceptJsonRequestListener();
-        $this->addSubscriber($acceptJsonHeaderPlugin);
-
-        $contentTypeHeaderPlugin = new ContentTypeJsonHeaderPlugin();
-        $this->addSubscriber($contentTypeHeaderPlugin);
-
-        $userAgentHeaderPlugin = new UserAgentHeaderPlugin();
-        $this->addSubscriber($userAgentHeaderPlugin);
-
-        return $this;
-    }
-
-    /**
-     * Add an subscriber to enable caching.
-     *
-     * @param array $parameters
-     * @return $this
-     * @throws RuntimeException
-     */
-    public function setDefaultCaching(array $parameters)
-    {
-        if ($parameters['enabled']) {
-            if (!class_exists('Doctrine\Common\Cache\CacheProvider')) {
-                //@codeCoverageIgnoreStart
-                throw new RuntimeException(
-                    'Could not find the doctrine cache library,
-                    have you added doctrine-cache to your composer.json?'
-                );
-                //@codeCoverageIgnoreEnd
-            }
-
-            $this->adapter->getClient()->getConfig('handler')->push(
-                new CacheMiddleware(
-                    new PrivateCacheStrategy(
-                        new DoctrineCacheStorage(
-                            $parameters['handler']
-                        )
-                    )
-                ),
-                'tmdb-cache'
-            );
-        }
-
-        return $this;
-    }
-
-    public function getPsr14EventDispatcher(): EventDispatcherInterface
-    {
-        return $this->options['event_dispatcher']['adapter'];
-    }
-
-    /**
      * @return ClientInterface
      */
     public function getPsr18Client(): ClientInterface
     {
         return $this->options['http']['client'];
-    }
-
-    /**
-     * @return RequestFactoryInterface
-     */
-    public function getPsr17RequestFactory(): RequestFactoryInterface
-    {
-        return $this->options['http']['request_factory'];
     }
 
     /**
@@ -578,21 +260,8 @@ class HttpClient
     }
 
     /**
-     * @return StreamFactoryInterface
+     * @return string[]
      */
-    public function getPsr17StreamFactory(): StreamFactoryInterface
-    {
-        return $this->options['http']['stream_factory'];
-    }
-
-    /**
-     * @return UriFactoryInterface
-     */
-    public function getPsr17UriFactory(): UriFactoryInterface
-    {
-        return $this->options['http']['uri_factory'];
-    }
-
     private function getHttpMethodsWithoutBody(): array
     {
         return [

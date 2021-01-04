@@ -15,9 +15,11 @@
 namespace Tmdb\Tests;
 
 use Http\Discovery\Psr17FactoryDiscovery;
-use Psr\Http\Client\ClientInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\Listener\RequestListener;
+use Tmdb\Event\RequestEvent;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Common\ParameterBag;
@@ -85,16 +87,22 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         $options['event_dispatcher']['adapter'] = $this->eventDispatcher = new EventDispatcher();
 
-        $token = new ApiToken('abcdef');
+        $options['api_token'] = new ApiToken('abcdef');
         $options['http']['client'] = new \Http\Mock\Client();
         $response = $this->createMock('Psr\Http\Message\ResponseInterface');
         $options['http']['client']->setDefaultResponse($response);
 
-        $client = new Client($token, $options);
-        $requestListener = new \Tmdb\Event\Listener\RequestListener(
-            $client->getHttpClient(),
-            $options['event_dispatcher']['adapter']
-        );
+        $client = new Client($options);
+
+        $requestListener = new RequestListener($client->getHttpClient(), $this->eventDispatcher);
+        $apiTokenListener = new ApiTokenRequestListener($options['api_token']);
+        $acceptJsonListener = new AcceptJsonRequestListener();
+        $jsonContentTypeListener = new ContentTypeJsonRequestListener();
+
+        $this->eventDispatcher->addListener(BeforeRequestEvent::class, $apiTokenListener);
+        $this->eventDispatcher->addListener(BeforeRequestEvent::class, $acceptJsonListener);
+        $this->eventDispatcher->addListener(BeforeRequestEvent::class, $jsonContentTypeListener);
+        $this->eventDispatcher->addListener(RequestEvent::class, $requestListener);
 
         /**
          * We do not need api keys being added to the requests here.
@@ -124,10 +132,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function getMockedTmdbClient()
     {
-        $token   = new ApiToken('abcdef');
         $adapter = new \Http\Mock\Client();
 
-        return $this->_client = new Client($token, [
+        return $this->_client = new Client([
+            'api_token' => new ApiToken('abcdef'),
             'http' => ['client' => $adapter],
             'event_dispatcher' => ['adapter' => new EventDispatcher()]
         ]);
@@ -231,7 +239,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             ],
             'host'    => 'api.themoviedb.org/3/',
             'base_uri' => $baseUri,
-            'session_token' => null,
+            'guest_session_token' => null,
             'event_dispatcher' => ['adapter' => $this->eventDispatcher]
         ]));
 

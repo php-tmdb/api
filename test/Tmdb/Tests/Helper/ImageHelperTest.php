@@ -15,10 +15,10 @@
 namespace Tmdb\Tests\Helper;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Event\HydrationEvent;
-use Tmdb\Event\HydrationListener;
+use Tmdb\Event\Listener\HydrationListener;
 use Tmdb\Tests\TestCase as Base;
 
 class ImageHelperTest extends Base
@@ -32,7 +32,10 @@ class ImageHelperTest extends Base
     {
         $ed = new EventDispatcher();
         $ed->addListener(HydrationEvent::class, new HydrationListener($ed));
-        $client = new Client(new ApiToken('abcdef'), ['event_dispatcher' => ['adapter' => $ed]]);
+        $client = new Client([
+            'api_token' => new ApiToken('abcdef'),
+            'event_dispatcher' => ['adapter' => $ed]
+        ]);
 
         $factory = new \Tmdb\Factory\ConfigurationFactory($client->getHttpClient());
 

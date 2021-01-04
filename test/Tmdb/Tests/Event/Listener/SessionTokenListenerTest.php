@@ -16,14 +16,13 @@ namespace Tmdb\Tests\Event\Listener;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
-use Tmdb\BearerToken;
+use Tmdb\Token\Api\BearerToken;
 use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 use Tmdb\Event\Listener\Request\SessionTokenRequestListener;
-use Tmdb\GuestSessionToken;
-use Tmdb\SessionBearerToken;
-use Tmdb\SessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
+use Tmdb\Token\Session\SessionBearerToken;
+use Tmdb\Token\Session\SessionToken;
 
 class SessionTokenListenerTest extends ListenerTestCase
 {

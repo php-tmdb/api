@@ -17,7 +17,7 @@ namespace Tmdb\Api;
 use Exception;
 use InvalidArgumentException;
 use Tmdb\Exception\UnauthorizedRequestTokenException;
-use Tmdb\RequestToken;
+use Tmdb\Token\Session\RequestToken;
 
 /**
  * Class Authentication
@@ -117,6 +117,10 @@ class Authentication extends AbstractApi
     public function getNewSession($requestToken)
     {
         try {
+            // @todo 4.0 / 4.1 verify
+            if (is_array($requestToken)) {
+                $requestToken = $requestToken['request_token'];
+            }
             return $this->get('authentication/session/new', ['request_token' => (string)$requestToken]);
 
             //@codeCoverageIgnoreStart

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,17 +11,17 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
 header('Content-Type: text/html; charset=utf-8');
 
 use Tmdb\Repository\MovieRepository;
 use Tmdb\Exception\TmdbApiException;
 
 require_once '../vendor/autoload.php';
-require_once '../apikey.php';
+require_once 'apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
-
+/** @var Tmdb\Client $client **/
+$client = require_once('setup-client.php');
 $repository  = new MovieRepository($client);
 
 /**
@@ -31,7 +32,8 @@ try {
 } catch (TmdbApiException $e) {
     if (TmdbApiException::STATUS_RESOURCE_NOT_FOUND == $e->getCode()) {
         // not found
-        echo '404';exit;
+        echo $e->getMessage();
+        exit;
     }
 
     // catch other tmdb specific errors

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,12 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
-require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token, ['session_token' => new \Tmdb\SessionToken(TMDB_SESSION_TOKEN)]);
+require_once '../../../vendor/autoload.php';
+require_once '../../apikey.php';
+
+/** @var Tmdb\Client $client **/
+$client = require_once('../../setup-client-guest-session.php');
 
 /**
  * @var \Tmdb\Repository\GuestSessionRepository $guestSessionRepository

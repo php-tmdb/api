@@ -112,6 +112,28 @@ class TvRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetAlternativeTitles()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $repository->getAlternativeTitles(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/alternative_titles');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetAccountStates()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $repository->getAccountStates(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/account_states');
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetOnTheAir()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -173,6 +195,20 @@ class TvRepositoryTest extends TestCase
 
         $repository->getContentRatings(self::TV_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/content_ratings');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRate()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $repository->rate(self::TV_ID, 6.2);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/rating', 'POST');
+        $this->assertRequestBodyHasContents([
+            'value' => 6.2
+        ]);
     }
 
     protected function getApiClass()

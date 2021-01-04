@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,15 +11,18 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Repository\AuthenticationRepository;
+use Tmdb\Token\Session\RequestToken;
+
 require_once '../../../vendor/autoload.php';
-require_once '../../../apikey.php';
+require_once '../../apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+/** @var Tmdb\Client $client * */
+$client = require_once('../../setup-client.php');
+$requestToken = new RequestToken(TMDB_REQUEST_TOKEN);
 
-$requestToken = new \Tmdb\RequestToken(TMDB_REQUEST_TOKEN);
-
-$authenticationRepository = new \Tmdb\Repository\AuthenticationRepository($client);
+$authenticationRepository = new AuthenticationRepository($client);
 
 $sessionToken = $authenticationRepository->getSessionTokenWithLogin(
     $requestToken,

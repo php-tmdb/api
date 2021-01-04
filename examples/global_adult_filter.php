@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -10,11 +11,23 @@
  * @copyright (c) 2013, Michael Roterman
  * @version 4.0.0
  */
+
+use Tmdb\Event\BeforeRequestEvent;
+use Tmdb\Event\Listener\Request\AdultFilterRequestListener;
+use Tmdb\Repository\MovieRepository;
+
 require_once '../vendor/autoload.php';
-require_once '../apikey.php';
+require_once 'apikey.php';
 
-$token  = new \Tmdb\ApiToken(TMDB_API_KEY);
-$client = new \Tmdb\Client($token);
+/** @var Tmdb\Client $client * */
+$client = require_once('setup-client.php');
 
-$plugin = new \Tmdb\HttpClient\Plugin\AdultFilterPlugin(); // explicitly set this to true to show adult results
-$client->getHttpClient()->addSubscriber($plugin);
+/** @var Symfony\Component\EventDispatcher\EventDispatcher $ed */
+$ed = $client->getEventDispatcher();
+$ed->addListener(
+    BeforeRequestEvent::class,
+    new AdultFilterRequestListener(true)
+);
+
+$repository = new MovieRepository($client);
+$movie = $repository->load(19995);

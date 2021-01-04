@@ -16,9 +16,9 @@ namespace Tmdb\Factory;
 
 use DateTime;
 use RuntimeException;
-use Tmdb\GuestSessionToken;
-use Tmdb\RequestToken;
-use Tmdb\SessionToken;
+use Tmdb\Token\Session\GuestSessionToken;
+use Tmdb\Token\Session\RequestToken;
+use Tmdb\Token\Session\SessionToken;
 
 /**
  * Class AuthenticationFactory

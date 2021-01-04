@@ -16,8 +16,8 @@ namespace Tmdb\Tests\Event\Listener;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Tmdb\ApiToken;
-use Tmdb\BearerToken;
+use Tmdb\Token\Api\ApiToken;
+use Tmdb\Token\Api\BearerToken;
 use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 
