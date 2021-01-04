@@ -27,11 +27,11 @@ class ApiToken
     /**
      * Token bag
      *
-     * @param $api_token
+     * @param $apiToken
      */
-    public function __construct($api_token = null)
+    public function __construct($apiToken = null)
     {
-        $this->apiToken = $api_token;
+        $this->apiToken = $apiToken;
     }
 
     /**

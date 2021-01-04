@@ -67,9 +67,9 @@ class Client
     /**
      * Construct our client
      *
-     * @param array $options
+     * @param ConfigurationInterface|array $options
      */
-    public function __construct(array $options = [])
+    public function __construct($options = [])
     {
         if ($options instanceof ConfigurationInterface) {
             $options = $options->all();
@@ -171,6 +171,10 @@ class Client
                 'null'
             ]
         );
+
+        if (is_string($options['api_token'])) {
+            $options['api_token'] = new ApiToken($options['api_token']);
+        }
 
         $this->options = $this->postResolve(
             $resolver->resolve($options)

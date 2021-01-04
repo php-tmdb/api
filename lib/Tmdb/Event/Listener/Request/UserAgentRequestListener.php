@@ -20,6 +20,20 @@ use Tmdb\Event\RequestEvent;
 class UserAgentRequestListener
 {
     /**
+     * @var string|null
+     */
+    private $userAgent;
+
+    /**
+     * UserAgentRequestListener constructor.
+     * @param string|null $userAgent
+     */
+    public function __construct(string $userAgent = null)
+    {
+        $this->userAgent = $userAgent ?? sprintf('php-tmdb/api/%s', Client::VERSION);
+    }
+
+    /**
      * Add the API token to the headers.
      *
      * @param RequestEvent $event
@@ -27,7 +41,7 @@ class UserAgentRequestListener
     public function __invoke(RequestEvent $event): void
     {
         $event->setRequest(
-            $event->getRequest()->withHeader('User-Agent', sprintf('php-tmdb/api (v%s)', Client::VERSION))
+            $event->getRequest()->withHeader('User-Agent', $this->userAgent)
         );
     }
 }

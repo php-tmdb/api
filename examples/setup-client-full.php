@@ -18,10 +18,10 @@ use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
 use Tmdb\Event\Listener\Request\LanguageFilterRequestListener;
 use Tmdb\Event\Listener\Request\RegionFilterRequestListener;
+use Tmdb\Event\Listener\Request\UserAgentRequestListener;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\ResponseEvent;
 use Tmdb\Event\TmdbExceptionEvent;
-use Tmdb\Formatter\HttpMessage\SimpleHttpMessageFormatter;
 use Tmdb\Formatter\Hydration\SimpleHydrationFormatter;
 use Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter;
 use Tmdb\Token\Api\ApiToken;
@@ -129,5 +129,8 @@ $ed->addListener(BeforeRequestEvent::class, $languageFilterListener);
 
 $regionFilterListener = new RegionFilterRequestListener(TMDB_REGION);
 $ed->addListener(BeforeRequestEvent::class, $regionFilterListener);
+
+$userAgentListener = new UserAgentRequestListener();
+$ed->addListener(BeforeRequestEvent::class, $userAgentListener);
 
 return $client;

@@ -5,6 +5,7 @@ use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Event\Listener\Request\AcceptJsonRequestListener;
 use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
+use Tmdb\Event\Listener\Request\UserAgentRequestListener;
 use Tmdb\Event\Listener\RequestListener;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Token\Api\ApiToken;
@@ -48,5 +49,8 @@ $ed->addListener(BeforeRequestEvent::class, $acceptJsonListener);
 
 $jsonContentTypeListener = new ContentTypeJsonRequestListener();
 $ed->addListener(BeforeRequestEvent::class, $jsonContentTypeListener);
+
+$userAgentListener = new UserAgentRequestListener();
+$ed->addListener(BeforeRequestEvent::class, $userAgentListener);
 
 return $client;
