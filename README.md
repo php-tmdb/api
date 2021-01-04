@@ -127,7 +127,7 @@ We also provide a bunch of examples in the `examples/` folder.
 To get started;
 
 ```shell script
-composer require php-tmdb/api:^4 symfony/event-dispatcher guzzlehttp/guzzle symfony/cache monolog/monolog
+composer require php-tmdb/api:^4 symfony/event-dispatcher guzzlehttp/guzzle symfony/cache monolog/monolog nyholm/psr7
 ```
 
 Now that we have everything we need installed, let's get started setting up to be able to use the library.
