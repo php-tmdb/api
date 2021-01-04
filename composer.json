@@ -31,7 +31,7 @@
     "license": "MIT",
     "name": "php-tmdb/api",
     "require": {
-        "php": ">7.3",
+        "php": "^7.3 || ^8.0",
         "ext-json": "*",
         "symfony/options-resolver": ">=4.4,<6",
         "psr/cache": "^1.0",
@@ -72,7 +72,10 @@
     },
     "suggest": {
         "psr/log-implementation": "If you wish to enable logging features, provide an PSR-3 logger.",
+        "monolog/monolog": "Great logger to use, but you can pick any PSR-3 logger you wish.",
         "psr/cache-implementation": "If you wish to enable caching features, provide an PSR-6 cache implementation.",
+        "symfony/cache": "Great cache to use, but you can pick any PSR-6 cache you wish.",
+        "php-http/cache-plugin": "When making use of cache, you need to install this plugin.",
         "psr/simple-cache-implementation": "If you wish to enable caching features, provide an PSR-16 cache."
     },
     "type": "library"

@@ -14,50 +14,51 @@
 
 namespace Tmdb\Tests\Api;
 
+use Psr\Http\Message\RequestInterface;
+
 class GenresTest extends TestCase
 {
     public const GENRE_ID = 28;
 
     /**
-     * @todo
+     * @test
      */
     public function shouldGetGenre()
     {
         $api = $this->getApiWithMockedHttpAdapter();
-
-        $responseMock = $response = $this->createMock('Psr\Http\Message\ResponseInterface');
-        $this->getPsr18Client()->setDefaultResponse();
-
-        $this->getPsr18Client()->expects($this->at(0))
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'))
-            ->will($this->returnValue(['genres']));
-
-        $this->getPsr18Client()->expects($this->at(1))
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'))
-            ->will($this->returnValue(['genres']));
-
         $api->getGenre(self::GENRE_ID);
-        $this->assertLastRequestIsWithPathAndMethod('/3/genre/tv/list');
+
+        $requests = $this->getPsr18Client()->getRequests();
+
+        /** @var RequestInterface $reqOne */
+        $reqOne = array_shift($requests);
+
+        /** @var RequestInterface $reqTwo */
+        $reqTwo = array_shift($requests);
+
+        $this->assertEquals('/3/genre/movie/list', $reqOne->getUri()->getPath());
+        $this->assertEquals('/3/genre/tv/list', $reqTwo->getUri()->getPath());
     }
 
     /**
-     * @todo
+     * @test
      */
     public function shouldGetGenres()
     {
         $api = $this->getApiWithMockedHttpAdapter();
 
-        $this->getPsr18Client()->expects($this->at(0))
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/movie/list'));
-
-        $this->getPsr18Client()->expects($this->at(1))
-            ->method('get')
-            ->with($this->getRequest('https://api.themoviedb.org/3/genre/tv/list'));
-
         $api->getGenres();
+
+        $requests = $this->getPsr18Client()->getRequests();
+
+        /** @var RequestInterface $reqOne */
+        $reqOne = array_shift($requests);
+
+        /** @var RequestInterface $reqTwo */
+        $reqTwo = array_shift($requests);
+
+        $this->assertEquals('/3/genre/movie/list', $reqOne->getUri()->getPath());
+        $this->assertEquals('/3/genre/tv/list', $reqTwo->getUri()->getPath());
     }
 
     /**

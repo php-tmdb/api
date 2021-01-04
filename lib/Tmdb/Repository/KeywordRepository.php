@@ -16,6 +16,7 @@ namespace Tmdb\Repository;
 
 use Tmdb\Api\Keywords;
 use Tmdb\Factory\KeywordFactory;
+use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Keyword;
 
@@ -50,6 +51,14 @@ class KeywordRepository extends AbstractRepository
     }
 
     /**
+     * @return MovieFactory
+     */
+    public function getMovieFactory()
+    {
+        return new MovieFactory($this->getClient()->getHttpClient());
+    }
+
+    /**
      * Return the related API class
      *
      * @return Keywords
@@ -70,9 +79,8 @@ class KeywordRepository extends AbstractRepository
      */
     public function getMovies($id, array $parameters = [], array $headers = [])
     {
-        return $this->getFactory()->createResultCollection(
-            $this->getApi()->getMovies($id, $parameters, $headers),
-            'createMovie'
+        return $this->getMovieFactory()->createResultCollection(
+            $this->getApi()->getMovies($id, $parameters, $headers)
         );
     }
 }

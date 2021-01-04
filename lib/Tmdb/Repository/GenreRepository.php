@@ -37,7 +37,7 @@ class GenreRepository extends AbstractRepository
      *
      * @return AbstractModel
      */
-    public function load($id, array $parameters = [], array $headers = []): AbstractModel
+    public function load($id, array $parameters = [], array $headers = []): ?AbstractModel
     {
         return $this->loadCollection($parameters, $headers)->filterId($id);
     }

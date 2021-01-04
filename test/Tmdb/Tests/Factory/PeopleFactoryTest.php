@@ -127,11 +127,11 @@ class PeopleFactoryTest extends TestCase
         $this->assertEquals(false, $this->person->isFemale());
         $this->assertEquals(false, $this->person->isUnknownGender());
         //@todo
-        //$this->assertEquals('nm0000641', $this->person->getImdbId());
+        $this->assertEquals('nm0000641', $this->person->getImdbId());
         $this->assertEquals('Gary Sinise', $this->person->getName());
         $this->assertEquals('Blue Island, Illinois, USA', $this->person->getPlaceOfBirth());
         //@todo
-        //$this->assertEquals(1.99498054250796, $this->person->getPopularity());
+        $this->assertEquals(2.26771296623734, $this->person->getPopularity());
         $this->assertInstanceOf('Tmdb\Model\Image\ProfileImage', $this->person->getProfileImage());
         $this->assertEquals('/h9YwlLHANaQzaTVkVwxnxLbvCY4.jpg', $this->person->getProfilePath());
         $this->assertInstanceOf('Tmdb\Model\Collection\Images', $this->person->getImages());

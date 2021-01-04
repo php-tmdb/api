@@ -43,8 +43,10 @@ class Person extends AbstractModel implements PersonInterface
         'place_of_birth',
         'profile_path',
         'gender',
+        'imdb_id',
         'popularity'
     ];
+
     /**
      * @var Common\GenericCollection
      */
@@ -126,6 +128,10 @@ class Person extends AbstractModel implements PersonInterface
      * @var string
      */
     private $profilePath;
+    /**
+     * @var string|null
+     */
+    private $imdbId;
     /**
      * @var ProfileImage
      */
@@ -598,5 +604,21 @@ class Person extends AbstractModel implements PersonInterface
     public function setPopularity($popularity): void
     {
         $this->popularity = $popularity;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImdbId(): ?string
+    {
+        return $this->imdbId;
+    }
+
+    /**
+     * @param string|null $imdbId
+     */
+    public function setImdbId(?string $imdbId): void
+    {
+        $this->imdbId = $imdbId;
     }
 }
