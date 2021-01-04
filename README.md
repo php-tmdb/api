@@ -71,7 +71,7 @@ Install [composer](https://getcomposer.org/download/).
 
 Before we can install the api library, you need to install a set of dependencies that provide the following implementations.
 
-**Required**
+## Dependencies you have to fulfill yourself
 
 - For `PSR-7: HTTP Message Interface`, for example `nyholm/psr7`.
 - For `PSR-14: Event Dispatcher`, for example `symfony/event-dispatcher`.
