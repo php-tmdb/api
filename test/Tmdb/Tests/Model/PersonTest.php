@@ -14,7 +14,11 @@
 
 namespace Tmdb\Tests\Model;
 
+use Http\Mock\Client;
 use stdClass;
+use Tmdb\Common\ObjectHydrator;
+use Tmdb\Factory\PeopleFactory;
+use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person;
 
@@ -75,5 +79,22 @@ class PersonTest extends TestCase
                 'getChanges' => $className
             ]
         );
+    }
+
+    /**
+     * @test
+     */
+    public function regressionIssue180()
+    {
+        $person = (new ObjectHydrator())->hydrate(new Person(), [
+            'birthday' => '1945',
+            'deathday' => '1946',
+        ]);
+
+        $actualBirthDate = $person->getBirthday()->format('Y-m-d');
+        $actualDeathDate = $person->getDeathday()->format('Y-m-d');
+
+        $this->assertEquals('1945-01-01', $actualBirthDate);
+        $this->assertEquals('1946-01-01', $actualDeathDate);
     }
 }

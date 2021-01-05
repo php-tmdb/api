@@ -228,8 +228,22 @@ class Person extends AbstractModel implements PersonInterface
      */
     public function setBirthday($birthday)
     {
-        if (!$birthday instanceof DateTime) {
-            $birthday = new DateTime($birthday);
+        if (!$birthday instanceof DateTime && !empty($birthday)) {
+            if (ctype_digit($birthday) && strlen(4)) {
+                $birthday = DateTime::createFromFormat(
+                    'Y-m-d',
+                    sprintf('%d-01-01', $birthday),
+                    new \DateTimeZone('UTC')
+                );
+            } elseif (strtotime($birthday) === false) {
+                $birthday = DateTime::createFromFormat('Y-d-m', $birthday);
+            } else {
+                $birthday = new DateTime($birthday);
+            }
+        }
+
+        if (empty($birthday)) {
+            $birthday = false;
         }
 
         $this->birthday = $birthday;
@@ -271,8 +285,13 @@ class Person extends AbstractModel implements PersonInterface
     public function setDeathday($deathday)
     {
         if (!$deathday instanceof DateTime && !empty($deathday)) {
-            // Is the format Y-m-d ?
-            if (strtotime($deathday) === false) {
+            if (ctype_digit($deathday) && strlen(4)) {
+                $deathday = DateTime::createFromFormat(
+                    'Y-m-d',
+                    sprintf('%d-01-01', $deathday),
+                    new \DateTimeZone('UTC')
+                );
+            } elseif (strtotime($deathday) === false) {
                 $deathday = DateTime::createFromFormat('Y-d-m', $deathday);
             } else {
                 $deathday = new DateTime($deathday);

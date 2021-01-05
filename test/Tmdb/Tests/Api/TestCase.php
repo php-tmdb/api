@@ -21,7 +21,6 @@ use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Common\ParameterBag;
 use Tmdb\Tests\TestCase as Base;
-
 use Tmdb\Token\Session\GuestSessionToken;
 
 use function json_decode;
