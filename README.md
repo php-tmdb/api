@@ -1,4 +1,4 @@
-# A PHP Wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
+# A PHP Wrapper for use with the [TMDB API](https://developers.themoviedb.org/4/).
 
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
 [![License](https://img.shields.io/github/v/tag/php-tmdb/api)](https://github.com/php-tmdb/api/releases)
