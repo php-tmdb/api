@@ -295,4 +295,17 @@ class Movies extends AbstractApi
     {
         return $this->get('movie/' . $movie_id . '/videos', $parameters, $headers);
     }
+
+    /**
+     * Get the external ids that we have stored for a movie.
+     *
+     * @param $movie_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getExternalIds($movie_id, array $parameters = [], array $headers = [])
+    {
+        return $this->get('movie/' . $movie_id . '/external_ids', $parameters, $headers);
+    }
 }
