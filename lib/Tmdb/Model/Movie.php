@@ -245,6 +245,7 @@ class Movie extends AbstractModel
         $this->alternativeTitles = new GenericCollection();
         $this->changes = new GenericCollection();
         $this->credits = new CreditsCollection();
+        $this->externalIds = new ExternalIds();
         $this->images = new Images();
         $this->keywords = new GenericCollection();
         $this->lists = new GenericCollection();
