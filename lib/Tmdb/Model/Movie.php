@@ -570,12 +570,12 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param string $releaseDate
+     * @param DateTime|string|null $releaseDate
      * @return $this
      */
-    public function setReleaseDate($releaseDate)
+    public function setReleaseDate($releaseDate = null)
     {
-        if (!$releaseDate instanceof DateTime) {
+        if (!$releaseDate instanceof DateTime && $releaseDate !== null) {
             $releaseDate = new DateTime($releaseDate);
         }
 

@@ -159,12 +159,12 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @param DateTime $airDate
+     * @param DateTime|string|null $airDate
      * @return $this
      */
-    public function setAirDate($airDate)
+    public function setAirDate($airDate = null)
     {
-        if (!$airDate instanceof DateTime) {
+        if (!$airDate instanceof DateTime && $airDate !== null) {
             $airDate = new DateTime($airDate);
         }
 

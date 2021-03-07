@@ -112,12 +112,12 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * @param string|DateTime $releaseDate
+     * @param string|DateTime|null $releaseDate
      * @return $this
      */
-    public function setReleaseDate($releaseDate)
+    public function setReleaseDate($releaseDate = null)
     {
-        if (!$releaseDate instanceof DateTime) {
+        if (!$releaseDate instanceof DateTime && $releaseDate !== null) {
             $releaseDate = new DateTime($releaseDate);
         }
 

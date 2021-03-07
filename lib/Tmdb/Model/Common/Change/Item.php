@@ -93,12 +93,12 @@ class Item extends AbstractModel
     }
 
     /**
-     * @param string|DateTime $time
+     * @param string|DateTime|null $time
      * @return $this
      */
-    public function setTime($time)
+    public function setTime($time = null)
     {
-        if (!$time instanceof DateTime) {
+        if (!$time instanceof DateTime && $time !== null) {
             $time = new DateTime($time);
         }
 

@@ -343,12 +343,12 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param DateTime $firstAirDate
+     * @param DateTime|string|null $firstAirDate
      * @return $this
      */
-    public function setFirstAirDate($firstAirDate)
+    public function setFirstAirDate($firstAirDate = null)
     {
-        if (!$firstAirDate instanceof DateTime) {
+        if (!$firstAirDate instanceof DateTime && $firstAirDate !== null) {
             $firstAirDate = new DateTime($firstAirDate);
         }
 
@@ -461,12 +461,12 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @param string $lastAirDate
+     * @param DateTime|string|null $lastAirDate
      * @return $this
      */
-    public function setLastAirDate($lastAirDate)
+    public function setLastAirDate($lastAirDate = null)
     {
-        if (!$lastAirDate instanceof DateTime) {
+        if (!$lastAirDate instanceof DateTime && $lastAirDate !== null) {
             $lastAirDate = new DateTime($lastAirDate);
         }
 
