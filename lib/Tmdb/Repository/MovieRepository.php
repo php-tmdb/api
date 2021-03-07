@@ -70,6 +70,7 @@ class MovieRepository extends AbstractRepository
             $parameters = array_merge($parameters, [
                 new AppendToResponse([
                     AppendToResponse::ALTERNATIVE_TITLES,
+                    AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::CHANGES,
                     AppendToResponse::CREDITS,
                     AppendToResponse::IMAGES,
@@ -451,6 +452,22 @@ class MovieRepository extends AbstractRepository
         $movie = $this->getFactory()->create(['videos' => $data]);
 
         return $movie->getVideos();
+    }
+
+    /**
+     * Get the external ids that we have stored for a movie.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return null|AbstractModel
+     */
+    public function getExternalIds($id, array $parameters = [], array $headers = [])
+    {
+        $data = $this->getApi()->getExternalIds($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(['external_ids' => $data]);
+
+        return $movie->getExternalIds();
     }
 
     /**

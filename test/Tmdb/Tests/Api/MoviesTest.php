@@ -43,6 +43,17 @@ class MoviesTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetExternalIds()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $api->getExternalIds(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/external_ids');
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetCast()
     {
         $api = $this->getApiWithMockedHttpAdapter();

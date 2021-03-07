@@ -37,6 +37,7 @@ class MovieTest extends TestCase
                 'getSpokenLanguages' => 'Tmdb\Model\Common\GenericCollection',
                 'getAlternativeTitles' => 'Tmdb\Model\Common\GenericCollection',
                 'getChanges' => 'Tmdb\Model\Common\GenericCollection',
+                'getExternalIds' => 'Tmdb\Model\Common\ExternalIds',
                 'getCredits' => 'Tmdb\Model\Collection\CreditsCollection',
                 'getImages' => 'Tmdb\Model\Collection\Images',
                 'getKeywords' => 'Tmdb\Model\Common\GenericCollection',

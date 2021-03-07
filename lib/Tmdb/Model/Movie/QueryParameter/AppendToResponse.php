@@ -23,6 +23,7 @@ use Tmdb\Model\Common\QueryParameter\AppendToResponse as BaseAppendToResponse;
 final class AppendToResponse extends BaseAppendToResponse
 {
     public const ALTERNATIVE_TITLES = 'alternative_titles';
+    public const EXTERNAL_IDS = 'external_ids';
     public const CREDITS = 'credits';
     public const IMAGES = 'images';
     public const KEYWORDS = 'keywords';

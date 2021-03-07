@@ -30,7 +30,7 @@ class MovieRepositoryTest extends TestCase
         $repository->load(self::MOVIE_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID);
         $this->assertRequestHasQueryParameters([
-            'append_to_response' => 'alternative_titles,changes,credits,images,keywords,lists,release_dates,reviews,similar,recommendations,translations,videos'
+            'append_to_response' => 'alternative_titles,external_ids,changes,credits,images,keywords,lists,release_dates,reviews,similar,recommendations,translations,videos'
         ]);
     }
 
@@ -43,6 +43,17 @@ class MovieRepositoryTest extends TestCase
 
         $repository->getAlternativeTitles(self::MOVIE_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/alternative_titles');
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetExternalIds()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $repository->getExternalIds(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/external_ids');
     }
 
     /**

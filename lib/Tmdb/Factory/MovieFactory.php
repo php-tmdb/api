@@ -22,6 +22,7 @@ use Tmdb\Factory\People\CrewFactory;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\Country;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
@@ -144,6 +145,13 @@ class MovieFactory extends AbstractFactory
             if (array_key_exists('crew', $data['credits'])) {
                 $movie->getCredits()->setCrew($this->getCrewFactory()->createCollection($data['credits']['crew']));
             }
+        }
+
+        /** External ids */
+        if (array_key_exists('external_ids', $data)) {
+            $movie->setExternalIds(
+                $this->hydrate(new ExternalIds(), $data['external_ids'])
+            );
         }
 
         /** Genres */

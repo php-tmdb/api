@@ -21,6 +21,7 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\Country;
+use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Movie\AlternativeTitle;
@@ -76,6 +77,12 @@ class Movie extends AbstractModel
      * @var CreditsCollection
      */
     protected $credits;
+    /**
+     * External Ids
+     *
+     * @var ExternalIds
+     */
+    private $externalIds;
     /**
      * Images
      *
@@ -238,6 +245,7 @@ class Movie extends AbstractModel
         $this->alternativeTitles = new GenericCollection();
         $this->changes = new GenericCollection();
         $this->credits = new CreditsCollection();
+        $this->externalIds = new ExternalIds();
         $this->images = new Images();
         $this->keywords = new GenericCollection();
         $this->lists = new GenericCollection();
@@ -784,6 +792,26 @@ class Movie extends AbstractModel
 
         return $this;
     }
+
+    /**
+     * @return ExternalIds
+     */
+    public function getExternalIds()
+    {
+        return $this->externalIds;
+    }
+
+    /**
+     * @param ExternalIds $externalIds
+     * @return $this
+     */
+    public function setExternalIds($externalIds)
+    {
+        $this->externalIds = $externalIds;
+
+        return $this;
+    }
+
 
     /**
      * @return GenericCollection|Keyword[]
