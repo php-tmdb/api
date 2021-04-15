@@ -21,6 +21,7 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
+use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 use Tmdb\Model\Tv\Episode;
@@ -162,7 +163,7 @@ class Tv extends AbstractModel
      */
     private $inProduction;
     /**
-     * @var array
+     * @var GenericCollection|SpokenLanguage[]
      */
     private $languages;
     /**
@@ -256,6 +257,7 @@ class Tv extends AbstractModel
         $this->recommendations = new GenericCollection();
         $this->contentRatings = new GenericCollection();
         $this->alternativeTitles = new GenericCollection();
+        $this->languages = new GenericCollection();
     }
 
     /**
@@ -434,9 +436,9 @@ class Tv extends AbstractModel
     }
 
     /**
-     * @return array
+     * @return GenericCollection
      */
-    public function getLanguages(): array
+    public function getLanguages(): GenericCollection
     {
         return $this->languages;
     }
