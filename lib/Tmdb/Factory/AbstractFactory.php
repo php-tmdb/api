@@ -237,8 +237,8 @@ abstract class AbstractFactory
      * @return GenericCollection
      */
     protected function createCustomCollection(
-        array $data = [],
-        AbstractModel $class = null,
+        array $data,
+        AbstractModel $class,
         GenericCollection $collection
     ) {
         if (!$class || !$collection) {
