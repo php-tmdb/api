@@ -28,7 +28,8 @@ class RequestQueryHelperTest extends Base
         $helper = new RequestQueryHelper();
         $request = new Request('GET', 'http://localhost');
         $request = $helper->withQuery($request, 'air_date.gte', 1);
+        $request = $helper->withQuery($request, 'token', 1);
 
-        $this->assertEquals('http://localhost?air_date.gte=1', (string)$request->getUri());
+        $this->assertEquals('http://localhost?air_date.gte=1&token=1', (string)$request->getUri());
     }
 }
