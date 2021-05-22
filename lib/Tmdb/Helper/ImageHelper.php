@@ -57,10 +57,10 @@ class ImageHelper
      * @param string $size
      * @param int|null $width
      * @param int|null $height
-     * @param string $alt
+     * @param string $title
      * @return string
      */
-    public function getHtml($image, $size = 'original', $width = null, $height = null, $alt = '')
+    public function getHtml($image, $size = 'original', $width = null, $height = null, $title = '')
     {
         if ($image instanceof Image) {
             if (null == $image->getFilePath()) {
@@ -87,11 +87,12 @@ class ImageHelper
         }
 
         return sprintf(
-            '<img src="%s" width="%s" height="%s" alt="%s"/>',
+            '<img src="%s" width="%s" height="%s" title="%s" alt="%s"/>',
             $this->getUrl($image, $size),
             $width,
             $height,
-            $alt
+            $title,
+            $title
         );
     }
 
