@@ -57,10 +57,11 @@ class ImageHelper
      * @param string $size
      * @param int|null $width
      * @param int|null $height
+     * @param string $alt
      * @param string $title
      * @return string
      */
-    public function getHtml($image, $size = 'original', $width = null, $height = null, $title = '')
+    public function getHtml($image, $size = 'original', $width = null, $height = null, $alt = '', $title = '')
     {
         if ($image instanceof Image) {
             if (null == $image->getFilePath()) {
@@ -92,7 +93,7 @@ class ImageHelper
             $width,
             $height,
             $title,
-            $title
+            $alt
         );
     }
 
