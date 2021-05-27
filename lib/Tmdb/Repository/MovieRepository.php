@@ -82,6 +82,7 @@ class MovieRepository extends AbstractRepository
                     AppendToResponse::RECOMMENDATIONS,
                     AppendToResponse::TRANSLATIONS,
                     AppendToResponse::VIDEOS,
+                    AppendToResponse::WATCH_PROVIDERS,
                 ])
             ]);
         }
