@@ -30,7 +30,7 @@ class MovieRepositoryTest extends TestCase
         $repository->load(self::MOVIE_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID);
         $this->assertRequestHasQueryParameters([
-            'append_to_response' => 'alternative_titles,external_ids,changes,credits,images,keywords,lists,release_dates,reviews,similar,recommendations,translations,videos'
+            'append_to_response' => 'alternative_titles,external_ids,changes,credits,images,keywords,lists,release_dates,reviews,similar,recommendations,translations,videos,watch/providers'
         ]);
     }
 
