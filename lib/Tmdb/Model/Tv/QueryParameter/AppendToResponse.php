@@ -33,4 +33,5 @@ class AppendToResponse extends BaseAppendToResponse
     public const RECOMMENDATIONS = 'recommendations';
     public const CONTENT_RATINGS = 'content_ratings';
     public const ALTERNATIVE_TITLES = 'alternative_titles';
+    public const WATCH_PROVIDERS = 'watch/providers';
 }

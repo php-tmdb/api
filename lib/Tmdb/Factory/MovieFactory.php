@@ -28,6 +28,7 @@ use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Company;
 use Tmdb\Model\Movie;
+use Tmdb\Model\Watch;
 
 /**
  * Class MovieFactory
@@ -204,6 +205,26 @@ class MovieFactory extends AbstractFactory
                 }
             }
             $movie->setReleaseDates($release_dates);
+        }
+
+        if (array_key_exists('watch/providers', $data) && array_key_exists('results', $data['watch/providers'])) {
+            $watchProviders = new GenericCollection();
+            foreach ($data['watch/providers']['results'] as $iso_31661 => $country_watch_data) {
+                $country_watch_data['iso_3166_1'] = $iso_31661;
+                
+                foreach (['flatrate', 'rent', 'buy'] as $providerType) {
+                    $typeProviders = new GenericCollection();
+                    foreach ($country_watch_data[$providerType] ?? [] as $providerData) {
+                        $providerData['iso_3166_1'] = $iso_31661;
+                        $providerData['type'] = $providerType;
+                        $typeProviders->add(null, $this->hydrate(new Watch\Provider(), $providerData));
+                    }
+                    $country_watch_data[$providerType] = $typeProviders;
+                }
+                
+                $watchProviders->add($iso_31661, $this->hydrate(new Watch\Providers(), $country_watch_data));
+            }
+            $movie->setWatchProviders($watchProviders);
         }
 
         if (array_key_exists('videos', $data)) {

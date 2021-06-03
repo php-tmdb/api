@@ -40,4 +40,5 @@ final class AppendToResponse extends BaseAppendToResponse
     public const LISTS = 'lists';
     public const CHANGES = 'changes';
     public const VIDEOS = 'videos';
+    public const WATCH_PROVIDERS = 'watch/providers';
 }

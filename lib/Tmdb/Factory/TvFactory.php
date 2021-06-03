@@ -29,6 +29,7 @@ use Tmdb\Model\Company;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Tv;
+use Tmdb\Model\Watch;
 
 /**
  * Class TvFactory
@@ -242,6 +243,26 @@ class TvFactory extends AbstractFactory
         /** Networks */
         if (array_key_exists('networks', $data) && $data['networks'] !== null) {
             $tvShow->setNetworks($this->getNetworkFactory()->createCollection($data['networks']));
+        }
+
+        if (array_key_exists('watch/providers', $data) && array_key_exists('results', $data['watch/providers'])) {
+            $watchProviders = new GenericCollection();
+            foreach ($data['watch/providers']['results'] as $iso_31661 => $country_watch_data) {
+                $country_watch_data['iso_3166_1'] = $iso_31661;
+                
+                foreach (['flatrate', 'rent', 'buy'] as $providerType) {
+                    $typeProviders = new GenericCollection();
+                    foreach ($country_watch_data[$providerType] ?? [] as $providerData) {
+                        $providerData['iso_3166_1'] = $iso_31661;
+                        $providerData['type'] = $providerType;
+                        $typeProviders->add(null, $this->hydrate(new Watch\Provider(), $providerData));
+                    }
+                    $country_watch_data[$providerType] = $typeProviders;
+                }
+                
+                $watchProviders->add($iso_31661, $this->hydrate(new Watch\Providers(), $country_watch_data));
+            }
+            $tvShow->setWatchProviders($watchProviders);
         }
 
         if (array_key_exists('videos', $data) && $data['videos'] !== null) {
