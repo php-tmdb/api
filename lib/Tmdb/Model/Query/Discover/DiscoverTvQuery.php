@@ -50,6 +50,49 @@ class DiscoverTvQuery extends QueryParametersCollection
     }
 
     /**
+     * An ISO 3166-1 code. Combine this filter with with_watch_providers in order to filter your results by a specific watch provider in a specific region.
+     *
+     * @param string $watchRegion
+     * @return $this
+     */
+    public function watchRegion($watchRegion)
+    {
+        $this->set('watch_region', $watchRegion);
+
+        return $this;
+    }
+
+    /**
+     * Only include movies with the specified watch providers. Combine with watch_region.
+     *
+     * @param array|string $watchProviders
+     * @param int $mode
+     * @return $this
+     */
+    public function withWatchProviders($watchProviders, $mode = self::MODE_OR)
+    {
+        $this->set('with_watch_providers', $this->with($watchProviders, $mode));
+
+        return $this;
+    }
+
+    /**
+     * Only include movies with the specified monetization types. Combine with watch_region.
+     *
+     * Allowed Values: flatrate, free, ads, rent, buy
+     *
+     * @param array|string $watchProviders
+     * @param int $mode
+     * @return $this
+     */
+    public function withWatchMonetizationTypes($watchProviders, $mode = self::MODE_OR)
+    {
+        $this->set('with_watch_monetization_types', $this->with($watchProviders, $mode));
+
+        return $this;
+    }
+
+    /**
      * Available options are vote_average.desc, vote_average.asc, first_air_date.desc,
      * first_air_date.asc, popularity.desc, popularity.asc
      *
