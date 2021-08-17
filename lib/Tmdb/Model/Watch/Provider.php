@@ -25,15 +25,15 @@ class Provider extends AbstractModel implements CountryFilter
 {
     public static $properties = [
         'iso_3166_1',
-        'provider_id',
-        'provider_name',
+        'id',
+        'name',
         'logo_path',
         'display_priority',
         'type'
     ];
     private $iso31661;
-    private $providerID;
-    private $providerName;
+    private $id;
+    private $name;
     private $logoPath;
     private $displayPriority;
     private $type;
@@ -60,18 +60,18 @@ class Provider extends AbstractModel implements CountryFilter
     /**
      * @return int|null
      */
-    public function getProviderID()
+    public function getID()
     {
-        return $this->providerID;
+        return $this->id;
     }
 
     /**
-     * @param int|null $providerID
+     * @param int|null $ID
      * @return $this
      */
-    public function setProviderID($providerID)
+    public function setID($id)
     {
-        $this->providerID = $providerID;
+        $this->id = $id;
 
         return $this;
     }
@@ -79,18 +79,18 @@ class Provider extends AbstractModel implements CountryFilter
     /**
      * @return string|null
      */
-    public function getProviderName()
+    public function getName()
     {
-        return $this->providerName;
+        return $this->Name;
     }
 
     /**
-     * @param string|null $providerName
+     * @param string|null $Name
      * @return $this
      */
-    public function setProviderName($providerName)
+    public function setName($name)
     {
-        $this->providerName = $providerName;
+        $this->name = $name;
 
         return $this;
     }

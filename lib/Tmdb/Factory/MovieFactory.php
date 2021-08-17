@@ -215,6 +215,13 @@ class MovieFactory extends AbstractFactory
                 foreach (['flatrate', 'rent', 'buy'] as $providerType) {
                     $typeProviders = new GenericCollection();
                     foreach ($country_watch_data[$providerType] ?? [] as $providerData) {
+                        if (isset($providerData['provider_id'])) {
+                            $providerData['id'] = $providerData['provider_id'];
+                        }
+                        if (isset($providerData['provider_name'])) {
+                            $providerData['name'] = $providerData['provider_name'];
+                        }
+                        
                         $providerData['iso_3166_1'] = $iso_31661;
                         $providerData['type'] = $providerType;
                         $typeProviders->add(null, $this->hydrate(new Watch\Provider(), $providerData));
