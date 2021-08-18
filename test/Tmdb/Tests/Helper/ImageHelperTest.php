@@ -87,7 +87,7 @@ class ImageHelperTest extends Base
         $image->setHeight(75);
 
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="90" height="70" />',
+            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="90" height="70" title="" alt=""/>',
             $this->helper->getHtml($image, 'w45', 90, 70)
         );
     }
@@ -105,7 +105,7 @@ class ImageHelperTest extends Base
         $image->setHeight(75);
 
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="100" height="75" />',
+            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="100" height="75" title="" alt=""/>',
             $this->helper->getHtml($image, 'w45')
         );
     }
@@ -123,12 +123,12 @@ class ImageHelperTest extends Base
         $image->setAspectRatio(1.25);
 
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="63" height="50" />',
+            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="63" height="50" title="" alt=""/>',
             $this->helper->getHtml($image, 'w45', null, 50)
         );
 
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="63" height="50" />',
+            '<img src="//image.tmdb.org/t/p/w45/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="63" height="50" title="" alt=""/>',
             $this->helper->getHtml($image, 'w45', 63)
         );
     }
@@ -161,7 +161,7 @@ class ImageHelperTest extends Base
         $imageUrl = $this->helper->getHtml('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg');
 
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/original/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="" height="" />',
+            '<img src="//image.tmdb.org/t/p/original/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg" width="" height="" title="" alt=""/>',
             $imageUrl
         );
     }

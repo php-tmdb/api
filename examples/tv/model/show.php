@@ -22,4 +22,4 @@ $client = require_once('../../setup-client.php');
 $repository = new TvRepository($client);
 $tvShow = $repository->load(1396);
 
-var_dump($tvShow);
+var_dump($tvShow->getLanguages());
