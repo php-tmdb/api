@@ -41,7 +41,11 @@ class RequestQueryHelper
     private function addQueryToUri(UriInterface $uri, $key, $value): UriInterface
     {
         $parameters = [];
-        parse_str($uri->getQuery(), $parameters);
+        foreach (explode('&', $uri->getQuery()) as $curParam) {
+            if ($curParam && ($curParamParts = explode('=', $curParam))) {
+                $parameters[urldecode($curParamParts[0])] = urldecode($curParamParts[1] ?? null);
+            }
+        }
         $parameters[$key] = $value;
 
         ksort($parameters);
