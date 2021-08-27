@@ -221,6 +221,17 @@ class TvTest extends TestCase
         $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/content_ratings');
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetWatchProviders()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $api->getWatchProviders(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/watch/providers');
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Tv';

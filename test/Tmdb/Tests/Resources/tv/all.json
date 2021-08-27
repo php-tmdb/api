@@ -1148,6 +1148,859 @@
                 "english_name":"Romanian"
             }
         ]
+    },
+    "watch/providers": {
+        "results": {
+            "AR": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=AR",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "AT": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=AT",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 15,
+                        "logo_path": "/mosNtwHNCqCmjk7n5odKgYYf2GI.jpg",
+                        "provider_id": 20,
+                        "provider_name": "maxdome Store"
+                    }
+                ]
+            },
+            "AU": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=AU",
+                "flatrate": [
+                    {
+                        "display_priority": 7,
+                        "logo_path": "/yyJuFDErO2IF65m8wgowkEzT7aS.jpg",
+                        "provider_id": 21,
+                        "provider_name": "Stan"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/8hO3WmuKaTnrDN15t9rnlBqUGAo.jpg",
+                        "provider_id": 24,
+                        "provider_name": "Quickflix Store"
+                    },
+                    {
+                        "display_priority": 35,
+                        "logo_path": "/43Ykyf69e9Ca3jmTtefhINkw6PN.jpg",
+                        "provider_id": 436,
+                        "provider_name": "Fetch TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ]
+            },
+            "BE": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=BE",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "BG": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=BG",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "BR": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=BR",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "CA": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=CA",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "CH": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=CH",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "CL": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=CL",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "CO": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=CO",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "CZ": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=CZ",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "DE": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=DE",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 15,
+                        "logo_path": "/mosNtwHNCqCmjk7n5odKgYYf2GI.jpg",
+                        "provider_id": 20,
+                        "provider_name": "maxdome Store"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 28,
+                        "logo_path": "/6QfNLK9toSu2bvsWN7A0sEsTz3j.jpg",
+                        "provider_id": 178,
+                        "provider_name": "EntertainTV"
+                    }
+                ]
+            },
+            "DK": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=DK",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    }
+                ]
+            },
+            "EC": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=EC",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "EE": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=EE",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "ES": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=ES",
+                "buy": [
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "FI": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=FI",
+                "buy": [
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "FR": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=FR",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/bqgpWEtokIEOF5nsliXca2BQMEn.jpg",
+                        "provider_id": 61,
+                        "provider_name": "Orange VOD"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "GB": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=GB",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "GR": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=GR",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "HU": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=HU",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "ID": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=ID",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "IE": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=IE",
+                "buy": [
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "IN": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=IN",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "IT": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=IT",
+                "buy": [
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "JP": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=JP",
+                "rent": [
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    }
+                ]
+            },
+            "KR": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=KR",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "LT": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=LT",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "LV": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=LV",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "MX": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=MX",
+                "buy": [
+                    {
+                        "display_priority": 9,
+                        "logo_path": "/mzu37NQphDvqN2BHKM0Rwq9Es3r.jpg",
+                        "provider_id": 167,
+                        "provider_name": "Claro video"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "NL": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=NL",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "NO": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=NO",
+                "buy": [
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "NZ": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=NZ",
+                "flatrate": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/wRfIw4x22z9Zag6DZ8qLYwzpjOA.jpg",
+                        "provider_id": 273,
+                        "provider_name": "Neon TV"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/8hO3WmuKaTnrDN15t9rnlBqUGAo.jpg",
+                        "provider_id": 24,
+                        "provider_name": "Quickflix Store"
+                    }
+                ]
+            },
+            "PE": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=PE",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "PH": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=PH",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "PL": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=PL",
+                "buy": [
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "PT": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=PT",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "RO": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=RO",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "RU": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=RU",
+                "buy": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/As8vTHasikgyhZPkSOI9QzAst4L.jpg",
+                        "provider_id": 115,
+                        "provider_name": "Okko"
+                    },
+                    {
+                        "display_priority": 16,
+                        "logo_path": "/4AWMLvjQUQNmU3CkpLp7FSSIyZX.jpg",
+                        "provider_id": 501,
+                        "provider_name": "Wink"
+                    },
+                    {
+                        "display_priority": 30,
+                        "logo_path": "/hH99ng4jQdmt6qFzoie8SyoUiR8.jpg",
+                        "provider_id": 117,
+                        "provider_name": "Kinopoisk"
+                    }
+                ]
+            },
+            "SE": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=SE",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    }
+                ]
+            },
+            "SG": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=SG",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "TH": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=TH",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "TR": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=TR",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "US": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=US",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 49,
+                        "logo_path": "/qZdEeINwQotbr1Rq15dL5G2BaAh.jpg",
+                        "provider_id": 358,
+                        "provider_name": "DIRECTV"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 32,
+                        "logo_path": "/hBdCQamqj7J2VPZNbqf0wiLBous.jpg",
+                        "provider_id": 7,
+                        "provider_name": "Vudu"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    },
+                    {
+                        "display_priority": 45,
+                        "logo_path": "/nSr2IQSwc5C2QrttIWen8s06ofe.jpg",
+                        "provider_id": 279,
+                        "provider_name": "Redbox"
+                    }
+                ]
+            },
+            "VE": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=VE",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "ZA": {
+                "link": "https://www.themoviedb.org/tv/1396-breaking-bad/watch?locale=ZA",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            }
+        }
     }
-    
 }

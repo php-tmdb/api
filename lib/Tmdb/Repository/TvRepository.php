@@ -228,6 +228,22 @@ class TvRepository extends AbstractRepository
     }
 
     /**
+     * Get the watch providers (by region) for a TV series.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return GenericCollection
+     */
+    public function getWatchProviders($id, array $parameters = [], array $headers = [])
+    {
+        $data = $this->getApi()->getWatchProviders($id, $this->parseQueryParameters($parameters), $headers);
+        $tv = $this->getFactory()->create(['watch/providers' => $data]);
+
+        return $tv->getWatchProviders();
+    }
+
+    /**
      * Get the alternative titles for a specific show ID.
      *
      * @param $id

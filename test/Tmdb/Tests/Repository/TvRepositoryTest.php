@@ -178,6 +178,17 @@ class TvRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetWatchProviders()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $repository->getWatchProviders(self::TV_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID . '/watch/providers');
+    }
+
+    /**
+     * @test
+     */
     public function shouldGetLatestTvShow()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

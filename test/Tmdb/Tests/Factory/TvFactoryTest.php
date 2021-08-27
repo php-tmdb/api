@@ -128,6 +128,37 @@ class TvFactoryTest extends TestCase
 
         $this->assertEquals('US', $usContentRating->getIso31661());
         $this->assertEquals('TV-MA', $usContentRating->getRating());
+        
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->tv->getWatchProviders());
+        $this->assertInstanceOf('Tmdb\Model\Watch\Providers', $this->tv->getWatchProviders()->get('US'));
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->tv->getWatchProviders()->get('US')->getFlatrate());
+        
+        $watchProviders = $this->tv->getWatchProviders();
+        $this->assertEquals(46, count($watchProviders));
+        foreach ($watchProviders as $countryCode => $countryWatchProviders) {
+            $this->assertEquals($countryCode, $countryWatchProviders->getIso31661());
+            $this->assertNotEmpty($countryWatchProviders->getLink());
+            $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $countryWatchProviders->getFlatrate());
+            $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $countryWatchProviders->getRent());
+            $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $countryWatchProviders->getBuy());
+            
+            $watchProvidersByType = [
+                'flatrate' => $countryWatchProviders->getFlatrate(),
+                'rent' => $countryWatchProviders->getRent(),
+                'buy' => $countryWatchProviders->getBuy(),
+            ];
+            
+            foreach ($watchProvidersByType as $type => $typeWatchProviders) {
+                foreach ($typeWatchProviders as $watchProvider) {
+                    $this->assertEquals($countryCode, $watchProvider->getIso31661());
+                    $this->assertTrue(is_int($watchProvider->getId()));
+                    $this->assertNotEmpty($watchProvider->getName());
+                    $this->assertNotEmpty($watchProvider->getLogoPath());
+                    $this->assertTrue(is_int($watchProvider->getDisplayPriority()));
+                    $this->assertEquals($type, $watchProvider->getType());
+                }
+            }
+        }
     }
 
     /**
