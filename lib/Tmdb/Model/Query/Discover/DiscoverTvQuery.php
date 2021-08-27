@@ -15,6 +15,7 @@
 namespace Tmdb\Model\Query\Discover;
 
 use DateTime;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\QueryParametersCollection;
 
 /**
@@ -313,5 +314,20 @@ class DiscoverTvQuery extends QueryParametersCollection
         return $this->withNetworks(
             implode(',', $networks)
         );
+    }
+
+    /**
+     * Extract object id's if an collection was passed on.
+     *
+     * @param $mixed
+     * @return mixed
+     */
+    protected function normalize($mixed)
+    {
+        if (is_object($mixed) && $mixed instanceof AbstractModel) {
+            return $mixed->getId();
+        }
+
+        return $mixed;
     }
 }
