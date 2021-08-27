@@ -209,12 +209,12 @@ class MovieFactory extends AbstractFactory
 
         if (array_key_exists('watch/providers', $data) && array_key_exists('results', $data['watch/providers'])) {
             $watchProviders = new GenericCollection();
-            foreach ($data['watch/providers']['results'] as $iso_31661 => $country_watch_data) {
-                $country_watch_data['iso_3166_1'] = $iso_31661;
+            foreach ($data['watch/providers']['results'] as $iso31661 => $countryWatchData) {
+                $countryWatchData['iso_3166_1'] = $iso31661;
                 
                 foreach (['flatrate', 'rent', 'buy'] as $providerType) {
                     $typeProviders = new GenericCollection();
-                    foreach ($country_watch_data[$providerType] ?? [] as $providerData) {
+                    foreach ($countryWatchData[$providerType] ?? [] as $providerData) {
                         if (isset($providerData['provider_id'])) {
                             $providerData['id'] = $providerData['provider_id'];
                         }
@@ -222,14 +222,14 @@ class MovieFactory extends AbstractFactory
                             $providerData['name'] = $providerData['provider_name'];
                         }
                         
-                        $providerData['iso_3166_1'] = $iso_31661;
+                        $providerData['iso_3166_1'] = $iso31661;
                         $providerData['type'] = $providerType;
                         $typeProviders->add(null, $this->hydrate(new Watch\Provider(), $providerData));
                     }
-                    $country_watch_data[$providerType] = $typeProviders;
+                    $countryWatchData[$providerType] = $typeProviders;
                 }
                 
-                $watchProviders->add($iso_31661, $this->hydrate(new Watch\Providers(), $country_watch_data));
+                $watchProviders->add($iso31661, $this->hydrate(new Watch\Providers(), $countryWatchData));
             }
             $movie->setWatchProviders($watchProviders);
         }

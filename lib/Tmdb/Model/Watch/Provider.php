@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  *
  * @package Tmdb
- * @author Michael Roterman <michael@wtfz.net>
- * @copyright (c) 2013, Michael Roterman
+ * @author Neil Daniels <neil.here@gmail.com>
+ * @copyright (c) 2021, Neil Daniels
  * @version 4.0.0
  */
 
@@ -60,16 +60,16 @@ class Provider extends AbstractModel implements CountryFilter
     /**
      * @return int|null
      */
-    public function getID()
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param int|null $ID
+     * @param int|null $id
      * @return $this
      */
-    public function setID($id)
+    public function setId($id)
     {
         $this->id = $id;
 
@@ -85,7 +85,7 @@ class Provider extends AbstractModel implements CountryFilter
     }
 
     /**
-     * @param string|null $Name
+     * @param string|null $name
      * @return $this
      */
     public function setName($name)
