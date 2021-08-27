@@ -81,7 +81,7 @@ class Provider extends AbstractModel implements CountryFilter
      */
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
     /**
