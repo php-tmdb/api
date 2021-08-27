@@ -297,6 +297,19 @@ class Movies extends AbstractApi
     }
 
     /**
+     * Get the watch providers (by region) for a specific movie id.
+     *
+     * @param $movie_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getWatchProviders($movie_id, array $parameters = [], array $headers = [])
+    {
+        return $this->get('movie/' . $movie_id . '/watch/providers', $parameters, $headers);
+    }
+
+    /**
      * Get the external ids that we have stored for a movie.
      *
      * @param $movie_id

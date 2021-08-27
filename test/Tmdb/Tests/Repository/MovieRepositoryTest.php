@@ -260,6 +260,17 @@ class MovieRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function shouldGetWatchProviders()
+    {
+        $repository = $this->getRepositoryWithMockedHttpAdapter();
+
+        $repository->getWatchProviders(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/watch/providers');
+    }
+
+    /**
+     * @test
+     */
     public function shouldBeAbleToSetFactories()
     {
         /**

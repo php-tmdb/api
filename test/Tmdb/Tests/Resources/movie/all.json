@@ -2230,5 +2230,1807 @@
                 "english_name":"Korean"
             }
         ]
+    },
+    "watch/providers": {
+        "results": {
+            "AR": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=AR",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/rgbalNWbAuhWklHH5JAnF53Wjey.jpg",
+                        "provider_id": 339,
+                        "provider_name": "Movistar Play"
+                    }
+                ]
+            },
+            "AT": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=AT",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 15,
+                        "logo_path": "/mosNtwHNCqCmjk7n5odKgYYf2GI.jpg",
+                        "provider_id": 20,
+                        "provider_name": "maxdome Store"
+                    },
+                    {
+                        "display_priority": 16,
+                        "logo_path": "/kd2fTHmmkCuZ4lCucf8xH48sl89.jpg",
+                        "provider_id": 133,
+                        "provider_name": "Videobuster"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 15,
+                        "logo_path": "/mosNtwHNCqCmjk7n5odKgYYf2GI.jpg",
+                        "provider_id": 20,
+                        "provider_name": "maxdome Store"
+                    },
+                    {
+                        "display_priority": 16,
+                        "logo_path": "/kd2fTHmmkCuZ4lCucf8xH48sl89.jpg",
+                        "provider_id": 133,
+                        "provider_name": "Videobuster"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ]
+            },
+            "AU": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=AU",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 35,
+                        "logo_path": "/43Ykyf69e9Ca3jmTtefhINkw6PN.jpg",
+                        "provider_id": 436,
+                        "provider_name": "Fetch TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/5XaVJgyS5FZcQSjLNaQj7Z8yY5r.jpg",
+                        "provider_id": 385,
+                        "provider_name": "BINGE"
+                    },
+                    {
+                        "display_priority": 6,
+                        "logo_path": "/mgUoFq0rh4hko98wFGYpb7WKw5w.jpg",
+                        "provider_id": 134,
+                        "provider_name": "Foxtel Now"
+                    },
+                    {
+                        "display_priority": 7,
+                        "logo_path": "/yyJuFDErO2IF65m8wgowkEzT7aS.jpg",
+                        "provider_id": 21,
+                        "provider_name": "Stan"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 35,
+                        "logo_path": "/43Ykyf69e9Ca3jmTtefhINkw6PN.jpg",
+                        "provider_id": 436,
+                        "provider_name": "Fetch TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ]
+            },
+            "BE": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=BE",
+                "flatrate": [
+                    {
+                        "display_priority": 12,
+                        "logo_path": "/g3rPUj7XIHYvC2LHSG439Q7iJET.jpg",
+                        "provider_id": 313,
+                        "provider_name": "Yelo Play"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    }
+                ]
+            },
+            "BR": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=BR",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 10,
+                        "logo_path": "/3JXBhduFj3Q3YSqTSNmOdgzNf1I.jpg",
+                        "provider_id": 307,
+                        "provider_name": "Globo Play"
+                    },
+                    {
+                        "display_priority": 31,
+                        "logo_path": "/EXiiGtayyTEilp8BE1z8so64UB.jpg",
+                        "provider_id": 512,
+                        "provider_name": "TNTGo"
+                    }
+                ]
+            },
+            "CA": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=CA",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/xEWgUq2tJyggisxbJ3fNOV9Inj2.jpg",
+                        "provider_id": 140,
+                        "provider_name": "Cineplex"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/xEWgUq2tJyggisxbJ3fNOV9Inj2.jpg",
+                        "provider_id": 140,
+                        "provider_name": "Cineplex"
+                    }
+                ]
+            },
+            "CH": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=CH",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/567LmXMmafb8e2jGOmpHDZNl2r8.jpg",
+                        "provider_id": 164,
+                        "provider_name": "Hollystar"
+                    },
+                    {
+                        "display_priority": 16,
+                        "logo_path": "/kd2fTHmmkCuZ4lCucf8xH48sl89.jpg",
+                        "provider_id": 133,
+                        "provider_name": "Videobuster"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/567LmXMmafb8e2jGOmpHDZNl2r8.jpg",
+                        "provider_id": 164,
+                        "provider_name": "Hollystar"
+                    },
+                    {
+                        "display_priority": 16,
+                        "logo_path": "/kd2fTHmmkCuZ4lCucf8xH48sl89.jpg",
+                        "provider_id": 133,
+                        "provider_name": "Videobuster"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ]
+            },
+            "CL": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=CL",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/rgbalNWbAuhWklHH5JAnF53Wjey.jpg",
+                        "provider_id": 339,
+                        "provider_name": "Movistar Play"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ]
+            },
+            "CO": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=CO",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/rgbalNWbAuhWklHH5JAnF53Wjey.jpg",
+                        "provider_id": 339,
+                        "provider_name": "Movistar Play"
+                    }
+                ]
+            },
+            "DE": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=DE",
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 15,
+                        "logo_path": "/mosNtwHNCqCmjk7n5odKgYYf2GI.jpg",
+                        "provider_id": 20,
+                        "provider_name": "maxdome Store"
+                    },
+                    {
+                        "display_priority": 16,
+                        "logo_path": "/kd2fTHmmkCuZ4lCucf8xH48sl89.jpg",
+                        "provider_id": 133,
+                        "provider_name": "Videobuster"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 16,
+                        "logo_path": "/zznIwoeBvIUHJUfCaXzzmvJz2WH.jpg",
+                        "provider_id": 194,
+                        "provider_name": "Starz Play Amazon Channel"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 34,
+                        "logo_path": "/pDcaPupcS7YxKce2sQePrq8k1gK.jpg",
+                        "provider_id": 43,
+                        "provider_name": "Starz"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 15,
+                        "logo_path": "/mosNtwHNCqCmjk7n5odKgYYf2GI.jpg",
+                        "provider_id": 20,
+                        "provider_name": "maxdome Store"
+                    },
+                    {
+                        "display_priority": 16,
+                        "logo_path": "/kd2fTHmmkCuZ4lCucf8xH48sl89.jpg",
+                        "provider_id": 133,
+                        "provider_name": "Videobuster"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 28,
+                        "logo_path": "/6QfNLK9toSu2bvsWN7A0sEsTz3j.jpg",
+                        "provider_id": 178,
+                        "provider_name": "EntertainTV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ]
+            },
+            "DK": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=DK",
+                "buy": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    },
+                    {
+                        "display_priority": 20,
+                        "logo_path": "/yEbC1a22QZul3KGjeZ1OZjcN4u6.jpg",
+                        "provider_id": 426,
+                        "provider_name": "SF Anytime"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 6,
+                        "logo_path": "/okuStqHQL2ImgtNxNM40La91u3A.jpg",
+                        "provider_id": 76,
+                        "provider_name": "Viaplay"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    }
+                ]
+            },
+            "EC": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=EC",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/rgbalNWbAuhWklHH5JAnF53Wjey.jpg",
+                        "provider_id": 339,
+                        "provider_name": "Movistar Play"
+                    }
+                ]
+            },
+            "EE": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=EE",
+                "flatrate": [
+                    {
+                        "display_priority": 9,
+                        "logo_path": "/gX0ivBWeCv3JcbOko3UoVYDITjL.jpg",
+                        "provider_id": 373,
+                        "provider_name": "Go3"
+                    }
+                ]
+            },
+            "ES": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=ES",
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ]
+            },
+            "FI": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=FI",
+                "flatrate": [
+                    {
+                        "display_priority": 6,
+                        "logo_path": "/okuStqHQL2ImgtNxNM40La91u3A.jpg",
+                        "provider_id": 76,
+                        "provider_name": "Viaplay"
+                    },
+                    {
+                        "display_priority": 7,
+                        "logo_path": "/weGwCc0WcQa8d1TjXRMY7zwG6Tv.jpg",
+                        "provider_id": 338,
+                        "provider_name": "Ruutu"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    },
+                    {
+                        "display_priority": 20,
+                        "logo_path": "/yEbC1a22QZul3KGjeZ1OZjcN4u6.jpg",
+                        "provider_id": 426,
+                        "provider_name": "SF Anytime"
+                    }
+                ],
+                "free": [
+                    {
+                        "display_priority": 7,
+                        "logo_path": "/weGwCc0WcQa8d1TjXRMY7zwG6Tv.jpg",
+                        "provider_id": 338,
+                        "provider_name": "Ruutu"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    },
+                    {
+                        "display_priority": 36,
+                        "logo_path": "/4DrvzomVasfWYZ1FN2YwFzANcNx.jpg",
+                        "provider_id": 553,
+                        "provider_name": "Telia Play"
+                    }
+                ]
+            },
+            "FR": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=FR",
+                "flatrate": [
+                    {
+                        "display_priority": 1,
+                        "logo_path": "/68MNrwlkpF7WnmNPXLah69CR5cb.jpg",
+                        "provider_id": 119,
+                        "provider_name": "Amazon Prime Video"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 26,
+                        "logo_path": "/sCFSnOFDWIj0lfgwoaYEs8dKllR.jpg",
+                        "provider_id": 324,
+                        "provider_name": "Cinemas a la Demande"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ]
+            },
+            "GB": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=GB",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 1,
+                        "logo_path": "/68MNrwlkpF7WnmNPXLah69CR5cb.jpg",
+                        "provider_id": 9,
+                        "provider_name": "Amazon Prime Video"
+                    },
+                    {
+                        "display_priority": 62,
+                        "logo_path": "/2OTvHZ5EjTd55bC0LF8KzQlkzgJ.jpg",
+                        "provider_id": 594,
+                        "provider_name": "Virgin TV Go"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ]
+            },
+            "ID": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=ID",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ]
+            },
+            "IE": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=IE",
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/pZgeSWpfvD59x6sY6stT5c6uc2h.jpg",
+                        "provider_id": 130,
+                        "provider_name": "Sky Store"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 1,
+                        "logo_path": "/68MNrwlkpF7WnmNPXLah69CR5cb.jpg",
+                        "provider_id": 119,
+                        "provider_name": "Amazon Prime Video"
+                    }
+                ]
+            },
+            "IN": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=IN",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 42,
+                        "logo_path": "/xLGlqG6WHuO1wfxp8vhRvJv7IBo.jpg",
+                        "provider_id": 561,
+                        "provider_name": "Lionsgate Play"
+                    },
+                    {
+                        "display_priority": 47,
+                        "logo_path": "/sfXXtlU4C66jxFuDn7R3lfMPgUT.jpg",
+                        "provider_id": 614,
+                        "provider_name": "VI movies and tv"
+                    }
+                ]
+            },
+            "IT": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=IT",
+                "flatrate": [
+                    {
+                        "display_priority": 1,
+                        "logo_path": "/68MNrwlkpF7WnmNPXLah69CR5cb.jpg",
+                        "provider_id": 119,
+                        "provider_name": "Amazon Prime Video"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/vjKeS7Y9fNyqNtvp2ROCc71iu1u.jpg",
+                        "provider_id": 40,
+                        "provider_name": "Chili"
+                    },
+                    {
+                        "display_priority": 18,
+                        "logo_path": "/wuViyDkbFp4r7VqI0efPW5hFfQj.jpg",
+                        "provider_id": 35,
+                        "provider_name": "Rakuten TV"
+                    }
+                ]
+            },
+            "JP": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=JP",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/1MXP8yzNAuVHQAT0sqBIFI9Fc2M.jpg",
+                        "provider_id": 85,
+                        "provider_name": "dTV"
+                    }
+                ]
+            },
+            "LT": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=LT",
+                "rent": [
+                    {
+                        "display_priority": 36,
+                        "logo_path": "/4DrvzomVasfWYZ1FN2YwFzANcNx.jpg",
+                        "provider_id": 553,
+                        "provider_name": "Telia Play"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 9,
+                        "logo_path": "/gX0ivBWeCv3JcbOko3UoVYDITjL.jpg",
+                        "provider_id": 373,
+                        "provider_name": "Go3"
+                    },
+                    {
+                        "display_priority": 36,
+                        "logo_path": "/4DrvzomVasfWYZ1FN2YwFzANcNx.jpg",
+                        "provider_id": 553,
+                        "provider_name": "Telia Play"
+                    }
+                ]
+            },
+            "LV": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=LV",
+                "flatrate": [
+                    {
+                        "display_priority": 9,
+                        "logo_path": "/gX0ivBWeCv3JcbOko3UoVYDITjL.jpg",
+                        "provider_id": 373,
+                        "provider_name": "Go3"
+                    }
+                ]
+            },
+            "MX": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=MX",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "NL": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=NL",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 6,
+                        "logo_path": "/j7qnV5qyzWDB0uOdhe5PzQh71Th.jpg",
+                        "provider_id": 71,
+                        "provider_name": "Pathé Thuis"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 6,
+                        "logo_path": "/j7qnV5qyzWDB0uOdhe5PzQh71Th.jpg",
+                        "provider_id": 71,
+                        "provider_name": "Pathé Thuis"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 34,
+                        "logo_path": "/9sOKDL0W3HeUFAY8kCJGz9kadhC.jpg",
+                        "provider_id": 563,
+                        "provider_name": "KPN"
+                    }
+                ]
+            },
+            "NO": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=NO",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    },
+                    {
+                        "display_priority": 20,
+                        "logo_path": "/yEbC1a22QZul3KGjeZ1OZjcN4u6.jpg",
+                        "provider_id": 426,
+                        "provider_name": "SF Anytime"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 6,
+                        "logo_path": "/okuStqHQL2ImgtNxNM40La91u3A.jpg",
+                        "provider_id": 76,
+                        "provider_name": "Viaplay"
+                    },
+                    {
+                        "display_priority": 22,
+                        "logo_path": "/vQcXxLDrybWOMK68kzZJ78TmcF2.jpg",
+                        "provider_id": 431,
+                        "provider_name": "SumoTV"
+                    },
+                    {
+                        "display_priority": 34,
+                        "logo_path": "/2SZVMASyXPKC7sEBHgmTjCMySNG.jpg",
+                        "provider_id": 578,
+                        "provider_name": "Strim"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    }
+                ]
+            },
+            "NZ": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=NZ",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/wRfIw4x22z9Zag6DZ8qLYwzpjOA.jpg",
+                        "provider_id": 273,
+                        "provider_name": "Neon TV"
+                    },
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "PE": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=PE",
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    },
+                    {
+                        "display_priority": 8,
+                        "logo_path": "/rgbalNWbAuhWklHH5JAnF53Wjey.jpg",
+                        "provider_id": 339,
+                        "provider_name": "Movistar Play"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    }
+                ]
+            },
+            "PL": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=PL",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "PT": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=PT",
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/l9OqSYtqktdEFQ9Bk194DzTSGDN.jpg",
+                        "provider_id": 242,
+                        "provider_name": "Meo"
+                    }
+                ]
+            },
+            "RO": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=RO",
+                "flatrate": [
+                    {
+                        "display_priority": 1,
+                        "logo_path": "/49zBTsyFqE0u2hO8NxlyVmjFZDH.jpg",
+                        "provider_id": 250,
+                        "provider_name": "Horizon"
+                    }
+                ]
+            },
+            "RU": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=RU",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/2DpMZHxP9jzu3v70bph1UD3LLv3.jpg",
+                        "provider_id": 113,
+                        "provider_name": "Ivi"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    }
+                ],
+                "ads": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/2DpMZHxP9jzu3v70bph1UD3LLv3.jpg",
+                        "provider_id": 113,
+                        "provider_name": "Ivi"
+                    },
+                    {
+                        "display_priority": 22,
+                        "logo_path": "/10AwaHOKZ8iYWIUo9vPgouDtJKl.jpg",
+                        "provider_id": 557,
+                        "provider_name": "More TV"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 30,
+                        "logo_path": "/hH99ng4jQdmt6qFzoie8SyoUiR8.jpg",
+                        "provider_id": 117,
+                        "provider_name": "Kinopoisk"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/2DpMZHxP9jzu3v70bph1UD3LLv3.jpg",
+                        "provider_id": 113,
+                        "provider_name": "Ivi"
+                    },
+                    {
+                        "display_priority": 27,
+                        "logo_path": "/1KGLqrMX8rpPfoym9e3xtT9SJni.jpg",
+                        "provider_id": 570,
+                        "provider_name": "Premier"
+                    },
+                    {
+                        "display_priority": 30,
+                        "logo_path": "/hH99ng4jQdmt6qFzoie8SyoUiR8.jpg",
+                        "provider_id": 117,
+                        "provider_name": "Kinopoisk"
+                    }
+                ]
+            },
+            "SE": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=SE",
+                "flatrate": [
+                    {
+                        "display_priority": 6,
+                        "logo_path": "/okuStqHQL2ImgtNxNM40La91u3A.jpg",
+                        "provider_id": 76,
+                        "provider_name": "Viaplay"
+                    }
+                ],
+                "rent": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 19,
+                        "logo_path": "/oEntjkQyz84qo1C4FZK9jW1qznl.jpg",
+                        "provider_id": 423,
+                        "provider_name": "Blockbuster"
+                    },
+                    {
+                        "display_priority": 20,
+                        "logo_path": "/yEbC1a22QZul3KGjeZ1OZjcN4u6.jpg",
+                        "provider_id": 426,
+                        "provider_name": "SF Anytime"
+                    }
+                ]
+            },
+            "SG": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=SG",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            },
+            "TR": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=TR",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    }
+                ]
+            },
+            "US": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=US",
+                "rent": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 32,
+                        "logo_path": "/hBdCQamqj7J2VPZNbqf0wiLBous.jpg",
+                        "provider_id": 7,
+                        "provider_name": "Vudu"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    },
+                    {
+                        "display_priority": 45,
+                        "logo_path": "/nSr2IQSwc5C2QrttIWen8s06ofe.jpg",
+                        "provider_id": 279,
+                        "provider_name": "Redbox"
+                    },
+                    {
+                        "display_priority": 49,
+                        "logo_path": "/qZdEeINwQotbr1Rq15dL5G2BaAh.jpg",
+                        "provider_id": 358,
+                        "provider_name": "DIRECTV"
+                    },
+                    {
+                        "display_priority": 130,
+                        "logo_path": "/p1e92kLeYHalxC9GClqNJ75lBDG.jpg",
+                        "provider_id": 352,
+                        "provider_name": "AMC on Demand"
+                    },
+                    {
+                        "display_priority": 164,
+                        "logo_path": "/xiUQmGI2bi8Rn6C5u2bArB4YHMp.jpg",
+                        "provider_id": 486,
+                        "provider_name": "Spectrum On Demand"
+                    }
+                ],
+                "flatrate": [
+                    {
+                        "display_priority": 5,
+                        "logo_path": "/2wPRZit7b8u79GsqTdygmGL6kBW.jpg",
+                        "provider_id": 257,
+                        "provider_name": "fuboTV"
+                    },
+                    {
+                        "display_priority": 22,
+                        "logo_path": "/9DrynzGqT6DNLoc4BB3rlcxFRn.jpg",
+                        "provider_id": 528,
+                        "provider_name": "AMC Plus"
+                    }
+                ],
+                "buy": [
+                    {
+                        "display_priority": 2,
+                        "logo_path": "/q6tl6Ib6X5FT80RMlcDbexIo4St.jpg",
+                        "provider_id": 2,
+                        "provider_name": "Apple iTunes"
+                    },
+                    {
+                        "display_priority": 3,
+                        "logo_path": "/p3Z12gKq2qvJaUOMeKNU2mzKVI9.jpg",
+                        "provider_id": 3,
+                        "provider_name": "Google Play Movies"
+                    },
+                    {
+                        "display_priority": 11,
+                        "logo_path": "/sVBEF7q7LqjHAWSnKwDbzmr2EMY.jpg",
+                        "provider_id": 10,
+                        "provider_name": "Amazon Video"
+                    },
+                    {
+                        "display_priority": 13,
+                        "logo_path": "/vDCcryHD32b0yMeSCgBhuYavsmx.jpg",
+                        "provider_id": 192,
+                        "provider_name": "YouTube"
+                    },
+                    {
+                        "display_priority": 32,
+                        "logo_path": "/hBdCQamqj7J2VPZNbqf0wiLBous.jpg",
+                        "provider_id": 7,
+                        "provider_name": "Vudu"
+                    },
+                    {
+                        "display_priority": 43,
+                        "logo_path": "/paq2o2dIfQnxcERsVoq7Ys8KYz8.jpg",
+                        "provider_id": 68,
+                        "provider_name": "Microsoft Store"
+                    },
+                    {
+                        "display_priority": 45,
+                        "logo_path": "/nSr2IQSwc5C2QrttIWen8s06ofe.jpg",
+                        "provider_id": 279,
+                        "provider_name": "Redbox"
+                    },
+                    {
+                        "display_priority": 49,
+                        "logo_path": "/qZdEeINwQotbr1Rq15dL5G2BaAh.jpg",
+                        "provider_id": 358,
+                        "provider_name": "DIRECTV"
+                    },
+                    {
+                        "display_priority": 130,
+                        "logo_path": "/p1e92kLeYHalxC9GClqNJ75lBDG.jpg",
+                        "provider_id": 352,
+                        "provider_name": "AMC on Demand"
+                    }
+                ]
+            },
+            "VE": {
+                "link": "https://www.themoviedb.org/movie/87421-riddick/watch?locale=VE",
+                "flatrate": [
+                    {
+                        "display_priority": 0,
+                        "logo_path": "/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg",
+                        "provider_id": 8,
+                        "provider_name": "Netflix"
+                    }
+                ]
+            }
+        }
     }
 }

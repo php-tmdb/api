@@ -456,6 +456,22 @@ class MovieRepository extends AbstractRepository
     }
 
     /**
+     * Get the watch providers (by region) for a specific movie id.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return GenericCollection
+     */
+    public function getWatchProviders($id, array $parameters = [], array $headers = [])
+    {
+        $data = $this->getApi()->getWatchProviders($id, $this->parseQueryParameters($parameters), $headers);
+        $movie = $this->getFactory()->create(['watch/providers' => $data]);
+
+        return $movie->getWatchProviders();
+    }
+
+    /**
      * Get the external ids that we have stored for a movie.
      *
      * @param $id
