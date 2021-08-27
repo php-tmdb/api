@@ -41,8 +41,11 @@ class DiscoverTvQueryTest extends TestCase
             ->firstAirDateGte($now)
             ->firstAirDateLte($now)
             ->withNetworks([1, 2])
-            ->withNetworksAnd([1, 2, 3]);
+            ->withNetworksAnd([1, 2, 3])
+            ->watchRegion('US')
+            ->withWatchProviders([8])
+            ->withWatchMonetizationTypes(['flatrate']);
 
-        $this->assertEquals(10, count($query));
+        $this->assertEquals(13, count($query));
     }
 }

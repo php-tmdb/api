@@ -44,9 +44,12 @@ class DiscoverMoviesQueryTest extends TestCase
             ->releaseDateLte($now)
             ->certificationCountry('NL')
             ->certificationLte(1)
-            ->withCompanies([1]);
+            ->withCompanies([1])
+            ->watchRegion('US')
+            ->withWatchProviders([8])
+            ->withWatchMonetizationTypes(['flatrate']);
 
-        $this->assertEquals(14, count($query));
+        $this->assertEquals(17, count($query));
     }
 
     /**
