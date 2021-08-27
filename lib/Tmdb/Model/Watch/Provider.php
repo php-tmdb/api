@@ -39,18 +39,18 @@ class Provider extends AbstractModel implements CountryFilter
     private $type;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getIso31661()
+    public function getIso31661(): ?string
     {
         return $this->iso31661;
     }
 
     /**
-     * @param string $iso31661
+     * @param string $iso31661|null
      * @return $this
      */
-    public function setIso31661($iso31661)
+    public function setIso31661(?string $iso31661): self
     {
         $this->iso31661 = $iso31661;
 
@@ -60,7 +60,7 @@ class Provider extends AbstractModel implements CountryFilter
     /**
      * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -69,7 +69,7 @@ class Provider extends AbstractModel implements CountryFilter
      * @param int|null $id
      * @return $this
      */
-    public function setId($id)
+    public function setId(?int $id): self
     {
         $this->id = $id;
 
@@ -79,7 +79,7 @@ class Provider extends AbstractModel implements CountryFilter
     /**
      * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->Name;
     }
@@ -88,7 +88,7 @@ class Provider extends AbstractModel implements CountryFilter
      * @param string|null $name
      * @return $this
      */
-    public function setName($name)
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -98,7 +98,7 @@ class Provider extends AbstractModel implements CountryFilter
     /**
      * @return string|null
      */
-    public function getLogoPath()
+    public function getLogoPath(): ?string
     {
         return $this->logoPath;
     }
@@ -107,7 +107,7 @@ class Provider extends AbstractModel implements CountryFilter
      * @param string|null $logoPath
      * @return $this
      */
-    public function setLogoPath($logoPath)
+    public function setLogoPath(?string $logoPath): self
     {
         $this->logoPath = $logoPath;
 
@@ -117,7 +117,7 @@ class Provider extends AbstractModel implements CountryFilter
     /**
      * @return int|null
      */
-    public function getDisplayPriority()
+    public function getDisplayPriority(): ?int
     {
         return $this->displayPriority;
     }
@@ -126,7 +126,7 @@ class Provider extends AbstractModel implements CountryFilter
      * @param int|null $displayPriority
      * @return $this
      */
-    public function setDisplayPriority($displayPriority)
+    public function setDisplayPriority(?int $displayPriority): self
     {
         $this->displayPriority = $displayPriority;
 
@@ -136,7 +136,7 @@ class Provider extends AbstractModel implements CountryFilter
     /**
      * @return string|null
      */
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -145,7 +145,7 @@ class Provider extends AbstractModel implements CountryFilter
      * @param string|null $type
      * @return $this
      */
-    public function setType($type)
+    public function setType(?string $type): self
     {
         $this->type = $type;
 

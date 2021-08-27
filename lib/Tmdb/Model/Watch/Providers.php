@@ -52,7 +52,7 @@ class Providers extends AbstractModel implements CountryFilter
     /**
      * @return string|null
      */
-    public function getLink()
+    public function getLink(): ?string
     {
         return $this->link;
     }
@@ -61,7 +61,7 @@ class Providers extends AbstractModel implements CountryFilter
      * @param string|null $link
      * @return $this
      */
-    public function setLink($link)
+    public function setLink(?string $link): self
     {
         $this->link = $link;
 
@@ -69,9 +69,9 @@ class Providers extends AbstractModel implements CountryFilter
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getIso31661()
+    public function getIso31661(): ?string
     {
         return $this->iso31661;
     }
@@ -80,7 +80,7 @@ class Providers extends AbstractModel implements CountryFilter
      * @param string $iso31661
      * @return $this
      */
-    public function setIso31661($iso31661)
+    public function setIso31661(?string $iso31661): self
     {
         $this->iso31661 = $iso31661;
 
@@ -90,7 +90,7 @@ class Providers extends AbstractModel implements CountryFilter
     /**
      * @return GenericCollection
      */
-    public function getFlatrate()
+    public function getFlatrate(): GenericCollection
     {
         return $this->flatrate;
     }
@@ -99,7 +99,7 @@ class Providers extends AbstractModel implements CountryFilter
      * @param GenericCollection $flatrate
      * @return $this
      */
-    public function setFlatrate($flatrate)
+    public function setFlatrate(GenericCollection $flatrate): self
     {
         $this->flatrate = $flatrate;
 
@@ -109,7 +109,7 @@ class Providers extends AbstractModel implements CountryFilter
     /**
      * @return GenericCollection
      */
-    public function getRent()
+    public function getRent(): GenericCollection
     {
         return $this->rent;
     }
@@ -118,7 +118,7 @@ class Providers extends AbstractModel implements CountryFilter
      * @param GenericCollection $rent
      * @return $this
      */
-    public function setRent($rent)
+    public function setRent(GenericCollection $rent): self
     {
         $this->rent = $rent;
 
@@ -128,7 +128,7 @@ class Providers extends AbstractModel implements CountryFilter
     /**
      * @return GenericCollection
      */
-    public function getBuy()
+    public function getBuy(): GenericCollection
     {
         return $this->buy;
     }
@@ -137,7 +137,7 @@ class Providers extends AbstractModel implements CountryFilter
      * @param GenericCollection $buy
      * @return $this
      */
-    public function setBuy($buy)
+    public function setBuy(GenericCollection $buy): self
     {
         $this->buy = $buy;
 
