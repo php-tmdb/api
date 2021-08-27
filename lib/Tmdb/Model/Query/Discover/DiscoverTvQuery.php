@@ -23,6 +23,12 @@ use Tmdb\Model\Collection\QueryParametersCollection;
  */
 class DiscoverTvQuery extends QueryParametersCollection
 {
+    /** Transform args to an AND query */
+    public const MODE_AND = 0;
+
+    /** Transform args to an OR query */
+    public const MODE_OR = 1;
+
     /**
      * Minimum value is 1, expected value is an integer.
      *
@@ -150,6 +156,44 @@ class DiscoverTvQuery extends QueryParametersCollection
         $this->set('vote_average.gte', (float)$average);
 
         return $this;
+    }
+
+    /**
+     * Format the with compatible parameters.
+     *
+     * @param array|string $with
+     * @param int $mode
+     *
+     * @return null|string
+     */
+    protected function with($with = null, $mode = self::MODE_OR): ?string
+    {
+        if ($with instanceof GenericCollection) {
+            $with = $with->toArray();
+        }
+
+        if (is_array($with)) {
+            return $this->andWith((array)$with, $mode);
+        }
+
+        return $with;
+    }
+
+    /**
+     * Creates an and query to combine an AND or an OR expression.
+     *
+     * @param array $with
+     * @param int $mode
+     * @return string
+     */
+    protected function andWith(array $with, $mode)
+    {
+        return (
+        implode(
+            $mode === self::MODE_OR ? '|' : ',',
+            array_map([$this, 'normalize'], $with)
+        )
+        );
     }
 
     /**
