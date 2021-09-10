@@ -170,6 +170,19 @@ class Tv extends AbstractApi
     }
 
     /**
+     * Get the watch providers (by region) for a specific movie id.
+     *
+     * @param $movie_id
+     * @param array $parameters
+     * @param array $headers
+     * @return mixed
+     */
+    public function getWatchProviders($tvshow_id, array $parameters = [], array $headers = [])
+    {
+        return $this->get('tv/' . $tvshow_id . '/watch/providers', $parameters, $headers);
+    }
+
+    /**
      * Get the changes for a specific TV show id.
      *
      * Changes are grouped by key, and ordered by date in descending order.

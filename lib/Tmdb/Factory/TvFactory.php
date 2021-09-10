@@ -29,6 +29,7 @@ use Tmdb\Model\Company;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Tv;
+use Tmdb\Model\Watch;
 
 /**
  * Class TvFactory
@@ -242,6 +243,33 @@ class TvFactory extends AbstractFactory
         /** Networks */
         if (array_key_exists('networks', $data) && $data['networks'] !== null) {
             $tvShow->setNetworks($this->getNetworkFactory()->createCollection($data['networks']));
+        }
+
+        if (array_key_exists('watch/providers', $data) && array_key_exists('results', $data['watch/providers'])) {
+            $watchProviders = new GenericCollection();
+            foreach ($data['watch/providers']['results'] as $iso31661 => $countryWatchData) {
+                $countryWatchData['iso_3166_1'] = $iso31661;
+                
+                foreach (['flatrate', 'rent', 'buy'] as $providerType) {
+                    $typeProviders = new GenericCollection();
+                    foreach ($countryWatchData[$providerType] ?? [] as $providerData) {
+                        if (isset($providerData['provider_id'])) {
+                            $providerData['id'] = $providerData['provider_id'];
+                        }
+                        if (isset($providerData['provider_name'])) {
+                            $providerData['name'] = $providerData['provider_name'];
+                        }
+                        
+                        $providerData['iso_3166_1'] = $iso31661;
+                        $providerData['type'] = $providerType;
+                        $typeProviders->add(null, $this->hydrate(new Watch\Provider(), $providerData));
+                    }
+                    $countryWatchData[$providerType] = $typeProviders;
+                }
+                
+                $watchProviders->add($iso31661, $this->hydrate(new Watch\Providers(), $countryWatchData));
+            }
+            $tvShow->setWatchProviders($watchProviders);
         }
 
         if (array_key_exists('videos', $data) && $data['videos'] !== null) {

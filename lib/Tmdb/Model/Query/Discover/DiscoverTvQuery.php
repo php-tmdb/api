@@ -15,6 +15,7 @@
 namespace Tmdb\Model\Query\Discover;
 
 use DateTime;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\QueryParametersCollection;
 
 /**
@@ -23,6 +24,12 @@ use Tmdb\Model\Collection\QueryParametersCollection;
  */
 class DiscoverTvQuery extends QueryParametersCollection
 {
+    /** Transform args to an AND query */
+    public const MODE_AND = 0;
+
+    /** Transform args to an OR query */
+    public const MODE_OR = 1;
+
     /**
      * Minimum value is 1, expected value is an integer.
      *
@@ -45,6 +52,49 @@ class DiscoverTvQuery extends QueryParametersCollection
     public function language($language)
     {
         $this->set('language', $language);
+
+        return $this;
+    }
+
+    /**
+     * An ISO 3166-1 code. Combine this filter with with_watch_providers in order to filter your results by a specific watch provider in a specific region.
+     *
+     * @param string $watchRegion
+     * @return $this
+     */
+    public function watchRegion($watchRegion)
+    {
+        $this->set('watch_region', $watchRegion);
+
+        return $this;
+    }
+
+    /**
+     * Only include movies with the specified watch providers. Combine with watch_region.
+     *
+     * @param array|string $watchProviders
+     * @param int $mode
+     * @return $this
+     */
+    public function withWatchProviders($watchProviders, $mode = self::MODE_OR)
+    {
+        $this->set('with_watch_providers', $this->with($watchProviders, $mode));
+
+        return $this;
+    }
+
+    /**
+     * Only include movies with the specified monetization types. Combine with watch_region.
+     *
+     * Allowed Values: flatrate, free, ads, rent, buy
+     *
+     * @param array|string $watchProviders
+     * @param int $mode
+     * @return $this
+     */
+    public function withWatchMonetizationTypes($watchProviders, $mode = self::MODE_OR)
+    {
+        $this->set('with_watch_monetization_types', $this->with($watchProviders, $mode));
 
         return $this;
     }
@@ -107,6 +157,44 @@ class DiscoverTvQuery extends QueryParametersCollection
         $this->set('vote_average.gte', (float)$average);
 
         return $this;
+    }
+
+    /**
+     * Format the with compatible parameters.
+     *
+     * @param array|string $with
+     * @param int $mode
+     *
+     * @return null|string
+     */
+    protected function with($with = null, $mode = self::MODE_OR): ?string
+    {
+        if ($with instanceof GenericCollection) {
+            $with = $with->toArray();
+        }
+
+        if (is_array($with)) {
+            return $this->andWith((array)$with, $mode);
+        }
+
+        return $with;
+    }
+
+    /**
+     * Creates an and query to combine an AND or an OR expression.
+     *
+     * @param array $with
+     * @param int $mode
+     * @return string
+     */
+    protected function andWith(array $with, $mode)
+    {
+        return (
+        implode(
+            $mode === self::MODE_OR ? '|' : ',',
+            array_map([$this, 'normalize'], $with)
+        )
+        );
     }
 
     /**
@@ -226,5 +314,20 @@ class DiscoverTvQuery extends QueryParametersCollection
         return $this->withNetworks(
             implode(',', $networks)
         );
+    }
+
+    /**
+     * Extract object id's if an collection was passed on.
+     *
+     * @param $mixed
+     * @return mixed
+     */
+    protected function normalize($mixed)
+    {
+        if (is_object($mixed) && $mixed instanceof AbstractModel) {
+            return $mixed->getId();
+        }
+
+        return $mixed;
     }
 }

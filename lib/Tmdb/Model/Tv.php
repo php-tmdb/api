@@ -234,6 +234,10 @@ class Tv extends AbstractModel
      * @var int
      */
     private $voteCount;
+    /**
+     * @var GenericCollection
+     */
+    private $watchProviders;
 
     /**
      * Constructor
@@ -258,6 +262,7 @@ class Tv extends AbstractModel
         $this->contentRatings = new GenericCollection();
         $this->alternativeTitles = new GenericCollection();
         $this->languages = new GenericCollection();
+        $this->watchProviders = new GenericCollection();
     }
 
     /**
@@ -1042,6 +1047,25 @@ class Tv extends AbstractModel
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getWatchProviders(): GenericCollection
+    {
+        return $this->watchProviders;
+    }
+
+    /**
+     * @param GenericCollection $watchProviders
+     * @return $this
+     */
+    public function setWatchProviders($watchProviders)
+    {
+        $this->watchProviders = $watchProviders;
 
         return $this;
     }

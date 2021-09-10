@@ -61,6 +61,7 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::CONTENT_RATINGS,
                     AppendToResponse::ALTERNATIVE_TITLES,
                     AppendToResponse::VIDEOS,
+                    AppendToResponse::WATCH_PROVIDERS,
                 ])
             ]);
         }
@@ -224,6 +225,22 @@ class TvRepository extends AbstractRepository
         $tv = $this->getFactory()->create(['videos' => $data]);
 
         return $tv->getVideos();
+    }
+
+    /**
+     * Get the watch providers (by region) for a TV series.
+     *
+     * @param $id
+     * @param $parameters
+     * @param $headers
+     * @return GenericCollection
+     */
+    public function getWatchProviders($id, array $parameters = [], array $headers = [])
+    {
+        $data = $this->getApi()->getWatchProviders($id, $this->parseQueryParameters($parameters), $headers);
+        $tv = $this->getFactory()->create(['watch/providers' => $data]);
+
+        return $tv->getWatchProviders();
     }
 
     /**

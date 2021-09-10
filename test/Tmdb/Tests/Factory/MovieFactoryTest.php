@@ -111,6 +111,9 @@ class MovieFactoryTest extends TestCase
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getSimilar());
         $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getRecommendations());
         $this->assertInstanceOf('Tmdb\Model\Collection\Videos', $this->movie->getVideos());
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getWatchProviders());
+        $this->assertInstanceOf('Tmdb\Model\Watch\Providers', $this->movie->getWatchProviders()->get('US'));
+        $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $this->movie->getWatchProviders()->get('US')->getFlatrate());
 
         /** @var Release[] $releases */
         $releases = $this->movie->getReleases()->getAll();
@@ -124,6 +127,33 @@ class MovieFactoryTest extends TestCase
             $this->assertNotEmpty($release_date->getIso31661());
             $this->assertInstanceOf(\DateTime::class, $release_date->getReleaseDate());
             $this->assertTrue(is_int($release_date->getType()));
+        }
+        
+        $watchProviders = $this->movie->getWatchProviders();
+        $this->assertEquals(38, count($watchProviders));
+        foreach ($watchProviders as $countryCode => $countryWatchProviders) {
+            $this->assertEquals($countryCode, $countryWatchProviders->getIso31661());
+            $this->assertNotEmpty($countryWatchProviders->getLink());
+            $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $countryWatchProviders->getFlatrate());
+            $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $countryWatchProviders->getRent());
+            $this->assertInstanceOf('Tmdb\Model\Common\GenericCollection', $countryWatchProviders->getBuy());
+            
+            $watchProvidersByType = [
+                'flatrate' => $countryWatchProviders->getFlatrate(),
+                'rent' => $countryWatchProviders->getRent(),
+                'buy' => $countryWatchProviders->getBuy(),
+            ];
+            
+            foreach ($watchProvidersByType as $type => $typeWatchProviders) {
+                foreach ($typeWatchProviders as $watchProvider) {
+                    $this->assertEquals($countryCode, $watchProvider->getIso31661());
+                    $this->assertTrue(is_int($watchProvider->getId()));
+                    $this->assertNotEmpty($watchProvider->getName());
+                    $this->assertNotEmpty($watchProvider->getLogoPath());
+                    $this->assertTrue(is_int($watchProvider->getDisplayPriority()));
+                    $this->assertEquals($type, $watchProvider->getType());
+                }
+            }
         }
     }
 

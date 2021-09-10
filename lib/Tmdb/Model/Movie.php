@@ -230,6 +230,10 @@ class Movie extends AbstractModel
      * @var int
      */
     private $voteCount;
+    /**
+     * @var GenericCollection
+     */
+    private $watchProviders;
 
     /**
      * Constructor
@@ -255,6 +259,7 @@ class Movie extends AbstractModel
         $this->recommendations = new GenericCollection();
         $this->translations = new GenericCollection();
         $this->videos = new Videos();
+        $this->watchProviders = new GenericCollection();
     }
 
     /**
@@ -1029,6 +1034,25 @@ class Movie extends AbstractModel
     public function setVideos($videos)
     {
         $this->videos = $videos;
+
+        return $this;
+    }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getWatchProviders(): GenericCollection
+    {
+        return $this->watchProviders;
+    }
+
+    /**
+     * @param GenericCollection $watchProviders
+     * @return $this
+     */
+    public function setWatchProviders($watchProviders)
+    {
+        $this->watchProviders = $watchProviders;
 
         return $this;
     }

@@ -254,6 +254,17 @@ class MoviesTest extends TestCase
         $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/videos');
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetWatchProviders()
+    {
+        $api = $this->getApiWithMockedHttpAdapter();
+
+        $api->getWatchProviders(self::MOVIE_ID);
+        $this->assertLastRequestIsWithPathAndMethod('/3/movie/' . self::MOVIE_ID . '/watch/providers');
+    }
+
     protected function getApiClass()
     {
         return 'Tmdb\Api\Movies';
