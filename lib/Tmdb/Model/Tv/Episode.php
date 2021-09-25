@@ -151,7 +151,7 @@ class Episode extends AbstractModel
     }
 
     /**
-     * @return DateTime
+     * @return ?DateTime
      */
     public function getAirDate()
     {
