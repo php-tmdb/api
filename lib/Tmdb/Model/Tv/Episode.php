@@ -164,9 +164,9 @@ class Episode extends AbstractModel
      */
     public function setAirDate($airDate = null)
     {
-        if ($airDate === '') {
+        if (empty($airDate)) {
             $airDate = null;
-        } elseif (!$airDate instanceof DateTime && $airDate !== null) {
+        } elseif (!$airDate instanceof DateTime) {
             $airDate = new DateTime($airDate);
         }
 
