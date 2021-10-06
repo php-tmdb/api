@@ -295,4 +295,15 @@ class Tv extends AbstractApi
     {
         return $this->get('tv/' . $id . '/alternative_titles');
     }
+
+    /**
+     * Get the alternative titles for a specific show ID.
+     *
+     * @param integer $id
+     * @return mixed
+     */
+    public function getEpisodeGroups($id)
+    {
+        return $this->get('tv/' . $id . '/episode_groups');
+    }
 }

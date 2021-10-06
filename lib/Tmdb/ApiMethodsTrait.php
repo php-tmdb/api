@@ -207,4 +207,12 @@ trait ApiMethodsTrait
     {
         return new Api\TvEpisode($this);
     }
+
+    /**
+     * @return Api\TvEpisodeGroup
+     */
+    public function getTvEpisodeGroupApi()
+    {
+        return new Api\TvEpisodeGroup($this);
+    }
 }

@@ -26,6 +26,7 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Model\Common\Translation;
 use Tmdb\Model\Company;
+use Tmdb\Model\Network;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Tv;
@@ -249,7 +250,7 @@ class TvFactory extends AbstractFactory
             $watchProviders = new GenericCollection();
             foreach ($data['watch/providers']['results'] as $iso31661 => $countryWatchData) {
                 $countryWatchData['iso_3166_1'] = $iso31661;
-                
+
                 foreach (['flatrate', 'rent', 'buy'] as $providerType) {
                     $typeProviders = new GenericCollection();
                     foreach ($countryWatchData[$providerType] ?? [] as $providerData) {
@@ -259,14 +260,14 @@ class TvFactory extends AbstractFactory
                         if (isset($providerData['provider_name'])) {
                             $providerData['name'] = $providerData['provider_name'];
                         }
-                        
+
                         $providerData['iso_3166_1'] = $iso31661;
                         $providerData['type'] = $providerType;
                         $typeProviders->add(null, $this->hydrate(new Watch\Provider(), $providerData));
                     }
                     $countryWatchData[$providerType] = $typeProviders;
                 }
-                
+
                 $watchProviders->add($iso31661, $this->hydrate(new Watch\Providers(), $countryWatchData));
             }
             $tvShow->setWatchProviders($watchProviders);
@@ -341,6 +342,21 @@ class TvFactory extends AbstractFactory
             $tvShow->setAlternativeTitles(
                 $this->createGenericCollection($data['alternative_titles']['results'], new Tv\AlternativeTitle())
             );
+        }
+
+        if (array_key_exists('episode_groups', $data) && array_key_exists('results', $data['episode_groups'])) {
+            $episodeGroupCollection = new GenericCollection();
+
+            foreach ($data['episode_groups']['results'] as $episodeGroup) {
+
+
+                if(!is_null($episodeGroup['network'])){
+                    $episodeGroup['network'] = $this->hydrate(new Network(), $episodeGroup['network']);
+                }
+
+                $episodeGroupCollection->add(null, $this->hydrate(new Tv\EpisodeGroups(), $episodeGroup));
+            }
+            $tvShow->setEpisodeGroups($episodeGroupCollection);
         }
 
         return $this->hydrate($tvShow, $data);

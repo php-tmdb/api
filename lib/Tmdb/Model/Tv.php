@@ -238,6 +238,10 @@ class Tv extends AbstractModel
      * @var GenericCollection
      */
     private $watchProviders;
+    /**
+     * @var GenericCollection
+     */
+    protected $episodeGroups;
 
     /**
      * Constructor
@@ -263,6 +267,7 @@ class Tv extends AbstractModel
         $this->alternativeTitles = new GenericCollection();
         $this->languages = new GenericCollection();
         $this->watchProviders = new GenericCollection();
+        $this->episodeGroups = new GenericCollection();
     }
 
     /**
@@ -1069,4 +1074,24 @@ class Tv extends AbstractModel
 
         return $this;
     }
+
+    /**
+     * @return GenericCollection
+     */
+    public function getEpisodeGroups(): GenericCollection
+    {
+        return $this->episodeGroups;
+    }
+
+    /**
+     * @param GenericCollection $episodeGroups
+     * @return Tv
+     */
+    public function setEpisodeGroups(GenericCollection $episodeGroups): Tv
+    {
+        $this->episodeGroups = $episodeGroups;
+
+        return $this;
+    }
+
 }

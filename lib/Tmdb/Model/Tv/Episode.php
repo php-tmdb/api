@@ -49,7 +49,8 @@ class Episode extends AbstractModel
         'season_number',
         'still_path',
         'vote_average',
-        'vote_count'
+        'vote_count',
+        'show_id'
     ];
     /**
      * Credits
@@ -136,6 +137,13 @@ class Episode extends AbstractModel
      * @var integer
      */
     private $voteCount;
+
+    /**
+     * Only available in episode group
+     *
+     * @var integer
+     */
+    private $showId;
 
     /**
      * Constructor
@@ -476,4 +484,24 @@ class Episode extends AbstractModel
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getShowId(): int
+    {
+        return $this->showId;
+    }
+
+    /**
+     * @param int $showId
+     * @return Episode
+     */
+    public function setShowId(int $showId): Episode
+    {
+        $this->showId = $showId;
+
+        return $this;
+    }
+
 }

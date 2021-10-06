@@ -34,4 +34,5 @@ class AppendToResponse extends BaseAppendToResponse
     public const CONTENT_RATINGS = 'content_ratings';
     public const ALTERNATIVE_TITLES = 'alternative_titles';
     public const WATCH_PROVIDERS = 'watch/providers';
+    public const EPISODE_GROUPS = 'episode_groups';
 }
