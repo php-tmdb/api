@@ -567,7 +567,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @return DateTime
+     * @return ?DateTime
      */
     public function getReleaseDate()
     {
@@ -580,7 +580,9 @@ class Movie extends AbstractModel
      */
     public function setReleaseDate($releaseDate = null)
     {
-        if (!$releaseDate instanceof DateTime && $releaseDate !== null) {
+        if (empty($releaseDate)) {
+            $this->releaseDate = null;
+        } elseif (!$releaseDate instanceof DateTime) {
             $releaseDate = new DateTime($releaseDate);
         }
 
