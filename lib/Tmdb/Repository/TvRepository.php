@@ -62,6 +62,7 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::ALTERNATIVE_TITLES,
                     AppendToResponse::VIDEOS,
                     AppendToResponse::WATCH_PROVIDERS,
+                    AppendToResponse::EPISODE_GROUPS,
                 ])
             ]);
         }

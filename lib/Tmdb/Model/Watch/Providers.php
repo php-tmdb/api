@@ -36,7 +36,7 @@ class Providers extends AbstractModel implements CountryFilter
     private $flatrate;
     private $rent;
     private $buy;
-    
+
     /**
      * Constructor
      *

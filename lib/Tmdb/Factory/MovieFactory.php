@@ -211,7 +211,7 @@ class MovieFactory extends AbstractFactory
             $watchProviders = new GenericCollection();
             foreach ($data['watch/providers']['results'] as $iso31661 => $countryWatchData) {
                 $countryWatchData['iso_3166_1'] = $iso31661;
-                
+
                 foreach (['flatrate', 'rent', 'buy'] as $providerType) {
                     $typeProviders = new GenericCollection();
                     foreach ($countryWatchData[$providerType] ?? [] as $providerData) {
@@ -221,14 +221,14 @@ class MovieFactory extends AbstractFactory
                         if (isset($providerData['provider_name'])) {
                             $providerData['name'] = $providerData['provider_name'];
                         }
-                        
+
                         $providerData['iso_3166_1'] = $iso31661;
                         $providerData['type'] = $providerType;
                         $typeProviders->add(null, $this->hydrate(new Watch\Provider(), $providerData));
                     }
                     $countryWatchData[$providerType] = $typeProviders;
                 }
-                
+
                 $watchProviders->add($iso31661, $this->hydrate(new Watch\Providers(), $countryWatchData));
             }
             $movie->setWatchProviders($watchProviders);
