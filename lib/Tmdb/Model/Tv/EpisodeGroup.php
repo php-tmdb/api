@@ -79,7 +79,6 @@ class EpisodeGroup extends AbstractModel
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -233,6 +232,4 @@ class EpisodeGroup extends AbstractModel
 
         return $this;
     }
-
-
 }

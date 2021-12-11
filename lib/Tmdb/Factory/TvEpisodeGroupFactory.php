@@ -71,7 +71,7 @@ class TvEpisodeGroupFactory extends AbstractFactory
 
         $episodeGroup = new EpisodeGroup();
 
-        if(array_key_exists('network', $data) && !is_null($data['network'])){
+        if (array_key_exists('network', $data) && !is_null($data['network'])) {
             $episodeGroup->setNetwork($this->hydrate(new Network(), $data['network']));
         }
 
@@ -81,5 +81,4 @@ class TvEpisodeGroupFactory extends AbstractFactory
 
         return $this->hydrate($episodeGroup, $data);
     }
-
 }

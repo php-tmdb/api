@@ -79,5 +79,4 @@ class TvEpisodeGroupRepository extends AbstractRepository
     {
         return new TvEpisodeGroupFactory($this->getClient()->getHttpClient());
     }
-
 }

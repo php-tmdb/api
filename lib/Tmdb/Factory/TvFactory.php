@@ -348,9 +348,7 @@ class TvFactory extends AbstractFactory
             $episodeGroupCollection = new GenericCollection();
 
             foreach ($data['episode_groups']['results'] as $episodeGroup) {
-
-
-                if(!is_null($episodeGroup['network'])){
+                if (!is_null($episodeGroup['network'])) {
                     $episodeGroup['network'] = $this->hydrate(new Network(), $episodeGroup['network']);
                 }
 

@@ -43,5 +43,4 @@ class TvEpisodeGroup extends AbstractApi
             $headers
         );
     }
-
 }

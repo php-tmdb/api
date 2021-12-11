@@ -177,5 +177,4 @@ class Network extends AbstractModel
 
         return $this;
     }
-
 }

@@ -1093,5 +1093,4 @@ class Tv extends AbstractModel
 
         return $this;
     }
-
 }
