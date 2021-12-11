@@ -48,7 +48,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->data);
     }
@@ -56,7 +56,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * @return ArrayIterator|Traversable
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->data);
     }
@@ -288,22 +288,23 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
         return $this;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->data[$offset]);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->data[$offset]) ? $this->data[$offset] : null;
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->data[$offset] = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->data[$offset]);
     }
