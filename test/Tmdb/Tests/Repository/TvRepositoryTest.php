@@ -28,7 +28,7 @@ class TvRepositoryTest extends TestCase
         $repository->load(self::TV_ID);
         $this->assertLastRequestIsWithPathAndMethod('/3/tv/' . self::TV_ID);
         $this->assertRequestHasQueryParameters(
-            ['append_to_response' => 'credits,external_ids,images,translations,similar,recommendations,keywords,changes,content_ratings,alternative_titles,videos,watch/providers']
+            ['append_to_response' => 'credits,external_ids,images,translations,similar,recommendations,keywords,changes,content_ratings,alternative_titles,videos,watch/providers,episode_groups']
         );
     }
 
