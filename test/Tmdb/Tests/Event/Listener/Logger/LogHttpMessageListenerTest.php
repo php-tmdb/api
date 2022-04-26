@@ -26,7 +26,7 @@ use Tmdb\Event\Listener\RequestListener;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\ResponseEvent;
 use Tmdb\HttpClient\HttpClient;
-use WMDE\PsrLogTestDoubles\LoggerSpy;
+use WMDE\PsrLogTestDoubles\LegacyLoggerSpy;
 
 class LogHttpMessageListenerTest extends LoggerListenerTestCase
 {
@@ -35,7 +35,7 @@ class LogHttpMessageListenerTest extends LoggerListenerTestCase
      */
     public function shouldLogRequest()
     {
-        $logger = new LoggerSpy();
+        $logger = new LegacyLoggerSpy();
 
         $factory = new Psr17Factory();
         $request = $factory->createRequest('GET', 'http://www.test.com/foo/bar');
@@ -66,7 +66,7 @@ HEADER;
      */
     public function shouldLogResponse()
     {
-        $logger = new LoggerSpy();
+        $logger = new LegacyLoggerSpy();
 
         $factory = new Psr17Factory();
         $request = $factory->createRequest('GET', 'http://www.test.com/foo/bar');
@@ -98,7 +98,7 @@ HEADER;
      */
     public function shouldLogClientException()
     {
-        $logger = new LoggerSpy();
+        $logger = new LegacyLoggerSpy();
 
         $factory = new Psr17Factory();
         $request = $factory->createRequest('GET', 'http://www.test.com/foo/bar');

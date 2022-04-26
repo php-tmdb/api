@@ -19,7 +19,7 @@ use Tmdb\Event\BeforeHydrationEvent;
 use Tmdb\Event\Listener\Logger\LogHydrationListener;
 use Tmdb\Formatter\Hydration\SimpleHydrationFormatter;
 use Tmdb\Model\Movie;
-use WMDE\PsrLogTestDoubles\LoggerSpy;
+use WMDE\PsrLogTestDoubles\LegacyLoggerSpy;
 
 class LogHydrationListenerTest extends LoggerListenerTestCase
 {
@@ -28,7 +28,7 @@ class LogHydrationListenerTest extends LoggerListenerTestCase
      */
     public function shouldLogHydrationWithoutData()
     {
-        $logger = new LoggerSpy();
+        $logger = new LegacyLoggerSpy();
         $event = new BeforeHydrationEvent(new Movie(), ['id' => 123]);
 
         $eventDispatcher = new EventDispatcher();
@@ -44,7 +44,7 @@ class LogHydrationListenerTest extends LoggerListenerTestCase
      */
     public function shouldLogHydrationWithData()
     {
-        $logger = new LoggerSpy();
+        $logger = new LegacyLoggerSpy();
         $event = new BeforeHydrationEvent(new Movie(), ['id' => 123]);
 
         $eventDispatcher = new EventDispatcher();

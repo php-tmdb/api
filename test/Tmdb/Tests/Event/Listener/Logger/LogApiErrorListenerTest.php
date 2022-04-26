@@ -18,7 +18,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Event\Listener\Logger\LogApiErrorListener;
 use Tmdb\Event\TmdbExceptionEvent;
 use Tmdb\Exception\TmdbApiException;
-use WMDE\PsrLogTestDoubles\LoggerSpy;
+use WMDE\PsrLogTestDoubles\LegacyLoggerSpy;
 
 class LogApiErrorListenerTest extends LoggerListenerTestCase
 {
@@ -27,7 +27,7 @@ class LogApiErrorListenerTest extends LoggerListenerTestCase
      */
     public function shouldLogApiError()
     {
-        $logger = new LoggerSpy();
+        $logger = new LegacyLoggerSpy();
         $event = new TmdbExceptionEvent(new TmdbApiException(7, 'invalid api key'));
 
         $eventDispatcher = new EventDispatcher();
