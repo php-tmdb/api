@@ -78,10 +78,5 @@
         "php-http/cache-plugin": "When making use of cache, you need to install this plugin.",
         "psr/simple-cache-implementation": "If you wish to enable caching features, provide an PSR-16 cache."
     },
-    "type": "library",
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    }
+    "type": "library"
 }
