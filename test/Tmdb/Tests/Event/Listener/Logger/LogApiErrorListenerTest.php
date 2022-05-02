@@ -34,10 +34,7 @@ class LogApiErrorListenerTest extends LoggerListenerTestCase
         $eventDispatcher->addListener(TmdbExceptionEvent::class, new LogApiErrorListener($logger));
         $eventDispatcher->dispatch($event);
 
-        $expectedMessage = <<<EXCEPTION
-Critical API exception:
-7 invalid api key
-EXCEPTION;
+        $expectedMessage = "Critical API exception:" . PHP_EOL . "7 invalid api key";
 
         $this->assertCount(1, $logger->getLogCalls());
         $this->assertSame([$expectedMessage], $logger->getLogCalls()->getMessages());

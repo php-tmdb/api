@@ -52,10 +52,7 @@ class LogHttpMessageListenerTest extends LoggerListenerTestCase
         );
         $eventDispatcher->dispatch($event);
 
-        $expectedMessage = <<<HEADER
-Sending request:
-GET http://www.test.com/foo/bar 1.1
-HEADER;
+        $expectedMessage = "Sending request:" . PHP_EOL . "GET http://www.test.com/foo/bar 1.1";
 
         $this->assertCount(1, $logger->getLogCalls());
         $this->assertSame([$expectedMessage], $logger->getLogCalls()->getMessages());
@@ -84,10 +81,7 @@ HEADER;
         );
         $eventDispatcher->dispatch($event);
 
-        $expectedMessage = <<<HEADER
-Received response:
-200 OK 1.1
-HEADER;
+        $expectedMessage = "Received response:" . PHP_EOL . "200 OK 1.1";
 
         $this->assertCount(1, $logger->getLogCalls());
         $this->assertSame([$expectedMessage], $logger->getLogCalls()->getMessages());
@@ -111,10 +105,7 @@ HEADER;
         );
         $eventDispatcher->dispatch(new HttpClientExceptionEvent($exception, $request));
 
-        $expectedMessage = <<<HEADER
-Critical http client error:
-0 connection exception
-HEADER;
+        $expectedMessage = "Critical http client error:" . PHP_EOL . "0 connection exception";
 
         $this->assertCount(1, $logger->getLogCalls());
         $this->assertSame([$expectedMessage], $logger->getLogCalls()->getMessages());
