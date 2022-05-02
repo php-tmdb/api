@@ -33,8 +33,8 @@
     "require": {
         "php": "^7.3 || ^7.4 || ^8.0",
         "ext-json": "*",
-        "symfony/options-resolver": ">=4.4,<6",
-        "psr/cache": "^1.0",
+        "symfony/options-resolver": ">=4.4",
+        "psr/cache": "^1.0 || ^2.0 || ^3.0",
         "psr/simple-cache": "^1.0",
         "psr/event-dispatcher": "^1.0",
         "psr/event-dispatcher-implementation": "^1.0",
@@ -48,11 +48,11 @@
     },
     "require-dev": {
         "nyholm/psr7": "^1.2",
-        "friendsofphp/php-cs-fixer": "^2.17",
+        "friendsofphp/php-cs-fixer": ">2.17",
         "php-http/mock-client": "^1.2",
         "slevomat/coding-standard": "^6.4.1",
         "squizlabs/php_codesniffer": "^3.5.8",
-        "symfony/cache": ">=4.4,<6",
+        "symfony/cache": ">=4.4",
         "symfony/event-dispatcher": "^5.0,<6",
         "phpstan/phpstan": "^0.12.18",
         "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
@@ -78,5 +78,10 @@
         "php-http/cache-plugin": "When making use of cache, you need to install this plugin.",
         "psr/simple-cache-implementation": "If you wish to enable caching features, provide an PSR-16 cache."
     },
-    "type": "library"
+    "type": "library",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
 }
