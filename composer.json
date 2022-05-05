@@ -35,7 +35,7 @@
         "ext-json": "*",
         "symfony/options-resolver": ">=4.4",
         "psr/cache": "^1.0 || ^2.0 || ^3.0",
-        "psr/simple-cache": "^1.0",
+        "psr/simple-cache": "^1.0 || ^2.0 || ^3.0",
         "psr/event-dispatcher": "^1.0",
         "psr/event-dispatcher-implementation": "^1.0",
         "psr/log": "^1.0 || ^2.0 || ^3.0",
