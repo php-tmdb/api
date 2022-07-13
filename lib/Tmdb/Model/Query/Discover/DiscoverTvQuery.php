@@ -17,6 +17,7 @@ namespace Tmdb\Model\Query\Discover;
 use DateTime;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\QueryParametersCollection;
+use Tmdb\Model\Common\GenericCollection;
 
 /**
  * Class DiscoverTvQuery

@@ -53,7 +53,7 @@
         "squizlabs/php_codesniffer": "^3.5.8",
         "symfony/cache": ">=4.4 || ^5 || ^6",
         "symfony/event-dispatcher": ">=4.4 || ^5 || ^6",
-        "phpstan/phpstan": "^0.12.18",
+        "phpstan/phpstan": "^1.8.1",
         "phpunit/phpunit": ">=8.5.23 || ^9.3",
         "php-http/guzzle7-adapter": "^0.1",
         "monolog/monolog": ">=1.11.0",
@@ -77,5 +77,10 @@
         "php-http/cache-plugin": "When making use of cache, you need to install this plugin.",
         "psr/simple-cache-implementation": "If you wish to enable caching features, provide an PSR-16 cache."
     },
-    "type": "library"
+    "type": "library",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
 }

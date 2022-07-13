@@ -8,3 +8,4 @@ composer.lock
 .phpunit.result.cache
 examples/
 examples/var/
+phpstan.neon$

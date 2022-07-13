@@ -31,6 +31,8 @@ use Traversable;
 /**
  * Class GenericCollection
  * @package Tmdb\Model\Common
+ *
+ * @phpstan-consistent-constructor
  */
 class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
 {

@@ -25,8 +25,10 @@ class SearchQuery extends QueryParametersCollection
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct(array $data = [])
     {
+        parent::__construct($data);
+
         $this->page(1);
     }
 

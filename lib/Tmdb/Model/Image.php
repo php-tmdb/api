@@ -66,6 +66,8 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
         if (array_key_exists($name, self::$formats)) {
             return self::$formats[$name];
         }
+
+        return null;
     }
 
     /**
