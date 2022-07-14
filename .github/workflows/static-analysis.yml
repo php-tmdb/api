@@ -26,7 +26,7 @@ jobs:
           tools: cs2pr
 
       - name: "Install dependencies with Composer"
-        uses: "php-actions/composer@v6"
+        uses: "ramsey/composer-install@v2"
         with:
           php_version: "${{ matrix.php-version }}"
 
