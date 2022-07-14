@@ -489,7 +489,7 @@ class MovieRepository extends AbstractRepository
 
     /**
      * @param AlternativeTitleFactory $alternativeTitleFactory
-     * @return $this
+     * @return self
      */
     public function setAlternativeTitleFactory($alternativeTitleFactory)
     {
@@ -508,7 +508,7 @@ class MovieRepository extends AbstractRepository
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {
@@ -527,7 +527,7 @@ class MovieRepository extends AbstractRepository
 
     /**
      * @param PeopleFactory $peopleFactory
-     * @return $this
+     * @return self
      */
     public function setPeopleFactory($peopleFactory)
     {

@@ -116,7 +116,7 @@ class Credit extends AbstractModel
 
     /**
      * @param boolean $adult
-     * @return $this
+     * @return self
      */
     public function setAdult($adult)
     {
@@ -135,7 +135,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $character
-     * @return $this
+     * @return self
      */
     public function setCharacter($character)
     {
@@ -154,7 +154,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $creditId
-     * @return $this
+     * @return self
      */
     public function setCreditId($creditId)
     {
@@ -173,7 +173,7 @@ class Credit extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -192,7 +192,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $originalTitle
-     * @return $this
+     * @return self
      */
     public function setOriginalTitle($originalTitle)
     {
@@ -211,7 +211,7 @@ class Credit extends AbstractModel
 
     /**
      * @param PosterImage $posterImage
-     * @return $this
+     * @return self
      */
     public function setPosterImage($posterImage)
     {
@@ -230,7 +230,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return $this
+     * @return self
      */
     public function setPosterPath($posterPath)
     {
@@ -249,7 +249,7 @@ class Credit extends AbstractModel
 
     /**
      * @param DateTime|string|null $releaseDate
-     * @return $this
+     * @return self
      */
     public function setReleaseDate($releaseDate = null)
     {
@@ -272,7 +272,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $title
-     * @return $this
+     * @return self
      */
     public function setTitle($title)
     {
@@ -291,7 +291,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $job
-     * @return $this
+     * @return self
      */
     public function setJob($job)
     {
@@ -310,7 +310,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $department
-     * @return $this
+     * @return self
      */
     public function setDepartment($department)
     {
@@ -329,7 +329,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $originalName
-     * @return $this
+     * @return self
      */
     public function setOriginalName($originalName)
     {
@@ -348,7 +348,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -367,7 +367,7 @@ class Credit extends AbstractModel
 
     /**
      * @param string $mediaType
-     * @return $this
+     * @return self
      */
     public function setMediaType($mediaType)
     {
@@ -386,7 +386,7 @@ class Credit extends AbstractModel
 
     /**
      * @param int $episodeCount
-     * @return $this
+     * @return self
      */
     public function setEpisodeCount($episodeCount)
     {
@@ -405,7 +405,7 @@ class Credit extends AbstractModel
 
     /**
      * @param mixed $firstAirDate
-     * @return $this
+     * @return self
      */
     public function setFirstAirDate($firstAirDate)
     {

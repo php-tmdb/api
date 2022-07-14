@@ -65,7 +65,7 @@ class CompanyFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {

@@ -37,7 +37,7 @@ class Keyword extends AbstractModel
 
     /**
      * @param mixed $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -56,7 +56,7 @@ class Keyword extends AbstractModel
 
     /**
      * @param mixed $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {

@@ -168,7 +168,7 @@ class Episode extends AbstractModel
 
     /**
      * @param DateTime|string|null $airDate
-     * @return $this
+     * @return self
      */
     public function setAirDate($airDate = null)
     {
@@ -193,7 +193,7 @@ class Episode extends AbstractModel
 
     /**
      * @param int $episodeNumber
-     * @return $this
+     * @return self
      */
     public function setEpisodeNumber($episodeNumber)
     {
@@ -212,7 +212,7 @@ class Episode extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -231,7 +231,7 @@ class Episode extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -250,7 +250,7 @@ class Episode extends AbstractModel
 
     /**
      * @param string $overview
-     * @return $this
+     * @return self
      */
     public function setOverview($overview)
     {
@@ -269,7 +269,7 @@ class Episode extends AbstractModel
 
     /**
      * @param string $productionCode
-     * @return $this
+     * @return self
      */
     public function setProductionCode($productionCode)
     {
@@ -288,7 +288,7 @@ class Episode extends AbstractModel
 
     /**
      * @param int $seasonNumber
-     * @return $this
+     * @return self
      */
     public function setSeasonNumber($seasonNumber)
     {
@@ -307,7 +307,7 @@ class Episode extends AbstractModel
 
     /**
      * @param string $stillPath
-     * @return $this
+     * @return self
      */
     public function setStillPath($stillPath)
     {
@@ -326,7 +326,7 @@ class Episode extends AbstractModel
 
     /**
      * @param float $voteAverage
-     * @return $this
+     * @return self
      */
     public function setVoteAverage($voteAverage)
     {
@@ -345,7 +345,7 @@ class Episode extends AbstractModel
 
     /**
      * @param int $voteCount
-     * @return $this
+     * @return self
      */
     public function setVoteCount($voteCount)
     {
@@ -364,7 +364,7 @@ class Episode extends AbstractModel
 
     /**
      * @param CreditsCollection $credits
-     * @return $this
+     * @return self
      */
     public function setCredits($credits)
     {
@@ -383,7 +383,7 @@ class Episode extends AbstractModel
 
     /**
      * @param ExternalIds $externalIds
-     * @return $this
+     * @return self
      */
     public function setExternalIds($externalIds)
     {
@@ -402,7 +402,7 @@ class Episode extends AbstractModel
 
     /**
      * @param Images $images
-     * @return $this
+     * @return self
      */
     public function setImages($images)
     {
@@ -421,7 +421,7 @@ class Episode extends AbstractModel
 
     /**
      * @param GenericCollection $translations
-     * @return $this
+     * @return self
      */
     public function setTranslations($translations)
     {
@@ -432,7 +432,7 @@ class Episode extends AbstractModel
 
     /**
      * @param StillImage $still
-     * @return $this
+     * @return self
      */
     public function setStillImage($still)
     {
@@ -459,7 +459,7 @@ class Episode extends AbstractModel
 
     /**
      * @param Videos|ResultCollection $videos
-     * @return $this
+     * @return self
      */
     public function setVideos($videos)
     {
@@ -478,7 +478,7 @@ class Episode extends AbstractModel
 
     /**
      * @param Changes $changes
-     * @return $this
+     * @return self
      */
     public function setChanges($changes)
     {

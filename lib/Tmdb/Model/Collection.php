@@ -85,7 +85,7 @@ class Collection extends AbstractModel
 
     /**
      * @param BackdropImage $backdrop
-     * @return $this
+     * @return self
      */
     public function setBackdropImage(BackdropImage $backdrop)
     {
@@ -112,7 +112,7 @@ class Collection extends AbstractModel
 
     /**
      * @param string $backdropPath
-     * @return $this
+     * @return self
      */
     public function setBackdropPath($backdropPath)
     {
@@ -131,7 +131,7 @@ class Collection extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -150,7 +150,7 @@ class Collection extends AbstractModel
 
     /**
      * @param Images $images
-     * @return $this
+     * @return self
      */
     public function setImages(Images $images)
     {
@@ -169,7 +169,7 @@ class Collection extends AbstractModel
 
     /**
      * @param  GenericCollection $translations
-     * @return $this
+     * @return self
      */
     public function setTranslations($translations)
     {
@@ -187,7 +187,7 @@ class Collection extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -206,7 +206,7 @@ class Collection extends AbstractModel
 
     /**
      * @param string $overview
-     * @return $this
+     * @return self
      */
     public function setOverview($overview)
     {
@@ -225,7 +225,7 @@ class Collection extends AbstractModel
 
     /**
      * @param GenericCollection $parts
-     * @return $this
+     * @return self
      */
     public function setParts($parts)
     {
@@ -236,7 +236,7 @@ class Collection extends AbstractModel
 
     /**
      * @param PosterImage $poster
-     * @return $this
+     * @return self
      */
     public function setPosterImage(PosterImage $poster)
     {
@@ -263,7 +263,7 @@ class Collection extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return $this
+     * @return self
      */
     public function setPosterPath($posterPath)
     {

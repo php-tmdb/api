@@ -48,7 +48,7 @@ class Provider extends AbstractModel implements CountryFilter
 
     /**
      * @param string $iso31661|null
-     * @return $this
+     * @return self
      */
     public function setIso31661(?string $iso31661): self
     {
@@ -67,7 +67,7 @@ class Provider extends AbstractModel implements CountryFilter
 
     /**
      * @param int|null $id
-     * @return $this
+     * @return self
      */
     public function setId(?int $id): self
     {
@@ -86,7 +86,7 @@ class Provider extends AbstractModel implements CountryFilter
 
     /**
      * @param string|null $name
-     * @return $this
+     * @return self
      */
     public function setName(?string $name): self
     {
@@ -105,7 +105,7 @@ class Provider extends AbstractModel implements CountryFilter
 
     /**
      * @param string|null $logoPath
-     * @return $this
+     * @return self
      */
     public function setLogoPath(?string $logoPath): self
     {
@@ -124,7 +124,7 @@ class Provider extends AbstractModel implements CountryFilter
 
     /**
      * @param int|null $displayPriority
-     * @return $this
+     * @return self
      */
     public function setDisplayPriority(?int $displayPriority): self
     {
@@ -143,7 +143,7 @@ class Provider extends AbstractModel implements CountryFilter
 
     /**
      * @param string|null $type
-     * @return $this
+     * @return self
      */
     public function setType(?string $type): self
     {

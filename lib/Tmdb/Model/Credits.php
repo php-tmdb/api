@@ -76,7 +76,7 @@ class Credits extends AbstractModel
 
     /**
      * @param string $creditType
-     * @return $this
+     * @return self
      */
     public function setCreditType($creditType)
     {
@@ -95,7 +95,7 @@ class Credits extends AbstractModel
 
     /**
      * @param string $department
-     * @return $this
+     * @return self
      */
     public function setDepartment($department)
     {
@@ -114,7 +114,7 @@ class Credits extends AbstractModel
 
     /**
      * @param string $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -133,7 +133,7 @@ class Credits extends AbstractModel
 
     /**
      * @param string $job
-     * @return $this
+     * @return self
      */
     public function setJob($job)
     {
@@ -152,7 +152,7 @@ class Credits extends AbstractModel
 
     /**
      * @param Media $media
-     * @return $this
+     * @return self
      */
     public function setMedia($media)
     {
@@ -171,7 +171,7 @@ class Credits extends AbstractModel
 
     /**
      * @param string $mediaType
-     * @return $this
+     * @return self
      */
     public function setMediaType($mediaType)
     {
@@ -190,7 +190,7 @@ class Credits extends AbstractModel
 
     /**
      * @param Person $person
-     * @return $this
+     * @return self
      */
     public function setPerson($person)
     {

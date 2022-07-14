@@ -43,7 +43,7 @@ class Configuration extends AbstractModel
 
     /**
      * @param array $change_keys
-     * @return $this
+     * @return self
      */
     public function setChangeKeys(array $change_keys = [])
     {
@@ -62,7 +62,7 @@ class Configuration extends AbstractModel
 
     /**
      * @param array $images
-     * @return $this
+     * @return self
      */
     public function setImages(array $images = [])
     {

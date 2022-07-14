@@ -35,7 +35,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * Minimum value is 1, expected value is an integer.
      *
      * @param integer $page
-     * @return $this
+     * @return self
      */
     public function page($page = 1)
     {
@@ -48,7 +48,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * ISO 639-1 code.
      *
      * @param string $language
-     * @return $this
+     * @return self
      */
     public function language($language)
     {
@@ -61,7 +61,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * An ISO 3166-1 code. Combine this filter with with_watch_providers in order to filter your results by a specific watch provider in a specific region.
      *
      * @param string $watchRegion
-     * @return $this
+     * @return self
      */
     public function watchRegion($watchRegion)
     {
@@ -75,7 +75,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      *
      * @param array|string $watchProviders
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withWatchProviders($watchProviders, $mode = self::MODE_OR)
     {
@@ -91,7 +91,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      *
      * @param array|string $watchProviders
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withWatchMonetizationTypes($watchProviders, $mode = self::MODE_OR)
     {
@@ -105,7 +105,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * first_air_date.asc, popularity.desc, popularity.asc
      *
      * @param string $option
-     * @return $this
+     * @return self
      */
     public function sortBy($option)
     {
@@ -119,7 +119,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * Expected value is a year.
      *
      * @param DateTime|integer $year
-     * @return $this
+     * @return self
      */
     public function firstAirDateYear($year)
     {
@@ -137,7 +137,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * Expected value is an integer.
      *
      * @param integer $count
-     * @return $this
+     * @return self
      */
     public function voteCountGte($count)
     {
@@ -151,7 +151,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * Expected value is a float.
      *
      * @param float $average
-     * @return $this
+     * @return self
      */
     public function voteAverageGte($average)
     {
@@ -202,7 +202,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * Creates an OR query for genres
      *
      * @param array $genres
-     * @return $this
+     * @return self
      */
     public function withGenresOr(array $genres = [])
     {
@@ -221,7 +221,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * while a pipe (|) separated value indicates an 'OR'.
      *
      * @param array|string $genres
-     * @return $this
+     * @return self
      */
     public function withGenres($genres)
     {
@@ -238,7 +238,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * Creates an AND query for genres
      *
      * @param array $genres
-     * @return $this
+     * @return self
      */
     public function withGenresAnd(array $genres = [])
     {
@@ -251,7 +251,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * The minimum release to include. Expected format is YYYY-MM-DD.
      *
      * @param DateTime|string $date
-     * @return $this
+     * @return self
      */
     public function firstAirDateGte($date)
     {
@@ -268,7 +268,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * The maximum release to include. Expected format is YYYY-MM-DD.
      *
      * @param DateTime|string $date
-     * @return $this
+     * @return self
      */
     public function firstAirDateLte($date)
     {
@@ -291,7 +291,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * They can be comma separated to indicate an 'AND' query.
      *
      * @param array|string $networks
-     * @return $this
+     * @return self
      */
     public function withNetworks($networks)
     {
@@ -308,7 +308,7 @@ class DiscoverTvQuery extends QueryParametersCollection
      * Creates an and query for networks
      *
      * @param array $networks
-     * @return $this
+     * @return self
      */
     public function withNetworksAnd(array $networks = [])
     {

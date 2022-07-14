@@ -46,7 +46,7 @@ class Release extends AbstractModel implements CountryFilter
 
     /**
      * @param mixed $certification
-     * @return $this
+     * @return self
      */
     public function setCertification($certification)
     {
@@ -65,7 +65,7 @@ class Release extends AbstractModel implements CountryFilter
 
     /**
      * @param string $iso31661
-     * @return $this
+     * @return self
      */
     public function setIso31661($iso31661)
     {
@@ -84,7 +84,7 @@ class Release extends AbstractModel implements CountryFilter
 
     /**
      * @param string|DateTime|null $releaseDate
-     * @return $this
+     * @return self
      */
     public function setReleaseDate($releaseDate = null)
     {
@@ -107,7 +107,7 @@ class Release extends AbstractModel implements CountryFilter
 
     /**
      * @param mixed $primary
-     * @return $this
+     * @return self
      */
     public function setPrimary($primary)
     {

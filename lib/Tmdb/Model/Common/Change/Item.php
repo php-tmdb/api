@@ -56,7 +56,7 @@ class Item extends AbstractModel
 
     /**
      * @param string $action
-     * @return $this
+     * @return self
      */
     public function setAction($action)
     {
@@ -75,7 +75,7 @@ class Item extends AbstractModel
 
     /**
      * @param string $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -94,7 +94,7 @@ class Item extends AbstractModel
 
     /**
      * @param string|DateTime|null $time
-     * @return $this
+     * @return self
      */
     public function setTime($time = null)
     {
@@ -117,7 +117,7 @@ class Item extends AbstractModel
 
     /**
      * @param array $value
-     * @return $this
+     * @return self
      */
     public function setValue($value)
     {

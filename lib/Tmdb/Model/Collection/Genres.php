@@ -54,7 +54,7 @@ class Genres extends GenericCollection
      * Add a genre to the collection
      *
      * @param Genre $genre
-     * @return $this
+     * @return self
      */
     public function addGenre(Genre $genre)
     {

@@ -143,7 +143,7 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param MovieFactory $movieFactory
-     * @return $this
+     * @return self
      */
     public function setMovieFactory($movieFactory)
     {
@@ -176,7 +176,7 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param CollectionFactory $collectionFactory
-     * @return $this
+     * @return self
      */
     public function setCollectionFactory($collectionFactory)
     {
@@ -209,7 +209,7 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param TvFactory $tvFactory
-     * @return $this
+     * @return self
      */
     public function setTvFactory($tvFactory)
     {
@@ -242,7 +242,7 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param PeopleFactory $peopleFactory
-     * @return $this
+     * @return self
      */
     public function setPeopleFactory($peopleFactory)
     {
@@ -275,7 +275,7 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param CompanyFactory $companyFactory
-     * @return $this
+     * @return self
      */
     public function setCompanyFactory($companyFactory)
     {
@@ -308,7 +308,7 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param KeywordFactory $keywordFactory
-     * @return $this
+     * @return self
      */
     public function setKeywordFactory($keywordFactory)
     {

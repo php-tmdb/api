@@ -48,7 +48,7 @@ class Result extends AbstractModel
 
     /**
      * @param int $statusCode
-     * @return $this
+     * @return self
      */
     public function setStatusCode($statusCode)
     {
@@ -67,7 +67,7 @@ class Result extends AbstractModel
 
     /**
      * @param string $statusMessage
-     * @return $this
+     * @return self
      */
     public function setStatusMessage($statusMessage)
     {

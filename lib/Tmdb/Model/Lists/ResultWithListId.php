@@ -43,7 +43,7 @@ class ResultWithListId extends Result
 
     /**
      * @param string $listId
-     * @return $this
+     * @return self
      */
     public function setListId($listId)
     {

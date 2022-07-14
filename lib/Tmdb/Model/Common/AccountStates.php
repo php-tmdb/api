@@ -62,7 +62,7 @@ class AccountStates extends AbstractModel
 
     /**
      * @param boolean $favorite
-     * @return $this
+     * @return self
      */
     public function setFavorite($favorite)
     {
@@ -81,7 +81,7 @@ class AccountStates extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -100,7 +100,7 @@ class AccountStates extends AbstractModel
 
     /**
      * @param Rating|bool $rated
-     * @return $this
+     * @return self
      */
     public function setRated($rated)
     {
@@ -119,7 +119,7 @@ class AccountStates extends AbstractModel
 
     /**
      * @param boolean $watchlist
-     * @return $this
+     * @return self
      */
     public function setWatchlist($watchlist)
     {

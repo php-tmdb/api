@@ -47,7 +47,7 @@ class ExternalIds extends AbstractModel
 
     /**
      * @param mixed $freebaseId
-     * @return $this
+     * @return self
      */
     public function setFreebaseId($freebaseId)
     {
@@ -66,7 +66,7 @@ class ExternalIds extends AbstractModel
 
     /**
      * @param mixed $freebaseMid
-     * @return $this
+     * @return self
      */
     public function setFreebaseMid($freebaseMid)
     {
@@ -85,7 +85,7 @@ class ExternalIds extends AbstractModel
 
     /**
      * @param mixed $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -104,7 +104,7 @@ class ExternalIds extends AbstractModel
 
     /**
      * @param mixed $imdbId
-     * @return $this
+     * @return self
      */
     public function setImdbId($imdbId)
     {
@@ -123,7 +123,7 @@ class ExternalIds extends AbstractModel
 
     /**
      * @param mixed $tvdbId
-     * @return $this
+     * @return self
      */
     public function setTvdbId($tvdbId)
     {
@@ -142,7 +142,7 @@ class ExternalIds extends AbstractModel
 
     /**
      * @param mixed $tvrageId
-     * @return $this
+     * @return self
      */
     public function setTvrageId($tvrageId)
     {

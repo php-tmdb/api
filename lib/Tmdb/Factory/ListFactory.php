@@ -126,7 +126,7 @@ class ListFactory extends AbstractFactory
 
     /**
      * @param ListItemFactory $listItemFactory
-     * @return $this
+     * @return self
      */
     public function setListItemFactory($listItemFactory)
     {
@@ -145,7 +145,7 @@ class ListFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {

@@ -44,7 +44,7 @@ class Translation extends SpokenLanguage implements CountryFilter, LanguageFilte
 
     /**
      * @param string $iso31661
-     * @return $this
+     * @return self
      */
     public function setIso31661($iso31661)
     {
@@ -63,7 +63,7 @@ class Translation extends SpokenLanguage implements CountryFilter, LanguageFilte
 
     /**
      * @param string $englishName
-     * @return $this
+     * @return self
      */
     public function setEnglishName($englishName)
     {
@@ -82,7 +82,7 @@ class Translation extends SpokenLanguage implements CountryFilter, LanguageFilte
 
     /**
      * @param string $data
-     * @return $this
+     * @return self
      */
     public function setData($data)
     {

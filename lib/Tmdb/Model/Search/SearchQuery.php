@@ -36,7 +36,7 @@ class SearchQuery extends QueryParametersCollection
      * Minimum 1, maximum 1000.
      *
      * @param int $page
-     * @return $this
+     * @return self
      */
     public function page($page)
     {
@@ -49,7 +49,7 @@ class SearchQuery extends QueryParametersCollection
      * CGI escaped string
      *
      * @param string $query
-     * @return $this
+     * @return self
      */
     public function query($query)
     {

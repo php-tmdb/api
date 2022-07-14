@@ -365,7 +365,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param CastFactory $castFactory
-     * @return $this
+     * @return self
      */
     public function setCastFactory($castFactory)
     {
@@ -384,7 +384,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param CrewFactory $crewFactory
-     * @return $this
+     * @return self
      */
     public function setCrewFactory($crewFactory)
     {
@@ -403,7 +403,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param GenreFactory $genreFactory
-     * @return $this
+     * @return self
      */
     public function setGenreFactory($genreFactory)
     {
@@ -422,7 +422,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {
@@ -441,7 +441,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param TvSeasonFactory $tvSeasonFactory
-     * @return $this
+     * @return self
      */
     public function setTvSeasonFactory($tvSeasonFactory)
     {
@@ -460,7 +460,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param TvEpisodeFactory $tvEpisodeFactory
-     * @return $this
+     * @return self
      */
     public function setTvEpisodeFactory($tvEpisodeFactory)
     {
@@ -479,7 +479,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param NetworkFactory $networkFactory
-     * @return $this
+     * @return self
      */
     public function setNetworkFactory($networkFactory)
     {
@@ -498,7 +498,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param VideoFactory $videoFactory
-     * @return $this
+     * @return self
      */
     public function setVideoFactory($videoFactory)
     {
@@ -517,7 +517,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param KeywordFactory $keywordFactory
-     * @return $this
+     * @return self
      */
     public function setKeywordFactory($keywordFactory)
     {
@@ -536,7 +536,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param ChangeFactory $changesFactory
-     * @return $this
+     * @return self
      */
     public function setChangesFactory($changesFactory)
     {

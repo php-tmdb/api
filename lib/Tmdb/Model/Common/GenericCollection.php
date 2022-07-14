@@ -281,7 +281,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      *
      * @param Closure $closure
      *
-     * @return $this
+     * @return self
      */
     public function sort(Closure $closure)
     {

@@ -58,7 +58,7 @@ class Find extends AbstractModel
 
     /**
      * @param GenericCollection $movieResults
-     * @return $this
+     * @return self
      */
     public function setMovieResults($movieResults)
     {
@@ -77,7 +77,7 @@ class Find extends AbstractModel
 
     /**
      * @param People $personResults
-     * @return $this
+     * @return self
      */
     public function setPersonResults($personResults)
     {
@@ -96,7 +96,7 @@ class Find extends AbstractModel
 
     /**
      * @param GenericCollection $tvResults
-     * @return $this
+     * @return self
      */
     public function setTvResults($tvResults)
     {
@@ -115,7 +115,7 @@ class Find extends AbstractModel
 
     /**
      * @param GenericCollection $tvSeasonResults
-     * @return $this
+     * @return self
      */
     public function setTvSeasonResults($tvSeasonResults)
     {
@@ -134,7 +134,7 @@ class Find extends AbstractModel
 
     /**
      * @param GenericCollection $tvEpisodeResults
-     * @return $this
+     * @return self
      */
     public function setTvEpisodeResults($tvEpisodeResults)
     {

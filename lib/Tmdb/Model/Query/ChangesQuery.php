@@ -27,7 +27,7 @@ class ChangesQuery extends QueryParametersCollection
      * Set the from parameter
      *
      * @param DateTime $date
-     * @return $this
+     * @return self
      */
     public function from(DateTime $date)
     {
@@ -40,7 +40,7 @@ class ChangesQuery extends QueryParametersCollection
      * Set the to parameter
      *
      * @param DateTime $date
-     * @return $this
+     * @return self
      */
     public function to(DateTime $date)
     {
@@ -53,7 +53,7 @@ class ChangesQuery extends QueryParametersCollection
      * Set the page parameter
      *
      * @param int $page
-     * @return $this
+     * @return self
      */
     public function page($page = 1)
     {

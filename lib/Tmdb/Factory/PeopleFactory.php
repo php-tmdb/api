@@ -159,7 +159,7 @@ class PeopleFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {
@@ -178,7 +178,7 @@ class PeopleFactory extends AbstractFactory
 
     /**
      * @param ChangeFactory $changeFactory
-     * @return $this
+     * @return self
      */
     public function setChangeFactory($changeFactory)
     {

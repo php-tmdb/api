@@ -49,7 +49,7 @@ class SessionToken
 
     /**
      * @param null $sessionToken
-     * @return $this
+     * @return self
      */
     public function setToken($sessionToken)
     {
@@ -76,7 +76,7 @@ class SessionToken
 
     /**
      * @param DateTime $expiresAt
-     * @return $this
+     * @return self
      */
     public function setExpiresAt($expiresAt)
     {
@@ -99,7 +99,7 @@ class SessionToken
 
     /**
      * @param boolean $success
-     * @return $this
+     * @return self
      */
     public function setSuccess($success)
     {

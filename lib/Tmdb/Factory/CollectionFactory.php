@@ -120,7 +120,7 @@ class CollectionFactory extends AbstractFactory
 
     /**
      * @param MovieFactory $movieFactory
-     * @return $this
+     * @return self
      */
     public function setMovieFactory($movieFactory)
     {
@@ -139,7 +139,7 @@ class CollectionFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {

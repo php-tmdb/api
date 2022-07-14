@@ -49,7 +49,7 @@ class Review extends AbstractModel
 
     /**
      * @param mixed $author
-     * @return $this
+     * @return self
      */
     public function setAuthor($author)
     {
@@ -68,7 +68,7 @@ class Review extends AbstractModel
 
     /**
      * @param mixed $content
-     * @return $this
+     * @return self
      */
     public function setContent($content)
     {
@@ -87,7 +87,7 @@ class Review extends AbstractModel
 
     /**
      * @param mixed $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -106,7 +106,7 @@ class Review extends AbstractModel
 
     /**
      * @param mixed $iso6391
-     * @return $this
+     * @return self
      */
     public function setIso6391($iso6391)
     {
@@ -125,7 +125,7 @@ class Review extends AbstractModel
 
     /**
      * @param mixed $mediaId
-     * @return $this
+     * @return self
      */
     public function setMediaId($mediaId)
     {
@@ -144,7 +144,7 @@ class Review extends AbstractModel
 
     /**
      * @param mixed $mediaTitle
-     * @return $this
+     * @return self
      */
     public function setMediaTitle($mediaTitle)
     {
@@ -163,7 +163,7 @@ class Review extends AbstractModel
 
     /**
      * @param mixed $mediaType
-     * @return $this
+     * @return self
      */
     public function setMediaType($mediaType)
     {
@@ -182,7 +182,7 @@ class Review extends AbstractModel
 
     /**
      * @param mixed $url
-     * @return $this
+     * @return self
      */
     public function setUrl($url)
     {

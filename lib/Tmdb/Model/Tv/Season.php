@@ -127,7 +127,7 @@ class Season extends AbstractModel
 
     /**
      * @param DateTime $airDate
-     * @return $this
+     * @return self
      */
     public function setAirDate($airDate)
     {
@@ -146,7 +146,7 @@ class Season extends AbstractModel
 
     /**
      * @param GenericCollection $episodes
-     * @return $this
+     * @return self
      */
     public function setEpisodes($episodes)
     {
@@ -165,7 +165,7 @@ class Season extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -184,7 +184,7 @@ class Season extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -203,7 +203,7 @@ class Season extends AbstractModel
 
     /**
      * @param string $overview
-     * @return $this
+     * @return self
      */
     public function setOverview($overview)
     {
@@ -222,7 +222,7 @@ class Season extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return $this
+     * @return self
      */
     public function setPosterPath($posterPath)
     {
@@ -241,7 +241,7 @@ class Season extends AbstractModel
 
     /**
      * @param int $seasonNumber
-     * @return $this
+     * @return self
      */
     public function setSeasonNumber($seasonNumber)
     {
@@ -260,7 +260,7 @@ class Season extends AbstractModel
 
     /**
      * @param CreditsCollection $credits
-     * @return $this
+     * @return self
      */
     public function setCredits($credits)
     {
@@ -279,7 +279,7 @@ class Season extends AbstractModel
 
     /**
      * @param ExternalIds $externalIds
-     * @return $this
+     * @return self
      */
     public function setExternalIds($externalIds)
     {
@@ -298,7 +298,7 @@ class Season extends AbstractModel
 
     /**
      * @param Images $images
-     * @return $this
+     * @return self
      */
     public function setImages($images)
     {
@@ -309,7 +309,7 @@ class Season extends AbstractModel
 
     /**
      * @param PosterImage $poster
-     * @return $this
+     * @return self
      */
     public function setPosterImage($poster)
     {
@@ -336,7 +336,7 @@ class Season extends AbstractModel
 
     /**
      * @param Videos $videos
-     * @return $this
+     * @return self
      */
     public function setVideos($videos)
     {
@@ -355,7 +355,7 @@ class Season extends AbstractModel
 
     /**
      * @param Changes $changes
-     * @return $this
+     * @return self
      */
     public function setChanges($changes)
     {

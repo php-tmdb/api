@@ -40,7 +40,7 @@ class SpokenLanguage extends AbstractModel implements LanguageFilter
 
     /**
      * @param string $iso6391
-     * @return $this
+     * @return self
      */
     public function setIso6391($iso6391)
     {
@@ -59,7 +59,7 @@ class SpokenLanguage extends AbstractModel implements LanguageFilter
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {

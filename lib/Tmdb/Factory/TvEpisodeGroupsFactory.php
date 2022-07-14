@@ -88,7 +88,7 @@ class TvEpisodeGroupsFactory extends AbstractFactory
 
     /**
      * @param TvEpisodeFactory $tvEpisodeFactory
-     * @return $this
+     * @return self
      */
     public function setTvEpisodeFactory($tvEpisodeFactory)
     {

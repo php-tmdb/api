@@ -57,7 +57,7 @@ class CreditsCollection
 
     /**
      * @param Cast $cast
-     * @return $this
+     * @return self
      */
     public function setCast(Cast $cast)
     {
@@ -76,7 +76,7 @@ class CreditsCollection
 
     /**
      * @param Crew $crew
-     * @return $this
+     * @return self
      */
     public function setCrew(Crew $crew)
     {

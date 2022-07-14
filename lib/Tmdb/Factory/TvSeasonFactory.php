@@ -168,7 +168,7 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param CastFactory $castFactory
-     * @return $this
+     * @return self
      */
     public function setCastFactory($castFactory)
     {
@@ -187,7 +187,7 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param CrewFactory $crewFactory
-     * @return $this
+     * @return self
      */
     public function setCrewFactory($crewFactory)
     {
@@ -206,7 +206,7 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {
@@ -225,7 +225,7 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param TvEpisodeFactory $tvEpisodeFactory
-     * @return $this
+     * @return self
      */
     public function setTvEpisodeFactory($tvEpisodeFactory)
     {
@@ -244,7 +244,7 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param VideoFactory $videoFactory
-     * @return $this
+     * @return self
      */
     public function setVideoFactory($videoFactory)
     {
@@ -263,7 +263,7 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param ChangeFactory $changesFactory
-     * @return $this
+     * @return self
      */
     public function setChangesFactory($changesFactory)
     {

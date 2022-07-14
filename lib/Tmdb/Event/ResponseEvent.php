@@ -52,7 +52,7 @@ class ResponseEvent implements LoggableHttpEventInterface
 
     /**
      * @param RequestInterface $request
-     * @return $this
+     * @return self
      */
     public function setRequest($request)
     {
@@ -71,7 +71,7 @@ class ResponseEvent implements LoggableHttpEventInterface
 
     /**
      * @param ResponseInterface $response
-     * @return $this
+     * @return self
      */
     public function setResponse(ResponseInterface $response)
     {

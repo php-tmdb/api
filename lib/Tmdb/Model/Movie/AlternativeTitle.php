@@ -40,7 +40,7 @@ class AlternativeTitle extends AbstractModel implements CountryFilter
 
     /**
      * @param string $iso31661
-     * @return $this
+     * @return self
      */
     public function setIso31661($iso31661)
     {
@@ -59,7 +59,7 @@ class AlternativeTitle extends AbstractModel implements CountryFilter
 
     /**
      * @param string $title
-     * @return $this
+     * @return self
      */
     public function setTitle($title)
     {

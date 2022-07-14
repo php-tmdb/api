@@ -55,7 +55,7 @@ abstract class AbstractMember extends AbstractModel
 
     /**
      * @param mixed $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -74,7 +74,7 @@ abstract class AbstractMember extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -93,7 +93,7 @@ abstract class AbstractMember extends AbstractModel
 
     /**
      * @param string $profilePath
-     * @return $this
+     * @return self
      */
     public function setProfilePath($profilePath)
     {
@@ -104,7 +104,7 @@ abstract class AbstractMember extends AbstractModel
 
     /**
      * @param Image\ProfileImage $profile
-     * @return $this
+     * @return self
      */
     public function setProfileImage($profile = null)
     {

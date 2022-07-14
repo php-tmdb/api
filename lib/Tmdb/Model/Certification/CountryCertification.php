@@ -50,7 +50,7 @@ class CountryCertification extends AbstractModel
 
     /**
      * @param string $certification
-     * @return $this
+     * @return self
      */
     public function setCertification($certification)
     {
@@ -69,7 +69,7 @@ class CountryCertification extends AbstractModel
 
     /**
      * @param string $meaning
-     * @return $this
+     * @return self
      */
     public function setMeaning($meaning)
     {
@@ -88,7 +88,7 @@ class CountryCertification extends AbstractModel
 
     /**
      * @param int $order
-     * @return $this
+     * @return self
      */
     public function setOrder($order)
     {

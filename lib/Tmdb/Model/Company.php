@@ -50,7 +50,7 @@ class Company extends AbstractModel
 
     /**
      * @param mixed $description
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -69,7 +69,7 @@ class Company extends AbstractModel
 
     /**
      * @param mixed $headquarters
-     * @return $this
+     * @return self
      */
     public function setHeadquarters($headquarters)
     {
@@ -88,7 +88,7 @@ class Company extends AbstractModel
 
     /**
      * @param mixed $homepage
-     * @return $this
+     * @return self
      */
     public function setHomepage($homepage)
     {
@@ -107,7 +107,7 @@ class Company extends AbstractModel
 
     /**
      * @param mixed $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -118,7 +118,7 @@ class Company extends AbstractModel
 
     /**
      * @param LogoImage $logo
-     * @return $this
+     * @return self
      */
     public function setLogoImage(LogoImage $logo)
     {
@@ -145,7 +145,7 @@ class Company extends AbstractModel
 
     /**
      * @param mixed $logoPath
-     * @return $this
+     * @return self
      */
     public function setLogoPath($logoPath)
     {
@@ -164,7 +164,7 @@ class Company extends AbstractModel
 
     /**
      * @param mixed $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -183,7 +183,7 @@ class Company extends AbstractModel
 
     /**
      * @param mixed $parentCompany
-     * @return $this
+     * @return self
      */
     public function setParentCompany($parentCompany)
     {

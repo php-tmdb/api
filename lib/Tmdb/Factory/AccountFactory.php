@@ -120,7 +120,7 @@ class AccountFactory extends AbstractFactory
 
     /**
      * @param MovieFactory $movieFactory
-     * @return $this
+     * @return self
      */
     public function setMovieFactory($movieFactory)
     {
@@ -151,7 +151,7 @@ class AccountFactory extends AbstractFactory
 
     /**
      * @param TvFactory $tvFactory
-     * @return $this
+     * @return self
      */
     public function setTvFactory($tvFactory)
     {
@@ -187,7 +187,7 @@ class AccountFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {
@@ -210,7 +210,7 @@ class AccountFactory extends AbstractFactory
 
     /**
      * @param AvatarFactory $avatarFactory
-     * @return $this
+     * @return self
      */
     public function setAvatarFactory($avatarFactory)
     {

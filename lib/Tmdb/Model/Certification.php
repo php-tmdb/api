@@ -49,7 +49,7 @@ class Certification extends AbstractModel
 
     /**
      * @param GenericCollection $certifications
-     * @return $this
+     * @return self
      */
     public function setCertifications($certifications)
     {
@@ -68,7 +68,7 @@ class Certification extends AbstractModel
 
     /**
      * @param string $country
-     * @return $this
+     * @return self
      */
     public function setCountry($country)
     {

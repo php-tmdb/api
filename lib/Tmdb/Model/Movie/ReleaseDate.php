@@ -56,7 +56,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string|null $certification
-     * @return $this
+     * @return self
      */
     public function setCertification($certification)
     {
@@ -75,7 +75,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string|null $note
-     * @return $this
+     * @return self
      */
     public function setNote($note)
     {
@@ -94,7 +94,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $iso31661
-     * @return $this
+     * @return self
      */
     public function setIso31661($iso31661)
     {
@@ -113,7 +113,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string|DateTime|null $releaseDate
-     * @return $this
+     * @return self
      */
     public function setReleaseDate($releaseDate = null)
     {
@@ -136,7 +136,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $iso6391
-     * @return $this
+     * @return self
      */
     public function setIso6391($iso6391)
     {
@@ -154,7 +154,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param int $type
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {

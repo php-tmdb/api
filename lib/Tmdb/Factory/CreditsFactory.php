@@ -101,7 +101,7 @@ class CreditsFactory extends AbstractFactory
 
     /**
      * @param TvSeasonFactory $tvSeasonFactory
-     * @return $this
+     * @return self
      */
     public function setTvSeasonFactory($tvSeasonFactory)
     {
@@ -120,7 +120,7 @@ class CreditsFactory extends AbstractFactory
 
     /**
      * @param TvEpisodeFactory $tvEpisodeFactory
-     * @return $this
+     * @return self
      */
     public function setTvEpisodeFactory($tvEpisodeFactory)
     {
@@ -139,7 +139,7 @@ class CreditsFactory extends AbstractFactory
 
     /**
      * @param PeopleFactory $peopleFactory
-     * @return $this
+     * @return self
      */
     public function setPeopleFactory($peopleFactory)
     {

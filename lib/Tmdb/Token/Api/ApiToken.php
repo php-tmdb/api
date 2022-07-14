@@ -36,7 +36,7 @@ class ApiToken
 
     /**
      * @param string $apiToken
-     * @return $this
+     * @return self
      * @throws RuntimeException
      */
     public function setToken($apiToken)

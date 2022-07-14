@@ -264,7 +264,7 @@ class Client
 
     /**
      * @param GuestSessionToken|null $guestSessionToken
-     * @return $this
+     * @return self
      */
     public function setGuestSessionToken(?GuestSessionToken $guestSessionToken): Client
     {
