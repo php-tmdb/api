@@ -106,6 +106,8 @@ class TvRepository extends AbstractRepository
         $data = $this->getApi()->getCredits($id, $this->parseQueryParameters($parameters), $headers);
         $tv = $this->getFactory()->create(['credits' => $data]);
 
+        assert($tv instanceof Tv);
+
         return $tv->getCredits();
     }
 

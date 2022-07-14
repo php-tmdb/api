@@ -25,9 +25,9 @@ class PersonSearchQuery extends SearchQuery
     /**
      * Toggle the inclusion of adult titles. Expected value is: true or false
      *
-     * @param bool
+     * @param bool $include_adult
      *
-     * @return static
+     * @return self
      */
     public function includeAdult($include_adult): self
     {
@@ -44,9 +44,9 @@ class PersonSearchQuery extends SearchQuery
      *
      * For those wanting more of an "autocomplete" type search, set this option to 'ngram'.
      *
-     * @param string
+     * @param string $search_type
      *
-     * @return static
+     * @return self
      * @deprecated
      *
      */

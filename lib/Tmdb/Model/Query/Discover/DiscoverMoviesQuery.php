@@ -541,7 +541,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      */
     protected function normalize($mixed)
     {
-        if (is_object($mixed) && $mixed instanceof AbstractModel) {
+        if (is_object($mixed) && method_exists($mixed, 'getId')) {
             return $mixed->getId();
         }
 

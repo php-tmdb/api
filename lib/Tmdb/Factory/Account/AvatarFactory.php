@@ -28,7 +28,7 @@ class AvatarFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         // @todo 4.0.x double check on this bug
         if (array_key_exists(0, $data)) {

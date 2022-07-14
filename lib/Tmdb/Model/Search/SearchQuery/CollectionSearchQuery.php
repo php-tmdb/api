@@ -25,9 +25,9 @@ class CollectionSearchQuery extends SearchQuery
     /**
      * ISO 639-1 code.
      *
-     * @param string
+     * @param string $language
      *
-     * @return static
+     * @return self
      */
     public function language($language): self
     {

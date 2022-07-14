@@ -26,7 +26,7 @@ class JobsFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): Jobs
     {
         $collection = new Jobs();
 
@@ -44,7 +44,7 @@ class JobsFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Job
     {
         return $this->hydrate(new Job(), $data);
     }

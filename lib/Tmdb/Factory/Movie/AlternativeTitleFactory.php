@@ -27,7 +27,7 @@ class AlternativeTitleFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -41,7 +41,7 @@ class AlternativeTitleFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
+    public function create(array $data = []): AlternativeTitle
     {
         $title = new AlternativeTitle();
 

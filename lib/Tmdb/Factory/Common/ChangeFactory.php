@@ -28,7 +28,7 @@ class ChangeFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -46,7 +46,7 @@ class ChangeFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Change
     {
         $change = new Change();
 
@@ -69,9 +69,9 @@ class ChangeFactory extends AbstractFactory
      * Create individual change items
      *
      * @param array $data
-     * @return AbstractModel
+     * @return Change\Item
      */
-    private function createChangeItem(array $data = [])
+    private function createChangeItem(array $data = []): Change\Item
     {
         return $this->hydrate(new Change\Item(), $data);
     }

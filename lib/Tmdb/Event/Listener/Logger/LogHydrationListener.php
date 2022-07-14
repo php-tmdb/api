@@ -32,7 +32,7 @@ class LogHydrationListener
     private $logger;
 
     /**
-     * @var HttpMessageFormatterInterface
+     * @var HydrationFormatterInterface
      */
     private $formatter;
 

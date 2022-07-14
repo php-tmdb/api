@@ -82,7 +82,7 @@ class ListFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -98,7 +98,7 @@ class ListFactory extends AbstractFactory
      *
      * @return Lists
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Lists
     {
         $lists = new Lists();
 

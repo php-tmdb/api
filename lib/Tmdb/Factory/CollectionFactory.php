@@ -51,7 +51,7 @@ class CollectionFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -66,7 +66,7 @@ class CollectionFactory extends AbstractFactory
      * {@inheritdoc}
      * @return Collection
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Collection
     {
         $collection = new Collection();
 

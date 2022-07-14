@@ -104,7 +104,7 @@ class MovieFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -122,9 +122,9 @@ class MovieFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return AbstractModel|null
+     * @return Movie|null
      */
-    public function create(array $data = []): ?AbstractModel
+    public function create(array $data = []): ?Movie
     {
         if (!$data) {
             return null;

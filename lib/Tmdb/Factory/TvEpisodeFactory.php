@@ -85,7 +85,7 @@ class TvEpisodeFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -99,9 +99,9 @@ class TvEpisodeFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      *
-     * @return AbstractModel|null
+     * @return Episode|null
      */
-    public function create(array $data = []): ?AbstractModel
+    public function create(array $data = []): ?Episode
     {
         if (!$data) {
             return null;

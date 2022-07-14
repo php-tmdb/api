@@ -25,9 +25,9 @@ class ListSearchQuery extends SearchQuery
     /**
      * Toggle the inclusion of adult titles. Expected value is: true or false
      *
-     * @param bool
+     * @param bool $include_adult
      *
-     * @return static
+     * @return self
      */
     public function includeAdult($include_adult): self
     {

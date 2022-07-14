@@ -210,9 +210,7 @@ class MovieRepository extends AbstractRepository
      * @param $parameters
      * @param $headers
      *
-     * @return GenericCollection|Translation[]
-     *
-     * @psalm-return array<array-key, \Tmdb\Model\Common\Translation>
+     * @return GenericCollection
      */
     public function getTranslations($id, array $parameters = [], array $headers = []): GenericCollection
     {
@@ -229,11 +227,9 @@ class MovieRepository extends AbstractRepository
      * @param $parameters
      * @param $headers
      *
-     * @return GenericCollection|Movie[]
+     * @return GenericCollection
      *
      * @deprecated Will be removed in one of the upcoming versions, has been updated to getSimilar ( following TMDB ).
-     *
-     * @psalm-return GenericCollection|array<array-key, Movie>
      */
     public function getSimilarMovies($id, array $parameters = [], array $headers = []): GenericCollection
     {
@@ -247,9 +243,7 @@ class MovieRepository extends AbstractRepository
      * @param $parameters
      * @param $headers
      *
-     * @return GenericCollection|Movie[]
-     *
-     * @psalm-return GenericCollection|array<array-key, Movie>
+     * @return GenericCollection
      */
     public function getSimilar($id, array $parameters = [], array $headers = []): GenericCollection
     {
@@ -266,9 +260,7 @@ class MovieRepository extends AbstractRepository
      * @param $parameters
      * @param $headers
      *
-     * @return GenericCollection|Movie[]
-     *
-     * @psalm-return GenericCollection|array<array-key, Movie>
+     * @return GenericCollection
      */
     public function getRecommendations($id, array $parameters = [], array $headers = []): GenericCollection
     {

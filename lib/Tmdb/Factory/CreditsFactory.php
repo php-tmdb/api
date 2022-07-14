@@ -60,7 +60,7 @@ class CreditsFactory extends AbstractFactory
      *
      * @return Credits
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Credits
     {
         $credits = new Credits();
 

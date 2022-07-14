@@ -102,7 +102,7 @@ class DiscoverRepository extends AbstractRepository
     /**
      * Discover currently does not offer an factory
      *
-     * @return null|FactoryInterface
+     * @return void
      * @throws NotImplementedException
      */
     public function getFactory()

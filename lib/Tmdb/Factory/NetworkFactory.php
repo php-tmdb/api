@@ -26,7 +26,7 @@ class NetworkFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -46,7 +46,7 @@ class NetworkFactory extends AbstractFactory
      *
      * @return Network
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Network
     {
         return $this->hydrate(new Network(), $data);
     }

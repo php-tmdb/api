@@ -58,9 +58,9 @@ class PeopleFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      * @param Person\AbstractMember|null $person
-     * @param GenericCollection|null $collection
+     * @param People|null $collection
      */
-    public function createCollection(array $data = [], $person = null, $collection = null)
+    public function createCollection(array $data = [], $person = null, $collection = null): People
     {
         if (!$collection) {
             $collection = new People();

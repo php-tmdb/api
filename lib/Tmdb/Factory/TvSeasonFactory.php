@@ -96,9 +96,9 @@ class TvSeasonFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      *
-     * @return AbstractModel|null
+     * @return Season|null
      */
-    public function create(array $data = []): ?AbstractModel
+    public function create(array $data = []): ?Season
     {
         if (!$data) {
             return null;

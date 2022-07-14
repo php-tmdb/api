@@ -67,7 +67,7 @@ class AccountFactory extends AbstractFactory
      *
      * @return Account
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Account
     {
         $account = new Account();
 

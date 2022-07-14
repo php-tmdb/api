@@ -44,11 +44,6 @@ class TvFactory extends AbstractFactory
     private $castFactory;
 
     /**
-     * @var ContentRatingsFactory
-     */
-    private $contentRatingsFactory;
-
-    /**
      * @var People\CrewFactory
      */
     private $crewFactory;
@@ -135,9 +130,9 @@ class TvFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return AbstractModel|null
+     * @return Tv|null
      */
-    public function create(array $data = []): ?AbstractModel
+    public function create(array $data = []): ?Tv
     {
         if (!$data) {
             return null;
@@ -548,23 +543,5 @@ class TvFactory extends AbstractFactory
         $this->changesFactory = $changesFactory;
 
         return $this;
-    }
-
-    /**
-     * @return ContentRatingsFactory
-     */
-    public function getContentRatingsFactory()
-    {
-        return $this->contentRatingsFactory;
-    }
-
-    /**
-     * @param ContentRatingFactory $contentRatingFactory
-     *
-     * @return void
-     */
-    public function setContentRatingsFactory($contentRatingsFactory): void
-    {
-        $this->contentRatingsFactory = $contentRatingsFactory;
     }
 }

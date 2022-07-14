@@ -17,6 +17,7 @@ namespace Tmdb\Factory\Movie;
 use Tmdb\Factory\AbstractFactory;
 use Tmdb\Factory\ImageFactory;
 use Tmdb\HttpClient\HttpClient;
+use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Movie\ListItem;
 
 /**
@@ -45,7 +46,7 @@ class ListItemFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
+    public function create(array $data = []): ListItem
     {
         $listItem = new ListItem();
 
@@ -78,7 +79,7 @@ class ListItemFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): ResultCollection
     {
         return $this->createResultCollection($data);
     }

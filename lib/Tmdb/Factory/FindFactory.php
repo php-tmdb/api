@@ -68,7 +68,7 @@ class FindFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Find
     {
         $find = new Find();
 

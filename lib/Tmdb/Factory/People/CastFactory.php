@@ -28,7 +28,7 @@ class CastFactory extends PeopleFactory
      * {@inheritdoc}
      * @param CastMember|null $person
      */
-    public function createCollection(array $data = [], $person = null, $collection = null)
+    public function createCollection(array $data = [], $person = null, $collection = null): Cast
     {
         $collection = new Cast();
 

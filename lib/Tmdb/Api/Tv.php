@@ -289,11 +289,13 @@ class Tv extends AbstractApi
      * Get the alternative titles for a specific show ID.
      *
      * @param integer $id
+     * @param array $parameters
+     * @param array $headers
      * @return mixed
      */
-    public function getAlternativeTitles($id)
+    public function getAlternativeTitles($id, array $parameters = [], array $headers = [])
     {
-        return $this->get('tv/' . $id . '/alternative_titles');
+        return $this->get('tv/' . $id . '/alternative_titles', $parameters, $headers);
     }
 
     /**

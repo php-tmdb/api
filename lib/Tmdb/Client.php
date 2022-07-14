@@ -266,7 +266,7 @@ class Client
      * @param GuestSessionToken|null $guestSessionToken
      * @return $this
      */
-    public function setGuestSessionToken(GuestSessionToken $guestSessionToken): Client
+    public function setGuestSessionToken(?GuestSessionToken $guestSessionToken): Client
     {
         $this->options['guest_session_token'] = $guestSessionToken;
 
