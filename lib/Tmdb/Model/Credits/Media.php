@@ -64,7 +64,7 @@ class Media extends AbstractModel
 
     /**
      * @param string $character
-     * @return $this
+     * @return self
      */
     public function setCharacter($character)
     {
@@ -83,7 +83,7 @@ class Media extends AbstractModel
 
     /**
      * @param GenericCollection $episodes
-     * @return $this
+     * @return self
      */
     public function setEpisodes($episodes)
     {
@@ -102,7 +102,7 @@ class Media extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -121,7 +121,7 @@ class Media extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -140,7 +140,7 @@ class Media extends AbstractModel
 
     /**
      * @param string $originalName
-     * @return $this
+     * @return self
      */
     public function setOriginalName($originalName)
     {
@@ -159,7 +159,7 @@ class Media extends AbstractModel
 
     /**
      * @param GenericCollection $seasons
-     * @return $this
+     * @return self
      */
     public function setSeasons($seasons)
     {

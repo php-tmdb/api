@@ -210,7 +210,7 @@ class HttpClient
 
     /**
      * @param array $options
-     * @return $this
+     * @return self
      */
     public function setOptions(array $options): HttpClient
     {

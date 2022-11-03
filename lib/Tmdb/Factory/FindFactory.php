@@ -68,7 +68,7 @@ class FindFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Find
     {
         $find = new Find();
 
@@ -105,7 +105,7 @@ class FindFactory extends AbstractFactory
 
     /**
      * @param MovieFactory $movieFactory
-     * @return $this
+     * @return self
      */
     public function setMovieFactory($movieFactory)
     {
@@ -124,7 +124,7 @@ class FindFactory extends AbstractFactory
 
     /**
      * @param PeopleFactory $peopleFactory
-     * @return $this
+     * @return self
      */
     public function setPeopleFactory($peopleFactory)
     {
@@ -143,7 +143,7 @@ class FindFactory extends AbstractFactory
 
     /**
      * @param TvFactory $tvFactory
-     * @return $this
+     * @return self
      */
     public function setTvFactory($tvFactory)
     {
@@ -162,7 +162,7 @@ class FindFactory extends AbstractFactory
 
     /**
      * @param TvSeasonFactory $tvSeasonFactory
-     * @return $this
+     * @return self
      */
     public function setTvSeasonFactory($tvSeasonFactory)
     {
@@ -181,7 +181,7 @@ class FindFactory extends AbstractFactory
 
     /**
      * @param TvEpisodeFactory $tvEpisodeFactory
-     * @return $this
+     * @return self
      */
     public function setTvEpisodeFactory($tvEpisodeFactory)
     {

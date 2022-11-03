@@ -102,6 +102,8 @@ class Authentication extends AbstractApi
             if ($e->getCode() == 401) {
                 throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
             }
+
+            return null;
         }
         //@codeCoverageIgnoreEnd
     }
@@ -128,6 +130,8 @@ class Authentication extends AbstractApi
             if ($e->getCode() == 401) {
                 throw new UnauthorizedRequestTokenException("The request token has not been validated yet.");
             }
+
+            return null;
             //@codeCoverageIgnoreEnd
         }
     }

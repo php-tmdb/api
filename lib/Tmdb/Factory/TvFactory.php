@@ -44,11 +44,6 @@ class TvFactory extends AbstractFactory
     private $castFactory;
 
     /**
-     * @var ContentRatingsFactory
-     */
-    private $contentRatingsFactory;
-
-    /**
      * @var People\CrewFactory
      */
     private $crewFactory;
@@ -135,9 +130,9 @@ class TvFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return AbstractModel|null
+     * @return Tv|null
      */
-    public function create(array $data = []): ?AbstractModel
+    public function create(array $data = []): ?Tv
     {
         if (!$data) {
             return null;
@@ -370,7 +365,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param CastFactory $castFactory
-     * @return $this
+     * @return self
      */
     public function setCastFactory($castFactory)
     {
@@ -389,7 +384,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param CrewFactory $crewFactory
-     * @return $this
+     * @return self
      */
     public function setCrewFactory($crewFactory)
     {
@@ -408,7 +403,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param GenreFactory $genreFactory
-     * @return $this
+     * @return self
      */
     public function setGenreFactory($genreFactory)
     {
@@ -427,7 +422,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {
@@ -446,7 +441,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param TvSeasonFactory $tvSeasonFactory
-     * @return $this
+     * @return self
      */
     public function setTvSeasonFactory($tvSeasonFactory)
     {
@@ -465,7 +460,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param TvEpisodeFactory $tvEpisodeFactory
-     * @return $this
+     * @return self
      */
     public function setTvEpisodeFactory($tvEpisodeFactory)
     {
@@ -484,7 +479,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param NetworkFactory $networkFactory
-     * @return $this
+     * @return self
      */
     public function setNetworkFactory($networkFactory)
     {
@@ -503,7 +498,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param VideoFactory $videoFactory
-     * @return $this
+     * @return self
      */
     public function setVideoFactory($videoFactory)
     {
@@ -522,7 +517,7 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param KeywordFactory $keywordFactory
-     * @return $this
+     * @return self
      */
     public function setKeywordFactory($keywordFactory)
     {
@@ -541,30 +536,12 @@ class TvFactory extends AbstractFactory
 
     /**
      * @param ChangeFactory $changesFactory
-     * @return $this
+     * @return self
      */
     public function setChangesFactory($changesFactory)
     {
         $this->changesFactory = $changesFactory;
 
         return $this;
-    }
-
-    /**
-     * @return ContentRatingsFactory
-     */
-    public function getContentRatingsFactory()
-    {
-        return $this->contentRatingsFactory;
-    }
-
-    /**
-     * @param ContentRatingFactory $contentRatingFactory
-     *
-     * @return void
-     */
-    public function setContentRatingsFactory($contentRatingsFactory): void
-    {
-        $this->contentRatingsFactory = $contentRatingsFactory;
     }
 }

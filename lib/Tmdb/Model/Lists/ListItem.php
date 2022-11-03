@@ -89,7 +89,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param BackdropImage $backdropImage
-     * @return $this
+     * @return self
      */
     public function setBackdropImage($backdropImage)
     {
@@ -108,7 +108,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $backdropPath
-     * @return $this
+     * @return self
      */
     public function setBackdropPath($backdropPath)
     {
@@ -127,7 +127,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -146,7 +146,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $originalTitle
-     * @return $this
+     * @return self
      */
     public function setOriginalTitle($originalTitle)
     {
@@ -165,7 +165,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param PosterImage $posterImage
-     * @return $this
+     * @return self
      */
     public function setPosterImage($posterImage)
     {
@@ -184,7 +184,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return $this
+     * @return self
      */
     public function setPosterPath($posterPath)
     {
@@ -203,7 +203,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param DateTime $releaseDate
-     * @return $this
+     * @return self
      */
     public function setReleaseDate($releaseDate)
     {
@@ -222,7 +222,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $title
-     * @return $this
+     * @return self
      */
     public function setTitle($title)
     {
@@ -241,7 +241,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param float $voteAverage
-     * @return $this
+     * @return self
      */
     public function setVoteAverage($voteAverage)
     {
@@ -260,7 +260,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param int $voteCount
-     * @return $this
+     * @return self
      */
     public function setVoteCount($voteCount)
     {

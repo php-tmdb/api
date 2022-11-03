@@ -49,7 +49,7 @@ class Change extends AbstractModel
 
     /**
      * @param GenericCollection $items
-     * @return $this
+     * @return self
      */
     public function setItems($items)
     {
@@ -68,7 +68,7 @@ class Change extends AbstractModel
 
     /**
      * @param string $key
-     * @return $this
+     * @return self
      */
     public function setKey($key)
     {

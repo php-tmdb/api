@@ -38,7 +38,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * A ISO 3166-1 is expected.
      *
      * @param string $country
-     * @return $this
+     * @return self
      */
     public function certificationCountry($country)
     {
@@ -53,7 +53,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a valid certification for the specified 'certification_country'.
      *
      * @param mixed $value
-     * @return $this
+     * @return self
      */
     public function certification($value)
     {
@@ -68,7 +68,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a valid certification for the specified 'certification_country'.
      *
      * @param mixed $value
-     * @return $this
+     * @return self
      */
     public function certificationLte($value)
     {
@@ -83,7 +83,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a boolean, true or false. Default is false.
      *
      * @param boolean $allow
-     * @return $this
+     * @return self
      */
     public function includeAdult($allow = true)
     {
@@ -98,7 +98,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a boolean, true or false. Default is true.
      *
      * @param boolean $allow
-     * @return $this
+     * @return self
      */
     public function includeVideo($allow = true)
     {
@@ -111,7 +111,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * ISO 639-1 code.
      *
      * @param string $language
-     * @return $this
+     * @return self
      */
     public function language($language)
     {
@@ -124,7 +124,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * An ISO 3166-1 code. Combine this filter with with_watch_providers in order to filter your results by a specific watch provider in a specific region.
      *
      * @param string $watchRegion
-     * @return $this
+     * @return self
      */
     public function watchRegion($watchRegion)
     {
@@ -138,7 +138,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * @param array|string $watchProviders
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withWatchProviders($watchProviders, $mode = self::MODE_OR)
     {
@@ -154,7 +154,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * @param array|string $watchProviders
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withWatchMonetizationTypes($watchProviders, $mode = self::MODE_OR)
     {
@@ -167,7 +167,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Minimum value is 1, expected value is an integer.
      *
      * @param integer $page
-     * @return $this
+     * @return self
      */
     public function page($page = 1)
     {
@@ -181,7 +181,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a year.
      *
      * @param DateTime|integer $year
-     * @return $this
+     * @return self
      */
     public function primaryReleaseYear($year)
     {
@@ -217,7 +217,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected format is YYYY-MM-DD.
      *
      * @param DateTime|integer $year
-     * @return $this
+     * @return self
      */
     public function primaryReleaseDateGte($year)
     {
@@ -242,7 +242,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected format is YYYY-MM-DD.
      *
      * @param DateTime|integer $year
-     * @return $this
+     * @return self
      */
     public function primaryReleaseDateLte($year)
     {
@@ -257,7 +257,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected format is YYYY-MM-DD.
      *
      * @param DateTime|string $date
-     * @return $this
+     * @return self
      */
     public function releaseDateGte($date)
     {
@@ -272,7 +272,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected format is YYYY-MM-DD.
      *
      * @param DateTime $date
-     * @return $this
+     * @return self
      */
     public function releaseDateLte($date)
     {
@@ -300,7 +300,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * - vote_count.desc
      *
      * @param string $option
-     * @return $this
+     * @return self
      */
     public function sortBy($option)
     {
@@ -314,7 +314,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * vote count that is equal to or lower than the specified value.
      *
      * @param integer $count
-     * @return $this
+     * @return self
      */
     public function voteCountGte($count)
     {
@@ -330,7 +330,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is an integer.
      *
      * @param integer $count
-     * @return $this
+     * @return self
      */
     public function voteCountLte($count)
     {
@@ -346,7 +346,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a float.
      *
      * @param float $average
-     * @return $this
+     * @return self
      */
     public function voteAverageGte($average)
     {
@@ -362,7 +362,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a float.
      *
      * @param float $average
-     * @return $this
+     * @return self
      */
     public function voteAverageLte($average)
     {
@@ -379,7 +379,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * @param array|string $cast
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withCast($cast, $mode = self::MODE_OR)
     {
@@ -434,7 +434,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * @param array|string $crew
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withCrew($crew, $mode = self::MODE_OR)
     {
@@ -451,7 +451,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * @param array|string $companies
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withCompanies($companies, $mode = self::MODE_OR)
     {
@@ -472,7 +472,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * @param array|string $genres
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withGenres($genres, $mode = self::MODE_OR)
     {
@@ -493,7 +493,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * @param array|string $keywords
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withKeywords($keywords, $mode = self::MODE_OR)
     {
@@ -510,7 +510,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * @param array|string $people
      * @param int $mode
-     * @return $this
+     * @return self
      */
     public function withPeople($people, $mode = self::MODE_OR)
     {
@@ -524,7 +524,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a year.
      *
      * @param DateTime|integer $year
-     * @return $this
+     * @return self
      */
     public function year($year)
     {
@@ -541,7 +541,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      */
     protected function normalize($mixed)
     {
-        if (is_object($mixed) && $mixed instanceof AbstractModel) {
+        if (is_object($mixed) && method_exists($mixed, 'getId')) {
             return $mixed->getId();
         }
 

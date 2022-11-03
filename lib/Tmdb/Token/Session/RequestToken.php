@@ -61,7 +61,7 @@ class RequestToken
 
     /**
      * @param string|null $token
-     * @return $this
+     * @return self
      */
     public function setToken(string $token = null)
     {
@@ -80,7 +80,7 @@ class RequestToken
 
     /**
      * @param DateTime|string $expiresAt
-     * @return $this
+     * @return self
      */
     public function setExpiresAt($expiresAt)
     {
@@ -103,7 +103,7 @@ class RequestToken
 
     /**
      * @param boolean $success
-     * @return $this
+     * @return self
      */
     public function setSuccess(bool $success)
     {

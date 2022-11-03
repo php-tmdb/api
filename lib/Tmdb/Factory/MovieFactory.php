@@ -104,7 +104,7 @@ class MovieFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -122,9 +122,9 @@ class MovieFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return AbstractModel|null
+     * @return Movie|null
      */
-    public function create(array $data = []): ?AbstractModel
+    public function create(array $data = []): ?Movie
     {
         if (!$data) {
             return null;
@@ -298,7 +298,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param CastFactory $castFactory
-     * @return $this
+     * @return self
      */
     public function setCastFactory($castFactory)
     {
@@ -317,7 +317,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param CrewFactory $crewFactory
-     * @return $this
+     * @return self
      */
     public function setCrewFactory($crewFactory)
     {
@@ -336,7 +336,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param GenreFactory $genreFactory
-     * @return $this
+     * @return self
      */
     public function setGenreFactory($genreFactory)
     {
@@ -355,7 +355,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {
@@ -374,7 +374,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param KeywordFactory $keywordFactory
-     * @return $this
+     * @return self
      */
     public function setKeywordFactory($keywordFactory)
     {
@@ -393,7 +393,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param VideoFactory $videoFactory
-     * @return $this
+     * @return self
      */
     public function setVideoFactory($videoFactory)
     {
@@ -412,7 +412,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param ReviewFactory $reviewFactory
-     * @return $this
+     * @return self
      */
     public function setReviewFactory($reviewFactory)
     {
@@ -431,7 +431,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param ListItemFactory $listItemFactory
-     * @return $this
+     * @return self
      */
     public function setListItemFactory($listItemFactory)
     {
@@ -450,7 +450,7 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param ChangeFactory $changeFactory
-     * @return $this
+     * @return self
      */
     public function setChangeFactory($changeFactory)
     {

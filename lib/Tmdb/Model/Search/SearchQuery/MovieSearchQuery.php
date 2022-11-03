@@ -26,9 +26,9 @@ class MovieSearchQuery extends SearchQuery
     /**
      * ISO 639-1 code.
      *
-     * @param string
+     * @param string $language
      *
-     * @return static
+     * @return self
      */
     public function language($language): self
     {
@@ -40,9 +40,9 @@ class MovieSearchQuery extends SearchQuery
     /**
      * Toggle the inclusion of adult titles. Expected value is: true or false
      *
-     * @param bool
+     * @param bool $include_adult
      *
-     * @return static
+     * @return self
      */
     public function includeAdult($include_adult): self
     {
@@ -54,9 +54,9 @@ class MovieSearchQuery extends SearchQuery
     /**
      * Filter the results release dates to matches that include this value.
      *
-     * @param string
+     * @param string $year
      *
-     * @return static
+     * @return self
      */
     public function year($year): self
     {
@@ -72,9 +72,9 @@ class MovieSearchQuery extends SearchQuery
     /**
      * Filter the results so that only the primary release dates have this value.
      *
-     * @param string
+     * @param string $primary_release_year
      *
-     * @return static
+     * @return self
      */
     public function primaryReleaseYear($primary_release_year): self
     {
@@ -91,9 +91,9 @@ class MovieSearchQuery extends SearchQuery
      *
      * For those wanting more of an "autocomplete" type search, set this option to 'ngram'.
      *
-     * @param string
+     * @param string $search_type
      *
-     * @return static
+     * @return self
      * @deprecated
      *
      */

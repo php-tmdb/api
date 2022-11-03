@@ -17,7 +17,6 @@ namespace Tmdb\Event;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Contracts\EventDispatcher\Event;
-use Tmdb\HttpClient\Request;
 
 class ResponseEvent implements LoggableHttpEventInterface
 {
@@ -52,8 +51,8 @@ class ResponseEvent implements LoggableHttpEventInterface
     }
 
     /**
-     * @param Request $request
-     * @return $this
+     * @param RequestInterface $request
+     * @return self
      */
     public function setRequest($request)
     {
@@ -72,7 +71,7 @@ class ResponseEvent implements LoggableHttpEventInterface
 
     /**
      * @param ResponseInterface $response
-     * @return $this
+     * @return self
      */
     public function setResponse(ResponseInterface $response)
     {

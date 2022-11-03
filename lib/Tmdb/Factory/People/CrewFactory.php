@@ -28,7 +28,7 @@ class CrewFactory extends PeopleFactory
      * {@inheritdoc}
      * @param CrewMember|null $person
      */
-    public function createCollection(array $data = [], $person = null, $collection = null)
+    public function createCollection(array $data = [], $person = null, $collection = null): Crew
     {
         $collection = new Crew();
 

@@ -46,7 +46,7 @@ class ListItemFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
@@ -66,7 +66,7 @@ class ListItemFactory extends AbstractFactory
      *
      * @return ListItem
      */
-    public function create(array $data = [])
+    public function create(array $data = []): ListItem
     {
         $listItem = new ListItem();
 
@@ -96,7 +96,7 @@ class ListItemFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {

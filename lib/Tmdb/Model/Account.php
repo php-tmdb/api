@@ -72,7 +72,7 @@ class Account extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -91,7 +91,7 @@ class Account extends AbstractModel
 
     /**
      * @param boolean $includeAdult
-     * @return $this
+     * @return self
      */
     public function setIncludeAdult($includeAdult)
     {
@@ -110,7 +110,7 @@ class Account extends AbstractModel
 
     /**
      * @param string $iso31661
-     * @return $this
+     * @return self
      */
     public function setIso31661($iso31661)
     {
@@ -129,7 +129,7 @@ class Account extends AbstractModel
 
     /**
      * @param string $iso6391
-     * @return $this
+     * @return self
      */
     public function setIso6391($iso6391)
     {
@@ -148,7 +148,7 @@ class Account extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -167,7 +167,7 @@ class Account extends AbstractModel
 
     /**
      * @param string $username
-     * @return $this
+     * @return self
      */
     public function setUsername($username)
     {
@@ -186,7 +186,7 @@ class Account extends AbstractModel
 
     /**
      * @param GenericCollection $avatar
-     * @return $this
+     * @return self
      */
     public function setAvatar($avatar)
     {

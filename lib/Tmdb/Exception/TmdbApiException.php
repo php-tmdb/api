@@ -101,7 +101,7 @@ class TmdbApiException extends Exception
 
     /**
      * @param RequestInterface $request
-     * @return $this
+     * @return self
      */
     public function setRequest(RequestInterface $request): TmdbApiException
     {
@@ -120,7 +120,7 @@ class TmdbApiException extends Exception
 
     /**
      * @param ResponseInterface $response
-     * @return $this
+     * @return self
      */
     public function setResponse(ResponseInterface $response): TmdbApiException
     {

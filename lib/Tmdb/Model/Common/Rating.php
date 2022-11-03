@@ -40,7 +40,7 @@ class Rating extends AbstractModel
 
     /**
      * @param float $value
-     * @return $this
+     * @return self
      */
     public function setValue($value)
     {

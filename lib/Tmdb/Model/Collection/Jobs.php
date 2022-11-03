@@ -26,7 +26,7 @@ class Jobs extends GenericCollection
      * Filter by department
      *
      * @param string $department
-     * @return $this
+     * @return self
      */
     public function filterByDepartment($department)
     {
@@ -51,7 +51,7 @@ class Jobs extends GenericCollection
      * Filter by department and return the jobs collection
      *
      * @param string $department
-     * @return $this
+     * @return self
      */
     public function filterByDepartmentAndReturnJobsList($department)
     {
@@ -77,7 +77,7 @@ class Jobs extends GenericCollection
      * Filter by job
      *
      * @param string $filterByJob
-     * @return $this
+     * @return self
      */
     public function filterByJob($filterByJob)
     {

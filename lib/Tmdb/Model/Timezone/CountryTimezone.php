@@ -48,7 +48,7 @@ class CountryTimezone extends AbstractModel
 
     /**
      * @param Timezones $timezones
-     * @return $this
+     * @return self
      */
     public function setTimezones($timezones)
     {
@@ -67,7 +67,7 @@ class CountryTimezone extends AbstractModel
 
     /**
      * @param string $iso31661
-     * @return $this
+     * @return self
      */
     public function setIso31661($iso31661)
     {

@@ -15,6 +15,7 @@
 namespace Tmdb\Factory;
 
 use Tmdb\Model\Review;
+use Tmdb\Model\Collection\ResultCollection;
 
 /**
  * Class ReviewFactory
@@ -25,7 +26,7 @@ class ReviewFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Review
     {
         $review = new Review();
 
@@ -35,7 +36,7 @@ class ReviewFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): ResultCollection
     {
         return $this->createResultCollection($data);
     }

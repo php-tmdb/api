@@ -54,7 +54,7 @@ class Youtube extends AbstractTrailer
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -73,7 +73,7 @@ class Youtube extends AbstractTrailer
 
     /**
      * @param string $size
-     * @return $this
+     * @return self
      */
     public function setSize($size)
     {
@@ -92,7 +92,7 @@ class Youtube extends AbstractTrailer
 
     /**
      * @param string $source
-     * @return $this
+     * @return self
      */
     public function setSource($source)
     {
@@ -111,7 +111,7 @@ class Youtube extends AbstractTrailer
 
     /**
      * @param string $type
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {

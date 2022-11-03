@@ -26,9 +26,9 @@ class TvSearchQuery extends SearchQuery
     /**
      * ISO 639-1 code.
      *
-     * @param string
+     * @param string $language
      *
-     * @return static
+     * @return self
      */
     public function language($language): self
     {
@@ -40,9 +40,9 @@ class TvSearchQuery extends SearchQuery
     /**
      * Filter the results to only match shows that have a air date with with value.
      *
-     * @param string
+     * @param string $year
      *
-     * @return static
+     * @return self
      */
     public function firstAirDateYear($year): self
     {
@@ -63,9 +63,9 @@ class TvSearchQuery extends SearchQuery
      *
      * For those wanting more of an "autocomplete" type search, set this option to 'ngram'.
      *
-     * @param string
+     * @param string $search_type
      *
-     * @return static
+     * @return self
      * @deprecated
      *
      */

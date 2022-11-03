@@ -98,10 +98,12 @@ class ImageFactory extends AbstractFactory
      *
      * @throws \RuntimeException
      */
-    public function createMediaImage(array $data = [])
+    public function createMediaImage(array $data = []): Image
     {
         $type = $this->resolveImageType(array_key_exists('image_type', $data) ? $data['image_type'] : null);
         $image = $this->hydrate($type, $data);
+
+        assert($image instanceof Image);
 
         if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
             switch ($data['media_type']) {
@@ -150,7 +152,7 @@ class ImageFactory extends AbstractFactory
      * @param array $data
      * @return Images
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): Images
     {
         $collection = new Images();
 
@@ -168,7 +170,7 @@ class ImageFactory extends AbstractFactory
      * @param string|null $key
      * @return Image
      */
-    public function create(array $data = [], $key = null)
+    public function create(array $data = [], $key = null): Image
     {
         $type = self::resolveImageType($key);
 

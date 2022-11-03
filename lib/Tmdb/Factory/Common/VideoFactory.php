@@ -74,5 +74,7 @@ class VideoFactory extends AbstractFactory
                     return new Video();
             }
         }
+
+        return null;
     }
 }

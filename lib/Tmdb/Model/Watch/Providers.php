@@ -59,7 +59,7 @@ class Providers extends AbstractModel implements CountryFilter
 
     /**
      * @param string|null $link
-     * @return $this
+     * @return self
      */
     public function setLink(?string $link): self
     {
@@ -78,7 +78,7 @@ class Providers extends AbstractModel implements CountryFilter
 
     /**
      * @param string $iso31661
-     * @return $this
+     * @return self
      */
     public function setIso31661(?string $iso31661): self
     {
@@ -97,7 +97,7 @@ class Providers extends AbstractModel implements CountryFilter
 
     /**
      * @param GenericCollection $flatrate
-     * @return $this
+     * @return self
      */
     public function setFlatrate(GenericCollection $flatrate): self
     {
@@ -116,7 +116,7 @@ class Providers extends AbstractModel implements CountryFilter
 
     /**
      * @param GenericCollection $rent
-     * @return $this
+     * @return self
      */
     public function setRent(GenericCollection $rent): self
     {
@@ -135,7 +135,7 @@ class Providers extends AbstractModel implements CountryFilter
 
     /**
      * @param GenericCollection $buy
-     * @return $this
+     * @return self
      */
     public function setBuy(GenericCollection $buy): self
     {

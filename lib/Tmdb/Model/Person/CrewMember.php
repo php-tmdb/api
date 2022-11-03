@@ -53,7 +53,7 @@ class CrewMember extends AbstractMember implements PersonInterface
 
     /**
      * @param string $department
-     * @return $this
+     * @return self
      */
     public function setDepartment($department)
     {
@@ -72,7 +72,7 @@ class CrewMember extends AbstractMember implements PersonInterface
 
     /**
      * @param string $job
-     * @return $this
+     * @return self
      */
     public function setJob($job)
     {
@@ -91,7 +91,7 @@ class CrewMember extends AbstractMember implements PersonInterface
 
     /**
      * @param mixed $creditId
-     * @return $this
+     * @return self
      */
     public function setCreditId($creditId)
     {

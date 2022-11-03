@@ -31,6 +31,8 @@ use Traversable;
 /**
  * Class GenericCollection
  * @package Tmdb\Model\Common
+ *
+ * @phpstan-consistent-constructor
  */
 class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
 {
@@ -279,7 +281,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      *
      * @param Closure $closure
      *
-     * @return $this
+     * @return self
      */
     public function sort(Closure $closure)
     {

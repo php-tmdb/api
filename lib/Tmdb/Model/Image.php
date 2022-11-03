@@ -66,6 +66,8 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
         if (array_key_exists($name, self::$formats)) {
             return self::$formats[$name];
         }
+
+        return null;
     }
 
     /**
@@ -78,7 +80,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param float $aspectRatio
-     * @return $this
+     * @return self
      */
     public function setAspectRatio($aspectRatio)
     {
@@ -97,7 +99,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param mixed $height
-     * @return $this
+     * @return self
      */
     public function setHeight($height)
     {
@@ -116,7 +118,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param mixed $iso6391
-     * @return $this
+     * @return self
      */
     public function setIso6391($iso6391)
     {
@@ -135,7 +137,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param float $voteAverage
-     * @return $this
+     * @return self
      */
     public function setVoteAverage($voteAverage)
     {
@@ -154,7 +156,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param int $voteCount
-     * @return $this
+     * @return self
      */
     public function setVoteCount($voteCount)
     {
@@ -173,7 +175,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param int $width
-     * @return $this
+     * @return self
      */
     public function setWidth($width)
     {
@@ -192,7 +194,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param mixed $media
-     * @return $this
+     * @return self
      */
     public function setMedia($media)
     {
@@ -220,7 +222,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param mixed $filePath
-     * @return $this
+     * @return self
      */
     public function setFilePath($filePath)
     {

@@ -167,7 +167,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param boolean $adult
-     * @return $this
+     * @return self
      */
     public function setAdult($adult)
     {
@@ -186,7 +186,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param array $alsoKnownAs
-     * @return $this
+     * @return self
      */
     public function setAlsoKnownAs($alsoKnownAs)
     {
@@ -205,7 +205,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $biography
-     * @return $this
+     * @return self
      */
     public function setBiography($biography)
     {
@@ -224,7 +224,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param mixed $birthday
-     * @return $this
+     * @return self
      */
     public function setBirthday($birthday)
     {
@@ -261,7 +261,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param GenericCollection $changes
-     * @return $this
+     * @return self
      */
     public function setChanges(GenericCollection $changes)
     {
@@ -280,7 +280,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param mixed $deathday
-     * @return $this
+     * @return self
      */
     public function setDeathday($deathday)
     {
@@ -317,7 +317,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $homepage
-     * @return $this
+     * @return self
      */
     public function setHomepage($homepage)
     {
@@ -336,7 +336,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param mixed $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -355,7 +355,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param Images $images
-     * @return $this
+     * @return self
      */
     public function setImages($images)
     {
@@ -374,7 +374,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param  string $knownForDepartment
-     * @return $this
+     * @return self
      */
     public function setKnownForDepartment($knownForDepartment)
     {
@@ -393,7 +393,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -412,7 +412,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $placeOfBirth
-     * @return $this
+     * @return self
      */
     public function setPlaceOfBirth($placeOfBirth)
     {
@@ -431,7 +431,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $profilePath
-     * @return $this
+     * @return self
      */
     public function setProfilePath($profilePath)
     {
@@ -450,7 +450,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param ProfileImage $profileImage
-     * @return $this
+     * @return self
      */
     public function setProfileImage(ProfileImage $profileImage)
     {
@@ -469,7 +469,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param CombinedCredits $combinedCredits
-     * @return $this
+     * @return self
      */
     public function setCombinedCredits($combinedCredits)
     {
@@ -488,7 +488,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param MovieCredits $movieCredits
-     * @return $this
+     * @return self
      */
     public function setMovieCredits($movieCredits)
     {
@@ -507,7 +507,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param TvCredits $tvCredits
-     * @return $this
+     * @return self
      */
     public function setTvCredits($tvCredits)
     {
@@ -526,7 +526,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param ExternalIds $externalIds
-     * @return $this
+     * @return self
      */
     public function setExternalIds($externalIds)
     {
@@ -545,7 +545,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param GenericCollection $taggedImages
-     * @return $this
+     * @return self
      */
     public function setTaggedImages($taggedImages)
     {
@@ -564,7 +564,7 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param GenericCollection $knownFor
-     * @return $this
+     * @return self
      */
     public function setKnownFor($knownFor)
     {

@@ -280,7 +280,7 @@ class Tv extends AbstractModel
 
     /**
      * @param string $backdropPath
-     * @return $this
+     * @return self
      */
     public function setBackdropPath($backdropPath)
     {
@@ -299,7 +299,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $contentRatings
-     * @return $this
+     * @return self
      */
     public function setContentRatings($contentRatings)
     {
@@ -318,7 +318,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $createdBy
-     * @return $this
+     * @return self
      */
     public function setCreatedBy($createdBy)
     {
@@ -337,7 +337,7 @@ class Tv extends AbstractModel
 
     /**
      * @param array $episodeRunTime
-     * @return $this
+     * @return self
      */
     public function setEpisodeRunTime($episodeRunTime)
     {
@@ -356,7 +356,7 @@ class Tv extends AbstractModel
 
     /**
      * @param DateTime|string|null $firstAirDate
-     * @return $this
+     * @return self
      */
     public function setFirstAirDate($firstAirDate = null)
     {
@@ -379,7 +379,7 @@ class Tv extends AbstractModel
 
     /**
      * @param Genres $genres
-     * @return $this
+     * @return self
      */
     public function setGenres($genres)
     {
@@ -398,7 +398,7 @@ class Tv extends AbstractModel
 
     /**
      * @param string $homepage
-     * @return $this
+     * @return self
      */
     public function setHomepage($homepage)
     {
@@ -417,7 +417,7 @@ class Tv extends AbstractModel
 
     /**
      * @param int $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -436,7 +436,7 @@ class Tv extends AbstractModel
 
     /**
      * @param boolean $inProduction
-     * @return $this
+     * @return self
      */
     public function setInProduction($inProduction)
     {
@@ -455,7 +455,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $languages
-     * @return $this
+     * @return self
      */
     public function setLanguages($languages)
     {
@@ -474,7 +474,7 @@ class Tv extends AbstractModel
 
     /**
      * @param DateTime|string|null $lastAirDate
-     * @return $this
+     * @return self
      */
     public function setLastAirDate($lastAirDate = null)
     {
@@ -497,7 +497,7 @@ class Tv extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -518,7 +518,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $networks
-     * @return $this
+     * @return self
      */
     public function setNetworks($networks)
     {
@@ -537,7 +537,7 @@ class Tv extends AbstractModel
 
     /**
      * @param int $numberOfEpisodes
-     * @return $this
+     * @return self
      */
     public function setNumberOfEpisodes($numberOfEpisodes)
     {
@@ -556,7 +556,7 @@ class Tv extends AbstractModel
 
     /**
      * @param int $numberOfSeasons
-     * @return $this
+     * @return self
      */
     public function setNumberOfSeasons($numberOfSeasons)
     {
@@ -575,7 +575,7 @@ class Tv extends AbstractModel
 
     /**
      * @param  ?Episode   $lastEpisodeToAir
-     * @return $this
+     * @return self
      */
     public function setLastEpisodeToAir($lastEpisodeToAir)
     {
@@ -594,7 +594,7 @@ class Tv extends AbstractModel
 
     /**
      * @param  ?Episode   $nextEpisodeToAir
-     * @return $this
+     * @return self
      */
     public function setNextEpisodeToAir($nextEpisodeToAir)
     {
@@ -613,7 +613,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $originCountry
-     * @return $this
+     * @return self
      */
     public function setOriginCountry($originCountry)
     {
@@ -632,7 +632,7 @@ class Tv extends AbstractModel
 
     /**
      * @param string $originalName
-     * @return $this
+     * @return self
      */
     public function setOriginalName($originalName)
     {
@@ -651,7 +651,7 @@ class Tv extends AbstractModel
 
     /**
      * @param string $originalLanguage
-     * @return $this
+     * @return self
      */
     public function setOriginalLanguage($originalLanguage)
     {
@@ -670,7 +670,7 @@ class Tv extends AbstractModel
 
     /**
      * @param string $overview
-     * @return $this
+     * @return self
      */
     public function setOverview($overview)
     {
@@ -689,7 +689,7 @@ class Tv extends AbstractModel
 
     /**
      * @param float $popularity
-     * @return $this
+     * @return self
      */
     public function setPopularity($popularity)
     {
@@ -708,7 +708,7 @@ class Tv extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return $this
+     * @return self
      */
     public function setPosterPath($posterPath)
     {
@@ -727,7 +727,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $seasons
-     * @return $this
+     * @return self
      */
     public function setSeasons($seasons)
     {
@@ -746,7 +746,7 @@ class Tv extends AbstractModel
 
     /**
      * @param string $status
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -765,7 +765,7 @@ class Tv extends AbstractModel
 
     /**
      * @param float $voteAverage
-     * @return $this
+     * @return self
      */
     public function setVoteAverage($voteAverage)
     {
@@ -784,7 +784,7 @@ class Tv extends AbstractModel
 
     /**
      * @param int $voteCount
-     * @return $this
+     * @return self
      */
     public function setVoteCount($voteCount)
     {
@@ -803,7 +803,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $translations
-     * @return $this
+     * @return self
      */
     public function setTranslations($translations)
     {
@@ -822,7 +822,7 @@ class Tv extends AbstractModel
 
     /**
      * @param Images $images
-     * @return $this
+     * @return self
      */
     public function setImages($images)
     {
@@ -841,7 +841,7 @@ class Tv extends AbstractModel
 
     /**
      * @param ExternalIds $externalIds
-     * @return $this
+     * @return self
      */
     public function setExternalIds($externalIds)
     {
@@ -860,7 +860,7 @@ class Tv extends AbstractModel
 
     /**
      * @param CreditsCollection $credits
-     * @return $this
+     * @return self
      */
     public function setCredits($credits)
     {
@@ -871,7 +871,7 @@ class Tv extends AbstractModel
 
     /**
      * @param BackdropImage $backdrop
-     * @return $this
+     * @return self
      */
     public function setBackdropImage(BackdropImage $backdrop)
     {
@@ -890,7 +890,7 @@ class Tv extends AbstractModel
 
     /**
      * @param PosterImage $poster
-     * @return $this
+     * @return self
      */
     public function setPosterImage(PosterImage $poster)
     {
@@ -917,7 +917,7 @@ class Tv extends AbstractModel
 
     /**
      * @param Videos $videos
-     * @return $this
+     * @return self
      */
     public function setVideos($videos)
     {
@@ -936,7 +936,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $changes
-     * @return $this
+     * @return self
      */
     public function setChanges($changes)
     {
@@ -955,7 +955,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $keywords
-     * @return $this
+     * @return self
      */
     public function setKeywords($keywords)
     {
@@ -974,7 +974,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $similar
-     * @return $this
+     * @return self
      */
     public function setSimilar($similar)
     {
@@ -993,7 +993,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $recommendations
-     * @return $this
+     * @return self
      */
     public function setRecommendations($recommendations)
     {
@@ -1012,7 +1012,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $productionCompanies
-     * @return $this
+     * @return self
      */
     public function setProductionCompanies($productionCompanies)
     {
@@ -1031,7 +1031,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $alternativeTitles
-     * @return $this
+     * @return self
      */
     public function setAlternativeTitles($alternativeTitles)
     {
@@ -1047,7 +1047,7 @@ class Tv extends AbstractModel
 
     /**
      * @param $type
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {
@@ -1066,7 +1066,7 @@ class Tv extends AbstractModel
 
     /**
      * @param GenericCollection $watchProviders
-     * @return $this
+     * @return self
      */
     public function setWatchProviders($watchProviders)
     {

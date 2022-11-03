@@ -83,7 +83,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -102,7 +102,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $iso6391
-     * @return $this
+     * @return self
      */
     public function setIso6391($iso6391)
     {
@@ -121,7 +121,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $iso31661
-     * @return $this
+     * @return self
      */
     public function setIso31661($iso31661)
     {
@@ -140,7 +140,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -159,7 +159,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $site
-     * @return $this
+     * @return self
      */
     public function setSite($site)
     {
@@ -178,7 +178,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param int $size
-     * @return $this
+     * @return self
      */
     public function setSize($size)
     {
@@ -197,7 +197,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $type
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {
@@ -226,7 +226,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $url_format
-     * @return $this
+     * @return self
      */
     public function setUrlFormat($url_format)
     {
@@ -245,7 +245,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param mixed $key
-     * @return $this
+     * @return self
      */
     public function setKey($key)
     {

@@ -53,7 +53,7 @@ class ContentRating extends AbstractModel implements CountryFilter
 
     /**
      * @param string $country
-     * @return $this
+     * @return self
      */
     public function setIso31661($country)
     {
@@ -72,7 +72,7 @@ class ContentRating extends AbstractModel implements CountryFilter
 
     /**
      * @param string $rating
-     * @return $this
+     * @return self
      */
     public function setRating($rating)
     {

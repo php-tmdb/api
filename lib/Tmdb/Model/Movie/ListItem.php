@@ -75,7 +75,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $description
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -94,7 +94,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param int $favoriteCount
-     * @return $this
+     * @return self
      */
     public function setFavoriteCount($favoriteCount)
     {
@@ -113,7 +113,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $id
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -132,7 +132,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $iso6391
-     * @return $this
+     * @return self
      */
     public function setIso6391($iso6391)
     {
@@ -151,7 +151,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param int $itemCount
-     * @return $this
+     * @return self
      */
     public function setItemCount($itemCount)
     {
@@ -170,7 +170,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -189,7 +189,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param PosterImage $posterImage
-     * @return $this
+     * @return self
      */
     public function setPosterImage($posterImage)
     {
@@ -208,7 +208,7 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return $this
+     * @return self
      */
     public function setPosterPath($posterPath)
     {

@@ -61,7 +61,7 @@ class RequestEvent extends StoppableEvent implements LoggableHttpEventInterface
 
     /**
      * @param RequestInterface $request
-     * @return $this
+     * @return self
      */
     public function setRequest(RequestInterface $request): RequestEvent
     {
@@ -80,7 +80,7 @@ class RequestEvent extends StoppableEvent implements LoggableHttpEventInterface
 
     /**
      * @param ResponseInterface $response
-     * @return $this
+     * @return self
      */
     public function setResponse(ResponseInterface $response): RequestEvent
     {
@@ -107,7 +107,7 @@ class RequestEvent extends StoppableEvent implements LoggableHttpEventInterface
 
     /**
      * @param SessionToken|null $sessionToken
-     * @return $this
+     * @return self
      */
     public function setSessionToken(SessionToken $sessionToken = null): RequestEvent
     {

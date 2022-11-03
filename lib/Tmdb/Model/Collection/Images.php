@@ -131,7 +131,7 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($width) {
-                if ($value instanceof ImageFilter && $value->getWidth() <= $width && $value->getWidth() !== null) {
+                if ($value instanceof Image && $value->getWidth() <= $width && $value->getWidth() !== null) {
                     return true;
                 }
             }
@@ -148,7 +148,7 @@ class Images extends GenericCollection
     {
         return $this->filter(
             function ($key, $value) use ($width) {
-                if ($value instanceof ImageFilter && $value->getWidth() >= $width && $value->getWidth() !== null) {
+                if ($value instanceof Image && $value->getWidth() >= $width && $value->getWidth() !== null) {
                     return true;
                 }
             }
@@ -166,7 +166,7 @@ class Images extends GenericCollection
         return $this->filter(
             function ($key, $value) use ($height) {
                 if (
-                    $value instanceof ImageFilter &&
+                    $value instanceof Image &&
                     $value->getHeight() <= $height && $value->getHeight() !== null
                 ) {
                     return true;
@@ -186,7 +186,7 @@ class Images extends GenericCollection
         return $this->filter(
             function ($key, $value) use ($height) {
                 if (
-                    $value instanceof ImageFilter &&
+                    $value instanceof Image &&
                     $value->getHeight() >= $height &&
                     $value->getHeight() !== null
                 ) {
@@ -206,10 +206,11 @@ class Images extends GenericCollection
         $currentImage = null;
         $voteAverage = -1;
 
-        /**
-         * @var $image Image
-         */
         foreach ($this->data as $image) {
+            /**
+             * @var $image Image
+             */
+
             if ($image->getVoteAverage() > $voteAverage) {
                 $voteAverage = $image->getVoteAverage();
                 $currentImage = $image;

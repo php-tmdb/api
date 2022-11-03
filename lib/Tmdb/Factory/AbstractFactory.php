@@ -71,7 +71,7 @@ abstract class AbstractFactory
      * @param string $method
      * @return ResultCollection
      */
-    public function createResultCollection($data = [], $method = 'create')
+    public function createResultCollection($data = [], $method = 'create'): ResultCollection
     {
         $collection = new ResultCollection();
 

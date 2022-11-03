@@ -124,7 +124,7 @@ class CollectionRepository extends AbstractRepository
 
     /**
      * @param mixed $imageFactory
-     * @return $this
+     * @return self
      */
     public function setImageFactory($imageFactory)
     {

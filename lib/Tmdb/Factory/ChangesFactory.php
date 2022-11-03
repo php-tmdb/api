@@ -26,7 +26,7 @@ class ChangesFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): Changes
     {
         $collection = new Changes();
 
@@ -57,7 +57,7 @@ class ChangesFactory extends AbstractFactory
      * {@inheritdoc}
      * @return Change
      */
-    public function create(array $data = [])
+    public function create(array $data = []): Change
     {
         return $this->hydrate(new Change(), $data);
     }
