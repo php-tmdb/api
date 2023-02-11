@@ -44,6 +44,7 @@ class Find extends AbstractApi
         return $this->get(
             'find/' . $id,
             $parameters,
-            $headers);
+            $headers
+        );
     }
 }
