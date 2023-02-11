@@ -37,12 +37,12 @@ class Find extends AbstractApi
      * @param string $id
      * @param array $parameters
      * @param array $headers
-     * @return mixed
+     * @return array
      */
-    public function findBy($id, array $parameters = [], array $headers = [])
+    public function findBy(string $id, array $parameters = [], array $headers = []): array
     {
         return $this->get(
-            sprintf('find/%s', $id),
+            'find/' . $id,
             $parameters,
             $headers
         );

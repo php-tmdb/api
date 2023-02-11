@@ -290,6 +290,10 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
         return $this;
     }
 
+    /**
+     * @param $offset
+     * @return bool
+     */
     public function offsetExists($offset): bool
     {
         return isset($this->data[$offset]);
@@ -298,7 +302,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
-        return isset($this->data[$offset]) ? $this->data[$offset] : null;
+        return $this->data[$offset] ?? null;
     }
 
     public function offsetSet($offset, $value): void
