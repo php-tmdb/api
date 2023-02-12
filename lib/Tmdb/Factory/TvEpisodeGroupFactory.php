@@ -26,7 +26,6 @@ use Tmdb\Model\Common\GenericCollection;
  */
 class TvEpisodeGroupFactory extends AbstractFactory
 {
-
     /**
      * @var TvEpisodeGroupsFactory
      */
