@@ -55,7 +55,7 @@
         "symfony/event-dispatcher": "^4.4 || ^5 || ^6",
         "phpstan/phpstan": "^1.8.1",
         "phpunit/phpunit": "^9.3",
-        "php-http/guzzle7-adapter": "^0.1",
+        "php-http/guzzle7-adapter": "^1.0",
         "monolog/monolog": "^3.3",
         "php-http/cache-plugin": "^1.7",
         "jeroen/psr-log-test-doubles": "^2.1 || ^3"

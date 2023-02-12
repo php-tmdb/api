@@ -23,7 +23,6 @@ use Tmdb\Model\AbstractModel;
  */
 class EpisodeGroups extends AbstractModel
 {
-
     public const ORIGINAL_AIR_DATE = 1;
     public const ABSOLUTE = 2;
     public const DVD = 3;
