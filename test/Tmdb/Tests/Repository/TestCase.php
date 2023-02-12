@@ -18,6 +18,7 @@ use Psr\Http\Client\ClientInterface;
 use Tmdb\Tests\TestCase as Base;
 use Tmdb\Client;
 
+#[\AllowDynamicProperties]
 abstract class TestCase extends Base
 {
     protected $repository;
