@@ -69,3 +69,13 @@ parameters:
 			"""
 			count: 1
 			path: lib/Tmdb/Repository/MovieRepository.php
+
+		-
+			message: "#^Result of \\|\\| is always false\\.$#"
+			count: 1
+			path: lib/Tmdb/Repository/TvSeasonRepository.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and int will always evaluate to false\\.$#"
+			count: 2
+			path: lib/Tmdb/Repository/TvSeasonRepository.php
