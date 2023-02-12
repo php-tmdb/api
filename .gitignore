@@ -9,3 +9,4 @@ composer.lock
 examples/
 examples/var/
 phpstan.neon$
+.DS_Store
