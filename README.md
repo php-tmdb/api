@@ -2,8 +2,8 @@
 
 [![License](https://poser.pugx.org/php-tmdb/api/license.png)](https://packagist.org/packages/php-tmdb/api)
 [![License](https://img.shields.io/github/v/tag/php-tmdb/api)](https://github.com/php-tmdb/api/releases)
-[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/api/Continuous%20Integration?label=phpunit)](https://github.com/php-tmdb/api/actions?query=workflow%3A%22Continuous+Integration%22)
-[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/api/Coding%20Standards?label=phpcs)](https://github.com/php-tmdb/api/actions?query=workflow%3A%22Coding+Standards%22)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/php-tmdb/api/continuous-integration.yml?label=phpunit)](https://github.com/php-tmdb/api/actions/workflows/continuous-integration.yml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/php-tmdb/api/coding-standards.yml?label=phpcs)](https://github.com/php-tmdb/api/actions/workflows/coding-standards.yml)
 [![codecov](https://img.shields.io/codecov/c/github/php-tmdb/api?token=gTM9AiO5vH)](https://codecov.io/gh/php-tmdb/api)
 [![PHP](https://img.shields.io/badge/php->=7.3,%20>=7.4,%20>=8.0-8892BF.svg)](https://packagist.org/packages/php-tmdb/api)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/api/downloads.svg)](https://packagist.org/packages/php-tmdb/api)
