@@ -19,6 +19,7 @@ use Tmdb\Model\Keyword;
 
 /**
  * Class Keywords
+ * @extends GenericCollection<Keyword>
  * @package Tmdb\Model\Collection
  */
 class Keywords extends GenericCollection

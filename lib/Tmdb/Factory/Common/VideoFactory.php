@@ -21,6 +21,7 @@ use Tmdb\Model\Common\Video;
 
 /**
  * Class VideoFactory
+ * @extends AbstractFactory<Video>
  * @package Tmdb\Factory\Common
  */
 class VideoFactory extends AbstractFactory

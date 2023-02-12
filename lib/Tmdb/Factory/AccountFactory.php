@@ -23,6 +23,7 @@ use Tmdb\Model\Lists\Result;
 
 /**
  * Class AccountFactory
+ * @extends AbstractFactory<Account>
  * @package Tmdb\Factory
  */
 class AccountFactory extends AbstractFactory

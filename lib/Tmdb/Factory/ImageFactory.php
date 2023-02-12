@@ -20,6 +20,7 @@ use Tmdb\Model\Image;
 
 /**
  * Class ImageFactory
+ * @extends AbstractFactory<Image>
  * @package Tmdb\Factory
  */
 class ImageFactory extends AbstractFactory

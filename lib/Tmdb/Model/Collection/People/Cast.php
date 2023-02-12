@@ -16,9 +16,11 @@ namespace Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Person;
+use Tmdb\Model\Person\CastMember;
 
 /**
  * Class Cast
+ * @extends People<CastMember>
  * @package Tmdb\Model\Collection\People
  */
 class Cast extends People
@@ -26,7 +28,7 @@ class Cast extends People
     /**
      * Returns all people
      *
-     * @return Person[]
+     * @return CastMember[]
      */
     public function getCast()
     {
@@ -38,9 +40,9 @@ class Cast extends People
      *
      * @param $id
      *
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return ?CastMember
      */
-    public function getCastMember($id): \Tmdb\Model\Common\GenericCollection
+    public function getCastMember($id): ?CastMember
     {
         return parent::getPerson($id);
     }

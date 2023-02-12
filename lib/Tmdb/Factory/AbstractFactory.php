@@ -29,6 +29,9 @@ use Tmdb\Model\Lists\Result;
 
 /**
  * Class AbstractFactory
+ *
+ * @template T of AbstractModel
+ *
  * @package Tmdb\Factory
  */
 abstract class AbstractFactory
@@ -52,7 +55,7 @@ abstract class AbstractFactory
      * Convert an array to an hydrated object
      *
      * @param array $data
-     * @return AbstractModel
+     * @return T
      */
     abstract public function create(array $data = []);
 
@@ -60,7 +63,7 @@ abstract class AbstractFactory
      * Convert an array with an collection of items to an hydrated object collection
      *
      * @param array $data
-     * @return GenericCollection
+     * @return GenericCollection<T>
      */
     abstract public function createCollection(array $data = []);
 
@@ -69,10 +72,11 @@ abstract class AbstractFactory
      *
      * @param array $data
      * @param string $method
-     * @return ResultCollection
+     * @return ResultCollection<T>
      */
     public function createResultCollection($data = [], $method = 'create'): ResultCollection
     {
+        /** @var ResultCollection<T> */
         $collection = new ResultCollection();
 
         if (null === $data) {
@@ -106,7 +110,7 @@ abstract class AbstractFactory
      * Create rating
      *
      * @param array $data
-     * @return AbstractModel
+     * @return Rating
      */
     public function createRating(array $data = [])
     {
@@ -116,9 +120,11 @@ abstract class AbstractFactory
     /**
      * Hydrate the object with data
      *
-     * @param AbstractModel $subject
+     * @template S of AbstractModel
+     *
+     * @param S $subject
      * @param array $data
-     * @return AbstractModel
+     * @return S
      */
     protected function hydrate(AbstractModel $subject, $data = [])
     {
@@ -200,10 +206,11 @@ abstract class AbstractFactory
     /**
      * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
+     * @template S of AbstractModel
      * @param array $data
-     * @param AbstractModel $class
+     * @param S $class
      *
-     * @return GenericCollection
+     * @return GenericCollection<S>
      */
     protected function createGenericCollection(array $data = [], AbstractModel $class = null): GenericCollection
     {
@@ -215,6 +222,7 @@ abstract class AbstractFactory
             $class = get_class($class);
         }
 
+        /** @var GenericCollection<S> */
         $collection = new GenericCollection();
 
         if (null === $data) {
@@ -231,10 +239,11 @@ abstract class AbstractFactory
     /**
      * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
+     * @template S of AbstractModel
      * @param array $data
-     * @param AbstractModel $class
-     * @param GenericCollection $collection
-     * @return GenericCollection
+     * @param S $class
+     * @param GenericCollection<S> $collection
+     * @return GenericCollection<S>
      */
     protected function createCustomCollection(
         array $data,
@@ -264,7 +273,7 @@ abstract class AbstractFactory
      * Create an generic collection of an array that consists out of a mix of movies and tv shows
      *
      * @param array $data
-     * @return GenericCollection
+     * @return GenericCollection<AbstractModel>
      */
     protected function createGenericCollectionFromMediaTypes($data = [])
     {

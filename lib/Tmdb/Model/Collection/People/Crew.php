@@ -16,9 +16,11 @@ namespace Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Person;
+use Tmdb\Model\Person\CrewMember;
 
 /**
  * Class Crew
+ * @extends People<CrewMember>
  * @package Tmdb\Model\Collection\People
  */
 class Crew extends People
@@ -26,7 +28,7 @@ class Crew extends People
     /**
      * Returns all people
      *
-     * @return Person[]
+     * @return CrewMember[]
      */
     public function getCrew()
     {
@@ -38,9 +40,9 @@ class Crew extends People
      *
      * @param $id
      *
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return ?CrewMember
      */
-    public function getCrewMember($id): \Tmdb\Model\Common\GenericCollection
+    public function getCrewMember($id): ?CrewMember
     {
         return parent::getPerson($id);
     }
