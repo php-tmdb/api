@@ -247,7 +247,7 @@ class TvEpisodeRepositoryTest extends TestCase
      */
     public function shouldThrowExceptionWhenConditionsNotMet()
     {
-        $this->expectException(TypeError::class);
+        $this->expectException(RuntimeException::class);
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $tv = new Tv();
@@ -264,7 +264,7 @@ class TvEpisodeRepositoryTest extends TestCase
      */
     public function shouldThrowExceptionWhenConditionsNotMetAll()
     {
-        $this->expectException(TypeError::class);
+        $this->expectException(RuntimeException::class);
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $repository->load(null, null, null);

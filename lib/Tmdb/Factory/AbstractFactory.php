@@ -212,7 +212,7 @@ abstract class AbstractFactory
      *
      * @return GenericCollection<S>
      */
-    protected function createGenericCollection(array $data = [], AbstractModel|string $class = null): GenericCollection
+    protected function createGenericCollection(array $data = [], $class = null): GenericCollection
     {
         if (!$class) {
             throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
@@ -244,7 +244,7 @@ abstract class AbstractFactory
      */
     protected function createCustomCollection(
         array $data,
-        AbstractModel|string $class,
+        $class,
         GenericCollection $collection
     ) {
         if (!$class) {

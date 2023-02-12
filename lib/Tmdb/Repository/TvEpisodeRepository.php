@@ -51,7 +51,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @return null|AbstractModel
      * @throws RuntimeException
      */
-    public function load(Tv|int $tvShow, Season|int $season, Episode|int $episode, array $parameters = [], array $headers = [])
+    public function load($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -63,6 +63,10 @@ class TvEpisodeRepository extends AbstractRepository
 
         if ($episode instanceof Tv\Episode) {
             $episode = $episode->getEpisodeNumber();
+        }
+
+        if (is_null($tvShow) || is_null($season) || is_null($episode)) {
+            throw new RuntimeException('Not all required parameters to load an tv episode are present.');
         }
 
         if (!isset($parameters['append_to_response'])) {

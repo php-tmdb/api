@@ -55,6 +55,10 @@ class TvSeasonRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
+        if (null === $tvShow || null === $season) {
+            throw new RuntimeException('Not all required parameters to load an tv season are present.');
+        }
+
         if (!isset($parameters['append_to_response'])) {
             $parameters = array_merge($parameters, [
                 new AppendToResponse([
@@ -101,7 +105,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param array $headers
      * @return CreditsCollection
      */
-    public function getCredits(Tv|int $tvShow, Season|int $season, array $parameters = [], array $headers = [])
+    public function getCredits($tvShow, $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
