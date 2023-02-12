@@ -45,7 +45,7 @@ class TvSeasonRepository extends AbstractRepository
      * @return null|AbstractModel
      * @throws RuntimeException
      */
-    public function load(int|Tv $tvShow, int|Season $season, array $parameters = [], array $headers = [])
+    public function load($tvShow, $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
