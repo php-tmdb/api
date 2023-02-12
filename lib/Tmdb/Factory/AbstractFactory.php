@@ -236,10 +236,11 @@ abstract class AbstractFactory
      * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
      * @template S of AbstractModel
+     * @template SC of GenericCollection<S>
      * @param array $data
      * @param S|string $class
-     * @param GenericCollection<S> $collection
-     * @return GenericCollection<S>
+     * @param SC $collection
+     * @return SC
      */
     protected function createCustomCollection(
         array $data,

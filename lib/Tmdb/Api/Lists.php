@@ -70,7 +70,7 @@ class Lists extends AbstractApi
      * This method lets users add new movies to a list that they created. A valid session id is required.
      *
      * @param string $id
-     * @param string $mediaId
+     * @param string|int $mediaId
      * @return mixed
      */
     public function addMediaToList($id, $mediaId)
@@ -82,7 +82,7 @@ class Lists extends AbstractApi
      * This method lets users delete movies from a list that they created. A valid session id is required.
      *
      * @param string $id
-     * @param string $mediaId
+     * @param string|int $mediaId
      * @return mixed
      */
     public function removeMediaFromList($id, $mediaId)
