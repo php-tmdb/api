@@ -43,15 +43,15 @@ class TvEpisodeRepository extends AbstractRepository
      * If you want to optimize the result set/bandwidth you should
      * define the AppendToResponse parameter
      *
-     * @param $tvShow Tv|integer
-     * @param $season Season|integer
-     * @param $episode Episode|integer
+     * @param $tvShow Tv|int
+     * @param $season Season|int
+     * @param $episode Episode|int
      * @param $parameters
      * @param $headers
      * @return null|AbstractModel
      * @throws RuntimeException
      */
-    public function load($tvShow, $season, $episode, array $parameters = [], array $headers = [])
+    public function load(Tv|int $tvShow, Season|int $season, Episode|int $episode, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -63,10 +63,6 @@ class TvEpisodeRepository extends AbstractRepository
 
         if ($episode instanceof Tv\Episode) {
             $episode = $episode->getEpisodeNumber();
-        }
-
-        if (is_null($tvShow) || is_null($season) || is_null($episode)) {
-            throw new RuntimeException('Not all required parameters to load an tv episode are present.');
         }
 
         if (!isset($parameters['append_to_response'])) {

@@ -40,7 +40,7 @@ class TvSearchQuery extends SearchQuery
     /**
      * Filter the results to only match shows that have a air date with with value.
      *
-     * @param string $year
+     * @param string|DateTime $year
      *
      * @return self
      */

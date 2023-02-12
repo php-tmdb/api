@@ -71,7 +71,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @return float
+     * @return ?float
      */
     public function getAspectRatio()
     {
@@ -90,7 +90,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @return integer
+     * @return ?int
      */
     public function getHeight()
     {
@@ -166,7 +166,7 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * @return int
+     * @return ?int
      */
     public function getWidth()
     {

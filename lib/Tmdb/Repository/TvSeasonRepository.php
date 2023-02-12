@@ -45,7 +45,7 @@ class TvSeasonRepository extends AbstractRepository
      * @return null|AbstractModel
      * @throws RuntimeException
      */
-    public function load($tvShow, $season, array $parameters = [], array $headers = [])
+    public function load(int|Tv $tvShow, int|Season $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -53,10 +53,6 @@ class TvSeasonRepository extends AbstractRepository
 
         if ($season instanceof Season) {
             $season = $season->getSeasonNumber();
-        }
-
-        if (null === $tvShow || null === $season) {
-            throw new RuntimeException('Not all required parameters to load an tv season are present.');
         }
 
         if (!isset($parameters['append_to_response'])) {
@@ -100,12 +96,12 @@ class TvSeasonRepository extends AbstractRepository
      * Just like the website, we pull this information from the last season of the series.
      *
      * @param Tv|int $tvShow
-     * @param TvSeason|int $season
+     * @param Season|int $season
      * @param array $parameters
      * @param array $headers
      * @return CreditsCollection
      */
-    public function getCredits($tvShow, $season, array $parameters = [], array $headers = [])
+    public function getCredits(Tv|int $tvShow, Season|int $season, array $parameters = [], array $headers = [])
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();

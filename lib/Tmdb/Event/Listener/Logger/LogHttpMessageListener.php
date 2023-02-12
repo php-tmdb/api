@@ -64,10 +64,7 @@ class LogHttpMessageListener
             $this->logResponse($event);
         }
 
-        if (
-            $event instanceof HttpClientExceptionEvent &&
-            $event->getException() instanceof ClientExceptionInterface
-        ) {
+        if ($event instanceof HttpClientExceptionEvent) {
             $this->logClientException($event);
         }
     }

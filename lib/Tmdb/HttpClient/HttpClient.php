@@ -51,7 +51,7 @@ class HttpClient
     private $lastRequest;
 
     /**
-     * @var SessionToken|GuestSessionToken
+     * @var null|SessionToken|GuestSessionToken
      */
     private $sessionToken;
 

@@ -1,8 +1,9 @@
 includes:
+	- phpstan-baseline.neon
 	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
-	level: 3
+	level: 4
 	checkAlwaysTrueCheckTypeFunctionCall: true
 	checkAlwaysTrueInstanceof: true
 	checkAlwaysTrueStrictComparison: true

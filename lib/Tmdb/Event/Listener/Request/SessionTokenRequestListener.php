@@ -23,7 +23,7 @@ use Tmdb\Token\Session\SessionToken;
 class SessionTokenRequestListener
 {
     /**
-     * @var string
+     * @var string|SessionBearerToken|GuestSessionToken
      */
     private $token;
 

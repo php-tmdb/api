@@ -70,7 +70,7 @@ abstract class AbstractFactory
     /**
      * Create a result collection
      *
-     * @param array $data
+     * @param null|array $data
      * @param string $method
      * @return ResultCollection<T>
      */
@@ -208,11 +208,11 @@ abstract class AbstractFactory
      *
      * @template S of AbstractModel
      * @param array $data
-     * @param S $class
+     * @param S|string $class
      *
      * @return GenericCollection<S>
      */
-    protected function createGenericCollection(array $data = [], AbstractModel $class = null): GenericCollection
+    protected function createGenericCollection(array $data = [], AbstractModel|string $class = null): GenericCollection
     {
         if (!$class) {
             throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
@@ -224,10 +224,6 @@ abstract class AbstractFactory
 
         /** @var GenericCollection<S> */
         $collection = new GenericCollection();
-
-        if (null === $data) {
-            return $collection;
-        }
 
         foreach ($data as $item) {
             $collection->add(null, $this->hydrate(new $class(), $item));
@@ -241,25 +237,21 @@ abstract class AbstractFactory
      *
      * @template S of AbstractModel
      * @param array $data
-     * @param S $class
+     * @param S|string $class
      * @param GenericCollection<S> $collection
      * @return GenericCollection<S>
      */
     protected function createCustomCollection(
         array $data,
-        AbstractModel $class,
+        AbstractModel|string $class,
         GenericCollection $collection
     ) {
-        if (!$class || !$collection) {
-            throw new \Tmdb\Exception\RuntimeException('Expected both an class and collection to be given.');
+        if (!$class) {
+            throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
         }
 
         if (is_object($class)) {
             $class = get_class($class);
-        }
-
-        if (null === $data) {
-            return $collection;
         }
 
         foreach ($data as $item) {

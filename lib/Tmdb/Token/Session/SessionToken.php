@@ -28,7 +28,7 @@ class SessionToken
     private $sessionToken;
 
     /**
-     * @var DateTime
+     * @var ?DateTime
      */
     private $expiresAt;
 
@@ -67,7 +67,7 @@ class SessionToken
     }
 
     /**
-     * @return DateTime
+     * @return ?DateTime
      */
     public function getExpiresAt()
     {
@@ -75,7 +75,7 @@ class SessionToken
     }
 
     /**
-     * @param DateTime $expiresAt
+     * @param string|DateTime $expiresAt
      * @return self
      */
     public function setExpiresAt($expiresAt)

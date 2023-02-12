@@ -16,6 +16,7 @@ namespace Tmdb\Tests\Repository;
 
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Tv;
+use TypeError;
 
 class TvSeasonRepositoryTest extends TestCase
 {
@@ -125,7 +126,7 @@ class TvSeasonRepositoryTest extends TestCase
      */
     public function shouldThrowExceptionWhenConditionsNotMet()
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(TypeError::class);
         $repository = $this->getRepositoryWithMockedHttpClient();
 
         $tv = new Tv();
@@ -139,7 +140,7 @@ class TvSeasonRepositoryTest extends TestCase
      */
     public function shouldThrowExceptionWhenConditionsNotMetAll()
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(TypeError::class);
         $repository = $this->getRepositoryWithMockedHttpClient();
         $repository->load(null, null);
     }

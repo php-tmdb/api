@@ -1,0 +1,26 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Instanceof between Psr\\\\Http\\\\Message\\\\StreamInterface and Psr\\\\Http\\\\Message\\\\StreamInterface will always evaluate to true\\.$#"
+			count: 1
+			path: lib/Tmdb/Api/AbstractApi.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: lib/Tmdb/Api/AbstractApi.php
+
+		-
+			message: "#^Strict comparison using \\!\\=\\= between null and Psr\\\\Http\\\\Message\\\\StreamInterface will always evaluate to true\\.$#"
+			count: 1
+			path: lib/Tmdb/Event/Listener/Logger/LogHttpMessageListener.php
+
+		-
+			message: "#^Property Tmdb\\\\Event\\\\Listener\\\\Psr6CachedRequestListener\\:\\:\\$options is never read, only written\\.$#"
+			count: 1
+			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
+
+		-
+			message: "#^Property Tmdb\\\\HttpClient\\\\HttpClient\\:\\:\\$sessionToken is never written, only read\\.$#"
+			count: 1
+			path: lib/Tmdb/HttpClient/HttpClient.php

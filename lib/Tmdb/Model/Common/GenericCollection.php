@@ -88,9 +88,9 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Get a specific key value.
      *
-     * @param string $key Key to retrieve.
+     * @param string|object $key Key to retrieve.
      *
-     * @return mixed|null Value of the key or NULL
+     * @return T|null Value of the key or NULL
      */
     public function get($key)
     {
@@ -104,7 +104,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Set a key value pair
      *
-     * @param string $key Key to set
+     * @param ?string $key Key to set
      * @param mixed $value Value to set
      *
      * @return $this Returns a reference to the object
@@ -123,7 +123,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Remove a specific key value pair
      *
-     * @param string $key A key to remove or an object in the same state
+     * @param string|object $key A key to remove or an object in the same state
      *
      * @return $this
      */
@@ -141,7 +141,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Get all keys in the collection
      *
-     * @return array
+     * @return string[]
      */
     public function getKeys()
     {
@@ -207,7 +207,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Add and merge in a Collection or array of key value pair data.
      *
-     * @param GenericCollection|array $data Associative array of key value pair data
+     * @param GenericCollection<T>|array $data Associative array of key value pair data
      *
      * @return $this Returns a reference to the object.
      */
@@ -223,8 +223,8 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Add a value to a key.
      *
-     * @param string $key Key to add
-     * @param T $value Value to add to the key
+     * @param ?string $key Key to add
+     * @param T|string $value Value to add to the key
      *
      * @return $this Returns a reference to the object.
      */

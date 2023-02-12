@@ -391,7 +391,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Format the with compatible parameters.
      *
-     * @param array|string $with
+     * @param array|GenericCollection|string $with
      * @param int $mode
      *
      * @return null|string

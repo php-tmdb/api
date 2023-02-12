@@ -21,7 +21,6 @@ use Tmdb\Exception\NotImplementedException;
 use Tmdb\Factory\CollectionFactory;
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Factory\KeywordFactory;
-use Tmdb\Factory\Movie\ListItemFactory;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Factory\TvFactory;
@@ -66,11 +65,6 @@ class SearchRepository extends AbstractRepository
      * @var PeopleFactory
      */
     private $peopleFactory;
-
-    /**
-     * @var ListItemFactory
-     */
-    private $listItemFactory;
 
     /**
      * @var CompanyFactory

@@ -54,7 +54,7 @@ class MovieSearchQuery extends SearchQuery
     /**
      * Filter the results release dates to matches that include this value.
      *
-     * @param string $year
+     * @param string|DateTime $year
      *
      * @return self
      */

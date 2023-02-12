@@ -83,9 +83,7 @@ class CreditsFactory extends AbstractFactory
         if (array_key_exists('person', $data)) {
             $person = $this->getPeopleFactory()->create($data['person']);
 
-            if ($person instanceof Person) {
-                $credits->setPerson($person);
-            }
+            $credits->setPerson($person);
         }
 
         return $this->hydrate($credits, $data);

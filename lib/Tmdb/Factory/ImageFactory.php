@@ -104,8 +104,6 @@ class ImageFactory extends AbstractFactory
         $type = $this->resolveImageType(array_key_exists('image_type', $data) ? $data['image_type'] : null);
         $image = $this->hydrate($type, $data);
 
-        assert($image instanceof Image);
-
         if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
             switch ($data['media_type']) {
                 case "movie":

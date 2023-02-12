@@ -229,7 +229,7 @@ class Person extends AbstractModel implements PersonInterface
     public function setBirthday($birthday)
     {
         if (!$birthday instanceof DateTime && !empty($birthday)) {
-            if (ctype_digit($birthday) && strlen(4)) {
+            if (ctype_digit($birthday) && strlen($birthday) == 4) {
                 $birthday = DateTime::createFromFormat(
                     'Y-m-d',
                     sprintf('%d-01-01', $birthday),
@@ -285,7 +285,7 @@ class Person extends AbstractModel implements PersonInterface
     public function setDeathday($deathday)
     {
         if (!$deathday instanceof DateTime && !empty($deathday)) {
-            if (ctype_digit($deathday) && strlen(4)) {
+            if (ctype_digit($deathday) && strlen($deathday) == 4) {
                 $deathday = DateTime::createFromFormat(
                     'Y-m-d',
                     sprintf('%d-01-01', $deathday),
