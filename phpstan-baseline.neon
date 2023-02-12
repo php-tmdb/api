@@ -21,6 +21,46 @@ parameters:
 			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
 
 		-
+			message: """
+				#^Call to deprecated method setReleases\\(\\) of class Tmdb\\\\Model\\\\Movie\\:
+				Use the setReleaseDates instead\\.$#
+			"""
+			count: 1
+			path: lib/Tmdb/Factory/MovieFactory.php
+
+		-
+			message: """
+				#^Instantiation of deprecated class Tmdb\\\\Model\\\\Movie\\\\Release\\:
+				Use ReleaseDate instead$#
+			"""
+			count: 1
+			path: lib/Tmdb/Factory/MovieFactory.php
+
+		-
 			message: "#^Property Tmdb\\\\HttpClient\\\\HttpClient\\:\\:\\$sessionToken is never written, only read\\.$#"
 			count: 1
 			path: lib/Tmdb/HttpClient/HttpClient.php
+
+		-
+			message: """
+				#^Access to deprecated property \\$releases of class Tmdb\\\\Model\\\\Movie\\:
+				Use \\$release_dates instead$#
+			"""
+			count: 1
+			path: lib/Tmdb/Model/Movie.php
+
+		-
+			message: """
+				#^Call to deprecated method getReleases\\(\\) of class Tmdb\\\\Model\\\\Movie\\:
+				Use the getReleaseDates instead$#
+			"""
+			count: 1
+			path: lib/Tmdb/Repository/MovieRepository.php
+
+		-
+			message: """
+				#^Return type of method Tmdb\\\\Repository\\\\MovieRepository\\:\\:getReleases\\(\\) has typehint with deprecated class Tmdb\\\\Model\\\\Movie\\\\Release\\:
+				Use ReleaseDate instead$#
+			"""
+			count: 1
+			path: lib/Tmdb/Repository/MovieRepository.php
