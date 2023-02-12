@@ -16,6 +16,11 @@ parameters:
 			path: lib/Tmdb/Event/Listener/Logger/LogHttpMessageListener.php
 
 		-
+			message: "#^Parameter \\#3 \\$first of method Http\\\\Client\\\\Common\\\\Plugin\\\\CachePlugin\\:\\:handleRequest\\(\\) expects callable\\(Psr\\\\Http\\\\Message\\\\RequestInterface\\)\\: Http\\\\Promise\\\\Promise, Closure\\(\\)\\: void given\\.$#"
+			count: 1
+			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
+
+		-
 			message: "#^Property Tmdb\\\\Event\\\\Listener\\\\Psr6CachedRequestListener\\:\\:\\$options is never read, only written\\.$#"
 			count: 1
 			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php

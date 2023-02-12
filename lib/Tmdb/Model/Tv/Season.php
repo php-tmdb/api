@@ -319,7 +319,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return PosterImage
+     * @return ?PosterImage
      */
     public function getPosterImage()
     {

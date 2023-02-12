@@ -17,6 +17,7 @@ namespace Tmdb\Factory;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Factory\Common\ChangeFactory;
 use Tmdb\HttpClient\HttpClient;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
@@ -29,7 +30,12 @@ use Tmdb\Model\Image\StillImage;
 use Tmdb\Model\Person;
 use Tmdb\Model\Person\CastMember;
 use Tmdb\Model\Person\CrewMember;
+use Tmdb\Model\Collection\People\PersonInterface;
+use Tmdb\Model\Person\AbstractMember;
 
+/**
+ * @template T of (AbstractMember&PersonInterface)|(AbstractModel&PersonInterface)
+ */
 class PeopleFactory extends AbstractFactory
 {
     /**
@@ -87,7 +93,7 @@ class PeopleFactory extends AbstractFactory
      * @param array $data
      * @param Person\AbstractMember|null $person
      *
-     * @return Person
+     * @return T
      */
     public function create(array $data = [], $person = null)
     {

@@ -76,10 +76,11 @@ class PeopleRepository extends AbstractRepository
     }
 
     /**
-     * @return PeopleFactory
+     * @return PeopleFactory<Person>
      */
     public function getFactory()
     {
+        /** @var PeopleFactory<Person> */
         return new PeopleFactory($this->getClient()->getHttpClient());
     }
 

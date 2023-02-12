@@ -20,6 +20,7 @@ use Tmdb\Model\Person\CastMember;
 
 /**
  * Class CastFactory
+ * @extends PeopleFactory<CastMember>
  * @package Tmdb\Factory\People
  */
 class CastFactory extends PeopleFactory

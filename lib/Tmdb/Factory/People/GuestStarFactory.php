@@ -17,9 +17,11 @@ namespace Tmdb\Factory\People;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Collection\People\GuestStars;
 use Tmdb\Model\Person\CastMember;
+use Tmdb\Model\Person\GuestStar;
 
 /**
  * Class GuestStarFactory
+ * @extends PeopleFactory<GuestStar>
  * @package Tmdb\Factory\People
  */
 class GuestStarFactory extends PeopleFactory

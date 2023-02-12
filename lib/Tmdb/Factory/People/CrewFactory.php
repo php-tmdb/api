@@ -20,6 +20,7 @@ use Tmdb\Model\Person\CrewMember;
 
 /**
  * Class CrewFactory
+ * @extends PeopleFactory<CrewMember>
  * @package Tmdb\Factory\People
  */
 class CrewFactory extends PeopleFactory
