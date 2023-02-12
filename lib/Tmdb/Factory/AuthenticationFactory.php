@@ -16,6 +16,8 @@ namespace Tmdb\Factory;
 
 use DateTime;
 use RuntimeException;
+use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Token\Session\GuestSessionToken;
 use Tmdb\Token\Session\RequestToken;
 use Tmdb\Token\Session\SessionToken;
@@ -29,7 +31,7 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return void
+     * @return AbstractModel
      * @throws RuntimeException
      */
     public function create(array $data = [])
@@ -44,7 +46,7 @@ class AuthenticationFactory extends AbstractFactory
     /**
      * @param array $data
      *
-     * @return void
+     * @return GenericCollection
      * @throws RuntimeException
      */
     public function createCollection(array $data = [])
@@ -106,7 +108,7 @@ class AuthenticationFactory extends AbstractFactory
      * Create session token for guest
      *
      * @param array $data
-     * @return SessionToken
+     * @return GuestSessionToken
      */
     public function createGuestSessionToken(array $data = [])
     {

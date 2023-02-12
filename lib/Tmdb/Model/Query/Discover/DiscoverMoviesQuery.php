@@ -202,7 +202,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * @return static
+     * @return self
      * @deprecated
      *
      */
@@ -227,7 +227,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * @return static
+     * @return self
      * @deprecated
      *
      */

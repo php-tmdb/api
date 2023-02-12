@@ -18,8 +18,11 @@ use Tmdb\Api\TvEpisode;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\TvEpisodeFactory;
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Collection\CreditsCollection;
+use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\AccountStates;
+use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Video;
 use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Tv;
@@ -118,7 +121,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $episode
      * @param $parameters
      * @param $headers
-     * @return null|AbstractModel
+     * @return CreditsCollection
      */
     public function getCredits($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
@@ -192,7 +195,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $episode
      * @param $parameters
      * @param $headers
-     * @return null|AbstractModel
+     * @return Images
      */
     public function getImages($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
@@ -227,7 +230,7 @@ class TvEpisodeRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return GenericCollection
      */
     public function getTranslations($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {

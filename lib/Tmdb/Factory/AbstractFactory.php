@@ -167,7 +167,7 @@ abstract class AbstractFactory
      * Create the account states
      *
      * @param array $data
-     * @return AbstractModel
+     * @return AccountStates
      */
     public function createAccountStates(array $data = [])
     {
@@ -190,7 +190,7 @@ abstract class AbstractFactory
      * Create result
      *
      * @param array $data
-     * @return AbstractModel
+     * @return Result
      */
     public function createResult(array $data = [])
     {

@@ -70,7 +70,7 @@ class ListItem extends AbstractModel
      */
     private $posterPath;
     /**
-     * @var PosterImage
+     * @var PosterImage|Image
      */
     private $posterImage;
 

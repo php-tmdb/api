@@ -18,6 +18,8 @@ use Tmdb\Api\TvSeason;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Factory\TvSeasonFactory;
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Collection\CreditsCollection;
+use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\Video;
 use Tmdb\Model\Tv;
@@ -101,7 +103,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param TvSeason|int $season
      * @param array $parameters
      * @param array $headers
-     * @return null|AbstractModel
+     * @return CreditsCollection
      */
     public function getCredits($tvShow, $season, array $parameters = [], array $headers = [])
     {
@@ -151,7 +153,7 @@ class TvSeasonRepository extends AbstractRepository
      * @param $season
      * @param $parameters
      * @param $headers
-     * @return null|AbstractModel
+     * @return Images
      */
     public function getImages($tvShow, $season, array $parameters = [], array $headers = [])
     {

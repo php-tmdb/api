@@ -316,7 +316,7 @@ class MovieRepository extends AbstractRepository
      * @param $id
      * @param $parameters
      * @param $headers
-     * @return null|AbstractModel
+     * @return GenericCollection
      */
     public function getChanges($id, array $parameters = [], array $headers = [])
     {

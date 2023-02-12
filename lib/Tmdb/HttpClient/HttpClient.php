@@ -75,9 +75,7 @@ class HttpClient
      * @param array $headers
      * @param null $body
      *
-     * @return array|string
-     *
-     * @psalm-return array<empty, empty>|string
+     * @return ResponseInterface
      */
     public function send(string $path, string $method, array $parameters = [], array $headers = [], $body = null)
     {

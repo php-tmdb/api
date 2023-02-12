@@ -17,6 +17,7 @@ namespace Tmdb\Repository;
 use Tmdb\Api\Discover;
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Exception\RuntimeException;
+use Tmdb\Factory\AbstractFactory;
 use Tmdb\Factory\FactoryInterface;
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\TvFactory;
@@ -102,7 +103,7 @@ class DiscoverRepository extends AbstractRepository
     /**
      * Discover currently does not offer an factory
      *
-     * @return void
+     * @return AbstractFactory
      * @throws NotImplementedException
      */
     public function getFactory()
