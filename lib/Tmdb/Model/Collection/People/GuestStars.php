@@ -16,9 +16,11 @@ namespace Tmdb\Model\Collection\People;
 
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Person;
+use Tmdb\Model\Person\GuestStar;
 
 /**
  * Class GuestStars
+ * @extends People<GuestStar>
  * @package Tmdb\Model\Collection\People
  */
 class GuestStars extends People
@@ -26,7 +28,7 @@ class GuestStars extends People
     /**
      * Returns all people
      *
-     * @return Person[]
+     * @return GuestStar[]
      */
     public function getGuestStars()
     {
@@ -38,9 +40,9 @@ class GuestStars extends People
      *
      * @param $id
      *
-     * @return \Tmdb\Model\Common\GenericCollection
+     * @return ?GuestStar
      */
-    public function getGuestStar($id): \Tmdb\Model\Common\GenericCollection
+    public function getGuestStar($id): ?GuestStar
     {
         return parent::getPerson($id);
     }

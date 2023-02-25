@@ -1,0 +1,81 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Instanceof between Psr\\\\Http\\\\Message\\\\StreamInterface and Psr\\\\Http\\\\Message\\\\StreamInterface will always evaluate to true\\.$#"
+			count: 1
+			path: lib/Tmdb/Api/AbstractApi.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: lib/Tmdb/Api/AbstractApi.php
+
+		-
+			message: "#^Strict comparison using \\!\\=\\= between null and Psr\\\\Http\\\\Message\\\\StreamInterface will always evaluate to true\\.$#"
+			count: 1
+			path: lib/Tmdb/Event/Listener/Logger/LogHttpMessageListener.php
+
+		-
+			message: "#^Parameter \\#3 \\$first of method Http\\\\Client\\\\Common\\\\Plugin\\\\CachePlugin\\:\\:handleRequest\\(\\) expects callable\\(Psr\\\\Http\\\\Message\\\\RequestInterface\\)\\: Http\\\\Promise\\\\Promise, Closure\\(\\)\\: void given\\.$#"
+			count: 1
+			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
+
+		-
+			message: "#^Property Tmdb\\\\Event\\\\Listener\\\\Psr6CachedRequestListener\\:\\:\\$options is never read, only written\\.$#"
+			count: 1
+			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
+
+		-
+			message: """
+				#^Call to deprecated method setReleases\\(\\) of class Tmdb\\\\Model\\\\Movie\\:
+				Use the setReleaseDates instead\\.$#
+			"""
+			count: 1
+			path: lib/Tmdb/Factory/MovieFactory.php
+
+		-
+			message: """
+				#^Instantiation of deprecated class Tmdb\\\\Model\\\\Movie\\\\Release\\:
+				Use ReleaseDate instead$#
+			"""
+			count: 1
+			path: lib/Tmdb/Factory/MovieFactory.php
+
+		-
+			message: "#^Property Tmdb\\\\HttpClient\\\\HttpClient\\:\\:\\$sessionToken is never written, only read\\.$#"
+			count: 1
+			path: lib/Tmdb/HttpClient/HttpClient.php
+
+		-
+			message: """
+				#^Access to deprecated property \\$releases of class Tmdb\\\\Model\\\\Movie\\:
+				Use \\$release_dates instead$#
+			"""
+			count: 1
+			path: lib/Tmdb/Model/Movie.php
+
+		-
+			message: """
+				#^Call to deprecated method getReleases\\(\\) of class Tmdb\\\\Model\\\\Movie\\:
+				Use the getReleaseDates instead$#
+			"""
+			count: 1
+			path: lib/Tmdb/Repository/MovieRepository.php
+
+		-
+			message: """
+				#^Return type of method Tmdb\\\\Repository\\\\MovieRepository\\:\\:getReleases\\(\\) has typehint with deprecated class Tmdb\\\\Model\\\\Movie\\\\Release\\:
+				Use ReleaseDate instead$#
+			"""
+			count: 1
+			path: lib/Tmdb/Repository/MovieRepository.php
+
+		-
+			message: "#^Result of \\|\\| is always false\\.$#"
+			count: 1
+			path: lib/Tmdb/Repository/TvSeasonRepository.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and int will always evaluate to false\\.$#"
+			count: 2
+			path: lib/Tmdb/Repository/TvSeasonRepository.php

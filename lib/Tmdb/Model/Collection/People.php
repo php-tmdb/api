@@ -14,11 +14,16 @@
 
 namespace Tmdb\Model\Collection;
 
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\People\PersonInterface;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
  * Class People
+ *
+ * @template T of AbstractModel&PersonInterface
+ * @extends GenericCollection<T>
+ *
  * @package Tmdb\Model\Collection
  */
 class People extends GenericCollection
@@ -26,7 +31,7 @@ class People extends GenericCollection
     /**
      * Returns all people
      *
-     * @return PersonInterface[]
+     * @return T[]
      */
     public function getPeople()
     {
@@ -38,7 +43,7 @@ class People extends GenericCollection
      *
      * @param $id
      *
-     * @return PersonInterface|null
+     * @return T|null
      */
     public function getPerson($id): ?PersonInterface
     {
@@ -48,7 +53,7 @@ class People extends GenericCollection
     /**
      * Add a person to the collection
      *
-     * @param PersonInterface $person
+     * @param T $person
      *
      * @return void
      */

@@ -22,6 +22,7 @@ use Tmdb\Model\Person;
 
 /**
  * Class CreditsFactory
+ * @extends AbstractFactory<Credits>
  * @package Tmdb\Factory
  */
 class CreditsFactory extends AbstractFactory
@@ -37,7 +38,7 @@ class CreditsFactory extends AbstractFactory
     private $tvEpisodeFactory;
 
     /**
-     * @var PeopleFactory
+     * @var PeopleFactory<Person>
      */
     private $peopleFactory;
 
@@ -83,9 +84,7 @@ class CreditsFactory extends AbstractFactory
         if (array_key_exists('person', $data)) {
             $person = $this->getPeopleFactory()->create($data['person']);
 
-            if ($person instanceof Person) {
-                $credits->setPerson($person);
-            }
+            $credits->setPerson($person);
         }
 
         return $this->hydrate($credits, $data);
@@ -130,7 +129,7 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @return PeopleFactory
+     * @return PeopleFactory<Person>
      */
     public function getPeopleFactory()
     {
@@ -138,7 +137,7 @@ class CreditsFactory extends AbstractFactory
     }
 
     /**
-     * @param PeopleFactory $peopleFactory
+     * @param PeopleFactory<Person> $peopleFactory
      * @return self
      */
     public function setPeopleFactory($peopleFactory)

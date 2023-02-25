@@ -30,12 +30,12 @@ class RequestEvent extends StoppableEvent implements LoggableHttpEventInterface
     private $request;
 
     /**
-     * @var ResponseInterface
+     * @var ?ResponseInterface
      */
     private $response;
 
     /**
-     * @var SessionToken
+     * @var ?SessionToken
      */
     private $sessionToken;
 
@@ -71,7 +71,7 @@ class RequestEvent extends StoppableEvent implements LoggableHttpEventInterface
     }
 
     /**
-     * @return ResponseInterface
+     * @return ?ResponseInterface
      */
     public function getResponse(): ?ResponseInterface
     {
@@ -98,9 +98,9 @@ class RequestEvent extends StoppableEvent implements LoggableHttpEventInterface
     }
 
     /**
-     * @return SessionToken
+     * @return ?SessionToken
      */
-    public function getSessionToken(): SessionToken
+    public function getSessionToken(): ?SessionToken
     {
         return $this->sessionToken;
     }

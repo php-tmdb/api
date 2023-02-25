@@ -39,12 +39,8 @@ class ApiToken
      * @return self
      * @throws RuntimeException
      */
-    public function setToken($apiToken)
+    public function setToken(string $apiToken)
     {
-        if (!is_string($apiToken)) {
-            throw new RuntimeException('The Apitoken must be set.');
-        }
-
         $this->apiToken = $apiToken;
 
         return $this;

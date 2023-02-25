@@ -42,7 +42,8 @@ class RequestQueryHelper
     {
         $parameters = [];
         foreach (explode('&', $uri->getQuery()) as $curParam) {
-            if ($curParam && ($curParamParts = explode('=', $curParam))) {
+            if ($curParam) {
+                $curParamParts = explode('=', $curParam);
                 $parameters[urldecode($curParamParts[0])] = urldecode($curParamParts[1] ?? null);
             }
         }

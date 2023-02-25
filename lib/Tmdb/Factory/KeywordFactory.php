@@ -19,6 +19,7 @@ use Tmdb\Model\Keyword;
 
 /**
  * Class KeywordFactory
+ * @extends AbstractFactory<Keyword>
  * @package Tmdb\Factory
  */
 class KeywordFactory extends AbstractFactory

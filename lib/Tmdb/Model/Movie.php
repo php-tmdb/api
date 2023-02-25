@@ -195,7 +195,7 @@ class Movie extends AbstractModel
      */
     private $productionCountries;
     /**
-     * @var DateTime
+     * @var ?DateTime
      */
     private $releaseDate;
     /**
@@ -309,7 +309,7 @@ class Movie extends AbstractModel
     }
 
     /**
-     * @param null $belongsToCollection
+     * @param GenericCollection $belongsToCollection
      * @return self
      */
     public function setBelongsToCollection($belongsToCollection)

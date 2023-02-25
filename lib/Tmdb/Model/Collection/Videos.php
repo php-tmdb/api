@@ -19,6 +19,7 @@ use Tmdb\Model\Common\Video;
 
 /**
  * Class Videos
+ * @extends GenericCollection<Video>
  * @package Tmdb\Model\Collection
  */
 class Videos extends GenericCollection
@@ -38,9 +39,9 @@ class Videos extends GenericCollection
      *
      * @param $id
      *
-     * @return GenericCollection
+     * @return ?Video
      */
-    public function getVideo($id): GenericCollection
+    public function getVideo($id): ?Video
     {
         return $this->filterId($id);
     }

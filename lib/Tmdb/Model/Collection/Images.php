@@ -20,6 +20,7 @@ use Tmdb\Model\Image;
 
 /**
  * Class Images
+ * @extends GenericCollection<Image>
  * @package Tmdb\Model\Collection
  */
 class Images extends GenericCollection
@@ -27,7 +28,7 @@ class Images extends GenericCollection
     /**
      * Returns all images
      *
-     * @return array
+     * @return Image[]
      */
     public function getImages()
     {
@@ -38,9 +39,9 @@ class Images extends GenericCollection
      * Retrieve a image from the collection
      *
      * @param $id
-     * @return GenericCollection
+     * @return ?Image
      */
-    public function getImage($id)
+    public function getImage($id): ?Image
     {
         return $this->filterId($id);
     }
@@ -60,7 +61,7 @@ class Images extends GenericCollection
     /**
      * Filter poster images
      *
-     * @return Images
+     * @return static
      */
     public function filterPosters()
     {
@@ -76,7 +77,7 @@ class Images extends GenericCollection
     /**
      * Filter backdrop images
      *
-     * @return Images
+     * @return static
      */
     public function filterBackdrops()
     {
@@ -92,7 +93,7 @@ class Images extends GenericCollection
     /**
      * Filter profile images
      *
-     * @return Images
+     * @return static
      */
     public function filterProfile()
     {
@@ -108,7 +109,7 @@ class Images extends GenericCollection
     /**
      * Filter still images
      *
-     * @return Images
+     * @return static
      */
     public function filterStills()
     {
@@ -125,7 +126,7 @@ class Images extends GenericCollection
      * Filter by image size
      *
      * @param $width
-     * @return Images
+     * @return static
      */
     public function filterMaxWidth($width)
     {
@@ -142,7 +143,7 @@ class Images extends GenericCollection
      * Filter by image size
      *
      * @param $width
-     * @return Images
+     * @return static
      */
     public function filterMinWidth($width)
     {
@@ -159,7 +160,7 @@ class Images extends GenericCollection
      * Filter by image size
      *
      * @param $height
-     * @return Images
+     * @return static
      */
     public function filterMaxHeight($height)
     {
@@ -179,7 +180,7 @@ class Images extends GenericCollection
      * Filter by image size
      *
      * @param $height
-     * @return Images
+     * @return static
      */
     public function filterMinHeight($height)
     {

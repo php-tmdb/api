@@ -31,7 +31,7 @@ abstract class CollectionToCommaSeperatedString extends GenericCollection implem
         $i = 0;
 
         foreach ($collection as $item) {
-            $this->add($i, $item);
+            $this->add((string)$i, $item);
 
             $i++;
         }

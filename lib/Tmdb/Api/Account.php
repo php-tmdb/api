@@ -36,7 +36,7 @@ class Account extends AbstractApi
     /**
      * Get the lists that you have created and marked as a favorite.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param array $parameters
      * @param array $headers
      * @return mixed
@@ -49,7 +49,7 @@ class Account extends AbstractApi
     /**
      * Get the list of favorite movies for an account.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param array $parameters
      * @param array $headers
      * @return mixed
@@ -62,7 +62,7 @@ class Account extends AbstractApi
     /**
      * Get the list of favorite TV series for an account.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param array $parameters
      * @param array $headers
      * @return mixed
@@ -75,7 +75,7 @@ class Account extends AbstractApi
     /**
      * Add or remove a movie to an accounts favorite list.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param integer $mediaId
      * @param boolean $isFavorite
      * @param string $mediaType Either movie or tv
@@ -93,7 +93,7 @@ class Account extends AbstractApi
     /**
      * Get the list of rated movies (and associated rating) for an account.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param array $parameters
      * @param array $headers
      * @return mixed
@@ -106,7 +106,7 @@ class Account extends AbstractApi
     /**
      * Get the list of rated TV shows (and associated rating) for an account.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param array $parameters
      * @param array $headers
      * @return mixed
@@ -119,7 +119,7 @@ class Account extends AbstractApi
     /**
      * Get the list of movies on an accounts watchlist.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param array $parameters
      * @param array $headers
      * @return mixed
@@ -132,7 +132,7 @@ class Account extends AbstractApi
     /**
      * Get the list of TV series on an accounts watchlist.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param array $parameters
      * @param array $headers
      * @return mixed
@@ -145,7 +145,7 @@ class Account extends AbstractApi
     /**
      * Add or remove a movie to an accounts watch list.
      *
-     * @param integer $accountId
+     * @param int|string $accountId
      * @param integer $mediaId
      * @param boolean $isOnWatchlist
      * @param string $mediaType Either movie or tv

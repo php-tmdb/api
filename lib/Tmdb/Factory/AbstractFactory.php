@@ -29,6 +29,9 @@ use Tmdb\Model\Lists\Result;
 
 /**
  * Class AbstractFactory
+ *
+ * @template T of AbstractModel
+ *
  * @package Tmdb\Factory
  */
 abstract class AbstractFactory
@@ -52,7 +55,7 @@ abstract class AbstractFactory
      * Convert an array to an hydrated object
      *
      * @param array $data
-     * @return AbstractModel
+     * @return T
      */
     abstract public function create(array $data = []);
 
@@ -60,19 +63,20 @@ abstract class AbstractFactory
      * Convert an array with an collection of items to an hydrated object collection
      *
      * @param array $data
-     * @return GenericCollection
+     * @return GenericCollection<T>
      */
     abstract public function createCollection(array $data = []);
 
     /**
      * Create a result collection
      *
-     * @param array $data
+     * @param null|array $data
      * @param string $method
-     * @return ResultCollection
+     * @return ResultCollection<T>
      */
     public function createResultCollection($data = [], $method = 'create'): ResultCollection
     {
+        /** @var ResultCollection<T> */
         $collection = new ResultCollection();
 
         if (null === $data) {
@@ -106,7 +110,7 @@ abstract class AbstractFactory
      * Create rating
      *
      * @param array $data
-     * @return AbstractModel
+     * @return Rating
      */
     public function createRating(array $data = [])
     {
@@ -116,9 +120,11 @@ abstract class AbstractFactory
     /**
      * Hydrate the object with data
      *
-     * @param AbstractModel $subject
+     * @template S of AbstractModel
+     *
+     * @param S $subject
      * @param array $data
-     * @return AbstractModel
+     * @return S
      */
     protected function hydrate(AbstractModel $subject, $data = [])
     {
@@ -167,7 +173,7 @@ abstract class AbstractFactory
      * Create the account states
      *
      * @param array $data
-     * @return AbstractModel
+     * @return AccountStates
      */
     public function createAccountStates(array $data = [])
     {
@@ -190,7 +196,7 @@ abstract class AbstractFactory
      * Create result
      *
      * @param array $data
-     * @return AbstractModel
+     * @return Result
      */
     public function createResult(array $data = [])
     {
@@ -200,12 +206,13 @@ abstract class AbstractFactory
     /**
      * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
+     * @template S of AbstractModel
      * @param array $data
-     * @param AbstractModel $class
+     * @param S|string $class
      *
-     * @return GenericCollection
+     * @return GenericCollection<S>
      */
-    protected function createGenericCollection(array $data = [], AbstractModel $class = null): GenericCollection
+    protected function createGenericCollection(array $data = [], $class = null): GenericCollection
     {
         if (!$class) {
             throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
@@ -215,11 +222,8 @@ abstract class AbstractFactory
             $class = get_class($class);
         }
 
+        /** @var GenericCollection<S> */
         $collection = new GenericCollection();
-
-        if (null === $data) {
-            return $collection;
-        }
 
         foreach ($data as $item) {
             $collection->add(null, $this->hydrate(new $class(), $item));
@@ -231,26 +235,24 @@ abstract class AbstractFactory
     /**
      * Create a generic collection of data and map it on the class by it's static parameter $properties
      *
+     * @template S of AbstractModel
+     * @template SC of GenericCollection<S>
      * @param array $data
-     * @param AbstractModel $class
-     * @param GenericCollection $collection
-     * @return GenericCollection
+     * @param S|string $class
+     * @param SC $collection
+     * @return SC
      */
     protected function createCustomCollection(
         array $data,
-        AbstractModel $class,
+        $class,
         GenericCollection $collection
     ) {
-        if (!$class || !$collection) {
-            throw new \Tmdb\Exception\RuntimeException('Expected both an class and collection to be given.');
+        if (!$class) {
+            throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
         }
 
         if (is_object($class)) {
             $class = get_class($class);
-        }
-
-        if (null === $data) {
-            return $collection;
         }
 
         foreach ($data as $item) {
@@ -264,7 +266,7 @@ abstract class AbstractFactory
      * Create an generic collection of an array that consists out of a mix of movies and tv shows
      *
      * @param array $data
-     * @return GenericCollection
+     * @return GenericCollection<AbstractModel>
      */
     protected function createGenericCollectionFromMediaTypes($data = [])
     {

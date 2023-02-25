@@ -67,7 +67,7 @@ class LogHydrationListener
 
         if ($this->withData) {
             $context['data'] = $event->getData();
-            $context['data_size'] = \mb_strlen(\GuzzleHttp\json_encode($event->getData()), 'UTF-8');
+            $context['data_size'] = \mb_strlen(\GuzzleHttp\Utils::jsonEncode($event->getData()), 'UTF-8');
         }
 
         $this->logger->debug(

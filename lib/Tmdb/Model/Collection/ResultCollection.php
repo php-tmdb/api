@@ -14,10 +14,15 @@
 
 namespace Tmdb\Model\Collection;
 
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
  * Class ResultCollection
+ *
+ * @template T of AbstractModel
+ * @extends GenericCollection<T>
+ *
  * @package Tmdb\Model\Collection
  */
 class ResultCollection extends GenericCollection
@@ -53,7 +58,7 @@ class ResultCollection extends GenericCollection
 
     /**
      * @param int $page
-     * @return self
+     * @return $this
      */
     public function setPage($page)
     {
@@ -72,7 +77,7 @@ class ResultCollection extends GenericCollection
 
     /**
      * @param int $totalPages
-     * @return self
+     * @return $this
      */
     public function setTotalPages($totalPages)
     {
@@ -91,7 +96,7 @@ class ResultCollection extends GenericCollection
 
     /**
      * @param int $totalResults
-     * @return self
+     * @return $this
      */
     public function setTotalResults($totalResults)
     {

@@ -16,6 +16,7 @@ namespace Tmdb\Repository;
 
 use Tmdb\Api\Account;
 use Tmdb\Factory\AccountFactory;
+use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Lists\Result;
 use Tmdb\Model\Movie;
@@ -192,7 +193,7 @@ class AccountRepository extends AbstractRepository
      * Add or remove a movie to an accounts watch list.
      *
      * @param string $accountId
-     * @param integer $media
+     * @param int|Tv|Movie $media
      * @param bool $isOnWatchlist
      * @param string $mediaType
      * @return Result

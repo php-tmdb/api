@@ -21,6 +21,7 @@ use Tmdb\Model\Common\Video;
 
 /**
  * Class VideoFactory
+ * @extends AbstractFactory<Video>
  * @package Tmdb\Factory\Common
  */
 class VideoFactory extends AbstractFactory
@@ -28,7 +29,7 @@ class VideoFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = [])
+    public function createCollection(array $data = []): Videos
     {
         $collection = new Videos();
 
@@ -50,9 +51,9 @@ class VideoFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      *
-     * @return AbstractModel|null
+     * @return Video|null
      */
-    public function create(array $data = []): ?AbstractModel
+    public function create(array $data = []): ?Video
     {
         $videoType = $this->resolveVideoType($data);
 

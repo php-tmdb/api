@@ -14,6 +14,10 @@
 
 namespace Tmdb\Factory;
 
+use Tmdb\Exception\NotImplementedException;
+use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Common\GenericCollection;
+
 /**
  * Currently a place-holder for future expansions
  *
@@ -25,18 +29,20 @@ class GuestSessionFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      *
-     * @return void
+     * @throws NotImplementedException
      */
     public function create(array $data = [])
     {
+        throw new NotImplementedException('GuestSessionFactory does not implement create.');
     }
 
     /**
      * {@inheritdoc}
      *
-     * @return void
+     * @throws NotImplementedException
      */
     public function createCollection(array $data = [])
     {
+        throw new NotImplementedException('GuestSessionFactory does not implement createCollection.');
     }
 }

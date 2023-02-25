@@ -41,7 +41,7 @@ abstract class AbstractMember extends AbstractModel
      */
     private $profilePath;
     /**
-     * @var Image\ProfileImage
+     * @var ?Image\ProfileImage
      */
     private $profile;
 

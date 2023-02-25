@@ -16,6 +16,7 @@ namespace Tmdb\Factory\Common;
 
 use Tmdb\Factory\AbstractFactory;
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Collection\Changes;
 use Tmdb\Model\Common\Change;
 use Tmdb\Model\Common\GenericCollection;
 
@@ -28,9 +29,9 @@ class ChangeFactory extends AbstractFactory
     /**
      * {@inheritdoc}
      */
-    public function createCollection(array $data = []): GenericCollection
+    public function createCollection(array $data = []): Changes
     {
-        $collection = new GenericCollection();
+        $collection = new Changes();
 
         if (array_key_exists('changes', $data)) {
             $data = $data['changes'];

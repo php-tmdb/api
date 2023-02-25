@@ -15,6 +15,7 @@
 namespace Tmdb\Tests\Token\Api;
 
 use Tmdb\Exception\RuntimeException;
+use TypeError;
 
 class ApiTokenTest extends \PHPUnit\Framework\TestCase
 {
@@ -37,7 +38,7 @@ class ApiTokenTest extends \PHPUnit\Framework\TestCase
      */
     public function testThrowsErrorOnEmptyApiToken()
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(TypeError::class);
         $token  = new \Tmdb\Token\Api\ApiToken();
         $token->setToken(null);
     }

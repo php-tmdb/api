@@ -18,6 +18,7 @@ use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\Episode;
 use Tmdb\Model\Tv\Season;
+use TypeError;
 
 class TvEpisodeRepositoryTest extends TestCase
 {

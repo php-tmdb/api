@@ -20,6 +20,7 @@ use Tmdb\Model\Image;
 
 /**
  * Class ImageFactory
+ * @extends AbstractFactory<Image>
  * @package Tmdb\Factory
  */
 class ImageFactory extends AbstractFactory
@@ -31,7 +32,12 @@ class ImageFactory extends AbstractFactory
      *
      * @param $path
      * @param string $key
-     * @return Image|Image\BackdropImage|Image\LogoImage|Image\PosterImage|Image\ProfileImage|Image\StillImage
+     * @return ($key is ('poster'|'posters'|'poster_path') ? Image\PosterImage
+     *          : $key is ('backdrop'|'backdrops'|'backdrop_path') ? Image\BackdropImage
+     *          : $key is ('profile'|'profiles'|'profile_path') ? Image\ProfileImage
+     *          : $key is ('logo'|'logos'|'logo_path') ? Image\LogoImage
+     *          : $key is ('still'|'stills'|'still_path') ? Image\StillImage
+     *          : Image)
      */
     public function createFromPath($path, $key)
     {
@@ -45,7 +51,12 @@ class ImageFactory extends AbstractFactory
      * Helper function to obtain a new object for an image type
      *
      * @param string|null $key
-     * @return Image|Image\BackdropImage|Image\LogoImage|Image\PosterImage|Image\ProfileImage|Image\StillImage
+     * @return ($key is ('poster'|'posters'|'poster_path') ? Image\PosterImage
+     *          : $key is ('backdrop'|'backdrops'|'backdrop_path') ? Image\BackdropImage
+     *          : $key is ('profile'|'profiles'|'profile_path') ? Image\ProfileImage
+     *          : $key is ('logo'|'logos'|'logo_path') ? Image\LogoImage
+     *          : $key is ('still'|'stills'|'still_path') ? Image\StillImage
+     *          : Image)
      */
     public function resolveImageType($key = null)
     {
@@ -102,8 +113,6 @@ class ImageFactory extends AbstractFactory
     {
         $type = $this->resolveImageType(array_key_exists('image_type', $data) ? $data['image_type'] : null);
         $image = $this->hydrate($type, $data);
-
-        assert($image instanceof Image);
 
         if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
             switch ($data['media_type']) {

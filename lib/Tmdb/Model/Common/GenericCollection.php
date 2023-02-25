@@ -32,6 +32,8 @@ use Traversable;
  * Class GenericCollection
  * @package Tmdb\Model\Common
  *
+ * @template T of AbstractModel
+ *
  * @phpstan-consistent-constructor
  */
 class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
@@ -74,7 +76,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Removes all key value pairs
      *
-     * @return GenericCollection
+     * @return $this
      */
     public function clear()
     {
@@ -86,9 +88,9 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Get a specific key value.
      *
-     * @param string $key Key to retrieve.
+     * @param string|object $key Key to retrieve.
      *
-     * @return mixed|null Value of the key or NULL
+     * @return T|null Value of the key or NULL
      */
     public function get($key)
     {
@@ -102,10 +104,10 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Set a key value pair
      *
-     * @param string $key Key to set
+     * @param ?string $key Key to set
      * @param mixed $value Value to set
      *
-     * @return GenericCollection Returns a reference to the object
+     * @return $this Returns a reference to the object
      */
     public function set($key, $value)
     {
@@ -121,9 +123,9 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Remove a specific key value pair
      *
-     * @param string $key A key to remove or an object in the same state
+     * @param string|object $key A key to remove or an object in the same state
      *
-     * @return GenericCollection
+     * @return $this
      */
     public function remove($key)
     {
@@ -139,7 +141,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Get all keys in the collection
      *
-     * @return array
+     * @return string[]
      */
     public function getKeys()
     {
@@ -193,7 +195,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      *
      * @param array $data Associative array of data
      *
-     * @return GenericCollection Returns a reference to the object
+     * @return $this Returns a reference to the object
      */
     public function replace(array $data)
     {
@@ -205,9 +207,9 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Add and merge in a Collection or array of key value pair data.
      *
-     * @param GenericCollection|array $data Associative array of key value pair data
+     * @param GenericCollection<T>|array $data Associative array of key value pair data
      *
-     * @return GenericCollection Returns a reference to the object.
+     * @return $this Returns a reference to the object.
      */
     public function merge($data)
     {
@@ -221,10 +223,10 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Add a value to a key.
      *
-     * @param string $key Key to add
-     * @param mixed $value Value to add to the key
+     * @param ?string $key Key to add
+     * @param T|string $value Value to add to the key
      *
-     * @return GenericCollection Returns a reference to the object.
+     * @return $this Returns a reference to the object.
      */
     public function add($key, $value)
     {
@@ -254,7 +256,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * @param array $context Context to pass to the closure
      * @param bool $static Set to TRUE to use the same class as the return rather than returning a Collection
      *
-     * @return GenericCollection
+     * @return ($static is true ? static : self)
      */
     public function map(Closure $closure, array $context = [], $static = true)
     {
@@ -281,7 +283,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      *
      * @param Closure $closure
      *
-     * @return self
+     * @return $this
      */
     public function sort(Closure $closure)
     {
@@ -319,7 +321,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * Filter by id
      *
      * @param integer $id
-     * @return AbstractModel|null
+     * @return T|null
      */
     public function filterId($id)
     {
@@ -352,7 +354,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * @param Closure $closure Closure evaluation function
      * @param bool $static Set to TRUE to use the same class as the return rather than returning a Collection
      *
-     * @return GenericCollection
+     * @return ($static is true ? static : self)
      */
     public function filter(Closure $closure, $static = true)
     {
@@ -382,7 +384,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * Filter by language ISO 639-1 code.
      *
      * @param string $language
-     * @return GenericCollection
+     * @return static
      */
     public function filterLanguage($language = 'en')
     {
@@ -399,7 +401,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * Filter by country ISO 3166-1 code.
      *
      * @param string $country
-     * @return GenericCollection
+     * @return static
      */
     public function filterCountry($country = 'US')
     {
@@ -416,7 +418,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * Filter by adult content
      *
      * @param boolean $adult
-     * @return GenericCollection
+     * @return static
      */
     public function filterAdult($adult = false)
     {

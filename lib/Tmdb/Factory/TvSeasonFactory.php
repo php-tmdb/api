@@ -28,6 +28,7 @@ use Tmdb\Model\Tv\Season;
 
 /**
  * Class TvSeasonFactory
+ * @extends AbstractFactory<Season>
  * @package Tmdb\Factory
  */
 class TvSeasonFactory extends AbstractFactory
@@ -84,6 +85,7 @@ class TvSeasonFactory extends AbstractFactory
      */
     public function createCollection(array $data = [])
     {
+        /** @var GenericCollection<Season> */
         $collection = new GenericCollection();
 
         foreach ($data as $item) {

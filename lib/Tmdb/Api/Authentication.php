@@ -112,7 +112,7 @@ class Authentication extends AbstractApi
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param string $requestToken
+     * @param array|string $requestToken
      * @return mixed
      * @throws UnauthorizedRequestTokenException
      */
