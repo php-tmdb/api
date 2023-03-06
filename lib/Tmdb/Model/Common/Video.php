@@ -32,7 +32,8 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
         'name',
         'site',
         'size',
-        'type'
+        'type',
+        'official'
     ];
     /**
      * @var string
@@ -72,6 +73,12 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
      * @var string
      */
     private $url_format;
+    /**
+     * Holds the official indicator
+     *
+     * @var string
+     */
+    private $official;
 
     /**
      * @return string
@@ -250,6 +257,25 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     public function setKey($key)
     {
         $this->key = $key;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getOfficial()
+    {
+        return $this->official;
+    }
+
+    /**
+     * @param mixed $key
+     * @return self
+     */
+    public function setOfficial($official)
+    {
+        $this->official = $official;
 
         return $this;
     }
