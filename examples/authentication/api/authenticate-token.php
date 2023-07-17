@@ -19,7 +19,7 @@ require_once '../../../vendor/autoload.php';
 require_once '../../apikey.php';
 
 /** @var Tmdb\Client $client * */
-$client = require_once('../../setup-client-full.php.php');
+$client = require_once('../../setup-client-full.php');
 $token = new ApiToken(TMDB_API_KEY);
 
 $requestToken = new RequestToken(TMDB_REQUEST_TOKEN);
