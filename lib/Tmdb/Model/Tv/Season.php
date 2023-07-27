@@ -39,7 +39,6 @@ class Season extends AbstractModel
      * @var array
      */
     public static $properties = [
-        'adult',
         'air_date',
         'name',
         'overview',
