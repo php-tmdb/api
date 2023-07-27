@@ -132,7 +132,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param DateTime $airDate
+     * @param string $airDate
      * @return self
      */
     public function setAirDate($airDate)
