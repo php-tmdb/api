@@ -33,7 +33,7 @@ class TvSeasonFactoryTest extends TestCase
         $data = $this->loadByFile('tv/season/all.json');
 
         /**
-         * @var Season $this- >season
+         * @var Season $this->season
          */
         $this->season = $factory->create($data);
     }
