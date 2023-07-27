@@ -40,6 +40,7 @@ class Tv extends AbstractModel
      * @var array
      */
     public static $properties = [
+        'adult',
         'backdrop_path',
         'episode_run_time',
         'first_air_date',
@@ -242,6 +243,10 @@ class Tv extends AbstractModel
      * @var GenericCollection
      */
     protected $episodeGroups;
+    /**
+     * @var bool
+     */
+    private $adult = false;
 
     /**
      * Constructor
@@ -268,6 +273,25 @@ class Tv extends AbstractModel
         $this->languages = new GenericCollection();
         $this->watchProviders = new GenericCollection();
         $this->episodeGroups = new GenericCollection();
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getAdult()
+    {
+        return $this->adult;
+    }
+
+    /**
+     * @param boolean $adult
+     * @return self
+     */
+    public function setAdult($adult)
+    {
+        $this->adult = (bool)$adult;
+
+        return $this;
     }
 
     /**
