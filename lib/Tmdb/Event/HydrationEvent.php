@@ -111,7 +111,7 @@ class HydrationEvent extends Event
      * @param RequestInterface|null $lastRequest
      * @return self
      */
-    public function setLastRequest(RequestInterface $lastRequest = null): HydrationEvent
+    public function setLastRequest(?RequestInterface $lastRequest = null): HydrationEvent
     {
         $this->lastRequest = $lastRequest;
 
