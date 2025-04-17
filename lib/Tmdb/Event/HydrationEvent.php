@@ -130,7 +130,7 @@ class HydrationEvent extends Event
      * @param ResponseInterface|null $lastResponse
      * @return self
      */
-    public function setLastResponse(ResponseInterface $lastResponse = null): HydrationEvent
+    public function setLastResponse(?ResponseInterface $lastResponse = null): HydrationEvent
     {
         $this->lastResponse = $lastResponse;
 
