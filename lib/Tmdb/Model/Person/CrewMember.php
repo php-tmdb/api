@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model\Person;
 use Tmdb\Model\Collection\People\PersonInterface;
 
 /**
- * Class CrewMember
- * @package Tmdb\Model\Person
+ * Class CrewMember.
  */
 class CrewMember extends AbstractMember implements PersonInterface
 {
@@ -28,7 +29,7 @@ class CrewMember extends AbstractMember implements PersonInterface
         'name',
         'department',
         'job',
-        'profile_path'
+        'profile_path',
     ];
     /**
      * @var string
@@ -38,9 +39,6 @@ class CrewMember extends AbstractMember implements PersonInterface
      * @var string
      */
     private $job;
-    /**
-     * @var mixed
-     */
     private $creditId;
 
     /**
@@ -53,9 +51,8 @@ class CrewMember extends AbstractMember implements PersonInterface
 
     /**
      * @param string $department
-     * @return self
      */
-    public function setDepartment($department)
+    public function setDepartment($department): static
     {
         $this->department = $department;
 
@@ -72,28 +69,20 @@ class CrewMember extends AbstractMember implements PersonInterface
 
     /**
      * @param string $job
-     * @return self
      */
-    public function setJob($job)
+    public function setJob($job): static
     {
         $this->job = $job;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getCreditId()
     {
         return $this->creditId;
     }
 
-    /**
-     * @param mixed $creditId
-     * @return self
-     */
-    public function setCreditId($creditId)
+    public function setCreditId($creditId): static
     {
         $this->creditId = $creditId;
 

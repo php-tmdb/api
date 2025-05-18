@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Model;
 
 use DateTime;
-use Tmdb\Model\Collection\CreditsCollection;
+use DateTimeZone;
 use Tmdb\Model\Collection\CreditsCollection\CombinedCredits;
 use Tmdb\Model\Collection\CreditsCollection\MovieCredits;
 use Tmdb\Model\Collection\CreditsCollection\TvCredits;
@@ -26,8 +28,7 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Image\ProfileImage;
 
 /**
- * Class Person
- * @package Tmdb\Model
+ * Class Person.
  */
 class Person extends AbstractModel implements PersonInterface
 {
@@ -44,39 +45,45 @@ class Person extends AbstractModel implements PersonInterface
         'profile_path',
         'gender',
         'imdb_id',
-        'popularity'
+        'popularity',
     ];
 
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection|mixed
      */
     protected $knownFor;
+
     /**
-     * @var MovieCredits
+     * @var MovieCredits|mixed
      */
     protected $movieCredits;
+
     /**
-     * @var TvCredits
+     * @var TvCredits|mixed
      */
     protected $tvCredits;
+
     /**
-     * @var CombinedCredits
+     * @var CombinedCredits|mixed
      */
     protected $combinedCredits;
+
     /**
-     * @var Collection\Images
+     * @var Images|mixed
      */
     protected $images;
+
     /**
-     * @var Common\GenericCollection
+     * @var GenericCollection
      */
     protected $changes;
+
     /**
-     * External Ids
-     *
-     * @var ExternalIds
+     * External Ids.
+     * @var ExternalIds|mixed
      */
     protected $externalIds;
+
     /**
      * @var GenericCollection
      */
@@ -86,10 +93,7 @@ class Person extends AbstractModel implements PersonInterface
      * @var bool
      */
     private $adult;
-    /**
-     * @var array
-     */
-    private $alsoKnownAs = [];
+    private array $alsoKnownAs = [];
     /**
      * @var string
      */
@@ -99,17 +103,14 @@ class Person extends AbstractModel implements PersonInterface
      */
     private $birthday;
     /**
-     * @var DateTime|boolean
+     * @var DateTime|bool
      */
     private $deathday;
     /**
      * @var string
      */
     private $homepage;
-    /**
-     * @var integer
-     */
-    private $id;
+    private ?int $id = null;
 
     /**
      * @var string
@@ -128,21 +129,15 @@ class Person extends AbstractModel implements PersonInterface
      * @var string
      */
     private $profilePath;
-    /**
-     * @var string|null
-     */
-    private $imdbId;
-    /**
-     * @var ProfileImage
-     */
-    private $profileImage;
+    private ?string $imdbId = null;
+    private ?\Tmdb\Model\Image\ProfileImage $profileImage = null;
     /**
      * @var float
      */
     private $popularity;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * Set all default collections
      */
@@ -158,7 +153,7 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getAdult()
     {
@@ -166,19 +161,15 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @param boolean $adult
-     * @return self
+     * @param bool $adult
      */
-    public function setAdult($adult)
+    public function setAdult($adult): static
     {
         $this->adult = $adult;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getAlsoKnownAs()
     {
         return $this->alsoKnownAs;
@@ -186,9 +177,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param array $alsoKnownAs
-     * @return self
      */
-    public function setAlsoKnownAs($alsoKnownAs)
+    public function setAlsoKnownAs($alsoKnownAs): static
     {
         $this->alsoKnownAs = $alsoKnownAs;
 
@@ -205,9 +195,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $biography
-     * @return self
      */
-    public function setBiography($biography)
+    public function setBiography($biography): static
     {
         $this->biography = $biography;
 
@@ -222,20 +211,16 @@ class Person extends AbstractModel implements PersonInterface
         return $this->birthday;
     }
 
-    /**
-     * @param mixed $birthday
-     * @return self
-     */
-    public function setBirthday($birthday)
+    public function setBirthday($birthday): static
     {
         if (!$birthday instanceof DateTime && !empty($birthday)) {
-            if (ctype_digit($birthday) && strlen($birthday) == 4) {
+            if (ctype_digit((string) $birthday) && 4 === \strlen($birthday)) {
                 $birthday = DateTime::createFromFormat(
                     'Y-m-d',
-                    sprintf('%d-01-01', $birthday),
-                    new \DateTimeZone('UTC')
+                    \sprintf('%d-01-01', $birthday),
+                    new DateTimeZone('UTC'),
                 );
-            } elseif (strtotime($birthday) === false) {
+            } elseif (false === strtotime((string) $birthday)) {
                 $birthday = DateTime::createFromFormat('Y-d-m', $birthday);
             } else {
                 $birthday = new DateTime($birthday);
@@ -259,39 +244,28 @@ class Person extends AbstractModel implements PersonInterface
         return $this->changes;
     }
 
-    /**
-     * @param GenericCollection $changes
-     * @return self
-     */
-    public function setChanges(GenericCollection $changes)
+    public function setChanges(GenericCollection $changes): static
     {
         $this->changes = $changes;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getDeathday()
     {
         return $this->deathday;
     }
 
-    /**
-     * @param mixed $deathday
-     * @return self
-     */
-    public function setDeathday($deathday)
+    public function setDeathday($deathday): static
     {
         if (!$deathday instanceof DateTime && !empty($deathday)) {
-            if (ctype_digit($deathday) && strlen($deathday) == 4) {
+            if (ctype_digit((string) $deathday) && 4 === \strlen($deathday)) {
                 $deathday = DateTime::createFromFormat(
                     'Y-m-d',
-                    sprintf('%d-01-01', $deathday),
-                    new \DateTimeZone('UTC')
+                    \sprintf('%d-01-01', $deathday),
+                    new DateTimeZone('UTC'),
                 );
-            } elseif (strtotime($deathday) === false) {
+            } elseif (false === strtotime((string) $deathday)) {
                 $deathday = DateTime::createFromFormat('Y-d-m', $deathday);
             } else {
                 $deathday = new DateTime($deathday);
@@ -317,9 +291,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $homepage
-     * @return self
      */
-    public function setHomepage($homepage)
+    public function setHomepage($homepage): static
     {
         $this->homepage = $homepage;
 
@@ -327,20 +300,17 @@ class Person extends AbstractModel implements PersonInterface
     }
 
     /**
-     * @return integer
+     * @return int
      */
+    #[\Override]
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     * @return self
-     */
-    public function setId($id)
+    public function setId($id): static
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
 
         return $this;
     }
@@ -355,9 +325,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param Images $images
-     * @return self
      */
-    public function setImages($images)
+    public function setImages($images): static
     {
         $this->images = $images;
 
@@ -367,16 +336,16 @@ class Person extends AbstractModel implements PersonInterface
     /**
      * @return string
      */
+    #[\Override]
     public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param  string $knownForDepartment
-     * @return self
+     * @param string $knownForDepartment
      */
-    public function setKnownForDepartment($knownForDepartment)
+    public function setKnownForDepartment($knownForDepartment): static
     {
         $this->knownForDepartment = $knownForDepartment;
 
@@ -393,9 +362,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -412,9 +380,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $placeOfBirth
-     * @return self
      */
-    public function setPlaceOfBirth($placeOfBirth)
+    public function setPlaceOfBirth($placeOfBirth): static
     {
         $this->placeOfBirth = $placeOfBirth;
 
@@ -431,9 +398,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param string $profilePath
-     * @return self
      */
-    public function setProfilePath($profilePath)
+    public function setProfilePath($profilePath): static
     {
         $this->profilePath = $profilePath;
 
@@ -448,11 +414,7 @@ class Person extends AbstractModel implements PersonInterface
         return $this->profileImage;
     }
 
-    /**
-     * @param ProfileImage $profileImage
-     * @return self
-     */
-    public function setProfileImage(ProfileImage $profileImage)
+    public function setProfileImage(ProfileImage $profileImage): static
     {
         $this->profileImage = $profileImage;
 
@@ -469,9 +431,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param CombinedCredits $combinedCredits
-     * @return self
      */
-    public function setCombinedCredits($combinedCredits)
+    public function setCombinedCredits($combinedCredits): static
     {
         $this->combinedCredits = $combinedCredits;
 
@@ -488,9 +449,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param MovieCredits $movieCredits
-     * @return self
      */
-    public function setMovieCredits($movieCredits)
+    public function setMovieCredits($movieCredits): static
     {
         $this->movieCredits = $movieCredits;
 
@@ -507,9 +467,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param TvCredits $tvCredits
-     * @return self
      */
-    public function setTvCredits($tvCredits)
+    public function setTvCredits($tvCredits): static
     {
         $this->tvCredits = $tvCredits;
 
@@ -526,9 +485,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param ExternalIds $externalIds
-     * @return self
      */
-    public function setExternalIds($externalIds)
+    public function setExternalIds($externalIds): static
     {
         $this->externalIds = $externalIds;
 
@@ -545,9 +503,8 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param GenericCollection $taggedImages
-     * @return self
      */
-    public function setTaggedImages($taggedImages)
+    public function setTaggedImages($taggedImages): static
     {
         $this->taggedImages = $taggedImages;
 
@@ -564,47 +521,35 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param GenericCollection $knownFor
-     * @return self
      */
-    public function setKnownFor($knownFor)
+    public function setKnownFor($knownFor): static
     {
         $this->knownFor = $knownFor;
 
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function isMale()
+    public function isMale(): bool
     {
-        return $this->gender === 2;
+        return 2 === $this->gender;
     }
 
-    /**
-     * @return bool
-     */
-    public function isFemale()
+    public function isFemale(): bool
     {
-        return $this->gender === 1;
+        return 1 === $this->gender;
     }
 
-    /**
-     * @return bool
-     */
-    public function isUnknownGender()
+    public function isUnknownGender(): bool
     {
-        return $this->gender === 0;
+        return 0 === $this->gender;
     }
 
     /**
      * @param int $gender
-     *
-     * @return void
      */
     public function setGender($gender): void
     {
-        $this->gender = (int)$gender;
+        $this->gender = (int) $gender;
     }
 
     /**
@@ -617,25 +562,17 @@ class Person extends AbstractModel implements PersonInterface
 
     /**
      * @param float $popularity
-     *
-     * @return void
      */
     public function setPopularity($popularity): void
     {
         $this->popularity = $popularity;
     }
 
-    /**
-     * @return string|null
-     */
     public function getImdbId(): ?string
     {
         return $this->imdbId;
     }
 
-    /**
-     * @param string|null $imdbId
-     */
     public function setImdbId(?string $imdbId): void
     {
         $this->imdbId = $imdbId;

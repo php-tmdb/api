@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model\Person;
 use Tmdb\Model\Collection\People\PersonInterface;
 
 /**
- * Class CastMember
- * @package Tmdb\Model\Person
+ * Class CastMember.
  */
 class CastMember extends AbstractMember implements PersonInterface
 {
@@ -29,23 +30,14 @@ class CastMember extends AbstractMember implements PersonInterface
         'name',
         'character',
         'order',
-        'profile_path'
+        'profile_path',
     ];
     /**
      * @var string
      */
     private $character;
-    /**
-     * @var int
-     */
-    private $order;
-    /**
-     * @var mixed
-     */
-    private $castId;
-    /**
-     * @var mixed
-     */
+    private ?int $order = null;
+    private ?int $castId = null;
     private $creditId;
 
     /**
@@ -58,9 +50,8 @@ class CastMember extends AbstractMember implements PersonInterface
 
     /**
      * @param string $character
-     * @return self
      */
-    public function setCharacter($character)
+    public function setCharacter($character): static
     {
         $this->character = $character;
 
@@ -77,11 +68,10 @@ class CastMember extends AbstractMember implements PersonInterface
 
     /**
      * @param int $order
-     * @return self
      */
-    public function setOrder($order)
+    public function setOrder($order): static
     {
-        $this->order = (int)$order;
+        $this->order = (int) $order;
 
         return $this;
     }
@@ -94,30 +84,19 @@ class CastMember extends AbstractMember implements PersonInterface
         return $this->castId;
     }
 
-    /**
-     * @param mixed $castId
-     * @return self
-     */
-    public function setCastId($castId)
+    public function setCastId($castId): static
     {
-        $this->castId = (int)$castId;
+        $this->castId = (int) $castId;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getCreditId()
     {
         return $this->creditId;
     }
 
-    /**
-     * @param mixed $creditId
-     * @return self
-     */
-    public function setCreditId($creditId)
+    public function setCreditId($creditId): static
     {
         $this->creditId = $creditId;
 

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,8 +20,7 @@ use DateTime;
 use Tmdb\Model\Search\SearchQuery;
 
 /**
- * Class MovieSearchQuery
- * @package Tmdb\Model\Search\SearchQuery
+ * Class MovieSearchQuery.
  */
 class MovieSearchQuery extends SearchQuery
 {
@@ -27,8 +28,6 @@ class MovieSearchQuery extends SearchQuery
      * ISO 639-1 code.
      *
      * @param string $language
-     *
-     * @return self
      */
     public function language($language): self
     {
@@ -38,15 +37,13 @@ class MovieSearchQuery extends SearchQuery
     }
 
     /**
-     * Toggle the inclusion of adult titles. Expected value is: true or false
+     * Toggle the inclusion of adult titles. Expected value is: true or false.
      *
      * @param bool $include_adult
-     *
-     * @return self
      */
     public function includeAdult($include_adult): self
     {
-        $this->set('include_adult', (bool)$include_adult);
+        $this->set('include_adult', (bool) $include_adult);
 
         return $this;
     }
@@ -55,8 +52,6 @@ class MovieSearchQuery extends SearchQuery
      * Filter the results release dates to matches that include this value.
      *
      * @param string|DateTime $year
-     *
-     * @return self
      */
     public function year($year): self
     {
@@ -64,7 +59,7 @@ class MovieSearchQuery extends SearchQuery
             $year = $year->format('Y');
         }
 
-        $this->set('year', (int)$year);
+        $this->set('year', (int) $year);
 
         return $this;
     }
@@ -73,8 +68,6 @@ class MovieSearchQuery extends SearchQuery
      * Filter the results so that only the primary release dates have this value.
      *
      * @param string $primary_release_year
-     *
-     * @return self
      */
     public function primaryReleaseYear($primary_release_year): self
     {
@@ -93,9 +86,7 @@ class MovieSearchQuery extends SearchQuery
      *
      * @param string $search_type
      *
-     * @return self
      * @deprecated
-     *
      */
     public function searchType($search_type = 'phrase'): self
     {

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Neil Daniels <neil.here@gmail.com>
  * @copyright (c) 2021, Neil Daniels
+ *
  * @version 4.0.0
  */
 
@@ -19,8 +21,7 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Filter\CountryFilter;
 
 /**
- * Class Watch Providers
- * @package Tmdb\Model\Watch
+ * Class Watch Providers.
  */
 class Providers extends AbstractModel implements CountryFilter
 {
@@ -29,16 +30,16 @@ class Providers extends AbstractModel implements CountryFilter
         'link',
         'flatrate',
         'rent',
-        'buy'
+        'buy',
     ];
-    private $iso31661;
-    private $link;
-    private $flatrate;
-    private $rent;
-    private $buy;
+    private ?string $iso31661 = null;
+    private ?string $link = null;
+    private \Tmdb\Model\Common\GenericCollection $flatrate;
+    private \Tmdb\Model\Common\GenericCollection $rent;
+    private \Tmdb\Model\Common\GenericCollection $buy;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * Set all default collections
      */
@@ -49,18 +50,11 @@ class Providers extends AbstractModel implements CountryFilter
         $this->buy = new GenericCollection();
     }
 
-    /**
-     * @return string|null
-     */
     public function getLink(): ?string
     {
         return $this->link;
     }
 
-    /**
-     * @param string|null $link
-     * @return self
-     */
     public function setLink(?string $link): self
     {
         $this->link = $link;
@@ -68,18 +62,12 @@ class Providers extends AbstractModel implements CountryFilter
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
+    #[\Override]
     public function getIso31661(): ?string
     {
         return $this->iso31661;
     }
 
-    /**
-     * @param string $iso31661
-     * @return self
-     */
     public function setIso31661(?string $iso31661): self
     {
         $this->iso31661 = $iso31661;
@@ -87,18 +75,11 @@ class Providers extends AbstractModel implements CountryFilter
         return $this;
     }
 
-    /**
-     * @return GenericCollection
-     */
     public function getFlatrate(): GenericCollection
     {
         return $this->flatrate;
     }
 
-    /**
-     * @param GenericCollection $flatrate
-     * @return self
-     */
     public function setFlatrate(GenericCollection $flatrate): self
     {
         $this->flatrate = $flatrate;
@@ -106,18 +87,11 @@ class Providers extends AbstractModel implements CountryFilter
         return $this;
     }
 
-    /**
-     * @return GenericCollection
-     */
     public function getRent(): GenericCollection
     {
         return $this->rent;
     }
 
-    /**
-     * @param GenericCollection $rent
-     * @return self
-     */
     public function setRent(GenericCollection $rent): self
     {
         $this->rent = $rent;
@@ -125,18 +99,11 @@ class Providers extends AbstractModel implements CountryFilter
         return $this;
     }
 
-    /**
-     * @return GenericCollection
-     */
     public function getBuy(): GenericCollection
     {
         return $this->buy;
     }
 
-    /**
-     * @param GenericCollection $buy
-     * @return self
-     */
     public function setBuy(GenericCollection $buy): self
     {
         $this->buy = $buy;

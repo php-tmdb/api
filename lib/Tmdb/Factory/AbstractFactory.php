@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,7 +20,6 @@ use RuntimeException;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Event\BeforeHydrationEvent;
 use Tmdb\Event\HydrationEvent;
-use Tmdb\Event\TmdbEvents;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\ResultCollection;
@@ -28,53 +29,42 @@ use Tmdb\Model\Common\Rating;
 use Tmdb\Model\Lists\Result;
 
 /**
- * Class AbstractFactory
+ * Class AbstractFactory.
  *
  * @template T of AbstractModel
- *
- * @package Tmdb\Factory
  */
 abstract class AbstractFactory
 {
     /**
-     * @var HttpClient
+     * Constructor.
      */
-    protected $httpClient;
-
-    /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
-     */
-    public function __construct(HttpClient $httpClient)
+    public function __construct(protected \Tmdb\HttpClient\HttpClient $httpClient)
     {
-        $this->httpClient = $httpClient;
     }
 
     /**
-     * Convert an array to an hydrated object
+     * Convert an array to an hydrated object.
      *
-     * @param array $data
      * @return T
      */
     abstract public function create(array $data = []);
 
     /**
-     * Convert an array with an collection of items to an hydrated object collection
+     * Convert an array with an collection of items to an hydrated object collection.
      *
-     * @param array $data
      * @return GenericCollection<T>
      */
     abstract public function createCollection(array $data = []);
 
     /**
-     * Create a result collection
+     * Create a result collection.
      *
-     * @param null|array $data
-     * @param string $method
+     * @param array|null $data
+     * @param string     $method
+     *
      * @return ResultCollection<T>
      */
-    public function createResultCollection($data = [], $method = 'create'): ResultCollection
+    public function createResultCollection(array $data = [], $method = 'create'): ResultCollection
     {
         /** @var ResultCollection<T> */
         $collection = new ResultCollection();
@@ -83,33 +73,32 @@ abstract class AbstractFactory
             return $collection;
         }
 
-        if (array_key_exists('page', $data)) {
+        if (\array_key_exists('page', $data)) {
             $collection->setPage($data['page']);
         }
 
-        if (array_key_exists('total_pages', $data)) {
+        if (\array_key_exists('total_pages', $data)) {
             $collection->setTotalPages($data['total_pages']);
         }
 
-        if (array_key_exists('total_results', $data)) {
+        if (\array_key_exists('total_results', $data)) {
             $collection->setTotalResults($data['total_results']);
         }
 
-        if (array_key_exists('results', $data)) {
+        if (\array_key_exists('results', $data)) {
             $data = $data['results'];
         }
 
         foreach ($data as $item) {
-            $collection->add(null, $this->$method($item));
+            $collection->add(null, $this->{$method}($item));
         }
 
         return $collection;
     }
 
     /**
-     * Create rating
+     * Create rating.
      *
-     * @param array $data
      * @return Rating
      */
     public function createRating(array $data = [])
@@ -118,12 +107,13 @@ abstract class AbstractFactory
     }
 
     /**
-     * Hydrate the object with data
+     * Hydrate the object with data.
      *
      * @template S of AbstractModel
      *
-     * @param S $subject
+     * @param S     $subject
      * @param array $data
+     *
      * @return S
      */
     protected function hydrate(AbstractModel $subject, $data = [])
@@ -135,9 +125,10 @@ abstract class AbstractFactory
         $eventBasedHydrationModels = $hydrationOptions['only_for_specified_models'];
 
         if (
-            $eventListenerHandlesHydration && empty($eventBasedHydrationModels) || in_array(
-                get_class($subject),
-                $eventBasedHydrationModels
+            $eventListenerHandlesHydration && empty($eventBasedHydrationModels) || \in_array(
+                $subject::class,
+                $eventBasedHydrationModels,
+                true,
             )
         ) {
             $event = new HydrationEvent($subject, $data);
@@ -160,7 +151,7 @@ abstract class AbstractFactory
     }
 
     /**
-     * Get the http client
+     * Get the http client.
      *
      * @return HttpClient
      */
@@ -170,16 +161,15 @@ abstract class AbstractFactory
     }
 
     /**
-     * Create the account states
+     * Create the account states.
      *
-     * @param array $data
      * @return AccountStates
      */
     public function createAccountStates(array $data = [])
     {
         $accountStates = new AccountStates();
 
-        if (array_key_exists('rated', $data)) {
+        if (\array_key_exists('rated', $data)) {
             if ($data['rated']) {
                 $rating = new Rating();
 
@@ -193,9 +183,8 @@ abstract class AbstractFactory
     }
 
     /**
-     * Create result
+     * Create result.
      *
-     * @param array $data
      * @return Result
      */
     public function createResult(array $data = [])
@@ -204,10 +193,10 @@ abstract class AbstractFactory
     }
 
     /**
-     * Create a generic collection of data and map it on the class by it's static parameter $properties
+     * Create a generic collection of data and map it on the class by it's static parameter $properties.
      *
      * @template S of AbstractModel
-     * @param array $data
+     *
      * @param S|string $class
      *
      * @return GenericCollection<S>
@@ -218,8 +207,8 @@ abstract class AbstractFactory
             throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
         }
 
-        if (is_object($class)) {
-            $class = get_class($class);
+        if (\is_object($class)) {
+            $class = $class::class;
         }
 
         /** @var GenericCollection<S> */
@@ -233,26 +222,27 @@ abstract class AbstractFactory
     }
 
     /**
-     * Create a generic collection of data and map it on the class by it's static parameter $properties
+     * Create a generic collection of data and map it on the class by it's static parameter $properties.
      *
      * @template S of AbstractModel
      * @template SC of GenericCollection<S>
-     * @param array $data
+     *
      * @param S|string $class
-     * @param SC $collection
+     * @param SC       $collection
+     *
      * @return SC
      */
     protected function createCustomCollection(
         array $data,
         $class,
-        GenericCollection $collection
+        GenericCollection $collection,
     ) {
         if (!$class) {
             throw new \Tmdb\Exception\RuntimeException('Expected a class to be present.');
         }
 
-        if (is_object($class)) {
-            $class = get_class($class);
+        if (\is_object($class)) {
+            $class = $class::class;
         }
 
         foreach ($data as $item) {
@@ -263,9 +253,10 @@ abstract class AbstractFactory
     }
 
     /**
-     * Create an generic collection of an array that consists out of a mix of movies and tv shows
+     * Create an generic collection of an array that consists out of a mix of movies and tv shows.
      *
      * @param array $data
+     *
      * @return GenericCollection<AbstractModel>
      */
     protected function createGenericCollectionFromMediaTypes($data = [])
@@ -275,18 +266,11 @@ abstract class AbstractFactory
         $collection = new GenericCollection();
 
         foreach ($data as $item) {
-            switch ($item['media_type']) {
-                case "movie":
-                    $collection->add(null, $movieFactory->create($item));
-                    break;
-
-                case "tv":
-                    $collection->add(null, $tvFactory->create($item));
-                    break;
-
-                default:
-                    throw new RuntimeException('Unknown media type "%s"', $item['media_type']);
-            }
+            match ($item['media_type']) {
+                'movie' => $collection->add(null, $movieFactory->create($item)),
+                'tv' => $collection->add(null, $tvFactory->create($item)),
+                default => throw new RuntimeException('Unknown media type "%s"', $item['media_type']),
+            };
         }
 
         return $collection;

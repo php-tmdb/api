@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -29,45 +31,26 @@ use Tmdb\Exception\TmdbApiException;
 use Tmdb\HttpClient\HttpClient;
 
 /**
- * Class RequestSubscriber
- * @package Tmdb\Event
+ * Class RequestSubscriber.
  */
 class RequestListener
 {
-    /**
-     * @var HttpClient
-     */
-    private $httpClient;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
-
-    /**
-     * @var ResponseExceptionFactory
-     */
-    protected $responseExceptionFactory;
+    protected \Tmdb\Exception\Factory\ResponseExceptionFactory $responseExceptionFactory;
 
     /**
      * RequestListener constructor.
-     * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(HttpClient $httpClient, EventDispatcherInterface $eventDispatcher)
+    public function __construct(private readonly HttpClient $httpClient, protected \Psr\EventDispatcher\EventDispatcherInterface $eventDispatcher)
     {
-        $this->httpClient = $httpClient;
-        $this->eventDispatcher = $eventDispatcher;
         $this->responseExceptionFactory = new ResponseExceptionFactory();
     }
 
     /**
-     * @param RequestEvent $event
-     * @return void
      * @throws Exception
      * @throws TmdbApiException
      * @throws ClientExceptionInterface
      */
-    public function __invoke(RequestEvent $event)
+    public function __invoke(RequestEvent $event): void
     {
         // Preparation of request parameters / Possibility to use for logging and caching etc.
         $beforeRequestEvent = new BeforeRequestEvent($event->getRequest());
@@ -77,6 +60,7 @@ class RequestListener
 
         if ($beforeRequestEvent->isPropagationStopped() && $beforeRequestEvent->hasResponse()) {
             $event->setResponse($beforeRequestEvent->getResponse());
+
             return;
         }
 
@@ -88,10 +72,7 @@ class RequestListener
 
         try {
             if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 600) {
-                throw $this->responseExceptionFactory->createTmdbApiException(
-                    $beforeRequestEvent->getRequest(),
-                    $response
-                );
+                throw $this->responseExceptionFactory->createTmdbApiException($beforeRequestEvent->getRequest(), $response);
             }
 
             $event->setRequest($beforeRequestEvent->getRequest());
@@ -105,10 +86,8 @@ class RequestListener
     }
 
     /**
-     * Call upon the adapter to create an response object
+     * Call upon the adapter to create an response object.
      *
-     * @param RequestEvent $event
-     * @return ResponseInterface
      * @throws Exception
      * @throws ClientExceptionInterface
      */
@@ -118,14 +97,11 @@ class RequestListener
     }
 
     /**
-     * @param ClientExceptionInterface $e
-     * @param RequestInterface $request
-     * @return ResponseInterface
      * @throws ClientExceptionInterface
      */
     protected function handleClientException(
         ClientExceptionInterface $e,
-        RequestInterface $request
+        RequestInterface $request,
     ): ResponseInterface {
         // In the event of failures, you can recover certain exceptions.
         $exceptionEvent = new HttpClientExceptionEvent($e, $request);
@@ -140,8 +116,6 @@ class RequestListener
     }
 
     /**
-     * @param TmdbApiException $e
-     * @return ResponseInterface
      * @throws TmdbApiException
      */
     protected function handleTmdbApiException(TmdbApiException $e): ResponseInterface

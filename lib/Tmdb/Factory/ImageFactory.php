@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,9 +21,9 @@ use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image;
 
 /**
- * Class ImageFactory
+ * Class ImageFactory.
+ *
  * @extends AbstractFactory<Image>
- * @package Tmdb\Factory
  */
 class ImageFactory extends AbstractFactory
 {
@@ -30,8 +32,8 @@ class ImageFactory extends AbstractFactory
      *
      * '/xkQ5yWnMjpC2bGmu7GsD66AAoKO.jpg', 'backdrop_path'
      *
-     * @param $path
      * @param string $key
+     *
      * @return ($key is ('poster'|'posters'|'poster_path') ? Image\PosterImage
      *          : $key is ('backdrop'|'backdrops'|'backdrop_path') ? Image\BackdropImage
      *          : $key is ('profile'|'profiles'|'profile_path') ? Image\ProfileImage
@@ -43,14 +45,15 @@ class ImageFactory extends AbstractFactory
     {
         return $this->hydrate(
             self::resolveImageType($key),
-            ['file_path' => $path]
+            ['file_path' => $path],
         );
     }
 
     /**
-     * Helper function to obtain a new object for an image type
+     * Helper function to obtain a new object for an image type.
      *
      * @param string|null $key
+     *
      * @return ($key is ('poster'|'posters'|'poster_path') ? Image\PosterImage
      *          : $key is ('backdrop'|'backdrops'|'backdrop_path') ? Image\BackdropImage
      *          : $key is ('profile'|'profiles'|'profile_path') ? Image\ProfileImage
@@ -60,95 +63,37 @@ class ImageFactory extends AbstractFactory
      */
     public function resolveImageType($key = null)
     {
-        switch ($key) {
-            case 'poster':
-            case 'posters':
-            case 'poster_path':
-                $object = new Image\PosterImage();
-                break;
-
-            case 'backdrop':
-            case 'backdrops':
-            case 'backdrop_path':
-                $object = new Image\BackdropImage();
-                break;
-
-            case 'profile':
-            case 'profiles':
-            case 'profile_path':
-                $object = new Image\ProfileImage();
-                break;
-
-            case 'logo':
-            case 'logos':
-            case 'logo_path':
-                $object = new Image\LogoImage();
-                break;
-
-            case 'still':
-            case 'stills':
-            case 'still_path':
-                $object = new Image\StillImage();
-                break;
-
-            case 'file_path':
-            default:
-                $object = new Image();
-                break;
-        }
-
-        return $object;
+        return match ($key) {
+            'poster', 'posters', 'poster_path' => new Image\PosterImage(),
+            'backdrop', 'backdrops', 'backdrop_path' => new Image\BackdropImage(),
+            'profile', 'profiles', 'profile_path' => new Image\ProfileImage(),
+            'logo', 'logos', 'logo_path' => new Image\LogoImage(),
+            'still', 'stills', 'still_path' => new Image\StillImage(),
+            default => new Image(),
+        };
     }
 
     /**
      * Create an Media/Image type which is used in calls like person/tagged_images, which contains an getMedia()
      * reference either referring to movies / tv shows etc.
      *
-     * @param array $data
-     * @return Image
-     *
      * @throws \RuntimeException
      */
     public function createMediaImage(array $data = []): Image
     {
-        $type = $this->resolveImageType(array_key_exists('image_type', $data) ? $data['image_type'] : null);
+        $type = $this->resolveImageType($data['image_type'] ?? null);
         $image = $this->hydrate($type, $data);
 
-        if (array_key_exists('media', $data) && array_key_exists('media_type', $data)) {
-            switch ($data['media_type']) {
-                case "movie":
-                    $factory = new MovieFactory($this->getHttpClient());
-                    break;
-
-                case "tv":
-                    $factory = new TvFactory($this->getHttpClient());
-                    break;
-
-                case "season":
-                    $factory = new TvSeasonFactory($this->getHttpClient());
-                    break;
-
-                // I don't think this ever occurs, but just in case..
-                case "episode":
-                    $factory = new TvEpisodeFactory($this->getHttpClient());
-                    break;
-
-                // I don't think this ever occurs, but just in case..
-                case "person":
-                    $factory = new PeopleFactory($this->getHttpClient());
-                    break;
-
-                default:
-                    throw new RuntimeException(sprintf(
-                        'Unrecognized media_type "%s" for method "%s::%s".',
-                        $data['media_type'],
-                        __CLASS__,
-                        __METHOD__
-                    ));
-            }
-
+        if (\array_key_exists('media', $data) && \array_key_exists('media_type', $data)) {
+            $factory = match ($data['media_type']) {
+                'movie' => new MovieFactory($this->getHttpClient()),
+                'tv' => new TvFactory($this->getHttpClient()),
+                'season' => new TvSeasonFactory($this->getHttpClient()),
+                'episode' => new TvEpisodeFactory($this->getHttpClient()),
+                'person' => new PeopleFactory($this->getHttpClient()),
+                default => throw new RuntimeException(\sprintf('Unrecognized media_type "%s" for method "%s::%s".', $data['media_type'], self::class, __METHOD__)),
+            };
             $media = $factory->create($data['media']);
-
             $image->setMedia($media);
         }
 
@@ -156,11 +101,9 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Create generic collection
-     *
-     * @param array $data
-     * @return Images
+     * Create generic collection.
      */
+    #[\Override]
     public function createCollection(array $data = []): Images
     {
         $collection = new Images();
@@ -173,12 +116,11 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Convert an array to an hydrated object
+     * Convert an array to an hydrated object.
      *
-     * @param array $data
      * @param string|null $key
-     * @return Image
      */
+    #[\Override]
     public function create(array $data = [], $key = null): Image
     {
         $type = self::resolveImageType($key);
@@ -187,9 +129,8 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Create full movie collection
+     * Create full movie collection.
      *
-     * @param array $data
      * @return Images
      */
     public function createCollectionFromMovie(array $data = [])
@@ -198,22 +139,19 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Create full collection
-     *
-     * @param array $data
-     * @return Images
+     * Create full collection.
      */
-    public function createImageCollection(array $data = [])
+    public function createImageCollection(array $data = []): \Tmdb\Model\Collection\Images
     {
         $collection = new Images();
 
         foreach ($data as $format => $formatCollection) {
-            if (!is_array($formatCollection)) {
+            if (!\is_array($formatCollection)) {
                 continue;
             }
 
             foreach ($formatCollection as $item) {
-                if (array_key_exists($format, Image::$formats)) {
+                if (\array_key_exists($format, Image::$formats)) {
                     $item = $this->create($item, $format);
 
                     $collection->addImage($item);
@@ -225,9 +163,8 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Create full tv show collection
+     * Create full tv show collection.
      *
-     * @param array $data
      * @return Images
      */
     public function createCollectionFromTv(array $data = [])
@@ -236,9 +173,8 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Create full tv season collection
+     * Create full tv season collection.
      *
-     * @param array $data
      * @return Images
      */
     public function createCollectionFromTvSeason(array $data = [])
@@ -247,9 +183,8 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Create full tv episode collection
+     * Create full tv episode collection.
      *
-     * @param array $data
      * @return Images
      */
     public function createCollectionFromTvEpisode(array $data = [])
@@ -258,9 +193,8 @@ class ImageFactory extends AbstractFactory
     }
 
     /**
-     * Create full people collection
+     * Create full people collection.
      *
-     * @param array $data
      * @return Images
      */
     public function createCollectionFromPeople(array $data = [])

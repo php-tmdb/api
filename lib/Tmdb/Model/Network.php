@@ -1,27 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Model;
 
 /**
- * Class Network
- * @package Tmdb\Model
+ * Class Network.
  */
 class Network extends AbstractModel
 {
     /**
-     * Properties that are available in the API
+     * Properties that are available in the API.
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
      *
@@ -33,53 +34,33 @@ class Network extends AbstractModel
         'headquarters',
         'homepage',
         'logo_path',
-        'origin_country'
+        'origin_country',
     ];
 
-    /**
-     * @var integer
-     */
-    private $id;
+    private ?int $id = null;
     /**
      * @var string
      */
     private $name;
-    /**
-     * @var string
-     */
-    private $headquarters;
+    private ?string $headquarters = null;
+
+    private ?string $homepage = null;
+
+    private ?string $logoPath = null;
+
+    private ?string $originCountry = null;
 
     /**
-     * @var string
-     */
-    private $homepage;
-
-    /**
-     * @var string|null
-     */
-    private $logoPath;
-
-    /**
-     * @var string
-     */
-    private $originCountry;
-
-
-    /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     * @return self
-     */
-    public function setId($id)
+    public function setId($id): static
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
 
         return $this;
     }
@@ -94,26 +75,19 @@ class Network extends AbstractModel
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getHeadquarters(): string
     {
         return $this->headquarters;
     }
 
-    /**
-     * @param string $headquarters
-     * @return Network
-     */
     public function setHeadquarters(string $headquarters): Network
     {
         $this->headquarters = $headquarters;
@@ -121,18 +95,11 @@ class Network extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getHomepage(): string
     {
         return $this->homepage;
     }
 
-    /**
-     * @param string $homepage
-     * @return Network
-     */
     public function setHomepage(string $homepage): Network
     {
         $this->homepage = $homepage;
@@ -140,18 +107,11 @@ class Network extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLogoPath(): ?string
     {
         return $this->logoPath;
     }
 
-    /**
-     * @param string|null $logoPath
-     * @return Network
-     */
     public function setLogoPath(?string $logoPath): Network
     {
         $this->logoPath = $logoPath;
@@ -159,18 +119,11 @@ class Network extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getOriginCountry(): string
     {
         return $this->originCountry;
     }
 
-    /**
-     * @param string $originCountry
-     * @return Network
-     */
     public function setOriginCountry(string $originCountry): Network
     {
         $this->originCountry = $originCountry;

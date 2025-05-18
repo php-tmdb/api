@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,8 +20,7 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
- * Class Media
- * @package Tmdb\Model\Credits
+ * Class Media.
  */
 class Media extends AbstractModel
 {
@@ -30,7 +31,7 @@ class Media extends AbstractModel
         'character',
     ];
     /**
-     * @var integer
+     * @var int
      */
     private $id;
     /**
@@ -64,9 +65,8 @@ class Media extends AbstractModel
 
     /**
      * @param string $character
-     * @return self
      */
-    public function setCharacter($character)
+    public function setCharacter($character): static
     {
         $this->character = $character;
 
@@ -83,9 +83,8 @@ class Media extends AbstractModel
 
     /**
      * @param GenericCollection $episodes
-     * @return self
      */
-    public function setEpisodes($episodes)
+    public function setEpisodes($episodes): static
     {
         $this->episodes = $episodes;
 
@@ -102,9 +101,8 @@ class Media extends AbstractModel
 
     /**
      * @param int $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -121,9 +119,8 @@ class Media extends AbstractModel
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -140,9 +137,8 @@ class Media extends AbstractModel
 
     /**
      * @param string $originalName
-     * @return self
      */
-    public function setOriginalName($originalName)
+    public function setOriginalName($originalName): static
     {
         $this->originalName = $originalName;
 
@@ -159,9 +155,8 @@ class Media extends AbstractModel
 
     /**
      * @param GenericCollection $seasons
-     * @return self
      */
-    public function setSeasons($seasons)
+    public function setSeasons($seasons): static
     {
         $this->seasons = $seasons;
 

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -33,48 +35,47 @@ use Tmdb\Model\Search\SearchQuery;
 use Tmdb\Model\Search\SearchQuery\CollectionSearchQuery;
 use Tmdb\Model\Search\SearchQuery\CompanySearchQuery;
 use Tmdb\Model\Search\SearchQuery\KeywordSearchQuery;
-use Tmdb\Model\Search\SearchQuery\ListSearchQuery;
 use Tmdb\Model\Search\SearchQuery\MovieSearchQuery;
 use Tmdb\Model\Search\SearchQuery\PersonSearchQuery;
 use Tmdb\Model\Search\SearchQuery\TvSearchQuery;
 use Tmdb\Model\Tv;
 
 /**
- * Class SearchRepository
- * @package Tmdb\Repository
+ * Class SearchRepository.
+ *
  * @see http://docs.themoviedb.apiary.io/#search
  */
 class SearchRepository extends AbstractRepository
 {
     /**
-     * @var MovieFactory
+     * @var MovieFactory|mixed
      */
-    private $movieFactory;
+    protected $movieFactory;
 
     /**
-     * @var CollectionFactory
+     * @var CollectionFactory|mixed
      */
-    private $collectionFactory;
+    protected $collectionFactory;
 
     /**
-     * @var TvFactory
+     * @var TvFactory|mixed
      */
-    private $tvFactory;
+    protected $tvFactory;
 
     /**
-     * @var PeopleFactory
+     * @var PeopleFactory|mixed
      */
-    private $peopleFactory;
+    protected $peopleFactory;
 
     /**
-     * @var CompanyFactory
+     * @var CompanyFactory|mixed
      */
-    private $companyFactory;
+    protected $companyFactory;
 
     /**
-     * @var KeywordFactory
+     * @var KeywordFactory|mixed
      */
-    private $keywordFactory;
+    protected $keywordFactory;
 
     public function __construct(Client $client)
     {
@@ -90,12 +91,10 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param string $query
-     * @param MovieSearchQuery $parameters
-     * @param array $headers
      *
      * @return ResultCollection|Movie[]
      */
-    public function searchMovie($query, MovieSearchQuery $parameters, array $headers = [])
+    public function searchMovie($query, MovieSearchQuery $parameters, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->searchMovies($query, $this->getParameters($parameters), $headers);
 
@@ -103,19 +102,21 @@ class SearchRepository extends AbstractRepository
     }
 
     /**
-     * Return the related API class
+     * Return the related API class.
      *
      * @return Search
      */
+    #[\Override]
     public function getApi()
     {
         return $this->getClient()->getSearchApi();
     }
 
     /**
-     * Convert parameters back to an array
+     * Convert parameters back to an array.
      *
      * @param SearchQuery|array $parameters
+     *
      * @return array
      */
     private function getParameters($parameters = [])
@@ -137,9 +138,8 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param MovieFactory $movieFactory
-     * @return self
      */
-    public function setMovieFactory($movieFactory)
+    public function setMovieFactory($movieFactory): static
     {
         $this->movieFactory = $movieFactory;
 
@@ -148,12 +148,8 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param string $query
-     * @param CollectionSearchQuery $parameters
-     * @param array $headers
-     *
-     * @return ResultCollection
      */
-    public function searchCollection($query, CollectionSearchQuery $parameters, array $headers = [])
+    public function searchCollection($query, CollectionSearchQuery $parameters, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->searchCollection($query, $this->getParameters($parameters), $headers);
 
@@ -170,9 +166,8 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param CollectionFactory $collectionFactory
-     * @return self
      */
-    public function setCollectionFactory($collectionFactory)
+    public function setCollectionFactory($collectionFactory): static
     {
         $this->collectionFactory = $collectionFactory;
 
@@ -181,12 +176,10 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param string $query
-     * @param TvSearchQuery $parameters
-     * @param array $headers
      *
      * @return ResultCollection|Tv[]
      */
-    public function searchTv($query, TvSearchQuery $parameters, array $headers = [])
+    public function searchTv($query, TvSearchQuery $parameters, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->searchTv($query, $this->getParameters($parameters), $headers);
 
@@ -203,9 +196,8 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param TvFactory $tvFactory
-     * @return self
      */
-    public function setTvFactory($tvFactory)
+    public function setTvFactory($tvFactory): static
     {
         $this->tvFactory = $tvFactory;
 
@@ -214,12 +206,10 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param string $query
-     * @param PersonSearchQuery $parameters
-     * @param array $headers
      *
      * @return ResultCollection|Person[]
      */
-    public function searchPerson($query, PersonSearchQuery $parameters, array $headers = [])
+    public function searchPerson($query, PersonSearchQuery $parameters, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->searchPersons($query, $this->getParameters($parameters), $headers);
 
@@ -236,9 +226,8 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param PeopleFactory $peopleFactory
-     * @return self
      */
-    public function setPeopleFactory($peopleFactory)
+    public function setPeopleFactory($peopleFactory): static
     {
         $this->peopleFactory = $peopleFactory;
 
@@ -246,13 +235,9 @@ class SearchRepository extends AbstractRepository
     }
 
     /**
-     * @param string $query
-     * @param CompanySearchQuery $parameters
-     * @param array $headers
-     *
      * @return ResultCollection|Company[]
      */
-    public function searchCompany($query, CompanySearchQuery $parameters, array $headers = [])
+    public function searchCompany(string $query, CompanySearchQuery $parameters, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->searchCompany($query, $this->getParameters($parameters), $headers);
 
@@ -269,9 +254,8 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param CompanyFactory $companyFactory
-     * @return self
      */
-    public function setCompanyFactory($companyFactory)
+    public function setCompanyFactory($companyFactory): static
     {
         $this->companyFactory = $companyFactory;
 
@@ -280,12 +264,10 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param string $query
-     * @param KeywordSearchQuery $parameters
-     * @param array $headers
      *
      * @return ResultCollection|Keyword[]
      */
-    public function searchKeyword($query, KeywordSearchQuery $parameters, array $headers = [])
+    public function searchKeyword($query, KeywordSearchQuery $parameters, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->searchKeyword($query, $this->getParameters($parameters), $headers);
 
@@ -302,9 +284,8 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param KeywordFactory $keywordFactory
-     * @return self
      */
-    public function setKeywordFactory($keywordFactory)
+    public function setKeywordFactory($keywordFactory): static
     {
         $this->keywordFactory = $keywordFactory;
 
@@ -313,8 +294,6 @@ class SearchRepository extends AbstractRepository
 
     /**
      * @param string $query
-     * @param KeywordSearchQuery $parameters
-     * @param array $headers
      *
      * @return ResultCollection|Keyword[]
      */
@@ -327,19 +306,19 @@ class SearchRepository extends AbstractRepository
             return $collection;
         }
 
-        if (array_key_exists('page', $data)) {
+        if (\array_key_exists('page', $data)) {
             $collection->setPage($data['page']);
         }
 
-        if (array_key_exists('total_pages', $data)) {
+        if (\array_key_exists('total_pages', $data)) {
             $collection->setTotalPages($data['total_pages']);
         }
 
-        if (array_key_exists('total_results', $data)) {
+        if (\array_key_exists('total_results', $data)) {
             $collection->setTotalResults($data['total_results']);
         }
 
-        if (array_key_exists('results', $data)) {
+        if (\array_key_exists('results', $data)) {
             foreach ($data['results'] as $item) {
                 if ($item) {
                     $collection->add(null, $this->processSearchMultiItem($item));
@@ -351,9 +330,7 @@ class SearchRepository extends AbstractRepository
     }
 
     /**
-     * Process multi search items
-     *
-     * @param array $item
+     * Process multi search items.
      *
      * @return \Tmdb\Model\AbstractModel|false|null
      *
@@ -361,31 +338,25 @@ class SearchRepository extends AbstractRepository
      */
     private function processSearchMultiItem(array $item)
     {
-        if (array_key_exists('media_type', $item)) {
-            switch ($item['media_type']) {
-                case 'movie':
-                    return $this->getMovieFactory()->create($item);
-                case 'tv':
-                    return $this->getTvFactory()->create($item);
-                case 'person':
-                    return $this->getPeopleFactory()->create($item);
-                default:
-                    throw new RuntimeException(sprintf(
-                        'Could not process media_type "%s" in multi search, type unknown.',
-                        $item['media_type']
-                    ));
-            }
+        if (\array_key_exists('media_type', $item)) {
+            return match ($item['media_type']) {
+                'movie' => $this->getMovieFactory()->create($item),
+                'tv' => $this->getTvFactory()->create($item),
+                'person' => $this->getPeopleFactory()->create($item),
+                default => throw new RuntimeException(\sprintf('Could not process media_type "%s" in multi search, type unknown.', $item['media_type'])),
+            };
         }
 
         return false;
     }
 
     /**
-     * SearchRepository does not support a generic factory
+     * SearchRepository does not support a generic factory.
      *
      * @throws NotImplementedException
      */
-    public function getFactory()
+    #[\Override]
+    public function getFactory(): void
     {
         throw new NotImplementedException('SearchRepository does not support a generic factory.');
     }

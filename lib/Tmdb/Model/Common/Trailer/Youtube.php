@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model\Common\Trailer;
 use Tmdb\Model\Common\AbstractTrailer;
 
 /**
- * Class Youtube
- * @package Tmdb\Model\Common\Trailer
+ * Class Youtube.
  */
 class Youtube extends AbstractTrailer
 {
@@ -27,7 +28,7 @@ class Youtube extends AbstractTrailer
         'name',
         'size',
         'source',
-        'type'
+        'type',
     ];
     private $name;
     private $size;
@@ -35,13 +36,12 @@ class Youtube extends AbstractTrailer
     private $type;
 
     /**
-     * Retrieve the url to the source
-     *
-     * @return string
+     * Retrieve the url to the source.
      */
-    public function getUrl()
+    #[\Override]
+    public function getUrl(): string
     {
-        return sprintf(self::URL, $this->source);
+        return \sprintf(self::URL, $this->source);
     }
 
     /**
@@ -54,9 +54,8 @@ class Youtube extends AbstractTrailer
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -73,9 +72,8 @@ class Youtube extends AbstractTrailer
 
     /**
      * @param string $size
-     * @return self
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -92,9 +90,8 @@ class Youtube extends AbstractTrailer
 
     /**
      * @param string $source
-     * @return self
      */
-    public function setSource($source)
+    public function setSource($source): static
     {
         $this->source = $source;
 
@@ -111,9 +108,8 @@ class Youtube extends AbstractTrailer
 
     /**
      * @param string $type
-     * @return self
      */
-    public function setType($type)
+    public function setType($type): static
     {
         $this->type = $type;
 

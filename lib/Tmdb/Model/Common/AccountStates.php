@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model\Common;
 use Tmdb\Model\AbstractModel;
 
 /**
- * Class AccountStates
- * @package Tmdb\Model\Common
+ * Class AccountStates.
  */
 class AccountStates extends AbstractModel
 {
@@ -28,24 +29,24 @@ class AccountStates extends AbstractModel
         'watchlist',
     ];
     /**
-     * @var integer
+     * @var int
      */
     private $id;
     /**
-     * @var boolean
+     * @var bool
      */
     private $favorite;
     /**
-     * @var Rating|boolean
+     * @var Rating|bool
      */
-    private $rated;
+    private \Tmdb\Model\Common\Rating $rated;
     /**
-     * @var boolean
+     * @var bool
      */
     private $watchlist;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -53,7 +54,7 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getFavorite()
     {
@@ -61,10 +62,9 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @param boolean $favorite
-     * @return self
+     * @param bool $favorite
      */
-    public function setFavorite($favorite)
+    public function setFavorite($favorite): static
     {
         $this->favorite = $favorite;
 
@@ -81,9 +81,8 @@ class AccountStates extends AbstractModel
 
     /**
      * @param int $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -100,9 +99,8 @@ class AccountStates extends AbstractModel
 
     /**
      * @param Rating|bool $rated
-     * @return self
      */
-    public function setRated($rated)
+    public function setRated($rated): static
     {
         $this->rated = $rated;
 
@@ -110,7 +108,7 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getWatchlist()
     {
@@ -118,10 +116,9 @@ class AccountStates extends AbstractModel
     }
 
     /**
-     * @param boolean $watchlist
-     * @return self
+     * @param bool $watchlist
      */
-    public function setWatchlist($watchlist)
+    public function setWatchlist($watchlist): static
     {
         $this->watchlist = $watchlist;
 

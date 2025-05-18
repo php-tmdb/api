@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -20,8 +22,7 @@ use Tmdb\Model\Image\BackdropImage;
 use Tmdb\Model\Image\PosterImage;
 
 /**
- * Class ListItem
- * @package Tmdb\Model\Lists
+ * Class ListItem.
  */
 class ListItem extends AbstractModel
 {
@@ -36,7 +37,7 @@ class ListItem extends AbstractModel
         'poster_path',
         'title',
         'vote_average',
-        'vote_count'
+        'vote_count',
     ];
     /**
      * @var string
@@ -89,9 +90,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param BackdropImage $backdropImage
-     * @return self
      */
-    public function setBackdropImage($backdropImage)
+    public function setBackdropImage($backdropImage): static
     {
         $this->backdropImage = $backdropImage;
 
@@ -108,9 +108,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $backdropPath
-     * @return self
      */
-    public function setBackdropPath($backdropPath)
+    public function setBackdropPath($backdropPath): static
     {
         $this->backdropPath = $backdropPath;
 
@@ -127,9 +126,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param int $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -146,9 +144,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $originalTitle
-     * @return self
      */
-    public function setOriginalTitle($originalTitle)
+    public function setOriginalTitle($originalTitle): static
     {
         $this->originalTitle = $originalTitle;
 
@@ -165,9 +162,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param PosterImage $posterImage
-     * @return self
      */
-    public function setPosterImage($posterImage)
+    public function setPosterImage($posterImage): static
     {
         $this->posterImage = $posterImage;
 
@@ -184,9 +180,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return self
      */
-    public function setPosterPath($posterPath)
+    public function setPosterPath($posterPath): static
     {
         $this->posterPath = $posterPath;
 
@@ -203,9 +198,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param DateTime $releaseDate
-     * @return self
      */
-    public function setReleaseDate($releaseDate)
+    public function setReleaseDate($releaseDate): static
     {
         $this->releaseDate = $releaseDate;
 
@@ -222,9 +216,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $title
-     * @return self
      */
-    public function setTitle($title)
+    public function setTitle($title): static
     {
         $this->title = $title;
 
@@ -241,9 +234,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param float $voteAverage
-     * @return self
      */
-    public function setVoteAverage($voteAverage)
+    public function setVoteAverage($voteAverage): static
     {
         $this->voteAverage = $voteAverage;
 
@@ -260,9 +252,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param int $voteCount
-     * @return self
      */
-    public function setVoteCount($voteCount)
+    public function setVoteCount($voteCount): static
     {
         $this->voteCount = $voteCount;
 

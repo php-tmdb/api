@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,8 +21,7 @@ use Tmdb\Model\Filter\CountryFilter;
 use Tmdb\Model\Filter\LanguageFilter;
 
 /**
- * Class Video
- * @package Tmdb\Model\Common
+ * Class Video.
  */
 class Video extends AbstractModel implements CountryFilter, LanguageFilter
 {
@@ -32,7 +33,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
         'name',
         'site',
         'size',
-        'type'
+        'type',
     ];
     /**
      * @var string
@@ -46,9 +47,6 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
      * @var string
      */
     private $iso31661;
-    /**
-     * @var mixed
-     */
     private $key;
     /**
      * @var string
@@ -67,7 +65,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
      */
     private $type;
     /**
-     * Holds the format of the url
+     * Holds the format of the url.
      *
      * @var string
      */
@@ -83,9 +81,8 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -95,6 +92,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     /**
      * @return string
      */
+    #[\Override]
     public function getIso6391()
     {
         return $this->iso6391;
@@ -102,9 +100,8 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $iso6391
-     * @return self
      */
-    public function setIso6391($iso6391)
+    public function setIso6391($iso6391): static
     {
         $this->iso6391 = $iso6391;
 
@@ -114,6 +111,7 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     /**
      * @return string
      */
+    #[\Override]
     public function getIso31661()
     {
         return $this->iso31661;
@@ -121,9 +119,8 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $iso31661
-     * @return self
      */
-    public function setIso31661($iso31661)
+    public function setIso31661($iso31661): static
     {
         $this->iso31661 = $iso31661;
 
@@ -140,9 +137,8 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -159,9 +155,8 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $site
-     * @return self
      */
-    public function setSite($site)
+    public function setSite($site): static
     {
         $this->site = $site;
 
@@ -178,9 +173,8 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param int $size
-     * @return self
      */
-    public function setSize($size)
+    public function setSize($size): static
     {
         $this->size = $size;
 
@@ -197,9 +191,8 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $type
-     * @return self
      */
-    public function setType($type)
+    public function setType($type): static
     {
         $this->type = $type;
 
@@ -207,13 +200,11 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
     }
 
     /**
-     * Retrieve the url to the source
-     *
-     * @return string
+     * Retrieve the url to the source.
      */
-    public function getUrl()
+    public function getUrl(): string
     {
-        return sprintf($this->getUrlFormat(), $this->getKey());
+        return \sprintf($this->getUrlFormat(), $this->getKey());
     }
 
     /**
@@ -226,28 +217,20 @@ class Video extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $url_format
-     * @return self
      */
-    public function setUrlFormat($url_format)
+    public function setUrlFormat($url_format): static
     {
         $this->url_format = $url_format;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getKey()
     {
         return $this->key;
     }
 
-    /**
-     * @param mixed $key
-     * @return self
-     */
-    public function setKey($key)
+    public function setKey($key): static
     {
         $this->key = $key;
 

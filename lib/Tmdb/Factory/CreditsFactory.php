@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -16,36 +18,33 @@ namespace Tmdb\Factory;
 
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\HttpClient\HttpClient;
-use Tmdb\Model\Credits as Credits;
-use Tmdb\Model\Genre;
+use Tmdb\Model\Credits;
 use Tmdb\Model\Person;
 
 /**
- * Class CreditsFactory
+ * Class CreditsFactory.
+ *
  * @extends AbstractFactory<Credits>
- * @package Tmdb\Factory
  */
 class CreditsFactory extends AbstractFactory
 {
     /**
-     * @var TvSeasonFactory
-     */
-    private $tvSeasonFactory;
-
-    /**
-     * @var TvEpisodeFactory
-     */
-    private $tvEpisodeFactory;
-
-    /**
-     * @var PeopleFactory<Person>
+     * @var PeopleFactory|mixed
      */
     private $peopleFactory;
 
     /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
+     * @var TvSeasonFactory|mixed
+     */
+    private $tvSeasonFactory;
+
+    /**
+     * @var TvEpisodeFactory|mixed
+     */
+    private $tvEpisodeFactory;
+
+    /**
+     * Constructor.
      */
     public function __construct(HttpClient $httpClient)
     {
@@ -56,32 +55,28 @@ class CreditsFactory extends AbstractFactory
         parent::__construct($httpClient);
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Credits
-     */
+    #[\Override]
     public function create(array $data = []): Credits
     {
         $credits = new Credits();
 
-        if (array_key_exists('media', $data)) {
+        if (\array_key_exists('media', $data)) {
             $credits->setMedia(
-                $this->hydrate($credits->getMedia(), $data['media'])
+                $this->hydrate($credits->getMedia(), $data['media']),
             );
 
-            if (array_key_exists('seasons', $data['media'])) {
+            if (\array_key_exists('seasons', $data['media'])) {
                 $episodes = $this->getTvSeasonFactory()->createCollection($data['media']['seasons']);
                 $credits->getMedia()->setSeasons($episodes);
             }
 
-            if (array_key_exists('episodes', $data['media'])) {
+            if (\array_key_exists('episodes', $data['media'])) {
                 $episodes = $this->getTvEpisodeFactory()->createCollection($data['media']['episodes']);
                 $credits->getMedia()->setEpisodes($episodes);
             }
         }
 
-        if (array_key_exists('person', $data)) {
+        if (\array_key_exists('person', $data)) {
             $person = $this->getPeopleFactory()->create($data['person']);
 
             $credits->setPerson($person);
@@ -100,9 +95,8 @@ class CreditsFactory extends AbstractFactory
 
     /**
      * @param TvSeasonFactory $tvSeasonFactory
-     * @return self
      */
-    public function setTvSeasonFactory($tvSeasonFactory)
+    public function setTvSeasonFactory($tvSeasonFactory): static
     {
         $this->tvSeasonFactory = $tvSeasonFactory;
 
@@ -119,9 +113,8 @@ class CreditsFactory extends AbstractFactory
 
     /**
      * @param TvEpisodeFactory $tvEpisodeFactory
-     * @return self
      */
-    public function setTvEpisodeFactory($tvEpisodeFactory)
+    public function setTvEpisodeFactory($tvEpisodeFactory): static
     {
         $this->tvEpisodeFactory = $tvEpisodeFactory;
 
@@ -138,9 +131,8 @@ class CreditsFactory extends AbstractFactory
 
     /**
      * @param PeopleFactory<Person> $peopleFactory
-     * @return self
      */
-    public function setPeopleFactory($peopleFactory)
+    public function setPeopleFactory($peopleFactory): static
     {
         $this->peopleFactory = $peopleFactory;
 
@@ -150,11 +142,10 @@ class CreditsFactory extends AbstractFactory
     /**
      * @throws NotImplementedException
      */
-    public function createCollection(array $data = [])
+    #[\Override]
+    public function createCollection(array $data = []): void
     {
-        throw new NotImplementedException(
-            'Credits are usually obtained through the PeopleFactory,
-            however we might add a shortcut for that here.'
-        );
+        throw new NotImplementedException('Credits are usually obtained through the PeopleFactory,
+            however we might add a shortcut for that here.');
     }
 }

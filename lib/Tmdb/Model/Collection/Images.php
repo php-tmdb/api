@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,14 +21,14 @@ use Tmdb\Model\Filter\ImageFilter;
 use Tmdb\Model\Image;
 
 /**
- * Class Images
+ * Class Images.
+ *
  * @extends GenericCollection<Image>
- * @package Tmdb\Model\Collection
  */
 class Images extends GenericCollection
 {
     /**
-     * Returns all images
+     * Returns all images.
      *
      * @return Image[]
      */
@@ -36,10 +38,7 @@ class Images extends GenericCollection
     }
 
     /**
-     * Retrieve a image from the collection
-     *
-     * @param $id
-     * @return ?Image
+     * Retrieve a image from the collection.
      */
     public function getImage($id): ?Image
     {
@@ -47,11 +46,7 @@ class Images extends GenericCollection
     }
 
     /**
-     * Add a image to the collection
-     *
-     * @param Image $image
-     *
-     * @return void
+     * Add a image to the collection.
      */
     public function addImage(Image $image): void
     {
@@ -59,7 +54,7 @@ class Images extends GenericCollection
     }
 
     /**
-     * Filter poster images
+     * Filter poster images.
      *
      * @return static
      */
@@ -70,12 +65,12 @@ class Images extends GenericCollection
                 if ($value instanceof ImageFilter && $value instanceof Image\PosterImage) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Filter backdrop images
+     * Filter backdrop images.
      *
      * @return static
      */
@@ -86,12 +81,12 @@ class Images extends GenericCollection
                 if ($value instanceof ImageFilter && $value instanceof Image\BackdropImage) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Filter profile images
+     * Filter profile images.
      *
      * @return static
      */
@@ -102,12 +97,12 @@ class Images extends GenericCollection
                 if ($value instanceof ImageFilter && $value instanceof Image\ProfileImage) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Filter still images
+     * Filter still images.
      *
      * @return static
      */
@@ -118,48 +113,45 @@ class Images extends GenericCollection
                 if ($value instanceof ImageFilter && $value instanceof Image\StillImage) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Filter by image size
+     * Filter by image size.
      *
-     * @param $width
      * @return static
      */
     public function filterMaxWidth($width)
     {
         return $this->filter(
             function ($key, $value) use ($width) {
-                if ($value instanceof Image && $value->getWidth() <= $width && $value->getWidth() !== null) {
+                if ($value instanceof Image && $value->getWidth() <= $width && null !== $value->getWidth()) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Filter by image size
+     * Filter by image size.
      *
-     * @param $width
      * @return static
      */
     public function filterMinWidth($width)
     {
         return $this->filter(
             function ($key, $value) use ($width) {
-                if ($value instanceof Image && $value->getWidth() >= $width && $value->getWidth() !== null) {
+                if ($value instanceof Image && $value->getWidth() >= $width && null !== $value->getWidth()) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Filter by image size
+     * Filter by image size.
      *
-     * @param $height
      * @return static
      */
     public function filterMaxHeight($height)
@@ -167,19 +159,18 @@ class Images extends GenericCollection
         return $this->filter(
             function ($key, $value) use ($height) {
                 if (
-                    $value instanceof Image &&
-                    $value->getHeight() <= $height && $value->getHeight() !== null
+                    $value instanceof Image
+                    && $value->getHeight() <= $height && null !== $value->getHeight()
                 ) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Filter by image size
+     * Filter by image size.
      *
-     * @param $height
      * @return static
      */
     public function filterMinHeight($height)
@@ -187,18 +178,18 @@ class Images extends GenericCollection
         return $this->filter(
             function ($key, $value) use ($height) {
                 if (
-                    $value instanceof Image &&
-                    $value->getHeight() >= $height &&
-                    $value->getHeight() !== null
+                    $value instanceof Image
+                    && $value->getHeight() >= $height
+                    && null !== $value->getHeight()
                 ) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Return a single image that is rated highest
+     * Return a single image that is rated highest.
      *
      * @return ImageFilter|null
      */

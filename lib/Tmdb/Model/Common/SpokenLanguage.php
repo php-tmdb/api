@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,8 +20,7 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Filter\LanguageFilter;
 
 /**
- * Class SpokenLanguage
- * @package Tmdb\Model\Common
+ * Class SpokenLanguage.
  */
 class SpokenLanguage extends AbstractModel implements LanguageFilter
 {
@@ -35,6 +36,7 @@ class SpokenLanguage extends AbstractModel implements LanguageFilter
     /**
      * @return string
      */
+    #[\Override]
     public function getIso6391()
     {
         return $this->iso6391;
@@ -42,9 +44,8 @@ class SpokenLanguage extends AbstractModel implements LanguageFilter
 
     /**
      * @param string $iso6391
-     * @return self
      */
-    public function setIso6391($iso6391)
+    public function setIso6391($iso6391): static
     {
         $this->iso6391 = $iso6391;
 
@@ -61,9 +62,8 @@ class SpokenLanguage extends AbstractModel implements LanguageFilter
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -80,9 +80,8 @@ class SpokenLanguage extends AbstractModel implements LanguageFilter
 
     /**
      * @param string $englishName
-     * @return self
      */
-    public function setEnglishName($englishName)
+    public function setEnglishName($englishName): static
     {
         $this->englishName = $englishName;
 

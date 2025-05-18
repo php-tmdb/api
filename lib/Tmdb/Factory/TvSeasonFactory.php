@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,7 +21,6 @@ use Tmdb\Factory\Common\VideoFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\HttpClient\HttpClient;
-use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Person\CastMember;
@@ -27,46 +28,44 @@ use Tmdb\Model\Person\CrewMember;
 use Tmdb\Model\Tv\Season;
 
 /**
- * Class TvSeasonFactory
+ * Class TvSeasonFactory.
+ *
  * @extends AbstractFactory<Season>
- * @package Tmdb\Factory
  */
 class TvSeasonFactory extends AbstractFactory
 {
     /**
-     * @var People\CastFactory
+     * @var CastFactory|mixed
      */
     private $castFactory;
 
     /**
-     * @var People\CrewFactory
+     * @var CrewFactory|mixed
      */
     private $crewFactory;
 
     /**
-     * @var ImageFactory
+     * @var ImageFactory|mixed
      */
     private $imageFactory;
 
     /**
-     * @var TvEpisodeFactory
+     * @var TvEpisodeFactory|mixed
      */
     private $tvEpisodeFactory;
 
     /**
-     * @var Common\VideoFactory
+     * @var VideoFactory|mixed
      */
     private $videoFactory;
 
     /**
-     * @var ChangeFactory
+     * @var ChangeFactory|mixed
      */
     private $changesFactory;
 
     /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
+     * Constructor.
      */
     public function __construct(HttpClient $httpClient)
     {
@@ -80,10 +79,8 @@ class TvSeasonFactory extends AbstractFactory
         parent::__construct($httpClient);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function createCollection(array $data = [])
+    #[\Override]
+    public function createCollection(array $data = []): \Tmdb\Model\Common\GenericCollection
     {
         /** @var GenericCollection<Season> */
         $collection = new GenericCollection();
@@ -95,65 +92,61 @@ class TvSeasonFactory extends AbstractFactory
         return $collection;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return Season|null
-     */
+    #[\Override]
     public function create(array $data = []): ?Season
     {
-        if (!$data) {
+        if ($data === []) {
             return null;
         }
 
         $tvSeason = new Season();
 
-        if (array_key_exists('credits', $data)) {
-            if (array_key_exists('cast', $data['credits']) && $data['credits']['cast'] !== null) {
+        if (\array_key_exists('credits', $data)) {
+            if (\array_key_exists('cast', $data['credits']) && null !== $data['credits']['cast']) {
                 $tvSeason->getCredits()->setCast(
                     $this->getCastFactory()->createCollection(
                         $data['credits']['cast'],
-                        new CastMember()
-                    )
+                        new CastMember(),
+                    ),
                 );
             }
 
-            if (array_key_exists('crew', $data['credits']) && $data['credits']['crew'] !== null) {
+            if (\array_key_exists('crew', $data['credits']) && null !== $data['credits']['crew']) {
                 $tvSeason->getCredits()->setCrew(
                     $this->getCrewFactory()->createCollection(
                         $data['credits']['crew'],
-                        new CrewMember()
-                    )
+                        new CrewMember(),
+                    ),
                 );
             }
         }
 
-        /** External ids */
-        if (array_key_exists('external_ids', $data) && $data['external_ids'] !== null) {
+        /* External ids */
+        if (\array_key_exists('external_ids', $data) && null !== $data['external_ids']) {
             $tvSeason->setExternalIds(
-                $this->hydrate(new ExternalIds(), $data['external_ids'])
+                $this->hydrate(new ExternalIds(), $data['external_ids']),
             );
         }
 
-        /** Images */
-        if (array_key_exists('images', $data) && $data['images'] !== null) {
+        /* Images */
+        if (\array_key_exists('images', $data) && null !== $data['images']) {
             $tvSeason->setImages($this->getImageFactory()->createCollectionFromTvSeason($data['images']));
         }
 
-        if (array_key_exists('poster_path', $data)) {
+        if (\array_key_exists('poster_path', $data)) {
             $tvSeason->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
-        /** Episodes */
-        if (array_key_exists('episodes', $data) && $data['episodes'] !== null) {
+        /* Episodes */
+        if (\array_key_exists('episodes', $data) && null !== $data['episodes']) {
             $tvSeason->setEpisodes($this->getTvEpisodeFactory()->createCollection($data['episodes']));
         }
 
-        if (array_key_exists('videos', $data) && $data['videos'] !== null) {
+        if (\array_key_exists('videos', $data) && null !== $data['videos']) {
             $tvSeason->setVideos($this->getVideoFactory()->createCollection($data['videos']));
         }
 
-        if (array_key_exists('changes', $data) && $data['changes'] !== null) {
+        if (\array_key_exists('changes', $data) && null !== $data['changes']) {
             $tvSeason->setChanges($this->getChangesFactory()->createCollection($data['changes']));
         }
 
@@ -170,9 +163,8 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param CastFactory $castFactory
-     * @return self
      */
-    public function setCastFactory($castFactory)
+    public function setCastFactory($castFactory): static
     {
         $this->castFactory = $castFactory;
 
@@ -189,9 +181,8 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param CrewFactory $crewFactory
-     * @return self
      */
-    public function setCrewFactory($crewFactory)
+    public function setCrewFactory($crewFactory): static
     {
         $this->crewFactory = $crewFactory;
 
@@ -208,9 +199,8 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return self
      */
-    public function setImageFactory($imageFactory)
+    public function setImageFactory($imageFactory): static
     {
         $this->imageFactory = $imageFactory;
 
@@ -227,9 +217,8 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param TvEpisodeFactory $tvEpisodeFactory
-     * @return self
      */
-    public function setTvEpisodeFactory($tvEpisodeFactory)
+    public function setTvEpisodeFactory($tvEpisodeFactory): static
     {
         $this->tvEpisodeFactory = $tvEpisodeFactory;
 
@@ -246,9 +235,8 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param VideoFactory $videoFactory
-     * @return self
      */
-    public function setVideoFactory($videoFactory)
+    public function setVideoFactory($videoFactory): static
     {
         $this->videoFactory = $videoFactory;
 
@@ -265,9 +253,8 @@ class TvSeasonFactory extends AbstractFactory
 
     /**
      * @param ChangeFactory $changesFactory
-     * @return self
      */
-    public function setChangesFactory($changesFactory)
+    public function setChangesFactory($changesFactory): static
     {
         $this->changesFactory = $changesFactory;
 

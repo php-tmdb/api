@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
- * Class Account
- * @package Tmdb\Model
+ * Class Account.
  */
 class Account extends AbstractModel
 {
@@ -31,14 +32,14 @@ class Account extends AbstractModel
         'iso_3166_1',
         'iso_639_1',
         'name',
-        'username'
+        'username',
     ];
     /**
-     * @var integer
+     * @var int
      */
     private $id;
     /**
-     * @var boolean
+     * @var bool
      */
     private $includeAdult;
     /**
@@ -72,9 +73,8 @@ class Account extends AbstractModel
 
     /**
      * @param int $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -82,7 +82,7 @@ class Account extends AbstractModel
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getIncludeAdult()
     {
@@ -90,10 +90,9 @@ class Account extends AbstractModel
     }
 
     /**
-     * @param boolean $includeAdult
-     * @return self
+     * @param bool $includeAdult
      */
-    public function setIncludeAdult($includeAdult)
+    public function setIncludeAdult($includeAdult): static
     {
         $this->includeAdult = $includeAdult;
 
@@ -110,9 +109,8 @@ class Account extends AbstractModel
 
     /**
      * @param string $iso31661
-     * @return self
      */
-    public function setIso31661($iso31661)
+    public function setIso31661($iso31661): static
     {
         $this->iso31661 = $iso31661;
 
@@ -129,9 +127,8 @@ class Account extends AbstractModel
 
     /**
      * @param string $iso6391
-     * @return self
      */
-    public function setIso6391($iso6391)
+    public function setIso6391($iso6391): static
     {
         $this->iso6391 = $iso6391;
 
@@ -148,9 +145,8 @@ class Account extends AbstractModel
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -167,9 +163,8 @@ class Account extends AbstractModel
 
     /**
      * @param string $username
-     * @return self
      */
-    public function setUsername($username)
+    public function setUsername($username): static
     {
         $this->username = $username;
 
@@ -186,9 +181,8 @@ class Account extends AbstractModel
 
     /**
      * @param GenericCollection $avatar
-     * @return self
      */
-    public function setAvatar($avatar)
+    public function setAvatar($avatar): static
     {
         $this->avatar = $avatar;
 

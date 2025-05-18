@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
@@ -8,10 +10,10 @@
  *
  * Some code is borrowed from Guzzle, and thus I've credited the author, however most of it is in a modified form.
  *
- * @package Tmdb
  * @author Michael Dowling, https://github.com/mtdowling <mtdowling@gmail.com>
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -22,6 +24,7 @@ use ArrayIterator;
 use Closure;
 use Countable;
 use IteratorAggregate;
+use ReturnTypeWillChange;
 use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Filter\AdultFilter;
 use Tmdb\Model\Filter\CountryFilter;
@@ -29,8 +32,7 @@ use Tmdb\Model\Filter\LanguageFilter;
 use Traversable;
 
 /**
- * Class GenericCollection
- * @package Tmdb\Model\Common
+ * Class GenericCollection.
  *
  * @template T of AbstractModel
  *
@@ -38,28 +40,20 @@ use Traversable;
  */
 class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
 {
-    /** @var array Data associated with the object. */
-    protected $data = [];
-
     /**
      * @param array $data Associative array of data to set
      */
-    public function __construct(array $data = [])
+    public function __construct(protected array $data = [])
     {
-        $this->data = $data;
     }
 
-    /**
-     * @return int
-     */
+    #[\Override]
     public function count(): int
     {
-        return count($this->data);
+        return \count($this->data);
     }
 
-    /**
-     * @return ArrayIterator|Traversable
-     */
+    #[\Override]
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->data);
@@ -74,11 +68,11 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * Removes all key value pairs
+     * Removes all key value pairs.
      *
      * @return $this
      */
-    public function clear()
+    public function clear(): static
     {
         $this->data = [];
 
@@ -88,30 +82,30 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Get a specific key value.
      *
-     * @param string|object $key Key to retrieve.
+     * @param string|object $key key to retrieve
      *
      * @return T|null Value of the key or NULL
      */
     public function get($key)
     {
-        if (is_object($key)) {
+        if (\is_object($key)) {
             $key = spl_object_hash($key);
         }
 
-        return isset($this->data[$key]) ? $this->data[$key] : null;
+        return $this->data[$key] ?? null;
     }
 
     /**
-     * Set a key value pair
+     * Set a key value pair.
      *
-     * @param ?string $key Key to set
-     * @param mixed $value Value to set
+     * @param ?string $key   Key to set
+     * @param mixed   $value Value to set
      *
      * @return $this Returns a reference to the object
      */
-    public function set($key, $value)
+    public function set($key, mixed $value): static
     {
-        if ($key === null && is_object($value)) {
+        if (null === $key && \is_object($value)) {
             $key = spl_object_hash($value);
         }
 
@@ -121,15 +115,15 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * Remove a specific key value pair
+     * Remove a specific key value pair.
      *
      * @param string|object $key A key to remove or an object in the same state
      *
      * @return $this
      */
-    public function remove($key)
+    public function remove($key): static
     {
-        if (is_object($key)) {
+        if (\is_object($key)) {
             $key = spl_object_hash($key);
         }
 
@@ -139,11 +133,11 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * Get all keys in the collection
+     * Get all keys in the collection.
      *
      * @return string[]
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return array_keys($this->data);
     }
@@ -151,26 +145,24 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Returns whether or not the specified key is present.
      *
-     * @param string $key The key for which to check the existence.
-     *
-     * @return bool
+     * @param string $key the key for which to check the existence
      */
-    public function hasKey($key)
+    public function hasKey($key): bool
     {
-        return array_key_exists($key, $this->data);
+        return \array_key_exists($key, $this->data);
     }
 
     /**
-     * Case insensitive search the keys in the collection
+     * Case insensitive search the keys in the collection.
      *
      * @param string $key Key to search for
      *
      * @return bool|string Returns false if not found, otherwise returns the key
      */
-    public function keySearch($key)
+    public function keySearch($key): int|string|false
     {
         foreach (array_keys($this->data) as $k) {
-            if (!strcasecmp($k, $key)) {
+            if (strcasecmp($k, $key) === 0) {
                 return $k;
             }
         }
@@ -179,25 +171,25 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * Checks if any keys contains a certain value
+     * Checks if any keys contains a certain value.
      *
      * @param string $value Value to search for
      *
-     * @return mixed Returns the key if the value was found FALSE if the value was not found.
+     * @return mixed returns the key if the value was found FALSE if the value was not found
      */
-    public function hasValue($value)
+    public function hasValue($value): int|string|false
     {
-        return array_search($value, $this->data);
+        return array_search($value, $this->data, true);
     }
 
     /**
-     * Replace the data of the object with the value of an array
+     * Replace the data of the object with the value of an array.
      *
      * @param array $data Associative array of data
      *
      * @return $this Returns a reference to the object
      */
-    public function replace(array $data)
+    public function replace(array $data): static
     {
         $this->data = $data;
 
@@ -209,9 +201,9 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      *
      * @param GenericCollection<T>|array $data Associative array of key value pair data
      *
-     * @return $this Returns a reference to the object.
+     * @return $this returns a reference to the object
      */
-    public function merge($data)
+    public function merge($data): static
     {
         foreach ($data as $key => $value) {
             $this->add($key, $value);
@@ -223,22 +215,22 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Add a value to a key.
      *
-     * @param ?string $key Key to add
+     * @param ?string  $key   Key to add
      * @param T|string $value Value to add to the key
      *
-     * @return $this Returns a reference to the object.
+     * @return $this returns a reference to the object
      */
-    public function add($key, $value)
+    public function add($key, $value): static
     {
-        if ($key === null && is_object($value)) {
+        if (null === $key && \is_object($value)) {
             $key = spl_object_hash($value);
         }
 
-        if (!array_key_exists($key, $this->data) && null !== $key) {
+        if (!\array_key_exists($key, $this->data) && null !== $key) {
             $this->data[$key] = $value;
-        } elseif (!array_key_exists($key, $this->data) && null == $key) {
+        } elseif (!\array_key_exists($key, $this->data) && null === $key) {
             $this->data[] = $value;
-        } elseif (is_array($this->data[$key])) {
+        } elseif (\is_array($this->data[$key])) {
             $this->data[$key][] = $value;
         } else {
             $this->data[$key] = [$this->data[$key], $value];
@@ -250,17 +242,18 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * Returns a Collection containing all the elements of the collection after applying the callback function to each
      * one. The Closure should accept three parameters: (string) $key, (string) $value, (array) $context and return a
-     * modified value
+     * modified value.
      *
      * @param Closure $closure Closure to apply
-     * @param array $context Context to pass to the closure
-     * @param bool $static Set to TRUE to use the same class as the return rather than returning a Collection
+     * @param array   $context Context to pass to the closure
+     * @param bool    $static  Set to TRUE to use the same class as the return rather than returning a Collection
      *
      * @return ($static is true ? static : self)
      */
-    public function map(Closure $closure, array $context = [], $static = true)
+    public function map(Closure $closure, array $context = [], $static = true): self
     {
         $collection = $static ? new static() : new self();
+
         foreach ($this as $key => $value) {
             $collection->add($key, $closure($key, $value, $context));
         }
@@ -281,63 +274,62 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      *   return $a->getReleaseDate() < $b->getReleaseDate() ? 1 : -1;
      * });
      *
-     * @param Closure $closure
-     *
      * @return $this
      */
-    public function sort(Closure $closure)
+    public function sort(Closure $closure): static
     {
         uasort($this->data, $closure);
 
         return $this;
     }
 
-    /**
-     * @param $offset
-     * @return bool
-     */
+    #[\Override]
     public function offsetExists($offset): bool
     {
         return isset($this->data[$offset]);
     }
 
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
+    #[\Override]
     public function offsetGet($offset)
     {
         return $this->data[$offset] ?? null;
     }
 
+    #[\Override]
     public function offsetSet($offset, $value): void
     {
         $this->data[$offset] = $value;
     }
 
+    #[\Override]
     public function offsetUnset($offset): void
     {
         unset($this->data[$offset]);
     }
 
     /**
-     * Filter by id
+     * Filter by id.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return T|null
      */
     public function filterId($id)
     {
-        if (1 === count($this->data)) {
+        if (1 === \count($this->data)) {
             return array_shift($this->data);
         }
 
         $result = $this->filter(
             function ($key, $value) use ($id) {
-                if ($value->getId() == $id) {
+                if ($value->getId() === $id) {
                     return true;
                 }
-            }
+            },
         );
 
-        if (!count($result)) {
+        if (\count($result) === 0) {
             return null;
         }
 
@@ -352,13 +344,14 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * parameters: (string) $key, (string) $value and return Boolean TRUE or FALSE for each value.
      *
      * @param Closure $closure Closure evaluation function
-     * @param bool $static Set to TRUE to use the same class as the return rather than returning a Collection
+     * @param bool    $static  Set to TRUE to use the same class as the return rather than returning a Collection
      *
      * @return ($static is true ? static : self)
      */
-    public function filter(Closure $closure, $static = true)
+    public function filter(Closure $closure, $static = true): self
     {
         $collection = ($static) ? new static() : new self();
+
         foreach ($this->data as $key => $value) {
             if ($closure($key, $value)) {
                 $collection->add($key, $value);
@@ -369,7 +362,7 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * Get all or a subset of matching key value pairs
+     * Get all or a subset of matching key value pairs.
      *
      * @param array $keys Pass an array of keys to retrieve only a subset of key value pairs
      *
@@ -384,16 +377,17 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * Filter by language ISO 639-1 code.
      *
      * @param string $language
+     *
      * @return static
      */
     public function filterLanguage($language = 'en')
     {
         return $this->filter(
             function ($key, $value) use ($language) {
-                if ($value instanceof LanguageFilter && $value->getIso6391() == $language) {
+                if ($value instanceof LanguageFilter && $value->getIso6391() === $language) {
                     return true;
                 }
-            }
+            },
         );
     }
 
@@ -401,33 +395,35 @@ class GenericCollection implements ArrayAccess, IteratorAggregate, Countable
      * Filter by country ISO 3166-1 code.
      *
      * @param string $country
+     *
      * @return static
      */
     public function filterCountry($country = 'US')
     {
         return $this->filter(
             function ($key, $value) use ($country) {
-                if ($value instanceof CountryFilter && $value->getIso31661() == $country) {
+                if ($value instanceof CountryFilter && $value->getIso31661() === $country) {
                     return true;
                 }
-            }
+            },
         );
     }
 
     /**
-     * Filter by adult content
+     * Filter by adult content.
      *
-     * @param boolean $adult
+     * @param bool $adult
+     *
      * @return static
      */
     public function filterAdult($adult = false)
     {
         return $this->filter(
             function ($key, $value) use ($adult) {
-                if ($value instanceof AdultFilter && $value->getAdult() == $adult) {
+                if ($value instanceof AdultFilter && $value->getAdult() === $adult) {
                     return true;
                 }
-            }
+            },
         );
     }
 }

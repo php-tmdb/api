@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -22,20 +24,14 @@ use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
- * Class GenreRepository
- * @package Tmdb\Repository
+ * Class GenreRepository.
+ *
  * @see http://docs.themoviedb.apiary.io/#genres
  */
 class GenreRepository extends AbstractRepository
 {
     /**
-     * Load a genre with the given identifier
-     *
-     * @param $id
-     * @param array $parameters
-     * @param array $headers
-     *
-     * @return AbstractModel
+     * Load a genre with the given identifier.
      */
     public function load($id, array $parameters = [], array $headers = []): ?AbstractModel
     {
@@ -45,41 +41,35 @@ class GenreRepository extends AbstractRepository
     /**
      * Get the list of genres.
      *
-     * @param array $parameters
-     * @param array $headers
      * @return GenericCollection
      */
     public function loadCollection(array $parameters = [], array $headers = [])
     {
         return $this->createCollection(
-            $this->getApi()->getGenres($parameters, $headers)
+            $this->getApi()->getGenres($parameters, $headers),
         );
     }
 
     /**
-     * Create an collection of an array
-     *
-     * @param $data
-     * @return \Tmdb\Model\Collection\Genres
+     * Create an collection of an array.
      */
-    private function createCollection($data)
+    private function createCollection($data): \Tmdb\Model\Collection\Genres
     {
         return $this->getFactory()->createCollection($data);
     }
 
-    /**
-     * @return GenreFactory
-     */
-    public function getFactory()
+    #[\Override]
+    public function getFactory(): \Tmdb\Factory\GenreFactory
     {
         return new GenreFactory($this->getClient()->getHttpClient());
     }
 
     /**
-     * Return the related API class
+     * Return the related API class.
      *
      * @return Genres
      */
+    #[\Override]
     public function getApi()
     {
         return $this->getClient()->getGenresApi();
@@ -88,49 +78,36 @@ class GenreRepository extends AbstractRepository
     /**
      * Get the list of movie genres.
      *
-     * @param array $parameters
-     * @param array $headers
      * @return GenericCollection
      */
     public function loadMovieCollection(array $parameters = [], array $headers = [])
     {
         return $this->createCollection(
-            $this->getApi()->getMovieGenres($parameters, $headers)
+            $this->getApi()->getMovieGenres($parameters, $headers),
         );
     }
 
     /**
      * Get the list of tv genres.
      *
-     * @param array $parameters
-     * @param array $headers
      * @return GenericCollection
      */
     public function loadTvCollection(array $parameters = [], array $headers = [])
     {
         return $this->createCollection(
-            $this->getApi()->getTvGenres($parameters, $headers)
+            $this->getApi()->getTvGenres($parameters, $headers),
         );
     }
 
     /**
      * Get the list of movies for a particular genre by id.
      * By default, only movies with 10 or more votes are included.
-     *
-     * @param $id
-     * @param array $parameters
-     * @param array $headers
-     *
-     * @return ResultCollection
      */
-    public function getMovies($id, array $parameters = [], array $headers = []): ResultCollection
+    public function getMovies(string $id, array $parameters = [], array $headers = []): ResultCollection
     {
         return $this->getMovieFactory()->createResultCollection($this->getApi()->getMovies($id, $parameters, $headers));
     }
 
-    /**
-     * @return MovieFactory
-     */
     public function getMovieFactory(): MovieFactory
     {
         return new MovieFactory($this->getClient()->getHttpClient());

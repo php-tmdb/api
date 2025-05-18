@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -20,7 +22,6 @@ use Tmdb\Factory\Movie\ListItemFactory;
 use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\HttpClient\HttpClient;
-use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\Country;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
@@ -31,60 +32,57 @@ use Tmdb\Model\Movie;
 use Tmdb\Model\Watch;
 
 /**
- * Class MovieFactory
- * @package Tmdb\Factory
+ * Class MovieFactory.
  */
 class MovieFactory extends AbstractFactory
 {
     /**
-     * @var People\CastFactory
+     * @var CastFactory|mixed
      */
     private $castFactory;
 
     /**
-     * @var People\CrewFactory
+     * @var CrewFactory|mixed
      */
     private $crewFactory;
 
     /**
-     * @var GenreFactory
+     * @var GenreFactory|mixed
      */
     private $genreFactory;
 
     /**
-     * @var ImageFactory
+     * @var ImageFactory|mixed
      */
     private $imageFactory;
 
     /**
-     * @var ChangeFactory
+     * @var ChangeFactory|mixed
      */
     private $changeFactory;
 
     /**
-     * @var ReviewFactory
+     * @var ReviewFactory|mixed
      */
     private $reviewFactory;
 
     /**
-     * @var ListItemFactory
+     * @var ListItemFactory|mixed
      */
     private $listItemFactory;
 
     /**
-     * @var KeywordFactory
+     * @var KeywordFactory|mixed
      */
     private $keywordFactory;
 
     /**
-     * @var Common\VideoFactory
+     * @var VideoFactory|mixed
      */
     private $videoFactory;
 
     /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
+     * Constructor.
      */
     public function __construct(HttpClient $httpClient)
     {
@@ -101,14 +99,12 @@ class MovieFactory extends AbstractFactory
         parent::__construct($httpClient);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
-        if (array_key_exists('results', $data)) {
+        if (\array_key_exists('results', $data)) {
             $data = $data['results'];
         }
 
@@ -119,86 +115,84 @@ class MovieFactory extends AbstractFactory
         return $collection;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Movie|null
-     */
+    #[\Override]
     public function create(array $data = []): ?Movie
     {
-        if (!$data) {
+        if ($data === []) {
             return null;
         }
 
         $movie = new Movie();
 
-        if (array_key_exists('alternative_titles', $data) && array_key_exists('titles', $data['alternative_titles'])) {
+        if (\array_key_exists('alternative_titles', $data) && \array_key_exists('titles', $data['alternative_titles'])) {
             $movie->setAlternativeTitles(
-                $this->createGenericCollection($data['alternative_titles']['titles'], new Movie\AlternativeTitle())
+                $this->createGenericCollection($data['alternative_titles']['titles'], new Movie\AlternativeTitle()),
             );
         }
 
-        if (array_key_exists('credits', $data)) {
-            if (array_key_exists('cast', $data['credits'])) {
+        if (\array_key_exists('credits', $data)) {
+            if (\array_key_exists('cast', $data['credits'])) {
                 $movie->getCredits()->setCast($this->getCastFactory()->createCollection($data['credits']['cast']));
             }
 
-            if (array_key_exists('crew', $data['credits'])) {
+            if (\array_key_exists('crew', $data['credits'])) {
                 $movie->getCredits()->setCrew($this->getCrewFactory()->createCollection($data['credits']['crew']));
             }
         }
 
-        /** External ids */
-        if (array_key_exists('external_ids', $data)) {
+        /* External ids */
+        if (\array_key_exists('external_ids', $data)) {
             $movie->setExternalIds(
-                $this->hydrate(new ExternalIds(), $data['external_ids'])
+                $this->hydrate(new ExternalIds(), $data['external_ids']),
             );
         }
 
-        /** Genres */
-        if (array_key_exists('genres', $data)) {
+        /* Genres */
+        if (\array_key_exists('genres', $data)) {
             $movie->setGenres($this->getGenreFactory()->createCollection($data['genres']));
         }
 
-        /** Genres */
-        if (array_key_exists('genre_ids', $data)) {
+        /* Genres */
+        if (\array_key_exists('genre_ids', $data)) {
             $formattedData = [];
 
             foreach ($data['genre_ids'] as $genreId) {
                 $formattedData[] = [
-                    'id' => $genreId
+                    'id' => $genreId,
                 ];
             }
 
             $movie->setGenres($this->getGenreFactory()->createCollection($formattedData));
         }
 
-        /** Images */
-        if (array_key_exists('backdrop_path', $data)) {
+        /* Images */
+        if (\array_key_exists('backdrop_path', $data)) {
             $movie->setBackdropImage($this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'));
         }
 
-        if (array_key_exists('images', $data)) {
+        if (\array_key_exists('images', $data)) {
             $movie->setImages($this->getImageFactory()->createCollectionFromMovie($data['images']));
         }
 
-        if (array_key_exists('poster_path', $data)) {
+        if (\array_key_exists('poster_path', $data)) {
             $movie->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
-        /** Keywords */
-        if (array_key_exists('keywords', $data)) {
+        /* Keywords */
+        if (\array_key_exists('keywords', $data)) {
             $movie->setKeywords($this->getKeywordFactory()->createCollection($data['keywords']));
         }
 
-        if (array_key_exists('releases', $data) && array_key_exists('countries', $data['releases'])) {
+        if (\array_key_exists('releases', $data) && \array_key_exists('countries', $data['releases'])) {
             $movie->setReleases($this->createGenericCollection($data['releases']['countries'], new Movie\Release()));
         }
 
-        if (array_key_exists('release_dates', $data) && array_key_exists('results', $data['release_dates'])) {
+        if (\array_key_exists('release_dates', $data) && \array_key_exists('results', $data['release_dates'])) {
             $release_dates = new GenericCollection();
+
             foreach ($data['release_dates']['results'] as $country_releases) {
                 $iso_31661 = $country_releases['iso_3166_1'];
+
                 foreach ($country_releases['release_dates'] as $release_date) {
                     $release_date['iso_3166_1'] = $iso_31661;
                     $release_dates->add(null, $this->hydrate(new Movie\ReleaseDate(), $release_date));
@@ -207,17 +201,20 @@ class MovieFactory extends AbstractFactory
             $movie->setReleaseDates($release_dates);
         }
 
-        if (array_key_exists('watch/providers', $data) && array_key_exists('results', $data['watch/providers'])) {
+        if (\array_key_exists('watch/providers', $data) && \array_key_exists('results', $data['watch/providers'])) {
             $watchProviders = new GenericCollection();
+
             foreach ($data['watch/providers']['results'] as $iso31661 => $countryWatchData) {
                 $countryWatchData['iso_3166_1'] = $iso31661;
 
                 foreach (['flatrate', 'rent', 'buy'] as $providerType) {
                     $typeProviders = new GenericCollection();
+
                     foreach ($countryWatchData[$providerType] ?? [] as $providerData) {
                         if (isset($providerData['provider_id'])) {
                             $providerData['id'] = $providerData['provider_id'];
                         }
+
                         if (isset($providerData['provider_name'])) {
                             $providerData['name'] = $providerData['provider_name'];
                         }
@@ -234,54 +231,54 @@ class MovieFactory extends AbstractFactory
             $movie->setWatchProviders($watchProviders);
         }
 
-        if (array_key_exists('videos', $data)) {
+        if (\array_key_exists('videos', $data)) {
             $movie->setVideos($this->getVideoFactory()->createCollection($data['videos']));
         }
 
-        if (array_key_exists('translations', $data) && array_key_exists('translations', $data['translations'])) {
+        if (\array_key_exists('translations', $data) && \array_key_exists('translations', $data['translations'])) {
             $movie->setTranslations(
                 $this->createGenericCollection(
                     $data['translations']['translations'],
-                    new Translation()
-                )
+                    new Translation(),
+                ),
             );
         }
 
-        if (array_key_exists('similar', $data)) {
+        if (\array_key_exists('similar', $data)) {
             $movie->setSimilar($this->createResultCollection($data['similar']));
         }
 
-        if (array_key_exists('recommendations', $data)) {
+        if (\array_key_exists('recommendations', $data)) {
             $movie->setRecommendations($this->createResultCollection($data['recommendations']));
         }
 
-        if (array_key_exists('reviews', $data)) {
+        if (\array_key_exists('reviews', $data)) {
             $movie->setReviews($this->getReviewFactory()->createResultCollection($data['reviews']));
         }
 
-        if (array_key_exists('lists', $data)) {
+        if (\array_key_exists('lists', $data)) {
             $movie->setLists($this->getListItemFactory()->createResultCollection($data['lists']));
         }
 
-        if (array_key_exists('changes', $data)) {
+        if (\array_key_exists('changes', $data)) {
             $movie->setChanges($this->getChangeFactory()->createCollection($data['changes']));
         }
 
-        if (array_key_exists('production_companies', $data)) {
+        if (\array_key_exists('production_companies', $data)) {
             $movie->setProductionCompanies(
-                $this->createGenericCollection($data['production_companies'], new Company())
+                $this->createGenericCollection($data['production_companies'], new Company()),
             );
         }
 
-        if (array_key_exists('production_countries', $data)) {
+        if (\array_key_exists('production_countries', $data)) {
             $movie->setProductionCountries(
-                $this->createGenericCollection($data['production_countries'], new Country())
+                $this->createGenericCollection($data['production_countries'], new Country()),
             );
         }
 
-        if (array_key_exists('spoken_languages', $data)) {
+        if (\array_key_exists('spoken_languages', $data)) {
             $movie->setSpokenLanguages(
-                $this->createGenericCollection($data['spoken_languages'], new SpokenLanguage())
+                $this->createGenericCollection($data['spoken_languages'], new SpokenLanguage()),
             );
         }
 
@@ -298,9 +295,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param CastFactory $castFactory
-     * @return self
      */
-    public function setCastFactory($castFactory)
+    public function setCastFactory($castFactory): static
     {
         $this->castFactory = $castFactory;
 
@@ -317,9 +313,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param CrewFactory $crewFactory
-     * @return self
      */
-    public function setCrewFactory($crewFactory)
+    public function setCrewFactory($crewFactory): static
     {
         $this->crewFactory = $crewFactory;
 
@@ -336,9 +331,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param GenreFactory $genreFactory
-     * @return self
      */
-    public function setGenreFactory($genreFactory)
+    public function setGenreFactory($genreFactory): static
     {
         $this->genreFactory = $genreFactory;
 
@@ -355,9 +349,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return self
      */
-    public function setImageFactory($imageFactory)
+    public function setImageFactory($imageFactory): static
     {
         $this->imageFactory = $imageFactory;
 
@@ -374,9 +367,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param KeywordFactory $keywordFactory
-     * @return self
      */
-    public function setKeywordFactory($keywordFactory)
+    public function setKeywordFactory($keywordFactory): static
     {
         $this->keywordFactory = $keywordFactory;
 
@@ -393,9 +385,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param VideoFactory $videoFactory
-     * @return self
      */
-    public function setVideoFactory($videoFactory)
+    public function setVideoFactory($videoFactory): static
     {
         $this->videoFactory = $videoFactory;
 
@@ -412,9 +403,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param ReviewFactory $reviewFactory
-     * @return self
      */
-    public function setReviewFactory($reviewFactory)
+    public function setReviewFactory($reviewFactory): static
     {
         $this->reviewFactory = $reviewFactory;
 
@@ -431,9 +421,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param ListItemFactory $listItemFactory
-     * @return self
      */
-    public function setListItemFactory($listItemFactory)
+    public function setListItemFactory($listItemFactory): static
     {
         $this->listItemFactory = $listItemFactory;
 
@@ -450,9 +439,8 @@ class MovieFactory extends AbstractFactory
 
     /**
      * @param ChangeFactory $changeFactory
-     * @return self
      */
-    public function setChangeFactory($changeFactory)
+    public function setChangeFactory($changeFactory): static
     {
         $this->changeFactory = $changeFactory;
 

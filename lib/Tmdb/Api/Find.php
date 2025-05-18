@@ -1,22 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Api;
 
 /**
- * Class Find
- * @package Tmdb\Api
+ * Class Find.
+ *
  * @see http://docs.themoviedb.apiary.io/#find
  */
 class Find extends AbstractApi
@@ -33,18 +35,13 @@ class Find extends AbstractApi
      * Movies: imdb_id
      * People: imdb_id, freebase_mid, freebase_id, tvrage_id
      * TV Series: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id
-     *
-     * @param string $id
-     * @param array $parameters
-     * @param array $headers
-     * @return array
      */
     public function findBy(string $id, array $parameters = [], array $headers = []): array
     {
         return $this->get(
             'find/' . $id,
             $parameters,
-            $headers
+            $headers,
         );
     }
 }

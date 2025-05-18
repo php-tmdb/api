@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,20 +20,16 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Timezones;
 
 /**
- * Class Timezone
- * @package Tmdb\Model\Certification
+ * Class Timezone.
  */
-class CountryTimezone extends AbstractModel
+class CountryTimezone extends AbstractModel implements \Stringable
 {
     /**
      * @var string
      */
     private $iso31661;
 
-    /**
-     * @var Timezones
-     */
-    private $timezones;
+    private \Tmdb\Model\Collection\Timezones $timezones;
 
     public function __construct()
     {
@@ -48,9 +46,8 @@ class CountryTimezone extends AbstractModel
 
     /**
      * @param Timezones $timezones
-     * @return self
      */
-    public function setTimezones($timezones)
+    public function setTimezones($timezones): static
     {
         $this->timezones = $timezones;
 
@@ -67,9 +64,8 @@ class CountryTimezone extends AbstractModel
 
     /**
      * @param string $iso31661
-     * @return self
      */
-    public function setIso31661($iso31661)
+    public function setIso31661($iso31661): static
     {
         $this->iso31661 = $iso31661;
 
@@ -77,20 +73,15 @@ class CountryTimezone extends AbstractModel
     }
 
     /**
-     * Verify if a country supports a certain timezone
-     *
-     * @param $timezone
-     * @return boolean
+     * Verify if a country supports a certain timezone.
      */
-    public function supports($timezone)
+    public function supports($timezone): bool
     {
         return false !== $this->timezones->hasValue($timezone);
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
         return $this->iso31661;
     }

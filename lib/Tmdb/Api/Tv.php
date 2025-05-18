@@ -1,22 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Api;
 
 /**
- * Class Tv
- * @package Tmdb\Api
+ * Class Tv.
+ *
  * @see http://docs.themoviedb.apiary.io/#tv
  */
 class Tv extends AbstractApi
@@ -24,12 +26,9 @@ class Tv extends AbstractApi
     /**
      * Get the primary information about a TV series by id.
      *
-     * @param integer $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
+     * @param int $tvshow_id
      */
-    public function getTvshow($tvshow_id, array $parameters = [], array $headers = [])
+    public function getTvshow($tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id, $parameters, $headers);
     }
@@ -37,63 +36,40 @@ class Tv extends AbstractApi
     /**
      * Get the cast & crew information about a TV series.
      * Just like the website, we pull this information from the last season of the series.
-     *
-     * @param $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getCredits($tvshow_id, array $parameters = [], array $headers = [])
+    public function getCredits(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/credits', $parameters, $headers);
     }
 
     /**
      * Get the content ratings for a specific TV show id.
-     * @param $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getContentRatings($tvshow_id, array $parameters = [], array $headers = [])
+    public function getContentRatings(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/content_ratings', $parameters, $headers);
     }
 
     /**
      * Get the external ids that we have stored for a TV series.
-     *
-     * @param $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getExternalIds($tvshow_id, array $parameters = [], array $headers = [])
+    public function getExternalIds(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/external_ids', $parameters, $headers);
     }
 
     /**
      * Get the images (posters and backdrops) for a TV series.
-     *
-     * @param $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getImages($tvshow_id, array $parameters = [], array $headers = [])
+    public function getImages(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/images', $parameters, $headers);
     }
 
     /**
      * Get the list of popular TV shows. This list refreshes every day.
-     *
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getPopular(array $parameters = [], array $headers = [])
+    public function getPopular(array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/popular', $parameters, $headers);
     }
@@ -103,12 +79,8 @@ class Tv extends AbstractApi
      *
      * By default, this list will only include TV shows that have 2 or more votes.
      * This list refreshes every day.
-     *
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getTopRated(array $parameters = [], array $headers = [])
+    public function getTopRated(array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/top_rated', $parameters, $headers);
     }
@@ -119,11 +91,8 @@ class Tv extends AbstractApi
      * These translations cascade down to the episode level.
      *
      * @param int $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getTranslations($tvshow_id, array $parameters = [], array $headers = [])
+    public function getTranslations($tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/translations', $parameters, $headers);
     }
@@ -132,12 +101,8 @@ class Tv extends AbstractApi
      * Get the list of TV shows that are currently on the air.
      *
      * This query looks for any TV show that has an episode with an air date in the next 7 days.
-     *
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getOnTheAir(array $parameters = [], array $headers = [])
+    public function getOnTheAir(array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/on_the_air', $parameters, $headers);
     }
@@ -146,38 +111,26 @@ class Tv extends AbstractApi
      * Get the list of TV shows that air today.
      *
      * Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).
-     *
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getAiringToday(array $parameters = [], array $headers = [])
+    public function getAiringToday(array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/airing_today', $parameters, $headers);
     }
 
     /**
-     * Get the videos that have been added to a TV series (trailers, opening credits, etc...)
+     * Get the videos that have been added to a TV series (trailers, opening credits, etc...).
      *
      * @param int $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getVideos($tvshow_id, array $parameters = [], array $headers = [])
+    public function getVideos($tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/videos', $parameters, $headers);
     }
 
     /**
      * Get the watch providers (by region) for a specific movie id.
-     *
-     * @param $movie_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getWatchProviders($tvshow_id, array $parameters = [], array $headers = [])
+    public function getWatchProviders(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/watch/providers', $parameters, $headers);
     }
@@ -195,64 +148,40 @@ class Tv extends AbstractApi
      * These keys will contain a series_id and episode_id.
      *
      * You can use the /tv/season/{id}/changes and /tv/episode/{id}/changes methods to look up these specific changes.
-     *
-     * @param $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getChanges($tvshow_id, array $parameters = [], array $headers = [])
+    public function getChanges(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/changes', $parameters, $headers);
     }
 
     /**
      * Get the latest TV show id.
-     *
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getLatest(array $parameters = [], array $headers = [])
+    public function getLatest(array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/latest', $parameters, $headers);
     }
 
     /**
      * Get the plot keywords for a specific TV show id.
-     *
-     * @param $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getKeywords($tvshow_id, array $parameters = [], array $headers = [])
+    public function getKeywords(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/keywords', $parameters, $headers);
     }
 
     /**
      * Get the similar TV shows for a specific tv id.
-     *
-     * @param $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getSimilar($tvshow_id, array $parameters = [], array $headers = [])
+    public function getSimilar(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/similar', $parameters, $headers);
     }
 
     /**
      * Get the recommended TV shows for a specific tv id.
-     *
-     * @param $tvshow_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getRecommendations($tvshow_id, array $parameters = [], array $headers = [])
+    public function getRecommendations(string $tvshow_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $tvshow_id . '/recommendations', $parameters, $headers);
     }
@@ -263,10 +192,9 @@ class Tv extends AbstractApi
      *
      * A valid session id is required.
      *
-     * @param integer $id
-     * @return mixed
+     * @param int $id
      */
-    public function getAccountStates($id)
+    public function getAccountStates($id): array
     {
         return $this->get('tv/' . $id . '/account_states');
     }
@@ -276,24 +204,20 @@ class Tv extends AbstractApi
      *
      * A valid session id or guest session id is required.
      *
-     * @param integer $id
-     * @param double $rating
-     * @return mixed
+     * @param int   $id
+     * @param float $rating
      */
-    public function rateTvShow($id, $rating)
+    public function rateTvShow($id, $rating): array
     {
-        return $this->postJson('tv/' . $id . '/rating', ['value' => (float)$rating]);
+        return $this->postJson('tv/' . $id . '/rating', ['value' => (float) $rating]);
     }
 
     /**
      * Get the alternative titles for a specific show ID.
      *
-     * @param integer $id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
+     * @param int $id
      */
-    public function getAlternativeTitles($id, array $parameters = [], array $headers = [])
+    public function getAlternativeTitles($id, array $parameters = [], array $headers = []): array
     {
         return $this->get('tv/' . $id . '/alternative_titles', $parameters, $headers);
     }
@@ -301,10 +225,9 @@ class Tv extends AbstractApi
     /**
      * Get the alternative titles for a specific show ID.
      *
-     * @param integer $id
-     * @return mixed
+     * @param int $id
      */
-    public function getEpisodeGroups($id)
+    public function getEpisodeGroups($id): array
     {
         return $this->get('tv/' . $id . '/episode_groups');
     }

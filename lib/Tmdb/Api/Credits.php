@@ -1,22 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Api;
 
 /**
- * Class Credits
- * @package Tmdb\Api
+ * Class Credits.
+ *
  * @see http://docs.themoviedb.apiary.io/#credits
  */
 class Credits extends AbstractApi
@@ -33,13 +35,8 @@ class Credits extends AbstractApi
      *
      * Season credits are credits that were marked with the "add to every season" option in the editing interface
      * and are assumed to be "season regulars".
-     *
-     * @param $credit_id
-     * @param array $parameters
-     * @param array $headers
-     * @return mixed
      */
-    public function getCredit($credit_id, array $parameters = [], array $headers = [])
+    public function getCredit(string $credit_id, array $parameters = [], array $headers = []): array
     {
         return $this->get('credit/' . $credit_id, $parameters, $headers);
     }

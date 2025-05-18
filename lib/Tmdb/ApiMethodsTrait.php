@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -16,202 +18,127 @@ namespace Tmdb;
 
 trait ApiMethodsTrait
 {
-    /**
-     * @return Api\Account
-     */
-    public function getAccountApi()
+    public function getAccountApi(): \Tmdb\Api\Account
     {
         return new Api\Account($this);
     }
 
-    /**
-     * @return Api\Authentication
-     */
-    public function getAuthenticationApi()
+    public function getAuthenticationApi(): \Tmdb\Api\Authentication
     {
         return new Api\Authentication($this);
     }
 
-    /**
-     * @return Api\Certifications
-     */
-    public function getCertificationsApi()
+    public function getCertificationsApi(): \Tmdb\Api\Certifications
     {
         return new Api\Certifications($this);
     }
 
-    /**
-     * @return Api\Changes
-     */
-    public function getChangesApi()
+    public function getChangesApi(): \Tmdb\Api\Changes
     {
         return new Api\Changes($this);
     }
 
-    /**
-     * @return Api\Collections
-     */
-    public function getCollectionsApi()
+    public function getCollectionsApi(): \Tmdb\Api\Collections
     {
         return new Api\Collections($this);
     }
 
-    /**
-     * @return Api\Companies
-     */
-    public function getCompaniesApi()
+    public function getCompaniesApi(): \Tmdb\Api\Companies
     {
         return new Api\Companies($this);
     }
 
-    /**
-     * @return Api\Configuration
-     */
-    public function getConfigurationApi()
+    public function getConfigurationApi(): \Tmdb\Api\Configuration
     {
         return new Api\Configuration($this);
     }
 
-    /**
-     * @return Api\Credits
-     */
-    public function getCreditsApi()
+    public function getCreditsApi(): \Tmdb\Api\Credits
     {
         return new Api\Credits($this);
     }
 
-    /**
-     * @return Api\Discover
-     */
-    public function getDiscoverApi()
+    public function getDiscoverApi(): \Tmdb\Api\Discover
     {
         return new Api\Discover($this);
     }
 
-    /**
-     * @return Api\Find
-     */
-    public function getFindApi()
+    public function getFindApi(): \Tmdb\Api\Find
     {
         return new Api\Find($this);
     }
 
-    /**
-     * @return Api\Genres
-     */
-    public function getGenresApi()
+    public function getGenresApi(): \Tmdb\Api\Genres
     {
         return new Api\Genres($this);
     }
 
-    /**
-     * @return Api\GuestSession
-     */
-    public function getGuestSessionApi()
+    public function getGuestSessionApi(): \Tmdb\Api\GuestSession
     {
         return new Api\GuestSession($this);
     }
 
-    /**
-     * @return Api\Jobs
-     */
-    public function getJobsApi()
+    public function getJobsApi(): \Tmdb\Api\Jobs
     {
         return new Api\Jobs($this);
     }
 
-    /**
-     * @return Api\Keywords
-     */
-    public function getKeywordsApi()
+    public function getKeywordsApi(): \Tmdb\Api\Keywords
     {
         return new Api\Keywords($this);
     }
 
-    /**
-     * @return Api\Lists
-     */
-    public function getListsApi()
+    public function getListsApi(): \Tmdb\Api\Lists
     {
         return new Api\Lists($this);
     }
 
-    /**
-     * @return Api\Movies
-     */
-    public function getMoviesApi()
+    public function getMoviesApi(): \Tmdb\Api\Movies
     {
         return new Api\Movies($this);
     }
 
-    /**
-     * @return Api\Networks
-     */
-    public function getNetworksApi()
+    public function getNetworksApi(): \Tmdb\Api\Networks
     {
         return new Api\Networks($this);
     }
 
-    /**
-     * @return Api\People
-     */
-    public function getPeopleApi()
+    public function getPeopleApi(): \Tmdb\Api\People
     {
         return new Api\People($this);
     }
 
-    /**
-     * @return Api\Reviews
-     */
-    public function getReviewsApi()
+    public function getReviewsApi(): \Tmdb\Api\Reviews
     {
         return new Api\Reviews($this);
     }
 
-    /**
-     * @return Api\Search
-     */
-    public function getSearchApi()
+    public function getSearchApi(): \Tmdb\Api\Search
     {
         return new Api\Search($this);
     }
 
-    /**
-     * @return Api\Timezones
-     */
-    public function getTimezonesApi()
+    public function getTimezonesApi(): \Tmdb\Api\Timezones
     {
         return new Api\Timezones($this);
     }
 
-    /**
-     * @return Api\Tv
-     */
-    public function getTvApi()
+    public function getTvApi(): \Tmdb\Api\Tv
     {
         return new Api\Tv($this);
     }
 
-    /**
-     * @return Api\TvSeason
-     */
-    public function getTvSeasonApi()
+    public function getTvSeasonApi(): \Tmdb\Api\TvSeason
     {
         return new Api\TvSeason($this);
     }
 
-    /**
-     * @return Api\TvEpisode
-     */
-    public function getTvEpisodeApi()
+    public function getTvEpisodeApi(): \Tmdb\Api\TvEpisode
     {
         return new Api\TvEpisode($this);
     }
 
-    /**
-     * @return Api\TvEpisodeGroup
-     */
-    public function getTvEpisodeGroupApi()
+    public function getTvEpisodeGroupApi(): \Tmdb\Api\TvEpisodeGroup
     {
         return new Api\TvEpisodeGroup($this);
     }

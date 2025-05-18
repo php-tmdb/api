@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,12 +21,11 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image\PosterImage;
 
 /**
- * Class MovieCredit
- * @package Tmdb\Model\Person
+ * Class MovieCredit.
  */
 class Credit extends AbstractModel
 {
-    public static $properties = array(
+    public static $properties = [
         'adult',
         'character',
         'credit_id',
@@ -39,8 +40,8 @@ class Credit extends AbstractModel
         'name',
         'media_type',
         'episode_count',
-        'first_air_date'
-    );
+        'first_air_date',
+    ];
     /**
      * @var bool
      */
@@ -65,10 +66,7 @@ class Credit extends AbstractModel
      * @var string
      */
     private $posterPath;
-    /**
-     * @var DateTime
-     */
-    private $releaseDate;
+    private ?\DateTime $releaseDate = null;
     /**
      * @var string
      */
@@ -101,13 +99,10 @@ class Credit extends AbstractModel
      * @var int
      */
     private $episodeCount;
-    /**
-     * @var mixed
-     */
     private $firstAirDate;
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getAdult()
     {
@@ -115,10 +110,9 @@ class Credit extends AbstractModel
     }
 
     /**
-     * @param boolean $adult
-     * @return self
+     * @param bool $adult
      */
-    public function setAdult($adult)
+    public function setAdult($adult): static
     {
         $this->adult = $adult;
 
@@ -135,9 +129,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $character
-     * @return self
      */
-    public function setCharacter($character)
+    public function setCharacter($character): static
     {
         $this->character = $character;
 
@@ -154,9 +147,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $creditId
-     * @return self
      */
-    public function setCreditId($creditId)
+    public function setCreditId($creditId): static
     {
         $this->creditId = $creditId;
 
@@ -173,9 +165,8 @@ class Credit extends AbstractModel
 
     /**
      * @param int $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -192,9 +183,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $originalTitle
-     * @return self
      */
-    public function setOriginalTitle($originalTitle)
+    public function setOriginalTitle($originalTitle): static
     {
         $this->originalTitle = $originalTitle;
 
@@ -211,9 +201,8 @@ class Credit extends AbstractModel
 
     /**
      * @param PosterImage $posterImage
-     * @return self
      */
-    public function setPosterImage($posterImage)
+    public function setPosterImage($posterImage): static
     {
         $this->posterImage = $posterImage;
 
@@ -230,9 +219,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return self
      */
-    public function setPosterPath($posterPath)
+    public function setPosterPath($posterPath): static
     {
         $this->posterPath = $posterPath;
 
@@ -249,11 +237,10 @@ class Credit extends AbstractModel
 
     /**
      * @param DateTime|string|null $releaseDate
-     * @return self
      */
-    public function setReleaseDate($releaseDate = null)
+    public function setReleaseDate($releaseDate = null): static
     {
-        if (!$releaseDate instanceof DateTime && $releaseDate !== null) {
+        if (!$releaseDate instanceof DateTime && null !== $releaseDate) {
             $releaseDate = new DateTime($releaseDate);
         }
 
@@ -272,9 +259,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $title
-     * @return self
      */
-    public function setTitle($title)
+    public function setTitle($title): static
     {
         $this->title = $title;
 
@@ -291,9 +277,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $job
-     * @return self
      */
-    public function setJob($job)
+    public function setJob($job): static
     {
         $this->job = $job;
 
@@ -310,9 +295,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $department
-     * @return self
      */
-    public function setDepartment($department)
+    public function setDepartment($department): static
     {
         $this->department = $department;
 
@@ -329,9 +313,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $originalName
-     * @return self
      */
-    public function setOriginalName($originalName)
+    public function setOriginalName($originalName): static
     {
         $this->originalName = $originalName;
 
@@ -348,9 +331,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -367,9 +349,8 @@ class Credit extends AbstractModel
 
     /**
      * @param string $mediaType
-     * @return self
      */
-    public function setMediaType($mediaType)
+    public function setMediaType($mediaType): static
     {
         $this->mediaType = $mediaType;
 
@@ -386,28 +367,20 @@ class Credit extends AbstractModel
 
     /**
      * @param int $episodeCount
-     * @return self
      */
-    public function setEpisodeCount($episodeCount)
+    public function setEpisodeCount($episodeCount): static
     {
         $this->episodeCount = $episodeCount;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getFirstAirDate()
     {
         return $this->firstAirDate;
     }
 
-    /**
-     * @param mixed $firstAirDate
-     * @return self
-     */
-    public function setFirstAirDate($firstAirDate)
+    public function setFirstAirDate($firstAirDate): static
     {
         $this->firstAirDate = $firstAirDate;
 

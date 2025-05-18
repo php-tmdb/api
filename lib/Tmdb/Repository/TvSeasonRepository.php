@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -27,25 +29,25 @@ use Tmdb\Model\Tv\Season;
 use Tmdb\Model\Tv\Season\QueryParameter\AppendToResponse;
 
 /**
- * Class TvSeasonRepository
- * @package Tmdb\Repository
+ * Class TvSeasonRepository.
+ *
  * @see http://docs.themoviedb.apiary.io/#tvseasons
  */
 class TvSeasonRepository extends AbstractRepository
 {
     /**
-     * Load a tv season with the given identifier
+     * Load a tv season with the given identifier.
      *
      * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
      *
-     * @param int|Tv $tvShow
+     * @param int|Tv     $tvShow
      * @param int|Season $season
-     * @param array $parameters
-     * @param array $headers
-     * @return null|AbstractModel
+     *
+     * @return AbstractModel|null
+     *
      * @throws RuntimeException
      */
-    public function load($tvShow, $season, array $parameters = [], array $headers = [])
+    public function load($tvShow, $season, array $parameters = [], array $headers = []): ?\Tmdb\Model\Tv\Season
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -66,8 +68,8 @@ class TvSeasonRepository extends AbstractRepository
                     AppendToResponse::EXTERNAL_IDS,
                     AppendToResponse::IMAGES,
                     AppendToResponse::CHANGES,
-                    AppendToResponse::VIDEOS
-                ])
+                    AppendToResponse::VIDEOS,
+                ]),
             ]);
         }
 
@@ -77,19 +79,18 @@ class TvSeasonRepository extends AbstractRepository
     }
 
     /**
-     * Return the Seasons API Class
+     * Return the Seasons API Class.
      *
      * @return TvSeason
      */
+    #[\Override]
     public function getApi()
     {
         return $this->getClient()->getTvSeasonApi();
     }
 
-    /**
-     * @return TvSeasonFactory
-     */
-    public function getFactory()
+    #[\Override]
+    public function getFactory(): \Tmdb\Factory\TvSeasonFactory
     {
         return new TvSeasonFactory($this->getClient()->getHttpClient());
     }
@@ -99,10 +100,9 @@ class TvSeasonRepository extends AbstractRepository
      *
      * Just like the website, we pull this information from the last season of the series.
      *
-     * @param Tv|int $tvShow
+     * @param Tv|int     $tvShow
      * @param Season|int $season
-     * @param array $parameters
-     * @param array $headers
+     *
      * @return CreditsCollection
      */
     public function getCredits($tvShow, $season, array $parameters = [], array $headers = [])
@@ -124,11 +124,7 @@ class TvSeasonRepository extends AbstractRepository
     /**
      * Get the external ids that we have stored for a TV series.
      *
-     * @param $tvShow
-     * @param $season
-     * @param $parameters
-     * @param $headers
-     * @return null|AbstractModel
+     * @return AbstractModel|null
      */
     public function getExternalIds($tvShow, $season, array $parameters = [], array $headers = [])
     {
@@ -149,10 +145,6 @@ class TvSeasonRepository extends AbstractRepository
     /**
      * Get the images (posters and backdrops) for a TV series.
      *
-     * @param $tvShow
-     * @param $season
-     * @param $parameters
-     * @param $headers
      * @return Images
      */
     public function getImages($tvShow, $season, array $parameters = [], array $headers = [])
@@ -172,12 +164,8 @@ class TvSeasonRepository extends AbstractRepository
     }
 
     /**
-     * Get the videos that have been added to a TV season (trailers, teasers, etc...)
+     * Get the videos that have been added to a TV season (trailers, teasers, etc...).
      *
-     * @param $tvShow
-     * @param $season
-     * @param $parameters
-     * @param $headers
      * @return Videos|Video[]
      */
     public function getVideos($tvShow, $season, array $parameters = [], array $headers = [])

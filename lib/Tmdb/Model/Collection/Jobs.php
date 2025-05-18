@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,28 +19,28 @@ namespace Tmdb\Model\Collection;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
- * Class Jobs
- * @package Tmdb\Model\Collection
+ * Class Jobs.
  */
 class Jobs extends GenericCollection
 {
     /**
-     * Filter by department
+     * Filter by department.
      *
      * @param string $department
+     *
      * @return self
      */
     public function filterByDepartment($department)
     {
         $result = $this->filter(
             function ($key, $value) use ($department) {
-                if ($value->getDepartment() == $department) {
+                if ($value->getDepartment() === $department) {
                     return true;
                 }
-            }
+            },
         );
 
-        if (1 === count($result)) {
+        if (1 === \count($result)) {
             $results = $result->toArray();
 
             return array_shift($results);
@@ -48,22 +50,23 @@ class Jobs extends GenericCollection
     }
 
     /**
-     * Filter by department and return the jobs collection
+     * Filter by department and return the jobs collection.
      *
      * @param string $department
+     *
      * @return self
      */
     public function filterByDepartmentAndReturnJobsList($department)
     {
         $result = $this->filter(
             function ($key, $value) use ($department) {
-                if ($value->getDepartment() == $department) {
+                if ($value->getDepartment() === $department) {
                     return true;
                 }
-            }
+            },
         );
 
-        if (1 === count($result)) {
+        if (1 === \count($result)) {
             $results = $result->toArray();
             $data = array_shift($results);
 
@@ -74,9 +77,10 @@ class Jobs extends GenericCollection
     }
 
     /**
-     * Filter by job
+     * Filter by job.
      *
      * @param string $filterByJob
+     *
      * @return self
      */
     public function filterByJob($filterByJob)
@@ -86,14 +90,14 @@ class Jobs extends GenericCollection
                 $jobList = $value->getJobList();
 
                 foreach ($jobList as $job) {
-                    if ($filterByJob == $job) {
+                    if ($filterByJob === $job) {
                         return true;
                     }
                 }
-            }
+            },
         );
 
-        if (1 === count($result)) {
+        if (1 === \count($result)) {
             $results = $result->toArray();
 
             return array_shift($results);

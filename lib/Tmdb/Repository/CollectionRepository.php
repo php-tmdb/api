@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -22,13 +24,21 @@ use Tmdb\Model\Collection as ApiCollection;
 use Tmdb\Model\Collection\QueryParameter\AppendToResponse;
 
 /**
- * Class CollectionRepository
- * @package Tmdb\Repository
+ * Class CollectionRepository.
+ *
  * @see http://docs.themoviedb.apiary.io/#collections
  */
 class CollectionRepository extends AbstractRepository
 {
-    private $imageFactory;
+    /**
+     * @var ImageFactory|mixed
+     */
+    protected $imageFactory;
+
+    /**
+     * @var CollectionFactory|mixed
+     */
+    protected $factory;
 
     public function __construct(Client $client)
     {
@@ -38,24 +48,19 @@ class CollectionRepository extends AbstractRepository
     }
 
     /**
-     * Load a collection with the given identifier
+     * Load a collection with the given identifier.
      *
      * If you want to optimize the result set/bandwidth you
      * should define the AppendToResponse parameter
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     * @return ApiCollection
      */
-    public function load($id, array $parameters = [], array $headers = [])
+    public function load(string $id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection
     {
-        if (empty($parameters)) {
+        if ($parameters === []) {
             $parameters = [
                 new AppendToResponse([
                     AppendToResponse::IMAGES,
                     AppendToResponse::TRANSLATIONS,
-                ])
+                ]),
             ];
         }
 
@@ -65,33 +70,26 @@ class CollectionRepository extends AbstractRepository
     }
 
     /**
-     * Return the Collection API Class
+     * Return the Collection API Class.
      *
      * @return Collections
      */
+    #[\Override]
     public function getApi()
     {
         return $this->getClient()->getCollectionsApi();
     }
 
-    /**
-     * @return CollectionFactory
-     */
-    public function getFactory()
+    #[\Override]
+    public function getFactory(): \Tmdb\Factory\CollectionFactory
     {
         return new CollectionFactory($this->getClient()->getHttpClient());
     }
 
     /**
      * Get all of the images for a particular collection by collection id.
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     *
-     * @return ApiCollection\Images
      */
-    public function getImages($id, array $parameters = [], array $headers = []): ApiCollection\Images
+    public function getImages(string $id, array $parameters = [], array $headers = []): ApiCollection\Images
     {
         $data = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['images' => $data]);
@@ -102,31 +100,21 @@ class CollectionRepository extends AbstractRepository
     /**
      * Get the list of translations that exist for a particular collection by collection id.
      *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     * @return null|\Tmdb\Model\AbstractModel
+     * @return \Tmdb\Model\AbstractModel|null
      */
-    public function getTranslations($id, array $parameters = [], array $headers = [])
+    public function getTranslations(string $id, array $parameters = [], array $headers = []): \Tmdb\Model\Collection
     {
         $data = $this->getApi()->getTranslations($id, $this->parseQueryParameters($parameters), $headers);
 
         return $this->getFactory()->create(['translations' => $data]);
     }
 
-    /**
-     * @return mixed
-     */
     public function getImageFactory()
     {
         return $this->imageFactory;
     }
 
-    /**
-     * @param mixed $imageFactory
-     * @return self
-     */
-    public function setImageFactory($imageFactory)
+    public function setImageFactory($imageFactory): static
     {
         $this->imageFactory = $imageFactory;
 

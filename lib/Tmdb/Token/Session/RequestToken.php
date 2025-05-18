@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,38 +19,29 @@ namespace Tmdb\Token\Session;
 use DateTime;
 
 /**
- * Class RequestToken
- * @package Tmdb
+ * Class RequestToken.
  */
-class RequestToken
+class RequestToken implements \Stringable
 {
     /**
-     * The token for obtaining a session
-     *
-     * @var string|null
+     * Expiry date UTC.
      */
-    private $token;
+    private ?\DateTime $expiresAt = null;
+
+    private ?bool $success = null;
 
     /**
-     * Expiry date UTC
+     * Token bag.
      *
-     * @var \DateTime
+     * @param string|null $token
      */
-    private $expiresAt;
-
-    /**
-     * @var bool
-     */
-    private $success;
-
-    /**
-     * Token bag
-     *
-     * @param string|null $requestToken
-     */
-    public function __construct($requestToken = null)
+    public function __construct(
+        /**
+         * The token for obtaining a session.
+         */
+        private $token = null
+    )
     {
-        $this->token = $requestToken;
     }
 
     /**
@@ -59,11 +52,7 @@ class RequestToken
         return $this->token;
     }
 
-    /**
-     * @param string|null $token
-     * @return self
-     */
-    public function setToken(?string $token = null)
+    public function setToken(?string $token = null): static
     {
         $this->token = $token;
 
@@ -80,9 +69,8 @@ class RequestToken
 
     /**
      * @param DateTime|string $expiresAt
-     * @return self
      */
-    public function setExpiresAt($expiresAt)
+    public function setExpiresAt($expiresAt): static
     {
         if (!$expiresAt instanceof DateTime) {
             $expiresAt = new DateTime($expiresAt);
@@ -94,29 +82,23 @@ class RequestToken
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getSuccess()
     {
         return $this->success;
     }
 
-    /**
-     * @param boolean $success
-     * @return self
-     */
-    public function setSuccess(bool $success)
+    public function setSuccess(bool $success): static
     {
         $this->success = $success;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
-        return (string)$this->token;
+        return (string) $this->token;
     }
 }

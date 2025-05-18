@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model\Certification;
 use Tmdb\Model\AbstractModel;
 
 /**
- * Class CountryCertification
- * @package Tmdb\Model\Certification
+ * Class CountryCertification.
  */
 class CountryCertification extends AbstractModel
 {
@@ -36,7 +37,7 @@ class CountryCertification extends AbstractModel
      */
     private $meaning;
     /**
-     * @var integer
+     * @var int
      */
     private $order;
 
@@ -50,9 +51,8 @@ class CountryCertification extends AbstractModel
 
     /**
      * @param string $certification
-     * @return self
      */
-    public function setCertification($certification)
+    public function setCertification($certification): static
     {
         $this->certification = $certification;
 
@@ -69,9 +69,8 @@ class CountryCertification extends AbstractModel
 
     /**
      * @param string $meaning
-     * @return self
      */
-    public function setMeaning($meaning)
+    public function setMeaning($meaning): static
     {
         $this->meaning = $meaning;
 
@@ -88,9 +87,8 @@ class CountryCertification extends AbstractModel
 
     /**
      * @param int $order
-     * @return self
      */
-    public function setOrder($order)
+    public function setOrder($order): static
     {
         $this->order = $order;
 

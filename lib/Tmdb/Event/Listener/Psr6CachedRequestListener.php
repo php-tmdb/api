@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -32,25 +34,9 @@ use Tmdb\HttpClient\HttpClient;
  * This is a little hacky, but I just wanna get 4.0 pushed ASAP. At a later stage we will review this again.
  *
  * Class Psr6CachedRequestListener
- * @package Tmdb\Event\Listener
  */
 class Psr6CachedRequestListener extends RequestListener
 {
-    /**
-     * @var CacheItemPoolInterface
-     */
-    private $cache;
-
-    /**
-     * @var StreamFactoryInterface
-     */
-    private $streamFactory;
-
-    /**
-     * @var array
-     */
-    private $options;
-
     /**
      * @var CachePlugin
      */
@@ -58,35 +44,22 @@ class Psr6CachedRequestListener extends RequestListener
 
     /**
      * Psr6CachedRequestListener constructor.
-     *
-     * @param HttpClient $httpClient
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param CacheItemPoolInterface $cache
-     * @param StreamFactoryInterface $streamFactory
-     * @param array $options
-     * @param array $pluginOptions
      */
     public function __construct(
         HttpClient $httpClient,
         EventDispatcherInterface $eventDispatcher,
-        CacheItemPoolInterface $cache,
-        StreamFactoryInterface $streamFactory,
-        array $options = [],
-        array $pluginOptions = []
+        private readonly CacheItemPoolInterface $cache,
+        private readonly StreamFactoryInterface $streamFactory,
+        array $pluginOptions = [],
     ) {
         parent::__construct($httpClient, $eventDispatcher);
-
-        $this->cache = $cache;
-        $this->streamFactory = $streamFactory;
-        $this->options = $options;
         $this->httpCachePlugin = CachePlugin::serverCache($this->cache, $this->streamFactory, $pluginOptions);
     }
 
     /**
      * Add the API token to the headers.
-     *
-     * @param RequestEvent $event
      */
+    #[\Override]
     public function __invoke(RequestEvent $event): void
     {
         // Preparation of request parameters / Possibility to use for logging and caching etc.
@@ -97,6 +70,7 @@ class Psr6CachedRequestListener extends RequestListener
 
         if ($beforeRequestEvent->isPropagationStopped() && $beforeRequestEvent->hasResponse()) {
             $event->setResponse($beforeRequestEvent->getResponse());
+
             return;
         }
 
@@ -105,20 +79,20 @@ class Psr6CachedRequestListener extends RequestListener
         try {
             $response = $this->httpCachePlugin->handleRequest(
                 $event->getRequest(),
-                function ($request) use ($beforeRequestEvent, &$cachedResponse) {
+                function ($request) use ($beforeRequestEvent, &$cachedResponse): \Http\Promise\FulfilledPromise {
                     $cachedResponse = false;
                     $response = $this->sendRequest($beforeRequestEvent);
 
                     return new FulfilledPromise($response);
                 },
-                function () {
-                } // we do not need the plugin to go back
+                function (): void {
+                }, // we do not need the plugin to go back
             );
 
             $response->then(
-                function ($result) use ($beforeRequestEvent) {
+                function ($result) use ($beforeRequestEvent): void {
                     $beforeRequestEvent->setResponse($result);
-                }
+                },
             );
 
             $response = $beforeRequestEvent->getResponse();
@@ -128,10 +102,7 @@ class Psr6CachedRequestListener extends RequestListener
 
         try {
             if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 600) {
-                throw $this->responseExceptionFactory->createTmdbApiException(
-                    $beforeRequestEvent->getRequest(),
-                    $response
-                );
+                throw $this->responseExceptionFactory->createTmdbApiException($beforeRequestEvent->getRequest(), $response);
             }
 
             $event->setRequest($beforeRequestEvent->getRequest());
