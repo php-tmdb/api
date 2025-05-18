@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model\Common;
 use Tmdb\Model\AbstractModel;
 
 /**
- * Class Change
- * @package Tmdb\Model\Common
+ * Class Change.
  */
 class Change extends AbstractModel
 {
@@ -29,10 +30,7 @@ class Change extends AbstractModel
      * @var string
      */
     private $key;
-    /**
-     * @var GenericCollection
-     */
-    private $items;
+    private \Tmdb\Model\Common\GenericCollection $items;
 
     public function __construct()
     {
@@ -49,9 +47,8 @@ class Change extends AbstractModel
 
     /**
      * @param GenericCollection $items
-     * @return self
      */
-    public function setItems($items)
+    public function setItems($items): static
     {
         $this->items = $items;
 
@@ -68,9 +65,8 @@ class Change extends AbstractModel
 
     /**
      * @param string $key
-     * @return self
      */
-    public function setKey($key)
+    public function setKey($key): static
     {
         $this->key = $key;
 

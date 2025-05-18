@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Event\Listener;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Event\BeforeRequestEvent;
@@ -22,8 +24,8 @@ use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
 class ContentTypeApplicationJsonTest extends ListenerTestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSetAcceptsApplicationJson()
     {
         $factory = new Psr17Factory();

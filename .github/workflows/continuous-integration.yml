@@ -8,14 +8,13 @@ env:
 jobs:
   phpunit:
     name: "PHPUnit"
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-latest"
 
     strategy:
       matrix:
         php-version:
-          - "7.4"
-          - "8.0"
-          - "8.1"
+          - "8.3"
+          - "8.4"
         deps:
           - "normal"
         symfony-require:
@@ -23,36 +22,39 @@ jobs:
         symfony-deprecations-helper:
           - ""
         include:
-          - php-version: "7.4"
+          # PHP 8.3 test matrix
+          - php-version: "8.3"
             deps: "normal"
 
-          - php-version: "7.4"
+          - php-version: "8.3"
             deps: "low"
 
-          - php-version: "7.4"
+          - php-version: "8.3"
             deps: "dev"
-
-          - php-version: "8.0"
+            
+          # Test Symfony 7 with PHP 8.3
+          - php-version: "8.3"
+            deps: "normal"
+            symfony-require: "7.0.*"
+            
+          # PHP 8.4 test matrix
+          - php-version: "8.4"
             deps: "normal"
 
-          - php-version: "8.0"
+          - php-version: "8.4"
             deps: "low"
 
-          - php-version: "8.0"
+          - php-version: "8.4"
             deps: "dev"
-
-          - php-version: "8.1"
+            
+          # Test latest Symfony with PHP 8.4
+          - php-version: "8.4"
             deps: "normal"
-
-          - php-version: "8.1"
-            deps: "low"
-
-          - php-version: "8.1"
-            deps: "dev"
+            symfony-require: "7.*"
 
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v2"
+        uses: "actions/checkout@v3"
         with:
           fetch-depth: 2
 
@@ -60,13 +62,25 @@ jobs:
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "${{ matrix.php-version }}"
+          extensions: "json"
+          tools: "composer:2"
+          coverage: "pcov"
+          ini-values: "memory_limit=-1"
 
       - name: "Cache dependencies installed with composer"
-        uses: "actions/cache@v2"
+        uses: "actions/cache@v3"
         with:
           path: "~/.composer/cache"
           key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
           restore-keys: "php-${{ matrix.php-version }}-composer-locked-"
+
+      - name: "Require specific Symfony version"
+        run: "composer global require --no-progress --no-scripts --no-plugins 'symfony/flex:^2.3'"
+        if: "${{ matrix.symfony-require != '' }}"
+        
+      - name: "Set Symfony version constraint"
+        run: "composer config extra.symfony.require ${{ matrix.symfony-require }}"
+        if: "${{ matrix.symfony-require != '' }}"
 
       - name: "Install stable dependencies with composer"
         run: "composer update --no-interaction --prefer-dist --prefer-stable"
@@ -86,9 +100,9 @@ jobs:
       - name: "Upload coverage file"
         uses: "actions/upload-artifact@v4"
         with:
-          name: "phpunit-${{ matrix.php-version }}-${{ matrix.deps }}-${{ hashFiles('composer.lock') }}.coverage"
+          name: "phpunit-${{ matrix.php-version }}-${{ matrix.deps }}-${{ matrix.symfony-require }}-${{ hashFiles('composer.lock') }}.coverage"
           path: "coverage.xml"
 
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v3
         with:
           verbose: true

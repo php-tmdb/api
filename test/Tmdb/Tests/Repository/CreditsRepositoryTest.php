@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class CreditsRepositoryTest extends TestCase
 {
     public const CREDIT_ID = '5240760b5dbf5b0c2c0139db';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

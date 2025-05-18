@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\TimezoneFactory;
 use Tmdb\Model\Timezone\CountryTimezone;
 
@@ -27,8 +29,8 @@ class TimezoneFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructTimezones()
     {
         /**

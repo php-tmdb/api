@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -25,13 +27,12 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Image\PosterImage;
 
 /**
- * Class Season
- * @package Tmdb\Model\Tv
+ * Class Season.
  */
 class Season extends AbstractModel
 {
     /**
-     * Properties that are available in the API
+     * Properties that are available in the API.
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
      *
@@ -43,24 +44,21 @@ class Season extends AbstractModel
         'overview',
         'id',
         'poster_path',
-        'season_number'
+        'season_number',
     ];
     /**
-     * Credits
-     *
-     * @var CreditsCollection
+     * Credits.
+     * @var CreditsCollection|mixed
      */
     protected $credits;
     /**
-     * External Ids
-     *
-     * @var ExternalIds
+     * External Ids.
+     * @var ExternalIds|mixed
      */
     protected $externalIds;
     /**
-     * Images
-     *
-     * @var Images
+     * Images.
+     * @var Images|mixed
      */
     protected $images;
     /**
@@ -68,21 +66,18 @@ class Season extends AbstractModel
      */
     protected $poster;
     /**
-     * @var Videos
+     * @var Videos|ResultCollection|mixed
      */
     protected $videos;
     /**
-     * @var Changes
+     * @var Changes|mixed
      */
     protected $changes;
-    /**
-     * @var DateTime
-     */
-    private $airDate;
+    private ?\DateTime $airDate = null;
     /**
      * @var GenericCollection|Episode[]
      */
-    private $episodes;
+    private \Tmdb\Model\Common\GenericCollection $episodes;
     /**
      * @var string
      */
@@ -91,21 +86,18 @@ class Season extends AbstractModel
      * @var string
      */
     private $overview;
-    /**
-     * @var integer
-     */
-    private $id;
+    private ?int $id = null;
     /**
      * @var string
      */
     private $posterPath;
     /**
-     * @var integer
+     * @var int
      */
     private $seasonNumber;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -127,9 +119,8 @@ class Season extends AbstractModel
 
     /**
      * @param string $airDate
-     * @return self
      */
-    public function setAirDate($airDate)
+    public function setAirDate($airDate): static
     {
         $this->airDate = new DateTime($airDate);
 
@@ -146,9 +137,8 @@ class Season extends AbstractModel
 
     /**
      * @param GenericCollection $episodes
-     * @return self
      */
-    public function setEpisodes($episodes)
+    public function setEpisodes($episodes): static
     {
         $this->episodes = $episodes;
 
@@ -165,11 +155,10 @@ class Season extends AbstractModel
 
     /**
      * @param int $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
 
         return $this;
     }
@@ -184,9 +173,8 @@ class Season extends AbstractModel
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -203,9 +191,8 @@ class Season extends AbstractModel
 
     /**
      * @param string $overview
-     * @return self
      */
-    public function setOverview($overview)
+    public function setOverview($overview): static
     {
         $this->overview = $overview;
 
@@ -222,9 +209,8 @@ class Season extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return self
      */
-    public function setPosterPath($posterPath)
+    public function setPosterPath($posterPath): static
     {
         $this->posterPath = $posterPath;
 
@@ -241,9 +227,8 @@ class Season extends AbstractModel
 
     /**
      * @param int $seasonNumber
-     * @return self
      */
-    public function setSeasonNumber($seasonNumber)
+    public function setSeasonNumber($seasonNumber): static
     {
         $this->seasonNumber = $seasonNumber;
 
@@ -260,9 +245,8 @@ class Season extends AbstractModel
 
     /**
      * @param CreditsCollection $credits
-     * @return self
      */
-    public function setCredits($credits)
+    public function setCredits($credits): static
     {
         $this->credits = $credits;
 
@@ -279,9 +263,8 @@ class Season extends AbstractModel
 
     /**
      * @param ExternalIds $externalIds
-     * @return self
      */
-    public function setExternalIds($externalIds)
+    public function setExternalIds($externalIds): static
     {
         $this->externalIds = $externalIds;
 
@@ -298,9 +281,8 @@ class Season extends AbstractModel
 
     /**
      * @param Images $images
-     * @return self
      */
-    public function setImages($images)
+    public function setImages($images): static
     {
         $this->images = $images;
 
@@ -309,9 +291,8 @@ class Season extends AbstractModel
 
     /**
      * @param PosterImage $poster
-     * @return self
      */
-    public function setPosterImage($poster)
+    public function setPosterImage($poster): static
     {
         $this->poster = $poster;
 
@@ -336,9 +317,8 @@ class Season extends AbstractModel
 
     /**
      * @param Videos $videos
-     * @return self
      */
-    public function setVideos($videos)
+    public function setVideos($videos): static
     {
         $this->videos = $videos;
 
@@ -355,9 +335,8 @@ class Season extends AbstractModel
 
     /**
      * @param Changes $changes
-     * @return self
      */
-    public function setChanges($changes)
+    public function setChanges($changes): static
     {
         $this->changes = $changes;
 

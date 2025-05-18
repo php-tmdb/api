@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,8 +21,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class TmdbApiException
- * @package Tmdb\Exception
+ * Class TmdbApiException.
  */
 class TmdbApiException extends Exception
 {
@@ -60,35 +61,16 @@ class TmdbApiException extends Exception
     public const STATUS_RESOURCE_NOT_FOUND = 34;
 
     /**
-     * @var RequestInterface
-     */
-    protected $request;
-
-    /**
-     * @var ResponseInterface
-     */
-    protected $response;
-
-    /**
-     * Create the exception
-     *
-     * @param int $code
-     * @param string $message
-     * @param RequestInterface|null $request
-     * @param ResponseInterface|null $response
-     * @param Exception|null $previous
+     * Create the exception.
      */
     public function __construct(
         int $code,
         string $message,
-        ?RequestInterface $request = null,
-        ?ResponseInterface $response = null,
-        ?Exception $previous = null
+        protected ?\Psr\Http\Message\RequestInterface $request = null,
+        protected ?\Psr\Http\Message\ResponseInterface $response = null,
+        ?Exception $previous = null,
     ) {
         parent::__construct($message, $code, $previous);
-
-        $this->request = $request;
-        $this->response = $response;
     }
 
     /**
@@ -99,10 +81,6 @@ class TmdbApiException extends Exception
         return $this->request;
     }
 
-    /**
-     * @param RequestInterface $request
-     * @return self
-     */
     public function setRequest(RequestInterface $request): TmdbApiException
     {
         $this->request = $request;
@@ -118,10 +96,6 @@ class TmdbApiException extends Exception
         return $this->response;
     }
 
-    /**
-     * @param ResponseInterface $response
-     * @return self
-     */
     public function setResponse(ResponseInterface $response): TmdbApiException
     {
         $this->response = $response;

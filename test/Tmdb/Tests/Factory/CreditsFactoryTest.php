@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Factory\CreditsFactory;
 use Tmdb\Model\Credits;
@@ -43,8 +45,8 @@ class CreditsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         /**
@@ -64,8 +66,8 @@ class CreditsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldThrowExceptionForCollection()
     {
         $this->expectException(NotImplementedException::class);
@@ -75,8 +77,8 @@ class CreditsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         /**
@@ -105,8 +107,8 @@ class CreditsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateCollection()
     {
         $this->assertEquals(true, !empty($this->credits));

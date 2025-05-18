@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Client;
 use Tmdb\Token\Api\ApiToken;
@@ -50,16 +52,16 @@ class ClientTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldNotHaveToPassHttpClientToConstructor()
     {
         $this->assertInstanceOf('Tmdb\HttpClient\HttpClient', $this->client->getHttpClient());
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldContainGuestSessionToken()
     {
         $this->assertInstanceOf('Tmdb\Token\Session\GuestSessionToken', $this->client->getGuestSessionToken());
@@ -67,8 +69,8 @@ class ClientTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function assertInstances()
     {
         $this->assertInstancesOf(
@@ -103,8 +105,8 @@ class ClientTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRespectSecureClientOption()
     {
         $client = new Client(
@@ -162,8 +164,8 @@ class ClientTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleGetOption()
     {
         $token = $this->client->getOption('api_token');

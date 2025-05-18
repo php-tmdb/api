@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\CertificationFactory;
 use Tmdb\Model\Certification;
 
@@ -27,8 +29,8 @@ class CertificationFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructCertification()
     {
         /**

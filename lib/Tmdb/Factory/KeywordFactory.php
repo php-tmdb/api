@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,20 +20,18 @@ use Tmdb\Model\Collection\Keywords;
 use Tmdb\Model\Keyword;
 
 /**
- * Class KeywordFactory
+ * Class KeywordFactory.
+ *
  * @extends AbstractFactory<Keyword>
- * @package Tmdb\Factory
  */
 class KeywordFactory extends AbstractFactory
 {
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function createCollection(array $data = []): Keywords
     {
         $collection = new Keywords();
 
-        if (array_key_exists('keywords', $data)) {
+        if (\array_key_exists('keywords', $data)) {
             $data = $data['keywords'];
         }
 
@@ -42,11 +42,7 @@ class KeywordFactory extends AbstractFactory
         return $collection;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Keyword
-     */
+    #[\Override]
     public function create(array $data = []): Keyword
     {
         return $this->hydrate(new Keyword(), $data);

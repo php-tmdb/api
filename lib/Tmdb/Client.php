@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -28,11 +30,9 @@ use Tmdb\Token\Api\ApiToken;
 use Tmdb\Token\Api\BearerToken;
 use Tmdb\Token\Session\GuestSessionToken;
 use Tmdb\Token\Session\SessionBearerToken;
-use Tmdb\Token\Session\SessionToken;
 
 /**
- * Client wrapper for TMDB
- * @package Tmdb
+ * Client wrapper for TMDB.
  */
 class Client
 {
@@ -51,21 +51,17 @@ class Client
     public const SCHEME_SECURE = 'https';
 
     /**
-     * Stores the HTTP Client
-     *
-     * @var HttpClient
+     * Stores the HTTP Client.
      */
-    private $httpClient;
+    private \Tmdb\HttpClient\HttpClient $httpClient;
 
     /**
-     * Store the options
-     *
-     * @var array
+     * Store the options.
      */
-    private $options = [];
+    private array $options = [];
 
     /**
-     * Construct our client
+     * Construct our client.
      *
      * @param ConfigurationInterface|array $options
      */
@@ -79,9 +75,8 @@ class Client
     }
 
     /**
-     * Configure options
+     * Configure options.
      *
-     * @param array $options
      * @return array
      */
     protected function configureOptions(array $options)
@@ -95,7 +90,7 @@ class Client
                 'base_uri' => null,
                 'api_token' => null,
                 'guest_session_token' => null,
-                'http' => function (OptionsResolver $optionsResolver) {
+                'http' => function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefaults(
                         [
                             'client' => null,
@@ -103,7 +98,7 @@ class Client
                             'response_factory' => null,
                             'stream_factory' => null,
                             'uri_factory' => null,
-                        ]
+                        ],
                     );
                     $optionsResolver->setRequired(
                         [
@@ -111,8 +106,8 @@ class Client
                             'request_factory',
                             'response_factory',
                             'stream_factory',
-                            'uri_factory'
-                        ]
+                            'uri_factory',
+                        ],
                     );
                     $optionsResolver->setAllowedTypes('client', [ClientInterface::class, 'null']);
                     $optionsResolver->setAllowedTypes('request_factory', [RequestFactoryInterface::class, 'null']);
@@ -120,28 +115,28 @@ class Client
                     $optionsResolver->setAllowedTypes('stream_factory', [StreamFactoryInterface::class, 'null']);
                     $optionsResolver->setAllowedTypes('uri_factory', [UriFactoryInterface::class, 'null']);
                 },
-                'hydration' => function (OptionsResolver $optionsResolver) {
+                'hydration' => function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefaults(
                         [
                             'event_listener_handles_hydration' => false,
-                            'only_for_specified_models' => []
-                        ]
+                            'only_for_specified_models' => [],
+                        ],
                     );
                     $optionsResolver->setAllowedTypes('event_listener_handles_hydration', ['bool']);
                     // @todo 4.1 validate these are actually models
                     $optionsResolver->setAllowedTypes('only_for_specified_models', ['array']);
                 },
-                'event_dispatcher' => function (OptionsResolver $optionsResolver) {
+                'event_dispatcher' => function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefaults(
                         [
-                            'adapter' => null
-                        ]
+                            'adapter' => null,
+                        ],
                     );
 
                     $optionsResolver->setRequired(['adapter']);
                     $optionsResolver->setAllowedTypes('adapter', [EventDispatcherInterface::class]);
-                }
-            ]
+                },
+            ],
         );
 
         $resolver->setRequired(
@@ -151,7 +146,7 @@ class Client
                 'secure',
                 'http',
                 'event_dispatcher',
-            ]
+            ],
         );
 
         $resolver->setAllowedTypes('host', ['string']);
@@ -168,16 +163,16 @@ class Client
             [
                 GuestSessionToken::class,
                 SessionBearerToken::class,
-                'null'
-            ]
+                'null',
+            ],
         );
 
-        if (is_string($options['api_token'])) {
+        if (\is_string($options['api_token'])) {
             $options['api_token'] = new ApiToken($options['api_token']);
         }
 
         $this->options = $this->postResolve(
-            $resolver->resolve($options)
+            $resolver->resolve($options),
         );
 
         $this->httpClient = new HttpClient(
@@ -185,62 +180,54 @@ class Client
                 'http' => $this->options['http'],
                 'event_dispatcher' => $this->options['event_dispatcher'],
                 'base_uri' => $this->options['base_uri'],
-                'hydration' => $this->options['hydration']
-            ]
+                'hydration' => $this->options['hydration'],
+            ],
         );
 
         return $this->options;
     }
 
     /**
-     * Post resolve
-     *
-     * @param array $options
-     * @return array
+     * Post resolve.
      */
     protected function postResolve(array $options = []): array
     {
-        $options['http']['client'] = $options['http']['client'] ??
+        $options['http']['client'] ??=  
             Psr18ClientDiscovery::find();
-        $options['http']['request_factory'] = $options['http']['request_factory'] ??
+        $options['http']['request_factory'] ??=  
             Psr17FactoryDiscovery::findRequestFactory();
-        $options['http']['response_factory'] = $options['http']['response_factory'] ??
+        $options['http']['response_factory'] ??=  
             Psr17FactoryDiscovery::findResponseFactory();
-        $options['http']['stream_factory'] = $options['http']['stream_factory'] ??
+        $options['http']['stream_factory'] ??=  
             Psr17FactoryDiscovery::findStreamFactory();
-        $options['http']['uri_factory'] = $options['http']['uri_factory'] ??
+        $options['http']['uri_factory'] ??=  
             Psr17FactoryDiscovery::findUriFactory();
 
         // Automatically enable event listener acceptance if the end-user forgot to enable this.
         if (
-            !empty($options['hydration']['only_for_specified_models']) &&
-            !$options['hydration']['event_listener_handles_hydration']
+            !empty($options['hydration']['only_for_specified_models'])
+            && !$options['hydration']['event_listener_handles_hydration']
         ) {
             $options['hydration']['event_listener_handles_hydration'] = true;
         }
 
-        $options['base_uri'] = sprintf(
+        $options['base_uri'] = \sprintf(
             '%s://%s',
             $options['secure'] ? self::SCHEME_SECURE : self::SCHEME_INSECURE,
-            $options['host']
+            $options['host'],
         );
 
         return $options;
     }
 
     /**
-     * Get the event dispatcher
-     *
-     * @return EventDispatcherInterface
+     * Get the event dispatcher.
      */
     public function getEventDispatcher(): EventDispatcherInterface
     {
         return $this->options['event_dispatcher']['adapter'];
     }
 
-    /**
-     * @return HttpClient
-     */
     public function getHttpClient(): HttpClient
     {
         return $this->httpClient;
@@ -254,18 +241,11 @@ class Client
         return $this->options;
     }
 
-    /**
-     * @return GuestSessionToken|null
-     */
     public function getGuestSessionToken(): ?GuestSessionToken
     {
         return $this->options['guest_session_token'];
     }
 
-    /**
-     * @param GuestSessionToken|null $guestSessionToken
-     * @return self
-     */
     public function setGuestSessionToken(?GuestSessionToken $guestSessionToken): Client
     {
         $this->options['guest_session_token'] = $guestSessionToken;
@@ -273,21 +253,16 @@ class Client
         return $this;
     }
 
-    /**
-     * @return ApiToken|BearerToken
-     */
     public function getToken(): ApiToken
     {
         return $this->options['api_token'];
     }
 
     /**
-     * @param string $key
-     *
      * @return array|mixed
      */
     public function getOption(string $key)
     {
-        return array_key_exists($key, $this->options) ? $this->options[$key] : null;
+        return $this->options[$key] ?? null;
     }
 }

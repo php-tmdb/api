@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\HttpClient;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Token\Api\ApiToken;
 use Tmdb\Common\ParameterBag;
 use Tmdb\HttpClient\Request;
@@ -22,8 +24,8 @@ use Tmdb\Tests\TestCase;
 class HttpClientTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function hi()
     {
         $this->assertTrue(true);

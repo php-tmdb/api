@@ -1,25 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author sheriffmarley
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Model\Tv;
 
-use Tmdb\Model\Network;
 use Tmdb\Model\AbstractModel;
+use Tmdb\Model\Network;
 
 /**
- * Class EpisodeGroups
- * @package Tmdb\Model\Tv
+ * Class EpisodeGroups.
  */
 class EpisodeGroups extends AbstractModel
 {
@@ -32,7 +33,7 @@ class EpisodeGroups extends AbstractModel
     public const TV = 7;
 
     /**
-     * Properties that are available in the API
+     * Properties that are available in the API.
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
      *
@@ -44,58 +45,29 @@ class EpisodeGroups extends AbstractModel
         'group_count',
         'id',
         'name',
-        'type'
+        'type',
     ];
 
+    private ?string $description = null;
+    private ?int $episodeCount = null;
+    private ?int $groupCount = null;
+    private ?string $id = null;
+    private ?string $name = null;
+    private ?\Tmdb\Model\Network $network = null;
+    private ?int $type = null;
 
     /**
-     * @var string
-     */
-    private $description;
-    /**
-     * @var integer
-     */
-    private $episodeCount;
-    /**
-     * @var integer
-     */
-    private $groupCount;
-    /**
-     * @var string
-     */
-    private $id;
-    /**
-     * @var string
-     */
-    private $name;
-    /**
-     * @var null|Network
-     */
-    private $network;
-    /**
-     * @var integer
-     */
-    private $type;
-
-    /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     * @return EpisodeGroups
-     */
     public function setDescription(string $description): EpisodeGroups
     {
         $this->description = $description;
@@ -103,18 +75,11 @@ class EpisodeGroups extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getEpisodeCount(): int
     {
         return $this->episodeCount;
     }
 
-    /**
-     * @param int $episodeCount
-     * @return EpisodeGroups
-     */
     public function setEpisodeCount(int $episodeCount): EpisodeGroups
     {
         $this->episodeCount = $episodeCount;
@@ -122,18 +87,11 @@ class EpisodeGroups extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getGroupCount(): int
     {
         return $this->groupCount;
     }
 
-    /**
-     * @param int $groupCount
-     * @return EpisodeGroups
-     */
     public function setGroupCount(int $groupCount): EpisodeGroups
     {
         $this->groupCount = $groupCount;
@@ -141,18 +99,11 @@ class EpisodeGroups extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @param string $id
-     * @return EpisodeGroups
-     */
     public function setId(string $id): EpisodeGroups
     {
         $this->id = $id;
@@ -160,18 +111,11 @@ class EpisodeGroups extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return EpisodeGroups
-     */
     public function setName(string $name): EpisodeGroups
     {
         $this->name = $name;
@@ -179,18 +123,11 @@ class EpisodeGroups extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return Network|null
-     */
     public function getNetwork(): ?Network
     {
         return $this->network;
     }
 
-    /**
-     * @param Network|null $network
-     * @return EpisodeGroups
-     */
     public function setNetwork(?Network $network): EpisodeGroups
     {
         $this->network = $network;
@@ -198,18 +135,11 @@ class EpisodeGroups extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getType(): int
     {
         return $this->type;
     }
 
-    /**
-     * @param int $type
-     * @return EpisodeGroups
-     */
     public function setType(int $type): EpisodeGroups
     {
         $this->type = $type;

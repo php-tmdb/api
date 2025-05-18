@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ChangesTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovieChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -28,8 +30,8 @@ class ChangesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPersonChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -39,8 +41,8 @@ class ChangesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTvChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();

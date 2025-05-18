@@ -2,6 +2,8 @@
 
 namespace Tmdb\Tests\Event;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Http\Mock\Client;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\RequestInterface;
@@ -32,8 +34,8 @@ use Tmdb\Tests\TestCase;
 class Psr6CachedRequestListenerTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function canCache()
     {
         $factory = new Psr17Factory();
@@ -67,8 +69,8 @@ class Psr6CachedRequestListenerTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function verifyItThrowsTmdbApiException()
     {
         $this->expectException(TmdbApiException::class);
@@ -114,8 +116,8 @@ class Psr6CachedRequestListenerTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function verifyItThrowsRegularException()
     {
         $this->expectException(\Exception::class);

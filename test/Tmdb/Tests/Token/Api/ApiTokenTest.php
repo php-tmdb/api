@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Token\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Exception\RuntimeException;
 use TypeError;
 
@@ -22,8 +24,8 @@ class ApiTokenTest extends \PHPUnit\Framework\TestCase
     public const API_TOKEN = 'abcdefg';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testSetGet()
     {
         $token  = new \Tmdb\Token\Api\ApiToken();
@@ -34,8 +36,8 @@ class ApiTokenTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testThrowsErrorOnEmptyApiToken()
     {
         $this->expectException(TypeError::class);

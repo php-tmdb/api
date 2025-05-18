@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Common;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\Common\SpokenLanguage;
 use Tmdb\Tests\Model\TestCase;
@@ -21,8 +23,8 @@ use Tmdb\Tests\Model\TestCase;
 class SpokenLanguageTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $data = [

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,13 +20,12 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Timezone\CountryTimezone;
 
 /**
- * Class Timezones
- * @package Tmdb\Model\Collection
+ * Class Timezones.
  */
 class Timezones extends GenericCollection
 {
     /**
-     * Returns all countries with timezones
+     * Returns all countries with timezones.
      *
      * @return array
      */
@@ -34,15 +35,14 @@ class Timezones extends GenericCollection
     }
 
     /**
-     * Retrieve a country from the collection
+     * Retrieve a country from the collection.
      *
-     * @param $id
      * @return CountryTimezone|null
      */
     public function getCountry($id)
     {
         foreach ($this->data as $country) {
-            if (strtoupper($id) == (string)$country) {
+            if (strtoupper((string) $id) === (string) $country) {
                 return $country;
             }
         }
@@ -51,11 +51,9 @@ class Timezones extends GenericCollection
     }
 
     /**
-     * Add a timezone to the collection
+     * Add a timezone to the collection.
      *
      * @param CountryTimezone $country
-     *
-     * @return void
      */
     public function addCountry($country): void
     {

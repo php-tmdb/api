@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,29 +19,21 @@ namespace Tmdb\Token\Api;
 use Tmdb\Exception\RuntimeException;
 
 /**
- * Class ApiToken
- * @package Tmdb
+ * Class ApiToken.
  */
-class ApiToken
+class ApiToken implements \Stringable
 {
-    private $apiToken = null;
-
     /**
-     * Token bag
-     *
-     * @param $apiToken
+     * Token bag.
      */
-    public function __construct($apiToken = null)
+    public function __construct(private $apiToken = null)
     {
-        $this->apiToken = $apiToken;
     }
 
     /**
-     * @param string $apiToken
-     * @return self
      * @throws RuntimeException
      */
-    public function setToken(string $apiToken)
+    public function setToken(string $apiToken): static
     {
         $this->apiToken = $apiToken;
 
@@ -54,8 +48,9 @@ class ApiToken
         return $this->apiToken;
     }
 
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
-        return (string)$this->apiToken;
+        return (string) $this->apiToken;
     }
 }

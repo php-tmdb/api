@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tmdb\Formatter\HttpMessage;
 
 use Psr\Http\Client\ClientExceptionInterface;
@@ -9,48 +11,42 @@ use Tmdb\Formatter\HttpMessageFormatterInterface;
 
 /**
  * Borrowed this from our friends of `php-http/message`.
+ *
  * @see https://github.com/php-http/message/blob/master/src/Formatter/SimpleHttpMessageFormatter.php
  *
  * Class SimpleHttpMessageFormatter
- * @package Tmdb\Formatter\HttpMessage
  */
 class SimpleHttpMessageFormatter implements HttpMessageFormatterInterface
 {
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function formatRequest(RequestInterface $request): string
     {
-        return sprintf(
+        return \sprintf(
             '%s %s %s',
             $request->getMethod(),
             $request->getUri()->__toString(),
-            $request->getProtocolVersion()
+            $request->getProtocolVersion(),
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function formatResponse(ResponseInterface $response): string
     {
-        return sprintf(
+        return \sprintf(
             '%s %s %s',
             $response->getStatusCode(),
             $response->getReasonPhrase(),
-            $response->getProtocolVersion()
+            $response->getProtocolVersion(),
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function formatClientException(ClientExceptionInterface $exception): string
     {
-        return sprintf(
+        return \sprintf(
             '%s %s',
             $exception->getCode(),
-            $exception->getMessage()
+            $exception->getMessage(),
         );
     }
 }

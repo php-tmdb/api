@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,29 +19,25 @@ namespace Tmdb\Factory;
 use Tmdb\Factory\Lists\ListItemFactory;
 use Tmdb\HttpClient\HttpClient;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Genre;
 use Tmdb\Model\Lists;
 
 /**
- * Class ListFactory
- * @package Tmdb\Factory
+ * Class ListFactory.
  */
 class ListFactory extends AbstractFactory
 {
     /**
-     * @var ImageFactory
+     * @var ImageFactory|mixed
      */
     private $imageFactory;
 
     /**
-     * @var ListItemFactory
+     * @var ListItemFactory|mixed
      */
     private $listItemFactory;
 
     /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
+     * Constructor.
      */
     public function __construct(HttpClient $httpClient)
     {
@@ -50,8 +48,6 @@ class ListFactory extends AbstractFactory
     }
 
     /**
-     * @param array $data
-     *
      * @return Lists\ItemStatus
      */
     public function createItemStatus(array $data = [])
@@ -60,18 +56,15 @@ class ListFactory extends AbstractFactory
     }
 
     /**
-     * @param array $data
-     *
      * @return Lists\Result
      */
+    #[\Override]
     public function createResult(array $data = [])
     {
         return $this->hydrate(new Lists\Result(), $data);
     }
 
     /**
-     * @param array $data
-     *
      * @return Lists\ResultWithListId
      */
     public function createResultWithListId(array $data = [])
@@ -79,9 +72,7 @@ class ListFactory extends AbstractFactory
         return $this->hydrate(new Lists\ResultWithListId(), $data);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
@@ -93,23 +84,19 @@ class ListFactory extends AbstractFactory
         return $collection;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Lists
-     */
+    #[\Override]
     public function create(array $data = []): Lists
     {
         $lists = new Lists();
 
-        if (array_key_exists('items', $data)) {
+        if (\array_key_exists('items', $data)) {
             $lists->setItems(
-                $this->getListItemFactory()->createCollection($data['items'])
+                $this->getListItemFactory()->createCollection($data['items']),
             );
         }
 
-        /** Images */
-        if (array_key_exists('poster_path', $data)) {
+        /* Images */
+        if (\array_key_exists('poster_path', $data)) {
             $lists->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
@@ -126,9 +113,8 @@ class ListFactory extends AbstractFactory
 
     /**
      * @param ListItemFactory $listItemFactory
-     * @return self
      */
-    public function setListItemFactory($listItemFactory)
+    public function setListItemFactory($listItemFactory): static
     {
         $this->listItemFactory = $listItemFactory;
 
@@ -145,9 +131,8 @@ class ListFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return self
      */
-    public function setImageFactory($imageFactory)
+    public function setImageFactory($imageFactory): static
     {
         $this->imageFactory = $imageFactory;
 

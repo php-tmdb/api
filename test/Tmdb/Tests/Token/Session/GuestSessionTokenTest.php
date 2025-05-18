@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Token\Session;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class GuestSessionTokenTest extends \PHPUnit\Framework\TestCase
 {
     public const SESSION_TOKEN = '80b2bf99520cd795ff54e31af97917bc9e3a7c8d';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testSetGet()
     {
         $token  = new \Tmdb\Token\Session\SessionToken();

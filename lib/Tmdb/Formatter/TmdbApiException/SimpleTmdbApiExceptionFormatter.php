@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tmdb\Formatter\TmdbApiException;
 
 use Tmdb\Exception\TmdbApiException;
@@ -7,15 +9,13 @@ use Tmdb\Formatter\TmdbApiExceptionFormatterInterface;
 
 class SimpleTmdbApiExceptionFormatter implements TmdbApiExceptionFormatterInterface
 {
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function formatApiException(TmdbApiException $exception): string
     {
-        return sprintf(
+        return \sprintf(
             '%s %s',
             $exception->getCode(),
-            $exception->getMessage()
+            $exception->getMessage(),
         );
     }
 }

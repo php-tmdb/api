@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Repository\MovieRepository;
 
 class MovieRepositoryTest extends TestCase
@@ -21,8 +23,8 @@ class MovieRepositoryTest extends TestCase
     public const MOVIE_ID = 120;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadMovie()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -35,8 +37,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAlternativeTitles()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -46,8 +48,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetExternalIds()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -57,8 +59,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -68,8 +70,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -79,8 +81,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetKeywords()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -90,8 +92,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetReleases()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -101,8 +103,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTranslations()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -112,8 +114,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSimilar()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -123,8 +125,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRecommended()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -134,8 +136,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetReviews()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -145,8 +147,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLists()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -156,8 +158,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetChanges()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -167,8 +169,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLatestMovie()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -178,8 +180,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetUpcoming()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -189,8 +191,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetNowPlaying()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -200,8 +202,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPopular()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -211,8 +213,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTopRated()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -222,8 +224,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAccountStates()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -233,8 +235,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRate()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -247,8 +249,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetVideos()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -258,8 +260,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetWatchProviders()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -269,8 +271,8 @@ class MovieRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         /**

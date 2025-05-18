@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\AuthenticationFactory;
 
 class AuthenticationFactoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateRequestToken()
     {
         /**
@@ -36,8 +38,8 @@ class AuthenticationFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateSessionToken()
     {
         /**
@@ -52,8 +54,8 @@ class AuthenticationFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateGuestSessionToken()
     {
         /**
@@ -69,8 +71,8 @@ class AuthenticationFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldThrowExceptionForCreate()
     {
         $this->expectException(\RuntimeException::class);
@@ -83,8 +85,8 @@ class AuthenticationFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldThrowExceptionForCreateCollection()
     {
         $this->expectException(\RuntimeException::class);

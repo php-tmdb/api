@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Http\Mock\Client;
 use stdClass;
 use Tmdb\Common\ObjectHydrator;
@@ -25,8 +27,8 @@ use Tmdb\Model\Person;
 class PersonTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructPersons()
     {
         $person = new Person();
@@ -44,8 +46,8 @@ class PersonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToReplaceCollections()
     {
         $factory = new Person();
@@ -61,8 +63,8 @@ class PersonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldAllowOverridingDefaultCollectionObjects()
     {
         $movie = new Person();
@@ -82,8 +84,8 @@ class PersonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function regressionIssue180()
     {
         $person = (new ObjectHydrator())->hydrate(new Person(), [

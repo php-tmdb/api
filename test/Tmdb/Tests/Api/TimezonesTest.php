@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class TimezonesTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTimezones()
     {
         $api = $this->getApiWithMockedHttpAdapter();

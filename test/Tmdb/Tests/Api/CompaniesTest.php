@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class CompaniesTest extends TestCase
 {
     public const COMPANY_ID = 1;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCompany()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -30,8 +32,8 @@ class CompaniesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();

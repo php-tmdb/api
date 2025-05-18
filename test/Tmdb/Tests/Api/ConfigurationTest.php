@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ConfigurationTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetConfiguration()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -28,8 +30,8 @@ class ConfigurationTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLanguages()
     {
         $api = $this->getApiWithMockedHttpAdapter();

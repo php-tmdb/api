@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Repository\CollectionRepository;
 
 class CollectionRepositoryTest extends TestCase
@@ -21,8 +23,8 @@ class CollectionRepositoryTest extends TestCase
     public const COLLECTION_ID = 120;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadCollection()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -35,8 +37,8 @@ class CollectionRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -46,8 +48,8 @@ class CollectionRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTranslations()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -57,8 +59,8 @@ class CollectionRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         /**

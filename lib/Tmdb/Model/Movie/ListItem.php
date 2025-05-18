@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,8 +20,7 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image\PosterImage;
 
 /**
- * Class ListItem
- * @package Tmdb\Model\Movie
+ * Class ListItem.
  */
 class ListItem extends AbstractModel
 {
@@ -30,7 +31,7 @@ class ListItem extends AbstractModel
         'item_count',
         'iso_639_1',
         'name',
-        'poster_path'
+        'poster_path',
     ];
     /**
      * @var string
@@ -75,9 +76,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $description
-     * @return self
      */
-    public function setDescription($description)
+    public function setDescription($description): static
     {
         $this->description = $description;
 
@@ -94,9 +94,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param int $favoriteCount
-     * @return self
      */
-    public function setFavoriteCount($favoriteCount)
+    public function setFavoriteCount($favoriteCount): static
     {
         $this->favoriteCount = $favoriteCount;
 
@@ -113,9 +112,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -132,9 +130,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $iso6391
-     * @return self
      */
-    public function setIso6391($iso6391)
+    public function setIso6391($iso6391): static
     {
         $this->iso6391 = $iso6391;
 
@@ -151,9 +148,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param int $itemCount
-     * @return self
      */
-    public function setItemCount($itemCount)
+    public function setItemCount($itemCount): static
     {
         $this->itemCount = $itemCount;
 
@@ -170,9 +166,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -189,9 +184,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param PosterImage $posterImage
-     * @return self
      */
-    public function setPosterImage($posterImage)
+    public function setPosterImage($posterImage): static
     {
         $this->posterImage = $posterImage;
 
@@ -208,9 +202,8 @@ class ListItem extends AbstractModel
 
     /**
      * @param string $posterPath
-     * @return self
      */
-    public function setPosterPath($posterPath)
+    public function setPosterPath($posterPath): static
     {
         $this->posterPath = $posterPath;
 

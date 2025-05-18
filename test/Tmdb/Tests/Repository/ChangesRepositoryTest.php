@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Query\ChangesQuery;
 
 class ChangesRepositoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovieChanges()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -32,8 +34,8 @@ class ChangesRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPeopleChanges()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -45,8 +47,8 @@ class ChangesRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTvChanges()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

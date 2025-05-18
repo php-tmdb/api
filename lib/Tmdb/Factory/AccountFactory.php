@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -22,36 +24,22 @@ use Tmdb\Model\Account;
 use Tmdb\Model\Lists\Result;
 
 /**
- * Class AccountFactory
+ * Class AccountFactory.
+ *
  * @extends AbstractFactory<Account>
- * @package Tmdb\Factory
  */
 class AccountFactory extends AbstractFactory
 {
-    /**
-     * @var MovieFactory
-     */
-    private $movieFactory;
+    private \Tmdb\Factory\MovieFactory $movieFactory;
+
+    private \Tmdb\Factory\ImageFactory $imageFactory;
+
+    private \Tmdb\Factory\TvFactory $tvFactory;
+
+    private \Tmdb\Factory\Account\AvatarFactory $avatarFactory;
 
     /**
-     * @var ImageFactory
-     */
-    private $imageFactory;
-
-    /**
-     * @var TvFactory
-     */
-    private $tvFactory;
-
-    /**
-     * @var AvatarFactory
-     */
-    private $avatarFactory;
-
-    /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
+     * Constructor.
      */
     public function __construct(HttpClient $httpClient)
     {
@@ -63,18 +51,14 @@ class AccountFactory extends AbstractFactory
         parent::__construct($httpClient);
     }
 
-    /**
-     * @param array $data
-     *
-     * @return Account
-     */
+    #[\Override]
     public function create(array $data = []): Account
     {
         $account = new Account();
 
-        if (array_key_exists('avatar', $data)) {
+        if (\array_key_exists('avatar', $data)) {
             $account->setAvatar(
-                $this->getAvatarFactory()->createCollection($data['avatar'])
+                $this->getAvatarFactory()->createCollection($data['avatar']),
             );
         }
 
@@ -90,8 +74,6 @@ class AccountFactory extends AbstractFactory
     }
 
     /**
-     * @param array $data
-     *
      * @return Result
      */
     public function createStatusResult(array $data = [])
@@ -100,11 +82,7 @@ class AccountFactory extends AbstractFactory
     }
 
     /**
-     * Create movie
-     *
-     * @param array $data
-     *
-     * @return AbstractModel|null
+     * Create movie.
      */
     public function createMovie(array $data = []): ?AbstractModel
     {
@@ -121,9 +99,8 @@ class AccountFactory extends AbstractFactory
 
     /**
      * @param MovieFactory $movieFactory
-     * @return self
      */
-    public function setMovieFactory($movieFactory)
+    public function setMovieFactory($movieFactory): static
     {
         $this->movieFactory = $movieFactory;
 
@@ -131,11 +108,7 @@ class AccountFactory extends AbstractFactory
     }
 
     /**
-     * Create TV show
-     *
-     * @param array $data
-     *
-     * @return AbstractModel|null
+     * Create TV show.
      */
     public function createTvShow(array $data = []): ?AbstractModel
     {
@@ -152,9 +125,8 @@ class AccountFactory extends AbstractFactory
 
     /**
      * @param TvFactory $tvFactory
-     * @return self
      */
-    public function setTvFactory($tvFactory)
+    public function setTvFactory($tvFactory): static
     {
         $this->tvFactory = $tvFactory;
 
@@ -162,16 +134,15 @@ class AccountFactory extends AbstractFactory
     }
 
     /**
-     * Create list item
+     * Create list item.
      *
-     * @param array $data
      * @return AbstractModel
      */
     public function createListItem(array $data = [])
     {
         $listItem = new Account\ListItem();
 
-        if (array_key_exists('poster_path', $data)) {
+        if (\array_key_exists('poster_path', $data)) {
             $listItem->setPosterImage($this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'));
         }
 
@@ -188,32 +159,24 @@ class AccountFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return self
      */
-    public function setImageFactory($imageFactory)
+    public function setImageFactory($imageFactory): static
     {
         $this->imageFactory = $imageFactory;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function createCollection(array $data = [])
+    #[\Override]
+    public function createCollection(array $data = []): void
     {
-        throw new RuntimeException(sprintf(
-            'Class "%s" does not support method "%s".',
-            __CLASS__,
-            __METHOD__
-        ));
+        throw new RuntimeException(\sprintf('Class "%s" does not support method "%s".', self::class, __METHOD__));
     }
 
     /**
      * @param AvatarFactory $avatarFactory
-     * @return self
      */
-    public function setAvatarFactory($avatarFactory)
+    public function setAvatarFactory($avatarFactory): static
     {
         $this->avatarFactory = $avatarFactory;
 

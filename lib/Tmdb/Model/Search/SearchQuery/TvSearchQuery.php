@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,8 +20,7 @@ use DateTime;
 use Tmdb\Model\Search\SearchQuery;
 
 /**
- * Class TvSearchQuery
- * @package Tmdb\Model\Search\SearchQuery
+ * Class TvSearchQuery.
  */
 class TvSearchQuery extends SearchQuery
 {
@@ -27,8 +28,6 @@ class TvSearchQuery extends SearchQuery
      * ISO 639-1 code.
      *
      * @param string $language
-     *
-     * @return self
      */
     public function language($language): self
     {
@@ -41,8 +40,6 @@ class TvSearchQuery extends SearchQuery
      * Filter the results to only match shows that have a air date with with value.
      *
      * @param string|DateTime $year
-     *
-     * @return self
      */
     public function firstAirDateYear($year): self
     {
@@ -50,7 +47,7 @@ class TvSearchQuery extends SearchQuery
             $year = $year->format('Y');
         }
 
-        $this->set('first_air_date_year', (int)$year);
+        $this->set('first_air_date_year', (int) $year);
 
         return $this;
     }
@@ -65,9 +62,7 @@ class TvSearchQuery extends SearchQuery
      *
      * @param string $search_type
      *
-     * @return self
      * @deprecated
-     *
      */
     public function searchType($search_type = 'phrase'): self
     {

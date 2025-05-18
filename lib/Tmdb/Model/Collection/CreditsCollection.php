@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,8 +21,7 @@ use Tmdb\Model\Collection\People\Crew;
 use Tmdb\Model\Collection\People\GuestStars;
 
 /**
- * Class CreditsCollection
- * @package Tmdb\Model\Collection
+ * Class CreditsCollection.
  */
 class CreditsCollection
 {
@@ -29,16 +30,12 @@ class CreditsCollection
      */
     public $cast;
 
-    /**
-     * @var Crew
-     */
-    private $crew;
+    private \Tmdb\Model\Collection\People\Crew $crew;
 
-
-    private $guestStars;
+    private \Tmdb\Model\Collection\People\GuestStars $guestStars;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -55,11 +52,7 @@ class CreditsCollection
         return $this->cast;
     }
 
-    /**
-     * @param Cast $cast
-     * @return self
-     */
-    public function setCast(Cast $cast)
+    public function setCast(Cast $cast): static
     {
         $this->cast = $cast;
 
@@ -74,11 +67,7 @@ class CreditsCollection
         return $this->crew;
     }
 
-    /**
-     * @param Crew $crew
-     * @return self
-     */
-    public function setCrew(Crew $crew)
+    public function setCrew(Crew $crew): static
     {
         $this->crew = $crew;
 
@@ -95,8 +84,6 @@ class CreditsCollection
 
     /**
      * @param GuestStars $guestStars
-     *
-     * @return void
      */
     public function setGuestStars($guestStars): void
     {

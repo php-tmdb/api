@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Common;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use stdClass;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Tests\Model\TestCase;
@@ -26,8 +28,8 @@ class GenericCollectionTest extends TestCase
     private $collection;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructGenericCollection()
     {
         $emptyArray = [];
@@ -43,8 +45,8 @@ class GenericCollectionTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeArrayAccess()
     {
         $this->setUp();
@@ -73,8 +75,8 @@ class GenericCollectionTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeIteratorAggregate()
     {
         $this->setUp();
@@ -82,8 +84,8 @@ class GenericCollectionTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeCountable()
     {
         $this->setUp();
@@ -91,8 +93,8 @@ class GenericCollectionTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToRemove()
     {
         $this->setUp();
@@ -105,8 +107,8 @@ class GenericCollectionTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetAndGet()
     {
         $this->setUp();

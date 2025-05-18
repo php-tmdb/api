@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class TvEpisodeTest extends TestCase
 {
     public const TV_ID = 3572;
@@ -21,8 +23,8 @@ class TvEpisodeTest extends TestCase
     public const EPISODE_ID = 1;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisode()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -34,8 +36,8 @@ class TvEpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisodeCredits()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -47,8 +49,8 @@ class TvEpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisodeExternalIds()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -60,8 +62,8 @@ class TvEpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisodeImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -73,8 +75,8 @@ class TvEpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisodeVideos()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -86,8 +88,8 @@ class TvEpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisodeChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -99,8 +101,8 @@ class TvEpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisodeAccountStates()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -112,8 +114,8 @@ class TvEpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisodeTranslations()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -125,8 +127,8 @@ class TvEpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRateTvEpisode()
     {
         $api = $this->getApiWithMockedHttpAdapter();

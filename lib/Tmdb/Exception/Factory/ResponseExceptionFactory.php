@@ -1,19 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Exception\Factory;
 
+use Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Tmdb\Exception\RuntimeException;
@@ -23,9 +26,6 @@ use Tmdb\Exception\UnexpectedResponseException;
 class ResponseExceptionFactory
 {
     /**
-     * @param RequestInterface $request
-     * @param ResponseInterface $response
-     * @return TmdbApiException
      * @throws UnexpectedResponseException
      * @throws RuntimeException
      */
@@ -33,8 +33,8 @@ class ResponseExceptionFactory
     {
         try {
             if (
-                $response->hasHeader('content-type') &&
-                strpos($response->getHeaderLine('content-type'), 'application/json')  !== false
+                $response->hasHeader('content-type')
+                && str_contains($response->getHeaderLine('content-type'), 'application/json')
             ) {
                 $response->getBody()->rewind();
 
@@ -45,15 +45,13 @@ class ResponseExceptionFactory
                     $data->status_code,
                     $data->status_message,
                     $request,
-                    $response
+                    $response,
                 );
             }
-        } catch (\Exception $e) {
+        } catch (Exception) {
             throw new RuntimeException('Unable to create TmdbApiException, could not decode response body.');
         }
 
-        throw new UnexpectedResponseException(
-            'Unable to create an helpful Exception, server did not contain a json body.'
-        );
+        throw new UnexpectedResponseException('Unable to create an helpful Exception, server did not contain a json body.');
     }
 }

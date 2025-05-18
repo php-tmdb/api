@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Common\Trailer;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Common\Trailer\Youtube;
 use Tmdb\Tests\Model\TestCase;
 
@@ -38,8 +40,8 @@ class YoutubeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $this->assertEquals('Trailer 1', $this->subject->getName());

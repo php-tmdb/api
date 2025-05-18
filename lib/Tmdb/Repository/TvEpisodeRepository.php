@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -31,27 +33,27 @@ use Tmdb\Model\Tv\Episode\QueryParameter\AppendToResponse;
 use Tmdb\Model\Tv\Season;
 
 /**
- * Class TvEpisodeRepository
- * @package Tmdb\Repository
+ * Class TvEpisodeRepository.
+ *
  * @see http://docs.themoviedb.apiary.io/#tvepisodes
  */
 class TvEpisodeRepository extends AbstractRepository
 {
     /**
-     * Load a tv season with the given identifier
+     * Load a tv season with the given identifier.
      *
      * If you want to optimize the result set/bandwidth you should
      * define the AppendToResponse parameter
      *
-     * @param $tvShow Tv|int
-     * @param $season Season|int
+     * @param $tvShow  Tv|int
+     * @param $season  Season|int
      * @param $episode Episode|int
-     * @param $parameters
-     * @param $headers
-     * @return null|AbstractModel
+     *
+     * @return AbstractModel|null
+     *
      * @throws RuntimeException
      */
-    public function load($tvShow, $season, $episode, array $parameters = [], array $headers = [])
+    public function load($tvShow, $season, $episode, array $parameters = [], array $headers = []): ?\Tmdb\Model\Tv\Episode
     {
         if ($tvShow instanceof Tv) {
             $tvShow = $tvShow->getId();
@@ -61,11 +63,11 @@ class TvEpisodeRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if ($episode instanceof Tv\Episode) {
+        if ($episode instanceof Episode) {
             $episode = $episode->getEpisodeNumber();
         }
 
-        if (is_null($tvShow) || is_null($season) || is_null($episode)) {
+        if (\is_null($tvShow) || \is_null($season) || \is_null($episode)) {
             throw new RuntimeException('Not all required parameters to load an tv episode are present.');
         }
 
@@ -77,8 +79,8 @@ class TvEpisodeRepository extends AbstractRepository
                     AppendToResponse::IMAGES,
                     AppendToResponse::TRANSLATIONS,
                     AppendToResponse::CHANGES,
-                    AppendToResponse::VIDEOS
-                ])
+                    AppendToResponse::VIDEOS,
+                ]),
             ]);
         }
 
@@ -87,26 +89,25 @@ class TvEpisodeRepository extends AbstractRepository
             $season,
             $episode,
             $this->parseQueryParameters($parameters),
-            $headers
+            $headers,
         );
 
         return $this->getFactory()->create($data);
     }
 
     /**
-     * Return the Seasons API Class
+     * Return the Seasons API Class.
      *
      * @return TvEpisode
      */
+    #[\Override]
     public function getApi()
     {
         return $this->getClient()->getTvEpisodeApi();
     }
 
-    /**
-     * @return TvEpisodeFactory
-     */
-    public function getFactory()
+    #[\Override]
+    public function getFactory(): \Tmdb\Factory\TvEpisodeFactory
     {
         return new TvEpisodeFactory($this->getClient()->getHttpClient());
     }
@@ -116,11 +117,6 @@ class TvEpisodeRepository extends AbstractRepository
      *
      * Just like the website, we pull this information from the last season of the series.
      *
-     * @param $tvShow
-     * @param $season
-     * @param $episode
-     * @param $parameters
-     * @param $headers
      * @return CreditsCollection
      */
     public function getCredits($tvShow, $season, $episode, array $parameters = [], array $headers = [])
@@ -133,7 +129,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if ($episode instanceof Tv\Episode) {
+        if ($episode instanceof Episode) {
             $episode = $episode->getEpisodeNumber();
         }
 
@@ -142,7 +138,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season,
             $episode,
             $this->parseQueryParameters($parameters),
-            $headers
+            $headers,
         );
 
         $episode = $this->getFactory()->create(['credits' => $data]);
@@ -153,12 +149,7 @@ class TvEpisodeRepository extends AbstractRepository
     /**
      * Get the external ids that we have stored for a TV series.
      *
-     * @param $tvShow
-     * @param $season
-     * @param $episode
-     * @param $parameters
-     * @param $headers
-     * @return null|AbstractModel
+     * @return AbstractModel|null
      */
     public function getExternalIds($tvShow, $season, $episode, array $parameters = [], array $headers = [])
     {
@@ -170,7 +161,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if ($episode instanceof Tv\Episode) {
+        if ($episode instanceof Episode) {
             $episode = $episode->getEpisodeNumber();
         }
 
@@ -179,7 +170,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season,
             $episode,
             $this->parseQueryParameters($parameters),
-            $headers
+            $headers,
         );
 
         $episode = $this->getFactory()->create(['external_ids' => $data]);
@@ -190,11 +181,6 @@ class TvEpisodeRepository extends AbstractRepository
     /**
      * Get the images (posters and backdrops) for a TV series.
      *
-     * @param $tvShow
-     * @param $season
-     * @param $episode
-     * @param $parameters
-     * @param $headers
      * @return Images
      */
     public function getImages($tvShow, $season, $episode, array $parameters = [], array $headers = [])
@@ -207,7 +193,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if ($episode instanceof Tv\Episode) {
+        if ($episode instanceof Episode) {
             $episode = $episode->getEpisodeNumber();
         }
 
@@ -216,7 +202,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season,
             $episode,
             $this->parseQueryParameters($parameters),
-            $headers
+            $headers,
         );
 
         $episode = $this->getFactory()->create(['images' => $data]);
@@ -227,9 +213,6 @@ class TvEpisodeRepository extends AbstractRepository
     /**
      * Get the list of translations that exist for a TV episode.
      *
-     * @param $id
-     * @param $parameters
-     * @param $headers
      * @return GenericCollection
      */
     public function getTranslations($tvShow, $season, $episode, array $parameters = [], array $headers = [])
@@ -242,7 +225,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if ($episode instanceof Tv\Episode) {
+        if ($episode instanceof Episode) {
             $episode = $episode->getEpisodeNumber();
         }
 
@@ -251,7 +234,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season,
             $episode,
             $this->parseQueryParameters($parameters),
-            $headers
+            $headers,
         );
 
         $episode = $this->getFactory()->create(['translations' => $data]);
@@ -260,13 +243,8 @@ class TvEpisodeRepository extends AbstractRepository
     }
 
     /**
-     * Get the videos that have been added to a TV episode (teasers, clips, etc...)
+     * Get the videos that have been added to a TV episode (teasers, clips, etc...).
      *
-     * @param $tvShow
-     * @param $season
-     * @param $episode
-     * @param $parameters
-     * @param $headers
      * @return Videos|Video[]
      */
     public function getVideos($tvShow, $season, $episode, array $parameters = [], array $headers = [])
@@ -279,7 +257,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if ($episode instanceof Tv\Episode) {
+        if ($episode instanceof Episode) {
             $episode = $episode->getEpisodeNumber();
         }
 
@@ -288,7 +266,7 @@ class TvEpisodeRepository extends AbstractRepository
             $season,
             $episode,
             $this->parseQueryParameters($parameters),
-            $headers
+            $headers,
         );
 
         $episode = $this->getFactory()->create(['videos' => $data]);
@@ -302,9 +280,6 @@ class TvEpisodeRepository extends AbstractRepository
      *
      * A valid session id is required.
      *
-     * @param mixed $tvShow
-     * @param mixed $season
-     * @param mixed $episode
      * @return AccountStates
      */
     public function getAccountStates($tvShow, $season, $episode)
@@ -317,12 +292,12 @@ class TvEpisodeRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if ($episode instanceof Tv\Episode) {
+        if ($episode instanceof Episode) {
             $episode = $episode->getEpisodeNumber();
         }
 
         return $this->getFactory()->createAccountStates(
-            $this->getApi()->getAccountStates($tvShow, $season, $episode)
+            $this->getApi()->getAccountStates($tvShow, $season, $episode),
         );
     }
 
@@ -331,10 +306,8 @@ class TvEpisodeRepository extends AbstractRepository
      *
      * A valid session id or guest session id is required.
      *
-     * @param mixed $tvShow
-     * @param mixed $season
-     * @param mixed $episode
-     * @param double $rating
+     * @param float $rating
+     *
      * @return Result
      */
     public function rate($tvShow, $season, $episode, $rating)
@@ -347,12 +320,12 @@ class TvEpisodeRepository extends AbstractRepository
             $season = $season->getSeasonNumber();
         }
 
-        if ($episode instanceof Tv\Episode) {
+        if ($episode instanceof Episode) {
             $episode = $episode->getEpisodeNumber();
         }
 
         return $this->getFactory()->createResult(
-            $this->getApi()->rateTvEpisode($tvShow, $season, $episode, $rating)
+            $this->getApi()->rateTvEpisode($tvShow, $season, $episode, $rating),
         );
     }
 }

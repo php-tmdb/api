@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Event\Listener\Logger;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Psr7\Request;
 use Http\Mock\Client;
@@ -31,8 +33,8 @@ use WMDE\PsrLogTestDoubles\LoggerSpy;
 class LogHttpMessageListenerTest extends LoggerListenerTestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLogRequest()
     {
         $logger = new LoggerSpy();
@@ -62,8 +64,8 @@ HEADER;
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLogResponse()
     {
         $logger = new LoggerSpy();
@@ -94,8 +96,8 @@ HEADER;
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLogClientException()
     {
         $logger = new LoggerSpy();

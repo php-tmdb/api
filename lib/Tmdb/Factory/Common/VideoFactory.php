@@ -1,43 +1,42 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Factory\Common;
 
 use Tmdb\Factory\AbstractFactory;
-use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\Video;
 
 /**
- * Class VideoFactory
+ * Class VideoFactory.
+ *
  * @extends AbstractFactory<Video>
- * @package Tmdb\Factory\Common
  */
 class VideoFactory extends AbstractFactory
 {
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function createCollection(array $data = []): Videos
     {
         $collection = new Videos();
 
-        if (array_key_exists('videos', $data)) {
+        if (\array_key_exists('videos', $data)) {
             $data = $data['videos'];
         }
 
-        if (array_key_exists('results', $data)) {
+        if (\array_key_exists('results', $data)) {
             $data = $data['results'];
         }
 
@@ -48,11 +47,7 @@ class VideoFactory extends AbstractFactory
         return $collection;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return Video|null
-     */
+    #[\Override]
     public function create(array $data = []): ?Video
     {
         $videoType = $this->resolveVideoType($data);
@@ -60,20 +55,15 @@ class VideoFactory extends AbstractFactory
         return (null === $videoType) ? null : $this->hydrate($videoType, $data);
     }
 
-    /**
-     * @return Video|null
-     */
-    private function resolveVideoType(array $data)
+    private function resolveVideoType(array $data): \Tmdb\Model\Common\Video\Youtube|\Tmdb\Model\Common\Video|null
     {
-        if (array_key_exists('site', $data) && !empty($data['site'])) {
-            $site = strtolower($data['site']);
+        if (\array_key_exists('site', $data) && !empty($data['site'])) {
+            $site = strtolower((string) $data['site']);
 
-            switch ($site) {
-                case 'youtube':
-                    return new Video\Youtube();
-                default:
-                    return new Video();
-            }
+            return match ($site) {
+                'youtube' => new Video\Youtube(),
+                default => new Video(),
+            };
         }
 
         return null;

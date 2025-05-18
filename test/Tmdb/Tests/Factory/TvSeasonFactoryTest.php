@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\TvSeasonFactory;
 use Tmdb\Model\Tv\Season;
 
@@ -39,8 +41,8 @@ class TvSeasonFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructTvSeason()
     {
         $this->assertInstanceOf('Tmdb\Model\Tv\Season', $this->season);
@@ -55,8 +57,8 @@ class TvSeasonFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         /**
@@ -78,8 +80,8 @@ class TvSeasonFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $this->assertEquals(new \DateTime('2009-03-08'), $this->season->getAirDate());

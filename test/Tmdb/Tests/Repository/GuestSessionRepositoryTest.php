@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Token\Session\GuestSessionToken;
 
 class GuestSessionRepositoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');
@@ -31,8 +33,8 @@ class GuestSessionRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function hasFactory()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

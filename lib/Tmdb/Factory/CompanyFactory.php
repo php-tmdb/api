@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,20 +21,17 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
 
 /**
- * Class CompanyFactory
- * @package Tmdb\Factory
+ * Class CompanyFactory.
  */
 class CompanyFactory extends AbstractFactory
 {
     /**
-     * @var ImageFactory
+     * @var ImageFactory|mixed
      */
     private $imageFactory;
 
     /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
+     * Constructor.
      */
     public function __construct(HttpClient $httpClient)
     {
@@ -41,14 +40,12 @@ class CompanyFactory extends AbstractFactory
         parent::__construct($httpClient);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function create(array $data = []): Company
     {
         $company = new Company();
 
-        if (array_key_exists('logo_path', $data)) {
+        if (\array_key_exists('logo_path', $data)) {
             $company->setLogoImage($this->getImageFactory()->createFromPath($data['logo_path'], 'logo_path'));
         }
 
@@ -65,18 +62,15 @@ class CompanyFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return self
      */
-    public function setImageFactory($imageFactory)
+    public function setImageFactory($imageFactory): static
     {
         $this->imageFactory = $imageFactory;
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function createCollection(array $data = []): GenericCollection
     {
         return new GenericCollection();

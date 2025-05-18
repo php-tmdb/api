@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\TvFactory;
 use Tmdb\Model\Tv;
 
@@ -41,12 +43,11 @@ class TvFactoryTest extends TestCase
     }
 
     /**
-     * @test
+     * Test TV object construction
      */
+    #[Test]
     public function shouldConstructTv()
     {
-
-
         $this->assertInstanceOf('Tmdb\Model\Tv', $this->tv);
 
         $this->assertInstanceOf('\DateTime', $this->tv->getLastAirDate());
@@ -56,12 +57,11 @@ class TvFactoryTest extends TestCase
     }
 
     /**
-     * @test
+     * Test setting factory objects
      */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
-
-
         $factory = new TvFactory($this->getHttpClient());
         $class  = new \stdClass();
 
@@ -84,13 +84,11 @@ class TvFactoryTest extends TestCase
     }
 
     /**
-     * @test
      * @todo see comments
      */
+    #[Test]
     public function shouldBeFunctional()
     {
-
-
         $this->assertEquals('/sIJyCJedGlZf1TId41gCtkblBGo.jpg', $this->tv->getBackdropPath());
         // created by
         $this->assertEquals(2, count($this->tv->getEpisodeRunTime()));
@@ -162,8 +160,9 @@ class TvFactoryTest extends TestCase
     }
 
     /**
-     * @test
+     * Test creating collections
      */
+    #[Test]
     public function shouldBeAbleToDissectResults()
     {
         $factory = $this->getFactory();

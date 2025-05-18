@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class TvRepositoryTest extends TestCase
 {
     public const TV_ID = 3572;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadTv()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -33,8 +35,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPopular()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -44,8 +46,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -55,8 +57,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetExternalIds()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -66,8 +68,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -77,8 +79,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTranslations()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -88,8 +90,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSimilar()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -99,8 +101,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRecommended()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -110,8 +112,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAlternativeTitles()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -121,8 +123,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAccountStates()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -132,8 +134,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetOnTheAir()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -143,8 +145,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAiringToday()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -154,8 +156,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTopRated()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -165,8 +167,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetVideos()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -176,8 +178,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetWatchProviders()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -187,8 +189,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLatestTvShow()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -198,8 +200,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetContentRatings()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -209,8 +211,8 @@ class TvRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRate()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

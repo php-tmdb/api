@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class KeywordsTest extends TestCase
 {
     public const KEYWORD_ID = 1712;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetKeyword()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -30,8 +32,8 @@ class KeywordsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();

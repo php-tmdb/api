@@ -1,22 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Api;
 
 /**
- * Class Configuration
- * @package Tmdb\Api
+ * Class Configuration.
  *
  * @see http://docs.themoviedb.apiary.io/#configuration
  */
@@ -38,19 +39,12 @@ class Configuration extends AbstractApi
      * Simply combine them all and you will have a fully qualified URL. Here’s an example URL:
      *
      * http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg
-     *
-     * @param array $headers
-     * @return mixed
      */
-    public function getConfiguration(array $headers = [])
+    public function getConfiguration(array $headers = []): array
     {
         return $this->get('configuration', [], $headers);
     }
 
-    /**
-     * @param array $headers
-     * @return array
-     */
     public function getLanguages(array $headers = []): array
     {
         return $this->get('configuration/languages', [], $headers);

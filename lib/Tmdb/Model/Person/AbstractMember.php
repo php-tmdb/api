@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,20 +20,16 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Image;
 
 /**
- * Class AbstractMember
- * @package Tmdb\Model\Person
+ * Class AbstractMember.
  */
 abstract class AbstractMember extends AbstractModel
 {
     public static $properties = [
         'id',
         'name',
-        'profile_path'
+        'profile_path',
     ];
-    /**
-     * @var int
-     */
-    private $id;
+    private ?int $id = null;
     /**
      * @var string
      */
@@ -46,7 +44,7 @@ abstract class AbstractMember extends AbstractModel
     private $profile;
 
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -54,12 +52,11 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * @param mixed $id
      * @return self
      */
     public function setId($id)
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
 
         return $this;
     }
@@ -74,6 +71,7 @@ abstract class AbstractMember extends AbstractModel
 
     /**
      * @param string $name
+     *
      * @return self
      */
     public function setName($name)
@@ -93,6 +91,7 @@ abstract class AbstractMember extends AbstractModel
 
     /**
      * @param string $profilePath
+     *
      * @return self
      */
     public function setProfilePath($profilePath)
@@ -104,6 +103,7 @@ abstract class AbstractMember extends AbstractModel
 
     /**
      * @param Image\ProfileImage $profile
+     *
      * @return self
      */
     public function setProfileImage($profile = null)
@@ -122,7 +122,7 @@ abstract class AbstractMember extends AbstractModel
     }
 
     /**
-     * Assert if there is an profile image object
+     * Assert if there is an profile image object.
      *
      * @return bool
      */

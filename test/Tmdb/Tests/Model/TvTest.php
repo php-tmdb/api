@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Model;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Tv;
 
 class TvTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructMovie()
     {
         $tv = new Tv();

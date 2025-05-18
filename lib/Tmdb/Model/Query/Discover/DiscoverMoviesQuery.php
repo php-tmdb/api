@@ -1,27 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Model\Query\Discover;
 
 use DateTime;
-use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\QueryParametersCollection;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
- * Class DiscoverMoviesQuery
- * @package Tmdb\Model\Query\Discover
+ * Class DiscoverMoviesQuery.
  */
 class DiscoverMoviesQuery extends QueryParametersCollection
 {
@@ -38,9 +38,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * A ISO 3166-1 is expected.
      *
      * @param string $country
-     * @return self
      */
-    public function certificationCountry($country)
+    public function certificationCountry($country): static
     {
         $this->set('certification_country', $country);
 
@@ -51,11 +50,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Only include movies with this certification.
      *
      * Expected value is a valid certification for the specified 'certification_country'.
-     *
-     * @param mixed $value
-     * @return self
      */
-    public function certification($value)
+    public function certification($value): static
     {
         $this->set('certification', $value);
 
@@ -66,11 +62,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Only include movies with this certification and lower.
      *
      * Expected value is a valid certification for the specified 'certification_country'.
-     *
-     * @param mixed $value
-     * @return self
      */
-    public function certificationLte($value)
+    public function certificationLte($value): static
     {
         $this->set('certification.lte', $value);
 
@@ -82,12 +75,11 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is a boolean, true or false. Default is false.
      *
-     * @param boolean $allow
-     * @return self
+     * @param bool $allow
      */
-    public function includeAdult($allow = true)
+    public function includeAdult($allow = true): static
     {
-        $this->set('include_adult', (bool)$allow);
+        $this->set('include_adult', (bool) $allow);
 
         return $this;
     }
@@ -97,12 +89,11 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is a boolean, true or false. Default is true.
      *
-     * @param boolean $allow
-     * @return self
+     * @param bool $allow
      */
-    public function includeVideo($allow = true)
+    public function includeVideo($allow = true): static
     {
-        $this->set('include_video', (bool)$allow);
+        $this->set('include_video', (bool) $allow);
 
         return $this;
     }
@@ -111,9 +102,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * ISO 639-1 code.
      *
      * @param string $language
-     * @return self
      */
-    public function language($language)
+    public function language($language): static
     {
         $this->set('language', $language);
 
@@ -124,9 +114,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * An ISO 3166-1 code. Combine this filter with with_watch_providers in order to filter your results by a specific watch provider in a specific region.
      *
      * @param string $watchRegion
-     * @return self
      */
-    public function watchRegion($watchRegion)
+    public function watchRegion($watchRegion): static
     {
         $this->set('watch_region', $watchRegion);
 
@@ -137,10 +126,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Only include movies with the specified watch providers. Combine with watch_region.
      *
      * @param array|string $watchProviders
-     * @param int $mode
-     * @return self
+     * @param int          $mode
      */
-    public function withWatchProviders($watchProviders, $mode = self::MODE_OR)
+    public function withWatchProviders($watchProviders, $mode = self::MODE_OR): static
     {
         $this->set('with_watch_providers', $this->with($watchProviders, $mode));
 
@@ -153,10 +141,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Allowed Values: flatrate, free, ads, rent, buy
      *
      * @param array|string $watchProviders
-     * @param int $mode
-     * @return self
+     * @param int          $mode
      */
-    public function withWatchMonetizationTypes($watchProviders, $mode = self::MODE_OR)
+    public function withWatchMonetizationTypes($watchProviders, $mode = self::MODE_OR): static
     {
         $this->set('with_watch_monetization_types', $this->with($watchProviders, $mode));
 
@@ -166,12 +153,11 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Minimum value is 1, expected value is an integer.
      *
-     * @param integer $page
-     * @return self
+     * @param int $page
      */
-    public function page($page = 1)
+    public function page($page = 1): static
     {
-        $this->set('page', (int)$page);
+        $this->set('page', (int) $page);
 
         return $this;
     }
@@ -180,31 +166,28 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Filter the results so that only the primary release date year has this value.
      * Expected value is a year.
      *
-     * @param DateTime|integer $year
-     * @return self
+     * @param DateTime|int $year
      */
-    public function primaryReleaseYear($year)
+    public function primaryReleaseYear($year): static
     {
-        $this->set('primary_release_year', (int)$this->getDate($year, 'Y'));
+        $this->set('primary_release_year', (int) $this->getDate($year, 'Y'));
 
         return $this;
     }
 
     /**
-     * @param DateTime|string|integer $year
-     * @param string $format
+     * @param DateTime|string|int $year
+     * @param string              $format
      *
      * @return false|string
      */
     protected function getDate($year, $format = 'Y-m-d')
     {
-        return ($year instanceof DateTime) ? $year->format($format) : (string)$year;
+        return ($year instanceof DateTime) ? $year->format($format) : (string) $year;
     }
 
     /**
-     * @return self
      * @deprecated
-     *
      */
     public function primaryReleaseYearGte($year): self
     {
@@ -216,10 +199,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected format is YYYY-MM-DD.
      *
-     * @param DateTime|integer $year
-     * @return self
+     * @param DateTime|int $year
      */
-    public function primaryReleaseDateGte($year)
+    public function primaryReleaseDateGte($year): static
     {
         $this->set('primary_release_date.gte', $this->getDate($year));
 
@@ -227,9 +209,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * @return self
      * @deprecated
-     *
      */
     public function primaryReleaseYearLte($year): self
     {
@@ -241,10 +221,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected format is YYYY-MM-DD.
      *
-     * @param DateTime|integer $year
-     * @return self
+     * @param DateTime|int $year
      */
-    public function primaryReleaseDateLte($year)
+    public function primaryReleaseDateLte($year): static
     {
         $this->set('primary_release_date.lte', $this->getDate($year));
 
@@ -257,9 +236,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected format is YYYY-MM-DD.
      *
      * @param DateTime|string $date
-     * @return self
      */
-    public function releaseDateGte($date)
+    public function releaseDateGte($date): static
     {
         $this->set('release_date.gte', $this->getDate($date));
 
@@ -272,9 +250,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected format is YYYY-MM-DD.
      *
      * @param DateTime $date
-     * @return self
      */
-    public function releaseDateLte($date)
+    public function releaseDateLte($date): static
     {
         $this->set('release_date.lte', $this->getDate($date));
 
@@ -282,7 +259,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     }
 
     /**
-     * Available options are
+     * Available options are.
      *
      * - popularity.asc
      * - popularity.desc
@@ -300,9 +277,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * - vote_count.desc
      *
      * @param string $option
-     * @return self
      */
-    public function sortBy($option)
+    public function sortBy($option): static
     {
         $this->set('sort_by', $option);
 
@@ -313,12 +289,11 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Filter movies by their vote count and only include movies that have a
      * vote count that is equal to or lower than the specified value.
      *
-     * @param integer $count
-     * @return self
+     * @param int $count
      */
-    public function voteCountGte($count)
+    public function voteCountGte($count): static
     {
-        $this->set('vote_count.gte', (int)$count);
+        $this->set('vote_count.gte', (int) $count);
 
         return $this;
     }
@@ -329,12 +304,11 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      *
      * Expected value is an integer.
      *
-     * @param integer $count
-     * @return self
+     * @param int $count
      */
-    public function voteCountLte($count)
+    public function voteCountLte($count): static
     {
-        $this->set('vote_count.lte', (int)$count);
+        $this->set('vote_count.lte', (int) $count);
 
         return $this;
     }
@@ -346,11 +320,10 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a float.
      *
      * @param float $average
-     * @return self
      */
-    public function voteAverageGte($average)
+    public function voteAverageGte($average): static
     {
-        $this->set('vote_average.gte', (float)$average);
+        $this->set('vote_average.gte', (float) $average);
 
         return $this;
     }
@@ -362,11 +335,10 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Expected value is a float.
      *
      * @param float $average
-     * @return self
      */
-    public function voteAverageLte($average)
+    public function voteAverageLte($average): static
     {
-        $this->set('vote_average.lte', (float)$average);
+        $this->set('vote_average.lte', (float) $average);
 
         return $this;
     }
@@ -378,10 +350,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
      * @param array|string $cast
-     * @param int $mode
-     * @return self
+     * @param int          $mode
      */
-    public function withCast($cast, $mode = self::MODE_OR)
+    public function withCast($cast, $mode = self::MODE_OR): static
     {
         $this->set('with_cast', $this->with($cast, $mode));
 
@@ -392,9 +363,7 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Format the with compatible parameters.
      *
      * @param array|GenericCollection|string $with
-     * @param int $mode
-     *
-     * @return null|string
+     * @param int                            $mode
      */
     protected function with($with = null, $mode = self::MODE_OR): ?string
     {
@@ -402,8 +371,8 @@ class DiscoverMoviesQuery extends QueryParametersCollection
             $with = $with->toArray();
         }
 
-        if (is_array($with)) {
-            return $this->andWith((array)$with, $mode);
+        if (\is_array($with)) {
+            return $this->andWith($with, $mode);
         }
 
         return $with;
@@ -412,17 +381,14 @@ class DiscoverMoviesQuery extends QueryParametersCollection
     /**
      * Creates an and query to combine an AND or an OR expression.
      *
-     * @param array $with
      * @param int $mode
-     * @return string
      */
-    protected function andWith(array $with, $mode)
+    protected function andWith(array $with, $mode): string
     {
-        return (
+        return
         implode(
-            $mode === self::MODE_OR ? '|' : ',',
-            array_map([$this, 'normalize'], $with)
-        )
+            self::MODE_OR === $mode ? '|' : ',',
+            array_map([$this, 'normalize'], $with),
         );
     }
 
@@ -433,10 +399,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
      * @param array|string $crew
-     * @param int $mode
-     * @return self
+     * @param int          $mode
      */
-    public function withCrew($crew, $mode = self::MODE_OR)
+    public function withCrew($crew, $mode = self::MODE_OR): static
     {
         $this->set('with_crew', $this->with($crew, $mode));
 
@@ -450,10 +415,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
      * @param array|string $companies
-     * @param int $mode
-     * @return self
+     * @param int          $mode
      */
-    public function withCompanies($companies, $mode = self::MODE_OR)
+    public function withCompanies($companies, $mode = self::MODE_OR): static
     {
         $this->set('with_companies', $this->with($companies, $mode));
 
@@ -471,10 +435,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * If an array is supplied this defaults to an AND query
      *
      * @param array|string $genres
-     * @param int $mode
-     * @return self
+     * @param int          $mode
      */
-    public function withGenres($genres, $mode = self::MODE_OR)
+    public function withGenres($genres, $mode = self::MODE_OR): static
     {
         $this->set('with_genres', $this->with($genres, $mode));
 
@@ -492,10 +455,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * If an array is supplied this defaults to an AND query
      *
      * @param array|string $keywords
-     * @param int $mode
-     * @return self
+     * @param int          $mode
      */
-    public function withKeywords($keywords, $mode = self::MODE_OR)
+    public function withKeywords($keywords, $mode = self::MODE_OR): static
     {
         $this->set('with_keywords', $this->with($keywords, $mode));
 
@@ -509,10 +471,9 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
      * @param array|string $people
-     * @param int $mode
-     * @return self
+     * @param int          $mode
      */
-    public function withPeople($people, $mode = self::MODE_OR)
+    public function withPeople($people, $mode = self::MODE_OR): static
     {
         $this->set('with_people', $this->with($people, $mode));
 
@@ -523,25 +484,21 @@ class DiscoverMoviesQuery extends QueryParametersCollection
      * Filter the results release dates to matches that include this value.
      * Expected value is a year.
      *
-     * @param DateTime|integer $year
-     * @return self
+     * @param DateTime|int $year
      */
-    public function year($year)
+    public function year($year): static
     {
-        $this->set('year', (int)$this->getDate($year, 'Y'));
+        $this->set('year', (int) $this->getDate($year, 'Y'));
 
         return $this;
     }
 
     /**
      * Extract object id's if an collection was passed on.
-     *
-     * @param $mixed
-     * @return mixed
      */
     protected function normalize($mixed)
     {
-        if (is_object($mixed) && method_exists($mixed, 'getId')) {
+        if (\is_object($mixed) && method_exists($mixed, 'getId')) {
             return $mixed->getId();
         }
 

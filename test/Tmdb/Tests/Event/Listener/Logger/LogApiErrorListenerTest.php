@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Event\Listener\Logger;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Event\Listener\Logger\LogApiErrorListener;
 use Tmdb\Event\TmdbExceptionEvent;
@@ -23,8 +25,8 @@ use WMDE\PsrLogTestDoubles\LoggerSpy;
 class LogApiErrorListenerTest extends LoggerListenerTestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLogApiError()
     {
         $logger = new LoggerSpy();

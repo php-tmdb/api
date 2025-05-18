@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -23,17 +25,15 @@ use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Collection\Videos;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
-use Tmdb\Model\Image\PosterImage;
 use Tmdb\Model\Image\StillImage;
 
 /**
- * Class Episode
- * @package Tmdb\Model\Tv
+ * Class Episode.
  */
 class Episode extends AbstractModel
 {
     /**
-     * Properties that are available in the API
+     * Properties that are available in the API.
      *
      * These properties are hydrated by the ObjectHydrator, all the other properties are handled by the factory.
      *
@@ -54,45 +54,41 @@ class Episode extends AbstractModel
         'runtime',
     ];
     /**
-     * Credits
-     *
-     * @var CreditsCollection
+     * Credits.
+     * @var CreditsCollection|mixed
      */
     protected $credits;
+    
     /**
-     * External Ids
-     *
-     * @var ExternalIds
+     * External Ids.
+     * @var ExternalIds|mixed
      */
     protected $externalIds;
+    
     /**
-     * Images
-     *
-     * @var Images
+     * Images.
+     * @var Images|mixed
      */
     protected $images;
+    
     /**
-     * @var GenericCollection
+     * @var GenericCollection|mixed
      */
     protected $translations;
+    
     /**
      * @var StillImage
      */
     protected $still;
+    
     /**
-     * @var Videos
+     * @var Videos|ResultCollection|mixed
      */
     protected $videos;
 
-    /**
-     * @var \DateTime|null
-     */
-    private $airDate;
+    private ?\DateTime $airDate = null;
 
-    /**
-     * @var Changes
-     */
-    protected $changes;
+    protected \Tmdb\Model\Collection\Changes $changes;
 
     /**
      * @var string
@@ -104,10 +100,7 @@ class Episode extends AbstractModel
      */
     private $overview;
 
-    /**
-     * @var integer
-     */
-    private $id;
+    private ?int $id = null;
 
     /**
      * @var string
@@ -119,39 +112,22 @@ class Episode extends AbstractModel
      */
     private $stillPath;
 
-    /**
-     * @var integer
-     */
-    private $seasonNumber;
+    private ?int $seasonNumber = null;
+
+    private ?int $episodeNumber = null;
+
+    private ?float $voteAverage = null;
+
+    private ?int $voteCount = null;
 
     /**
-     * @var integer
+     * Only available in episode group.
      */
-    private $episodeNumber;
+    private ?int $showId = null;
+    private int $runtime;
 
     /**
-     * @var float
-     */
-    private $voteAverage;
-
-    /**
-     * @var integer
-     */
-    private $voteCount;
-
-    /**
-     * Only available in episode group
-     *
-     * @var integer
-     */
-    private $showId;
-    /**
-     * @var int
-     */
-    private $runtime;
-
-    /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -173,9 +149,8 @@ class Episode extends AbstractModel
 
     /**
      * @param DateTime|string|null $airDate
-     * @return self
      */
-    public function setAirDate($airDate = null)
+    public function setAirDate($airDate = null): static
     {
         if (empty($airDate)) {
             $airDate = null;
@@ -198,11 +173,10 @@ class Episode extends AbstractModel
 
     /**
      * @param int $episodeNumber
-     * @return self
      */
-    public function setEpisodeNumber($episodeNumber)
+    public function setEpisodeNumber($episodeNumber): static
     {
-        $this->episodeNumber = (int)$episodeNumber;
+        $this->episodeNumber = (int) $episodeNumber;
 
         return $this;
     }
@@ -217,11 +191,10 @@ class Episode extends AbstractModel
 
     /**
      * @param int $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
-        $this->id = (int)$id;
+        $this->id = (int) $id;
 
         return $this;
     }
@@ -236,9 +209,8 @@ class Episode extends AbstractModel
 
     /**
      * @param string $name
-     * @return self
      */
-    public function setName($name)
+    public function setName($name): static
     {
         $this->name = $name;
 
@@ -255,9 +227,8 @@ class Episode extends AbstractModel
 
     /**
      * @param string $overview
-     * @return self
      */
-    public function setOverview($overview)
+    public function setOverview($overview): static
     {
         $this->overview = $overview;
 
@@ -274,9 +245,8 @@ class Episode extends AbstractModel
 
     /**
      * @param string $productionCode
-     * @return self
      */
-    public function setProductionCode($productionCode)
+    public function setProductionCode($productionCode): static
     {
         $this->productionCode = $productionCode;
 
@@ -293,11 +263,10 @@ class Episode extends AbstractModel
 
     /**
      * @param int $seasonNumber
-     * @return self
      */
-    public function setSeasonNumber($seasonNumber)
+    public function setSeasonNumber($seasonNumber): static
     {
-        $this->seasonNumber = (int)$seasonNumber;
+        $this->seasonNumber = (int) $seasonNumber;
 
         return $this;
     }
@@ -312,9 +281,8 @@ class Episode extends AbstractModel
 
     /**
      * @param string $stillPath
-     * @return self
      */
-    public function setStillPath($stillPath)
+    public function setStillPath($stillPath): static
     {
         $this->stillPath = $stillPath;
 
@@ -331,11 +299,10 @@ class Episode extends AbstractModel
 
     /**
      * @param float $voteAverage
-     * @return self
      */
-    public function setVoteAverage($voteAverage)
+    public function setVoteAverage($voteAverage): static
     {
-        $this->voteAverage = (float)$voteAverage;
+        $this->voteAverage = (float) $voteAverage;
 
         return $this;
     }
@@ -350,11 +317,10 @@ class Episode extends AbstractModel
 
     /**
      * @param int $voteCount
-     * @return self
      */
-    public function setVoteCount($voteCount)
+    public function setVoteCount($voteCount): static
     {
-        $this->voteCount = (int)$voteCount;
+        $this->voteCount = (int) $voteCount;
 
         return $this;
     }
@@ -369,9 +335,8 @@ class Episode extends AbstractModel
 
     /**
      * @param CreditsCollection $credits
-     * @return self
      */
-    public function setCredits($credits)
+    public function setCredits($credits): static
     {
         $this->credits = $credits;
 
@@ -388,9 +353,8 @@ class Episode extends AbstractModel
 
     /**
      * @param ExternalIds $externalIds
-     * @return self
      */
-    public function setExternalIds($externalIds)
+    public function setExternalIds($externalIds): static
     {
         $this->externalIds = $externalIds;
 
@@ -407,9 +371,8 @@ class Episode extends AbstractModel
 
     /**
      * @param Images $images
-     * @return self
      */
-    public function setImages($images)
+    public function setImages($images): static
     {
         $this->images = $images;
 
@@ -426,9 +389,8 @@ class Episode extends AbstractModel
 
     /**
      * @param GenericCollection $translations
-     * @return self
      */
-    public function setTranslations($translations)
+    public function setTranslations($translations): static
     {
         $this->translations = $translations;
 
@@ -437,9 +399,8 @@ class Episode extends AbstractModel
 
     /**
      * @param StillImage $still
-     * @return self
      */
-    public function setStillImage($still)
+    public function setStillImage($still): static
     {
         $this->still = $still;
 
@@ -464,9 +425,8 @@ class Episode extends AbstractModel
 
     /**
      * @param Videos|ResultCollection $videos
-     * @return self
      */
-    public function setVideos($videos)
+    public function setVideos($videos): static
     {
         $this->videos = $videos;
 
@@ -483,27 +443,19 @@ class Episode extends AbstractModel
 
     /**
      * @param Changes $changes
-     * @return self
      */
-    public function setChanges($changes)
+    public function setChanges($changes): static
     {
         $this->changes = $changes;
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getShowId(): int
     {
         return $this->showId;
     }
 
-    /**
-     * @param int $showId
-     * @return Episode
-     */
     public function setShowId(int $showId): Episode
     {
         $this->showId = $showId;
@@ -511,17 +463,11 @@ class Episode extends AbstractModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getRuntime(): int
     {
         return $this->runtime;
     }
 
-    /**
-     * @param int $runtime
-     */
     public function setRuntime(int $runtime): void
     {
         $this->runtime = $runtime;

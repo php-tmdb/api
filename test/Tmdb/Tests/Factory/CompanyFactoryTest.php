@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Company;
@@ -30,8 +32,8 @@ class CompanyFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructCompany()
     {
         /**
@@ -57,8 +59,8 @@ class CompanyFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldMatchExpectations()
     {
         /**
@@ -81,8 +83,8 @@ class CompanyFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function callingCollectionReturnsEmptyCollection()
     {
         $factory    = $this->getFactory();
@@ -92,8 +94,8 @@ class CompanyFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         $factory = $this->getFactory();

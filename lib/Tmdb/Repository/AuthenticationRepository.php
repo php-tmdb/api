@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -22,8 +24,8 @@ use Tmdb\Token\Session\RequestToken;
 use Tmdb\Token\Session\SessionToken;
 
 /**
- * Class AuthenticationRepository
- * @package Tmdb\Repository
+ * Class AuthenticationRepository.
+ *
  * @see http://docs.themoviedb.apiary.io/#authentication
  */
 class AuthenticationRepository extends AbstractRepository
@@ -45,19 +47,18 @@ class AuthenticationRepository extends AbstractRepository
     }
 
     /**
-     * Return the Collection API Class
+     * Return the Collection API Class.
      *
      * @return Authentication
      */
+    #[\Override]
     public function getApi()
     {
         return $this->getClient()->getAuthenticationApi();
     }
 
-    /**
-     * @return AuthenticationFactory
-     */
-    public function getFactory()
+    #[\Override]
+    public function getFactory(): \Tmdb\Factory\AuthenticationFactory
     {
         return new AuthenticationFactory($this->getClient()->getHttpClient());
     }
@@ -66,7 +67,6 @@ class AuthenticationRepository extends AbstractRepository
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param RequestToken $requestToken
      * @return SessionToken
      */
     public function getSessionToken(RequestToken $requestToken)
@@ -80,10 +80,11 @@ class AuthenticationRepository extends AbstractRepository
      * This method is used to validate a request_token for user based authentication.
      * A request_token is required in order to use any of the write methods.
      *
-     * @param RequestToken $requestToken
      * @param string $username
      * @param string $password
+     *
      * @return RequestToken
+     *
      * @throws UnauthorizedRequestTokenException
      */
     public function validateRequestTokenWithLogin(RequestToken $requestToken, $username, $password)
@@ -91,27 +92,25 @@ class AuthenticationRepository extends AbstractRepository
         $data = $this->getApi()->validateRequestTokenWithLogin(
             $requestToken,
             $username,
-            $password
+            $password,
         );
 
         return $this->getFactory()->createRequestToken($data);
     }
 
     /**
-     * Authenticate request token, redirects the user
-     *
-     * @param RequestToken $requestToken
-     * @return void
+     * Authenticate request token, redirects the user.
      */
-    //@codeCoverageIgnoreStart
+    // @codeCoverageIgnoreStart
     /**
      * This method is used to generate a session id for user based authentication.
      * A session id is required in order to use any of the write methods.
      *
-     * @param RequestToken $requestToken
      * @param string $username
      * @param string $password
+     *
      * @return SessionToken
+     *
      * @throws UnauthorizedRequestTokenException
      */
     public function getSessionTokenWithLogin(RequestToken $requestToken, $username, $password)
@@ -119,12 +118,12 @@ class AuthenticationRepository extends AbstractRepository
         $data = $this->getApi()->getSessionTokenWithLogin(
             $requestToken,
             $username,
-            $password
+            $password,
         );
 
         return $this->getFactory()->createSessionToken($data);
     }
-    //@codeCoverageIgnoreEnd
+    // @codeCoverageIgnoreEnd
 
     /**
      * This method is used to generate a guest session id.
@@ -147,7 +146,6 @@ class AuthenticationRepository extends AbstractRepository
 
         return $this->getFactory()->createGuestSessionToken($data);
     }
-
 
     public function authenticateRequestToken(RequestToken $requestToken): void
     {

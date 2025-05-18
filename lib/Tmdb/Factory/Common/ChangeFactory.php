@@ -1,39 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
 namespace Tmdb\Factory\Common;
 
 use Tmdb\Factory\AbstractFactory;
-use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Collection\Changes;
 use Tmdb\Model\Common\Change;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
- * Class ChangeFactory
- * @package Tmdb\Factory\Common
+ * Class ChangeFactory.
  */
 class ChangeFactory extends AbstractFactory
 {
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function createCollection(array $data = []): Changes
     {
         $collection = new Changes();
 
-        if (array_key_exists('changes', $data)) {
+        if (\array_key_exists('changes', $data)) {
             $data = $data['changes'];
         }
 
@@ -44,14 +42,12 @@ class ChangeFactory extends AbstractFactory
         return $collection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function create(array $data = []): Change
     {
         $change = new Change();
 
-        if (array_key_exists('items', $data)) {
+        if (\array_key_exists('items', $data)) {
             $items = new GenericCollection();
 
             foreach ($data['items'] as $item) {
@@ -67,10 +63,7 @@ class ChangeFactory extends AbstractFactory
     }
 
     /**
-     * Create individual change items
-     *
-     * @param array $data
-     * @return Change\Item
+     * Create individual change items.
      */
     private function createChangeItem(array $data = []): Change\Item
     {

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model;
 use Tmdb\Model\Credits\Media;
 
 /**
- * Class Credits
- * @package Tmdb\Model
+ * Class Credits.
  */
 class Credits extends AbstractModel
 {
@@ -44,10 +45,7 @@ class Credits extends AbstractModel
      * @var string
      */
     private $job;
-    /**
-     * @var Media
-     */
-    private $media;
+    private \Tmdb\Model\Credits\Media $media;
     /**
      * @var string
      */
@@ -76,9 +74,8 @@ class Credits extends AbstractModel
 
     /**
      * @param string $creditType
-     * @return self
      */
-    public function setCreditType($creditType)
+    public function setCreditType($creditType): static
     {
         $this->creditType = $creditType;
 
@@ -95,9 +92,8 @@ class Credits extends AbstractModel
 
     /**
      * @param string $department
-     * @return self
      */
-    public function setDepartment($department)
+    public function setDepartment($department): static
     {
         $this->department = $department;
 
@@ -114,9 +110,8 @@ class Credits extends AbstractModel
 
     /**
      * @param string $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -133,9 +128,8 @@ class Credits extends AbstractModel
 
     /**
      * @param string $job
-     * @return self
      */
-    public function setJob($job)
+    public function setJob($job): static
     {
         $this->job = $job;
 
@@ -152,9 +146,8 @@ class Credits extends AbstractModel
 
     /**
      * @param Media $media
-     * @return self
      */
-    public function setMedia($media)
+    public function setMedia($media): static
     {
         $this->media = $media;
 
@@ -171,9 +164,8 @@ class Credits extends AbstractModel
 
     /**
      * @param string $mediaType
-     * @return self
      */
-    public function setMediaType($mediaType)
+    public function setMediaType($mediaType): static
     {
         $this->mediaType = $mediaType;
 
@@ -190,9 +182,8 @@ class Credits extends AbstractModel
 
     /**
      * @param Person $person
-     * @return self
      */
-    public function setPerson($person)
+    public function setPerson($person): static
     {
         $this->person = $person;
 

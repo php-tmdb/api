@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Tv;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use stdClass;
 use Tmdb\Model\Tv\Season;
 use Tmdb\Tests\Model\TestCase;
@@ -21,8 +23,8 @@ use Tmdb\Tests\Model\TestCase;
 class SeasonTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructTvSeason()
     {
         $season = new Season();
@@ -40,8 +42,8 @@ class SeasonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToOverrideDefaultCollections()
     {
         $season = new Season();

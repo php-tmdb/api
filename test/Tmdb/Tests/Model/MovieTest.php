@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Collection\CreditsCollection;
 use Tmdb\Model\Collection\ResultCollection;
 use Tmdb\Model\Movie;
@@ -21,8 +23,8 @@ use Tmdb\Model\Movie;
 class MovieTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructMovie()
     {
         $movie = new Movie();
@@ -53,8 +55,8 @@ class MovieTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldAllowOverridingDefaultCollectionObjects()
     {
         $movie = new Movie();

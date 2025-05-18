@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Watch;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\Watch\Providers;
 use Tmdb\Model\Common\GenericCollection;
@@ -22,8 +24,8 @@ use Tmdb\Tests\Model\TestCase;
 class ProvidersTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $flatrateCollection = new GenericCollection();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Formatter\Hydration;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Event\BeforeHydrationEvent;
 use Tmdb\Formatter\Hydration\SimpleHydrationFormatter;
 use Tmdb\Model\Movie;
@@ -22,8 +24,8 @@ use Tmdb\Tests\TestCase;
 class SimpleHydrationFormatterTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testFormatter()
     {
         $formatter = new SimpleHydrationFormatter();

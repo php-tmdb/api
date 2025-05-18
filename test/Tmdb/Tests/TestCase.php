@@ -88,8 +88,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $options['event_dispatcher']['adapter'] = $this->eventDispatcher = new EventDispatcher();
 
         $options['api_token'] = new ApiToken('abcdef');
+        
+        // Create a properly formed response with an empty JSON object - just enough to avoid parse errors
+        $responseFactory = Psr17FactoryDiscovery::findResponseFactory();
+        $streamFactory = Psr17FactoryDiscovery::findStreamFactory();
+        $body = $streamFactory->createStream('{}');
+        $response = $responseFactory->createResponse(200)->withBody($body);
+        
         $options['http']['client'] = new \Http\Mock\Client();
-        $response = $this->createMock('Psr\Http\Message\ResponseInterface');
         $options['http']['client']->setDefaultResponse($response);
 
         $client = new Client($options);

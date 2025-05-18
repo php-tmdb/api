@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\KeywordFactory;
 
 class KeywordFactoryTest extends TestCase
@@ -26,8 +28,8 @@ class KeywordFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructKeyword()
     {
         /**

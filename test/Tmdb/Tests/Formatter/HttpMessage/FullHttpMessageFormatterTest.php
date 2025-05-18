@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Formatter\HttpMessage;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use GuzzleHttp\Exception\ConnectException;
 use Nyholm\Psr7\Request;
 use Nyholm\Psr7\Response;
@@ -23,8 +25,8 @@ use Tmdb\Tests\TestCase;
 class FullHttpMessageFormatterTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testFormatter()
     {
         $formatter = new FullHttpMessageFormatter();

@@ -14,14 +14,16 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ListsTest extends TestCase
 {
     public const LIST_ID = '509ec17b19c2950a0600050d';
     public const MOVIE_ID = 150;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -31,8 +33,8 @@ class ListsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -48,8 +50,8 @@ class ListsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetItemStatus()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -60,8 +62,8 @@ class ListsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldAddMediaToList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -76,8 +78,8 @@ class ListsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRemoveMediaFromList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -92,8 +94,8 @@ class ListsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldDeleteList()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -103,8 +105,8 @@ class ListsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldClearList()
     {
         $api = $this->getApiWithMockedHttpAdapter();

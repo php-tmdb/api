@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,10 +20,9 @@ use Tmdb\Model\Filter\ImageFilter;
 use Tmdb\Model\Filter\LanguageFilter;
 
 /**
- * Class Image
- * @package Tmdb\Model
+ * Class Image.
  */
-class Image extends AbstractModel implements ImageFilter, LanguageFilter
+class Image extends AbstractModel implements ImageFilter, LanguageFilter, \Stringable
 {
     public const FORMAT_POSTER = 'poster';
     public const FORMAT_BACKDROP = 'backdrop';
@@ -35,35 +36,32 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
         'iso_639_1',
         'aspect_ratio',
         'vote_average',
-        'vote_count'
+        'vote_count',
     ];
     public static $formats = [
         'posters' => self::FORMAT_POSTER,
         'backdrops' => self::FORMAT_BACKDROP,
         'profiles' => self::FORMAT_PROFILE,
         'logos' => self::FORMAT_LOGO,
-        'stills' => self::FORMAT_STILL
+        'stills' => self::FORMAT_STILL,
     ];
     protected $id;
     protected $type;
     private $filePath;
-    private $width;
-    private $height;
+    private ?int $width = null;
+    private ?int $height = null;
     private $iso6391;
-    private $aspectRatio;
-    private $voteAverage;
-    private $voteCount;
+    private ?float $aspectRatio = null;
+    private ?float $voteAverage = null;
+    private ?int $voteCount = null;
     private $media;
 
     /**
-     * Get the singular type as defined in $_types
-     *
-     * @param $name
-     * @return mixed
+     * Get the singular type as defined in $_types.
      */
     public static function getTypeFromCollectionName($name)
     {
-        if (array_key_exists($name, self::$formats)) {
+        if (\array_key_exists($name, self::$formats)) {
             return self::$formats[$name];
         }
 
@@ -80,11 +78,10 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param float $aspectRatio
-     * @return self
      */
-    public function setAspectRatio($aspectRatio)
+    public function setAspectRatio($aspectRatio): static
     {
-        $this->aspectRatio = (float)$aspectRatio;
+        $this->aspectRatio = (float) $aspectRatio;
 
         return $this;
     }
@@ -97,30 +94,20 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
         return $this->height;
     }
 
-    /**
-     * @param mixed $height
-     * @return self
-     */
-    public function setHeight($height)
+    public function setHeight($height): static
     {
-        $this->height = (int)$height;
+        $this->height = (int) $height;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    #[\Override]
     public function getIso6391()
     {
         return $this->iso6391;
     }
 
-    /**
-     * @param mixed $iso6391
-     * @return self
-     */
-    public function setIso6391($iso6391)
+    public function setIso6391($iso6391): static
     {
         $this->iso6391 = $iso6391;
 
@@ -137,11 +124,10 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param float $voteAverage
-     * @return self
      */
-    public function setVoteAverage($voteAverage)
+    public function setVoteAverage($voteAverage): static
     {
-        $this->voteAverage = (float)$voteAverage;
+        $this->voteAverage = (float) $voteAverage;
 
         return $this;
     }
@@ -156,11 +142,10 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param int $voteCount
-     * @return self
      */
-    public function setVoteCount($voteCount)
+    public function setVoteCount($voteCount): static
     {
-        $this->voteCount = (int)$voteCount;
+        $this->voteCount = (int) $voteCount;
 
         return $this;
     }
@@ -175,28 +160,20 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
 
     /**
      * @param int $width
-     * @return self
      */
-    public function setWidth($width)
+    public function setWidth($width): static
     {
-        $this->width = (int)$width;
+        $this->width = (int) $width;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getMedia()
     {
         return $this->media;
     }
 
-    /**
-     * @param mixed $media
-     * @return self
-     */
-    public function setMedia($media)
+    public function setMedia($media): static
     {
         $this->media = $media;
 
@@ -204,27 +181,20 @@ class Image extends AbstractModel implements ImageFilter, LanguageFilter
     }
 
     /**
-     * Return the file path when casted to string
-     * @return string
+     * Return the file path when casted to string.
      */
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
-        return (string)$this->getFilePath();
+        return (string) $this->getFilePath();
     }
 
-    /**
-     * @return mixed
-     */
     public function getFilePath()
     {
         return $this->filePath;
     }
 
-    /**
-     * @param mixed $filePath
-     * @return self
-     */
-    public function setFilePath($filePath)
+    public function setFilePath($filePath): static
     {
         $this->filePath = $filePath;
 

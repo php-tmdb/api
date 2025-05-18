@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,8 +20,7 @@ use DateTime;
 use Tmdb\Model\AbstractModel;
 
 /**
- * Class Item
- * @package Tmdb\Model\Common\Change
+ * Class Item.
  */
 class Item extends AbstractModel
 {
@@ -27,7 +28,7 @@ class Item extends AbstractModel
         'id',
         'action',
         'time',
-        'value'
+        'value',
     ];
     /**
      * @var string
@@ -37,10 +38,7 @@ class Item extends AbstractModel
      * @var string
      */
     private $action;
-    /**
-     * @var DateTime
-     */
-    private $time;
+    private ?\DateTime $time = null;
     /**
      * @var array
      */
@@ -56,9 +54,8 @@ class Item extends AbstractModel
 
     /**
      * @param string $action
-     * @return self
      */
-    public function setAction($action)
+    public function setAction($action): static
     {
         $this->action = $action;
 
@@ -75,9 +72,8 @@ class Item extends AbstractModel
 
     /**
      * @param string $id
-     * @return self
      */
-    public function setId($id)
+    public function setId($id): static
     {
         $this->id = $id;
 
@@ -94,11 +90,10 @@ class Item extends AbstractModel
 
     /**
      * @param string|DateTime|null $time
-     * @return self
      */
-    public function setTime($time = null)
+    public function setTime($time = null): static
     {
-        if (!$time instanceof DateTime && $time !== null) {
+        if (!$time instanceof DateTime && null !== $time) {
             $time = new DateTime($time);
         }
 
@@ -117,9 +112,8 @@ class Item extends AbstractModel
 
     /**
      * @param array $value
-     * @return self
      */
-    public function setValue($value)
+    public function setValue($value): static
     {
         $this->value = $value;
 

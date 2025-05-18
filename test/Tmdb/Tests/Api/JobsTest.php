@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class JobsTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetList()
     {
         $api = $this->getApiWithMockedHttpAdapter();

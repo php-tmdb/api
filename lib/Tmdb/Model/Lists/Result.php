@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,8 +19,7 @@ namespace Tmdb\Model\Lists;
 use Tmdb\Model\AbstractModel;
 
 /**
- * Class Result
- * @package Tmdb\Model\Lists
+ * Class Result.
  */
 class Result extends AbstractModel
 {
@@ -27,7 +28,7 @@ class Result extends AbstractModel
      */
     public static $properties = [
         'status_code',
-        'status_message'
+        'status_message',
     ];
     /**
      * @var int
@@ -48,9 +49,8 @@ class Result extends AbstractModel
 
     /**
      * @param int $statusCode
-     * @return self
      */
-    public function setStatusCode($statusCode)
+    public function setStatusCode($statusCode): static
     {
         $this->statusCode = $statusCode;
 
@@ -67,9 +67,8 @@ class Result extends AbstractModel
 
     /**
      * @param string $statusMessage
-     * @return self
      */
-    public function setStatusMessage($statusMessage)
+    public function setStatusMessage($statusMessage): static
     {
         $this->statusMessage = $statusMessage;
 

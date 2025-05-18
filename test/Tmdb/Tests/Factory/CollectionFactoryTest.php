@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\CollectionFactory;
 use Tmdb\Model\Collection;
 
@@ -41,16 +43,16 @@ class CollectionFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructCollection()
     {
         $this->assertInstanceOf('Tmdb\Model\Collection', $this->collection);
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         /**
@@ -68,8 +70,8 @@ class CollectionFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToCreateCollection()
     {
         $factory = $this->getFactory();
@@ -85,8 +87,8 @@ class CollectionFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $this->assertInstanceOf('Tmdb\Model\Image\BackdropImage', $this->collection->getBackdropImage());

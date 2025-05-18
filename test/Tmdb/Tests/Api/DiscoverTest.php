@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class DiscoverTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldDiscoverMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -28,8 +30,8 @@ class DiscoverTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldDiscoverTv()
     {
         $api = $this->getApiWithMockedHttpAdapter();

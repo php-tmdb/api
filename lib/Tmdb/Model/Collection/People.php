@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,17 +21,16 @@ use Tmdb\Model\Collection\People\PersonInterface;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
- * Class People
+ * Class People.
  *
  * @template T of AbstractModel&PersonInterface
- * @extends GenericCollection<T>
  *
- * @package Tmdb\Model\Collection
+ * @extends GenericCollection<T>
  */
 class People extends GenericCollection
 {
     /**
-     * Returns all people
+     * Returns all people.
      *
      * @return T[]
      */
@@ -39,9 +40,7 @@ class People extends GenericCollection
     }
 
     /**
-     * Retrieve a person from the collection
-     *
-     * @param $id
+     * Retrieve a person from the collection.
      *
      * @return T|null
      */
@@ -51,11 +50,9 @@ class People extends GenericCollection
     }
 
     /**
-     * Add a person to the collection
+     * Add a person to the collection.
      *
      * @param T $person
-     *
-     * @return void
      */
     public function addPerson(PersonInterface $person): void
     {

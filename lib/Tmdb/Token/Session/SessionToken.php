@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -17,41 +19,26 @@ namespace Tmdb\Token\Session;
 use DateTime;
 
 /**
- * Class SessionToken
- * @package Tmdb
+ * Class SessionToken.
  */
-class SessionToken
+class SessionToken implements \Stringable
 {
-    /**
-     * @var string|null
-     */
-    private $sessionToken;
+    private ?\DateTime $expiresAt = null;
 
     /**
-     * @var ?DateTime
-     */
-    private $expiresAt;
-
-    /**
-     * @var boolean
+     * @var bool
      */
     private $success;
 
     /**
-     * Token bag
-     *
-     * @param string|null $sessionToken
+     * Token bag.
      */
-    public function __construct(?string $sessionToken = null)
+    public function __construct(private ?string $sessionToken = null)
     {
-        $this->sessionToken = $sessionToken;
     }
 
-    /**
-     * @param null $sessionToken
-     * @return self
-     */
-    public function setToken($sessionToken)
+    
+    public function setToken($sessionToken): static
     {
         $this->sessionToken = $sessionToken;
 
@@ -76,9 +63,8 @@ class SessionToken
 
     /**
      * @param string|DateTime $expiresAt
-     * @return self
      */
-    public function setExpiresAt($expiresAt)
+    public function setExpiresAt($expiresAt): static
     {
         if (!$expiresAt instanceof DateTime) {
             $expiresAt = new DateTime($expiresAt);
@@ -90,7 +76,7 @@ class SessionToken
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getSuccess()
     {
@@ -98,18 +84,18 @@ class SessionToken
     }
 
     /**
-     * @param boolean $success
-     * @return self
+     * @param bool $success
      */
-    public function setSuccess($success)
+    public function setSuccess($success): static
     {
         $this->success = $success;
 
         return $this;
     }
 
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
-        return (string)$this->sessionToken;
+        return (string) $this->sessionToken;
     }
 }

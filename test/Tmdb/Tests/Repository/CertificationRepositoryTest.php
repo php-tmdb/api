@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class CertificationRepositoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadMovieCertifications()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -28,8 +30,8 @@ class CertificationRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadTvCertifications()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

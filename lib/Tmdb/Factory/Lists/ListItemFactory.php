@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -21,20 +23,14 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Lists\ListItem;
 
 /**
- * Class ListItemFactory
- * @package Tmdb\Factory\Lists
+ * Class ListItemFactory.
  */
 class ListItemFactory extends AbstractFactory
 {
-    /**
-     * @var ImageFactory
-     */
-    private $imageFactory;
+    private \Tmdb\Factory\ImageFactory $imageFactory;
 
     /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
+     * Constructor.
      */
     public function __construct(HttpClient $httpClient)
     {
@@ -43,14 +39,12 @@ class ListItemFactory extends AbstractFactory
         parent::__construct($httpClient);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
 
-        if (array_key_exists('items', $data)) {
+        if (\array_key_exists('items', $data)) {
             $data = $data['items'];
         }
 
@@ -61,25 +55,21 @@ class ListItemFactory extends AbstractFactory
         return $collection;
     }
 
-    /**
-     * @param array $data
-     *
-     * @return ListItem
-     */
+    #[\Override]
     public function create(array $data = []): ListItem
     {
         $listItem = new ListItem();
 
-        /** Images */
-        if (array_key_exists('backdrop_path', $data)) {
+        /* Images */
+        if (\array_key_exists('backdrop_path', $data)) {
             $listItem->setBackdropImage(
-                $this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path')
+                $this->getImageFactory()->createFromPath($data['backdrop_path'], 'backdrop_path'),
             );
         }
 
-        if (array_key_exists('poster_path', $data)) {
+        if (\array_key_exists('poster_path', $data)) {
             $listItem->setPosterImage(
-                $this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path')
+                $this->getImageFactory()->createFromPath($data['poster_path'], 'poster_path'),
             );
         }
 
@@ -96,9 +86,8 @@ class ListItemFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return self
      */
-    public function setImageFactory($imageFactory)
+    public function setImageFactory($imageFactory): static
     {
         $this->imageFactory = $imageFactory;
 

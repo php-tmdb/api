@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -19,25 +21,21 @@ use Tmdb\Model\Collection\People\Cast;
 use Tmdb\Model\Person\CastMember;
 
 /**
- * Class CastFactory
+ * Class CastFactory.
+ *
  * @extends PeopleFactory<CastMember>
- * @package Tmdb\Factory\People
  */
 class CastFactory extends PeopleFactory
 {
     /**
-     * {@inheritdoc}
      * @param CastMember|null $person
      */
+    #[\Override]
     public function createCollection(array $data = [], $person = null, $collection = null): Cast
     {
         $collection = new Cast();
 
-        if (is_object($person)) {
-            $class = get_class($person);
-        } else {
-            $class = '\Tmdb\Model\Person\CastMember';
-        }
+        $class = \is_object($person) ? $person::class : \Tmdb\Model\Person\CastMember::class;
 
         foreach ($data as $item) {
             $collection->add(null, $this->create($item, new $class()));

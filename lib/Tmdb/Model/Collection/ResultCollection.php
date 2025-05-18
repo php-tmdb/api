@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -18,12 +20,11 @@ use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\GenericCollection;
 
 /**
- * Class ResultCollection
+ * Class ResultCollection.
  *
  * @template T of AbstractModel
- * @extends GenericCollection<T>
  *
- * @package Tmdb\Model\Collection
+ * @extends GenericCollection<T>
  */
 class ResultCollection extends GenericCollection
 {
@@ -33,20 +34,11 @@ class ResultCollection extends GenericCollection
     public static $properties = [
         'page',
         'total_pages',
-        'total_results'
+        'total_results',
     ];
-    /**
-     * @var int
-     */
-    private $page = 1;
-    /**
-     * @var int
-     */
-    private $totalPages = 1;
-    /**
-     * @var int
-     */
-    private $totalResults = 0;
+    private int $page = 1;
+    private int $totalPages = 1;
+    private int $totalResults = 0;
 
     /**
      * @return int
@@ -58,11 +50,12 @@ class ResultCollection extends GenericCollection
 
     /**
      * @param int $page
+     *
      * @return $this
      */
-    public function setPage($page)
+    public function setPage($page): static
     {
-        $this->page = (int)$page;
+        $this->page = (int) $page;
 
         return $this;
     }
@@ -77,11 +70,12 @@ class ResultCollection extends GenericCollection
 
     /**
      * @param int $totalPages
+     *
      * @return $this
      */
-    public function setTotalPages($totalPages)
+    public function setTotalPages($totalPages): static
     {
-        $this->totalPages = (int)$totalPages;
+        $this->totalPages = (int) $totalPages;
 
         return $this;
     }
@@ -96,11 +90,12 @@ class ResultCollection extends GenericCollection
 
     /**
      * @param int $totalResults
+     *
      * @return $this
      */
-    public function setTotalResults($totalResults)
+    public function setTotalResults($totalResults): static
     {
-        $this->totalResults = (int)$totalResults;
+        $this->totalResults = (int) $totalResults;
 
         return $this;
     }

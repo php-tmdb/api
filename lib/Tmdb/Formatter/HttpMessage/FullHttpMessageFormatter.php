@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tmdb\Formatter\HttpMessage;
 
 use Psr\Http\Client\ClientExceptionInterface;
@@ -10,38 +12,33 @@ use Tmdb\Formatter\HttpMessageFormatterInterface;
 
 /**
  * Borrowed this from our friends of `php-http/message`.
+ *
  * @see https://github.com/php-http/message/blob/master/src/Formatter/FullHttpMessageFormatter.php
  *
  * Class FullHttpMessageFormatter
- * @package Tmdb\Formatter\HttpMessage
  */
 class FullHttpMessageFormatter implements HttpMessageFormatterInterface
 {
     /**
-     * The maximum length of the body.
-     *
-     * @var int|null
-     */
-    private $maxBodyLength;
-
-    /**
      * @param int|null $maxBodyLength
      */
-    public function __construct($maxBodyLength = 1024)
+    public function __construct(
+        /**
+         * The maximum length of the body.
+         */
+        private $maxBodyLength = 1024
+    )
     {
-        $this->maxBodyLength = $maxBodyLength;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function formatRequest(RequestInterface $request): string
     {
-        $message = sprintf(
+        $message = \sprintf(
             "%s %s HTTP/%s\n",
             $request->getMethod(),
             $request->getRequestTarget(),
-            $request->getProtocolVersion()
+            $request->getProtocolVersion(),
         );
 
         foreach ($request->getHeaders() as $name => $values) {
@@ -51,16 +48,14 @@ class FullHttpMessageFormatter implements HttpMessageFormatterInterface
         return $this->addBody($request, $message);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function formatResponse(ResponseInterface $response): string
     {
-        $message = sprintf(
+        $message = \sprintf(
             "HTTP/%s %s %s\n",
             $response->getProtocolVersion(),
             $response->getStatusCode(),
-            $response->getReasonPhrase()
+            $response->getReasonPhrase(),
         );
 
         foreach ($response->getHeaders() as $name => $values) {
@@ -70,30 +65,26 @@ class FullHttpMessageFormatter implements HttpMessageFormatterInterface
         return $this->addBody($response, $message);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function formatClientException(ClientExceptionInterface $exception): string
     {
-        return sprintf(
+        return \sprintf(
             '%s %s',
             $exception->getCode(),
-            $exception->getMessage()
+            $exception->getMessage(),
         );
     }
 
     /**
      * Add the message body if the stream is seekable.
      *
-     * @param MessageInterface $request
-     * @param string $message
      *
-     * @return string
      */
-    private function addBody(MessageInterface $request, $message)
+    private function addBody(MessageInterface $request, string $message): string
     {
         $message .= "\n";
         $stream = $request->getBody();
+
         if (!$stream->isSeekable() || 0 === $this->maxBodyLength) {
             // Do not read the stream
             return $message;

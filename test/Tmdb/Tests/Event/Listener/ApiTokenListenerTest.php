@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Event\Listener;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Token\Api\ApiToken;
@@ -24,8 +26,8 @@ use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 class ApiTokenListenerTest extends ListenerTestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSetApiToken()
     {
         $factory = new Psr17Factory();
@@ -45,8 +47,8 @@ class ApiTokenListenerTest extends ListenerTestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSetBearerToken()
     {
         $factory = new Psr17Factory();

@@ -14,14 +14,16 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class TvSeasonTest extends TestCase
 {
     public const TV_ID = 3572;
     public const SEASON_ID = 1;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSeason()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -31,8 +33,8 @@ class TvSeasonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSeasonCredits()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -42,8 +44,8 @@ class TvSeasonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSeasonExternalIds()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -55,8 +57,8 @@ class TvSeasonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSeasonImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -66,8 +68,8 @@ class TvSeasonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSeasonVideos()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -77,8 +79,8 @@ class TvSeasonTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSeasonChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();

@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Api\AbstractApi;
 
 class AbstractApiTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCallGet()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -30,8 +32,8 @@ class AbstractApiTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCallHead()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -41,8 +43,8 @@ class AbstractApiTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCallPost()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -52,8 +54,8 @@ class AbstractApiTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCallPut()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -63,8 +65,8 @@ class AbstractApiTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCallDelete()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -74,8 +76,8 @@ class AbstractApiTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCallPatch()
     {
         $api = $this->getApiWithMockedHttpAdapter();

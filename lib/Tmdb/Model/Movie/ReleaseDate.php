@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -20,8 +22,7 @@ use Tmdb\Model\Filter\CountryFilter;
 use Tmdb\Model\Filter\LanguageFilter;
 
 /**
- * Class Release Date
- * @package Tmdb\Model\Movie
+ * Class Release Date.
  */
 class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 {
@@ -37,13 +38,13 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
         'certification',
         'note',
         'release_date',
-        'type'
+        'type',
     ];
     private $iso31661;
     private $iso6391;
     private $certification;
     private $note;
-    private $releaseDate;
+    private ?\DateTime $releaseDate = null;
     private $type;
 
     /**
@@ -56,9 +57,8 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string|null $certification
-     * @return self
      */
-    public function setCertification($certification)
+    public function setCertification($certification): static
     {
         $this->certification = $certification;
 
@@ -75,9 +75,8 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string|null $note
-     * @return self
      */
-    public function setNote($note)
+    public function setNote($note): static
     {
         $this->note = $note;
 
@@ -87,6 +86,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
     /**
      * @return string
      */
+    #[\Override]
     public function getIso31661()
     {
         return $this->iso31661;
@@ -94,9 +94,8 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $iso31661
-     * @return self
      */
-    public function setIso31661($iso31661)
+    public function setIso31661($iso31661): static
     {
         $this->iso31661 = $iso31661;
 
@@ -113,11 +112,10 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string|DateTime|null $releaseDate
-     * @return self
      */
-    public function setReleaseDate($releaseDate = null)
+    public function setReleaseDate($releaseDate = null): static
     {
-        if (!$releaseDate instanceof DateTime && $releaseDate !== null) {
+        if (!$releaseDate instanceof DateTime && null !== $releaseDate) {
             $releaseDate = new DateTime($releaseDate);
         }
 
@@ -129,6 +127,7 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
     /**
      * @return string|null
      */
+    #[\Override]
     public function getIso6391()
     {
         return $this->iso6391;
@@ -136,11 +135,11 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param string $iso6391
-     * @return self
      */
-    public function setIso6391($iso6391)
+    public function setIso6391($iso6391): static
     {
         $this->iso6391 = $iso6391;
+
         return $this;
     }
 
@@ -154,9 +153,8 @@ class ReleaseDate extends AbstractModel implements CountryFilter, LanguageFilter
 
     /**
      * @param int $type
-     * @return self
      */
-    public function setType($type)
+    public function setType($type): static
     {
         $this->type = $type;
 

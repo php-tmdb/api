@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory\Movie;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\Movie\AlternativeTitleFactory;
 use Tmdb\Model\Movie\AlternativeTitle;
 use Tmdb\Tests\Factory\TestCase;
@@ -22,8 +24,8 @@ class AlternativeTitleFactoryTest extends TestCase
 {
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructAlternativeTitle()
     {
         /**
@@ -46,8 +48,8 @@ class AlternativeTitleFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToCreateCollection()
     {
         $factory = $this->getFactory();

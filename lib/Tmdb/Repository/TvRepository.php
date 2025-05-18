@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -28,24 +30,23 @@ use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\QueryParameter\AppendToResponse;
 
 /**
- * Class TvRepository
- * @package Tmdb\Repository
+ * Class TvRepository.
+ *
  * @see http://docs.themoviedb.apiary.io/#tv
  */
 class TvRepository extends AbstractRepository
 {
     /**
-     * Load a tv with the given identifier
+     * Load a tv with the given identifier.
      *
      * If you want to optimize the result set/bandwidth you should
      * define the AppendToResponse parameter
      *
-     * @param integer $id
-     * @param $parameters
-     * @param $headers
-     * @return null|AbstractModel
+     * @param int $id
+     *
+     * @return AbstractModel|null
      */
-    public function load($id, array $parameters = [], array $headers = [])
+    public function load($id, array $parameters = [], array $headers = []): ?\Tmdb\Model\Tv
     {
         if (!isset($parameters['append_to_response'])) {
             $parameters = array_merge($parameters, [
@@ -63,7 +64,7 @@ class TvRepository extends AbstractRepository
                     AppendToResponse::VIDEOS,
                     AppendToResponse::WATCH_PROVIDERS,
                     AppendToResponse::EPISODE_GROUPS,
-                ])
+                ]),
             ]);
         }
 
@@ -73,19 +74,18 @@ class TvRepository extends AbstractRepository
     }
 
     /**
-     * Return the Tvs API Class
+     * Return the Tvs API Class.
      *
      * @return \Tmdb\Api\Tv
      */
+    #[\Override]
     public function getApi()
     {
         return $this->getClient()->getTvApi();
     }
 
-    /**
-     * @return TvFactory
-     */
-    public function getFactory()
+    #[\Override]
+    public function getFactory(): \Tmdb\Factory\TvFactory
     {
         return new TvFactory($this->getClient()->getHttpClient());
     }
@@ -94,33 +94,21 @@ class TvRepository extends AbstractRepository
      * Get the cast & crew information about a TV series.
      *
      * Just like the website, we pull this information from the last season of the series.
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     *
-     * @return CreditsCollection
      */
-    public function getCredits($id, array $parameters = [], array $headers = []): CreditsCollection
+    public function getCredits(string $id, array $parameters = [], array $headers = []): CreditsCollection
     {
         $data = $this->getApi()->getCredits($id, $this->parseQueryParameters($parameters), $headers);
         $tv = $this->getFactory()->create(['credits' => $data]);
 
-        assert($tv instanceof Tv);
+        \assert($tv instanceof Tv);
 
         return $tv->getCredits();
     }
 
     /**
      * Get the content ratings for a specific TV show id.
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     *
-     * @return GenericCollection
      */
-    public function getContentRatings($id, array $parameters = array(), array $headers = array()): GenericCollection
+    public function getContentRatings(string $id, array $parameters = [], array $headers = []): GenericCollection
     {
         $data = $this->getApi()->getContentRatings($id, $this->parseQueryParameters($parameters), $headers);
         $tv = $this->getFactory()->create(['content_ratings' => $data]);
@@ -131,12 +119,9 @@ class TvRepository extends AbstractRepository
     /**
      * Get the external ids that we have stored for a TV series.
      *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     * @return null|AbstractModel
+     * @return AbstractModel|null
      */
-    public function getExternalIds($id, array $parameters = [], array $headers = [])
+    public function getExternalIds(string $id, array $parameters = [], array $headers = [])
     {
         $data = $this->getApi()->getExternalIds($id, $this->parseQueryParameters($parameters), $headers);
         $tv = $this->getFactory()->create(['external_ids' => $data]);
@@ -146,14 +131,8 @@ class TvRepository extends AbstractRepository
 
     /**
      * Get the images (posters and backdrops) for a TV series.
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     *
-     * @return Images
      */
-    public function getImages($id, array $parameters = [], array $headers = []): Images
+    public function getImages(string $id, array $parameters = [], array $headers = []): Images
     {
         $data = $this->getApi()->getImages($id, $this->parseQueryParameters($parameters), $headers);
         $tv = $this->getFactory()->create(['images' => $data]);
@@ -163,14 +142,8 @@ class TvRepository extends AbstractRepository
 
     /**
      * Get the similar TV shows for a specific TV show id.
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     *
-     * @return GenericCollection
      */
-    public function getSimilar($id, array $parameters = [], array $headers = []): GenericCollection
+    public function getSimilar(string $id, array $parameters = [], array $headers = []): GenericCollection
     {
         $data = $this->getApi()->getSimilar($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['similar' => $data]);
@@ -180,14 +153,8 @@ class TvRepository extends AbstractRepository
 
     /**
      * Get the recommended TV shows for a specific movie id.
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     *
-     * @return GenericCollection
      */
-    public function getRecommendations($id, array $parameters = [], array $headers = []): GenericCollection
+    public function getRecommendations(string $id, array $parameters = [], array $headers = []): GenericCollection
     {
         $data = $this->getApi()->getRecommendations($id, $this->parseQueryParameters($parameters), $headers);
         $movie = $this->getFactory()->create(['recommendations' => $data]);
@@ -199,12 +166,6 @@ class TvRepository extends AbstractRepository
      * Get the list of translations that exist for a TV series.
      *
      * These translations cascade down to the episode level.
-     *
-     * @param $id
-     * @param $parameters
-     * @param $headers
-     *
-     * @return GenericCollection
      */
     public function getTranslations($id, array $parameters = [], array $headers = []): GenericCollection
     {
@@ -217,9 +178,6 @@ class TvRepository extends AbstractRepository
     /**
      * Get the images (posters and backdrops) for a TV series.
      *
-     * @param $id
-     * @param $parameters
-     * @param $headers
      * @return Videos|Video[]
      */
     public function getVideos($id, array $parameters = [], array $headers = [])
@@ -233,12 +191,9 @@ class TvRepository extends AbstractRepository
     /**
      * Get the watch providers (by region) for a TV series.
      *
-     * @param $id
-     * @param $parameters
-     * @param $headers
      * @return GenericCollection
      */
-    public function getWatchProviders($id, array $parameters = [], array $headers = [])
+    public function getWatchProviders(string $id, array $parameters = [], array $headers = [])
     {
         $data = $this->getApi()->getWatchProviders($id, $this->parseQueryParameters($parameters), $headers);
         $tv = $this->getFactory()->create(['watch/providers' => $data]);
@@ -249,9 +204,6 @@ class TvRepository extends AbstractRepository
     /**
      * Get the alternative titles for a specific show ID.
      *
-     * @param $id
-     * @param $parameters
-     * @param $headers
      * @return GenericCollection|Tv\AlternativeTitle[]
      */
     public function getAlternativeTitles($id, array $parameters = [], array $headers = [])
@@ -264,48 +216,33 @@ class TvRepository extends AbstractRepository
 
     /**
      * Get the list of popular tvs on The Tv Database. This list refreshes every day.
-     *
-     * @param array $options
-     * @param array $headers
-     *
-     * @return ResultCollection
      */
     public function getPopular(array $options = [], array $headers = []): ResultCollection
     {
         return $this->getFactory()->createResultCollection(
-            $this->getApi()->getPopular($options, $headers)
+            $this->getApi()->getPopular($options, $headers),
         );
     }
 
     /**
      * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes.
      * This list refreshes every day.
-     *
-     * @param array $options
-     * @param array $headers
-     *
-     * @return ResultCollection
      */
     public function getTopRated(array $options = [], array $headers = []): ResultCollection
     {
         return $this->getFactory()->createResultCollection(
-            $this->getApi()->getTopRated($options, $headers)
+            $this->getApi()->getTopRated($options, $headers),
         );
     }
 
     /**
      * Get the list of top rated tvs. By default, this list will only include tvs that have 10 or more votes.
      * This list refreshes every day.
-     *
-     * @param array $options
-     * @param array $headers
-     *
-     * @return ResultCollection
      */
     public function getOnTheAir(array $options = [], array $headers = []): ResultCollection
     {
         return $this->getFactory()->createResultCollection(
-            $this->getApi()->getOnTheAir($options, $headers)
+            $this->getApi()->getOnTheAir($options, $headers),
         );
     }
 
@@ -313,29 +250,23 @@ class TvRepository extends AbstractRepository
      * Get the list of TV shows that air today.
      *
      * Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).
-     *
-     * @param array $options
-     * @param array $headers
-     *
-     * @return ResultCollection
      */
     public function getAiringToday(array $options = [], array $headers = []): ResultCollection
     {
         return $this->getFactory()->createResultCollection(
-            $this->getApi()->getAiringToday($options, $headers)
+            $this->getApi()->getAiringToday($options, $headers),
         );
     }
 
     /**
      * Get the latest tv-show.
      *
-     * @param array $options
-     * @return null|AbstractModel
+     * @return AbstractModel|null
      */
-    public function getLatest(array $options = [])
+    public function getLatest(array $options = []): ?\Tmdb\Model\Tv
     {
         return $this->getFactory()->create(
-            $this->getApi()->getLatest($options)
+            $this->getApi()->getLatest($options),
         );
     }
 
@@ -345,13 +276,14 @@ class TvRepository extends AbstractRepository
      *
      * A valid session id is required.
      *
-     * @param integer $id
+     * @param int $id
+     *
      * @return AccountStates
      */
     public function getAccountStates($id)
     {
         return $this->getFactory()->createAccountStates(
-            $this->getApi()->getAccountStates($id)
+            $this->getApi()->getAccountStates($id),
         );
     }
 
@@ -360,14 +292,15 @@ class TvRepository extends AbstractRepository
      *
      * A valid session id or guest session id is required.
      *
-     * @param integer $id
+     * @param int   $id
      * @param float $rating
+     *
      * @return Result
      */
     public function rate($id, $rating)
     {
         return $this->getFactory()->createResult(
-            $this->getApi()->rateTvShow($id, $rating)
+            $this->getApi()->rateTvShow($id, $rating),
         );
     }
 }

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -20,7 +22,6 @@ use Tmdb\Factory\People\CastFactory;
 use Tmdb\Factory\People\CrewFactory;
 use Tmdb\Factory\People\GuestStarFactory;
 use Tmdb\HttpClient\HttpClient;
-use Tmdb\Model\AbstractModel;
 use Tmdb\Model\Common\ExternalIds;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Common\Translation;
@@ -30,45 +31,42 @@ use Tmdb\Model\Person\GuestStar;
 use Tmdb\Model\Tv\Episode;
 
 /**
- * Class TvEpisodeFactory
- * @package Tmdb\Factory
+ * Class TvEpisodeFactory.
  */
 class TvEpisodeFactory extends AbstractFactory
 {
     /**
-     * @var People\CastFactory
+     * @var CastFactory|mixed
      */
     private $castFactory;
 
     /**
-     * @var People\CrewFactory
+     * @var CrewFactory|mixed
      */
     private $crewFactory;
 
     /**
-     * @var ImageFactory
+     * @var ImageFactory|mixed
      */
     private $imageFactory;
 
     /**
-     * @var Common\VideoFactory
+     * @var VideoFactory|mixed
      */
     private $videoFactory;
 
     /**
-     * @var Common\ChangeFactory
+     * @var ChangeFactory|mixed
      */
     private $changesFactory;
 
     /**
-     * @var GuestStarFactory
+     * @var GuestStarFactory|mixed
      */
     private $guestStarFactory;
 
     /**
-     * Constructor
-     *
-     * @param HttpClient $httpClient
+     * Constructor.
      */
     public function __construct(HttpClient $httpClient)
     {
@@ -82,9 +80,7 @@ class TvEpisodeFactory extends AbstractFactory
         parent::__construct($httpClient);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function createCollection(array $data = []): GenericCollection
     {
         $collection = new GenericCollection();
@@ -96,88 +92,86 @@ class TvEpisodeFactory extends AbstractFactory
         return $collection;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return Episode|null
-     */
+    #[\Override]
     public function create(array $data = []): ?Episode
     {
-        if (!$data) {
+        if ($data === []) {
             return null;
         }
 
         $tvEpisode = new Episode();
 
-        if (array_key_exists('credits', $data)) {
-            if (array_key_exists('cast', $data['credits'])) {
+        if (\array_key_exists('credits', $data)) {
+            if (\array_key_exists('cast', $data['credits'])) {
                 $tvEpisode
                     ->getCredits()
                     ->setCast(
                         $this->getCastFactory()
                             ->createCollection(
                                 $data['credits']['cast'],
-                                new CastMember()
-                            )
-                    );
+                                new CastMember(),
+                            ),
+                    )
+                ;
             }
 
-            if (array_key_exists('crew', $data['credits'])) {
+            if (\array_key_exists('crew', $data['credits'])) {
                 $tvEpisode->getCredits()->setCrew(
                     $this->getCrewFactory()->createCollection(
                         $data['credits']['crew'],
-                        new CrewMember()
-                    )
+                        new CrewMember(),
+                    ),
                 );
             }
 
-            if (array_key_exists('guest_stars', $data['credits'])) {
+            if (\array_key_exists('guest_stars', $data['credits'])) {
                 $tvEpisode
                     ->getCredits()
                     ->setGuestStars(
                         $this->getGuestStarFactory()
                             ->createCollection(
                                 $data['credits']['guest_stars'],
-                                new GuestStar()
-                            )
-                    );
+                                new GuestStar(),
+                            ),
+                    )
+                ;
             }
         }
 
-        /** External ids */
-        if (array_key_exists('external_ids', $data)) {
+        /* External ids */
+        if (\array_key_exists('external_ids', $data)) {
             $tvEpisode->setExternalIds(
-                $this->hydrate(new ExternalIds(), $data['external_ids'])
+                $this->hydrate(new ExternalIds(), $data['external_ids']),
             );
         }
 
-        /** Images */
-        if (array_key_exists('images', $data)) {
+        /* Images */
+        if (\array_key_exists('images', $data)) {
             $tvEpisode->setImages($this->getImageFactory()->createCollectionFromTvEpisode($data['images']));
         }
 
-        /** Translations */
-        if (array_key_exists('translations', $data) && null !== $data['translations']) {
-            if (array_key_exists('translations', $data['translations'])) {
+        /* Translations */
+        if (\array_key_exists('translations', $data) && null !== $data['translations']) {
+            if (\array_key_exists('translations', $data['translations'])) {
                 $translations = $data['translations']['translations'];
             } else {
                 $translations = $data['translations'];
             }
 
             $tvEpisode->setTranslations(
-                $this->createGenericCollection($translations, new Translation())
+                $this->createGenericCollection($translations, new Translation()),
             );
         }
 
-        if (array_key_exists('still_path', $data)) {
+        if (\array_key_exists('still_path', $data)) {
             $tvEpisode->setStillImage($this->getImageFactory()->createFromPath($data['still_path'], 'still_path'));
         }
 
-        if (array_key_exists('videos', $data)) {
+        if (\array_key_exists('videos', $data)) {
             $tvEpisode->setVideos($this->getVideoFactory()->createResultCollection($data['videos']));
         }
 
-        if (array_key_exists('changes', $data)) {
+        if (\array_key_exists('changes', $data)) {
             $tvEpisode->setChanges($this->getChangesFactory()->createCollection($data['changes']));
         }
 
@@ -194,9 +188,8 @@ class TvEpisodeFactory extends AbstractFactory
 
     /**
      * @param CastFactory $castFactory
-     * @return self
      */
-    public function setCastFactory($castFactory)
+    public function setCastFactory($castFactory): static
     {
         $this->castFactory = $castFactory;
 
@@ -213,9 +206,8 @@ class TvEpisodeFactory extends AbstractFactory
 
     /**
      * @param CrewFactory $crewFactory
-     * @return self
      */
-    public function setCrewFactory($crewFactory)
+    public function setCrewFactory($crewFactory): static
     {
         $this->crewFactory = $crewFactory;
 
@@ -232,9 +224,8 @@ class TvEpisodeFactory extends AbstractFactory
 
     /**
      * @param GuestStarFactory $guestStarFactory
-     * @return self
      */
-    public function setGuestStarFactory($guestStarFactory)
+    public function setGuestStarFactory($guestStarFactory): static
     {
         $this->guestStarFactory = $guestStarFactory;
 
@@ -251,9 +242,8 @@ class TvEpisodeFactory extends AbstractFactory
 
     /**
      * @param ImageFactory $imageFactory
-     * @return self
      */
-    public function setImageFactory($imageFactory)
+    public function setImageFactory($imageFactory): static
     {
         $this->imageFactory = $imageFactory;
 
@@ -270,9 +260,8 @@ class TvEpisodeFactory extends AbstractFactory
 
     /**
      * @param VideoFactory $videoFactory
-     * @return self
      */
-    public function setVideoFactory($videoFactory)
+    public function setVideoFactory($videoFactory): static
     {
         $this->videoFactory = $videoFactory;
 
@@ -289,9 +278,8 @@ class TvEpisodeFactory extends AbstractFactory
 
     /**
      * @param ChangeFactory $changesFactory
-     * @return self
      */
-    public function setChangesFactory($changesFactory)
+    public function setChangesFactory($changesFactory): static
     {
         $this->changesFactory = $changesFactory;
 

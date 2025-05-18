@@ -1,5 +1,8 @@
 <?php
 
+namespace Tmdb\Tests\Common;
+
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\AbstractModel;
@@ -17,9 +20,7 @@ use Tmdb\Model\AbstractModel;
  */
 class ObjectHydratorTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function canHydrateObject()
     {
         $objectHydrator = new ObjectHydrator();
@@ -32,15 +33,12 @@ class ObjectHydratorTest extends TestCase
             ]
         );
 
-        $this->assertInstanceOf('TestModel', $subject);
+        $this->assertInstanceOf(TestModel::class, $subject);
         $this->assertEquals(15, $subject->getId());
         $this->assertEquals('Michael', $subject->getName());
     }
 
-    /**
-     *
-     * @test
-     */
+    #[Test]
     public function callingNonExistingMethodThrowsException()
     {
         $this->expectException(\Tmdb\Exception\RuntimeException::class);

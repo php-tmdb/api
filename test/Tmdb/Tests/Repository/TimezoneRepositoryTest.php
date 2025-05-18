@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class TimezoneRepositoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTimezones()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

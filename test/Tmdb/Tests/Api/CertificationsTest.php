@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class CertificationsTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCertificationsListForMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -28,8 +30,8 @@ class CertificationsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCertificationsListForTv()
     {
         $api = $this->getApiWithMockedHttpAdapter();

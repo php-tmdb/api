@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Psr\Http\Message\RequestInterface;
 
 class GenreRepositoryTest extends TestCase
@@ -21,8 +23,8 @@ class GenreRepositoryTest extends TestCase
     public const GENRE_ID = 28;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadGenre()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -42,8 +44,8 @@ class GenreRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadCollection()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -63,8 +65,8 @@ class GenreRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadMovieCollection()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -74,8 +76,8 @@ class GenreRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadTvCollection()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -85,8 +87,8 @@ class GenreRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovies()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -96,8 +98,8 @@ class GenreRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetFactory()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();

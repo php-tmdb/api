@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the Tmdb PHP API created by Michael Roterman.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
+ *
  * @version 4.0.0
  */
 
@@ -21,8 +23,8 @@ use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Query\ChangesQuery;
 
 /**
- * Class ChangesRepository
- * @package Tmdb\Repository
+ * Class ChangesRepository.
+ *
  * @see http://docs.themoviedb.apiary.io/#changes
  */
 class ChangesRepository extends AbstractRepository
@@ -37,11 +39,9 @@ class ChangesRepository extends AbstractRepository
      * Please note that the change log system to support this was changed on October 5, 2012
      * and will only show movies that have been edited since.
      *
-     * @param ChangesQuery $query
-     * @param array $headers
      * @return GenericCollection
      */
-    public function getMovieChanges(ChangesQuery $query, array $headers = [])
+    public function getMovieChanges(ChangesQuery $query, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->getMovieChanges($query->toArray(), $headers);
 
@@ -49,21 +49,21 @@ class ChangesRepository extends AbstractRepository
     }
 
     /**
-     * Return the related API class
+     * Return the related API class.
      *
      * @return Changes
      */
+    #[\Override]
     public function getApi()
     {
         return $this->getClient()->getChangesApi();
     }
 
     /**
-     * Changes does not support a generic factory
-     *
-     * @return ChangesFactory
+     * Changes does not support a generic factory.
      */
-    public function getFactory()
+    #[\Override]
+    public function getFactory(): \Tmdb\Factory\ChangesFactory
     {
         return new ChangesFactory($this->getClient()->getHttpClient());
     }
@@ -77,11 +77,6 @@ class ChangesRepository extends AbstractRepository
      * You can then use the person changes API to get the actual data that has been changed.
      * Please note that the change log system to support this was changed on October 5, 2012
      * and will only show people that have been edited since.
-     *
-     * @param ChangesQuery $query
-     * @param array $headers
-     *
-     * @return ResultCollection
      */
     public function getPeopleChanges(ChangesQuery $query, array $headers = []): ResultCollection
     {
@@ -101,11 +96,9 @@ class ChangesRepository extends AbstractRepository
      * Please note that the change log system to support this was changed
      * on May 13, 2014 and will only show tv shows that have been edited since.
      *
-     * @param ChangesQuery $query
-     * @param array $headers
      * @return GenericCollection
      */
-    public function getTvChanges(ChangesQuery $query, array $headers = [])
+    public function getTvChanges(ChangesQuery $query, array $headers = []): \Tmdb\Model\Collection\ResultCollection
     {
         $data = $this->getApi()->getTvChanges($query->toArray(), $headers);
 

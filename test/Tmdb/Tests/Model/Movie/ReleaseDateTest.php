@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Movie;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use DateTime;
 use DateTimeZone;
 use Tmdb\Common\ObjectHydrator;
@@ -23,8 +25,8 @@ use Tmdb\Tests\Model\TestCase;
 class ReleaseDateTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $data = [

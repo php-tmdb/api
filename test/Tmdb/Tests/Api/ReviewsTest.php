@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ReviewsTest extends TestCase
 {
     public const REVIEW_ID = '5013bc76760ee372cb00253e';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetReview()
     {
         $api = $this->getApiWithMockedHttpAdapter();

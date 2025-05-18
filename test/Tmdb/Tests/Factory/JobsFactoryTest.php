@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Collection\Jobs;
 
 class JobsFactoryTest extends TestCase
@@ -29,16 +31,16 @@ class JobsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructJobs()
     {
         $this->assertInstanceOf('Tmdb\Model\Collection\Jobs', $this->jobs);
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterDepartment()
     {
         $filteredJobs = $this->jobs->filterByDepartment('Actors');
@@ -57,8 +59,8 @@ class JobsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldReturnEmptyDepartmentCollection()
     {
         $filteredJobs = $this->jobs->filterByDepartment('JOB_DOES_NOT_EXIST')->getAll();
@@ -67,8 +69,8 @@ class JobsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterJobsByDepartment()
     {
         $filteredJobs = $this->jobs->filterByDepartmentAndReturnJobsList('Actors');
@@ -87,8 +89,8 @@ class JobsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldReturnEmptyJobsByDepartmentCollection()
     {
         $filteredJobs = $this->jobs->filterByDepartmentAndReturnJobsList('JOB_DOES_NOT_EXIST')->getAll();
@@ -97,8 +99,8 @@ class JobsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterByJob()
     {
         $filteredJobs = $this->jobs->filterByJob('Stunt Double');
@@ -107,8 +109,8 @@ class JobsFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldReturnEmptyJobsCollection()
     {
         $filteredJobs = $this->jobs->filterByJob('JOB_DOES_NOT_EXIST')->getAll();
