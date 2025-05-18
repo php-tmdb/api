@@ -8,7 +8,7 @@ env:
 jobs:
   phpunit:
     name: "PHPUnit"
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-latest"
 
     strategy:
       matrix:
@@ -16,6 +16,8 @@ jobs:
           - "7.4"
           - "8.0"
           - "8.1"
+          - "8.2"
+          - "8.3"
         deps:
           - "normal"
         symfony-require:
@@ -49,10 +51,28 @@ jobs:
 
           - php-version: "8.1"
             deps: "dev"
+            
+          - php-version: "8.2"
+            deps: "normal"
+
+          - php-version: "8.2"
+            deps: "low"
+
+          - php-version: "8.2"
+            deps: "dev"
+            
+          - php-version: "8.3"
+            deps: "normal"
+
+          - php-version: "8.3"
+            deps: "low"
+
+          - php-version: "8.3"
+            deps: "dev"
 
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v2"
+        uses: "actions/checkout@v3"
         with:
           fetch-depth: 2
 
@@ -62,7 +82,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
 
       - name: "Cache dependencies installed with composer"
-        uses: "actions/cache@v2"
+        uses: "actions/cache@v3"
         with:
           path: "~/.composer/cache"
           key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
@@ -89,6 +109,6 @@ jobs:
           name: "phpunit-${{ matrix.php-version }}-${{ matrix.deps }}-${{ hashFiles('composer.lock') }}.coverage"
           path: "coverage.xml"
 
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v3
         with:
           verbose: true
