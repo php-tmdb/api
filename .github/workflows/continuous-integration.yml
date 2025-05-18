@@ -13,7 +13,6 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - "8.1"
           - "8.2"
           - "8.3"
         deps:
@@ -23,21 +22,6 @@ jobs:
         symfony-deprecations-helper:
           - ""
         include:
-          # PHP 8.1 test matrix
-          - php-version: "8.1"
-            deps: "normal"
-
-          - php-version: "8.1"
-            deps: "low"
-
-          - php-version: "8.1"
-            deps: "dev"
-            
-          # Test Symfony 6 with PHP 8.1
-          - php-version: "8.1"
-            deps: "normal"
-            symfony-require: "6.4.*"
-            
           # PHP 8.2 test matrix
           - php-version: "8.2"
             deps: "normal"
