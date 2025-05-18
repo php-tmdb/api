@@ -25,6 +25,7 @@ jobs:
         symfony-deprecations-helper:
           - ""
         include:
+          # PHP 7.4 test matrix
           - php-version: "7.4"
             deps: "normal"
 
@@ -33,7 +34,13 @@ jobs:
 
           - php-version: "7.4"
             deps: "dev"
+            
+          # Test Symfony 4 with PHP 7.4
+          - php-version: "7.4"
+            deps: "normal"
+            symfony-require: "4.4.*"
 
+          # PHP 8.0 test matrix
           - php-version: "8.0"
             deps: "normal"
 
@@ -42,7 +49,13 @@ jobs:
 
           - php-version: "8.0"
             deps: "dev"
+            
+          # Test Symfony 5 with PHP 8.0
+          - php-version: "8.0"
+            deps: "normal"
+            symfony-require: "5.4.*"
 
+          # PHP 8.1 test matrix
           - php-version: "8.1"
             deps: "normal"
 
@@ -52,6 +65,12 @@ jobs:
           - php-version: "8.1"
             deps: "dev"
             
+          # Test Symfony 6 with PHP 8.1
+          - php-version: "8.1"
+            deps: "normal"
+            symfony-require: "6.4.*"
+            
+          # PHP 8.2 test matrix
           - php-version: "8.2"
             deps: "normal"
 
@@ -61,6 +80,12 @@ jobs:
           - php-version: "8.2"
             deps: "dev"
             
+          # Test Symfony 7 with PHP 8.2
+          - php-version: "8.2"
+            deps: "normal"
+            symfony-require: "7.0.*"
+            
+          # PHP 8.3 test matrix
           - php-version: "8.3"
             deps: "normal"
 
@@ -69,6 +94,11 @@ jobs:
 
           - php-version: "8.3"
             deps: "dev"
+            
+          # Test latest Symfony with PHP 8.3
+          - php-version: "8.3"
+            deps: "normal"
+            symfony-require: "7.*"
 
     steps:
       - name: "Checkout"
@@ -80,6 +110,10 @@ jobs:
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "${{ matrix.php-version }}"
+          extensions: "json"
+          tools: "composer:2"
+          coverage: "pcov"
+          ini-values: "memory_limit=-1"
 
       - name: "Cache dependencies installed with composer"
         uses: "actions/cache@v3"
@@ -87,6 +121,14 @@ jobs:
           path: "~/.composer/cache"
           key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
           restore-keys: "php-${{ matrix.php-version }}-composer-locked-"
+
+      - name: "Require specific Symfony version"
+        run: "composer global require --no-progress --no-scripts --no-plugins 'symfony/flex:^2.3'"
+        if: "${{ matrix.symfony-require != '' }}"
+        
+      - name: "Set Symfony version constraint"
+        run: "composer config extra.symfony.require ${{ matrix.symfony-require }}"
+        if: "${{ matrix.symfony-require != '' }}"
 
       - name: "Install stable dependencies with composer"
         run: "composer update --no-interaction --prefer-dist --prefer-stable"
@@ -106,7 +148,7 @@ jobs:
       - name: "Upload coverage file"
         uses: "actions/upload-artifact@v4"
         with:
-          name: "phpunit-${{ matrix.php-version }}-${{ matrix.deps }}-${{ hashFiles('composer.lock') }}.coverage"
+          name: "phpunit-${{ matrix.php-version }}-${{ matrix.deps }}-${{ matrix.symfony-require }}-${{ hashFiles('composer.lock') }}.coverage"
           path: "coverage.xml"
 
       - uses: codecov/codecov-action@v3
