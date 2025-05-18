@@ -191,20 +191,44 @@ abstract class AbstractApi implements ApiInterface
      *
      * @param ResponseInterface $response
      * @return array
+     * @throws UnexpectedResponseException
      */
     private function decodeResponse(ResponseInterface $response)
     {
-        try {
-            if ($response->getBody() instanceof StreamInterface) {
-                return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
-            }
+        if (!$response->getBody() instanceof StreamInterface) {
+            throw new UnexpectedResponseException(
+                'Response body is not a valid StreamInterface instance',
+                $response->getStatusCode()
+            );
+        }
 
-            return [];
+        $body = (string)$response->getBody();
+        
+        // If the body is empty, we should still throw an exception
+        // Empty responses are only acceptable for 204 No Content responses
+        if (empty($body)) {
+            if ($response->getStatusCode() === 204) {
+                return [];
+            }
+            
+            throw new UnexpectedResponseException(
+                sprintf(
+                    'Empty response body with status code %d',
+                    $response->getStatusCode()
+                ),
+                $response->getStatusCode()
+            );
+        }
+        
+        try {
+            // Decode any response with a valid JSON body, regardless of status code
+            // This ensures we capture error details from 4xx/5xx responses
+            return json_decode($body, true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
             throw new UnexpectedResponseException(
                 sprintf(
                     'Unable to decode response with body "%s", %s.',
-                    (string)$response->getBody(),
+                    $body,
                     json_last_error_msg()
                 ),
                 $response->getStatusCode(),
