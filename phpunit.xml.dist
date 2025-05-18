@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticAttributes="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false" bootstrap="test/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage>
-    <include>
-      <directory>lib</directory>
-    </include>
-  </coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticProperties="false" colors="true" failOnRisky="true" failOnWarning="false" processIsolation="false" stopOnFailure="false" bootstrap="test/bootstrap.php" displayDetailsOnTestsThatTriggerDeprecations="true" displayDetailsOnTestsThatTriggerErrors="true" displayDetailsOnTestsThatTriggerWarnings="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.1/phpunit.xsd">
   <testsuites>
     <testsuite name="php-tmdb-symfony Test Suite">
       <directory suffix="Test.php">./test/</directory>
     </testsuite>
   </testsuites>
+  <php>
+    <ini name="error_reporting" value="-1"/>
+    <ini name="display_errors" value="On"/>
+    <ini name="display_startup_errors" value="On"/>
+    <ini name="date.timezone" value="UTC"/>
+  </php>
+  <source>
+    <include>
+      <directory>lib</directory>
+    </include>
+  </source>
 </phpunit>
