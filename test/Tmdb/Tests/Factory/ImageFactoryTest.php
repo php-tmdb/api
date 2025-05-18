@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Collection\Images;
 use Tmdb\Model\Image;
 
@@ -40,8 +42,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToCreateCollection()
     {
         $factory = $this->getFactory();
@@ -57,8 +59,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterPosters()
     {
         $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/movie.json'));
@@ -71,8 +73,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterBackdrops()
     {
         $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/movie.json'));
@@ -85,8 +87,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterProfiles()
     {
         $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/person.json'));
@@ -99,8 +101,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterStills()
     {
         $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/tv_episode.json'));
@@ -113,8 +115,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterMinHeight()
     {
 
@@ -132,8 +134,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterMinWidth()
     {
 
@@ -151,8 +153,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterMaxHeight()
     {
 
@@ -170,8 +172,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilterMaxWidth()
     {
 
@@ -189,8 +191,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSetMedia()
     {
         $image = $this->getFactory()->createMediaImage($this->loadByFile('images/tagged_image.json'));
@@ -199,9 +201,8 @@ class ImageFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
-
+     * */
+    #[Test]
     public function shouldFilterBestVotedImage()
     {
         $collection = $this->getFactory()->createImageCollection($this->loadByFile('images/movie_novotes.json'));

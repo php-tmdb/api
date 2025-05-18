@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Api\Authentication;
 use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\Repository\AuthenticationRepository;
@@ -22,8 +24,8 @@ use Tmdb\Token\Session\RequestToken;
 class AuthenticationRepositoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRequestToken()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -33,8 +35,8 @@ class AuthenticationRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetNewSession()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

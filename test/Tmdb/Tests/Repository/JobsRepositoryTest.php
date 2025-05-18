@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class JobsRepositoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldForwardLoad()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -28,8 +30,8 @@ class JobsRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadCollection()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -39,8 +41,8 @@ class JobsRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetFactory()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\Model\Search\SearchQuery\CollectionSearchQuery;
@@ -36,8 +38,8 @@ class SearchRepositoryTest extends TestCase
     public const MULTI_QUERY      = 'jack';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchMovie()
     {
         /**
@@ -56,8 +58,8 @@ class SearchRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchCollection()
     {
         /**
@@ -76,8 +78,8 @@ class SearchRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchTv()
     {
         /**
@@ -96,8 +98,8 @@ class SearchRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchPerson()
     {
         /**
@@ -116,8 +118,8 @@ class SearchRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchCompany()
     {
         /**
@@ -136,8 +138,8 @@ class SearchRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchKeyword()
     {
         /**
@@ -156,8 +158,8 @@ class SearchRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchMulti()
     {
         /**
@@ -176,8 +178,8 @@ class SearchRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetFactory()
     {
         $this->expectException(NotImplementedException::class);
@@ -190,8 +192,8 @@ class SearchRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         /**

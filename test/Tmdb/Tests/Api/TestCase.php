@@ -14,7 +14,7 @@
 
 namespace Tmdb\Tests\Api;
 
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Tmdb\Token\Api\ApiToken;
@@ -56,7 +56,7 @@ abstract class TestCase extends Base
      * @param array $methods
      * @param array $clientMethods
      * @param GuestSessionToken|null $sessionToken
-     * @return PHPUnit_Framework_MockObject_MockObject
+     * @return MockObject
      */
     protected function getMockedApi(array $methods = [], array $clientMethods = [], $guestSessionToken = null)
     {
@@ -67,7 +67,7 @@ abstract class TestCase extends Base
         }
 
         return $this->_api = $this->getMockBuilder($this->getApiClass())
-            ->setMethods($methods)
+            ->onlyMethods($methods)
             ->setConstructorArgs([$this->_client])
             ->getMock();
     }

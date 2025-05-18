@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Collection;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Collection\People;
 use Tmdb\Model\Person;
 use Tmdb\Tests\Model\TestCase;
@@ -42,8 +44,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAndSet()
     {
         $this->assertEquals(count($this->people), count($this->collection->getPeople()));

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class SearchTest extends TestCase
 {
     public const QUERY_MOVIE = 'resident evil';
@@ -24,8 +26,8 @@ class SearchTest extends TestCase
     public const QUERY_KEYWORD = 'horror';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -40,8 +42,8 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchCollection()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -56,8 +58,8 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchTv()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -72,8 +74,8 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldPersonCollection()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -88,8 +90,8 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchCompany()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -104,8 +106,8 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchKeyword()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -120,8 +122,8 @@ class SearchTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSearchMulti()
     {
         $api = $this->getApiWithMockedHttpAdapter();

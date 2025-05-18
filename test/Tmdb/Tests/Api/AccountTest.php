@@ -14,14 +14,16 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class AccountTest extends TestCase
 {
     public const ACCOUNT_ID = 1;
     public const MEDIA_ID = 123;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAccount()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -31,8 +33,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLists()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -42,8 +44,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetFavoriteMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -53,8 +55,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetFavoriteTv()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -64,8 +66,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFavorite()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -82,8 +84,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRatedMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -93,8 +95,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRatedTvShows()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -104,8 +106,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovieWatchlist()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -115,8 +117,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTvShowWatchlist()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -126,8 +128,8 @@ class AccountTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldWatchlist()
     {
         $api = $this->getApiWithMockedHttpAdapter();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Query\Discover;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use DateTime;
 use Tmdb\Model\Query\Discover\DiscoverTvQuery;
 use Tmdb\Tests\TestCase;
@@ -21,8 +23,8 @@ use Tmdb\Tests\TestCase;
 class DiscoverTvQueryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateValidQuery()
     {
         $query = new DiscoverTvQuery();

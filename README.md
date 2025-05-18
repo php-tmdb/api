@@ -5,7 +5,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/php-tmdb/api/continuous-integration.yml?label=phpunit)](https://github.com/php-tmdb/api/actions/workflows/continuous-integration.yml)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/php-tmdb/api/coding-standards.yml?label=phpcs)](https://github.com/php-tmdb/api/actions/workflows/coding-standards.yml)
 [![codecov](https://img.shields.io/codecov/c/github/php-tmdb/api?token=gTM9AiO5vH)](https://codecov.io/gh/php-tmdb/api)
-[![PHP](https://img.shields.io/badge/php->=8.1-8892BF.svg)](https://packagist.org/packages/php-tmdb/api)
+[![PHP](https://img.shields.io/badge/php->=8.2-8892BF.svg)](https://packagist.org/packages/php-tmdb/api)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/api/downloads.svg)](https://packagist.org/packages/php-tmdb/api)
 
 Tests run with minimal, normal and development dependencies.

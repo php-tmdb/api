@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ReviewRepositoryTest extends TestCase
 {
     public const REVIEW_ID = '5013bc76760ee372cb00253e';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadReview()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Tv;
 
@@ -23,8 +25,8 @@ class TvSeasonRepositoryTest extends TestCase
     public const SEASON_NUMBER = 1;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadTvSeason()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -35,8 +37,8 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToLoadTvSeasonWithTvAndSeason()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -53,8 +55,8 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -70,8 +72,8 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetExternalIds()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -87,8 +89,8 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -104,8 +106,8 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetVideos()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -121,8 +123,8 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldThrowExceptionWhenConditionsNotMet()
     {
         $this->expectException(RuntimeException::class);
@@ -135,8 +137,8 @@ class TvSeasonRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldThrowExceptionWhenConditionsNotMetAll()
     {
         $this->expectException(RuntimeException::class);

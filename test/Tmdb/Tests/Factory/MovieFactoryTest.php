@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Model\Movie;
 use Tmdb\Model\Movie\Release;
@@ -41,8 +43,8 @@ class MovieFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructMovie()
     {
         $this->assertInstanceOf('Tmdb\Model\Movie', $this->movie);
@@ -50,8 +52,8 @@ class MovieFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         $factory = $this->getFactory();
@@ -70,8 +72,8 @@ class MovieFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $this->assertEquals(false, $this->movie->getAdult());
@@ -159,8 +161,8 @@ class MovieFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToDissectResults()
     {
         $factory = $this->getFactory();
@@ -176,8 +178,8 @@ class MovieFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetProfileImages()
     {
         $cast = $this->movie->getCredits()->getCast();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Event\Listener\Logger;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Event\BeforeHydrationEvent;
 use Tmdb\Event\Listener\Logger\LogHydrationListener;
@@ -24,8 +26,8 @@ use WMDE\PsrLogTestDoubles\LoggerSpy;
 class LogHydrationListenerTest extends LoggerListenerTestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLogHydrationWithoutData()
     {
         $logger = new LoggerSpy();
@@ -40,8 +42,8 @@ class LogHydrationListenerTest extends LoggerListenerTestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLogHydrationWithData()
     {
         $logger = new LoggerSpy();

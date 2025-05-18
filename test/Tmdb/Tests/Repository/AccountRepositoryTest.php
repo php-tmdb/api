@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Api\Account;
 use Tmdb\Model\Movie;
 use Tmdb\Model\Tv;
@@ -26,8 +28,8 @@ class AccountRepositoryTest extends TestCase
     public const MEDIA_ID = 150;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAccount()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -37,8 +39,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLists()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -48,8 +50,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetFavoriteMovies()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -59,8 +61,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetFavoriteTvShows()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -70,8 +72,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetWatchlistMovies()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -81,8 +83,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetWatchlistTvShows()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -92,8 +94,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRatedTvShows()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -103,8 +105,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFavorite()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -121,8 +123,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFavoriteMovieObject()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -142,8 +144,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFavoriteTvObject()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -163,8 +165,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRatedMovies()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -174,8 +176,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldWatchlist()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -192,8 +194,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldWatchlistMovieObject()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -213,8 +215,8 @@ class AccountRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldWatchlistTvObject()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

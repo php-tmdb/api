@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Helper;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Nyholm\Psr7\Request;
 use Tmdb\Helper\RequestQueryHelper;
 use Tmdb\Tests\TestCase as Base;
@@ -21,8 +23,8 @@ use Tmdb\Tests\TestCase as Base;
 class RequestQueryHelperTest extends Base
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testIssue236()
     {
         $helper = new RequestQueryHelper();

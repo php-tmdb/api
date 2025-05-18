@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Find;
 
 class FindFactoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructFind()
     {
         $factory = $this->getFactory();
@@ -50,8 +52,8 @@ class FindFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         $factory = $this->getFactory();
@@ -68,8 +70,8 @@ class FindFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldThrowExceptionForCreateCollection()
     {
         $this->expectException(\RuntimeException::class);

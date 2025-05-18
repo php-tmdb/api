@@ -14,11 +14,13 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ConfigurationRepositoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadConfiguration()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\AccountFactory;
 use Tmdb\Model\Account;
 use Tmdb\Model\Collection\ResultCollection;
@@ -21,8 +23,8 @@ use Tmdb\Model\Collection\ResultCollection;
 class AccountFactoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAccount()
     {
         /**
@@ -45,8 +47,8 @@ class AccountFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLists()
     {
         /**
@@ -66,8 +68,8 @@ class AccountFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetFavoriteMovies()
     {
         /**
@@ -87,8 +89,8 @@ class AccountFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateStatus()
     {
         /**
@@ -103,8 +105,8 @@ class AccountFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRatedMovies()
     {
         /**
@@ -124,8 +126,8 @@ class AccountFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovieWatchlist()
     {
         /**
@@ -145,8 +147,8 @@ class AccountFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldWatchlist()
     {
         /**

@@ -14,13 +14,13 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class NetworkRepositoryTest extends TestCase
 {
     public const NETWORK_ID = 49;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldLoadNetwork()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

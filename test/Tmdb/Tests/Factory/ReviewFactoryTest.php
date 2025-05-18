@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\ReviewFactory;
 use Tmdb\Model\Review;
 
@@ -27,8 +29,8 @@ class ReviewFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructReview()
     {
         /**

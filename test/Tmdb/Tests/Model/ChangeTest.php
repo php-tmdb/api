@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Model;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Change;
 
 class ChangeTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function isFunctional()
     {
         $change = new Change();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\MovieFactory;
 use Tmdb\Factory\PeopleFactory;
 use Tmdb\Model\Movie;
@@ -43,8 +45,8 @@ class PeopleFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructPerson()
     {
         $this->assertInstanceOf('Tmdb\Model\Person', $this->person);
@@ -54,8 +56,8 @@ class PeopleFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructCastAndCredits()
     {
         $data         = $this->loadByFile('movie/all.json');
@@ -80,8 +82,8 @@ class PeopleFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetImageFactory()
     {
         $factory = $this->getFactory();
@@ -93,8 +95,8 @@ class PeopleFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToDissectResults()
     {
         $factory = $this->getFactory();
@@ -110,8 +112,8 @@ class PeopleFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $alsoKnownAs = $this->person->getAlsoKnownAs();
@@ -142,8 +144,8 @@ class PeopleFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSetDeathDay()
     {
         $person = new Person();

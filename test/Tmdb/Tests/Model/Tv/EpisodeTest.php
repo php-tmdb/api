@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Tv;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use stdClass;
 use Tmdb\Model\Tv\Episode;
 use Tmdb\Tests\Model\TestCase;
@@ -21,8 +23,8 @@ use Tmdb\Tests\Model\TestCase;
 class EpisodeTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructTvEpisode()
     {
         $episode = new Episode();
@@ -39,8 +41,8 @@ class EpisodeTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToOverrideDefaultCollections()
     {
         $episode = new Episode();

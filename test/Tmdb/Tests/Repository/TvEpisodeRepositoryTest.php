@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Tv;
 use Tmdb\Model\Tv\Episode;
@@ -27,8 +29,8 @@ class TvEpisodeRepositoryTest extends TestCase
     public const EPISODE_NUMBER = 1;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadTvEpisode()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -43,8 +45,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToLoadTvSeasonWithTvAndSeason()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -68,8 +70,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAccountStates()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -90,8 +92,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -112,8 +114,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetExternalIds()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -134,8 +136,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -156,8 +158,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTranslations()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -178,8 +180,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetVideos()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -200,8 +202,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRate()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -217,8 +219,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRateModel()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -243,8 +245,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldThrowExceptionWhenConditionsNotMet()
     {
         $this->expectException(RuntimeException::class);
@@ -260,8 +262,8 @@ class TvEpisodeRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldThrowExceptionWhenConditionsNotMetAll()
     {
         $this->expectException(RuntimeException::class);

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Psr\Http\Message\RequestInterface;
 
 class GenresTest extends TestCase
@@ -21,8 +23,8 @@ class GenresTest extends TestCase
     public const GENRE_ID = 28;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetGenre()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -41,8 +43,8 @@ class GenresTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetGenres()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -62,8 +64,8 @@ class GenresTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovieGenres()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -73,8 +75,8 @@ class GenresTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTvGenres()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -84,8 +86,8 @@ class GenresTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -95,21 +97,16 @@ class GenresTest extends TestCase
     }
 
     /**
-     * @test
+     * Test getting a single genre
      */
+    #[Test]
     public function shouldGetGenreAndReturnOne()
     {
         $api = $this->getMockedApi(['getGenres']);
 
         $api->expects($this->once())
             ->method('getGenres')
-            ->will(
-                $this->returnCallback(
-                    function () {
-                        return ['genres' => [['id' => 28, 'name' => 'Action']]];
-                    }
-                )
-            );
+            ->willReturn(['genres' => [['id' => 28, 'name' => 'Action']]]);
 
         $genre = $api->getGenre(self::GENRE_ID);
 
@@ -118,21 +115,16 @@ class GenresTest extends TestCase
     }
 
     /**
-     * @test
+     * Test returning null when no genre is found
      */
+    #[Test]
     public function shouldReturnNullWithNoData()
     {
         $api = $this->getMockedApi(['getGenres']);
 
         $api->expects($this->once())
             ->method('getGenres')
-            ->will(
-                $this->returnCallback(
-                    function () {
-                        return ['genres' => []];
-                    }
-                )
-            );
+            ->willReturn(['genres' => []]);
 
         $genre = $api->getGenre(self::GENRE_ID);
 

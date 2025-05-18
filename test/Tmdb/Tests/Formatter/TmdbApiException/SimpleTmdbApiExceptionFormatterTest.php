@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Formatter\TmdbApiException;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Exception\TmdbApiException;
 use Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter;
 use Tmdb\Tests\TestCase;
@@ -21,8 +23,8 @@ use Tmdb\Tests\TestCase;
 class SimpleTmdbApiExceptionFormatterTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testFormatter()
     {
         $formatter = new SimpleTmdbApiExceptionFormatter();

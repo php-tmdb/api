@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\ConfigurationFactory;
 use Tmdb\Model\Common\GenericCollection;
 use Tmdb\Model\Configuration;
@@ -21,8 +23,8 @@ use Tmdb\Model\Configuration;
 class ConfigurationFactoryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructConfiguration()
     {
         /**
@@ -46,8 +48,8 @@ class ConfigurationFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function callingCollectionReturnsEmptyArray()
     {
         /**

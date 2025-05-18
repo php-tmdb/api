@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class FindRepositoryTest extends TestCase
 {
     public const FIND_QUERY = 'tt2345737';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovieChanges()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

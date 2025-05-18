@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Repository\KeywordRepository;
 
 class KeywordRepositoryTest extends TestCase
@@ -21,8 +23,8 @@ class KeywordRepositoryTest extends TestCase
     public const KEYWORD_ID = 1721;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadKeyword()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -32,8 +34,8 @@ class KeywordRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetKeywordsForMovie()
     {
         /**

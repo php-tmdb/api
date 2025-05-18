@@ -14,14 +14,16 @@
 
 namespace Tmdb\Tests\Model;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\Network;
 
 class NetworkTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $data = [

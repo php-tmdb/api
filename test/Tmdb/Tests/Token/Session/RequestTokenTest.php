@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Token\Session;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class RequestTokenTest extends \PHPUnit\Framework\TestCase
 {
     public const REQUEST_TOKEN = '641bf16c663db167c6cffcdff41126039d4445bf';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testSetGet()
     {
         $token  = new \Tmdb\Token\Session\RequestToken();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Api\GuestSession;
 use Tmdb\Exception\MissingSessionTokenException;
 use Tmdb\Token\Session\GuestSessionToken;
@@ -21,9 +23,9 @@ use Tmdb\Token\Session\GuestSessionToken;
 class GuestSessionTest extends TestCase
 {
     /**
-     * @test
-     *
+     * Test that exception is thrown when no session token is provided
      */
+    #[Test]
     public function shouldThrowExceptionGettingRatedMoviesWithNoSessionToken()
     {
         $this->expectException(MissingSessionTokenException::class);
@@ -33,8 +35,9 @@ class GuestSessionTest extends TestCase
     }
 
     /**
-     * @test
+     * Test getting rated movies
      */
+    #[Test]
     public function shouldGetRatedMovies()
     {
         $sessionToken = new GuestSessionToken('xyz');

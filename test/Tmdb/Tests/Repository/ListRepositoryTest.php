@@ -14,14 +14,16 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ListRepositoryTest extends TestCase
 {
     public const LIST_ID  = '509fb10819c29510bb000675';
     public const MOVIE_ID = 150;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadList()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -31,8 +33,8 @@ class ListRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetItemStatus()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -43,8 +45,8 @@ class ListRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateList()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -60,8 +62,8 @@ class ListRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldAdd()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -76,8 +78,8 @@ class ListRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRemove()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -92,8 +94,8 @@ class ListRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldDeleteList()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -103,8 +105,8 @@ class ListRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldClearList()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

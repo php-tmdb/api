@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class CollectionsTest extends TestCase
 {
     public const COLLECTION_ID = 120;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCollection()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -30,8 +32,8 @@ class CollectionsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -41,8 +43,8 @@ class CollectionsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTranslations()
     {
         $api = $this->getApiWithMockedHttpAdapter();

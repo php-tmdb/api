@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Exception\NotImplementedException;
 use Tmdb\Exception\RuntimeException;
 use Tmdb\Model\Query\Discover\DiscoverMoviesQuery;
@@ -23,8 +25,9 @@ class DiscoverRepositoryTest extends TestCase
 {
 
     /**
-     * @test
+     * Test discovering movies
      */
+    #[Test]
     public function shouldDiscoverMovies()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -36,9 +39,9 @@ class DiscoverRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     *
+     * Test exception when certification country is set but certification_lte is not
      */
+    #[Test]
     public function shouldThrowExceptionWhenCertificationCountryIssetButCertificationLteIsNot()
     {
         $this->expectException(RuntimeException::class);
@@ -51,8 +54,9 @@ class DiscoverRepositoryTest extends TestCase
     }
 
     /**
-     * @test
+     * Test exception for getFactory method
      */
+    #[Test]
     public function shouldThrowExceptionForGetFactory()
     {
         $this->expectException(NotImplementedException::class);
@@ -62,8 +66,9 @@ class DiscoverRepositoryTest extends TestCase
     }
 
     /**
-     * @test
+     * Test discovering TV shows
      */
+    #[Test]
     public function shouldDiscoverTv()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

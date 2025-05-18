@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Watch;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Common\ObjectHydrator;
 use Tmdb\Model\Watch\Provider;
 use Tmdb\Tests\Model\TestCase;
@@ -21,8 +23,8 @@ use Tmdb\Tests\Model\TestCase;
 class ProviderTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $data = [

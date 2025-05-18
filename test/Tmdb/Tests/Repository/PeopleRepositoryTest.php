@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class PeopleRepositoryTest extends TestCase
 {
     public const PERSON_ID = 287;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadPerson()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -31,8 +33,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovieCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -42,8 +44,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetExternalIds()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -53,8 +55,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -64,8 +66,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetChanges()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -75,8 +77,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTaggedImages()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -86,8 +88,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPopular()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -97,8 +99,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLatest()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -108,8 +110,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function souldGetTvCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -119,8 +121,8 @@ class PeopleRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCombinedCredits()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();

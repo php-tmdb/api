@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class PeopleTest extends TestCase
 {
     public const PERSON_ID = 287;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPerson()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -30,8 +32,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCredits()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -41,8 +43,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovieCredits()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -52,8 +54,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTvCredits()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -63,8 +65,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -74,8 +76,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -85,8 +87,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetExternalIds()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -96,8 +98,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPopular()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -107,8 +109,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLatest()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -118,8 +120,8 @@ class PeopleTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTaggedImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Query\Discover;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use DateTime;
 use Tmdb\Model\Collection\Genres;
 use Tmdb\Model\Genre;
@@ -23,8 +25,8 @@ use Tmdb\Tests\TestCase;
 class DiscoverMoviesQueryTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateValidQuery()
     {
         $query = new DiscoverMoviesQuery();
@@ -53,8 +55,8 @@ class DiscoverMoviesQueryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldNormalize()
     {
         $query = new DiscoverMoviesQuery();
@@ -83,8 +85,8 @@ class DiscoverMoviesQueryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function verifyOr()
     {
         $query = new DiscoverMoviesQuery();

@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class NetworksTest extends TestCase
 {
     public const NETWORK_ID = 49;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCredit()
     {
         $api = $this->getApiWithMockedHttpAdapter();

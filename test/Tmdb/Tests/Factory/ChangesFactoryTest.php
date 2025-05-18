@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\CompanyFactory;
 use Tmdb\Model\Collection\Changes;
 
@@ -42,8 +44,8 @@ class ChangesFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateCollection()
     {
         $this->assertEquals(true, !empty($this->changes));

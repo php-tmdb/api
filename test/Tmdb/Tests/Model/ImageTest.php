@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
@@ -64,8 +66,8 @@ class ImageTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAndSet()
     {
         $this->assertEquals(count($this->images), count($this->collection->getImages()));
@@ -86,8 +88,8 @@ class ImageTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldReturnCorrectTypes()
     {
         $this->assertEquals('poster', Image::getTypeFromCollectionName('posters'));

@@ -2,6 +2,8 @@
 
 namespace Tmdb\Tests\Event\Listener;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Http\Mock\Client;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\RequestInterface;
@@ -30,8 +32,8 @@ use Tmdb\Tests\TestCase;
 class RequestListenerTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function canReturnEarlyResponse()
     {
         $factory = new Psr17Factory();
@@ -54,8 +56,8 @@ class RequestListenerTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testResponseEventIsFunctional()
     {
         $factory = new Psr17Factory();
@@ -110,8 +112,8 @@ class RequestListenerTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function verifyItThrowsTmdbApiException()
     {
         $this->expectException(TmdbApiException::class);
@@ -156,8 +158,8 @@ class RequestListenerTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function verifyItThrowsException()
     {
         $this->expectException(\Exception::class);
@@ -192,8 +194,8 @@ class RequestListenerTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function verifyItThrowsUnexpectedException()
     {
         $this->expectException(UnexpectedResponseException::class);

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Collection\Genres;
 
 class GenreFactoryTest extends TestCase
@@ -21,8 +23,8 @@ class GenreFactoryTest extends TestCase
     public const GENRE_ID = 28;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructGenres()
     {
         $factory = $this->getFactory();
@@ -42,8 +44,8 @@ class GenreFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldFilter()
     {
         $factory = $this->getFactory();
@@ -59,8 +61,8 @@ class GenreFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCollaborateWithCollection()
     {
         $factory = $this->getFactory();
@@ -81,8 +83,8 @@ class GenreFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToDissectResults()
     {
         $factory = $this->getFactory();

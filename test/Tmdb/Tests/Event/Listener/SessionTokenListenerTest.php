@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Event\Listener;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Token\Api\BearerToken;
@@ -27,8 +29,8 @@ use Tmdb\Token\Session\SessionToken;
 class SessionTokenListenerTest extends ListenerTestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSetGuestToken()
     {
         $factory = new Psr17Factory();
@@ -48,8 +50,8 @@ class SessionTokenListenerTest extends ListenerTestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSetToken()
     {
         $factory = new Psr17Factory();
@@ -69,8 +71,8 @@ class SessionTokenListenerTest extends ListenerTestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldSetBearerToken()
     {
         $factory = new Psr17Factory();
@@ -94,8 +96,8 @@ class SessionTokenListenerTest extends ListenerTestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldReplaceBearerToken()
     {
         $factory = new Psr17Factory();

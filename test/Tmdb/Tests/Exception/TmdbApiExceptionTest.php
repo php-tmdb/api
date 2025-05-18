@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Exception;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -22,8 +24,8 @@ use Tmdb\Exception\TmdbApiException;
 class TmdbApiExceptionTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function testConstruct()
     {
         $factory = new Psr17Factory();

@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class CreditsTest extends TestCase
 {
     public const CREDIT_ID = '5240760b5dbf5b0c2c0139db';
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCredit()
     {
         $api = $this->getApiWithMockedHttpAdapter();

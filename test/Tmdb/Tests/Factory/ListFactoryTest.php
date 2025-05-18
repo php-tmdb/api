@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Factory\ListFactory;
 use Tmdb\Model\Lists;
 
@@ -42,8 +44,8 @@ class ListFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeAbleToSetFactories()
     {
         /**
@@ -61,8 +63,8 @@ class ListFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeFunctional()
     {
         $this->assertEquals('Travis Bell', $this->lists->getCreatedBy());
@@ -78,8 +80,8 @@ class ListFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetItemStatus()
     {
         /**
@@ -94,8 +96,8 @@ class ListFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCreateList()
     {
         /**
@@ -111,8 +113,8 @@ class ListFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldAddItemToList()
     {
         /**
@@ -127,8 +129,8 @@ class ListFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRemoveItemFromList()
     {
         /**
@@ -143,8 +145,8 @@ class ListFactoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRemoveList()
     {
         /**

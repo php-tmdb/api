@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Model\Collection;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Tmdb\Model\Collection\Keywords;
 use Tmdb\Model\Keyword;
 use Tmdb\Tests\Model\TestCase;
@@ -42,8 +44,8 @@ class KeywordsTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAndSet()
     {
         $this->assertEquals(count($this->keywords), count($this->collection->getKeywords()));

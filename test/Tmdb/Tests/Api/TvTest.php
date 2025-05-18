@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class TvTest extends TestCase
 {
     public const TV_ID = 3572;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTvshow()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -30,8 +32,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCredits()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -41,8 +43,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function getExternalIds()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -52,8 +54,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -63,8 +65,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTranslations()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -74,8 +76,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPopular()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -85,8 +87,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTopRated()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -96,8 +98,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetOnTheAir()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -107,8 +109,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAiringToday()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -118,8 +120,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetVideos()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -129,8 +131,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -140,8 +142,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetKeywords()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -151,8 +153,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSimilar()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -162,8 +164,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRecommended()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -173,8 +175,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRateTvEpisode()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -189,8 +191,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLatest()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -200,8 +202,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAccountStates()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -211,8 +213,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetContentRatings()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -222,8 +224,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetWatchProviders()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -233,8 +235,8 @@ class TvTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetEpisodeGroups()
     {
         $api = $this->getApiWithMockedHttpAdapter();

@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Helper;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
@@ -46,8 +48,8 @@ class ImageHelperTest extends Base
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldContainImageConfiguration()
     {
         $config = $this->helper->getImageConfiguration();
@@ -56,8 +58,8 @@ class ImageHelperTest extends Base
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructImageUrl()
     {
         $image = new \Tmdb\Model\Image();
@@ -76,8 +78,8 @@ class ImageHelperTest extends Base
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldConstructImageElement()
     {
         $image = new \Tmdb\Model\Image();
@@ -93,9 +95,8 @@ class ImageHelperTest extends Base
     }
 
     /**
-     * @test
-     */
-
+     * */
+    #[Test]
     public function shouldReadImageDimensions()
     {
         $image = new \Tmdb\Model\Image();
@@ -111,8 +112,8 @@ class ImageHelperTest extends Base
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldCalculateDimensions()
     {
         $image = new \Tmdb\Model\Image();
@@ -134,8 +135,8 @@ class ImageHelperTest extends Base
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldBeEmptyIfFilePathIsNotGiven()
     {
         $image = new \Tmdb\Model\Image();
@@ -144,8 +145,8 @@ class ImageHelperTest extends Base
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImageUrlByString()
     {
         $imageUrl = $this->helper->getUrl('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg');
@@ -154,8 +155,8 @@ class ImageHelperTest extends Base
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImageElementByString()
     {
         $imageUrl = $this->helper->getHtml('/1NfhdnQAEqcBRCulEhOFSkRrrLv.jpg');

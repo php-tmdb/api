@@ -14,6 +14,8 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 use InvalidArgumentException;
 use Tmdb\HttpClient\ResponseInterface;
 use Tmdb\Token\Session\RequestToken;
@@ -21,8 +23,8 @@ use Tmdb\Token\Session\RequestToken;
 class AuthenticationTest extends TestCase
 {
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetNewToken()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -32,8 +34,8 @@ class AuthenticationTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetNewSession()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -153,8 +155,8 @@ class AuthenticationTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetNewGuestSession()
     {
         $api = $this->getApiWithMockedHttpAdapter();

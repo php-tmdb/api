@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Repository;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class CompanyRepositoryTest extends TestCase
 {
     public const COMPANY_ID = 120;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldLoadCompany()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -30,8 +32,8 @@ class CompanyRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovies()
     {
         $repository = $this->getRepositoryWithMockedHttpAdapter();
@@ -41,8 +43,8 @@ class CompanyRepositoryTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function callingGetMoviesWithFakeRequestWillReturnMovieCollection()
     {
         $repository = $this->getRepositoryWithMockedHttpClient();

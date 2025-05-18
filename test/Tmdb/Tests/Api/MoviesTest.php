@@ -14,13 +14,15 @@
 
 namespace Tmdb\Tests\Api;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class MoviesTest extends TestCase
 {
     public const MOVIE_ID = 120;
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetMovie()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -30,8 +32,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAlternativeTitles()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -41,8 +43,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetExternalIds()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -52,8 +54,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetCast()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -63,8 +65,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetImages()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -74,8 +76,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetKeywords()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -85,8 +87,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function getReleases()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -96,8 +98,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTranslations()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -107,8 +109,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetSimilarMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -118,8 +120,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetRecommendedMovies()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -129,8 +131,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetReviews()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -140,8 +142,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLists()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -151,8 +153,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetChanges()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -162,8 +164,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetLatest()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -173,8 +175,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetUpcoming()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -184,8 +186,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetNowPlaying()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -195,8 +197,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetPopular()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -206,8 +208,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetTopRated()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -217,8 +219,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetAccountStates()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -228,8 +230,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldRateMovie()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -244,8 +246,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetVideos()
     {
         $api = $this->getApiWithMockedHttpAdapter();
@@ -255,8 +257,8 @@ class MoviesTest extends TestCase
     }
 
     /**
-     * @test
-     */
+     * */
+    #[Test]
     public function shouldGetWatchProviders()
     {
         $api = $this->getApiWithMockedHttpAdapter();
