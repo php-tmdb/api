@@ -64,7 +64,7 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml coverage",
+        "test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml",
         "test-coverage": "php -d xdebug.mode=coverage vendor/bin/phpunit --coverage-html build/coverage",
         "test-cs": "vendor/bin/phpcs",
         "test-phpstan": "vendor/bin/phpstan analyse"
