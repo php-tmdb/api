@@ -8,7 +8,7 @@ env:
 jobs:
   phpunit:
     name: "PHPUnit"
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-latest"
 
     strategy:
       matrix:
@@ -16,39 +16,18 @@ jobs:
           - "7.4"
           - "8.0"
           - "8.1"
+          - "8.2"
+          - "8.3"
+          - "8.4"
+          - "8.5"
         deps:
           - "normal"
+          - "low"
+          - "dev"
         symfony-require:
           - ""
         symfony-deprecations-helper:
           - ""
-        include:
-          - php-version: "7.4"
-            deps: "normal"
-
-          - php-version: "7.4"
-            deps: "low"
-
-          - php-version: "7.4"
-            deps: "dev"
-
-          - php-version: "8.0"
-            deps: "normal"
-
-          - php-version: "8.0"
-            deps: "low"
-
-          - php-version: "8.0"
-            deps: "dev"
-
-          - php-version: "8.1"
-            deps: "normal"
-
-          - php-version: "8.1"
-            deps: "low"
-
-          - php-version: "8.1"
-            deps: "dev"
 
     steps:
       - name: "Checkout"
