@@ -90,6 +90,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $options['api_token'] = new ApiToken('abcdef');
         $options['http']['client'] = new \Http\Mock\Client();
         $response = $this->createMock('Psr\Http\Message\ResponseInterface');
+        $streamFactory = Psr17FactoryDiscovery::findStreamFactory();
+        $response->method('getBody')->willReturn($streamFactory->createStream('{}'));
         $options['http']['client']->setDefaultResponse($response);
 
         $client = new Client($options);
@@ -170,7 +172,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $methods[] = 'send';
         }
 
-        return $this->getMockBuilder('Guzzle\Http\Client')->setMethods($methods)->getMock();
+        return $this->getMockBuilder('Guzzle\Http\Client')->onlyMethods($methods)->getMock();
     }
 
     /**

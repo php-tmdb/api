@@ -67,7 +67,7 @@ abstract class TestCase extends Base
         }
 
         return $this->_api = $this->getMockBuilder($this->getApiClass())
-            ->setMethods($methods)
+            ->onlyMethods($methods)
             ->setConstructorArgs([$this->_client])
             ->getMock();
     }
