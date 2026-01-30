@@ -76,7 +76,7 @@ class Season extends AbstractModel
      */
     protected $changes;
     /**
-     * @var DateTime
+     * @var \DateTime|null
      */
     private $airDate;
     /**
@@ -118,7 +118,7 @@ class Season extends AbstractModel
     }
 
     /**
-     * @return DateTime
+     * @return ?DateTime
      */
     public function getAirDate()
     {
@@ -126,12 +126,18 @@ class Season extends AbstractModel
     }
 
     /**
-     * @param string $airDate
+     * @param DateTime|string|null $airDate
      * @return self
      */
-    public function setAirDate($airDate)
+    public function setAirDate($airDate = null)
     {
-        $this->airDate = new DateTime($airDate);
+        if (empty($airDate)) {
+            $airDate = null;
+        } elseif (!$airDate instanceof DateTime) {
+            $airDate = new DateTime($airDate);
+        }
+
+        $this->airDate = $airDate;
 
         return $this;
     }
