@@ -1,78 +1,97 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Instanceof between Psr\\\\Http\\\\Message\\\\StreamInterface and Psr\\\\Http\\\\Message\\\\StreamInterface will always evaluate to true\\.$#"
+			rawMessage: Instanceof between Psr\Http\Message\StreamInterface and Psr\Http\Message\StreamInterface will always evaluate to true.
+			identifier: instanceof.alwaysTrue
 			count: 1
 			path: lib/Tmdb/Api/AbstractApi.php
 
 		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			rawMessage: Unreachable statement - code above always terminates.
+			identifier: deadCode.unreachable
 			count: 1
 			path: lib/Tmdb/Api/AbstractApi.php
 
 		-
-			message: "#^Strict comparison using \\!\\=\\= between null and Psr\\\\Http\\\\Message\\\\StreamInterface will always evaluate to true\\.$#"
+			rawMessage: 'Strict comparison using !== between null and Psr\Http\Message\StreamInterface will always evaluate to true.'
+			identifier: notIdentical.alwaysTrue
 			count: 1
 			path: lib/Tmdb/Event/Listener/Logger/LogHttpMessageListener.php
 
 		-
-			message: "#^Parameter \\#3 \\$first of method Http\\\\Client\\\\Common\\\\Plugin\\\\CachePlugin\\:\\:handleRequest\\(\\) expects callable\\(Psr\\\\Http\\\\Message\\\\RequestInterface\\)\\: Http\\\\Promise\\\\Promise, Closure\\(\\)\\: void given\\.$#"
+			rawMessage: 'Parameter #3 $first of method Http\Client\Common\Plugin\CachePlugin::handleRequest() expects callable(Psr\Http\Message\RequestInterface): Http\Promise\Promise, Closure(): void given.'
+			identifier: argument.type
 			count: 1
 			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
 
 		-
-			message: "#^Property Tmdb\\\\Event\\\\Listener\\\\Psr6CachedRequestListener\\:\\:\\$options is never read, only written\\.$#"
+			rawMessage: 'Property Tmdb\Event\Listener\Psr6CachedRequestListener::$options is never read, only written.'
+			identifier: property.onlyWritten
 			count: 1
 			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
 
 		-
-			message: """
-				#^Call to deprecated method setReleases\\(\\) of class Tmdb\\\\Model\\\\Movie\\:
-				Use the setReleaseDates instead\\.$#
-			"""
+			rawMessage: '''
+				Call to deprecated method setReleases() of class Tmdb\Model\Movie:
+				Use the setReleaseDates instead.
+			'''
+			identifier: method.deprecated
 			count: 1
 			path: lib/Tmdb/Factory/MovieFactory.php
 
 		-
-			message: """
-				#^Instantiation of deprecated class Tmdb\\\\Model\\\\Movie\\\\Release\\:
-				Use ReleaseDate instead$#
-			"""
+			rawMessage: '''
+				Instantiation of deprecated class Tmdb\Model\Movie\Release:
+				Use ReleaseDate instead
+			'''
+			identifier: new.deprecatedClass
 			count: 1
 			path: lib/Tmdb/Factory/MovieFactory.php
 
 		-
-			message: "#^Return type \\(Tmdb\\\\Model\\\\Collection\\\\People\\) of method Tmdb\\\\Factory\\\\PeopleFactory\\:\\:createCollection\\(\\) should be compatible with return type \\(Tmdb\\\\Model\\\\Common\\\\GenericCollection\\<Tmdb\\\\Model\\\\AbstractModel\\>\\) of method Tmdb\\\\Factory\\\\AbstractFactory\\<Tmdb\\\\Model\\\\AbstractModel\\>\\:\\:createCollection\\(\\)$#"
+			rawMessage: 'Return type (Tmdb\Model\Collection\People) of method Tmdb\Factory\PeopleFactory::createCollection() should be compatible with return type (Tmdb\Model\Common\GenericCollection<Tmdb\Model\AbstractModel>) of method Tmdb\Factory\AbstractFactory<Tmdb\Model\AbstractModel>::createCollection()'
+			identifier: method.childReturnType
 			count: 1
 			path: lib/Tmdb/Factory/PeopleFactory.php
 
 		-
-			message: "#^Property Tmdb\\\\HttpClient\\\\HttpClient\\:\\:\\$sessionToken is never written, only read\\.$#"
+			rawMessage: 'Property Tmdb\HttpClient\HttpClient::$sessionToken (Tmdb\Token\Session\SessionToken|null) is never assigned Tmdb\Token\Session\SessionToken so it can be removed from the property type.'
+			identifier: property.unusedType
 			count: 1
 			path: lib/Tmdb/HttpClient/HttpClient.php
 
 		-
-			message: """
-				#^Access to deprecated property \\$releases of class Tmdb\\\\Model\\\\Movie\\:
-				Use \\$release_dates instead$#
-			"""
+			rawMessage: 'Property Tmdb\HttpClient\HttpClient::$sessionToken is never written, only read.'
+			identifier: property.onlyRead
+			count: 1
+			path: lib/Tmdb/HttpClient/HttpClient.php
+
+		-
+			rawMessage: '''
+				Access to deprecated property $releases of class Tmdb\Model\Movie:
+				Use $release_dates instead
+			'''
+			identifier: property.deprecated
 			count: 1
 			path: lib/Tmdb/Model/Movie.php
 
 		-
-			message: """
-				#^Return type of method Tmdb\\\\Repository\\\\MovieRepository\\:\\:getReleases\\(\\) has typehint with deprecated class Tmdb\\\\Model\\\\Movie\\\\Release\\:
-				Use ReleaseDate instead$#
-			"""
+			rawMessage: '''
+				Return type of method Tmdb\Repository\MovieRepository::getReleases() has typehint with deprecated class Tmdb\Model\Movie\Release:
+				Use ReleaseDate instead
+			'''
+			identifier: return.deprecatedClass
 			count: 1
 			path: lib/Tmdb/Repository/MovieRepository.php
 
 		-
-			message: "#^Result of \\|\\| is always false\\.$#"
+			rawMessage: Result of || is always false.
+			identifier: booleanOr.alwaysFalse
 			count: 1
 			path: lib/Tmdb/Repository/TvSeasonRepository.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between null and int will always evaluate to false\\.$#"
+			rawMessage: 'Strict comparison using === between null and int will always evaluate to false.'
+			identifier: identical.alwaysFalse
 			count: 2
 			path: lib/Tmdb/Repository/TvSeasonRepository.php
