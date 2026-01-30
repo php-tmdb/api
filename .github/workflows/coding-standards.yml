@@ -5,12 +5,14 @@ on: ["pull_request"]
 jobs:
   coding-standards:
     name: "Coding Standards"
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-latest"
 
     strategy:
       matrix:
         php-version:
           - "7.4"
+          - "8.0"
+          - "8.5"
 
     steps:
       - name: "Checkout"
@@ -26,7 +28,7 @@ jobs:
           tools: "cs2pr"
 
       - name: "Cache dependencies installed with Composer"
-        uses: "actions/cache@v2"
+        uses: "actions/cache@v5"
         with:
           path: "~/.composer/cache"
           key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
