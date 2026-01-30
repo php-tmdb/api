@@ -95,54 +95,60 @@ class Client
                 'base_uri' => null,
                 'api_token' => null,
                 'guest_session_token' => null,
-                'http' => function (OptionsResolver $optionsResolver) {
-                    $optionsResolver->setDefaults(
-                        [
-                            'client' => null,
-                            'request_factory' => null,
-                            'response_factory' => null,
-                            'stream_factory' => null,
-                            'uri_factory' => null,
-                        ]
-                    );
-                    $optionsResolver->setRequired(
-                        [
-                            'client',
-                            'request_factory',
-                            'response_factory',
-                            'stream_factory',
-                            'uri_factory'
-                        ]
-                    );
-                    $optionsResolver->setAllowedTypes('client', [ClientInterface::class, 'null']);
-                    $optionsResolver->setAllowedTypes('request_factory', [RequestFactoryInterface::class, 'null']);
-                    $optionsResolver->setAllowedTypes('response_factory', [ResponseFactoryInterface::class, 'null']);
-                    $optionsResolver->setAllowedTypes('stream_factory', [StreamFactoryInterface::class, 'null']);
-                    $optionsResolver->setAllowedTypes('uri_factory', [UriFactoryInterface::class, 'null']);
-                },
-                'hydration' => function (OptionsResolver $optionsResolver) {
-                    $optionsResolver->setDefaults(
-                        [
-                            'event_listener_handles_hydration' => false,
-                            'only_for_specified_models' => []
-                        ]
-                    );
-                    $optionsResolver->setAllowedTypes('event_listener_handles_hydration', ['bool']);
-                    // @todo 4.1 validate these are actually models
-                    $optionsResolver->setAllowedTypes('only_for_specified_models', ['array']);
-                },
-                'event_dispatcher' => function (OptionsResolver $optionsResolver) {
-                    $optionsResolver->setDefaults(
-                        [
-                            'adapter' => null
-                        ]
-                    );
-
-                    $optionsResolver->setRequired(['adapter']);
-                    $optionsResolver->setAllowedTypes('adapter', [EventDispatcherInterface::class]);
-                }
+                'http' => [],
+                'hydration' => [],
+                'event_dispatcher' => [],
             ]
         );
+
+        $resolver->setOptions('http', function (OptionsResolver $optionsResolver) {
+            $optionsResolver->setDefaults(
+                [
+                    'client' => null,
+                    'request_factory' => null,
+                    'response_factory' => null,
+                    'stream_factory' => null,
+                    'uri_factory' => null,
+                ]
+            );
+            $optionsResolver->setRequired(
+                [
+                    'client',
+                    'request_factory',
+                    'response_factory',
+                    'stream_factory',
+                    'uri_factory'
+                ]
+            );
+            $optionsResolver->setAllowedTypes('client', [ClientInterface::class, 'null']);
+            $optionsResolver->setAllowedTypes('request_factory', [RequestFactoryInterface::class, 'null']);
+            $optionsResolver->setAllowedTypes('response_factory', [ResponseFactoryInterface::class, 'null']);
+            $optionsResolver->setAllowedTypes('stream_factory', [StreamFactoryInterface::class, 'null']);
+            $optionsResolver->setAllowedTypes('uri_factory', [UriFactoryInterface::class, 'null']);
+        });
+
+        $resolver->setOptions('hydration', function (OptionsResolver $optionsResolver) {
+            $optionsResolver->setDefaults(
+                [
+                    'event_listener_handles_hydration' => false,
+                    'only_for_specified_models' => []
+                ]
+            );
+            $optionsResolver->setAllowedTypes('event_listener_handles_hydration', ['bool']);
+            // @todo 4.1 validate these are actually models
+            $optionsResolver->setAllowedTypes('only_for_specified_models', ['array']);
+        });
+
+        $resolver->setOptions('event_dispatcher', function (OptionsResolver $optionsResolver) {
+            $optionsResolver->setDefaults(
+                [
+                    'adapter' => null
+                ]
+            );
+
+            $optionsResolver->setRequired(['adapter']);
+            $optionsResolver->setAllowedTypes('adapter', [EventDispatcherInterface::class]);
+        });
 
         $resolver->setRequired(
             [
