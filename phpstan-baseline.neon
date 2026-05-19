@@ -19,8 +19,14 @@ parameters:
 			path: lib/Tmdb/Event/Listener/Logger/LogHttpMessageListener.php
 
 		-
-			rawMessage: 'Parameter #3 $first of method Http\Client\Common\Plugin\CachePlugin::handleRequest() expects callable(Psr\Http\Message\RequestInterface): Http\Promise\Promise, Closure(): void given.'
+			rawMessage: 'Parameter #3 $first of method Http\Client\Common\Plugin\AbstractCachePlugin::handleRequest() expects callable(Psr\Http\Message\RequestInterface): Http\Promise\Promise, Closure(): void given.'
 			identifier: argument.type
+			count: 1
+			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
+
+		-
+			rawMessage: 'Call to method handleRequest() of internal class Http\Client\Common\Plugin\AbstractCachePlugin from outside its root namespace Http.'
+			identifier: method.internalClass
 			count: 1
 			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
 
