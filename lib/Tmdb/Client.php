@@ -95,7 +95,7 @@ class Client
                 'base_uri' => null,
                 'api_token' => null,
                 'guest_session_token' => null,
-                'http' => function (OptionsResolver $optionsResolver) {
+                'http' => $http = function (OptionsResolver $optionsResolver) {
                     $optionsResolver->setDefaults(
                         [
                             'client' => null,
@@ -120,7 +120,7 @@ class Client
                     $optionsResolver->setAllowedTypes('stream_factory', [StreamFactoryInterface::class, 'null']);
                     $optionsResolver->setAllowedTypes('uri_factory', [UriFactoryInterface::class, 'null']);
                 },
-                'hydration' => function (OptionsResolver $optionsResolver) {
+                'hydration' => $hydration = function (OptionsResolver $optionsResolver) {
                     $optionsResolver->setDefaults(
                         [
                             'event_listener_handles_hydration' => false,
@@ -131,7 +131,7 @@ class Client
                     // @todo 4.1 validate these are actually models
                     $optionsResolver->setAllowedTypes('only_for_specified_models', ['array']);
                 },
-                'event_dispatcher' => function (OptionsResolver $optionsResolver) {
+                'event_dispatcher' => $eventDispatcher = function (OptionsResolver $optionsResolver) {
                     $optionsResolver->setDefaults(
                         [
                             'adapter' => null
@@ -143,6 +143,14 @@ class Client
                 }
             ]
         );
+
+        // symfony/options-resolver 8.0 removed nested-options-via-Closure passed to setDefaults();
+        // setOptions() is the replacement, available from 7.3.
+        if (method_exists($resolver, 'setOptions')) {
+            $resolver->setOptions('http', $http);
+            $resolver->setOptions('hydration', $hydration);
+            $resolver->setOptions('event_dispatcher', $eventDispatcher);
+        }
 
         $resolver->setRequired(
             [
