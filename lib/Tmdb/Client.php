@@ -146,8 +146,9 @@ class Client
 
         // symfony/options-resolver 8.0 removed nested-options-via-Closure passed to setDefaults();
         // setOptions() is the replacement, available from 7.3. The runtime guard supports older
-        // versions still allowed by composer.json; PHPStan resolves against the installed version.
-        // @phpstan-ignore function.alreadyNarrowedType, function.impossibleType
+        // versions still allowed by composer.json; PHPStan tautology errors are silenced in
+        // phpstan-baseline.neon for both true and false outcomes (analysis runs against a single
+        // installed OptionsResolver version, but the guard is genuine across the supported range).
         if (method_exists($resolver, 'setOptions')) {
             $resolver->setOptions('http', $http);
             $resolver->setOptions('hydration', $hydration);
