@@ -18,9 +18,31 @@ parameters:
 			count: 1
 			path: lib/Tmdb/Event/Listener/Logger/LogHttpMessageListener.php
 
+		# The method_exists(setOptions) guard supports symfony/options-resolver versions both
+		# with and without the method. PHPStan resolves against the installed version on each
+		# CI job, so exactly one of these two outcomes fires per job; reportUnmatched silences
+		# the other.
 		-
-			rawMessage: 'Parameter #3 $first of method Http\Client\Common\Plugin\CachePlugin::handleRequest() expects callable(Psr\Http\Message\RequestInterface): Http\Promise\Promise, Closure(): void given.'
+			rawMessage: "Call to function method_exists() with Symfony\\Component\\OptionsResolver\\OptionsResolver and 'setOptions' will always evaluate to true."
+			identifier: function.alreadyNarrowedType
+			reportUnmatched: false
+			path: lib/Tmdb/Client.php
+
+		-
+			rawMessage: "Call to function method_exists() with Symfony\\Component\\OptionsResolver\\OptionsResolver and 'setOptions' will always evaluate to false."
+			identifier: function.impossibleType
+			reportUnmatched: false
+			path: lib/Tmdb/Client.php
+
+		-
+			rawMessage: 'Parameter #3 $first of method Http\Client\Common\Plugin\AbstractCachePlugin::handleRequest() expects callable(Psr\Http\Message\RequestInterface): Http\Promise\Promise, Closure(): void given.'
 			identifier: argument.type
+			count: 1
+			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
+
+		-
+			rawMessage: 'Call to method handleRequest() of internal class Http\Client\Common\Plugin\AbstractCachePlugin from outside its root namespace Http.'
+			identifier: method.internalClass
 			count: 1
 			path: lib/Tmdb/Event/Listener/Psr6CachedRequestListener.php
 
